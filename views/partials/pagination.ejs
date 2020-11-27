@@ -1,0 +1,48 @@
+<section>
+    <table class="govuk-table" id="datatable">
+      <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+              <th scope="col" class="govuk-table__header">Row</th>
+              <th scope="col" class="govuk-table__header">Column</th>
+              <th scope="col" class="govuk-table__header">Errors</th>
+          </tr >
+      </thead>
+
+
+
+      <tbody class="govuk-table__body">
+
+
+        <% validationerrors.validationErrorResult.forEach(function(item) { %>
+          <tr>
+            
+            <td class="govuk-table__cell"><%= item.row %></td>
+            <td class="govuk-table__cell"><%= item.columns %></td>
+            <td class="govuk-table__cell"><%= item.errorMessages %></td> 
+          </tr>
+
+          <% } ); %>
+     
+         
+      </tbody>
+      
+  </table>
+  <div id="pagination" class="pagination">
+      <div class="col first">
+          <p class="pagination-label">
+              Viewing <span>1-10</span> of <span>36</span>
+          </p>
+      </div>
+      <div class="col last">
+        <a href="#" class="first round"><span style='font-size:20px;'>&#8592;</span></a>
+        <a href="#" class="previous round">Previous Page</a>
+        <a href="#" class="round btn-page active">1</a>
+        <a href="#" class="round btn-page">2</a>
+        <a href="#" class="round btn-page">3</a>
+        <a href="#" class="round btn-page">4</a>
+        <a href="#" class="next round">Next Page</a>
+        <a href="#" class="last round"><span style='font-size:20px;'>&#8594;</span></a>
+      </div>
+   
+
+</section>

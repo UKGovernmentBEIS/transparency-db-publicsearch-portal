@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>GOV.UK - Public user search page</title>
+</head>
+
+
+<!--**************************************************
+Gov.UK public user search - header rendering design 
+**************************************************** -->
+  
+  <body class="govuk-template__body app-example-page">
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+    <%- include('../partials/header.ejs') %>
+    <div class="govuk-width-container ">
+      <%- include('../partials/banner.ejs') %>
+
+
+
+    <main class="govuk-main-wrapper " id="main-content" role="main">  
+
+      <form action="/searchresults" method="POST" >
+
+       <!-- ---------------------------
+        Bread crumbs design section 
+        --------------------------- -->
+      
+        <div class="govuk-breadcrumbs ">
+          <ol class="govuk-breadcrumbs__list">
+            <li class="govuk-breadcrumbs__list-item">
+              <a class="govuk-breadcrumbs__link" href="/homepage">Home</a>
+            </li>
+            <li class="govuk-breadcrumbs__list-item">
+              <a class="govuk-breadcrumbs__link" href="/beneficiaryname">Search subsidy awards</a>
+            </li>
+          </ol>
+        </div>  
+
+
+<!-- ----------------------------  
+Queation body starts here 
+--------------------------- -->
+
+  <div class="govuk-form-group">
+    <fieldset class="govuk-fieldset" role="group" aria-describedby="legal-granting-date-hint">
+      <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+        <div class="govuk-grid-row">
+          <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-fieldset__heading">
+          Are you searching for subsidies that were awarded in a specific period?
+        </h1>
+          </div>
+          <br />
+        </div>
+      </legend>
+      
+      <div class="govuk-radios govuk-radios--conditional" data-module="govuk-radios">
+        <div class="govuk-radios__item">
+          <input class="govuk-radios__input" id="legalgrantingdate" name="legalgrantingdate" type="radio" value="email" data-aria-controls="conditional-legalgrantingdate">
+          <label class="govuk-label govuk-radios__label" for="legalgrantingdate">
+            Yes
+          </label>
+        </div>
+          
+              <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-legalgrantingdate">
+              <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+
+              <div class="govuk-grid-row">
+               <div class="govuk-grid-column-one-half">
+                <label class="govuk-label" for="legalgrantingdate">From </label>   
+               </div>
+               <div class="govuk-grid-column-one-half">
+                <label class="govuk-label" for="legalgrantingdate">To </label>   
+               </div>
+              </div> 
+
+              <div class="govuk-grid-row">
+                <div class="govuk-grid-column-one-half">
+                <div id="legalgrantingdate-hint" class="govuk-hint">
+                  For example, 31 3 2008 
+                </div>  
+                </div>
+
+                <div class="govuk-grid-column-one-half">
+                  <div id="legalgrantingdate-hint" class="govuk-hint">
+                  For example, 31 3 2010 
+                  </div>  
+                </div>
+              </div>
+
+              <div class="govuk-grid-row">
+                <div class="govuk-grid-column-one-half">
+                <div class="govuk-date-input" id="legal-granting-date">
+                  <div class="govuk-date-input__item">
+                    <div class="govuk-form-group">
+                      <label class="govuk-label govuk-date-input__label" for="legal_granting_date_day">
+                        Day
+                      </label>
+                      <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="legal_granting_date_day" name="legal_granting_date_day" type="text" pattern="[0-9]*" inputmode="numeric"></div>
+                  </div>
+                  <div class="govuk-date-input__item">
+                    <div class="govuk-form-group">
+                      <label class="govuk-label govuk-date-input__label" for="legal_granting_date_month">
+                        Month
+                      </label>
+                      <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="legal_granting_date_month" name="legal_granting_date_month" type="text" pattern="[0-9]*" inputmode="numeric"></div>
+                  </div>
+                  <div class="govuk-date-input__item">
+                    <div class="govuk-form-group">
+                      <label class="govuk-label govuk-date-input__label" for="legal_granting_date_year">
+                        Year
+                      </label>
+                      <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="legal_granting_date_year" name="legal_granting_date_year" type="text" pattern="[0-9]*" inputmode="numeric"></div>
+                  </div>
+                  </div>
+                </div>
+
+                <div class="govuk-grid-column-one-half">
+                  <div class="govuk-date-input" id="legal-granting-date1">
+                    <div class="govuk-date-input__item">
+                      <div class="govuk-form-group">
+                        <label class="govuk-label govuk-date-input__label" for="legal_granting_date_day1">
+                          Day
+                        </label>
+                        <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="legal_granting_date_day1" name="legal_granting_date_day1" type="text" pattern="[0-9]*" inputmode="numeric"></div>
+                    </div>
+                    <div class="govuk-date-input__item">
+                      <div class="govuk-form-group">
+                        <label class="govuk-label govuk-date-input__label" for="legal_granting_date_month1">
+                          Month
+                        </label>
+                        <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="legal_granting_date_month1" name="legal_granting_date_month1" type="text" pattern="[0-9]*" inputmode="numeric"></div>
+                    </div>
+                    <div class="govuk-date-input__item">
+                      <div class="govuk-form-group">
+                        <label class="govuk-label govuk-date-input__label" for="legal_granting_date_year1">
+                          Year
+                        </label>
+                        <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="legal_granting_date_year1" name="legal_granting_date_year1" type="text" pattern="[0-9]*" inputmode="numeric"></div>
+                    </div>
+                    </div>
+                  </div>
+
+              </div>
+
+            </legend>
+          </div>
+          
+       
+        <div class="govuk-radios__item">
+          <input class="govuk-radios__input" id="legalgrantingdate-2" name="legalgrantingdate" type="radio" value="phone" data-aria-controls="conditional-legalgrantingdate-2">
+          <label class="govuk-label govuk-radios__label" for="legalgrantingdate-2">
+            No
+          </label>
+        </div>
+      </div>
+    </div>       
+
+</fieldset>
+ 
+<!-- -------------------------- 
+Queation body ends here 
+--------------------------- -->
+
+
+<div>  
+  <button class="govuk-button" data-module="govuk-button">
+  Continue </button>    
+</div>
+</form> 
+
+</main>
+</div>
+
+<!-- ---------------
+Footer section 
+-------------- -->
+
+<%- include('../partials/footer.ejs') %>
+      
+  
+    <script type="text/javascript" src="/assets/javascripts/example.js"></script>
+    <script type="text/javascript" src="/assets/javascripts/vendor/modernizr.js"></script>
+    <script type="text/javascript" src="/assets/javascripts/govuk-frontend-radio.js"></script>
+    <script type="text/javascript" src="/assets/javascripts/vendor/iframeResizer.contentWindow.js"></script>
+  </body>
+</html>

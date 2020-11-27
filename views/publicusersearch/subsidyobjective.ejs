@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>GOV.UK - Public user search page</title>
+</head>
+
+<!--**************************************************
+Gov.UK public user search - header rendering design 
+**************************************************** -->
+
+<%- include('../partials/header.ejs') %>
+<body class="govuk-template__body app-example-page">
+  <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+  <div class="govuk-width-container ">
+    <%- include('../partials/banner.ejs') %>
+
+
+        <main class="govuk-main-wrapper " id="main-content" role="main">     
+            <form action="/spendingsector" method="POST" >  
+
+<!--***********************************************************
+Gov.UK public user search - Breadcrumbs HTML rendering design 
+*********************************************************** -->
+           
+           <div class="govuk-breadcrumbs ">
+             <ol class="govuk-breadcrumbs__list">
+               <li class="govuk-breadcrumbs__list-item">
+                 <a class="govuk-breadcrumbs__link" href="/homepage">Home</a>
+               </li>
+               <li class="govuk-breadcrumbs__list-item">
+                 <a class="govuk-breadcrumbs__link" href="/beneficiaryname">Search subsidy awards</a>
+               </li>
+             </ol>
+           </div>
+           <br />
+           
+<!--************************************
+Gov.UK public user search - Body design 
+************************************ -->
+
+
+<div class="govuk-form-group">
+<fieldset class="govuk-fieldset" aria-describedby="beneficiary_name-hint">
+  <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-fieldset__heading">
+      
+      Which subsidy purposes do you want to search for?
+    </h1>
+      </div>
+      <br />
+    </div>
+  </legend>
+
+   
+
+  <div class="govuk-checkboxes govuk-checkboxes--conditional" data-module="govuk-checkboxes">
+
+    <div class="govuk-checkboxes__item">
+      <input class="govuk-checkboxes__input" id="subsidyobjective-1" name="subsidyobjective" type="checkbox" value="Culture/Heritage" data-aria-controls="conditional-subsidyobjective-1">
+      <label class="govuk-label govuk-checkboxes__label" for="subsidyobjective-1">
+        Culture/Heritage
+      </label>
+    </div>
+
+    <div class="govuk-checkboxes__item">
+      <input class="govuk-checkboxes__input" id="subsidyobjective-2" name="subsidyobjective" type="checkbox" value="Employment" data-aria-controls="conditional-subsidyobjective-2">
+      <label class="govuk-label govuk-checkboxes__label" for="subsidyobjective-2">
+        Employment
+      </label>
+    </div>
+
+    <div class="govuk-checkboxes__item">
+      <input class="govuk-checkboxes__input" id="subsidyobjective-3" name="subsidyobjective" type="checkbox" value="Energy efficiency" data-aria-controls="conditional-subsidyobjective-3">
+      <label class="govuk-label govuk-checkboxes__label" for="subsidyobjective-3">
+        Energy efficiency
+      </label>
+    </div>
+
+    <div class="govuk-checkboxes__item">
+      <input class="govuk-checkboxes__input" id="subsidyobjective-4" name="subsidyobjective" type="checkbox" value="Environmental protection" data-aria-controls="conditional-subsidyobjective-4">
+      <label class="govuk-label govuk-checkboxes__label" for="subsidyobjective-4">
+        Environmental protection
+      </label>
+    </div>
+
+    <div class="govuk-checkboxes__item">
+      <input class="govuk-checkboxes__input" id="subsidyobjective-5" name="subsidyobjective" type="checkbox" value="Infrastructure" data-aria-controls="conditional-subsidyobjective-5">
+      <label class="govuk-label govuk-checkboxes__label" for="subsidyobjective-5">
+        Infrastructure
+      </label>
+    </div>
+
+
+    <div class="govuk-checkboxes__item">
+      <input class="govuk-checkboxes__input" id="subsidyobjective-6" name="subsidyobjective" type="checkbox" value="Regional development" data-aria-controls="conditional-subsidyobjective-6">
+      <label class="govuk-label govuk-checkboxes__label" for="subsidyobjective-6">
+        Regional development
+      </label>
+    </div>
+
+    <div class="govuk-checkboxes__item">
+      <input class="govuk-checkboxes__input" id="subsidyobjective-7" name="subsidyobjective" type="checkbox" value="Rescue aid" data-aria-controls="conditional-subsidyobjective-7">
+      <label class="govuk-label govuk-checkboxes__label" for="subsidyobjective-7">
+        Rescue aid
+      </label>
+    </div>
+
+
+        <div class="govuk-checkboxes__item">
+          <input class="govuk-checkboxes__input" id="subsidyobjective-8" name="subsidyobjective" type="checkbox" value="Research and development" data-aria-controls="conditional-subsidyobjective-8">
+          <label class="govuk-label govuk-checkboxes__label" for="subsidyobjective-8">
+            Research and development
+          </label>
+        </div>
+
+
+        <div class="govuk-checkboxes__item">
+          <input class="govuk-checkboxes__input" id="subsidyobjective-9" name="subsidyobjective" type="checkbox" value="SME support" data-aria-controls="conditional-subsidyobjective-9">
+          <label class="govuk-label govuk-checkboxes__label" for="subsidyobjective-9">
+            SME (Small/Medium-sized enterprise) support
+          </label>
+        </div>
+
+
+
+        <div class="govuk-checkboxes__item">
+          <input class="govuk-checkboxes__input" id="subsidyobjective-10" name="subsidyobjective" type="checkbox" value="Training" data-aria-controls="conditional-subsidyobjective-10">
+          <label class="govuk-label govuk-checkboxes__label" for="subsidyobjective-10">
+            Training
+          </label>
+        </div>
+
+   
+        <div class="govuk-checkboxes__item">
+          <input class="govuk-checkboxes__input" id="subsidyobjective-11" name="subsidyobjective" type="checkbox" value="Other" data-aria-controls="conditional-subsidyobjective-11">
+          <label class="govuk-label govuk-checkboxes__label" for="subsidyobjective-11">
+            Other
+          </label>
+        </div>
+
+          <div class="govuk-checkboxes__conditional govuk-checkboxes__conditional--hidden" id="conditional-subsidyobjective-10">
+            <div class="govuk-form-group">
+               <label class="govuk-label" for="subsidyobjective-10">
+                Enter the subsidy objective you want to search by
+               </label>
+              <input class="govuk-input govuk-!-width-one-half" id="subsidyobjective-11" name="subsidy_objective" type="subsidyobjective" spellcheck="false">
+            </div>
+          </div>         
+</fieldset>
+</div>
+
+    <div>
+        <button class="govuk-button" data-module="govuk-button">
+        Continue </button>      
+    </div>
+</form> 
+</main>
+</div>
+
+<!--************************************************
+Gov.UK public user search - Footer rendering design 
+************************************************ -->
+
+<%- include('../partials/footer.ejs') %>
+      
+ 
+    <script type="text/javascript" src="/assets/javascripts/example.js"></script>
+    <script type="text/javascript" src="/assets/javascripts/vendor/modernizr.js"></script>
+    <script type="text/javascript" src="/assets/javascripts/govuk-frontend-checkbox.js"></script>
+    <script type="text/javascript" src="/assets/javascripts/vendor/iframeResizer.contentWindow.js"></script>
+  </body>
+</html>

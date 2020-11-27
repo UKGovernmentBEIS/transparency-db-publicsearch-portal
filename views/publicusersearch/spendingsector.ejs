@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>GOV.UK - Public user search page</title>
+</head>
+
+<!--**************************************************
+Gov.UK public user search - header rendering design 
+**************************************************** -->
+
+  <body class="govuk-template__body app-example-page">
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+    <%- include('../partials/header.ejs') %>
+    <div class="govuk-width-container ">
+      <%- include('../partials/banner.ejs') %>
+    <main class="govuk-main-wrapper " id="main-content" role="main">  
+      <form action="/subsidyinstrument" method="POST" >
+
+<!--***********************************************************
+Gov.UK public user search - Breadcrumbs HTML rendering design 
+*********************************************************** -->
+        <div class="govuk-breadcrumbs ">
+          <ol class="govuk-breadcrumbs__list">
+            <li class="govuk-breadcrumbs__list-item">
+              <a class="govuk-breadcrumbs__link" href="/homepage">Home</a>
+            </li>
+            <li class="govuk-breadcrumbs__list-item">
+              <a class="govuk-breadcrumbs__link" href="/beneficiaryname">Search subsidy awards</a>
+            </li>
+          </ol>
+        </div>  
+
+<!--************************************
+Gov.UK public user search - Body design 
+************************************ -->
+
+<div class="govuk-form-group">
+<fieldset class="govuk-fieldset" aria-describedby="waste-hint">
+  <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-fieldset__heading">
+      Which industries do you want to see subsidies for?
+        </h1>
+        </div>
+        <br/>
+        </div>
+  </legend>
+  
+  <div class="govuk-checkboxes">
+
+    <div class="govuk-checkboxes__item">
+      <input class="govuk-checkboxes__input" id="spendingsector-accommodation" name="spendingsector" type="checkbox" value="Accommodation">
+      <label class="govuk-label govuk-checkboxes__label" for="spendingsector-accommodations">
+     Accommodation 
+      </label>
+    </div>
+
+    <div class="govuk-checkboxes__item">
+      <input class="govuk-checkboxes__input" id="spendingsector-activities-of-extraterritorial" name="spendingsector" type="checkbox" value="Activities of extraterritorial organisations and bodies">
+      <label class="govuk-label govuk-checkboxes__label" for="spendingsector-activities-of-extraterritorial">
+     Activities of extraterritorial organisations and bodies
+      </label>
+    </div>
+
+    <div class="govuk-checkboxes__item">
+      <input class="govuk-checkboxes__input" id="spendingsector-administrative" name="spendingsector" type="checkbox" value="Administrative and support service activities">
+      <label class="govuk-label govuk-checkboxes__label" for="spendingsector-administrative">
+     Administrative and support service activities
+      </label>
+    </div>
+
+    <div class="govuk-checkboxes__item">
+      <input class="govuk-checkboxes__input" id="spendingsector-agriculture-forestry-and-fishing" name="spendingsector" type="checkbox" value="Agriculture, forestry and fishing">
+      <label class="govuk-label govuk-checkboxes__label" for="spendingsector-agriculture-forestry-and-fishing">
+        Agriculture, forestry and fishing 
+      </label>
+    </div>
+
+    <div class="govuk-checkboxes__item">
+      <input class="govuk-checkboxes__input" id="spendingsector-arts-entertainment" name="spendingsector" type="checkbox" value="Arts, entertainment and recreation">
+      <label class="govuk-label govuk-checkboxes__label" for="spendingsector-arts-entertainment">
+     Arts, entertainment and recreation
+      </label>
+    </div>
+
+    <div class="govuk-checkboxes__item">
+      <input class="govuk-checkboxes__input" id="spendingsector-construction" name="spendingsector" type="checkbox" value="Construction">
+      <label class="govuk-label govuk-checkboxes__label" for="spendingsector-construction">
+      Construction
+      </label>
+    </div>
+
+    <div class="govuk-checkboxes__item">
+      <input class="govuk-checkboxes__input" id="spendingsector-education" name="spendingsector" type="checkbox" value="Education">
+      <label class="govuk-label govuk-checkboxes__label" for="spendingsector-education">
+     Education
+      </label>
+    </div>
+
+    <div class="govuk-checkboxes__item">
+      <input class="govuk-checkboxes__input" id="spendingsector-Electricity-gas-steam-and-air-conditioning-supply" name="spendingsector" type="checkbox" value="Electricity, gas, steam and air conditioning supply">
+      <label class="govuk-label govuk-checkboxes__label" for="spendingsector-Electricity-gas-steam-and-air-conditioning-supply">
+      Electricity, gas, steam and air conditioning supply
+      </label>
+    </div>
+
+    <div class="govuk-checkboxes__item">
+      <input class="govuk-checkboxes__input" id="spendingsector-financial-and-insurance-activities" name="spendingsector" type="checkbox" value="Financial and insurance activities">
+      <label class="govuk-label govuk-checkboxes__label" for="spendingsector-financial-and-insurance-activities">
+     Financial and insurance activities
+      </label>
+    </div>
+
+    <div class="govuk-checkboxes__item">
+      <input class="govuk-checkboxes__input" id="spendingsector-human-health" name="spendingsector" type="checkbox" value="Human health and social work activities">
+      <label class="govuk-label govuk-checkboxes__label" for="spendingsector-human-health">
+     Human health and social work activities
+      </label>
+    </div>
+
+
+    <div class="govuk-checkboxes__item">
+      <input class="govuk-checkboxes__input" id="spendingsector-information-and-communication" name="spendingsector" type="checkbox" value="Information and communication">
+      <label class="govuk-label govuk-checkboxes__label" for="spendingsector-information-and-communication">
+     Information and communication
+      </label>
+    </div>
+
+    <div class="govuk-checkboxes__item">
+      <input class="govuk-checkboxes__input" id="spendingsector-Manufacturing" name="spendingsector" type="checkbox" value="Manufacturing">
+      <label class="govuk-label govuk-checkboxes__label" for="spendingsector-Manufacturing">
+      Manufacturing
+      </label>
+    </div>
+
+    <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="spendingsector-mining-and-quarrying" name="spendingsector" type="checkbox" value="Mining and quarrying">
+        <label class="govuk-label govuk-checkboxes__label" for="spendingsector-mining-and-quarrying">
+         Mining and quarrying
+        </label>
+      </div>
+
+      <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="spendingsector-professional" name="spendingsector" type="checkbox" value="Professional, scientific and technical activities">
+        <label class="govuk-label govuk-checkboxes__label" for="spendingsector-professional">
+       Professional, scientific and technical activities
+        </label>
+      </div>
+
+      <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="spendingsector-public-administrative" name="spendingsector" type="checkbox" value="Public administrative and defence; compulsory social security">
+        <label class="govuk-label govuk-checkboxes__label" for="spendingsector-public-administrative">
+       Public administrative and defence; compulsory social security
+        </label>
+      </div>
+
+      <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="spendingsector-real-estate-activities" name="spendingsector" type="checkbox" value="Real estate activities">
+        <label class="govuk-label govuk-checkboxes__label" for="spendingsector-real-estate-activities">
+       Real estate activities
+        </label>
+      </div>
+
+      <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="spendingsector-transportation-and-storage" name="spendingsector" type="checkbox" value="Transportation and storage">
+        <label class="govuk-label govuk-checkboxes__label" for="spendingsector-transportation-and-storage">
+        Transportation and storage
+        </label>
+      </div>
+
+      <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="spendingsector-undifferentiated-goods" name="spendingsector" type="checkbox" value="Undifferentiated goods and services-producing activities of households for own use">
+        <label class="govuk-label govuk-checkboxes__label" for="spendingsector-undifferentiated-goods">
+       Undifferentiated goods and services-producing activities of households for own use
+        </label>
+      </div>
+
+
+      <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="spendingsector-water-supply" name="spendingsector" type="checkbox" value="Water supply; sewerage, waste management and remediation activities">
+        <label class="govuk-label govuk-checkboxes__label" for="spendingsector-water-supply">
+        Water supply; sewerage, waste management and remediation activities
+        </label>
+      </div>
+
+      <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="spendingsector-wholesale-and-retail-trade" name="spendingsector" type="checkbox" value="Wholesale and retail trade; repair of motor vehicles and motorcycles">
+        <label class="govuk-label govuk-checkboxes__label" for="spendingsector-wholesale-and-retail-trade">
+        Wholesale and retail trade; repair of motor vehicles and motorcycles
+        </label>
+      </div>
+
+
+
+  </div>
+</fieldset>
+</div>
+
+    <div> 
+      <button class="govuk-button" data-module="govuk-button">
+      Continue </button>     
+    </div>
+</form> 
+
+</main>
+</div>
+
+<!--************************************************
+Gov.UK public user search - Footer rendering design 
+************************************************ -->
+
+<%- include('../partials/footer.ejs') %>
+      
+  
+    <script type="text/javascript" src="/assets/javascripts/example.js"></script>
+    <script type="text/javascript" src="/assets/javascripts/vendor/modernizr.js"></script>
+    <script type="text/javascript" src="/assets/javascripts/govuk-frontend-radio.js"></script>
+    <script type="text/javascript" src="/assets/javascripts/vendor/iframeResizer.contentWindow.js"></script>
+  </body>
+</html>
