@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>GOV.UK - Public user search page</title>
+</head>
+    <!-- <%- include('../partials/header.ejs') %> -->
+
+    <%- include('../partials/headersubsidy.ejs') %>
+
+ 
+    
+    <div class="govuk-width-container ">
+      <%- include('../partials/banner.ejs') %>
+      <main class="govuk-main-wrapper " id="main-content" role="main">       
+        <form action="/homepage" method="POST" > 
+       <div class="govuk-breadcrumbs ">
+         <ol class="govuk-breadcrumbs__list">
+           <li class="govuk-breadcrumbs__list-item">
+             <a class="govuk-breadcrumbs__link" href="/homepage">Home</a>
+           </li>
+           <li class="govuk-breadcrumbs__list-item">
+             <a class="govuk-breadcrumbs__link" href="/beneficiaryname">Search subsidy awards</a>
+           </li>
+         </ol>
+       </div>
+     
+       <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+        <h1 class="govuk-fieldset__heading">
+          No results found for the search criteria
+        </h1>
+      </legend>
+        
+        
+        <div>
+        
+            <button class="govuk-button" data-module="govuk-button">
+            New search </button>
+              
+        </div>
+      </form>  
+
+      </main>
+    </div>
+
+      <%- include('../partials/footer.ejs') %>
+
+</html>
+    

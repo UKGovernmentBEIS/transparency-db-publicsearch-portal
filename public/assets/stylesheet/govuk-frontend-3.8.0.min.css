@@ -1385,9 +1385,9 @@
     width: 7px;
     height: 7px;
     margin: auto 0;
-    -webkit-transform: rotate(225deg);
-    -ms-transform: rotate(225deg);
-    transform: rotate(225deg);
+    -webkit-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    transform: rotate(0deg);
     border: solid;
     border-width: 1px 1px 0 0;
     border-color: #505a5f

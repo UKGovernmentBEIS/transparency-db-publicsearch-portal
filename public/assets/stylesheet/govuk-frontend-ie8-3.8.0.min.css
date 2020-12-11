@@ -745,13 +745,14 @@
     width: 7px;
     height: 7px;
     margin: auto 0;
-    -webkit-transform: rotate(225deg);
-    -ms-transform: rotate(225deg);
+    -webkit-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
     transform: rotate(225deg);
-    content: "\003c";
+    /* content: "\003c";
     width: auto;
-    height: auto;
-    border: 0;
+    height: auto; */
+    border: solid;
+    border-width: 2px 2px 0 0;
     color: #505a5f;
     font-family: Arial, sans-serif
 }
@@ -759,6 +760,7 @@
 .govuk-back-link:after {
     content: "";
     position: absolute;
+    border-width: 3px 3px 0 0;
     top: -14px;
     right: 0;
     bottom: -14px;
@@ -799,7 +801,7 @@
     margin-bottom: 5px;
     margin-left: 10px;
     padding-left: 15.655px;
-    float: left
+    
 }
 
 .govuk-breadcrumbs__list-item:before {
@@ -814,11 +816,14 @@
     margin: auto 0;
     /* -webkit-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
-    transform: rotate(45deg); */
-    content: "\003e";
+    transform: rotate(45deg); 
+    /* content: "\003e";
     width: auto;
-    height: auto;
-    border: 0;
+    height: auto; */
+    transform: rotate(45deg); 
+
+    border: solid;
+    border-width: 2px 2px 0 0;
     color: #505a5f;
     font-family: Arial, sans-serif
 }

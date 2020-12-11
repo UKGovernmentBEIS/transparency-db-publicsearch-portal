@@ -12,6 +12,7 @@ router.get('/',async(req, res) => {
 
  console.log("req.query.page: "+ req.query.page);
 
+
  routing_pagenumber =   req.query.page;
 
  if (routing_pagenumber == 999997) {
@@ -94,10 +95,7 @@ else if (routing_pagenumber == 999999) {
  current_page = parseInt(routing_pagenumber);
 //  sorting_order_pass = JSON.parse("[]");
  console.log("sorting_order_pass : " + sorting_order_pass);
- console.log("current_page pageroute : " +  current_page );
  }
-
-
 
  current_page_active = current_page;
  frontend_totalRecordsPerPage = 3;
@@ -159,8 +157,7 @@ console.log("request data : " + data);
           pageCount = Math.ceil(totalrows/frontend_totalRecordsPerPage) ;
           console.log("routing totalrows :" + totalrows)
           console.log("routing pageCount :" + pageCount)
-          console.log("beneficiary_arrow : " + beneficiary_arrow )
-          res.render('publicusersearch/searchresults',{pageCount,previous_page,next_page,current_page_active,start_record,end_record ,totalrows})
+          res.render('publicusersearch/filtersearch',{pageCount,previous_page,next_page,current_page_active,start_record,end_record ,totalrows})
           
 
       } catch (err) {
@@ -171,9 +168,9 @@ console.log("request data : " + data);
 
 
 
-  router.post('/',(req, res) => {
-    res.render('publicusersearch/searchresults')
-  });
+//   router.post('/',(req, res) => {
+//     res.render('publicusersearch/filtersearch')
+//   });
 
 
 module.exports = router;

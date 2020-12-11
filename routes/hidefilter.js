@@ -1,5 +1,5 @@
 // ********************************************************************
-// Gov.UK public user search page outing 
+// Gov.UK public user search page hide filter routing
 // ********************************************************************
 
 
@@ -12,92 +12,11 @@ router.get('/',async(req, res) => {
 
  console.log("req.query.page: "+ req.query.page);
 
- routing_pagenumber =   req.query.page;
-
- if (routing_pagenumber == 999997) {
-
-            current_page  = 1;
-            fetch_pagenumber = 1;
-            if ( beneficiary_sorting_order == "asc") {
-             sorting_column = '[' + "\""+ "beneficiary.beneficiaryName,desc" + "\"" + ']';
-             beneficiary_arrow = "updecending"
-             subsidyamount_arrow = "upanddown";
-             legalgrantingdate_arrow = "upanddown";
-             beneficiary_sorting_order  = "desc";
-            }
-            else {
-              sorting_column = '[' + "\""+ "beneficiary.beneficiaryName,asc" + "\"" + ']';
-              beneficiary_arrow = "downacending"
-              subsidyamount_arrow = "upanddown";
-              legalgrantingdate_arrow = "upanddown";
-              beneficiary_sorting_order  = "asc";
-            }
-
-            sorting_order_interium = sorting_column.replace(/^"(.*)"$/, '$1');
-            sorting_order_pass = JSON.parse(sorting_order_interium);
-            console.log("sorting_order_interium" + sorting_order_interium);
-      
-    }
-
-   else if (routing_pagenumber == 999998) {
-
-      current_page  = 1;
-      fetch_pagenumber = 1;
-      if ( legalgrantingdate_sorting_order == "asc") {
-       sorting_column = '[' + "\""+ "legalGrantingDate,desc" + "\"" + ']';
-       beneficiary_arrow = "upanddown"
-       subsidyamount_arrow = "upanddown";
-       legalgrantingdate_arrow = "updecending";
-       legalgrantingdate_sorting_order  = "desc";
-      }
-      else {
-        sorting_column = '[' + "\""+ "legalGrantingDate,asc" + "\"" + ']';
-        beneficiary_arrow = "upanddown"
-        subsidyamount_arrow = "upanddown";
-        legalgrantingdate_arrow = "downacending";
-        legalgrantingdate_sorting_order  = "asc";
-      }
-
-      sorting_order_interium = sorting_column.replace(/^"(.*)"$/, '$1');
-      sorting_order_pass = JSON.parse(sorting_order_interium);
-      console.log("sorting_order_interium :" + sorting_order_interium);
-
-}
-
-else if (routing_pagenumber == 999999) {
-
-  current_page  = 1;
-  fetch_pagenumber = 1;
-  if ( subsidyamount_sorting_order == "asc") {
-   sorting_column = '[' + "\""+ "subsidyFullAmountExact,desc" + "\"" + ']';
-   beneficiary_arrow = "upanddown"
-   subsidyamount_arrow = "updecending";
-   legalgrantingdate_arrow = "upanddown";
-   subsidyamount_sorting_order  = "desc";
-  }
-  else {
-    sorting_column = '[' + "\""+ "subsidyFullAmountExact,asc" + "\"" + ']';
-    beneficiary_arrow = "upanddown"
-    subsidyamount_arrow = "downacending";
-    legalgrantingdate_arrow = "upanddown";
-    subsidyamount_sorting_order  = "asc";
-  }
-
-  sorting_order_interium = sorting_column.replace(/^"(.*)"$/, '$1');
-  sorting_order_pass = JSON.parse(sorting_order_interium);
-  console.log("sorting_order_interium :" + sorting_order_interium);
-
-}
-
- else {
+//  routing_pagenumber =   req.query.page;
+routing_pagenumber  = current_page_active;
  fetch_pagenumber = routing_pagenumber
  current_page = parseInt(routing_pagenumber);
-//  sorting_order_pass = JSON.parse("[]");
  console.log("sorting_order_pass : " + sorting_order_pass);
- console.log("current_page pageroute : " +  current_page );
- }
-
-
 
  current_page_active = current_page;
  frontend_totalRecordsPerPage = 3;
@@ -141,9 +60,7 @@ console.log("request data : " + data);
           var searchawards_api = apidata.data;
           console.log("searchawards" + searchawards_api );
           const seachawardstring = JSON.stringify(searchawards_api );
-          // console.log('seachawardstring' + seachawardstring );
           const seachawardJSON = JSON.parse(seachawardstring );
-          // console.log('seachawardJSON ' + seachawardJSON.awards[0]  );
           totalrows = parseInt(searchawards.totalSearchResults);
           console.log(searchawards.awards[0].beneficiary.beneficiaryType);
           console.log(searchawards.awards[0].subsidyFullAmountExact);
