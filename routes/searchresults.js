@@ -77,6 +77,10 @@ router.post('/',async(req, res) => {
     date_legal_granting_date_day1=  '';
     date_legal_granting_date_month1 =  '';
     date_legal_granting_date_year1 =  '';
+
+
+        legal_granting_from_date = '';
+          legal_granting_to_date = ''; 
   }
 
 
