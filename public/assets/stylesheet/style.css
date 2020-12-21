@@ -76,13 +76,13 @@ table tbody tr:hover{
 .pagination a{
     border: solid 1px #ffffff;
     padding: 8px 10px;
-    text-decoration: none;
+    text-decoration: underline;
     color:rgb(22, 10, 134);
 }
 
 .pagination a:hover, .pagination a.active{
     background-color: rgb(229, 235, 236);
-    
+    text-decoration: none;
 }
 
 .pagination span{
