@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>GOV.UK - Public user search page</title>
+</head>
+    <%- include('../partials/header.ejs') %>
+    <div class="govuk-width-container ">
+      <%- include('../partials/banner.ejs') %>
+      <main class="govuk-main-wrapper " id="main-content" role="main">       
+        
+       <div class="govuk-breadcrumbs ">
+         <ol class="govuk-breadcrumbs__list">
+           <li class="govuk-breadcrumbs__list-item">
+             <a class="govuk-breadcrumbs__link" href="/homepage">Home</a>
+           </li>
+           <li class="govuk-breadcrumbs__list-item">
+             <a class="govuk-breadcrumbs__link" href="/beneficiaryname">Search subsidy awards</a>
+           </li>
+
+           <li class="govuk-breadcrumbs__list-item">
+            <a1 class="govuk-breadcrumbs" href="#"><%= searchmeasuredetails.subsidyMeasure.subsidyMeasureTitle%></a1>
+          </li>
+
+         </ol>
+       </div>
+       <br />
+
+       <a href="/searchresults" class="govuk-back-link">Back</a>   <br> <br>
+
+       <div class="govuk-grid-row">
+        <div class="govuk-grid-column-three-quarters">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                <h1 class="govuk-fieldset__heading">
+                  <%= searchmeasuredetails.subsidyMeasure.subsidyMeasureTitle%>
+                </h1>
+            </legend>
+         </div>
+
+         <div class="govuk-grid-column-one-quarter">
+            <!-- <form action="/homepage" method="POST" >         -->
+              <button class="govuk-button_cancel_last_xl" data-module="govuk-button" onclick="window.print()">
+              Print page </button>               
+           <!-- </form>   -->
+          </div>
+        </div>
+
+
+
+      <br />
+      <div>
+      <label class="govuk-label" >
+        Explanation text helping user provide the context. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+      </label></div>
+      <br />
+
+      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+            <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+                Region
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <%= searchmeasuredetails.beneficiary.region %>
+            </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+                Objective(s)    
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <%= searchmeasuredetails.subsidyObjective %>
+            </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+                Sector 
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <%= searchmeasuredetails.spendingSector %>
+            </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+                Aid Instrument
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <%= searchmeasuredetails.subsidyInstrument %>
+            </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+                Case Type
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <% if (searchmeasuredetails.subsidyMeasure.adhoc == false) { %>  
+                Regular Case 
+              <% } else { %>
+                Ad Hoc Case
+              <% } %>    
+             
+            </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+                Duration
+            </dt>
+            <dd class="govuk-summary-list__value">
+              From <%= searchmeasuredetails.subsidyMeasure.startDate %> - To <%= searchmeasuredetails.subsidyMeasure.endDate %> 
+            </dd>
+            </div> 
+            <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+                Notification or Registration Date
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <%= searchmeasuredetails.subsidyMeasure.startDate %>
+            </dd>
+            </div>
+      </dl>
+  
+     
+      <form action="/searchresults" method="GET" >
+        <div>
+            <button class="govuk-button" data-module="govuk-button">
+                Back to search results </button>       
+        </div>
+      </form> 
+      </main>
+    </div>
+
+      <%- include('../partials/footer.ejs') %>
+   
+</html>
+    

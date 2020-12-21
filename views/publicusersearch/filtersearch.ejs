@@ -3,7 +3,6 @@
 
 <head>
   <title>GOV.UK - Public user search page</title>
-  
 </head>
 
 <!--**************************************************
@@ -12,13 +11,261 @@ Gov.UK public user search - header rendering design
 <link href="/assets/stylesheet/style.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="/assets/javascripts/pagination.class.js"></script>
 <script type="text/javascript" src="/assets/javascripts/script.js" defer></script>
-    <link href="/assets/stylesheet/govuk-accordion.css" rel="stylesheet" media="all" />
-    <script src="/assets/javascripts/vendor/modernizr.js"></script>
-    <body class="govuk-template__body app-example-page">
-      <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
-      <%- include('../partials/header.ejs') %>
+<link href="/assets/stylesheet/govuk-accordion1.css" rel="stylesheet" media="all" />
+<script src="/assets/javascripts/vendor/modernizr.js"></script>
 
-      <div class="govuk-width-container ">
+<script type="text/javascript" language="javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.cookie/1.4.0/jquery.cookie.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/alasql/0.3/alasql.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.7.12/xlsx.core.min.js"></script>
+
+<script>
+
+  $(document).ready(function () {
+
+    
+
+//****************************************************
+// checkbox select all scripts for subsidy objective
+//****************************************************
+  
+    if (($('#subsidyobjective-7').is(":checked")) && ($('#subsidyobjective-0').is(":checked"))) {
+      $('.govuk-input-subsidyobjective').hide();
+      $('.govuk-label-subsidyobjective').hide(); 
+    }
+  
+    else if ($('#subsidyobjective-11').is(":checked")){
+      $('.govuk-input-subsidyobjective').show();
+      $('.govuk-label-subsidyobjective').show(); 
+    }
+  
+  else {
+    $('.govuk-input-subsidyobjective').hide();
+    $('.govuk-label-subsidyobjective').hide();
+  
+  }
+  
+  $("#subsidyobjective-0").change(function(){  //"select all" change 
+      $(".govuk-checkboxes__input_subsidyobjective").prop('checked', $(this).prop("checked")); //change all ".checkbox" checked status
+      if($('#subsidyobjective-0').is(":checked")){
+       
+      $('.govuk-input-subsidyobjective').hide();
+      $('.govuk-label-subsidyobjective').hide(); }
+  
+  });//"select all" close
+  
+  //".checkbox" change 
+  
+  $('#subsidyobjective-11').change(function(){ 
+  
+  if($('#subsidyobjective-0').is(":checked")){
+  $('.govuk-input-subsidyobjective').hide();
+  $('.govuk-label-subsidyobjective').hide();
+  }
+  
+  else if ($('#subsidyobjective-11').is(":checked")){
+   
+    $('.govuk-input-subsidyobjective').show();
+  $('.govuk-label-subsidyobjective').show();}
+  
+  // else if ($('#subsidyobjective-11').not(":checked")){
+  //   $('.govuk-input-subsidyobjective').show();
+  // $('.govuk-label-subsidyobjective').show();}
+  
+  else {
+    $('.govuk-input-subsidyobjective').hide();
+  $('.govuk-label-subsidyobjective').hide();
+  
+  }
+  
+  });
+  
+  
+  $('.govuk-checkboxes__input_subsidyobjective').change(function(){ 
+      //uncheck "select all", if one of the listed checkbox item is unchecked
+      if(false == $(this).prop("checked")){ //if this item is unchecked
+          $("#subsidyobjective-0").prop('checked', false); //change "select all" checked status to false
+      // alert("change fn" + $('#subsidyobjective-11').is(":checked"))
+     if($('#subsidyobjective-11').is(":checked")) {
+  
+      $('.govuk-input-subsidyobjective').show();
+      $('.govuk-label-subsidyobjective').show(); }
+      }
+  
+    // alert($('.govuk-checkboxes__input:checked').length );
+    //check "select all" if all checkbox items are checked
+    if ($('.govuk-checkboxes__input_subsidyobjective:checked').length == $('.govuk-checkboxes__input_subsidyobjective').length - 1 ){
+      $("#subsidyobjective-0").prop('checked', true); 
+      $('.govuk-input-subsidyobjective').hide();
+      $('.govuk-label-subsidyobjective').hide(); 
+    }
+    
+  
+    
+      });
+  
+    
+//****************************************************
+// checkbox select all scripts for subsidy instrument
+//****************************************************
+if (($('#subsidyinstrument-7').is(":checked")) && ($('#subsidyinstrument-0').is(":checked"))) {
+      $('.govuk-input-subsidyinstrument').hide();
+      $('.govuk-label-subsidyinstrument').hide(); 
+    }
+    else if ($('#subsidyinstrument-7').is(":checked")){
+      $('.govuk-input-subsidyinstrument').show();
+      $('.govuk-label-subsidyinstrument').show(); 
+    }
+    else {
+      $('.govuk-input-subsidyinstrument').hide();
+      $('.govuk-label-subsidyinstrument').hide();
+    }
+
+
+$("#subsidyinstrument-0").change(function(){  //"select all" change 
+    $(".govuk-checkboxes__input_subsidyinstrument").prop('checked', $(this).prop("checked")); //change all ".checkbox" checked status
+if($('#subsidyinstrument-0').is(":checked")){   
+    $('.govuk-input-subsidyinstrument').hide();
+    $('.govuk-label-subsidyinstrument').hide(); }
+
+});//"select all" close
+
+$('#subsidyinstrument-7').change(function(){ 
+      if($('#subsidyinstrument-0').is(":checked")){
+      $('.govuk-input-subsidyinstrument').hide();
+      $('.govuk-label-subsidyinstrument').hide();
+      }
+      else if ($('#subsidyinstrument-7').is(":checked")){
+        $('.govuk-input-subsidyinstrument').show();
+      $('.govuk-label-subsidyinstrument').show();}
+
+      else {
+        $('.govuk-input-subsidyinstrument').hide();
+      $('.govuk-label-subsidyinstrument').hide();
+      }
+});
+
+//".checkbox" change 
+$('.govuk-checkboxes__input_subsidyinstrument').change(function(){ 
+	  //uncheck "select all", if one of the listed checkbox item is unchecked
+    if(false == $(this).prop("checked")){ //if this item is unchecked
+        $("#subsidyinstrument-0").prop('checked', false); //change "select all" checked status to false
+      if($('#subsidyinstrument-7').is(":checked")) {
+      $('.govuk-input-subsidyinstrument').show();
+      $('.govuk-label-subsidyinstrument').show(); }
+    }
+  // alert($('.govuk-checkboxes__input_subsidyinstrument:checked').length );
+	//check "select all" if all checkbox items are checked
+	if ($('.govuk-checkboxes__input_subsidyinstrument:checked').length == $('.govuk-checkboxes__input_subsidyinstrument').length - 1 ){
+    $("#subsidyinstrument-0").prop('checked', true); 
+    $('.govuk-input-subsidyinstrument').hide();
+    $('.govuk-label-subsidyinstrument').hide(); 
+      }
+    });
+
+//****************************************************
+// checkbox select all scripts for subsidy instrument
+//****************************************************
+
+    $("#spendingsector-0").change(function(){  //"select all" change 
+    $(".govuk-checkboxes__input_spendingsector").prop('checked', $(this).prop("checked")); //change all ".checkbox" checked status
+      });
+
+//".checkbox" change 
+    $('.govuk-checkboxes__input_spendingsector').change(function(){ 
+	  //uncheck "select all", if one of the listed checkbox item is unchecked
+    if(false == $(this).prop("checked")){ //if this item is unchecked
+        $("#spendingsector-0").prop('checked', false); //change "select all" checked status to false
+    }
+
+    // alert($('.govuk-checkboxes__input_spendingsector:checked').length );
+    //check "select all" if all checkbox items are checked
+    if ($('.govuk-checkboxes__input_spendingsector:checked').length == $('.govuk-checkboxes__input_spendingsector').length - 1 ){
+      $("#spendingsector-0").prop('checked', true); 
+      
+  }
+  
+  });
+  
+ 
+  // document.getElementById("myDiv").scrollIntoView();
+  $('html,body').animate({
+        scrollTop: $(".second").offset().top},
+        'slow');
+  // var element = document.getElementById("myDiv")
+  // element.scrollIntoView({behavior: "smooth"});
+  
+
+  });
+  
+  </script> 
+
+
+
+  <script>
+      window.saveFile = function saveFile (data_request_clientside) {
+      console.log(JSON.stringify(data_request_clientside));
+      requestUrl = 'https://subsidy-search-service.azurewebsites.net/searchResults';
+    
+      var api_data;
+      $.ajax({
+      url: requestUrl,
+      type: "POST",
+      async: false,
+      data: data_request_clientside,
+      contentType: 'application/json;charset=utf-8',
+      dataType:'json',
+      success: function (response) {
+          console.log(response);
+          api_data = response;
+          
+      },
+      error: function(error){
+          console.log("Something went wrong", error);
+      }
+     });
+
+
+console.log(JSON.stringify(api_data));
+results = JSON.parse(JSON.stringify(api_data));
+
+var innArr = [];
+        for (var i = 0; i < results.totalSearchResults; i++)  {
+        innArr[innArr.length] = { 
+       "Recipient Name": results.awards[i].beneficiary.beneficiaryName,
+       "Subsidy purpose" : results.awards[i].subsidyObjective,
+       "Spending sector" : results.awards[i].spendingSector,
+       "Subsidy type" : results.awards[i].subsidyInstrument,
+       "Subsidy date" : results.awards[i].legalGrantingDate,
+       "Subsidy name" : results.awards[i].subsidyMeasure.subsidyMeasureTitle,
+       "subsidy amount": results.awards[i].subsidyFullAmountExact,
+       "subsidy amount range":  results.awards[i].subsidyFullAmountRange                        
+           }          
+        } 
+        var data1 = JSON.parse(JSON.stringify(innArr));
+        var data2 = [{a:100,b:10},{a:200,b:20}];
+        var opts = [{sheetid:'Subsidy awards',header:true},{sheetid:'Two',header:false}];
+        var res = alasql('SELECT * INTO XLSX("SubsidyAwardsDownload.xlsx",?) FROM ?',[opts,[data1,data2]]);             
+
+      }  //end of save file
+
+  
+      $(document).ready(function(){
+          $('body,html').animate({scrollTop: 300}, 1500); 
+      });
+
+  </script>
+
+  
+
+
+<%- include('../partials/header.ejs') %>
+
+<script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+<body class="govuk-template__body app-example-page">
+         <div class="govuk-width-container ">
         <%- include('../partials/banner.ejs') %>   
        
         <main class="govuk-main-wrapper " id="main-content" role="main">  
@@ -46,64 +293,67 @@ Gov.UK public user search - header rendering design
                </label></div>
                <br />
          
-
-
     <!-- *********************
       Adding filter section
       ********************* -->
 
       <div class="govuk-grid-row">
-        <div class="govuk-grid-column-three-quarters">
-          <form action="/hidefilter" method="GET" >
-            <button class=" govuk-button_cancel_start govuk-button--secondary " >
-              <a href="/hidefilter/?page=<%= current_page_active  %>" style="color : black; text-decoration: none">
-             Hide filters </a> </button>  
+        <div class="govuk-grid-column-two-thirds">
+          <a href="/hidefilter/?page=<%= current_page_active  %>"  style="color : black; text-decoration: none">
+          <button class=" govuk-button govuk-button--secondary " >  
+            Hide filters </button>  </a> 
+          <a href="/homepage" style="color : black; text-decoration: none">
+            <button class="govuk-button" data-module="govuk-button">New search </button>     
+          </a>  
+          <!-- <a href="/exportexcel" style="color : black; text-decoration: none">
+           <button class="govuk-button" data-module="govuk-button"> Download results </button>
+          </a> -->
 
-      
+          <button class="govuk-button" data-module="govuk-button" onclick="saveFile('<%= data_request_clientside %>')"> Download results </button>
+          
 
-          </form> 
-          <form action="/homepage" method="POST" >      
-            <button class="govuk-button_cancel_mid govuk-button--secondary " >
-            New search </button>          
-          </form>
         </div>
-        <div class="govuk-grid-column-one-quarter">
-          <form action="/homepage" method="POST" >        
-            <button class="govuk-button_cancel_last" data-module="govuk-button">
-             
-            Export all records</button>               
-         </form>  
+        <div class="govuk-grid-column-one-third ">
+           
+        
+  
+            <label class="govuk-grid-column-two-thirds" for="sort">
+              Results per page
+            </label>
+         
+         <form  class="govuk-grid-column-one-third" action="/updateresultspageperroute" method="GET" >  
+          <select class="govuk-select" id="sort" name="sort" onchange="this.form.submit()">  
+            <% if(frontend_totalRecordsPerPage  == 1) { %>    
+              <option value="1" selected>1</option>
+            <% } else { %>
+            <option value="1">1</option>     
+            <% }  %>
+            <% if(frontend_totalRecordsPerPage  == 2) { %>  
+            <option value="2" selected>2</option>
+            <% } else { %>
+           <option value="2">2</option>
+            <% }  %>
+            <% if(frontend_totalRecordsPerPage  == 5) { %> 
+            <option value="5" selected>5</option>
+            <% } else { %>
+            <option value="5">5</option>
+            <% }  %>
+            <% if(frontend_totalRecordsPerPage  == 10) { %> 
+            <option value="10" selected>10</option>
+            <% } else { %>
+            <option value="10">10</option>
+            <% }  %>
+          </select>
+        </form>
         </div>
       </div>
-<!--       
-            <form action="/searchresults" method="POST" >
-             
-                    <button class=" govuk-button_cancel_start govuk-button--secondary " >
-                  Hide filters </button>
-                
-            </form>  
-
-            <form action="/homepage" method="POST" >
-                      
-                  <button class=" govuk-button_cancel_mid govuk-button--secondary " >
-                  New search </button>          
-               
-            </form>
-            <form action="/homepage" method="POST" >
-           
-              <button class="govuk-button_cancel_last" data-module="govuk-button">
-              Export all records </button>                
-       
-           </form> -->
-       
+    
 
       <form action="/updateresults" method="POST" > 
-          <div class="govuk-accordion" data-module="govuk-accordion" id="accordion-default">
-                
+          <div class="govuk-accordion" data-module="govuk-accordion" id="accordion-default">             
             <%- include('../partials/searchobjectiveaccordion.ejs') %>
             <%- include('../partials/searchsectoraccordion.ejs') %>
             <%- include('../partials/searchinstrumentaccordion.ejs') %>  
-
           </div>          
             <div>
                 <button class="govuk-button" data-module="govuk-button">
@@ -111,45 +361,33 @@ Gov.UK public user search - header rendering design
             </div>
       </form>  
 
+      <div id="myDiv"></div>
+      <div class="second"></div>
          
             <section>
-             <table class="govuk-table">
-              <caption class="govuk-table__caption"><h1 class="govuk-fieldset__heading"></h1></caption>
-              <thead class="govuk-table__head">
-                <tr class="govuk-table__row">
-                  <th scope="col" class="govuk-table__header" aria-sort="ascending">
-                    <a href="/updateresultsroute/?page=999997" style="text-decoration: none">
-                    Recipient Name
-                    <% if (beneficiary_arrow == "upanddown" ) { %> 
-                    <img id="updownarrow" src="/assets/images/UpDownArrow.jpg">
-                    <% } else if (beneficiary_arrow == "downacending" ) { %> 
-                      <img id="downarrow" src="/assets/images/DownArrow.jpg">
-                    <% } else { %> 
-                      <img id="uparrow" src="/assets/images/UpArrow.jpg">
-                    <% } %>
-      
-                  </a>
-                </th>
-                  <th scope="col"  style="text-align:left" class="govuk-table__header app-custom-class" >Subsidy measure title</th>
-                  <th scope="col" class="govuk-table__header app-custom-class" aria-sort="none">
-                    <a href="/updateresultsroute/?page=999999" style="text-decoration: none">
-                    Subsidy amount (£)
-                    <% if (subsidyamount_arrow == "upanddown" ) { %> 
+              <table class="govuk-table">
+                <caption class="govuk-table__caption"><h1 class="govuk-fieldset__heading"></h1></caption>
+                <thead class="govuk-table__head">
+                  <tr class="govuk-table__row">
+                    <th scope="col" class="govuk-table__header" aria-sort="ascending">
+                      <a href="/pageroute/?page=999997" style="text-decoration: none">
+                      Recipient Name
+                      <% if (beneficiary_arrow == "upanddown" ) { %> 
                       <img id="updownarrow" src="/assets/images/UpDownArrow.jpg">
-                      <% } else if (subsidyamount_arrow == "downacending" ) { %> 
+                      <% } else if (beneficiary_arrow == "downacending" ) { %> 
                         <img id="downarrow" src="/assets/images/DownArrow.jpg">
                       <% } else { %> 
                         <img id="uparrow" src="/assets/images/UpArrow.jpg">
                       <% } %>
-                  
-                  </a>
+        
+                    </a>
                   </th>
-                  <th scope="col" class="govuk-table__header app-custom-class">Subsidy purpose</th>         
-                  <th scope="col" class="govuk-table__header app-custom-class">Subsidy type</th>
+                  <th scope="col" class="govuk-table__header app-custom-class">Subsidy purpose</th> 
                   <th scope="col" class="govuk-table__header app-custom-class">Spending sector</th>
+                  <th scope="col" class="govuk-table__header app-custom-class">Subsidy type</th>
                   <th scope="col" class="govuk-table__header app-custom-class" aria-sort="none">
-                    <a href="/updateresultsroute/?page=999998" style="text-decoration: none">
-                    Awarded Date
+                    <a href="/pageroute/?page=999998" style="text-decoration: none">
+                    Subsidy date
                     <% if (legalgrantingdate_arrow == "upanddown" ) { %> 
                       <img id="updownarrow" src="/assets/images/UpDownArrow.jpg">
                       <% } else if (legalgrantingdate_arrow == "downacending" ) { %> 
@@ -159,29 +397,52 @@ Gov.UK public user search - header rendering design
                       <% } %>
                   
                   </a></th>
-                </tr>
-              </thead>
-              <tbody class="govuk-table__body">
-                <% searchawards.awards.forEach(function(item) { %>
-                  <tr>
-                    <td class="govuk-table__cell"><a href="#"><%= item.beneficiary.beneficiaryName  %> </a> </td>
-                    <td class="govuk-table__cell"><a href="#"><%= item.subsidyMeasure.subsidyMeasureTitle  %></a></td>
-                    <% if (item.subsidyInstrument == "Tax measures (tax credit, or tax/duty exemption)") { %>
-                    <td class="govuk-table__cell">£<%= item.subsidyFullAmountRange %></td> 
-                    <% } else { %>  
-                    <td class="govuk-table__cell">£<%= item.subsidyFullAmountExact %></td>  
-                    <% } %>
-                    <td class="govuk-table__cell"><%= item.subsidyObjective %></td> 
-                    <td class="govuk-table__cell"><%= item.subsidyInstrument %></td> 
-                    <td class="govuk-table__cell"><%= item.spendingSector %></td> 
-                    <td class="govuk-table__cell" style="text-align:center"><%= item.legalGrantingDate%></td> 
-                    
-                  </tr>
         
-                  <% } ); %>
-         
-              </tbody>
-            </table>
+        
+                    <th scope="col"  style="text-align:left" class="govuk-table__header app-custom-class" >Subsidy name</th>
+                    <th scope="col" class="govuk-table__header app-custom-class" aria-sort="none">
+                      <a href="/pageroute/?page=999999" style="text-decoration: none">
+                      Subsidy amount
+                      <% if (subsidyamount_arrow == "upanddown" ) { %> 
+                        <img id="updownarrow" src="/assets/images/UpDownArrow.jpg">
+                        <% } else if (subsidyamount_arrow == "downacending" ) { %> 
+                          <img id="downarrow" src="/assets/images/DownArrow.jpg">
+                        <% } else { %> 
+                          <img id="uparrow" src="/assets/images/UpArrow.jpg">
+                        <% } %>
+                    
+                    </a>
+                    </th>
+                            
+                   
+                 
+                   
+                  </tr>
+                </thead>
+                <tbody class="govuk-table__body">
+                  <% searchawards.awards.forEach(function(item) { %> 
+                    <tr>
+                      <td class="govuk-table__cell"><a href="/searchresultsawardroute/?page=<%=item.awardNumber %>" ><%= item.beneficiary.beneficiaryName  %> </a> </td>
+                      <td class="govuk-table__cell"><%= item.subsidyObjective %></td> 
+                      <td class="govuk-table__cell"><%= item.spendingSector %></td> 
+                      <td class="govuk-table__cell"><%= item.subsidyInstrument %></td> 
+          
+                      <td class="govuk-table__cell" style="text-align:center"><%= item.legalGrantingDate%></td> 
+                      <!-- <td class="govuk-table__cell"><a href="#"><%= item.awardNumber  %> </a> </td> -->
+                      <td class="govuk-table__cell"><a href="/searchresultsmeasureroute/?page=<%=item.awardNumber %>" ><%= item.subsidyMeasure.subsidyMeasureTitle  %></a></td>
+                      <% if (item.subsidyInstrument == "Tax measures (tax credit, or tax/duty exemption)") { %>
+                      <td class="govuk-table__cell">£<%= item.subsidyFullAmountRange %></td> 
+                      <% } else { %>  
+                      <td class="govuk-table__cell">£<%= item.subsidyFullAmountExact %></td>  
+                      <% } %>
+                 
+                      
+                    </tr>
+          
+                    <% } ); %>
+           
+                </tbody>
+              </table>
        
             <!-- ********************** -->
             <!-- Pagination starts here -->
@@ -204,11 +465,11 @@ Gov.UK public user search - header rendering design
                   <% if (pageCount > 1) { %>
       
                     <% if (current_page_active != 1) { %> 
-                      <a href="/updateresultsroute/?page=1" id="paginationlink" class="first round"><span style='font-size:20px;'>&#8592;</span></a>
+                      <a href="/updateresultsroute/?page=1" id="paginationlink" class="first round"><img id="govuk-left-arrow" src="/assets/images/govuk-left-arrow.jpg"></a>
                       <a href="/updateresultsroute/?page=<%= previous_page %>" id="paginationlink" class="previous round">Previous Page</a>
                      <% } %>
                     
-                        <% for (var i = 1; i <= pageCount; i++) { %>
+                     <% for (var i = start_page; i <= end_page; i++) { %>
                           <% if (current_page_active != i ) { %>
                           <a id="paginationlink" class="round btn-page" href="/updateresultsroute/?page=<%= i %>"><%= i %></a>
                           <% } else { %>
@@ -218,7 +479,7 @@ Gov.UK public user search - header rendering design
                       
                           <% if (current_page_active != pageCount) { %> 
                         <a href="/updateresultsroute/?page=<%= next_page %>" id="paginationlink" class="next round">Next Page</a>
-                        <a href="/updateresultsroute/?page=<%= pageCount %>" id="paginationlink" class="last round"><span style='font-size:20px;'>&#8594;</span></a>
+                        <a href="/updateresultsroute/?page=<%= pageCount %>" id="paginationlink" class="last round"><img id="govuk-right-arrow" src="/assets/images/govuk-right-arrow.jpg"></a>
                         <% } %>
                   <% } %>
               </div>
@@ -241,12 +502,10 @@ Gov.UK public user search - header rendering design
   </div>
  <!-- container division ends here -->
 
-
-
       <%- include('../partials/footer.ejs') %>
 
     <script src="/assets/javascripts/vendor/iframeResizer.contentWindow.js"></script>
     <script src="/assets/javascripts/accordion/govuk-frontend.js"></script>
     <script src="/assets/javascripts/accordion/example.js"></script>
-  </body>
+     </body>
 </html>

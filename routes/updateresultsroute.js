@@ -98,8 +98,7 @@ else if (routing_pagenumber == 999999) {
  }
 
  current_page_active = current_page;
- frontend_totalRecordsPerPage = 3;
-
+ 
  if (current_page == 1) { previous_page = 1; next_page = 2 } 
  else if (current_page == pageCount ) { previous_page = pageCount - 1; next_page = pageCount } 
  else { previous_page = current_page - 1; next_page = current_page + 1;}
@@ -112,8 +111,24 @@ else if (routing_pagenumber == 999999) {
  console.log("routing prev page :" + previous_page);
  console.log("routing next page :" + next_page );
  
+ const data_request_all = 
+ {
+   "beneficiaryName": text_beneficiaryname,
+   "subsidyMeasureTitle": "",
+   "subsidyObjective": actual_subsidy_objective_pass1,
+   "spendingRegion": [],
+   "subsidyInstrument": actual_subsidy_instrument_pass1 ,
+   "spendingSector": actual_spending_sector_pass1,
+   "legalGrantingFromDate" :legal_granting_from_date,
+   "legalGrantingToDate" : legal_granting_to_date,
+   "pageNumber": 1,
+   "totalRecordsPerPage" : 500000,
+   "sortBy" : sorting_order_pass
+ 
+};
+data_request_clientside = JSON.stringify(data_request_all);
 
-  const data = 
+  const data_request = 
   {
     "beneficiaryName": text_beneficiaryname,
     "subsidyMeasureTitle": "",
@@ -129,6 +144,7 @@ else if (routing_pagenumber == 999999) {
   
 };
   
+var data = JSON.parse(JSON.stringify(data_request));
 console.log("request data : " + data);
   
       try {
@@ -155,8 +171,25 @@ console.log("request data : " + data);
           }
 
           pageCount = Math.ceil(totalrows/frontend_totalRecordsPerPage) ;
-          console.log("routing totalrows :" + totalrows)
-          console.log("routing pageCount :" + pageCount)
+            // this is for page management section
+
+            if(current_page < 5 && pageCount > 9 ) {  start_page = 1; end_page = 9 }
+            else if (current_page < 5 && pageCount <= 9 ) {  start_page = 1; end_page = pageCount }
+            else if (current_page >= 5 && pageCount <= 9 ) {  start_page = 1; end_page = pageCount }
+            if (current_page >= 5 && pageCount > 9 )
+              { start_page = current_page - 4 , 
+                end_page = current_page + 4 
+                nearby_last_page = pageCount - 4;
+                if ( current_page >= nearby_last_page)  {
+                      end_page = pageCount;
+                      start_page = pageCount -9   
+  
+                }
+              }
+  
+            console.log("Start Page :" + start_page)
+            console.log("end page :" + end_page)
+            console.log("page count: " + pageCount);
           res.render('publicusersearch/filtersearch',{pageCount,previous_page,next_page,current_page_active,start_record,end_record ,totalrows})
           
 

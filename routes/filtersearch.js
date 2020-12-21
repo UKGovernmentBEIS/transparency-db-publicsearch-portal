@@ -7,6 +7,9 @@ const express = require('express');
 const router = express.Router();
 
 router.post('/',(req, res) => {
+
+  var { showfiter } = req.body;
+  console.log("showfiter" + showfiter)
     
     res.render('publicusersearch/filtersearch',{current_page_active})
   });

@@ -66,6 +66,13 @@ router.post('/',(req, res) => {
   current_page_active = 1;
   current_page = 1;
 
+  date_legal_granting_date_day = "";
+  date_legal_granting_date_month ="";
+  date_legal_granting_date_year ="";
+  date_legal_granting_date_day1 = "";
+  date_legal_granting_date_month1 ="";
+  date_legal_granting_date_year1 ="";
+
 
 
     res.render('publicusersearch/homepage')

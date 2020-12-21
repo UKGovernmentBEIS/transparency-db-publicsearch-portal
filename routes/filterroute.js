@@ -10,10 +10,7 @@ var request = require('request');
 
 router.post('/',async(req, res) => {
 
-
-  frontend_totalRecordsPerPage = 3;
-
-  const data = 
+  const data_request = 
     {
       "beneficiaryName": text_beneficiaryname,
       "subsidyMeasureTitle": "",
@@ -28,6 +25,8 @@ router.post('/',async(req, res) => {
       "sortBy" : [""]
     
   };
+
+  var data = JSON.parse(JSON.stringify(data_request));
 
   console.log("request :" + JSON.stringify(data));
     
@@ -47,6 +46,8 @@ router.post('/',async(req, res) => {
           console.log(searchawards.awards[0].beneficiary.beneficiaryType);
           console.log(searchawards.awards[0].subsidyFullAmountExact);  
           pageCount = Math.ceil(totalrows/frontend_totalRecordsPerPage );
+
+          
           console.log("totalrows :" + totalrows)
           console.log("pageCount :" + pageCount)
           previous_page = 1;

@@ -8,13 +8,13 @@
         this.tableBody = document.querySelector("#"+this.tableID+" tbody");
         this.tableElement = document.getElementById(this.tableID);
 
-        this.nextButton = this.element.getElementsByClassName('next')[0];
-        this.prevButton = this.element.getElementsByClassName('previous')[0];
-        this.firstButton = this.element.querySelector('a.first');
-        this.lastButton = this.element.querySelector('a.last');
+        // this.nextButton = this.element.getElementsByClassName('next')[0];
+        // this.prevButton = this.element.getElementsByClassName('previous')[0];
+        // this.firstButton = this.element.querySelector('a.first');
+        // this.lastButton = this.element.querySelector('a.last');
         
 
-        this.paginationLabel = this.element.getElementsByClassName('pagination-label')[0];
+        // this.paginationLabel = this.element.getElementsByClassName('pagination-label')[0];
         // this.cmbRowCount = this.element.querySelector(".cmb-row-count");
         this.cmbRowCount = 10;
         // this.noOfRows = options.noOfRows;    
@@ -54,9 +54,9 @@
         this.noOfPages = Math.ceil(this.totalNoOfRows / this.noOfRows);
 
         // remove pre generated buttons if exist
-        this.element.querySelectorAll(".btn-page").forEach(element => {
-            element.remove();
-        });
+        // this.element.querySelectorAll(".btn-page").forEach(element => {
+        //     element.remove();
+        // });
 
     
 
@@ -70,7 +70,7 @@
             }
             a.innerHTML = i;
             a.addEventListener('click', (e)=>this.jumpToPage(e));
-            this.element.querySelector(".last").insertBefore(a, this.element.querySelector('.next'));
+            // this.element.querySelector(".last").insertBefore(a, this.element.querySelector('.next'));
             
         }
 

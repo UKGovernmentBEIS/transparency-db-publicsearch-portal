@@ -11,7 +11,7 @@ var request = require('request');
 router.get('/',async(req, res) => {
 
  console.log("req.query.page: "+ req.query.page);
-
+//  frontend_totalRecordsPerPage = 3;
  routing_pagenumber =   req.query.page;
 
  if (routing_pagenumber == 999997) {
@@ -65,7 +65,7 @@ router.get('/',async(req, res) => {
 }
 
 else if (routing_pagenumber == 999999) {
-
+  // frontend_totalRecordsPerPage = 10;
   current_page  = 1;
   fetch_pagenumber = 1;
   if ( subsidyamount_sorting_order == "asc") {
@@ -100,7 +100,7 @@ else if (routing_pagenumber == 999999) {
 
 
  current_page_active = current_page;
- frontend_totalRecordsPerPage = 3;
+ 
 
  if (current_page == 1) { previous_page = 1; next_page = 2 } 
  else if (current_page == pageCount ) { previous_page = pageCount - 1; next_page = pageCount } 
@@ -113,9 +113,26 @@ else if (routing_pagenumber == 999999) {
  console.log("routing current page :" + current_page);
  console.log("routing prev page :" + previous_page);
  console.log("routing next page :" + next_page );
+
+ const data_request_all = 
+ {
+   "beneficiaryName": text_beneficiaryname,
+   "subsidyMeasureTitle": "",
+   "subsidyObjective": actual_subsidy_objective_pass1,
+   "spendingRegion": [],
+   "subsidyInstrument": actual_subsidy_instrument_pass1 ,
+   "spendingSector": actual_spending_sector_pass1,
+   "legalGrantingFromDate" :legal_granting_from_date,
+   "legalGrantingToDate" : legal_granting_to_date,
+   "pageNumber": 1,
+   "totalRecordsPerPage" : 500000,
+   "sortBy" : sorting_order_pass
+ 
+};
+data_request_clientside = JSON.stringify(data_request_all);
  
 
-  const data = 
+  const data_request = 
   {
     "beneficiaryName": text_beneficiaryname,
     "subsidyMeasureTitle": "",
@@ -131,6 +148,7 @@ else if (routing_pagenumber == 999999) {
   
 };
   
+var data = JSON.parse(JSON.stringify(data_request));
 console.log("request data : " + data);
   
       try {
@@ -157,9 +175,81 @@ console.log("request data : " + data);
           }
 
           pageCount = Math.ceil(totalrows/frontend_totalRecordsPerPage) ;
-          console.log("routing totalrows :" + totalrows)
-          console.log("routing pageCount :" + pageCount)
-          console.log("beneficiary_arrow : " + beneficiary_arrow )
+
+
+          
+          // this is for page management section
+
+          if(current_page < 5 && pageCount > 9 ) {  start_page = 1; end_page = 9 }
+          else if (current_page < 5 && pageCount <= 9 ) {  start_page = 1; end_page = pageCount }
+          else if (current_page >= 5 && pageCount <= 9 ) {  start_page = 1; end_page = pageCount }
+          if (current_page >= 5 && pageCount > 9 )
+            { start_page = current_page - 4 , 
+              end_page = current_page + 4 
+              nearby_last_page = pageCount - 4;
+              if ( current_page >= nearby_last_page)  {
+                    end_page = pageCount;
+                    start_page = pageCount -9   
+
+              }
+            }
+
+          // if ( pageCount < 11) { start_page = 1; end_page = pageCount } 
+          // if ( pageCount > 10  ) 
+          // {
+          //     if (current_page == 1) {  start_page = 1; end_page = 10    }
+          //     else if (current_page % 10 == 1 && current_page != 1 ) 
+          //       { start_page = current_page - 10; end_page = current_page - 1  }
+          //     else if (current_page % 10 == 0 && current_page != pageCount) 
+              
+          //       { 
+          //          start_page = current_page + 1;
+          //          end_page = current_page + 10
+
+          //          check_nearby_last_page = pageCount - start_page;
+                   
+          //          if (check_nearby_last_page < 9) {
+          //           end_page = pageCount
+          //           start_page = pageCount -9 
+
+          //          }
+
+          //         else if (end_page > pageCount)
+          //           {
+          //             console.log("last pagination")
+          //             end_page = pageCount
+          //             start_page = pageCount -9  
+          //           }
+
+          //         else if (end_page == pageCount)
+          //         {
+          //           console.log("eactly last pagecount")
+          //           end_page = pageCount;
+          //           start_page = pageCount -9    
+          //              }                    
+
+          //        }
+          //   else if(current_page == pageCount) {
+
+          //     console.log("eactly last pagecount out")
+          //     end_page = pageCount;
+          //     start_page = pageCount -9  
+          //   }
+                
+
+          //   else if(current_page % 10 != 0 && current_page % 10 != 1) {
+          //     console.log("ordinary")
+          //     round_value = Math.floor(current_page /10);
+          //     start_page = round_value * 10 + 1;
+          //     end_page   = start_page + 9;
+          //   }
+                                                                                                        
+          // }
+
+          console.log("Start Page :" + start_page)
+          console.log("end page :" + end_page)
+          console.log("page count: " + pageCount);
+
           res.render('publicusersearch/searchresults',{pageCount,previous_page,next_page,current_page_active,start_record,end_record ,totalrows})
           
 
@@ -172,7 +262,10 @@ console.log("request data : " + data);
 
 
   router.post('/',(req, res) => {
-    res.render('publicusersearch/searchresults')
+    console.log("postcall1");
+    legalgrantingdate_arrow = "downacending" ;
+    res.render('publicusersearch/searchresults');
+    console.log("postcall2");
   });
 
 

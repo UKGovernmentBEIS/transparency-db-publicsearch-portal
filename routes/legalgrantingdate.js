@@ -120,6 +120,13 @@ router.post('/',(req, res) => {
   date_legal_granting_date_month1_Error = false;
   date_legal_granting_date_day1_Error = false;
   date_legal_granting_date_year1_Error = false;
+  
+  date_legal_granting_date_day ="";
+  date_legal_granting_date_month ="";
+  date_legal_granting_date_year ="";
+  date_legal_granting_date_day1 = "";
+  date_legal_granting_date_month1 ="";
+  date_legal_granting_date_year1 ="";
 
     res.render('publicusersearch/legalgrantingdate')
   });

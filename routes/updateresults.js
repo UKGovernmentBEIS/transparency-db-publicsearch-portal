@@ -13,6 +13,7 @@ router.post('/',async(req, res) => {
 // Subsidy objective read section from filter display results call 
 // ***************************************************************
 
+  const { subsidyobjective0 } = req.body;
   const { subsidyobjective1 } = req.body;
   const { subsidyobjective2 } = req.body;
   const { subsidyobjective3 } = req.body;
@@ -27,6 +28,9 @@ router.post('/',async(req, res) => {
   const { subsidyobjective12 } = req.body;
 
   var count = 0;
+
+    if (subsidyobjective0) { check_subsidyobjective0  = "\"" + subsidyobjective0 + "\"" ; count = count + 1 }
+    else  { check_subsidyobjective0  = ''; }
 
     if (subsidyobjective1) { check_subsidyobjective1  = "\"" + subsidyobjective1 + "\"" ; count = count + 1 }
     else  { check_subsidyobjective1  = ''; }
@@ -146,6 +150,7 @@ router.post('/',async(req, res) => {
 // Start of spending sector read from filter display results call 
 // ************************************************************
 
+const { spendingsector0 } = req.body;
 const { spendingsector1 } = req.body;
 const { spendingsector2 } = req.body;
 const { spendingsector3 } = req.body;
@@ -169,6 +174,8 @@ const { spendingsector20 } = req.body;
 
 var count = 0;
 
+if (spendingsector0) { check_spendingsector0  = "\"" + spendingsector0 + "\"" ; count = count + 1 }
+else  { check_spendingsector0  = ''; }
 if (spendingsector1) { check_spendingsector1  = "\"" + spendingsector1 + "\"" ; count = count + 1 }
 else  { check_spendingsector1  = ''; }
 if (spendingsector2) { check_spendingsector2  = "\"" + spendingsector2 + "\"" ; count = count + 1 }
@@ -310,7 +317,7 @@ console.log(" actual_spending_sector:" +  actual_spending_sector);
 // Start of subsidy instrument read from filter display results call 
 // ************************************************************
 
-
+const { subsidyinstrument0 } = req.body;
 const { subsidyinstrument1 } = req.body;
 const { subsidyinstrument2 } = req.body;
 const { subsidyinstrument3 } = req.body;
@@ -322,6 +329,9 @@ const { subsidyinstrument8 } = req.body;
 const { subsidyinstrument9 } = req.body;
 
 var count = 0;
+
+if (subsidyinstrument0) { check_subsidyinstrument0  = "\"" + subsidyinstrument0 + "\"" ; count = count + 1 }
+else  { check_subsidyinstrument0  = ''; }
 
 if (subsidyinstrument1) { check_subsidyinstrument1  = "\"" + subsidyinstrument1 + "\"" ; count = count + 1 }
 else  { check_subsidyinstrument1  = ''; }
@@ -419,8 +429,6 @@ console.log(" actual_subsidy_instrument:" +  actual_subsidy_instrument);
 // ***********************
 
 
-  frontend_totalRecordsPerPage = 3;
-
   actual_subsidy_objective_trim = actual_subsidy_objective.replace(/^"(.+)"$/,'$1');
   actual_subsidy_objective_brace = '[' + actual_subsidy_objective + ']';
   actual_subsidy_objective_pass = actual_subsidy_objective_brace.replace(/^"(.*)"$/, '$1');
@@ -440,7 +448,24 @@ console.log(" actual_subsidy_instrument:" +  actual_subsidy_instrument);
   console.log("actual_spending_sector_pass :" + actual_spending_sector_pass )
 
 
-  const data = 
+  const data_request_all = 
+  {
+    "beneficiaryName": text_beneficiaryname,
+    "subsidyMeasureTitle": "",
+    "subsidyObjective": actual_subsidy_objective_pass1,
+    "spendingRegion": [],
+    "subsidyInstrument": actual_subsidy_instrument_pass1 ,
+    "spendingSector": actual_spending_sector_pass1,
+    "legalGrantingFromDate" :legal_granting_from_date,
+    "legalGrantingToDate" : legal_granting_to_date,
+    "pageNumber": 1,
+    "totalRecordsPerPage" : 500000,
+    "sortBy" : [""]
+  
+};
+data_request_clientside = JSON.stringify(data_request_all);
+
+  const data_request = 
     {
       "beneficiaryName": text_beneficiaryname,
       "subsidyMeasureTitle": "",
@@ -456,6 +481,7 @@ console.log(" actual_subsidy_instrument:" +  actual_subsidy_instrument);
     
   };
 
+  var data = JSON.parse(JSON.stringify(data_request));
   console.log("request :" + JSON.stringify(data));
     
       try {
@@ -483,7 +509,19 @@ console.log(" actual_subsidy_instrument:" +  actual_subsidy_instrument);
           start_record = 1;
           end_record = frontend_totalRecordsPerPage;
           current_page_active = 1;
-          res.render('publicusersearch/filtersearch',{pageCount,previous_page,next_page,end_record ,end_record,totalrows,current_page_active   })
+
+        // this is for page management section
+         current_page = 1;
+        if( pageCount > 9 ) {  start_page = 1; end_page = 9 }
+        else if ( pageCount <= 9 ) {  start_page = 1; end_page = pageCount }
+      
+        
+        console.log("Start Page :" + start_page)
+        console.log("end page :" + end_page)
+        console.log("page count: " + pageCount);
+
+
+          res.render('publicusersearch/filtersearch',{pageCount,previous_page,next_page,end_record ,end_record,totalrows,current_page_active ,start_page,end_page  })
           
 
       }
@@ -496,10 +534,7 @@ console.log(" actual_subsidy_instrument:" +  actual_subsidy_instrument);
         res.render('publicusersearch/noresults'); 
       }
 
-    
-
-
-
+  
 
   // end of POST call
     });  
