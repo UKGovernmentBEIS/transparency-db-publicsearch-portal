@@ -18,6 +18,9 @@ router.post('/',async(req, res) => {
   var { legal_granting_date_month1 } = req.body;
   var { legal_granting_date_year1  } = req.body;
 
+
+  frontend_totalRecordsPerPage = 1;
+
   var append_zero = "0";
   var day_length = legal_granting_date_day.length;
   if (day_length == 1 ) {  legal_granting_date_day = append_zero + legal_granting_date_day  }
@@ -107,7 +110,39 @@ router.post('/',async(req, res) => {
           Additem = Additem + 1 ;
         }
 
-        if (date_legal_granting_date_year < 1960 || date_legal_granting_date_year == '' || YearNotaNumber == "Yes" ) { 
+
+        if (date_legal_granting_date_day == 31 && ( date_legal_granting_date_month == 02 || date_legal_granting_date_month == 04  || date_legal_granting_date_month == 06 || date_legal_granting_date_month == 09 || date_legal_granting_date_month == 11)) { 
+          date_legal_granting_date_day_Error = true ;
+          SubsidyErrors[Additem] = '     Enter the valid day';
+          SubsidyFocus[Additem] = '#legal_granting_date_day';
+          Additem = Additem + 1 ;
+        }
+
+        if (date_legal_granting_date_day == 29 && date_legal_granting_date_month == 02) { 
+
+          if (((date_legal_granting_date_year % 4 == 0) && (date_legal_granting_date_year % 100 != 0)) || (date_legal_granting_date_year % 400 == 0)) 
+          {   }
+
+        else {
+
+          date_legal_granting_date_day_Error = true ;
+          SubsidyErrors[Additem] = '     Enter the valid day';
+          SubsidyFocus[Additem] = '#legal_granting_date_day';
+          Additem = Additem + 1 ;
+        }
+        }
+
+        if (date_legal_granting_date_day == 30 && date_legal_granting_date_month == 02) { 
+
+          date_legal_granting_date_day_Error = true ;
+          SubsidyErrors[Additem] = '     Enter the valid day';
+          SubsidyFocus[Additem] = '#legal_granting_date_day';
+          Additem = Additem + 1 ;
+        }
+        
+
+
+        if (date_legal_granting_date_year < 1960 || date_legal_granting_date_year > 9999 || date_legal_granting_date_year == '' || YearNotaNumber == "Yes" ) { 
           date_legal_granting_date_year_Error = true ;
           SubsidyErrors[Additem] = '     Enter the valid year';
           SubsidyFocus[Additem] = '#legal_granting_date_year';
@@ -214,7 +249,13 @@ if ( !date_legal_granting_date_month_Error && !date_legal_granting_date_day_Erro
 
       }
 
-     
+      if (!date_legal_granting_date_year  && !date_legal_granting_date_month  && !date_legal_granting_date_day &&
+        !date_legal_granting_date_year1 && !date_legal_granting_date_month1 && !date_legal_granting_date_day1
+      ) {
+
+         legal_granting_from_date = '';
+         legal_granting_to_date = ''; 
+      }
 
         // if (isFromandTodateAvailable == "No" && radio_legalgrantingdate == "Yes" ) {
 
@@ -231,7 +272,7 @@ if ( !date_legal_granting_date_month_Error && !date_legal_granting_date_day_Erro
 // ***********************
 
 
-  frontend_totalRecordsPerPage = 3;
+  
 
   actual_subsidy_objective_trim = actual_subsidy_objective.replace(/^"(.+)"$/,'$1');
   actual_subsidy_objective_brace = '[' + actual_subsidy_objective + ']';
@@ -250,9 +291,26 @@ if ( !date_legal_granting_date_month_Error && !date_legal_granting_date_day_Erro
   
 
   console.log("actual_spending_sector_pass :" + actual_spending_sector_pass )
+  
+  const data_request_all = 
+    {
+      "beneficiaryName": text_beneficiaryname,
+      "subsidyMeasureTitle": "",
+      "subsidyObjective": actual_subsidy_objective_pass1,
+      "spendingRegion": [],
+      "subsidyInstrument": actual_subsidy_instrument_pass1 ,
+      "spendingSector": actual_spending_sector_pass1,
+      "legalGrantingFromDate" :legal_granting_from_date,
+      "legalGrantingToDate" : legal_granting_to_date,
+      "pageNumber": 1,
+      "totalRecordsPerPage" : 500000,
+      "sortBy" : [""]
+    
+  };
+  data_request_clientside = JSON.stringify(data_request_all);
 
 
-  const data = 
+  const data_request = 
     {
       "beneficiaryName": text_beneficiaryname,
       "subsidyMeasureTitle": "",
@@ -268,6 +326,10 @@ if ( !date_legal_granting_date_month_Error && !date_legal_granting_date_day_Erro
     
   };
 
+ 
+
+  var data = JSON.parse(JSON.stringify(data_request));
+ 
   console.log("request :" + JSON.stringify(data));
     
       try {
@@ -284,7 +346,7 @@ if ( !date_legal_granting_date_month_Error && !date_legal_granting_date_day_Erro
           const seachawardJSON = JSON.parse(seachawardstring );
           totalrows = searchawards.totalSearchResults;
           // console.log('seachawardJSON ' + seachawardJSON.awards[0]  );
-          console.log(searchawards.awards[0].beneficiary.beneficiaryType);
+          // console.log(searchawards.award[0].beneficiary.beneficiaryType);
           console.log(searchawards.awards[0].subsidyFullAmountExact);  
           
           pageCount = Math.ceil(totalrows/frontend_totalRecordsPerPage );
@@ -302,6 +364,12 @@ if ( !date_legal_granting_date_month_Error && !date_legal_granting_date_day_Erro
           beneficiary_arrow = "upanddown";
           subsidyamount_arrow = "upanddown";
           legalgrantingdate_arrow = "upanddown";
+
+          start_page = 1;
+          if(pageCount < 10) { end_page = pageCount}
+          else {
+            end_page = 10;
+          }
           res.render('publicusersearch/searchresults',{pageCount,previous_page,next_page,end_record ,end_record,totalrows,current_page_active   })
           
 
