@@ -5,15 +5,33 @@
   <title>GOV.UK - Public user search page</title>
 </head>
 
+<script type="text/javascript" language="javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.cookie/1.4.0/jquery.cookie.min.js"></script>
+<script>
+
+$(document).ready(function () {
+
+    $('.govuk-input').on('keypress', function(e){
+  return e.metaKey || // cmd/ctrl
+    e.which <= 0 || // arrow keys
+    e.which == 8 || // delete key
+    /[0-9]/.test(String.fromCharCode(e.which)); // numbers
+})
+
+});
+
+</script>
 
 <!--**************************************************
 Gov.UK public user search - header rendering design 
 **************************************************** -->
-  
+<%- include('../partials/header.ejs') %>
  <body class="govuk-template__body app-example-page">
     <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
-    <%- include('../partials/header.ejs') %>
+   
     <div class="govuk-width-container ">
+    
       <%- include('../partials/banner.ejs') %>
       <main class="govuk-main-wrapper " id="main-content" role="main">  
         <form action="/searchresults" method="POST" >
@@ -104,6 +122,12 @@ Gov.UK public user search - header rendering design
                         
                                     <div class="govuk-grid-row">
                                         <div class="govuk-grid-column-full">
+                                            <% if( date_legal_granting_date_day_Error || date_legal_granting_date_month_Error || date_legal_granting_date_year_Error) { %> 
+                                                <span class="govuk-error-message" id="input-email_address-error">
+                                                    <span class="govuk-visually-hidden">Error:</span> Enter the valid from date
+                                                 </span>
+                                            <% } %>     
+
                                         <div class="govuk-date-input" id="legal-granting-date">
                                         <div class="govuk-date-input__item">
                                             <div class="govuk-form-group">
@@ -112,7 +136,7 @@ Gov.UK public user search - header rendering design
                                             </label>
 
                                             <% if( date_legal_granting_date_day_Error) { %> 
-                                            <input class="govuk-input govuk-date-input__input govuk-input--width-2 govuk-input--error" id="legal_granting_date_day" name="legal_granting_date_day" type="text" pattern="[0-9]*" inputmode="numeric"
+                                           <input class="govuk-input govuk-date-input__input govuk-input--width-2 govuk-input--error" id="legal_granting_date_day" name="legal_granting_date_day" type="text" pattern="[0-9]*" inputmode="numeric"
                                             <% if(date_legal_granting_date_day) {%> value="<%= date_legal_granting_date_day%>" <% } %>  />
                                             <% } else { %>
                                             <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="legal_granting_date_day" name="legal_granting_date_day" type="text" pattern="[0-9]*" inputmode="numeric"
@@ -121,6 +145,7 @@ Gov.UK public user search - header rendering design
                                         </div>
                                         </div>
                                         <div class="govuk-date-input__item">
+                                             
                                             <div class="govuk-form-group">
                                             <label class="govuk-label govuk-date-input__label" for="legal_granting_date_month">
                                                 Month
@@ -183,7 +208,8 @@ Gov.UK public user search - header rendering design
                                             Day
                                         </label>
 
-                                        <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="legal_granting_date_day" name="legal_granting_date_day" type="text" pattern="[0-9]*" inputmode="numeric">                                    
+                                        <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="legal_granting_date_day" name="legal_granting_date_day" type="text" pattern="[0-9]*" inputmode="numeric"
+                                        <% if(date_legal_granting_date_day) {%> value="<%= date_legal_granting_date_day%>" <% } %>  />                                   
                                     </div>
                                     </div>
                                     <div class="govuk-date-input__item">
@@ -191,7 +217,8 @@ Gov.UK public user search - header rendering design
                                         <label class="govuk-label govuk-date-input__label" for="legal_granting_date_month">
                                             Month
                                         </label>
-                                        <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="legal_granting_date_month" name="legal_granting_date_month" type="text" pattern="[0-9]*" inputmode="numeric">
+                                        <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="legal_granting_date_month" name="legal_granting_date_month" type="text" pattern="[0-9]*" inputmode="numeric"
+                                        <% if(date_legal_granting_date_month) {%> value="<%= date_legal_granting_date_month %>" <% } %>  />
                                     </div>
                                     </div>
                                     <div class="govuk-date-input__item">
@@ -199,7 +226,8 @@ Gov.UK public user search - header rendering design
                                         <label class="govuk-label govuk-date-input__label" for="legal_granting_date_year">
                                             Year
                                         </label>
-                                        <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="legal_granting_date_year" name="legal_granting_date_year" type="text" pattern="[0-9]*" inputmode="numeric">
+                                        <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="legal_granting_date_year" name="legal_granting_date_year" type="text" pattern="[0-9]*" inputmode="numeric"
+                                        <% if(date_legal_granting_date_year) {%> value="<%= date_legal_granting_date_year%>" <% } %>  />
                                     </div>
                                     </div>
                                     </div>
@@ -229,8 +257,14 @@ Gov.UK public user search - header rendering design
                     
                                 <div class="govuk-grid-row">
                                     <div class="govuk-grid-column-full">
+                                        <% if( date_legal_granting_date_day1_Error || date_legal_granting_date_month1_Error || date_legal_granting_date_year1_Error) { %> 
+                                            <span class="govuk-error-message" id="input-email_address-error">
+                                                <span class="govuk-visually-hidden">Error:</span> Enter the valid to date
+                                             </span>
+                                        <% } %>  
                                     <div class="govuk-date-input" id="legal-granting-date1">
                                     <div class="govuk-date-input__item">
+                                         
                                         <div class="govuk-form-group">
                                         <label class="govuk-label govuk-date-input__label" for="legal_granting_date_day1">
                                             Day
@@ -302,7 +336,8 @@ Gov.UK public user search - header rendering design
                                         <label class="govuk-label govuk-date-input__label" for="legal_granting_date_day1">
                                             Day
                                         </label>
-                                        <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="legal_granting_date_day1" name="legal_granting_date_day1" type="text" pattern="[0-9]*" inputmode="numeric">
+                                        <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="legal_granting_date_day1" name="legal_granting_date_day1" type="text" pattern="[0-9]*" inputmode="numeric"
+                                        <% if(date_legal_granting_date_day1) {%> value="<%= date_legal_granting_date_day1%>" <% } %>  /> 
                                     </div>
                                     </div>
                                     <div class="govuk-date-input__item">
@@ -310,7 +345,8 @@ Gov.UK public user search - header rendering design
                                         <label class="govuk-label govuk-date-input__label" for="legal_granting_date_month1">
                                             Month
                                         </label>
-                                        <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="legal_granting_date_month1" name="legal_granting_date_month1" type="text" pattern="[0-9]*" inputmode="numeric">
+                                        <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="legal_granting_date_month1" name="legal_granting_date_month1" type="text" pattern="[0-9]*" inputmode="numeric"
+                                        <% if(date_legal_granting_date_month1) {%> value="<%= date_legal_granting_date_month1 %>" <% } %>  /> 
                                     </div>
                                     </div>
                                     <div class="govuk-date-input__item">
@@ -318,7 +354,8 @@ Gov.UK public user search - header rendering design
                                         <label class="govuk-label govuk-date-input__label" for="legal_granting_date_year1">
                                             Year
                                         </label>
-                                        <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="legal_granting_date_year1" name="legal_granting_date_year1" type="text" pattern="[0-9]*" inputmode="numeric">
+                                        <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="legal_granting_date_year1" name="legal_granting_date_year1" type="text" pattern="[0-9]*" inputmode="numeric"
+                                        <% if(date_legal_granting_date_year1) {%> value="<%= date_legal_granting_date_year1 %>" <% } %>  /> 
                                     </div>
                                     </div>
                                     </div>

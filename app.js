@@ -20,7 +20,8 @@ app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended: false }))
 app.use(methodOverride('_method'))
 app.use(express.static(__dirname + '/public'));
-
+var cors = require('cors')
+app.use(cors())
 // ********************************************************
 // Gov.UK public user search - Global variable declarations
 // ********************************************************
@@ -55,6 +56,8 @@ app.locals.frontend_totalRecordsPerPage;
 app.locals.previous_page;
 app.locals.next_page;
 app.locals.current_page;
+app.locals.start_page;
+app.locals.end_page;
 app.locals.email_addresspass;
 app.locals.searchawards;
 app.locals.pageCount;
@@ -124,6 +127,10 @@ app.locals.beneficiary_arrow;
 app.locals.subsidyamount_arrow;
 app.locals.legalgrantingdate_arrow;
 
+app.locals.searchawarddetails;
+app.locals.searchmeasuredetails;
+app.locals.data_request_clientside;
+
 
 
 
@@ -142,20 +149,12 @@ app.get('/',(req, res) => {
 var homepage = require('./routes/homepage');
 app.use('/homepage',homepage);
 
-var subsidymeasuretitle = require('./routes/subsidymeasuretitle');
-app.use('/subsidymeasuretitle',subsidymeasuretitle);
 
 var beneficiaryname = require('./routes/beneficiaryname');
 app.use('/beneficiaryname',beneficiaryname);
 
 var subsidyobjective = require('./routes/subsidyobjective');
 app.use('/subsidyobjective',subsidyobjective);
-
-var spendingregion = require('./routes/spendingregion');
-app.use('/spendingregion',spendingregion);
-
-var sizeoforganisation = require('./routes/sizeoforganisation');
-app.use('/sizeoforganisation',sizeoforganisation);
 
 var subsidyinstrument = require('./routes/subsidyinstrument');
 app.use('/subsidyinstrument',subsidyinstrument);
@@ -188,12 +187,24 @@ app.use('/updateresults',updateresults);
 var updateresultsroute= require('./routes/updateresultsroute');
 app.use('/updateresultsroute',updateresultsroute);
 
-var test = require('./routes/test');
-app.use('/test',test);
+
 
 var hidefilter = require('./routes/hidefilter');
 app.use('/hidefilter',hidefilter);
 
+var searchresultsmeasureroute = require('./routes/searchresultsmeasureroute');
+app.use('/searchresultsmeasureroute',searchresultsmeasureroute);
 
+var searchresultsawardroute = require('./routes/searchresultsawardroute');
+app.use('/searchresultsawardroute',searchresultsawardroute); 
+
+var exportexcel = require('./routes/exportexcel');
+app.use('/exportexcel',exportexcel);
+
+var pageperroute = require('./routes/pageperroute');
+app.use('/pageperroute',pageperroute);
+
+var updateresultspageperroute = require('./routes/updateresultspageperroute');
+app.use('/updateresultspageperroute',updateresultspageperroute);
 
 module.exports = app;

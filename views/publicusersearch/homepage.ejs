@@ -9,7 +9,9 @@
 Gov.UK public user search - header rendering design 
 **************************************************** -->
     <%- include('../partials/header.ejs') %>
-    
+    <body class="govuk-template__body app-example-page">
+      <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+     
     <div class="govuk-width-container ">
       <%- include('../partials/banner.ejs') %>
       <main class="govuk-main-wrapper " id="main-content" role="main">   
@@ -94,6 +96,7 @@ Gov.UK public user search - header rendering design
 
 
                 <%- include('../partials/footer.ejs') %>
+    </body>
 
 </html>
     

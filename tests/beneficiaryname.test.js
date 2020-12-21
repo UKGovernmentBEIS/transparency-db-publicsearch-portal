@@ -12,7 +12,7 @@ app.use(bodyParser.json())
 app.use(express.urlencoded({ extended: false }));
 app.use("/",index);
 
-test("subsidy measure title route works", done => {
+test("Beneficiary name route unit testing works fine", done => {
   request(app)
     .get("/subsidymeasuretitle")
     .expect(200, done);

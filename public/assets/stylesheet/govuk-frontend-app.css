@@ -370,7 +370,7 @@ sec {
   font-family: GDS Transport, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-weight: 500;
+  font-weight: 400;
   font-size: 50px;
   font-size: 1.1rem;
   line-height: 1.1875;
@@ -394,6 +394,36 @@ sec {
   -webkit-appearance: none
 }
 
+.govuk-button-cancel-mid {
+  font-family: "GDS Transport", arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: 400;
+  font-size: 16px;
+  font-size: 1rem;
+  line-height: 1.1875;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  display: inline-block;
+  position: relative;
+  width: 20%;
+  margin-top: 0;
+  margin-bottom: 22px;
+  left: 170px;
+  top: -60px;
+  padding: 8px 10px 7px;
+  border: 2px solid transparent;
+  border-radius: 0;
+  color: #fff;
+  background-color: #00703c;
+  -webkit-box-shadow: 0 2px 0 #002d18;
+  box-shadow: 0 2px 0 #002d18;
+  text-align: center;
+  vertical-align: top;
+  cursor: pointer;
+  -webkit-appearance: none;
+}
+
 .govuk-button_cancel_last {
   font-family: GDS Transport, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -412,6 +442,39 @@ sec {
   margin-top: 0;
   margin-bottom: 22px;
   left: 50px;
+  top: 0px;
+  padding: 8px 10px 7px;
+  border-radius: 0;
+  color: #fff;
+  background-color: #00703c;
+  box-shadow: 0 2px 0 #002d18;
+  text-align: center;
+  vertical-align: top;
+  cursor: pointer;
+  -webkit-appearance: none;
+  border: 2px solid transparent;
+  border-bottom-color: #002d18;
+  width: auto
+}
+
+.govuk-button_cancel_last_xl {
+  font-family: GDS Transport, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: 400;
+  font-size: 16px;
+  font-size: 1rem;
+  line-height: 1.1875;
+  font-size: 19px;
+  font-size: 1.1875rem;
+  line-height: 1;
+  box-sizing: border-box;
+  display: inline-block;
+  position: relative;
+  width: 50%;
+  margin-top: 0;
+  margin-bottom: 22px;
+  left: 100px;
   top: 0px;
   padding: 8px 10px 7px;
   border-radius: 0;
@@ -507,8 +570,6 @@ button.link {
   text-align: left;
   }
 
-
-
   .govuk-header__product-name-head {
     font-family: GDS Transport, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -540,3 +601,17 @@ button.link {
   margin-left: -20px;
   float: left
 }
+
+
+.govuk-p-0 {
+  padding: 0;
+}
+.sorting-div {
+  text-align: right;
+}
+
+.filter-input-div {
+  padding-left: 0;
+  position: relative;
+}
+
