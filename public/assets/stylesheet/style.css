@@ -84,11 +84,38 @@ table tbody tr:hover{
   /* background-color: rgb(229, 235, 236); */
   text-decoration: none;
 }
-
+.govuk-font-bold {
+  font-weight: bold;
+}
 .pagination span:nth-child(3) {
   font-weight: bold;
 }
-
+.govuk-subsidyresult label {
+  font-weight: bold;
+  min-width: 10%;
+  float: left;
+  margin-right: 1%;
+}
+.govuk-subsidyresult {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1%;
+}
+.govuk-subsidyresult span {
+  max-width: 70%;
+  float: left;
+}
+.govuk-border-bottom {
+  border-bottom: 1px solid lightgray;
+  padding-bottom: 2%;
+  margin-bottom: 2%;
+}
+.govuk-bold {
+  font-weight: bold;
+}
+a {
+  color: #005da6;
+}
 .previous {
   background-color: #ffffff;
   color: black;
