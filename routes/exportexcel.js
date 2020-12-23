@@ -25,7 +25,7 @@ var fileData =
     const xlsx = require("xlsx"); 
     const fs = require("fs"); 
     // let fileData1 = fs.readFileSync(data);  
-    var downloadFolder = process.env.USERPROFILE + "/Downloads"
+    var downloadFolder = process.env.USERPROFILE + "/Downloads";
     let rawData = JSON.parse(JSON.stringify(fileData)); 
     
     let workbook = xlsx.utils.book_new(); 
@@ -33,12 +33,12 @@ var fileData =
     xlsx.writeFile(workbook,downloadFolder + '/' + "result.xlsx");
   
     
-    res.render('publicusersearch/searchresults')
+    res.render('publicusersearch/searchresults');
   });
 
   router.post('/',(req, res) => {
 
-  res.render('publicusersearch/searchresults')
+  res.render('publicusersearch/searchresults');
    
   });
 

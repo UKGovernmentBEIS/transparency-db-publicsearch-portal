@@ -21,15 +21,16 @@ const mockRequest = (sessionData, body) => ({
 const res = {};
 
 test("Unit testing for subsidy objective route - Test for with beneficiary name", done => {
+  global.subsidy_objective_isfirst = "Yes";
     const req = mockRequest(
         {},
-        { Beneficiary_name : 'SpiceJet Ltd'  }
+        { Beneficiary_name : 'SpiceJet Ltd'}
       );
     
     const res = {};
     request(app)
       .post("/subsidyobjective",(req, res) )
-      .send({ Beneficiary_name : "SpiceJet Ltd"})
+      .send({ Beneficiary_name : "SpiceJet Ltd", beneficiaryname : "Yes"})
       .expect(200, done);
   });
 
