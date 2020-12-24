@@ -14,7 +14,7 @@ router.get('/',async(req, res) => {
 
 //  routing_pagenumber =   req.query.page;
 routing_pagenumber  = current_page_active;
- fetch_pagenumber = routing_pagenumber
+ fetch_pagenumber = routing_pagenumber;
  current_page = parseInt(routing_pagenumber);
  console.log("sorting_order_pass : " + sorting_order_pass);
 
@@ -67,7 +67,7 @@ console.log("request data : " + data);
           console.log(searchawards.awards[0].subsidyFullAmountExact);
           console.log("req.query.page: "+ req.query.page);
 
-          if (current_page == 1) { start_record = 1 ; end_record = frontend_totalRecordsPerPage }
+          if (current_page == 1) { start_record = 1 ; end_record = frontend_totalRecordsPerPage ;}
           else if (current_page == pageCount ) { start_record = (current_page - 1)  * frontend_totalRecordsPerPage + 1; end_record =  totalrows }
           else { 
             start_record = current_page * frontend_totalRecordsPerPage - frontend_totalRecordsPerPage + 1 ;

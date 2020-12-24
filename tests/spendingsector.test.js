@@ -21,6 +21,7 @@ const mockRequest = (sessionData, body) => ({
 const res = {};
 
 test("Unit testing for spending sector route - Test for POST call", done => {
+    global.spending_sector_isfirst = "Yes";
     const req = mockRequest(
         {},
         { check_subsidyobjective: 'Research and development'  }
