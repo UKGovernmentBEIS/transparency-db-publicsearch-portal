@@ -115,22 +115,26 @@ Gov.UK public user search - header rendering design
     // checkbox select all scripts for subsidy instrument
     //****************************************************
     if (($('#subsidyinstrument-7').is(":checked")) && ($('#subsidyinstrument-0').is(":checked"))) {
+      $('.govuk-input-subsidyinstrument').val('');
       $('.govuk-input-subsidyinstrument').hide();
       $('.govuk-label-subsidyinstrument').hide();
     }
     else if ($('#subsidyinstrument-7').is(":checked")) {
       $('.govuk-input-subsidyinstrument').show();
       $('.govuk-label-subsidyinstrument').show();
+      $('.govuk-input-subsidyinstrument').val('');
     }
     else {
       $('.govuk-input-subsidyinstrument').hide();
       $('.govuk-label-subsidyinstrument').hide();
+      $('.govuk-input-subsidyinstrument').val('');
     }
 
 
     $("#subsidyinstrument-0").change(function () {  //"select all" change 
       $(".govuk-checkboxes__input_subsidyinstrument").prop('checked', $(this).prop("checked")); //change all ".checkbox" checked status
       if ($('#subsidyinstrument-0').is(":checked")) {
+        $('.govuk-input-subsidyinstrument').val('');
         $('.govuk-input-subsidyinstrument').hide();
         $('.govuk-label-subsidyinstrument').hide();
       }
@@ -139,10 +143,12 @@ Gov.UK public user search - header rendering design
 
     $('#subsidyinstrument-7').change(function () {
       if ($('#subsidyinstrument-0').is(":checked")) {
+        $('.govuk-input-subsidyinstrument').val('');
         $('.govuk-input-subsidyinstrument').hide();
         $('.govuk-label-subsidyinstrument').hide();
       }
       else if ($('#subsidyinstrument-7').is(":checked")) {
+        $('.govuk-input-subsidyinstrument').val('');
         $('.govuk-input-subsidyinstrument').show();
         $('.govuk-label-subsidyinstrument').show();
       }
@@ -150,6 +156,7 @@ Gov.UK public user search - header rendering design
       else {
         $('.govuk-input-subsidyinstrument').hide();
         $('.govuk-label-subsidyinstrument').hide();
+        $('.govuk-input-subsidyinstrument').val('');
       }
     });
 
@@ -159,6 +166,7 @@ Gov.UK public user search - header rendering design
       if (false == $(this).prop("checked")) { //if this item is unchecked
         $("#subsidyinstrument-0").prop('checked', false); //change "select all" checked status to false
         if ($('#subsidyinstrument-7').is(":checked")) {
+          $('.govuk-input-subsidyinstrument').val('');
           $('.govuk-input-subsidyinstrument').show();
           $('.govuk-label-subsidyinstrument').show();
         }
@@ -167,6 +175,7 @@ Gov.UK public user search - header rendering design
       //check "select all" if all checkbox items are checked
       if ($('.govuk-checkboxes__input_subsidyinstrument:checked').length == $('.govuk-checkboxes__input_subsidyinstrument').length - 1) {
         $("#subsidyinstrument-0").prop('checked', true);
+        $('.govuk-input-subsidyinstrument').val('');
         $('.govuk-input-subsidyinstrument').hide();
         $('.govuk-label-subsidyinstrument').hide();
       }
