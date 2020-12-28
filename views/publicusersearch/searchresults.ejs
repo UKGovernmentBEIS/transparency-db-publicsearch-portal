@@ -67,9 +67,9 @@
   }  //end of save file
 
 
-  $(document).ready(function () {
-    $('body,html').animate({ scrollTop: 300 }, 1500);
-  });
+  // $(document).ready(function () {
+  //   $('body,html').animate({ scrollTop: 300 }, 1500);
+  // });
 
 </script>
 
@@ -231,7 +231,7 @@
                     href="/searchresultsmeasureroute/?page=<%=item.awardNumber %>"><%= item.subsidyMeasure.subsidyMeasureTitle  %></a>
                 </td>
                 <% if (item.subsidyInstrument == "Tax measures (tax credit, or tax/duty exemption)") { %>
-                <td class="govuk-table__cell">£<%= item.subsidyFullAmountRange %></td>
+                <td class="govuk-table__cell"><%= item.subsidyFullAmountRange %></td>
                 <% } else { %>
                 <td class="govuk-table__cell">£<%= item.subsidyFullAmountExact %></td>
                 <% } %>
