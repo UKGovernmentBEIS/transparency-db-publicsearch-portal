@@ -4,105 +4,107 @@
 <head>
   <title>GOV.UK - Public user search page</title>
 </head>
-    
+
 <link href="/assets/stylesheet/style.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="/assets/javascripts/pagination.class.js"></script>
 <script type="text/javascript" src="/assets/javascripts/script.js" defer></script>
 <link href="/assets/stylesheet/govuk-accordion1.css" rel="stylesheet" media="all" />
 <script src="/assets/javascripts/vendor/modernizr.js"></script>
 
-<script type="text/javascript" language="javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" language="javascript"
+  src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/jquery.cookie/1.4.0/jquery.cookie.min.js"></script>
 <script src="https://cdn.jsdelivr.net/alasql/0.3/alasql.min.js"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.7.12/xlsx.core.min.js"></script>
 
-  <script>
-      window.saveFile = function saveFile (data_request_clientside) {
-      console.log(JSON.stringify(data_request_clientside));
-      requestUrl = 'https://subsidy-search-service.azurewebsites.net/searchResults';
-    
-      var api_data;
-      $.ajax({
+<script>
+  window.saveFile = function saveFile(data_request_clientside) {
+    console.log(JSON.stringify(data_request_clientside));
+    requestUrl = 'https://subsidy-search-service.azurewebsites.net/searchResults';
+
+    var api_data;
+    $.ajax({
       url: requestUrl,
       type: "POST",
       async: false,
       data: data_request_clientside,
       contentType: 'application/json;charset=utf-8',
-      dataType:'json',
+      dataType: 'json',
       success: function (response) {
-          console.log(response);
-          api_data = response;
-              
+        console.log(response);
+        api_data = response;
+
       },
-      error: function(error){
-          console.log("Something went wrong", error);
+      error: function (error) {
+        console.log("Something went wrong", error);
       }
-     });
+    });
 
 
-console.log(JSON.stringify(api_data));
-results = JSON.parse(JSON.stringify(api_data));
+    console.log(JSON.stringify(api_data));
+    results = JSON.parse(JSON.stringify(api_data));
 
-var innArr = [];
-        for (var i = 0; i < results.totalSearchResults; i++)  {
-        innArr[innArr.length] = { 
-       "Recipient Name": results.awards[i].beneficiary.beneficiaryName,
-       "Subsidy purpose" : results.awards[i].subsidyObjective,
-       "Spending sector" : results.awards[i].spendingSector,
-       "Subsidy type" : results.awards[i].subsidyInstrument,
-       "Subsidy date" : results.awards[i].legalGrantingDate,
-       "Subsidy name" : results.awards[i].subsidyMeasure.subsidyMeasureTitle,
-       "subsidy amount": results.awards[i].subsidyFullAmountExact,
-       "subsidy amount range":  results.awards[i].subsidyFullAmountRange                        
-           }          
-        } 
-        var data1 = JSON.parse(JSON.stringify(innArr));
-        var data2 = [{a:100,b:10},{a:200,b:20}];
-        var opts = [{sheetid:'Subsidy awards',header:true},{sheetid:'Two',header:false}];
-        var res = alasql('SELECT * INTO XLSX("SubsidyAwardsDownload.xlsx",?) FROM ?',[opts,[data1,data2]]);             
+    var innArr = [];
+    for (var i = 0; i < results.totalSearchResults; i++) {
+      innArr[innArr.length] = {
+        "Recipient Name": results.awards[i].beneficiary.beneficiaryName,
+        "Subsidy purpose": results.awards[i].subsidyObjective,
+        "Spending sector": results.awards[i].spendingSector,
+        "Subsidy type": results.awards[i].subsidyInstrument,
+        "Subsidy date": results.awards[i].legalGrantingDate,
+        "Subsidy name": results.awards[i].subsidyMeasure.subsidyMeasureTitle,
+        "subsidy amount": results.awards[i].subsidyFullAmountExact,
+        "subsidy amount range": results.awards[i].subsidyFullAmountRange
+      }
+    }
+    var data1 = JSON.parse(JSON.stringify(innArr));
+    var data2 = [{ a: 100, b: 10 }, { a: 200, b: 20 }];
+    var opts = [{ sheetid: 'Subsidy awards', header: true }, { sheetid: 'Two', header: false }];
+    var res = alasql('SELECT * INTO XLSX("SubsidyAwardsDownload.xlsx",?) FROM ?', [opts, [data1, data2]]);
 
-      }  //end of save file
-
-  
-      $(document).ready(function(){
-          $('body,html').animate({scrollTop: 300}, 1500); 
-      });
-
-  </script>
+  }  //end of save file
 
 
+  $(document).ready(function () {
+    $('body,html').animate({ scrollTop: 300 }, 1500);
+  });
 
-    <%- include('../partials/header.ejs') %>
-    <body class="govuk-template__body app-example-page">
-      <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
-    
-    <div class="govuk-width-container ">
-      <%- include('../partials/banner.ejs') %>
-      <main class="govuk-main-wrapper " id="main-content" role="main">       
-        
-       <div class="govuk-breadcrumbs ">
-         <ol class="govuk-breadcrumbs__list">
-           <li class="govuk-breadcrumbs__list-item">
-             <a class="govuk-breadcrumbs__link" href="/homepage">Home</a>
-           </li>
-           <li class="govuk-breadcrumbs__list-item">
-             <a class="govuk-breadcrumbs__link" href="/beneficiaryname">Search subsidy awards</a>
-           </li>
-         </ol>
-       </div>
-       <br />
-       <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+</script>
+
+
+
+<%- include('../partials/header.ejs') %>
+
+<body class="govuk-template__body app-example-page">
+  <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+
+  <div class="govuk-width-container ">
+    <%- include('../partials/banner.ejs') %>
+    <main class="govuk-main-wrapper " id="main-content" role="main">
+
+      <div class="govuk-breadcrumbs ">
+        <ol class="govuk-breadcrumbs__list">
+          <li class="govuk-breadcrumbs__list-item">
+            <a class="govuk-breadcrumbs__link" href="/homepage">Home</a>
+          </li>
+          <li class="govuk-breadcrumbs__list-item">
+            <a class="govuk-breadcrumbs__link" href="/beneficiaryname">Search subsidy awards</a>
+          </li>
+        </ol>
+      </div>
+      <br />
+      <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
         <h1 class="govuk-fieldset__heading">
           Search results
         </h1>
       </legend>
       <br />
       <div>
-      <label class="govuk-label" >
-        <%= searchawards.totalSearchResults  %> results
-      </label></div>
+        <label class="govuk-label">
+          <%= searchawards.totalSearchResults  %> results
+        </label></div>
       <br />
 
 
@@ -110,202 +112,248 @@ var innArr = [];
         <div class="govuk-grid-column-two-thirds filter-input-div">
           <a href="/filtersearch/?page=1" style="color : black; text-decoration: none">
             <button class="govuk-button  govuk-button--secondary" name="showfiter" value="showfilt">
-              Show filters</button>  
+              Show filters</button>
           </a>
           <a href="/homepage" style="color : black; text-decoration: none">
-            <button class="govuk-button" data-module="govuk-button">New search </button>     
-          </a>         
+            <button class="govuk-button" data-module="govuk-button">New search </button>
+          </a>
           <!-- <a href="/exportexcel" style="color : black; text-decoration: none"> -->
-            <button class="govuk-button" data-module="govuk-button" onclick="saveFile('<%= data_request_clientside %>')"> Download results </button>
-           <!-- </a> -->
+          <button class="govuk-button" data-module="govuk-button" onclick="saveFile('<%= data_request_clientside %>')">
+            Download results </button>
+          <!-- </a> -->
 
         </div>
 
-        <div class="govuk-grid-column-one-third govuk-display-flex">        
+        <div class="govuk-grid-column-one-third govuk-display-flex">
           <label class="govuk-grid-column-two-thirds">
             Results per page
           </label>
-         
-         <form class="govuk-grid-column-one-third" action="/pageperroute" method="GET" >  
-          <select class="govuk-select" id="sort" name="sort" onchange="this.form.submit()">  
-            <% if(frontend_totalRecordsPerPage  == 1) { %>    
+
+          <form class="govuk-grid-column-one-third" action="/pageperroute" method="GET">
+            <select class="govuk-select" id="sort" name="sort" onchange="this.form.submit()">
+              <% if(frontend_totalRecordsPerPage  == 1) { %>
               <option value="1" selected>1</option>
-            <% } else { %>
-            <option value="1">1</option>     
-            <% }  %>
-            <% if(frontend_totalRecordsPerPage  == 2) { %>  
-            <option value="2" selected>2</option>
-            <% } else { %>
-           <option value="2">2</option>
-            <% }  %>
-            <% if(frontend_totalRecordsPerPage  == 5) { %> 
-            <option value="5" selected>5</option>
-            <% } else { %>
-            <option value="5">5</option>
-            <% }  %>
-            <% if(frontend_totalRecordsPerPage  == 10) { %> 
-            <option value="10" selected>10</option>
-            <% } else { %>
-            <option value="10">10</option>
-            <% }  %>
-          </select>
-        </form>
+              <% } else { %>
+              <option value="1">1</option>
+              <% }  %>
+              <% if(frontend_totalRecordsPerPage  == 2) { %>
+              <option value="2" selected>2</option>
+              <% } else { %>
+              <option value="2">2</option>
+              <% }  %>
+              <% if(frontend_totalRecordsPerPage  == 5) { %>
+              <option value="5" selected>5</option>
+              <% } else { %>
+              <option value="5">5</option>
+              <% }  %>
+              <% if(frontend_totalRecordsPerPage  == 10) { %>
+              <option value="10" selected>10</option>
+              <% } else { %>
+              <option value="10">10</option>
+              <% }  %>
+            </select>
+          </form>
         </div>
       </div>
-      
-      
-      <form action="/homepage" method="POST" > 
-      <section>
-       <table class="govuk-table">
-        <caption class="govuk-table__caption"><h1 class="govuk-fieldset__heading"></h1></caption>
-        <thead class="govuk-table__head">
-          <tr class="govuk-table__row">
-            <th scope="col" class="govuk-table__header" aria-sort="ascending">
-              <a href="/pageroute/?page=999997" style="text-decoration: none">
-              Recipient Name
-              <% if (beneficiary_arrow == "upanddown" ) { %> 
-              <img id="updownarrow" src="/assets/images/UpDownArrow.jpg">
-              <% } else if (beneficiary_arrow == "downacending" ) { %> 
-                <img id="downarrow" src="/assets/images/DownArrow.jpg">
-              <% } else { %> 
-                <img id="uparrow" src="/assets/images/UpArrow.jpg">
-              <% } %>
-
-            </a>
-          </th>
-          <th scope="col" class="govuk-table__header app-custom-class">Subsidy purpose</th> 
-          <th scope="col" class="govuk-table__header app-custom-class">Spending sector</th>
-          <th scope="col" class="govuk-table__header app-custom-class">Subsidy type</th>
-          <th scope="col" class="govuk-table__header app-custom-class" aria-sort="none">
-            <a href="/pageroute/?page=999998" style="text-decoration: none">
-            Subsidy date
-            <% if (legalgrantingdate_arrow == "upanddown" ) { %> 
-              <img id="updownarrow" src="/assets/images/UpDownArrow.jpg">
-              <% } else if (legalgrantingdate_arrow == "downacending" ) { %> 
-                <img id="downarrow" src="/assets/images/DownArrow.jpg">
-              <% } else { %> 
-                <img id="uparrow" src="/assets/images/UpArrow.jpg">
-              <% } %>
-          
-          </a></th>
 
 
-            <th scope="col"  style="text-align:left" class="govuk-table__header app-custom-class" >Subsidy name</th>
-            <th scope="col" class="govuk-table__header app-custom-class" aria-sort="none">
-              <a href="/pageroute/?page=999999" style="text-decoration: none">
-              Subsidy amount
-              <% if (subsidyamount_arrow == "upanddown" ) { %> 
-                <img id="updownarrow" src="/assets/images/UpDownArrow.jpg">
-                <% } else if (subsidyamount_arrow == "downacending" ) { %> 
-                  <img id="downarrow" src="/assets/images/DownArrow.jpg">
-                <% } else { %> 
-                  <img id="uparrow" src="/assets/images/UpArrow.jpg">
+      <form action="/homepage" method="POST">
+        <section>
+          <table class="govuk-table">
+            <caption class="govuk-table__caption">
+              <h1 class="govuk-fieldset__heading"></h1>
+            </caption>
+            <thead class="govuk-table__head">
+              <tr class="govuk-table__row">
+                <th scope="col" class="govuk-table__header" aria-sort="ascending">
+                  <a href="/pageroute/?page=999997" style="text-decoration: none">
+                    Recipient Name
+                    <% if (beneficiary_arrow == "upanddown" ) { %>
+                    <img id="updownarrow" src="/assets/images/UpDownArrow.jpg">
+                    <% } else if (beneficiary_arrow == "downacending" ) { %>
+                    <img id="downarrow" src="/assets/images/DownArrow.jpg">
+                    <% } else { %>
+                    <img id="uparrow" src="/assets/images/UpArrow.jpg">
+                    <% } %>
+
+                  </a>
+                </th>
+                <th scope="col" class="govuk-table__header app-custom-class">Subsidy purpose</th>
+                <th scope="col" class="govuk-table__header app-custom-class">Spending sector</th>
+                <th scope="col" class="govuk-table__header app-custom-class">Subsidy type</th>
+                <th scope="col" class="govuk-table__header app-custom-class" aria-sort="none">
+                  <a href="/pageroute/?page=999998" style="text-decoration: none">
+                    Subsidy date
+                    <% if (legalgrantingdate_arrow == "upanddown" ) { %>
+                    <img id="updownarrow" src="/assets/images/UpDownArrow.jpg">
+                    <% } else if (legalgrantingdate_arrow == "downacending" ) { %>
+                    <img id="downarrow" src="/assets/images/DownArrow.jpg">
+                    <% } else { %>
+                    <img id="uparrow" src="/assets/images/UpArrow.jpg">
+                    <% } %>
+
+                  </a></th>
+
+
+                <th scope="col" style="text-align:left" class="govuk-table__header app-custom-class">Subsidy name</th>
+                <th scope="col" class="govuk-table__header app-custom-class" aria-sort="none">
+                  <a href="/pageroute/?page=999999" style="text-decoration: none">
+                    Subsidy amount
+                    <% if (subsidyamount_arrow == "upanddown" ) { %>
+                    <img id="updownarrow" src="/assets/images/UpDownArrow.jpg">
+                    <% } else if (subsidyamount_arrow == "downacending" ) { %>
+                    <img id="downarrow" src="/assets/images/DownArrow.jpg">
+                    <% } else { %>
+                    <img id="uparrow" src="/assets/images/UpArrow.jpg">
+                    <% } %>
+
+                  </a>
+                </th>
+
+
+
+
+              </tr>
+            </thead>
+            <tbody class="govuk-table__body">
+              <% searchawards.awards.forEach(function(item) { %>
+              <tr>
+                <td class="govuk-table__cell"><a
+                    href="/searchresultsawardroute/?page=<%=item.awardNumber %>"><%= item.beneficiary.beneficiaryName  %>
+                  </a> </td>
+                <td class="govuk-table__cell"><%= item.subsidyObjective %></td>
+                <td class="govuk-table__cell"><%= item.spendingSector %></td>
+                <td class="govuk-table__cell"><%= item.subsidyInstrument %></td>
+
+                <td class="govuk-table__cell" style="text-align:center"><%= item.legalGrantingDate%></td>
+                <!-- <td class="govuk-table__cell"><a href="#"><%= item.awardNumber  %> </a> </td> -->
+                <td class="govuk-table__cell"><a
+                    href="/searchresultsmeasureroute/?page=<%=item.awardNumber %>"><%= item.subsidyMeasure.subsidyMeasureTitle  %></a>
+                </td>
+                <% if (item.subsidyInstrument == "Tax measures (tax credit, or tax/duty exemption)") { %>
+                <td class="govuk-table__cell">£<%= item.subsidyFullAmountRange %></td>
+                <% } else { %>
+                <td class="govuk-table__cell">£<%= item.subsidyFullAmountExact %></td>
                 <% } %>
-            
-            </a>
-            </th>
-                    
-           
-         
-           
-          </tr>
-        </thead>
-        <tbody class="govuk-table__body">
-          <% searchawards.awards.forEach(function(item) { %> 
-            <tr>
-              <td class="govuk-table__cell"><a href="/searchresultsawardroute/?page=<%=item.awardNumber %>" ><%= item.beneficiary.beneficiaryName  %> </a> </td>
-              <td class="govuk-table__cell"><%= item.subsidyObjective %></td> 
-              <td class="govuk-table__cell"><%= item.spendingSector %></td> 
-              <td class="govuk-table__cell"><%= item.subsidyInstrument %></td> 
-  
-              <td class="govuk-table__cell" style="text-align:center"><%= item.legalGrantingDate%></td> 
-              <!-- <td class="govuk-table__cell"><a href="#"><%= item.awardNumber  %> </a> </td> -->
-              <td class="govuk-table__cell"><a href="/searchresultsmeasureroute/?page=<%=item.awardNumber %>" ><%= item.subsidyMeasure.subsidyMeasureTitle  %></a></td>
-              <% if (item.subsidyInstrument == "Tax measures (tax credit, or tax/duty exemption)") { %>
-              <td class="govuk-table__cell">£<%= item.subsidyFullAmountRange %></td> 
-              <% } else { %>  
-              <td class="govuk-table__cell">£<%= item.subsidyFullAmountExact %></td>  
-              <% } %>
-         
-              
-            </tr>
-  
-            <% } ); %>
-   
-        </tbody>
-      </table>
- 
-      <!-- ********************** -->
-      <!-- Pagination starts here -->
-      <!-- ********************** -->
+
+
+              </tr>
+
+              <% } ); %>
+
+            </tbody>
+          </table>
+
+          <!-- ********************** -->
+          <!-- Pagination starts here -->
+          <!-- ********************** -->
 
           <div id="pagination1" class="pagination">
- 
-         <% if (pageCount > 1) { %>
 
-          <div class="col first">
-          <p class="pagination-label">
-              Showing <span><%= start_record %></span> - <span><%= end_record %></span> of <span><%= totalrows %></span>
-          </p>
-          </div>
-
-         <% } %>
-
-
-          <div class="col last">
             <% if (pageCount > 1) { %>
 
-              <% if (current_page_active != 1) { %> 
-               <a href="/pageroute/?page=1" id="paginationlink" class="first round"><img id="govuk-left-arrow" src="/assets/images/govuk-left-arrow.jpg"></a>
-                <a href="/pageroute/?page=<%= previous_page %>" id="paginationlink" class="previous round">Previous Page</a>
-               <% } %>
-              
-                  <% for (var i = start_page; i <= end_page; i++) { %>
-                    <% if (current_page_active != i ) { %>
-                    <a id="paginationlink" class="round btn-page" href="/pageroute/?page=<%= i %>"><%= i %></a>
-                    <% } else { %>
-                      <a id="paginationlink" class="round btn-page active" href="/pageroute/?page=<%= i %>"><%= i %></a>
-                      <% } %> 
-                    <% } %>
-                
-                    <% if (current_page_active != pageCount) { %> 
-                  <a href="/pageroute/?page=<%= next_page %>" id="paginationlink" class="next round">Next Page</a>
-                 <a href="/pageroute/?page=<%= pageCount %>" id="paginationlink" class="last round"><img id="govuk-right-arrow" src="/assets/images/govuk-right-arrow.jpg"></a> 
-                  <% } %>
+            <div class="col first">
+              <p class="pagination-label">
+                Showing <span><%= start_record %></span> - <span><%= end_record %></span> of
+                <span><%= totalrows %></span>
+              </p>
+            </div>
+
             <% } %>
-        </div>
-       </div>
-      
-        
-     
-        
-      </section>
-     <!-- ********************** -->
-      <!-- Pagination ends here -->
-      <!-- ********************** -->
+
+
+            <div class="col last">
+              <% if (pageCount > 1) { %>
+
+              <% if (current_page_active != 1) { %>
+              <a href="/pageroute/?page=1" id="paginationlink" class="first round"><svg version="1.1" width="19px"
+                  height="30px">
+                  <defs>
+                    <mask fill="white" id="clip2">
+                      <path
+                        d="M 18.5805027173913 8.01668806161746  C 18.8601675724638 8.33761232349166  19 8.72486093281985  19 9.17843388960205  L 19 10.8215661103979  C 19 11.2751390671801  18.8601675724638 11.6623876765083  18.5805027173913 11.9833119383825  C 18.3008378623188 12.3042362002567  17.9372735507246 12.4646983311938  17.4898097826087 12.4646983311938  L 8.40285326086956 12.4646983311938  L 12.1847826086957 16.2387676508344  C 12.5117753623188 16.5468549422336  12.6752717391304 16.9319640564827  12.6752717391304 17.3940949935815  C 12.6752717391304 17.8562259306804  12.5117753623188 18.2413350449294  12.1847826086957 18.5494223363286  L 11.2167119565217 19.5250320924262  C 10.8983242753623 19.8416773641421  10.5110960144928 20  10.055027173913 20  C 9.6075634057971 20  9.21603260869565 19.8416773641421  8.8804347826087 19.5250320924262  L 0.47758152173913 11.1553273427471  C 0.15919384057971 10.8386820710312  0 10.4535729567822  0 10  C 0 9.55498502353445  0.15919384057971 9.16559691912709  0.47758152173913 8.83183568677792  L 8.8804347826087 0.487804878048781  C 9.20742753623188 0.162601626016259  9.59895833333333 0  10.055027173913 0  C 10.502490942029 0  10.8897192028986 0.162601626016259  11.2167119565217 0.487804878048781  L 12.1847826086957 1.43774069319641  C 12.5117753623188 1.76294394522893  12.6752717391304 2.15233204963628  12.6752717391304 2.60590500641849  C 12.6752717391304 3.05947796320068  12.5117753623188 3.44886606760804  12.1847826086957 3.77406931964057  L 8.40285326086956 7.53530166880616  L 17.4898097826087 7.53530166880616  C 17.9372735507246 7.53530166880616  18.3008378623188 7.69576379974326  18.5805027173913 8.01668806161746  Z "
+                        fill-rule="evenodd" />
+                    </mask>
+                  </defs>
+                  <g transform="matrix(1 0 0 1 -456 -1241 )">
+                    <path
+                      d="M 18.5805027173913 8.01668806161746  C 18.8601675724638 8.33761232349166  19 8.72486093281985  19 9.17843388960205  L 19 10.8215661103979  C 19 11.2751390671801  18.8601675724638 11.6623876765083  18.5805027173913 11.9833119383825  C 18.3008378623188 12.3042362002567  17.9372735507246 12.4646983311938  17.4898097826087 12.4646983311938  L 8.40285326086956 12.4646983311938  L 12.1847826086957 16.2387676508344  C 12.5117753623188 16.5468549422336  12.6752717391304 16.9319640564827  12.6752717391304 17.3940949935815  C 12.6752717391304 17.8562259306804  12.5117753623188 18.2413350449294  12.1847826086957 18.5494223363286  L 11.2167119565217 19.5250320924262  C 10.8983242753623 19.8416773641421  10.5110960144928 20  10.055027173913 20  C 9.6075634057971 20  9.21603260869565 19.8416773641421  8.8804347826087 19.5250320924262  L 0.47758152173913 11.1553273427471  C 0.15919384057971 10.8386820710312  0 10.4535729567822  0 10  C 0 9.55498502353445  0.15919384057971 9.16559691912709  0.47758152173913 8.83183568677792  L 8.8804347826087 0.487804878048781  C 9.20742753623188 0.162601626016259  9.59895833333333 0  10.055027173913 0  C 10.502490942029 0  10.8897192028986 0.162601626016259  11.2167119565217 0.487804878048781  L 12.1847826086957 1.43774069319641  C 12.5117753623188 1.76294394522893  12.6752717391304 2.15233204963628  12.6752717391304 2.60590500641849  C 12.6752717391304 3.05947796320068  12.5117753623188 3.44886606760804  12.1847826086957 3.77406931964057  L 8.40285326086956 7.53530166880616  L 17.4898097826087 7.53530166880616  C 17.9372735507246 7.53530166880616  18.3008378623188 7.69576379974326  18.5805027173913 8.01668806161746  Z "
+                      fill-rule="nonzero" fill="#1d70b8" stroke="none" transform="matrix(1 0 0 1 456 1241 )" />
+                    <path
+                      d="M 18.5805027173913 8.01668806161746  C 18.8601675724638 8.33761232349166  19 8.72486093281985  19 9.17843388960205  L 19 10.8215661103979  C 19 11.2751390671801  18.8601675724638 11.6623876765083  18.5805027173913 11.9833119383825  C 18.3008378623188 12.3042362002567  17.9372735507246 12.4646983311938  17.4898097826087 12.4646983311938  L 8.40285326086956 12.4646983311938  L 12.1847826086957 16.2387676508344  C 12.5117753623188 16.5468549422336  12.6752717391304 16.9319640564827  12.6752717391304 17.3940949935815  C 12.6752717391304 17.8562259306804  12.5117753623188 18.2413350449294  12.1847826086957 18.5494223363286  L 11.2167119565217 19.5250320924262  C 10.8983242753623 19.8416773641421  10.5110960144928 20  10.055027173913 20  C 9.6075634057971 20  9.21603260869565 19.8416773641421  8.8804347826087 19.5250320924262  L 0.47758152173913 11.1553273427471  C 0.15919384057971 10.8386820710312  0 10.4535729567822  0 10  C 0 9.55498502353445  0.15919384057971 9.16559691912709  0.47758152173913 8.83183568677792  L 8.8804347826087 0.487804878048781  C 9.20742753623188 0.162601626016259  9.59895833333333 0  10.055027173913 0  C 10.502490942029 0  10.8897192028986 0.162601626016259  11.2167119565217 0.487804878048781  L 12.1847826086957 1.43774069319641  C 12.5117753623188 1.76294394522893  12.6752717391304 2.15233204963628  12.6752717391304 2.60590500641849  C 12.6752717391304 3.05947796320068  12.5117753623188 3.44886606760804  12.1847826086957 3.77406931964057  L 8.40285326086956 7.53530166880616  L 17.4898097826087 7.53530166880616  C 17.9372735507246 7.53530166880616  18.3008378623188 7.69576379974326  18.5805027173913 8.01668806161746  Z "
+                      stroke-width="2" stroke="#ffffff" fill="none" transform="matrix(1 0 0 1 456 1241 )"
+                      mask="url(#clip2)" />
+                  </g>
+                </svg></a>
+              <a href="/pageroute/?page=<%= previous_page %>" id="paginationlink" class="previous round">Previous
+                Page</a>
+              <% } %>
+
+              <% for (var i = start_page; i <= end_page; i++) { %>
+              <% if (current_page_active != i ) { %>
+              <a id="paginationlink" class="round btn-page" href="/pageroute/?page=<%= i %>"><%= i %></a>
+              <% } else { %>
+              <a id="paginationlink" class="round btn-page active" href="/pageroute/?page=<%= i %>"><%= i %></a>
+              <% } %>
+              <% } %>
+
+              <% if (current_page_active != pageCount) { %>
+              <a href="/pageroute/?page=<%= next_page %>" id="paginationlink" class="next round">Next Page</a>
+              <a href="/pageroute/?page=<%= pageCount %>" id="paginationlink" class="last round">
+                <img id="govuk-right-arrow" src="/assets/images/govuk-right-arrow.jpg">
+                <!-- <svg version="1.1" width="19px" height="30px" class="left-arrow">
+                  <defs>
+                    <mask fill="white" id="clip3">
+                      <path
+                        d="M 18.5224184782609 8.84467265725289  C 18.8408061594203 9.14420196833547  19 9.52931108258451  19 10  C 19 10.4621309370988  18.8408061594203 10.8515190415062  18.5224184782609 11.1681643132221  L 10.1195652173913 19.5250320924262  C 9.78396739130435 19.8416773641421  9.3924365942029 20  8.94497282608696 20  C 8.50611413043478 20  8.11888586956522 19.8416773641421  7.78328804347826 19.5250320924262  L 6.81521739130435 18.5622593068036  C 6.48822463768116 18.2370560547711  6.32472826086957 17.8476679503637  6.32472826086957 17.3940949935815  C 6.32472826086957 16.9405220367993  6.48822463768116 16.551133932392  6.81521739130435 16.2259306803594  L 10.5971467391304 12.4646983311938  L 1.5101902173913 12.4646983311938  C 1.06272644927536 12.4646983311938  0.69916213768116 12.3042362002567  0.419497282608696 11.9833119383825  C 0.139832427536232 11.6623876765083  0 11.2751390671801  0 10.8215661103979  L 0 9.17843388960205  C 0 8.72486093281985  0.139832427536232 8.33761232349166  0.419497282608696 8.01668806161746  C 0.69916213768116 7.69576379974326  1.06272644927536 7.53530166880616  1.5101902173913 7.53530166880616  L 10.5971467391304 7.53530166880616  L 6.81521739130435 3.7612323491656  C 6.48822463768116 3.45314505776637  6.32472826086957 3.06803594351733  6.32472826086957 2.60590500641849  C 6.32472826086957 2.14377406931964  6.48822463768116 1.7586649550706  6.81521739130435 1.45057766367137  L 7.78328804347826 0.487804878048781  C 8.11028079710145 0.162601626016259  8.49750905797101 0  8.94497282608696 0  C 9.40104166666667 0  9.79257246376812 0.162601626016259  10.1195652173913 0.487804878048781  L 18.5224184782609 8.84467265725289  Z "
+                        fill-rule="evenodd" />
+                    </mask>
+                  </defs>
+                  <g transform="matrix(1 0 0 1 -930 -1241 )">
+                    <path
+                      d="M 18.5224184782609 8.84467265725289  C 18.8408061594203 9.14420196833547  19 9.52931108258451  19 10  C 19 10.4621309370988  18.8408061594203 10.8515190415062  18.5224184782609 11.1681643132221  L 10.1195652173913 19.5250320924262  C 9.78396739130435 19.8416773641421  9.3924365942029 20  8.94497282608696 20  C 8.50611413043478 20  8.11888586956522 19.8416773641421  7.78328804347826 19.5250320924262  L 6.81521739130435 18.5622593068036  C 6.48822463768116 18.2370560547711  6.32472826086957 17.8476679503637  6.32472826086957 17.3940949935815  C 6.32472826086957 16.9405220367993  6.48822463768116 16.551133932392  6.81521739130435 16.2259306803594  L 10.5971467391304 12.4646983311938  L 1.5101902173913 12.4646983311938  C 1.06272644927536 12.4646983311938  0.69916213768116 12.3042362002567  0.419497282608696 11.9833119383825  C 0.139832427536232 11.6623876765083  0 11.2751390671801  0 10.8215661103979  L 0 9.17843388960205  C 0 8.72486093281985  0.139832427536232 8.33761232349166  0.419497282608696 8.01668806161746  C 0.69916213768116 7.69576379974326  1.06272644927536 7.53530166880616  1.5101902173913 7.53530166880616  L 10.5971467391304 7.53530166880616  L 6.81521739130435 3.7612323491656  C 6.48822463768116 3.45314505776637  6.32472826086957 3.06803594351733  6.32472826086957 2.60590500641849  C 6.32472826086957 2.14377406931964  6.48822463768116 1.7586649550706  6.81521739130435 1.45057766367137  L 7.78328804347826 0.487804878048781  C 8.11028079710145 0.162601626016259  8.49750905797101 0  8.94497282608696 0  C 9.40104166666667 0  9.79257246376812 0.162601626016259  10.1195652173913 0.487804878048781  L 18.5224184782609 8.84467265725289  Z "
+                      fill-rule="nonzero" fill="#1d70b8" stroke="none" transform="matrix(1 0 0 1 930 1241 )" />
+                    <path
+                      d="M 18.5224184782609 8.84467265725289  C 18.8408061594203 9.14420196833547  19 9.52931108258451  19 10  C 19 10.4621309370988  18.8408061594203 10.8515190415062  18.5224184782609 11.1681643132221  L 10.1195652173913 19.5250320924262  C 9.78396739130435 19.8416773641421  9.3924365942029 20  8.94497282608696 20  C 8.50611413043478 20  8.11888586956522 19.8416773641421  7.78328804347826 19.5250320924262  L 6.81521739130435 18.5622593068036  C 6.48822463768116 18.2370560547711  6.32472826086957 17.8476679503637  6.32472826086957 17.3940949935815  C 6.32472826086957 16.9405220367993  6.48822463768116 16.551133932392  6.81521739130435 16.2259306803594  L 10.5971467391304 12.4646983311938  L 1.5101902173913 12.4646983311938  C 1.06272644927536 12.4646983311938  0.69916213768116 12.3042362002567  0.419497282608696 11.9833119383825  C 0.139832427536232 11.6623876765083  0 11.2751390671801  0 10.8215661103979  L 0 9.17843388960205  C 0 8.72486093281985  0.139832427536232 8.33761232349166  0.419497282608696 8.01668806161746  C 0.69916213768116 7.69576379974326  1.06272644927536 7.53530166880616  1.5101902173913 7.53530166880616  L 10.5971467391304 7.53530166880616  L 6.81521739130435 3.7612323491656  C 6.48822463768116 3.45314505776637  6.32472826086957 3.06803594351733  6.32472826086957 2.60590500641849  C 6.32472826086957 2.14377406931964  6.48822463768116 1.7586649550706  6.81521739130435 1.45057766367137  L 7.78328804347826 0.487804878048781  C 8.11028079710145 0.162601626016259  8.49750905797101 0  8.94497282608696 0  C 9.40104166666667 0  9.79257246376812 0.162601626016259  10.1195652173913 0.487804878048781  L 18.5224184782609 8.84467265725289  Z "
+                      stroke-width="2" stroke="#ffffff" fill="none" transform="matrix(1 0 0 1 930 1241 )"
+                      mask="url(#clip3)" />
+                  </g>
+                </svg> -->
+              </a>
+              <% } %>
+              <% } %>
+            </div>
+          </div>
+
+
+
+
+        </section>
+        <!-- ********************** -->
+        <!-- Pagination ends here -->
+        <!-- ********************** -->
 
         <div>
-        
-            <button class="govuk-button" data-module="govuk-button">
+
+          <button class="govuk-button" data-module="govuk-button">
             New search </button>
-              
+
         </div>
-      </form>  
+      </form>
 
-      </main>
-    </div>
+    </main>
+  </div>
 
-      <%- include('../partials/footer.ejs') %>
-      <script src="/assets/javascripts/vendor/iframeResizer.contentWindow.js"></script>
-      <script src="/assets/javascripts/accordion/govuk-frontend.js"></script>
-      <script src="/assets/javascripts/accordion/example.js"></script>
-      <script type="text/javascript" src="/assets/javascripts/example.js"></script>
-      <script type="text/javascript" src="/assets/javascripts/vendor/modernizr.js"></script>
-      <script type="text/javascript" src="/assets/javascripts/govuk-frontend-checkbox.js"></script>
-      <script type="text/javascript" src="/assets/javascripts/vendor/iframeResizer.contentWindow.js"></script>
-  </body>
+  <%- include('../partials/footer.ejs') %>
+  <script src="/assets/javascripts/vendor/iframeResizer.contentWindow.js"></script>
+  <script src="/assets/javascripts/accordion/govuk-frontend.js"></script>
+  <script src="/assets/javascripts/accordion/example.js"></script>
+  <script type="text/javascript" src="/assets/javascripts/example.js"></script>
+  <script type="text/javascript" src="/assets/javascripts/vendor/modernizr.js"></script>
+  <script type="text/javascript" src="/assets/javascripts/govuk-frontend-checkbox.js"></script>
+  <script type="text/javascript" src="/assets/javascripts/vendor/iframeResizer.contentWindow.js"></script>
+</body>
 
 
 
 </html>
-    

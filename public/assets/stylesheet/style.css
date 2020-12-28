@@ -62,7 +62,7 @@ table tbody tr:hover{
   display: flex;
   justify-content: flex-end;
   text-align: right;
-  margin: 10px 10px;
+  /* margin: 10px 10px; */
   /* float : right; */
   left: 200;
 }
@@ -78,7 +78,10 @@ table tbody tr:hover{
   /* color:rgb(22, 10, 134); */
   color: #1d70b8;
 }
-
+.pagination a:nth-child(1),
+.pagination a:last-child {
+  padding: 8px 0;
+}
 .pagination a:hover,
 .pagination a.active {
   /* background-color: rgb(229, 235, 236); */
