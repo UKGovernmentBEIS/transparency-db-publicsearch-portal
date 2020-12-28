@@ -1,27 +1,26 @@
-
 // *************************************************************
 // Gov.UK public user search - App.js is the subset of server.js
 // *************************************************************
 
-const express = require('express')
-const app = express()
+const express = require("express");
+const app = express();
 const fs = require("fs");
 const request = require("request");
-const methodOverride = require('method-override')
-const path = require('path')
-const fileUpload = require('express-fileupload')
+const methodOverride = require("method-override");
+const path = require("path");
+const fileUpload = require("express-fileupload");
 const fetch = require("node-fetch");
-const { callbackify } = require('util')
-const { Http2ServerRequest } = require('http2');
-const { contains } = require('jquery');
-const axios = require('axios');
-app.set('views', path.join(__dirname, 'views')); 
-app.set('view engine', 'ejs');
-app.use(express.urlencoded({ extended: false }))
-app.use(methodOverride('_method'))
-app.use(express.static(__dirname + '/public'));
-var cors = require('cors')
-app.use(cors())
+const { callbackify } = require("util");
+const { Http2ServerRequest } = require("http2");
+const { contains } = require("jquery");
+const axios = require("axios");
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "ejs");
+app.use(express.urlencoded({ extended: false }));
+app.use(methodOverride("_method"));
+app.use(express.static(__dirname + "/public"));
+var cors = require("cors");
+app.use(cors());
 // ********************************************************
 // Gov.UK public user search - Global variable declarations
 // ********************************************************
@@ -66,7 +65,7 @@ app.locals.totalrows;
 app.locals.start_record;
 app.locals.end_record;
 app.locals.current_page_active;
-app.locals.response_error_message ;
+app.locals.response_error_message;
 app.locals.check_subsidyobjective0;
 app.locals.check_subsidyobjective1;
 app.locals.check_subsidyobjective2;
@@ -131,80 +130,76 @@ app.locals.searchawarddetails;
 app.locals.searchmeasuredetails;
 app.locals.data_request_clientside;
 
-
-
-
 /***************************************************** */
 /* Default login screen - Web application Launch screen */
 /****************************************************** */
 
-app.get('/',(req, res) => {
-  res.render('publicusersearch/homepage')
-})
+app.get("/", (req, res) => {
+  res.render("publicusersearch/homepage");
+});
 
 /****************************************************** */
 /* All Router declarations */
 /****************************************************** */
 
-var homepage = require('./routes/homepage');
-app.use('/homepage',homepage);
+var homepage = require("./routes/homepage");
+app.use("/homepage", homepage);
 
+var beneficiaryname = require("./routes/beneficiaryname");
+app.use("/beneficiaryname", beneficiaryname);
 
-var beneficiaryname = require('./routes/beneficiaryname');
-app.use('/beneficiaryname',beneficiaryname);
+var subsidyobjective = require("./routes/subsidyobjective");
+app.use("/subsidyobjective", subsidyobjective);
 
-var subsidyobjective = require('./routes/subsidyobjective');
-app.use('/subsidyobjective',subsidyobjective);
+var subsidyinstrument = require("./routes/subsidyinstrument");
+app.use("/subsidyinstrument", subsidyinstrument);
 
-var subsidyinstrument = require('./routes/subsidyinstrument');
-app.use('/subsidyinstrument',subsidyinstrument);
+var spendingsector = require("./routes/spendingsector");
+app.use("/spendingsector", spendingsector);
 
+var legalgrantingdate = require("./routes/legalgrantingdate");
+app.use("/legalgrantingdate", legalgrantingdate);
 
-var spendingsector = require('./routes/spendingsector');
-app.use('/spendingsector',spendingsector);
+var searchresults = require("./routes/searchresults");
+app.use("/searchresults", searchresults);
 
-var legalgrantingdate = require('./routes/legalgrantingdate');
-app.use('/legalgrantingdate',legalgrantingdate);
+var pageroute = require("./routes/pageroute");
+app.use("/pageroute", pageroute);
 
-var searchresults = require('./routes/searchresults');
-app.use('/searchresults',searchresults);
+var noresults = require("./routes/noresults");
+app.use("/noresults", noresults);
 
-var pageroute = require('./routes/pageroute');
-app.use('/pageroute',pageroute);
+var filterroute = require("./routes/filterroute");
+app.use("/filterroute", filterroute);
 
-var noresults= require('./routes/noresults');
-app.use('/noresults',noresults);
+var filtersearch = require("./routes/filtersearch");
+app.use("/filtersearch", filtersearch);
 
-var filterroute = require('./routes/filterroute');
-app.use('/filterroute',filterroute);
+var updateresults = require("./routes/updateresults");
+app.use("/updateresults", updateresults);
 
-var filtersearch = require('./routes/filtersearch');
-app.use('/filtersearch',filtersearch);
+var updateresultsroute = require("./routes/updateresultsroute");
+app.use("/updateresultsroute", updateresultsroute);
 
-var updateresults= require('./routes/updateresults');
-app.use('/updateresults',updateresults);
+var hidefilter = require("./routes/hidefilter");
+app.use("/hidefilter", hidefilter);
 
-var updateresultsroute= require('./routes/updateresultsroute');
-app.use('/updateresultsroute',updateresultsroute);
+var searchresultsmeasureroute = require("./routes/searchresultsmeasureroute");
+app.use("/searchresultsmeasureroute", searchresultsmeasureroute);
 
+var searchresultsawardroute = require("./routes/searchresultsawardroute");
+app.use("/searchresultsawardroute", searchresultsawardroute);
 
+var exportexcel = require("./routes/exportexcel");
+app.use("/exportexcel", exportexcel);
 
-var hidefilter = require('./routes/hidefilter');
-app.use('/hidefilter',hidefilter);
+var pageperroute = require("./routes/pageperroute");
+app.use("/pageperroute", pageperroute);
 
-var searchresultsmeasureroute = require('./routes/searchresultsmeasureroute');
-app.use('/searchresultsmeasureroute',searchresultsmeasureroute);
+var updateresultspageperroute = require("./routes/updateresultspageperroute");
+app.use("/updateresultspageperroute", updateresultspageperroute);
 
-var searchresultsawardroute = require('./routes/searchresultsawardroute');
-app.use('/searchresultsawardroute',searchresultsawardroute); 
-
-var exportexcel = require('./routes/exportexcel');
-app.use('/exportexcel',exportexcel);
-
-var pageperroute = require('./routes/pageperroute');
-app.use('/pageperroute',pageperroute);
-
-var updateresultspageperroute = require('./routes/updateresultspageperroute');
-app.use('/updateresultspageperroute',updateresultspageperroute);
+var searchsubsidytransparency = require("./routes/search-subsidytransparencydatabase");
+app.use("/searchsubsidytransparency", searchsubsidytransparency);
 
 module.exports = app;

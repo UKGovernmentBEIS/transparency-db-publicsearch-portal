@@ -74,7 +74,7 @@ router.post('/',async(req, res) => {
 
 
   router.get('/',(req, res) => {
-    res.render('publicusersearch/searchresults')
+    res.render('publicusersearch/searchresults');
   });
 
 

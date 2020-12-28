@@ -9,7 +9,7 @@ const router = express.Router();
 router.post('/',(req, res) => {
   const { Beneficiary_name,beneficiaryname } = req.body;
   text_beneficiaryname = Beneficiary_name;
-  radio_beneficiaryname  = beneficiaryname ;
+  radio_beneficiaryname  = beneficiaryname;
 
   // for_text_beneficiaryname = Beneficiary_name;
   // for_radio_beneficiaryname = beneficiaryname;

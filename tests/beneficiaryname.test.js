@@ -12,13 +12,6 @@ app.use(bodyParser.json())
 app.use(express.urlencoded({ extended: false }));
 app.use("/",index);
 
-test("Beneficiary name route unit testing works fine", done => {
-  request(app)
-    .get("/subsidymeasuretitle")
-    .expect(200, done);
-});
-
-
 const mockRequest = (sessionData, body) => ({
     session: { data: sessionData },
     body,

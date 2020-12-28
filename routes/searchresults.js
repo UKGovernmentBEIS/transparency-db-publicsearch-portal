@@ -111,14 +111,14 @@ router.post('/',async(req, res) => {
         }
 
 
-        if (date_legal_granting_date_day == 31 && ( date_legal_granting_date_month == 02 || date_legal_granting_date_month == 04  || date_legal_granting_date_month == 06 || date_legal_granting_date_month == 09 || date_legal_granting_date_month == 11)) { 
+        if (date_legal_granting_date_day == 31 && ( date_legal_granting_date_month == parseInt('02',8) || date_legal_granting_date_month == parseInt('04',8)  || date_legal_granting_date_month == parseInt('06',8) || date_legal_granting_date_month == parseInt('09',8) || date_legal_granting_date_month == 11)) { 
           date_legal_granting_date_day_Error = true ;
           SubsidyErrors[Additem] = '     Enter the valid day';
           SubsidyFocus[Additem] = '#legal_granting_date_day';
           Additem = Additem + 1 ;
         }
 
-        if (date_legal_granting_date_day == 29 && date_legal_granting_date_month == 02) { 
+        if (date_legal_granting_date_day == 29 && date_legal_granting_date_month == parseInt('02',8)) { 
 
           if (((date_legal_granting_date_year % 4 == 0) && (date_legal_granting_date_year % 100 != 0)) || (date_legal_granting_date_year % 400 == 0)) 
           {   }
@@ -132,7 +132,7 @@ router.post('/',async(req, res) => {
         }
         }
 
-        if (date_legal_granting_date_day == 30 && date_legal_granting_date_month == 02) { 
+        if (date_legal_granting_date_day == 30 && date_legal_granting_date_month == parseInt('02',8)) { 
 
           date_legal_granting_date_day_Error = true ;
           SubsidyErrors[Additem] = '     Enter the valid day';
