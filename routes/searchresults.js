@@ -152,7 +152,7 @@ router.post('/',async(req, res) => {
 
   MonthNotaNumber1 ="No";
   DayNotaNumber1 = "No";
-  YearNotaNumber1 = "No"
+  YearNotaNumber1 = "No";
 
 
   if( date_legal_granting_date_day1 || date_legal_granting_date_month1 || date_legal_granting_date_year1 ) 

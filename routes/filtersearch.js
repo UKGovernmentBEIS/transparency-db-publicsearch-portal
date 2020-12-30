@@ -9,9 +9,9 @@ const router = express.Router();
 router.post('/',(req, res) => {
 
   var { showfiter } = req.body;
-  console.log("showfiter" + showfiter)
+  console.log("showfiter" + showfiter);
     
-    res.render('publicusersearch/filtersearch',{current_page_active})
+    res.render('publicusersearch/filtersearch',{current_page_active});
   });
 
   router.get('/',(req, res) => {

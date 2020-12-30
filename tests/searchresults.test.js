@@ -32,6 +32,10 @@ test("Unit testing for search results route - Test for POST call", done => {
     const res = {};
     request(app)
       .post("/searchresults",(req, res) )
+      .send({ legal_granting_date_day : "01", legal_granting_date_month : "01",
+      legal_granting_date_day1 : "01", legal_granting_date_month1 : "01",
+      legalgrantingdate : "01-01-2020",legal_granting_date_year : "2020",
+      legal_granting_date_year : "2020"})
       .expect(200, done);
   });
 
