@@ -9,7 +9,7 @@ trigger:
 variables:
 
   # Azure Resource Manager connection created during pipeline creation
-  azureSubscription: '16e6395a-2575-4cc5-9160-25542c908121'
+  azureSubscription: '8e9969b3-7574-441c-a10f-7114dc3314f7'
   
   # Web app name
   webAppName: 'dev-beis-tp-db-publicsearch-portal'
@@ -38,8 +38,8 @@ stages:
     - script: |
         npm install
         npm run build --if-present
-        npm run test --if-present
-      displayName: 'npm install, build and test'
+      #  npm run test --if-present
+      displayName: 'npm install and build'
       
     - task: ArchiveFiles@2
       displayName: 'Archive files'
