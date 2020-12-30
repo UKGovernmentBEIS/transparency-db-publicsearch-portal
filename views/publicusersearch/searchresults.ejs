@@ -22,7 +22,7 @@
 <script>
   window.saveFile = function saveFile(data_request_clientside) {
     console.log(JSON.stringify(data_request_clientside));
-    requestUrl = 'https://subsidy-search-service.azurewebsites.net/searchResults';
+    requestUrl = 'http://subsidy-search-service.azurewebsites.net/searchResults/exportAll';
 
     var api_data;
     $.ajax({
@@ -31,9 +31,30 @@
       async: false,
       data: data_request_clientside,
       contentType: 'application/json;charset=utf-8',
-      dataType: 'json',
+      dataType: 'text',
       success: function (response) {
-        console.log(response);
+        // var bytes = new Uint8Array(response.FileContents);
+        // var blob = new Blob([bytes], {
+        //   type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+        // });
+        // var link = document.createElement('a');
+        // link.href = window.URL.createObjectURL(blob);
+        // link.download = "myFileName.csv";
+        // link.click();
+        var binary = "";
+                var responseTextLen = response.length;
+
+                for ( i = 0; i < responseTextLen; i++ ) {
+                    binary += String.fromCharCode(response.charCodeAt(i) & 255)
+                }
+
+                var a = document.createElement('a');
+                a.href = "data:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;base64," + btoa(binary);
+                a.download = 'myfile.csv';
+                document.body.appendChild(a);
+                a.click();
+                a.remove();
+        console.log("priyatham "+response);
         api_data = response;
 
       },
@@ -60,17 +81,28 @@
       }
     }
     var data1 = JSON.parse(JSON.stringify(innArr));
-    var data2 = [{ a: 100, b: 10 }, { a: 200, b: 20 }];
-    var opts = [{ sheetid: 'Subsidy awards', header: true }, { sheetid: 'Two', header: false }];
+    var data2 = [{
+      a: 100,
+      b: 10
+    }, {
+      a: 200,
+      b: 20
+    }];
+    var opts = [{
+      sheetid: 'Subsidy awards',
+      header: true
+    }, {
+      sheetid: 'Two',
+      header: false
+    }];
     var res = alasql('SELECT * INTO XLSX("SubsidyAwardsDownload.xlsx",?) FROM ?', [opts, [data1, data2]]);
 
-  }  //end of save file
+  } //end of save file
 
 
   // $(document).ready(function () {
   //   $('body,html').animate({ scrollTop: 300 }, 1500);
   // });
-
 </script>
 
 
@@ -78,7 +110,9 @@
 <%- include('../partials/header.ejs') %>
 
 <body class="govuk-template__body app-example-page">
-  <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+  <script>
+    document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');
+  </script>
 
   <div class="govuk-width-container ">
     <%- include('../partials/banner.ejs') %>
