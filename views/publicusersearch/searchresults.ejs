@@ -11,8 +11,8 @@
 <link href="/assets/stylesheet/govuk-accordion1.css" rel="stylesheet" media="all" />
 <script src="/assets/javascripts/vendor/modernizr.js"></script>
 
-<script type="text/javascript" language="javascript"
-  src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<!-- <script type="text/javascript" language="javascript"
+  src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script> -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/jquery.cookie/1.4.0/jquery.cookie.min.js"></script>
 <script src="https://cdn.jsdelivr.net/alasql/0.3/alasql.min.js"></script>
@@ -21,55 +21,138 @@
 
 <script>
   window.saveFile = function saveFile(data_request_clientside) {
-    console.log(JSON.stringify(data_request_clientside));
-    requestUrl = 'https://subsidy-search-service.azurewebsites.net/searchResults';
-
+    debugger;
+    console.log(data_request_clientside);
     var api_data;
+    // $.ajax({
+    //   url: 'http://subsidy-search-service.azurewebsites.net/searchResults/exportAll',
+    //   type: "POST",
+    //   headers: { 'Access-Control-Allow-Origin': '*' },
+    //   data: data_request_clientside,
+    //   contentType: 'application/json;charset=utf-8',
+    //   dataType: 'json',
+    //   success: function (response) {
+    //     console.log(response);
+    //     // api_data = response;
+    //     // console.log(JSON.stringify(api_data));
+    //     // if (api_data != '') {
+    //     //   results = JSON.parse(JSON.stringify(api_data));
+
+    //     //   var innArr = [];
+    //     //   for (var i = 0; i < results.totalSearchResults; i++) {
+    //     //     innArr[innArr.length] = {
+    //     //       "Recipient Name": results.awards[i].beneficiary.beneficiaryName,
+    //     //       "Subsidy purpose": results.awards[i].subsidyObjective,
+    //     //       "Spending sector": results.awards[i].spendingSector,
+    //     //       "Subsidy type": results.awards[i].subsidyInstrument,
+    //     //       "Subsidy date": results.awards[i].legalGrantingDate,
+    //     //       "Subsidy name": results.awards[i].subsidyMeasure.subsidyMeasureTitle,
+    //     //       "subsidy amount": results.awards[i].subsidyFullAmountExact,
+    //     //       "subsidy amount range": results.awards[i].subsidyFullAmountRange
+    //     //     }
+    //     //   }
+    //     debugger;
+    //     var data1 = JSON.parse(response);
+    //     var data2 = [{ a: 100, b: 10 }, { a: 200, b: 20 }];
+    //     var opts = [{ sheetid: 'Subsidy awards', header: true }, { sheetid: 'Two', header: false }];
+    //     var res = alasql('SELECT * INTO XLSX("SubsidyAwardsDownload.xlsx",?) FROM ?', [opts, [data1, data2]]);
+
+    //   },
+    //   error: function (error) {
+    //     debugger;
+    //     console.log("Something went wrong", error);
+    //     var data1 = JSON.parse(error.responseText);
+    //     var data2 = [{ a: 100, b: 10 }, { a: 200, b: 20 }];
+    //     var opts = [{ sheetid: 'Subsidy awards', header: true }, { sheetid: 'Two', header: false }];
+    //     var res = alasql('SELECT * INTO XLSX("SubsidyAwardsDownload.xlsx",?) FROM ?', [opts, [data1, data2]]);
+    //   }
+    // });
+
     $.ajax({
-      url: requestUrl,
+      url: "http://subsidy-search-service.azurewebsites.net/searchResults/exportAll",
       type: "POST",
-      async: false,
       data: data_request_clientside,
-      contentType: 'application/json;charset=utf-8',
-      dataType: 'json',
-      success: function (response) {
-        console.log(response);
-        api_data = response;
+      contentType: "application/json; charset=utf-8",
+      dataType: 'text',
+      headers: {
+        accept: 'application/json'
+      },
+      success: function (blob, status, xhr) {
+        //var dat = JSON.parse(JSON.parse(data));
+        //   var host=location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '');
+        // $('#pdfUrl').attr('href',host+"/casepdf"+response.pdfFile);	
+
+        // var contentType = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
+        // var blob = new Blob([data], { type: contentType });
+        // var downloadUrl = URL.createObjectURL(blob);
+        // var a = document.createElement("a");
+        // a.href = downloadUrl;
+        // a.download = 'pqr.xls';
+        // document.body.appendChild(a);
+        // a.click();
+        // console.log("export done");
+
+
+        var filename = "publicsearchawards.xls";
+        var disposition = xhr.getResponseHeader('Content-Disposition');
+        if (disposition && disposition.indexOf('attachment') !== -1) {
+          var filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
+          var matches = filenameRegex.exec(disposition);
+          if (matches != null && matches[1]) filename = matches[1].replace(/['"]/g, '');
+        }
+
+        if (typeof window.navigator.msSaveBlob !== 'undefined') {
+          // IE workaround for "HTML7007: One or more blob URLs were revoked by closing the blob for which they were created. These URLs will no longer resolve as the data backing the URL has been freed."
+          window.navigator.msSaveBlob(blob, filename);
+        } else {
+          var contentType = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
+          var myBuffer = new ArrayBuffer(blob.length * 2);
+
+          var blob1 = new Blob([blob], { type: 'application/octet-stream' });
+          var URL = window.URL || window.webkitURL;
+          var downloadUrl = URL.createObjectURL(blob1);
+
+          if (filename) {
+            // use HTML5 a[download] attribute to specify filename
+            var a = document.createElement("a");
+            // safari doesn't support this yet
+            if (typeof a.download === 'undefined') {
+              window.location.href = downloadUrl;
+            } else {
+              a.href = downloadUrl;
+              a.download = filename;
+              document.body.appendChild(a);
+              a.click();
+            }
+          } else {
+            window.location.href = downloadUrl;
+          }
+
+          setTimeout(function () { URL.revokeObjectURL(downloadUrl); }, 100); // cleanup
+        }
 
       },
-      error: function (error) {
-        console.log("Something went wrong", error);
+      error: function (XMLHttpRequest, text_status, error) {
+        console.log("export done");
+        console.log("error" + text_status + ":::" + error);
       }
     });
-
-
-    console.log(JSON.stringify(api_data));
-    results = JSON.parse(JSON.stringify(api_data));
-
-    var innArr = [];
-    for (var i = 0; i < results.totalSearchResults; i++) {
-      innArr[innArr.length] = {
-        "Recipient Name": results.awards[i].beneficiary.beneficiaryName,
-        "Subsidy purpose": results.awards[i].subsidyObjective,
-        "Spending sector": results.awards[i].spendingSector,
-        "Subsidy type": results.awards[i].subsidyInstrument,
-        "Subsidy date": results.awards[i].legalGrantingDate,
-        "Subsidy name": results.awards[i].subsidyMeasure.subsidyMeasureTitle,
-        "subsidy amount": results.awards[i].subsidyFullAmountExact,
-        "subsidy amount range": results.awards[i].subsidyFullAmountRange
-      }
-    }
-    var data1 = JSON.parse(JSON.stringify(innArr));
-    var data2 = [{ a: 100, b: 10 }, { a: 200, b: 20 }];
-    var opts = [{ sheetid: 'Subsidy awards', header: true }, { sheetid: 'Two', header: false }];
-    var res = alasql('SELECT * INTO XLSX("SubsidyAwardsDownload.xlsx",?) FROM ?', [opts, [data1, data2]]);
 
   }  //end of save file
 
 
-  $(document).ready(function () {
-    $('body,html').animate({ scrollTop: 300 }, 1500);
-  });
+  // $(document).ready(function () {
+  //   $('body,html').animate({ scrollTop: 300 }, 1500);
+  // });
+
+
+
+    //Set the File URL.
+
+
+
+
+
 
 </script>
 
@@ -131,35 +214,33 @@
 
           <form class="govuk-grid-column-one-third" action="/pageperroute" method="GET">
             <select class="govuk-select" id="sort" name="sort" onchange="this.form.submit()">
-              <% if(frontend_totalRecordsPerPage  == 1) { %>
-              <option value="1" selected>1</option>
-              <% } else { %>
-              <option value="1">1</option>
-              <% }  %>
-              <% if(frontend_totalRecordsPerPage  == 2) { %>
-              <option value="2" selected>2</option>
-              <% } else { %>
-              <option value="2">2</option>
-              <% }  %>
-              <% if(frontend_totalRecordsPerPage  == 5) { %>
-              <option value="5" selected>5</option>
-              <% } else { %>
-              <option value="5">5</option>
-              <% }  %>
               <% if(frontend_totalRecordsPerPage  == 10) { %>
               <option value="10" selected>10</option>
               <% } else { %>
               <option value="10">10</option>
               <% }  %>
+              <% if(frontend_totalRecordsPerPage  == 20) { %>
+              <option value="20" selected>20</option>
+              <% } else { %>
+              <option value="20">20</option>
+              <% }  %>
+              <% if(frontend_totalRecordsPerPage  == 50) { %>
+              <option value="50" selected>50</option>
+              <% } else { %>
+              <option value="50">50</option>
+              <% }  %>
+              <% if(frontend_totalRecordsPerPage  == 100) { %>
+              <option value="100" selected>100</option>
+              <% } else { %>
+              <option value="100">100</option>
+              <% }  %>
             </select>
           </form>
         </div>
       </div>
-
-
       <form action="/homepage" method="POST">
         <section>
-          <table class="govuk-table">
+          <table class="govuk-table" id="searchresult-table">
             <caption class="govuk-table__caption">
               <h1 class="govuk-fieldset__heading"></h1>
             </caption>
