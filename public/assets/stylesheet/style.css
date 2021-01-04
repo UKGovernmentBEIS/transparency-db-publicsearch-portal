@@ -1,7 +1,7 @@
-body{
-    margin:0px;
-    /* font-family: Arial, Helvetica, sans-serif; */
-    font-family: GDS Transport, Arial, sans-serif;
+body {
+  margin: 0px;
+  /* font-family: Arial, Helvetica, sans-serif; */
+  font-family: GDS Transport, Arial, sans-serif;
 }
 
 /* section{
@@ -44,11 +44,11 @@ table tbody tr:hover{
     cursor: pointer;
 } */
 
-.pagination{
-    display: grid;
-    grid-template-columns: auto auto ;
-    padding: 10px 0px;
-    margin-top: 20px;
+.pagination {
+  display: grid;
+  grid-template-columns: auto auto;
+  padding: 10px 0px;
+  margin-top: 20px;
 }
 
 /* .pagination .col.middle{
@@ -58,40 +58,79 @@ table tbody tr:hover{
     margin: 10px 0px; 
 } */
 
-
-
-.pagination .col.last{
-    display: flex; 
-    justify-content: flex-end;
-    text-align: right;
-    margin: 10px 10px;
-    /* float : right; */
-    left: 200;
+.pagination .col.last {
+  display: flex;
+  justify-content: flex-end;
+  text-align: right;
+  /* margin: 10px 10px; */
+  /* float : right; */
+  left: 200;
 }
 
-.pagination p{
-    margin: 10px 0px;
+.pagination p {
+  margin: 10px 0px;
 }
 
-.pagination a{
-    border: solid 1px #ffffff;
-    padding: 8px 10px;
-    text-decoration: none;
-    color:rgb(22, 10, 134);
+.pagination a {
+  border: solid 1px #ffffff;
+  padding: 8px 10px;
+  text-decoration: underline;
+  /* color:rgb(22, 10, 134); */
+  color: #1d70b8;
 }
-
-
-.pagination a:hover, .pagination a.active{
-    background-color: rgb(229, 235, 236);
-    
+.pagination a:nth-child(1),
+.pagination a:last-child {
+  padding: 8px 0;
 }
-
-.pagination span{
-    font-weight: bold;
+.pagination a:hover,
+.pagination a.active {
+  /* background-color: rgb(229, 235, 236); */
+  text-decoration: none;
 }
-
+.govuk-font-bold {
+  font-weight: bold;
+}
+.pagination span:nth-child(3) {
+  font-weight: bold;
+}
+.govuk-subsidyresult label {
+  font-weight: bold;
+  min-width: 10%;
+  float: left;
+  margin-right: 1%;
+}
+.govuk-subsidyresult {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1%;
+}
+.govuk-subsidyresult span {
+  max-width: 70%;
+  float: left;
+}
+.govuk-border-bottom {
+  border-bottom: 1px solid lightgray;
+  padding-bottom: 2%;
+  margin-bottom: 2%;
+}
+.govuk-bold {
+  font-weight: bold;
+}
+a {
+  color: #005da6;
+}
 .previous {
-    background-color: #ffffff;
-    color: black;
-  }
-
+  background-color: #ffffff;
+  color: black;
+}
+.govuk-display-flex {
+  display: flex;
+  align-items: center;
+  text-align: right;
+}
+.govuk-display-flex form {
+  padding: 0;
+}
+.govuk-display-flex form select {
+  width: 100%;
+}
