@@ -16,13 +16,14 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/jquery.cookie/1.4.0/jquery.cookie.min.js"></script>
 <script src="https://cdn.jsdelivr.net/alasql/0.3/alasql.min.js"></script>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.7.12/xlsx.core.min.js"></script>
+<script src="http://alasql.org/console/alasql.min.js"></script>
+<script src="http://alasql.org/console/xlsx.core.min.js"></script>
 
 <script>
   window.saveFile = function saveFile(data_request_clientside) {
     console.log(JSON.stringify(data_request_clientside));
-    requestUrl = 'http://subsidy-search-service.azurewebsites.net/searchResults/exportAll';
+    requestUrl = 'https://subsidy-search-service.azurewebsites.net/searchResults';
 
     var api_data;
     $.ajax({
@@ -33,29 +34,107 @@
       contentType: 'application/json;charset=utf-8',
       dataType: 'text',
       success: function (response) {
-        // var bytes = new Uint8Array(response.FileContents);
-        // var blob = new Blob([bytes], {
+        // var bytes = new uint8array(response.filecontents);
+        // var blob = new blob([bytes], {
         //   type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
         // });
-        // var link = document.createElement('a');
-        // link.href = window.URL.createObjectURL(blob);
-        // link.download = "myFileName.csv";
+        // var link = document.createelement('a');
+        // link.href = window.url.createobjecturl(blob);
+        // link.download = "myfilename.csv";
         // link.click();
-        var binary = "";
-                var responseTextLen = response.length;
 
-                for ( i = 0; i < responseTextLen; i++ ) {
-                    binary += String.fromCharCode(response.charCodeAt(i) & 255)
-                }
+        // var binary = "";
+        //         var responseTextLen = response.length;
 
-                var a = document.createElement('a');
-                a.href = "data:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;base64," + btoa(binary);
-                a.download = 'myfile.csv';
-                document.body.appendChild(a);
-                a.click();
-                a.remove();
+        //         for ( i = 0; i < responseTextLen; i++ ) {
+        //             binary += String.fromCharCode(response.charCodeAt(i) & 255);
+        //         }
+        //         var a = document.createElement('a');
+        //         a.href = "data:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml;base64," + btoa(binary);
+        //         a.download = 'workingStuff.csv';
+        //         document.body.appendChild(a);
+        //         a.click();
+        //         a.remove();  
+        // var BOM = "\uFEFF";
+        // var csvContent = BOM + response;
+        // var link = window.document.createElement("a");
+        // link.setAttribute("href", "data:text/csv;charset=utf-8" + encodeURI(csvContent));
+        // link.setAttribute("download", "upload_data.csv");
+        // link.click();
+
+        // const data = [{
+        //     "firstName": "Shubham",
+        //     "lastName": "Verma",
+        //     "email": "example@gmail.com",
+        //     "Mob:": 1234567890,
+        //     "country": "India"
+        //   },
+        //   {
+        //     "firstName": "Shubham",
+        //     "lastName": "Verma",
+        //     "email": "example@gmail.com",
+        //     "Mob:": 1234567890,
+        //     "country": "India"
+        //   },
+        //   {
+        //     "firstName": "Shubham",
+        //     "lastName": "Verma",
+        //     "email": "example@gmail.com",
+        //     "Mob:": 1234567890,
+        //     "country": "India"
+        //   },
+        //   {
+        //     "firstName": "Shubham",
+        //     "lastName": "Verma",
+        //     "email": "example@gmail.com",
+        //     "Mob:": 1234567890,
+        //     "country": "India"
+        //   },
+        //   {
+        //     "firstName": "Shubham",
+        //     "lastName": "Verma",
+        //     "email": "example@gmail.com",
+        //     "Mob:": 1234567890,
+        //     "country": "India"
+        //   },
+        //   {
+        //     "firstName": "Shubham",
+        //     "lastName": "Verma",
+        //     "email": "example@gmail.com",
+        //     "Mob:": 1234567890,
+        //     "country": "India"
+        //   },
+        //   {
+        //     "firstName": "Shubham",
+        //     "lastName": "Verma",
+        //     "email": "example@gmail.com",
+        //     "Mob:": 1234567890,
+        //     "country": "India"
+        //   }
+        // ];
+
         console.log(response);
         api_data = response;
+        parsedResponse = JSON.parse(api_data);
+        var filteredResponse = [];
+        for (var i = 0; i < parsedResponse.totalSearchResults; i++) {
+          filteredResponse[filteredResponse.length] = {
+            "Subsidy Control (SC) Number": parsedResponse.awards[i].subsidyMeasure.scNumber,
+            "Subsidy Measure Title": parsedResponse.awards[i].subsidyMeasure.subsidyMeasureTitle,
+            "Subsidy Award Number": parsedResponse.awards[i].awardNumber,
+            "Subsidy Objective": parsedResponse.awards[i].subsidyObjective,
+            "Subsidy Instrument": parsedResponse.awards[i].subsidyInstrument,
+            "Subsidy Element Full Amount": parsedResponse.awards[i].subsidyFullAmountExact,
+            "Subsidy Element Full Amount Range": parsedResponse.awards[i].subsidyFullAmountRange,
+            "Beneficiary Name": parsedResponse.awards[i].beneficiary.beneficiaryName,
+            "Spending Region": parsedResponse.awards[i].spendingRegion,
+            "Spending Sector": parsedResponse.awards[i].spendingSector,
+            "Legal Granting Date": parsedResponse.awards[i].legalGrantingDate
+          }
+        }
+        var data = JSON.parse(JSON.stringify(filteredResponse));
+        var res = alasql('SELECT * INTO XLSX("sample_file.xlsx",?) FROM ?', [data, [data]]);
+
 
       },
       error: function (error) {
@@ -66,7 +145,6 @@
 
     console.log(JSON.stringify(api_data));
     results = JSON.parse(JSON.stringify(api_data));
-
     var innArr = [];
     for (var i = 0; i < results.totalSearchResults; i++) {
       innArr[innArr.length] = {
@@ -151,10 +229,10 @@
           <a href="/homepage" style="color : black; text-decoration: none">
             <button class="govuk-button" data-module="govuk-button">New search </button>
           </a>
-          <!-- <a href="/exportexcel" style="color : black; text-decoration: none"> -->
+
           <button class="govuk-button" data-module="govuk-button" onclick="saveFile('<%= data_request_clientside %>')">
             Download results </button>
-          <!-- </a> -->
+
 
         </div>
 
