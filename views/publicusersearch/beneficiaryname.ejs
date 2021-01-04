@@ -3,108 +3,127 @@
 
 <head>
   <title>GOV.UK - Public user search page</title>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145652997-21"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+    gtag('config', 'UA-145652997-21');
+  </script>
 </head>
 
 <!--**************************************************
 Gov.UK public user search - header rendering design 
 **************************************************** -->
 <%- include('../partials/header.ejs') %>
-  <body class="govuk-template__body app-example-page">
-    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
-    <div class="govuk-width-container ">
 
-      <%- include('../partials/banner.ejs') %>
+<body class="govuk-template__body app-example-page">
+  <script>
+    document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');
+  </script>
+  <div class="govuk-width-container ">
 
-        <main class="govuk-main-wrapper " id="main-content" role="main">     
-            <form action="/subsidyobjective" method="POST" >  
- 
-               <!--***********************************************************
+    <%- include('../partials/banner.ejs') %>
+
+    <main class="govuk-main-wrapper " id="main-content" role="main">
+      <form action="/subsidyobjective" method="POST">
+
+        <!--***********************************************************
                Gov.UK public user search - Breadcrumbs HTML rendering design 
                *********************************************************** -->
 
-           
-                    <div class="govuk-breadcrumbs ">
-                      <ol class="govuk-breadcrumbs__list">
-                        <li class="govuk-breadcrumbs__list-item">
-                          <a class="govuk-breadcrumbs__link" href="/homepage">Home</a>
-                        </li>
-                        <li class="govuk-breadcrumbs__list-item">
-                          <a class="govuk-breadcrumbs__link" href="/beneficiaryname">Search subsidy awards</a>
-                        </li>
-                      </ol>
-                    </div>
-           
-                    <br />
 
-               <!--************************************
+        <div class="govuk-breadcrumbs ">
+          <ol class="govuk-breadcrumbs__list">
+            <li class="govuk-breadcrumbs__list-item">
+              <a class="govuk-breadcrumbs__link" href="/homepage">Home</a>
+            </li>
+            <li class="govuk-breadcrumbs__list-item">
+              <a class="govuk-breadcrumbs__link" href="/beneficiaryname">Search subsidy awards</a>
+            </li>
+          </ol>
+        </div>
+
+        <br />
+
+        <!--************************************
                Gov.UK public user search - Body design 
                ************************************ -->
-             
 
-                        <div class="govuk-form-group">
-                        <fieldset class="govuk-fieldset" aria-describedby="beneficiary_name-hint">
-                          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-                            <div class="govuk-grid-row">
-                              <div class="govuk-grid-column-two-thirds">
-                            <h1 class="govuk-fieldset__heading">
-                              Are you searching for a specific subsidy recipient?
-                            </h1>
-                          </div>
-                        </div> 
-          
-                          </legend>
-                          <div id="beneficiary_name-hint" class="govuk-hint">
-                            The recipient is the business that received the subsidy     
-                          </div>
-                          <div class="govuk-radios govuk-radios--conditional" data-module="govuk-radios">
-                                <div class="govuk-radios__item">
-                                  <input class="govuk-radios__input" id="beneficiaryname" name="beneficiaryname" type="radio" value="Yes" data-aria-controls="conditional-beneficiaryname" "<% if (radio_beneficiaryname == "Yes") { %> checked <% } %>">
-                                  <label class="govuk-label govuk-radios__label" for="beneficiaryname">
-                                    Yes
-                                  </label>
-                                </div>
 
-                                  <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-beneficiaryname">
-                                    <div class="govuk-form-group">
-                                      <label class="govuk-label" for="beneficiaryname">
-                                        Enter business name
-                                        </label>
-                                        <% if (text_beneficiaryname) { %> %>
-                                        <input class="govuk-input govuk-!-width-one-half" id="beneficiaryname" name="Beneficiary_name" type="beneficiaryname" spellcheck="false"  value= "<%= text_beneficiaryname %>">
-                                        <% } else { %>
-                                        <input class="govuk-input govuk-!-width-one-half" id="beneficiaryname" name="Beneficiary_name" type="beneficiaryname" spellcheck="false" >
-                                        <% }  %>                                 
-                                    
-                                      </div>
-                                  </div>
-                                <div class="govuk-radios__item">
-                                  <input class="govuk-radios__input" id="beneficiaryname-2" name="beneficiaryname" type="radio" value="No" data-aria-controls="conditional-beneficiaryname-2" "<% if (radio_beneficiaryname == "No") { %> checked <% } %>">
-                                  <label class="govuk-label govuk-radios__label" for="beneficiaryname-2">
-                                    No
-                                  </label>
-                                </div>
-                        </fieldset>
-                        </div>
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="beneficiary_name-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <div class="govuk-grid-row">
+                <div class="govuk-grid-column-two-thirds">
+                  <h1 class="govuk-fieldset__heading">
+                    Are you searching for a specific subsidy recipient?
+                  </h1>
+                </div>
+              </div>
 
-                   <div>  
-                    <button class="govuk-button" data-module="govuk-button">
-                    Continue </button>
-                   </div>
+            </legend>
+            <div id="beneficiary_name-hint" class="govuk-hint">
+              The recipient is the business that received the subsidy
+            </div>
+            <div class="govuk-radios govuk-radios--conditional" data-module="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="beneficiaryname" name="beneficiaryname" type="radio" value="Yes"
+                  data-aria-controls="conditional-beneficiaryname" "<% if (radio_beneficiaryname == "Yes") { %> checked <% } %>">
+                <label class="govuk-label govuk-radios__label" for="beneficiaryname">
+                  Yes
+                </label>
+              </div>
 
-                 
-            </form> 
-        </main>
-      </div>
+              <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-beneficiaryname">
+                <div class="govuk-form-group">
+                  <label class="govuk-label" for="beneficiaryname">
+                    Enter business name
+                  </label>
+                  <% if (text_beneficiaryname) { %> %>
+                  <input class="govuk-input govuk-!-width-one-half" id="beneficiaryname" name="Beneficiary_name"
+                    type="beneficiaryname" spellcheck="false" value="<%= text_beneficiaryname %>">
+                  <% } else { %>
+                  <input class="govuk-input govuk-!-width-one-half" id="beneficiaryname" name="Beneficiary_name"
+                    type="beneficiaryname" spellcheck="false">
+                  <% }  %>
 
-<!--************************************************
+                </div>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="beneficiaryname-2" name="beneficiaryname" type="radio" value="No"
+                  data-aria-controls="conditional-beneficiaryname-2" "<% if (radio_beneficiaryname == "No") { %> checked <% } %>">
+                <label class="govuk-label govuk-radios__label" for="beneficiaryname-2">
+                  No
+                </label>
+              </div>
+          </fieldset>
+        </div>
+
+        <div>
+          <button class="govuk-button" data-module="govuk-button">
+            Continue </button>
+        </div>
+
+
+      </form>
+    </main>
+  </div>
+
+  <!--************************************************
 Gov.UK public user search - Footer rendering design 
 ************************************************ -->
 
-<%- include('../partials/footer.ejs') %>
+  <%- include('../partials/footer.ejs') %>
 
-    <script type="text/javascript" src="/assets/javascripts/example.js"></script>
-    <script type="text/javascript" src="/assets/javascripts/vendor/modernizr.js"></script>
-    <script type="text/javascript" src="/assets/javascripts/govuk-frontend-radio.js"></script>
-    <script type="text/javascript" src="/assets/javascripts/vendor/iframeResizer.contentWindow.js"></script>
-  </body>
+  <script type="text/javascript" src="/assets/javascripts/example.js"></script>
+  <script type="text/javascript" src="/assets/javascripts/vendor/modernizr.js"></script>
+  <script type="text/javascript" src="/assets/javascripts/govuk-frontend-radio.js"></script>
+  <script type="text/javascript" src="/assets/javascripts/vendor/iframeResizer.contentWindow.js"></script>
+</body>
+
 </html>
