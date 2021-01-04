@@ -3,6 +3,17 @@
 
 <head>
   <title>GOV.UK - Public user search page</title>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145652997-21"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+    gtag('config', 'UA-145652997-21');
+  </script>
 </head>
 
 <link href="/assets/stylesheet/style.css" rel="stylesheet" type="text/css">
@@ -11,8 +22,8 @@
 <link href="/assets/stylesheet/govuk-accordion1.css" rel="stylesheet" media="all" />
 <script src="/assets/javascripts/vendor/modernizr.js"></script>
 
-<script type="text/javascript" language="javascript"
-  src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<!-- <script type="text/javascript" language="javascript"
+  src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script> -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/jquery.cookie/1.4.0/jquery.cookie.min.js"></script>
 <script src="https://cdn.jsdelivr.net/alasql/0.3/alasql.min.js"></script>
@@ -22,96 +33,16 @@
 
 <script>
   window.saveFile = function saveFile(data_request_clientside) {
-    console.log(JSON.stringify(data_request_clientside));
-    requestUrl = 'https://subsidy-search-service.azurewebsites.net/searchResults';
-
+    console.log(data_request_clientside);
     var api_data;
     $.ajax({
-      url: requestUrl,
+      url: 'http://subsidy-search-service.azurewebsites.net/searchResults',
       type: "POST",
-      async: false,
+      headers: { 'Access-Control-Allow-Origin': '*' },
       data: data_request_clientside,
       contentType: 'application/json;charset=utf-8',
       dataType: 'text',
       success: function (response) {
-        // var bytes = new uint8array(response.filecontents);
-        // var blob = new blob([bytes], {
-        //   type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-        // });
-        // var link = document.createelement('a');
-        // link.href = window.url.createobjecturl(blob);
-        // link.download = "myfilename.csv";
-        // link.click();
-
-        // var binary = "";
-        //         var responseTextLen = response.length;
-
-        //         for ( i = 0; i < responseTextLen; i++ ) {
-        //             binary += String.fromCharCode(response.charCodeAt(i) & 255);
-        //         }
-        //         var a = document.createElement('a');
-        //         a.href = "data:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml;base64," + btoa(binary);
-        //         a.download = 'workingStuff.csv';
-        //         document.body.appendChild(a);
-        //         a.click();
-        //         a.remove();  
-        // var BOM = "\uFEFF";
-        // var csvContent = BOM + response;
-        // var link = window.document.createElement("a");
-        // link.setAttribute("href", "data:text/csv;charset=utf-8" + encodeURI(csvContent));
-        // link.setAttribute("download", "upload_data.csv");
-        // link.click();
-
-        // const data = [{
-        //     "firstName": "Shubham",
-        //     "lastName": "Verma",
-        //     "email": "example@gmail.com",
-        //     "Mob:": 1234567890,
-        //     "country": "India"
-        //   },
-        //   {
-        //     "firstName": "Shubham",
-        //     "lastName": "Verma",
-        //     "email": "example@gmail.com",
-        //     "Mob:": 1234567890,
-        //     "country": "India"
-        //   },
-        //   {
-        //     "firstName": "Shubham",
-        //     "lastName": "Verma",
-        //     "email": "example@gmail.com",
-        //     "Mob:": 1234567890,
-        //     "country": "India"
-        //   },
-        //   {
-        //     "firstName": "Shubham",
-        //     "lastName": "Verma",
-        //     "email": "example@gmail.com",
-        //     "Mob:": 1234567890,
-        //     "country": "India"
-        //   },
-        //   {
-        //     "firstName": "Shubham",
-        //     "lastName": "Verma",
-        //     "email": "example@gmail.com",
-        //     "Mob:": 1234567890,
-        //     "country": "India"
-        //   },
-        //   {
-        //     "firstName": "Shubham",
-        //     "lastName": "Verma",
-        //     "email": "example@gmail.com",
-        //     "Mob:": 1234567890,
-        //     "country": "India"
-        //   },
-        //   {
-        //     "firstName": "Shubham",
-        //     "lastName": "Verma",
-        //     "email": "example@gmail.com",
-        //     "Mob:": 1234567890,
-        //     "country": "India"
-        //   }
-        // ];
 
         console.log(response);
         api_data = response;
@@ -138,49 +69,18 @@
 
       },
       error: function (error) {
+        debugger;
         console.log("Something went wrong", error);
+
       }
     });
+  }  //end of save file
 
 
-    console.log(JSON.stringify(api_data));
-    results = JSON.parse(JSON.stringify(api_data));
-    var innArr = [];
-    for (var i = 0; i < results.totalSearchResults; i++) {
-      innArr[innArr.length] = {
-        "Recipient Name": results.awards[i].beneficiary.beneficiaryName,
-        "Subsidy purpose": results.awards[i].subsidyObjective,
-        "Spending sector": results.awards[i].spendingSector,
-        "Subsidy type": results.awards[i].subsidyInstrument,
-        "Subsidy date": results.awards[i].legalGrantingDate,
-        "Subsidy name": results.awards[i].subsidyMeasure.subsidyMeasureTitle,
-        "subsidy amount": results.awards[i].subsidyFullAmountExact,
-        "subsidy amount range": results.awards[i].subsidyFullAmountRange
-      }
-    }
-    var data1 = JSON.parse(JSON.stringify(innArr));
-    var data2 = [{
-      a: 100,
-      b: 10
-    }, {
-      a: 200,
-      b: 20
-    }];
-    var opts = [{
-      sheetid: 'Subsidy awards',
-      header: true
-    }, {
-      sheetid: 'Two',
-      header: false
-    }];
-    var res = alasql('SELECT * INTO XLSX("SubsidyAwardsDownload.xlsx",?) FROM ?', [opts, [data1, data2]]);
-
-  } //end of save file
-
-
-  // $(document).ready(function () {
-  //   $('body,html').animate({ scrollTop: 300 }, 1500);
-  // });
+  $(document).ready(function () {
+    $('body,html').animate({ scrollTop: 300 }, 1500);
+  });
+    //Set the File URL.
 </script>
 
 
@@ -243,35 +143,33 @@
 
           <form class="govuk-grid-column-one-third" action="/pageperroute" method="GET">
             <select class="govuk-select" id="sort" name="sort" onchange="this.form.submit()">
-              <% if(frontend_totalRecordsPerPage  == 1) { %>
-              <option value="1" selected>1</option>
-              <% } else { %>
-              <option value="1">1</option>
-              <% }  %>
-              <% if(frontend_totalRecordsPerPage  == 2) { %>
-              <option value="2" selected>2</option>
-              <% } else { %>
-              <option value="2">2</option>
-              <% }  %>
-              <% if(frontend_totalRecordsPerPage  == 5) { %>
-              <option value="5" selected>5</option>
-              <% } else { %>
-              <option value="5">5</option>
-              <% }  %>
               <% if(frontend_totalRecordsPerPage  == 10) { %>
               <option value="10" selected>10</option>
               <% } else { %>
               <option value="10">10</option>
               <% }  %>
+              <% if(frontend_totalRecordsPerPage  == 20) { %>
+              <option value="20" selected>20</option>
+              <% } else { %>
+              <option value="20">20</option>
+              <% }  %>
+              <% if(frontend_totalRecordsPerPage  == 50) { %>
+              <option value="50" selected>50</option>
+              <% } else { %>
+              <option value="50">50</option>
+              <% }  %>
+              <% if(frontend_totalRecordsPerPage  == 100) { %>
+              <option value="100" selected>100</option>
+              <% } else { %>
+              <option value="100">100</option>
+              <% }  %>
             </select>
           </form>
         </div>
       </div>
-
-
       <form action="/homepage" method="POST">
         <section>
-          <table class="govuk-table">
+          <table class="govuk-table" id="searchresult-table">
             <caption class="govuk-table__caption">
               <h1 class="govuk-fieldset__heading"></h1>
             </caption>

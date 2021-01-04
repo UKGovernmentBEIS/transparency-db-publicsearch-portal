@@ -90,7 +90,7 @@ console.log("request data : " + data);
 
 
   router.post('/',(req, res) => {
-    res.render('publicusersearch/searchresults')
+    res.render('publicusersearch/searchresults');
   });
 
 
