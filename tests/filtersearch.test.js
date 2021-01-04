@@ -20,7 +20,7 @@ const mockRequest = (sessionData, body) => ({
 
 const res = {};
 
-test("Unit testing for spending filter route - Test for POST call", done => {
+test("Unit testing for spending filter route - Test for POST call", async(done) => {
     const req = mockRequest();
     global.current_page_active = 1;
     const res = {};
