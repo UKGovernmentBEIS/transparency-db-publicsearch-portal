@@ -30,7 +30,7 @@ stages:
         displayName: 'Install Node.js'
 
       - script: |
-          npm install
+          npm install config
         displayName: 'npm install'
 
       - script: |
