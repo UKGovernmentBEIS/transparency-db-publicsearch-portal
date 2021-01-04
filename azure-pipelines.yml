@@ -1,21 +1,30 @@
-variables:
-    MAP_NPMTOKEN: $(NPMTOKEN) # Mapping secret var
-
 trigger:
-- none
+- main
 
-pool:
-  vmImage: 'ubuntu-latest'
+variables:
+
+  # Azure Resource Manager connection created during pipeline creation
+  azureSubscription: '8e9969b3-7574-441c-a10f-7114dc3314f7'
+  
+  # Web app name
+  webAppName: 'dev-beis-tp-db-publicsearch-portal'
+  
+  # Environment name
+  environmentName: 'dev-beis-tp-db-publicsearch-portal'
+
+  # Agent VM image name
+  vmImageName: 'ubuntu-latest'
+
+stages:
+- stage: Build
+  displayName: Build stage
+  jobs:  
+  - job: Build
+    displayName: Build
+    pool:
+      vmImage: $(vmImageName)
 
 steps: # Checking out connected repo
-- checkout: self
-  persistCredentials: true
-  clean: true
-    
-- task: npmAuthenticate@0
-  inputs:
-    workingFile: .npmrc
-    customEndpoint: 'my-npm-connection'
     
 - task: NodeTool@0
   inputs:
