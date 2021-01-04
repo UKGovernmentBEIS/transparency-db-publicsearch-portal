@@ -64,7 +64,7 @@
           }
         }
         var data = JSON.parse(JSON.stringify(filteredResponse));
-        var res = alasql('SELECT * INTO XLSX("sample_file.xlsx",?) FROM ?', [data, [data]]);
+        var res = alasql('SELECT * INTO XLSX("publicsearchawards.xlsx",?) FROM ?', [data, [data]]);
 
 
       },
