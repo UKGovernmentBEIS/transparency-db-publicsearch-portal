@@ -32,142 +32,55 @@
 
 <script>
   window.saveFile = function saveFile(data_request_clientside) {
-    debugger;
     console.log(data_request_clientside);
     var api_data;
-    // $.ajax({
-    //   url: 'http://subsidy-search-service.azurewebsites.net/searchResults/exportAll',
-    //   type: "POST",
-    //   headers: { 'Access-Control-Allow-Origin': '*' },
-    //   data: data_request_clientside,
-    //   contentType: 'application/json;charset=utf-8',
-    //   dataType: 'json',
-    //   success: function (response) {
-    //     console.log(response);
-    //     // api_data = response;
-    //     // console.log(JSON.stringify(api_data));
-    //     // if (api_data != '') {
-    //     //   results = JSON.parse(JSON.stringify(api_data));
-
-    //     //   var innArr = [];
-    //     //   for (var i = 0; i < results.totalSearchResults; i++) {
-    //     //     innArr[innArr.length] = {
-    //     //       "Recipient Name": results.awards[i].beneficiary.beneficiaryName,
-    //     //       "Subsidy purpose": results.awards[i].subsidyObjective,
-    //     //       "Spending sector": results.awards[i].spendingSector,
-    //     //       "Subsidy type": results.awards[i].subsidyInstrument,
-    //     //       "Subsidy date": results.awards[i].legalGrantingDate,
-    //     //       "Subsidy name": results.awards[i].subsidyMeasure.subsidyMeasureTitle,
-    //     //       "subsidy amount": results.awards[i].subsidyFullAmountExact,
-    //     //       "subsidy amount range": results.awards[i].subsidyFullAmountRange
-    //     //     }
-    //     //   }
-    //     debugger;
-    //     var data1 = JSON.parse(response);
-    //     var data2 = [{ a: 100, b: 10 }, { a: 200, b: 20 }];
-    //     var opts = [{ sheetid: 'Subsidy awards', header: true }, { sheetid: 'Two', header: false }];
-    //     var res = alasql('SELECT * INTO XLSX("SubsidyAwardsDownload.xlsx",?) FROM ?', [opts, [data1, data2]]);
-
-    //   },
-    //   error: function (error) {
-    //     debugger;
-    //     console.log("Something went wrong", error);
-    //     var data1 = JSON.parse(error.responseText);
-    //     var data2 = [{ a: 100, b: 10 }, { a: 200, b: 20 }];
-    //     var opts = [{ sheetid: 'Subsidy awards', header: true }, { sheetid: 'Two', header: false }];
-    //     var res = alasql('SELECT * INTO XLSX("SubsidyAwardsDownload.xlsx",?) FROM ?', [opts, [data1, data2]]);
-    //   }
-    // });
-
     $.ajax({
-      url: "http://subsidy-search-service.azurewebsites.net/searchResults/exportAll",
+      url: 'http://subsidy-search-service.azurewebsites.net/searchResults/exportAll',
       type: "POST",
+      headers: { 'Access-Control-Allow-Origin': '*' },
       data: data_request_clientside,
-      contentType: "application/json; charset=utf-8",
-      dataType: 'text',
-      headers: {
-        accept: 'application/json'
-      },
-      success: function (blob, status, xhr) {
-        //var dat = JSON.parse(JSON.parse(data));
-        //   var host=location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '');
-        // $('#pdfUrl').attr('href',host+"/casepdf"+response.pdfFile);	
+      contentType: 'application/json;charset=utf-8',
+      dataType: 'json',
+      success: function (response) {
+        console.log(response);
+        api_data = response;
+        console.log(JSON.stringify(api_data));
+        if (api_data != '') {
+          results = JSON.parse(JSON.stringify(api_data));
 
-        // var contentType = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
-        // var blob = new Blob([data], { type: contentType });
-        // var downloadUrl = URL.createObjectURL(blob);
-        // var a = document.createElement("a");
-        // a.href = downloadUrl;
-        // a.download = 'pqr.xls';
-        // document.body.appendChild(a);
-        // a.click();
-        // console.log("export done");
-
-
-        var filename = "publicsearchawards.xls";
-        var disposition = xhr.getResponseHeader('Content-Disposition');
-        if (disposition && disposition.indexOf('attachment') !== -1) {
-          var filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
-          var matches = filenameRegex.exec(disposition);
-          if (matches != null && matches[1]) filename = matches[1].replace(/['"]/g, '');
-        }
-
-        if (typeof window.navigator.msSaveBlob !== 'undefined') {
-          // IE workaround for "HTML7007: One or more blob URLs were revoked by closing the blob for which they were created. These URLs will no longer resolve as the data backing the URL has been freed."
-          window.navigator.msSaveBlob(blob, filename);
-        } else {
-          var contentType = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
-          var myBuffer = new ArrayBuffer(blob.length * 2);
-
-          var blob1 = new Blob([blob], { type: 'application/octet-stream' });
-          var URL = window.URL || window.webkitURL;
-          var downloadUrl = URL.createObjectURL(blob1);
-
-          if (filename) {
-            // use HTML5 a[download] attribute to specify filename
-            var a = document.createElement("a");
-            // safari doesn't support this yet
-            if (typeof a.download === 'undefined') {
-              window.location.href = downloadUrl;
-            } else {
-              a.href = downloadUrl;
-              a.download = filename;
-              document.body.appendChild(a);
-              a.click();
+          var innArr = [];
+          for (var i = 0; i < results.totalSearchResults; i++) {
+            innArr[innArr.length] = {
+              "Recipient Name": results.awards[i].beneficiary.beneficiaryName,
+              "Subsidy purpose": results.awards[i].subsidyObjective,
+              "Spending sector": results.awards[i].spendingSector,
+              "Subsidy type": results.awards[i].subsidyInstrument,
+              "Subsidy date": results.awards[i].legalGrantingDate,
+              "Subsidy name": results.awards[i].subsidyMeasure.subsidyMeasureTitle,
+              "subsidy amount": results.awards[i].subsidyFullAmountExact,
+              "subsidy amount range": results.awards[i].subsidyFullAmountRange
             }
-          } else {
-            window.location.href = downloadUrl;
           }
-
-          setTimeout(function () { URL.revokeObjectURL(downloadUrl); }, 100); // cleanup
+          debugger;
+          var data1 = JSON.parse(response);
+          var data2 = [{ a: 100, b: 10 }, { a: 200, b: 20 }];
+          var opts = [{ sheetid: 'Subsidy awards', header: true }, { sheetid: 'Two', header: false }];
+          var res = alasql('SELECT * INTO XLSX("SubsidyAwardsDownload.xlsx",?) FROM ?', [opts, [data1, data2]]);
         }
-
       },
-      error: function (XMLHttpRequest, text_status, error) {
-        console.log("export done");
-        console.log("error" + text_status + ":::" + error);
+      error: function (error) {
+        debugger;
+        console.log("Something went wrong", error);
+
       }
     });
-
   }  //end of save file
 
 
-  // $(document).ready(function () {
-  //   $('body,html').animate({ scrollTop: 300 }, 1500);
-  // });
-
-
-
+  $(document).ready(function () {
+    $('body,html').animate({ scrollTop: 300 }, 1500);
+  });
     //Set the File URL.
-
-
-
-
-
-  // $(document).ready(function () {
-  //   $('body,html').animate({ scrollTop: 300 }, 1500);
-  // });
-
 </script>
 
 
