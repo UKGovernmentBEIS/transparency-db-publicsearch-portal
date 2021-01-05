@@ -6,6 +6,7 @@ const express = require("express");
 const router = express.Router();
 const axios = require("axios");
 var request = require("request");
+const { debug } = require("request");
 
 router.post("/", async (req, res) => {
   var { legalgrantingdate } = req.body;
@@ -375,7 +376,7 @@ router.post("/", async (req, res) => {
     // ***********************
     // API integration section
     // ***********************
-
+    debug;
     actual_subsidy_objective_trim = actual_subsidy_objective.replace(
       /^"(.+)"$/,
       "$1"
@@ -385,8 +386,9 @@ router.post("/", async (req, res) => {
       /^"(.*)"$/,
       "$1"
     );
-    actual_subsidy_objective_pass1 = JSON.parse(actual_subsidy_objective_pass);
 
+    actual_subsidy_objective_pass1 = JSON.parse(actual_subsidy_objective_pass);
+    console.log("OBJECTIVE:----", actual_subsidy_objective_pass1);
     actual_subsidy_instrument_trim = actual_subsidy_instrument.replace(
       /^"(.+)"$/,
       "$1"

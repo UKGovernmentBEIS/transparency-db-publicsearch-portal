@@ -29,3 +29,13 @@ test("Unit testing for spending filter route - Test for POST call", (done) => {
     .send({ showfiter: "Yes" })
     .expect(200, done);
 });
+
+test("Unit testing for spending filter route - Test for POST call", (done) => {
+  const req = mockRequest();
+  global.current_page_active = 1;
+  const res = {};
+  jest.setTimeout(10000);
+  request(app)
+    .get("/filtersearch", (req, res))
+    .expect(200, done);
+});
