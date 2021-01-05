@@ -11,9 +11,9 @@ router.post('/',(req, res) => {
     text_beneficiaryname = ""; 
     subsidy_objective_isfirst = "Yes";
     spending_sector_isfirst = "Yes";
-    subsidy_instrument_isfirst = "Yes"
+    subsidy_instrument_isfirst = "Yes";
     console.log("subsidy_objective_isfirst bene :" + subsidy_objective_isfirst);
-    res.render('publicusersearch/beneficiaryname')
+    res.render('publicusersearch/beneficiaryname');
   });
 
   router.get('/',(req, res) => {
