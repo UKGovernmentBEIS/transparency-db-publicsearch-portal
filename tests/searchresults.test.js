@@ -29,6 +29,9 @@ test("Unit testing for search results route - Test for POST call", (done) => {
   global.legal_granting_from_date = "";
   global.legal_granting_to_date = "";
   global.sorting_order_pass = "";
+  global.actual_subsidy_objective = '"Employment"';
+  global.actual_spending_sector = '"Accommodation"';
+  global.actual_subsidy_instrument = '"Guarantee"';
   const res = {};
   request(app)
     .post("/searchresults", (req, res))
