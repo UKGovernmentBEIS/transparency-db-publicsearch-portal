@@ -31,7 +31,6 @@ stages:
 
       - script: |
           npm install
-          npm run build --if-present
         displayName: 'npm install'
 
       - script: |
