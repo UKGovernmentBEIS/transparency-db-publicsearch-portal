@@ -22,6 +22,39 @@ const res = {};
 test("Unit testing for spending filter route - Test for POST call", (done) => {
   const req = mockRequest();
   global.current_page_active = 1;
+  global.frontend_totalRecordsPerPage = "10";
+  global.beneficiary_arrow = "upanddown";
+  global.legalgrantingdate_arrow = "upanddown";
+  global.subsidyamount_arrow = "upanddown";
+  global.searchawards = {
+    totalSearchResults: 49,
+    currentPage: 1,
+    totalPages: 1,
+    awards: [
+      {
+        awardNumber: 22,
+        beneficiary: {
+          beneficiaryName: "Absolem Productions Limited",
+        },
+        subsidyMeasure: {
+          subsidyMeasureTitle:
+            "COVID-19 Temporary Framework for UK authorities",
+          scNumber: "SC10033",
+          adhoc: false,
+          legalBasis: {
+            legalBasisText: "R&D&I Framework",
+          },
+        },
+        subsidyFullAmountRange: "£NA",
+        subsidyFullAmountExact: "597,336",
+        subsidyObjective: "Energy efficiency",
+        subsidyInstrument: "Direct Grant",
+        spendingSector: "Arts, entertainment and recreation",
+        legalGrantingDate: "13 October 2020",
+        spendingRegion: "Scotland",
+      },
+    ],
+  };
   const res = {};
   jest.setTimeout(10000);
   request(app)
