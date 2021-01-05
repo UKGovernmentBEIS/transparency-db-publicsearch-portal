@@ -27,46 +27,46 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/jquery.cookie/1.4.0/jquery.cookie.min.js"></script>
 <script src="https://cdn.jsdelivr.net/alasql/0.3/alasql.min.js"></script>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.7.12/xlsx.core.min.js"></script>
+<script src="http://alasql.org/console/alasql.min.js"></script>
+<script src="http://alasql.org/console/xlsx.core.min.js"></script>
 
 <script>
   window.saveFile = function saveFile(data_request_clientside) {
     console.log(data_request_clientside);
     var api_data;
     $.ajax({
-      url: 'http://subsidy-search-service.azurewebsites.net/searchResults/exportAll',
+      url: 'http://subsidy-search-service.azurewebsites.net/searchResults',
       type: "POST",
       headers: { 'Access-Control-Allow-Origin': '*' },
       data: data_request_clientside,
       contentType: 'application/json;charset=utf-8',
-      dataType: 'json',
+      dataType: 'text',
       success: function (response) {
+
         console.log(response);
         api_data = response;
-        console.log(JSON.stringify(api_data));
-        if (api_data != '') {
-          results = JSON.parse(JSON.stringify(api_data));
-
-          var innArr = [];
-          for (var i = 0; i < results.totalSearchResults; i++) {
-            innArr[innArr.length] = {
-              "Recipient Name": results.awards[i].beneficiary.beneficiaryName,
-              "Subsidy purpose": results.awards[i].subsidyObjective,
-              "Spending sector": results.awards[i].spendingSector,
-              "Subsidy type": results.awards[i].subsidyInstrument,
-              "Subsidy date": results.awards[i].legalGrantingDate,
-              "Subsidy name": results.awards[i].subsidyMeasure.subsidyMeasureTitle,
-              "subsidy amount": results.awards[i].subsidyFullAmountExact,
-              "subsidy amount range": results.awards[i].subsidyFullAmountRange
-            }
+        parsedResponse = JSON.parse(api_data);
+        var filteredResponse = [];
+        for (var i = 0; i < parsedResponse.totalSearchResults; i++) {
+          filteredResponse[filteredResponse.length] = {
+            "Subsidy Control (SC) Number": parsedResponse.awards[i].subsidyMeasure.scNumber,
+            "Subsidy Measure Title": parsedResponse.awards[i].subsidyMeasure.subsidyMeasureTitle,
+            "Subsidy Award Number": parsedResponse.awards[i].awardNumber,
+            "Subsidy Objective": parsedResponse.awards[i].subsidyObjective,
+            "Subsidy Instrument": parsedResponse.awards[i].subsidyInstrument,
+            "Subsidy Element Full Amount": parsedResponse.awards[i].subsidyFullAmountExact,
+            "Subsidy Element Full Amount Range": parsedResponse.awards[i].subsidyFullAmountRange,
+            "Beneficiary Name": parsedResponse.awards[i].beneficiary.beneficiaryName,
+            "Spending Region": parsedResponse.awards[i].spendingRegion,
+            "Spending Sector": parsedResponse.awards[i].spendingSector,
+            "Legal Granting Date": parsedResponse.awards[i].legalGrantingDate
           }
-          debugger;
-          var data1 = JSON.parse(response);
-          var data2 = [{ a: 100, b: 10 }, { a: 200, b: 20 }];
-          var opts = [{ sheetid: 'Subsidy awards', header: true }, { sheetid: 'Two', header: false }];
-          var res = alasql('SELECT * INTO XLSX("SubsidyAwardsDownload.xlsx",?) FROM ?', [opts, [data1, data2]]);
         }
+        var data = JSON.parse(JSON.stringify(filteredResponse));
+        var res = alasql('SELECT * INTO XLSX("publicsearchawards.xlsx",?) FROM ?', [data, [data]]);
+
+
       },
       error: function (error) {
         debugger;
@@ -88,7 +88,9 @@
 <%- include('../partials/header.ejs') %>
 
 <body class="govuk-template__body app-example-page">
-  <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+  <script>
+    document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');
+  </script>
 
   <div class="govuk-width-container ">
     <%- include('../partials/banner.ejs') %>
@@ -127,10 +129,10 @@
           <a href="/homepage" style="color : black; text-decoration: none">
             <button class="govuk-button" data-module="govuk-button">New search </button>
           </a>
-          <!-- <a href="/exportexcel" style="color : black; text-decoration: none"> -->
+
           <button class="govuk-button" data-module="govuk-button" onclick="saveFile('<%= data_request_clientside %>')">
             Download results </button>
-          <!-- </a> -->
+
 
         </div>
 

@@ -57,7 +57,7 @@ console.log("request data : " + data);
         const apidata = await axios.post('http://subsidy-search-service.azurewebsites.net/searchResults', data);
         console.log(`Status: ${apidata.status}`);
           console.log('Body: ', apidata.data);
-          searchawards = apidata.data
+          searchawards = apidata.data;
           var searchawards_api = apidata.data;
           console.log("searchawards" + searchawards_api );
           const seachawardstring = JSON.stringify(searchawards_api );
