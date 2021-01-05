@@ -47,7 +47,7 @@ test("Unit testing for search results route - Test for POST call", (done) => {
 });
 
 test("Unit testing for search results route Test for GET call", (done) => {
-  const req = mockRequest();
+  const req = mockRequest({});
   global.date_legal_granting_date_day = "01";
   global.date_legal_granting_date_month = "01";
   global.date_legal_granting_date_year = "2020";
