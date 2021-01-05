@@ -3,6 +3,17 @@
 
 <head>
   <title>GOV.UK - Public user search page</title>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145652997-21"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+    gtag('config', 'UA-145652997-21');
+  </script>
 </head>
 
 <link href="/assets/stylesheet/style.css" rel="stylesheet" type="text/css">
@@ -228,7 +239,7 @@
                     href="/searchresultsmeasureroute/?page=<%=item.awardNumber %>"><%= item.subsidyMeasure.subsidyMeasureTitle  %></a>
                 </td>
                 <% if (item.subsidyInstrument == "Tax measures (tax credit, or tax/duty exemption)") { %>
-                <td class="govuk-table__cell">£<%= item.subsidyFullAmountRange %></td>
+                <td class="govuk-table__cell"><%= item.subsidyFullAmountRange %></td>
                 <% } else { %>
                 <td class="govuk-table__cell">£<%= item.subsidyFullAmountExact %></td>
                 <% } %>
