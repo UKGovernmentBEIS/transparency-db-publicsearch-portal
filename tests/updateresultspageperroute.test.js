@@ -73,5 +73,4 @@ test("Unit testing for update results page per route Test for GET call", (done) 
     .get("/updateresultspageperroute", (req, res))
     .query({ sort: "10" })
     .expect(200, done);
-  done();
 });

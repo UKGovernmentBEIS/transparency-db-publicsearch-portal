@@ -70,5 +70,4 @@ test("Unit testing for update results route Test for GET call", (done) => {
   request(app)
     .get("/updateresultsroute", (req, res))
     .expect(200, done);
-  done();
 });

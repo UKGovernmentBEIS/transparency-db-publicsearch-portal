@@ -61,7 +61,6 @@ test("Unit testing for spending filter route - Test for POST call", (done) => {
     .post("/filtersearch", (req, res))
     .send({ showfiter: "Yes" })
     .expect(200, done);
-  done();
 });
 
 test("Unit testing for spending filter route - Test for POST call", (done) => {
@@ -76,5 +75,4 @@ test("Unit testing for spending filter route - Test for POST call", (done) => {
   request(app)
     .get("/filtersearch", (req, res))
     .expect(200, done);
-  done();
 });

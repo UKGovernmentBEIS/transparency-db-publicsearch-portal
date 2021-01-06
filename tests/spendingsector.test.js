@@ -34,7 +34,6 @@ test("Unit testing for spending sector route - Test for POST call", (done) => {
       text_subsidyobjective: "Environmental protection",
     })
     .expect(200, done);
-  done();
 });
 
 test("Unit testing for spending sector route Test for GET call", (done) => {
@@ -44,5 +43,4 @@ test("Unit testing for spending sector route Test for GET call", (done) => {
   request(app)
     .get("/spendingsector", (req, res))
     .expect(200, done);
-  done();
 });

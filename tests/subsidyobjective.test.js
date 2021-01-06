@@ -32,7 +32,6 @@ test("Unit testing for subsidy objective route - Test for with beneficiary name"
       .post("/subsidyobjective",(req, res) )
       .send({ Beneficiary_name : "SpiceJet Ltd", beneficiaryname : "Yes"})
       .expect(200, done);
-      done();
   });
 
 
@@ -47,5 +46,4 @@ test("Unit testing for subsidy objective route - Test for with beneficiary name"
       .post("/subsidyobjective",(req, res) )
       .send({ radio_beneficiaryname : "No"})
       .expect(200, done);
-      done();
   });

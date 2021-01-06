@@ -38,7 +38,6 @@ test("Unit testing for page route - Test for POST call", (done) => {
   request(app)
     .post("/pageroute", (req, res))
     .expect(200, done);
-  done();
 });
 
 test("Unit testing for page route Test for GET call", (done) => {
@@ -94,5 +93,4 @@ test("Unit testing for page route Test for GET call", (done) => {
   request(app)
     .get("/pageroute", (req, res))
     .expect(200, done);
-  done();
 });

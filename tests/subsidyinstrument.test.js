@@ -38,5 +38,4 @@ test("Unit testing for subsidy instrument route Test for GET call", (done) => {
   request(app)
     .get("/subsidyinstrument", (req, res))
     .expect(200, done);
-  done();
 });

@@ -30,7 +30,6 @@ test("Unit testing for legal granting date route - Test for POST call", (done) =
     .post("/legalgrantingdate", (req, res))
     .send({ check_subsidyinstrument: "Equity", text_subsidyinstrument: "Loan" })
     .expect(200, done);
-  done();
 });
 
 test("Unit testing for legal granting date route Test for GET call", (done) => {
@@ -40,5 +39,4 @@ test("Unit testing for legal granting date route Test for GET call", (done) => {
   request(app)
     .get("/legalgrantingdate", (req, res))
     .expect(200, done);
-  done();
 });
