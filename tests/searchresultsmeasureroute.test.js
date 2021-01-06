@@ -21,7 +21,7 @@ const mockRequest = (sessionData, body) => ({
 
 const res = {};
 
-test("Unit testing for search results measure route Test for GET call", (done) => {
+test("Unit testing for search results measure route Test for GET call", async() => {
   const req = mockRequest();
   axios.get.mockResolvedValue({
     status: "success",
@@ -32,5 +32,5 @@ test("Unit testing for search results measure route Test for GET call", (done) =
   request(app)
     .get("/searchresultsmeasureroute", (req, res))
     .query({ page: "SC10029" })
-    .expect(200, done);
+    .expect(200);
 });

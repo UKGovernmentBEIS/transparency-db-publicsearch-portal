@@ -46,22 +46,22 @@ test("Unit testing for search results route - Test for POST call", (done) => {
     .expect(200, done);
 });
 
-// test("Unit testing for search results route Test for GET call", (done) => {
-//   const req = mockRequest({});
-//   global.date_legal_granting_date_day = "01";
-//   global.date_legal_granting_date_month = "01";
-//   global.date_legal_granting_date_year = "2020";
-//   global.date_legal_granting_date_day1 = "01";
-//   global.date_legal_granting_date_month1 = "01";
-//   global.date_legal_granting_date_year1 = "2020";
-//   global.date_legal_granting_date_month_Error = "";
-//   global.date_legal_granting_date_day_Error = "";
-//   global.date_legal_granting_date_year_Error = "";
-//   global.date_legal_granting_date_month1_Error = "";
-//   global.date_legal_granting_date_day1_Error = "";
-//   global.date_legal_granting_date_year1_Error = "";
-//   const res = {};
-//   request(app)
-//     .get("/searchresults", (req, res))
-//     .expect(200, done);
-// });
+test("Unit testing for search results route Test for GET call", async() => {
+  const req = mockRequest({});
+  global.date_legal_granting_date_day = "01";
+  global.date_legal_granting_date_month = "01";
+  global.date_legal_granting_date_year = "2020";
+  global.date_legal_granting_date_day1 = "01";
+  global.date_legal_granting_date_month1 = "01";
+  global.date_legal_granting_date_year1 = "2020";
+  global.date_legal_granting_date_month_Error = "";
+  global.date_legal_granting_date_day_Error = "";
+  global.date_legal_granting_date_year_Error = "";
+  global.date_legal_granting_date_month1_Error = "";
+  global.date_legal_granting_date_day1_Error = "";
+  global.date_legal_granting_date_year1_Error = "";
+  const res = {};
+  request(app)
+    .get("/searchresults", (req, res))
+    .expect(200);
+});

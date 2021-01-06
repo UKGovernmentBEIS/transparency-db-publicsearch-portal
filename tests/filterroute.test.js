@@ -29,7 +29,7 @@ const mockRequest = (sessionData, body) => ({
   body,
 });
 
-test("Unit testing for spending filter route - Test for POST call", async (done) => {
+test("Unit testing for spending filter route - Test for POST call", async () => {
   global.text_beneficiaryname = "";
   global.actual_subsidy_objective_pass1 = [];
   global.actual_subsidy_instrument_pass1 = [];
@@ -73,15 +73,15 @@ test("Unit testing for spending filter route - Test for POST call", async (done)
   const res = {};
   request(app)
     .post("/filterroute", (req, res))
-    .expect(200, done);
+    .expect(200);
 });
 
-// test("Unit testing for filter route Test for GET call", (done) => {
-//   const req = mockRequest();
+test("Unit testing for filter route Test for GET call", async() => {
+  const req = mockRequest();
 
-//   const res = {};
-//   request(app)
-//     .get("/filterroute", (req, res))
-//     .expect(200, done);
+  const res = {};
+  request(app)
+    .get("/filterroute", (req, res))
+    .expect(200);
 
-// });
+});

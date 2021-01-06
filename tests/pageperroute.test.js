@@ -21,16 +21,16 @@ const mockRequest = (sessionData, body) => ({
 
 const res = {};
 
-// test("Unit testing for page per route - Test for POST call", (done) => {
-//   const req = mockRequest();
+test("Unit testing for page per route - Test for POST call", async() => {
+  const req = mockRequest();
 
-//   const res = {};
-//   request(app)
-//     .post("/pageperroute", (req, res))
-//     .expect(200, done);
-// });
+  const res = {};
+  request(app)
+    .post("/pageperroute", (req, res))
+    .expect(200);
+});
 
-test("Unit testing for page per route Test for GET call", (done) => {
+test("Unit testing for page per route Test for GET call", async() => {
   axios.post.mockResolvedValue({
     data: {
       status: "success",
@@ -81,5 +81,5 @@ test("Unit testing for page per route Test for GET call", (done) => {
   const res = {};
   request(app)
     .get("/pageperroute", (req, res))
-    .expect(200, done);
+    .expect(200);
 });

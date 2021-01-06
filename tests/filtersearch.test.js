@@ -20,7 +20,7 @@ const mockRequest = (sessionData, body) => ({
 
 const res = {};
 
-test("Unit testing for spending filter route - Test for POST call", (done) => {
+test("Unit testing for spending filter route - Test for POST call", async() => {
   const req = mockRequest();
   global.current_page_active = 1;
   // global.frontend_totalRecordsPerPage = "10";
@@ -60,10 +60,10 @@ test("Unit testing for spending filter route - Test for POST call", (done) => {
   request(app)
     .post("/filtersearch", (req, res))
     .send({ showfiter: "Yes" })
-    .expect(200, done);
+    .expect(200);
 });
 
-test("Unit testing for spending filter route - Test for POST call", (done) => {
+test("Unit testing for spending filter route - Test for POST call", async() => {
   const req = mockRequest();
   axios.post.mockResolvedValue({
     status: "success",
@@ -101,5 +101,5 @@ test("Unit testing for spending filter route - Test for POST call", (done) => {
   const res = {};
   request(app)
     .get("/filtersearch", (req, res))
-    .expect(200, done);
+    .expect(200);
 });
