@@ -36,9 +36,8 @@ test("Unit testing for update results page per route Test for GET call", (done) 
   const res = {};
 
   axios.post.mockResolvedValue({
+    status: 200,
     data: {
-      status: "success",
-      code: 200,
       totalSearchResults: 49,
       currentPage: 1,
       totalPages: 5,
@@ -71,6 +70,6 @@ test("Unit testing for update results page per route Test for GET call", (done) 
 
   request(app)
     .get("/updateresultspageperroute", (req, res))
-    .query({ sort: "10" })
+    .query({ sort: "10", page: "2" })
     .expect(200, done);
 });

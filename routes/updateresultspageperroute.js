@@ -135,7 +135,6 @@ router.get("/", async (req, res) => {
       start_page,
       end_page,
     });
-    return apidata.status;
   } catch (err) {
     console.error(err);
   }
