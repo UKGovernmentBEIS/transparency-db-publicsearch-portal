@@ -27,6 +27,7 @@ test("Unit testing for no results route - Test for POST call", done => {
     request(app)
       .post("/noresults",(req, res) )
       .expect(200, done);
+    done();
   });
 
 
@@ -38,4 +39,5 @@ test("Unit testing for no results route - Test for POST call", done => {
     request(app)
       .get("/noresults",(req, res) )
       .expect(200, done);
+      done();
   });

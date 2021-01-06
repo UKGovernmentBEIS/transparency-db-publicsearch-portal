@@ -18,7 +18,7 @@ router.post('/',(req, res) => {
 
   router.get('/',(req, res) => {
 
-  res.render('publicusersearch/beneficiaryname')
+  res.render('publicusersearch/beneficiaryname');
    
   });
 

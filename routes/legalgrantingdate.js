@@ -128,12 +128,12 @@ router.post('/',(req, res) => {
   date_legal_granting_date_month1 ="";
   date_legal_granting_date_year1 ="";
 
-    res.render('publicusersearch/legalgrantingdate')
+    res.render('publicusersearch/legalgrantingdate');
   });
 
 router.get('/',(req, res) => {
 
-    res.render('publicusersearch/legalgrantingdate')
+    res.render('publicusersearch/legalgrantingdate');
   });
 
 module.exports = router;

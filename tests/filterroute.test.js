@@ -31,7 +31,6 @@ test("Unit testing for spending filter route - Test for POST call", (done) => {
   request(app)
     .post("/filterroute", (req, res))
     .expect(200, done);
-  done();
 });
 
 test("Unit testing for filter route Test for GET call", (done) => {
@@ -41,5 +40,4 @@ test("Unit testing for filter route Test for GET call", (done) => {
   request(app)
     .get("/filterroute", (req, res))
     .expect(200, done);
-  done();
 });

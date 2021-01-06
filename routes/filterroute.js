@@ -37,10 +37,10 @@ router.post('/',async(req, res) => {
           API_response_code = `${apidata.status}`;
           console.log("API_response_code: try" + API_response_code);
           console.log('Body: ', apidata.data);
-          searchawards = apidata.data
+          searchawards = apidata.data;
           var searchawards_api = apidata.data;
           console.log("searchawards" + searchawards_api );
-          const seachawardstring = JSON.stringify(searchawards_api )
+          const seachawardstring = JSON.stringify(searchawards_api );
           const seachawardJSON = JSON.parse(seachawardstring );
           totalrows = searchawards.totalSearchResults;
           console.log(searchawards.awards[0].beneficiary.beneficiaryType);
@@ -48,14 +48,14 @@ router.post('/',async(req, res) => {
           pageCount = Math.ceil(totalrows/frontend_totalRecordsPerPage );
 
           
-          console.log("totalrows :" + totalrows)
-          console.log("pageCount :" + pageCount)
+          console.log("totalrows :" + totalrows);
+          console.log("pageCount :" + pageCount);
           previous_page = 1;
           next_page = 2;
           start_record = 1;
           end_record = frontend_totalRecordsPerPage;
           current_page_active = 1;
-          res.render('publicusersearch/filterroute',{pageCount,previous_page,next_page,end_record ,end_record,totalrows,current_page_active   })
+          res.render('publicusersearch/filterroute',{pageCount,previous_page,next_page,end_record ,end_record,totalrows,current_page_active   });
           
 
       }

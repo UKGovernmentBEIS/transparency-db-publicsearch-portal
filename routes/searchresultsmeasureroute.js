@@ -8,24 +8,24 @@ const router = express.Router();
 const axios = require('axios');
 var request = require('request');
 
-router.get('/',async(req, res) => {
-console.log("req.query.page: "+ req.query.page);
-scnumber =   req.query.page;
-console.log("scnumber : " + scnumber);
-var measureendpoint = 'http://subsidy-search-service.azurewebsites.net/searchResults/award/' + scnumber ;
-    
-      try {
-        const measureapidata = await axios.get(measureendpoint);
-        console.log(`Status: ${measureapidata.status}`);
-        console.log('Body: ', measureapidata.data);
-        searchmeasuredetails = measureapidata.data;
-          res.render('publicusersearch/searchresultsmeasuredetail')   
+router.get('/', async (req, res) => {
+  console.log("req.query.page: " + req.query.page);
+  scnumber = req.query.page;
+  console.log("scnumber : " + scnumber);
+  var measureendpoint = 'http://subsidy-search-service.azurewebsites.net/searchResults/award/' + scnumber;
 
-      } catch (err) {
-          console.error(err);
-      }
- 
-    });
+  try {
+    const measureapidata = await axios.get(measureendpoint);
+    console.log(`Status: ${measureapidata.status}`);
+    console.log('Body: ', measureapidata.data);
+    searchmeasuredetails = measureapidata.data;
+    res.render('publicusersearch/searchresultsmeasuredetail');
+
+  } catch (err) {
+    console.error(err);
+  }
+
+});
 
 
 module.exports = router;
