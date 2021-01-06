@@ -13,8 +13,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: false }));
 app.use("/", index);
-const axios = require("axios");
-jest.mock("axios");
+
 const mockRequest = (sessionData, body) => ({
   session: { data: sessionData },
   body,
@@ -61,6 +60,7 @@ test("Unit testing for hide filter route - Test for POST call", (done) => {
   request(app)
     .post("/hidefilter", (req, res))
     .expect(200, done);
+  done();
 });
 
 test("Unit testing for hide filter route Test for GET call", (done) => {

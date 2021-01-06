@@ -35,4 +35,5 @@ test("Unit testing for search results ward route Test for GET call", (done) => {
     .get("/searchresultsawardroute", (req, res))
     .query({ page: "22" })
     .expect(200, done);
+  done();
 });

@@ -11,7 +11,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: false }));
 app.use("/", index);
-
+const axios = require("axios");
+jest.mock("axios");
 const mockRequest = (sessionData, body) => ({
   session: { data: sessionData },
   body,
@@ -56,19 +57,24 @@ test("Unit testing for spending filter route - Test for POST call", (done) => {
     ],
   };
   const res = {};
-  jest.setTimeout(10000);
   request(app)
     .post("/filtersearch", (req, res))
     .send({ showfiter: "Yes" })
     .expect(200, done);
+  done();
 });
 
 test("Unit testing for spending filter route - Test for POST call", (done) => {
   const req = mockRequest();
+  axios.post.mockResolvedValue({
+    data: {
+      status: "success",
+    },
+  });
   global.current_page_active = 1;
   const res = {};
-  jest.setTimeout(10000);
   request(app)
     .get("/filtersearch", (req, res))
     .expect(200, done);
+  done();
 });

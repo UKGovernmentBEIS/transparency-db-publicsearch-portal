@@ -33,4 +33,5 @@ test("Unit testing for search results measure route Test for GET call", (done) =
     .get("/searchresultsmeasureroute", (req, res))
     .query({ page: "SC10029" })
     .expect(200, done);
+  done();
 });

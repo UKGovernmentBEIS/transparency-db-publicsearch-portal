@@ -70,6 +70,7 @@ test("Unit testing for update results route - Test for POST call", (done) => {
   request(app)
     .post("/updateresults", (req, res))
     .expect(200, done);
+  done();
 });
 
 test("Unit testing for update results route Test for GET call", (done) => {
@@ -79,4 +80,5 @@ test("Unit testing for update results route Test for GET call", (done) => {
   request(app)
     .get("/updateresults", (req, res))
     .expect(200, done);
+  done();
 });

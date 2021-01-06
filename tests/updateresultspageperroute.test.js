@@ -21,7 +21,7 @@ const mockRequest = (sessionData, body) => ({
 
 const res = {};
 
-test("Unit testing for update results page per route Test for GET call", async (done) => {
+test("Unit testing for update results page per route Test for GET call", (done) => {
   const req = mockRequest();
   global.current_page = "";
   global.pageCount = 10;
@@ -69,9 +69,9 @@ test("Unit testing for update results page per route Test for GET call", async (
     },
   });
 
-  const response = await request(app)
+  request(app)
     .get("/updateresultspageperroute", (req, res))
-    .query({ sort: "10" });
-  expect(response.status).toBe(200);
-  // .expect(200, done);
+    .query({ sort: "10" })
+    .expect(200, done);
+  done();
 });

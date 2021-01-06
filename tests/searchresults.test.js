@@ -44,6 +44,7 @@ test("Unit testing for search results route - Test for POST call", (done) => {
       legal_granting_date_year1: "2020",
     })
     .expect(200, done);
+  done();
 });
 
 test("Unit testing for search results route Test for GET call", (done) => {
@@ -64,4 +65,5 @@ test("Unit testing for search results route Test for GET call", (done) => {
   request(app)
     .get("/searchresults", (req, res))
     .expect(200, done);
+  done();
 });
