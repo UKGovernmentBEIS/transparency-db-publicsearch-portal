@@ -26,7 +26,32 @@ test("Unit testing for subsidy instrument route - Test for POST call", (done) =>
   const res = {};
   request(app)
     .post("/subsidyinstrument", (req, res))
-    .send({ check_spendingsector: "Education" })
+    .send({
+      subsidy_instrument_isfirst: "Yes",
+      check_spendingsector: "Education",
+      spendingsector0: "Accommodation",
+      spendingsector1:
+        "Activities of extraterritorial organisations and bodies",
+      spendingsector2: "Administrative and support service activities",
+      spendingsector3: "Agriculture, forestry and fishing",
+      spendingsector4: "Arts, entertainment and recreation",
+      spendingsector5: "Construction",
+      spendingsector6: "Education",
+      spendingsector7: "Electricity, gas, steam and air conditioning supply",
+      spendingsector8: "Financial and insurance activities",
+      spendingsector9: "Human health and social work activities",
+      spendingsector10: "Information and communication",
+      spendingsector11: "Manufacturing",
+      spendingsector12: "Mining and quarrying",
+      spendingsector13: "Mining and quarrying",
+      spendingsector14: "Mining and quarrying",
+      spendingsector15: "Mining and quarrying",
+      spendingsector16: "Mining and quarrying",
+      spendingsector17: "Mining and quarrying",
+      spendingsector18: "Mining and quarrying",
+      spendingsector19: "Mining and quarrying",
+      spendingsector20: "Mining and quarrying",
+    })
     .expect(200, done);
   done();
 });
