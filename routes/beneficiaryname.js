@@ -6,7 +6,6 @@ const express = require('express');
 const router = express.Router();
 
 router.post('/',(req, res) => {
-  /*test */
     radio_beneficiaryname = "";
     text_beneficiaryname = ""; 
     subsidy_objective_isfirst = "Yes";
