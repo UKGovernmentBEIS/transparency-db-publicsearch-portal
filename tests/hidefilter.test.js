@@ -62,13 +62,12 @@ const res = {};
 //     .expect(200, done);
 // });
 
-test("Unit testing for hide filter route Test for GET call", (done) => {
+test("Unit testing for hide filter route Test for GET call", async() => {
   axios.post.mockResolvedValue({
     data: {
       status: "success",
     },
   });
-
   const req = mockRequest();
 
   global.text_beneficiaryname = "";
@@ -87,5 +86,5 @@ test("Unit testing for hide filter route Test for GET call", (done) => {
   const res = {};
   request(app)
     .get("/hidefilter", (req, res))
-    .expect(200, done);
+    .expect(200);
 });
