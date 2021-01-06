@@ -45,6 +45,7 @@ test("beneficiary name route works", (done) => {
       Subsidy_measure_title: "london",
     })
     .expect(200, done);
+    done();
 });
 
 test("beneficiary name GET route works", (done) => {
@@ -54,4 +55,5 @@ test("beneficiary name GET route works", (done) => {
   request(app)
     .get("/beneficiaryname", (req, res))
     .expect(200, done);
+    done();
 });

@@ -40,4 +40,5 @@ test("Unit testing for filter route Test for GET call", (done) => {
   request(app)
     .get("/filterroute", (req, res))
     .expect(200, done);
+    done();
 });
