@@ -90,7 +90,7 @@ router.post('/',(req, res) => {
     // the 11th element is Other, hence not considered while preparing payload
     // **********************************************
 
-    if (subsidyobjective12) { check_subsidyobjective12  = "\"" + subsidyobjective12 + "\"" ; count = count + 1; check_subsidyobjective12_pass = subsidyobjective12 , subsidyobjective11 =''}
+    if (subsidyobjective12) { check_subsidyobjective12  = "\"" + "others-"+ subsidyobjective12 + "\"" ; count = count + 1; check_subsidyobjective12_pass = subsidyobjective12 , subsidyobjective11 =''}
     else  { check_subsidyobjective12  = ''; check_subsidyobjective12_pass  =''}
 
 
