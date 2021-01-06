@@ -246,8 +246,8 @@ console.log("request data : " + data);
                                                                                                         
           // }
 
-          console.log("Start Page :" + start_page)
-          console.log("end page :" + end_page)
+          console.log("Start Page :" + start_page);
+          console.log("end page :" + end_page);
           console.log("page count: " + pageCount);
 
           res.render('publicusersearch/searchresults',{pageCount,previous_page,next_page,current_page_active,start_record,end_record ,totalrows})

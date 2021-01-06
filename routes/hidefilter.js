@@ -62,14 +62,6 @@ router.get("/", async (req, res) => {
     searchawards = apidata.data;
     var searchawards_api = apidata.data;
     console.log("searchawards" + searchawards_api);
-    console.log(
-      "Benificienry : ############",
-      searchawards.awards[0].beneficiary
-    );
-    console.log(
-      "Benificienry : ################",
-      searchawards.awards[0].subsidyMeasure
-    );
     const seachawardstring = JSON.stringify(searchawards_api);
     const seachawardJSON = JSON.parse(seachawardstring);
     totalrows = parseInt(searchawards.totalSearchResults);

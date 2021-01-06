@@ -7,6 +7,8 @@ const request = require("supertest");
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
+const axios = require("axios");
+jest.mock("axios");
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: false }));
@@ -62,6 +64,12 @@ test("Unit testing for hide filter route - Test for POST call", (done) => {
 });
 
 test("Unit testing for hide filter route Test for GET call", (done) => {
+  axios.post.mockResolvedValue({
+    data: {
+      status: "success",
+    },
+  });
+
   const req = mockRequest();
 
   global.text_beneficiaryname = "";
@@ -81,4 +89,5 @@ test("Unit testing for hide filter route Test for GET call", (done) => {
   request(app)
     .get("/hidefilter", (req, res))
     .expect(200, done);
+  done();
 });
