@@ -63,11 +63,6 @@ const res = {};
 // });
 
 test("Unit testing for hide filter route Test for GET call", async() => {
-  axios.post.mockResolvedValue({
-    data: {
-      status: "success",
-    },
-  });
   const req = mockRequest();
 
   global.text_beneficiaryname = "";
@@ -82,9 +77,41 @@ test("Unit testing for hide filter route Test for GET call", async() => {
   global.pageCount = 10;
   global.current_page_active = 1;
   global.routing_pagenumber = 1;
-
+  axios.post.mockResolvedValue({
+    status: 200,
+    data: {
+      totalSearchResults: 49,
+      currentPage: 1,
+      totalPages: 5,
+      awards: [
+        {
+          awardNumber: 22,
+          beneficiary: {
+            beneficiaryName: "Absolem Productions Limited",
+          },
+          subsidyMeasure: {
+            subsidyMeasureTitle:
+              "COVID-19 Temporary Framework for UK authorities",
+            scNumber: "SC10033",
+            adhoc: false,
+            legalBasis: {
+              legalBasisText: "R&D&I Framework",
+            },
+          },
+          subsidyFullAmountRange: "£NA",
+          subsidyFullAmountExact: "597,336",
+          subsidyObjective: "Energy efficiency",
+          subsidyInstrument: "Direct Grant",
+          spendingSector: "Arts, entertainment and recreation",
+          legalGrantingDate: "13 October 2020",
+          spendingRegion: "Scotland",
+        },
+      ],
+    },
+  });
   const res = {};
   request(app)
     .get("/hidefilter", (req, res))
+    .query({ page: 2 })
     .expect(200);
 });

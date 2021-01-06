@@ -22,13 +22,25 @@ const res = {};
 test("Unit testing for legal granting date route - Test for POST call", (done) => {
   const req = mockRequest(
     {},
-    { check_subsidyinstrument: "Equity", text_subsidyinstrument: "Loan" }
+    { check_subsidyinstrument0: "Equity", subsidyinstrument0: "Loan" }
   );
 
   const res = {};
   request(app)
     .post("/legalgrantingdate", (req, res))
-    .send({ check_subsidyinstrument: "Equity", text_subsidyinstrument: "Loan" })
+    .send({
+      check_subsidyinstrument0: "Equity",
+      subsidyinstrument0: "Loan",
+      subsidyinstrument1: "Guarantee",
+      subsidyinstrument2: "Loan",
+      subsidyinstrument3: "Purchase of goods or services above market prices",
+      subsidyinstrument4: "Sale of goods or services below market prices",
+      subsidyinstrument5: "Tax measures (tax credit, or tax/duty exemption)",
+      subsidyinstrument6: "Direct Grant",
+      subsidyinstrument7: "Loan",
+      subsidyinstrument8: "Loan",
+      subsidyinstrument9: "Loan",
+    })
     .expect(200, done);
 });
 
