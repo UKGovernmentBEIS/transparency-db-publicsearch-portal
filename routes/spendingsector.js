@@ -69,161 +69,59 @@ router.post('/', (req, res) => {
     check_spendingsector17 = "";
     check_spendingsector18 = "";
     check_spendingsector19 = "";
-    check_spendingsector20 = "";
-  }
+    check_spendingsector20 = ""; }
+   
+
+    var count = 0;
+
+    if (subsidyobjective0) { check_subsidyobjective0  = "\"" + subsidyobjective0 + "\"" ; count = count + 1; subsidyobjective12 ='' }
+    else  { check_subsidyobjective0  = ''; }
+
+    if (subsidyobjective1) { check_subsidyobjective1  = "\"" + subsidyobjective1 + "\"" ; count = count + 1 }
+    else  { check_subsidyobjective1  = ''; }
+
+    if (subsidyobjective2) { check_subsidyobjective2  = "\"" + subsidyobjective2 + "\"" ; count = count + 1 }
+    else  { check_subsidyobjective2  = ''; }
+
+    if (subsidyobjective3) { check_subsidyobjective3  = "\"" + subsidyobjective3 + "\"" ; count = count + 1}
+    else  { check_subsidyobjective3  = ''; }
+
+    if (subsidyobjective4) { check_subsidyobjective4  = "\"" + subsidyobjective4 + "\"" ; count = count + 1 }
+    else  { check_subsidyobjective4  = ''; }
+
+    if (subsidyobjective5) { check_subsidyobjective5  = "\"" + subsidyobjective5 + "\"" ; count = count + 1}
+    else  { check_subsidyobjective5  = ''; }
+
+    if (subsidyobjective6) { check_subsidyobjective6  = "\"" + subsidyobjective6 + "\"" ; count = count + 1}
+    else  { check_subsidyobjective6  = ''; }
+
+    if (subsidyobjective7) { check_subsidyobjective7  = "\"" + subsidyobjective7 + "\"" ; count = count + 1}
+    else  { check_subsidyobjective7  = ''; }
+
+    if (subsidyobjective8) { check_subsidyobjective8  = "\"" + subsidyobjective8 + "\"" ; count = count + 1}
+    else  { check_subsidyobjective8  = ''; }
+
+    if (subsidyobjective9) { check_subsidyobjective9  = "\"" + subsidyobjective9 + "\"" ; count = count + 1}
+    else  { check_subsidyobjective9  = ''; }
+
+    if (subsidyobjective10) { check_subsidyobjective10  = "\"" + subsidyobjective10 + "\"" ; count = count + 1}
+    else  { check_subsidyobjective10  = ''; }
+
+    if (subsidyobjective11 && !subsidyobjective12) { check_subsidyobjective11  = "\"" + subsidyobjective11 + "\"" ;check_subsidyobjective11_pass = subsidyobjective11; count = count + 1}
+    else  { check_subsidyobjective11  = ''; check_subsidyobjective11_pass = subsidyobjective11;}
 
 
-  var count = 0;
+    // **********************************************
+    // the 11th element is Other, hence not considered while preparing payload
+    // **********************************************
 
-  if (subsidyobjective0) {
-    check_subsidyobjective0 = "\"" + subsidyobjective0 + "\"";
-    count = count + 1;
-    subsidyobjective12 = '';
-  } else {
-    check_subsidyobjective0 = '';
-  }
-
-  if (subsidyobjective1) {
-    check_subsidyobjective1 = "\"" + subsidyobjective1 + "\"";
-    count = count + 1;
-  } else {
-    check_subsidyobjective1 = '';
-  }
-
-  if (subsidyobjective2) {
-    check_subsidyobjective2 = "\"" + subsidyobjective2 + "\"";
-    count = count + 1;
-  } else {
-    check_subsidyobjective2 = '';
-  }
-
-  if (subsidyobjective3) {
-    check_subsidyobjective3 = "\"" + subsidyobjective3 + "\"";
-    count = count + 1;
-  } else {
-    check_subsidyobjective3 = '';
-  }
-
-  if (subsidyobjective4) {
-    check_subsidyobjective4 = "\"" + subsidyobjective4 + "\"";
-    count = count + 1;
-  } else {
-    check_subsidyobjective4 = '';
-  }
-
-  if (subsidyobjective5) {
-    check_subsidyobjective5 = "\"" + subsidyobjective5 + "\"";
-    count = count + 1;
-  } else {
-    check_subsidyobjective5 = '';
-  }
-
-  if (subsidyobjective6) {
-    check_subsidyobjective6 = "\"" + subsidyobjective6 + "\"";
-    count = count + 1;
-  } else {
-    check_subsidyobjective6 = '';
-  }
-
-  if (subsidyobjective7) {
-    check_subsidyobjective7 = "\"" + subsidyobjective7 + "\"";
-    count = count + 1;
-  } else {
-    check_subsidyobjective7 = '';
-  }
-
-  if (subsidyobjective8) {
-    check_subsidyobjective8 = "\"" + subsidyobjective8 + "\"";
-    count = count + 1;
-  } else {
-    check_subsidyobjective8 = '';
-  }
-
-  if (subsidyobjective9) {
-    check_subsidyobjective9 = "\"" + subsidyobjective9 + "\"";
-    count = count + 1;
-  } else {
-    check_subsidyobjective9 = '';
-  }
-
-  if (subsidyobjective10) {
-    check_subsidyobjective10 = "\"" + subsidyobjective10 + "\"";
-    count = count + 1;
-  } else {
-    check_subsidyobjective10 = '';
-  }
-
-  if (subsidyobjective11 && !subsidyobjective12) {
-    check_subsidyobjective11 = "\"" + subsidyobjective11 + "\"";
-    check_subsidyobjective11_pass = subsidyobjective11;
-    count = count + 1;
-  } else {
-    check_subsidyobjective11 = '';
-    check_subsidyobjective11_pass = subsidyobjective11;
-  }
+    if (subsidyobjective12) { check_subsidyobjective12  = "\"" + "others-"+ subsidyobjective12 + "\"" ; count = count + 1; check_subsidyobjective12_pass = subsidyobjective12 , subsidyobjective11 =''}
+    else  { check_subsidyobjective12  = ''; check_subsidyobjective12_pass  =''}
 
 
-  // **********************************************
-  // the 11th element is Other, hence not considered while preparing payload
-  // **********************************************
-
-  if (subsidyobjective12) {
-    check_subsidyobjective12 = "\"" + subsidyobjective12 + "\"";
-    count = count + 1;
-    check_subsidyobjective12_pass = subsidyobjective12, subsidyobjective11 = '';
-  } else {
-    check_subsidyobjective12 = '';
-    check_subsidyobjective12_pass = '';
-  }
-
-
-  single_select = '';
-  multiple_select = '';
-  nothing_selected = '';
-  actual_subsidy_objective = '';
-  multiple_subsidy_objective = '';
-
-  if (count == 1) {
-    single_select = "Yes";
-  } else if (count > 1) {
-    multiple_select = "Yes";
-  } else if (count == 0) {
-    nothing_selected = "Yes";
-  }
-
-
-  if (single_select == "Yes") {
-
-    if (subsidyobjective1) {
-      actual_subsidy_objective = check_subsidyobjective1;
-    } else if (subsidyobjective2) {
-      actual_subsidy_objective = check_subsidyobjective2;
-    } else if (subsidyobjective3) {
-      actual_subsidy_objective = check_subsidyobjective3;
-    } else if (subsidyobjective4) {
-      actual_subsidy_objective = check_subsidyobjective4;
-    } else if (subsidyobjective5) {
-      actual_subsidy_objective = check_subsidyobjective5;
-    } else if (subsidyobjective6) {
-      actual_subsidy_objective = check_subsidyobjective6;
-    } else if (subsidyobjective7) {
-      actual_subsidy_objective = check_subsidyobjective7;
-    } else if (subsidyobjective8) {
-      actual_subsidy_objective = check_subsidyobjective8;
-    } else if (subsidyobjective9) {
-      actual_subsidy_objective = check_subsidyobjective9;
-    } else if (subsidyobjective10) {
-      actual_subsidy_objective = check_subsidyobjective10;
-    } else if (subsidyobjective11) {
-      actual_subsidy_objective = check_subsidyobjective11;
-    } else if (subsidyobjective12) {
-      actual_subsidy_objective = check_subsidyobjective12;
-    }
-
-
-  }
-
-  if (nothing_selected == "Yes") {
+    single_select ='';
+    multiple_select = '';
+    nothing_selected ='';
     actual_subsidy_objective = '';
   }
 
