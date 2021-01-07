@@ -19,18 +19,64 @@ const mockRequest = (sessionData, body) => ({
   body,
 });
 
-test("Unit testing for search results ward route Test for GET call", async() => {
+test("Unit testing for search results ward route Test for GET call", (done) => {
   const req = mockRequest();
-
+  global.searchmeasuredetails = {
+    awardNumber: 22,
+    beneficiary: {
+      beneficiaryName: "Absolem Productions Limited",
+    },
+    subsidyMeasure: {
+      subsidyMeasureTitle: "COVID-19 Temporary Framework for UK authorities",
+      scNumber: "SC10033",
+      adhoc: false,
+      legalBasis: {
+        legalBasisText: "R&D&I Framework",
+      },
+    },
+    subsidyFullAmountRange: "£NA",
+    subsidyFullAmountExact: "597,336",
+    subsidyObjective: "Energy efficiency",
+    subsidyInstrument: "Direct Grant",
+    spendingSector: "Arts, entertainment and recreation",
+    legalGrantingDate: "13 October 2020",
+    spendingRegion: "Scotland",
+  };
   const res = {};
 
   axios.get.mockResolvedValue({
     status: "success",
-    code: 200,
-    data: [],
+    data: {
+      awardNumber: 22,
+      beneficiary: {
+        beneficiaryName: "Absolem Productions Limited",
+        orgSize: "",
+        nationalIdType: "",
+        nationalId: "",
+      },
+      grantingAuthorityResponse: {
+        grantingAuthorityName: "",
+      },
+      subsidyMeasure: {
+        subsidyMeasureTitle: "COVID-19 Temporary Framework for UK authorities",
+        scNumber: "SC10033",
+        adhoc: false,
+        legalBasis: {
+          legalBasisText: "R&D&I Framework",
+        },
+      },
+      subsidyFullAmountRange: "£NA",
+      subsidyFullAmountExact: "597,336",
+      subsidyObjective: "Energy efficiency",
+      subsidyInstrument: "Direct Grant",
+      spendingSector: "Arts, entertainment and recreation",
+      legalGrantingDate: "13 October 2020",
+      spendingRegion: "Scotland",
+      goodsServicesFilter: "",
+    },
   });
   request(app)
     .get("/searchresultsawardroute", (req, res))
     .query({ page: "22" })
-    .expect(200);
+    .expect(200, done);
 });

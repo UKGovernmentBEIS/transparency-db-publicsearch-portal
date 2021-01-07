@@ -21,48 +21,86 @@ const mockRequest = (sessionData, body) => ({
 
 const res = {};
 
-test("Unit testing for hide filter route - Test for POST call", async() => {
+test("Unit testing for hide filter route - Test for POST call", (done) => {
   global.spending_sector_isfirst = "Yes";
   const req = mockRequest(
     {},
     { check_subsidyobjective: "Research and development" }
   );
-  axios.post.mockResolvedValue({
-    data: [
+  global.beneficiary_arrow = "upanddown";
+  global.legalgrantingdate_arrow = "upanddown";
+  global.subsidyamount_arrow = "upanddown";
+  global.start_record = 1;
+  global.end_record = 10;
+  global.totalrows = 10;
+  global.start_page = 1;
+  global.end_page = 10;
+  global.searchawards = {
+    awards: [
       {
-        totalSearchResults: 49,
-        currentPage: 1,
-        totalPages: 5,
-        awards: [
-          {
-            awardNumber: 22,
-            beneficiary: { beneficiaryName: "Absolem Productions Limited" },
-            subsidyMeasure: {
-              subsidyMeasureTitle:
-                "COVID-19 Temporary Framework for UK authorities",
-              scNumber: "SC10033",
-              adhoc: false,
-              legalBasis: { legalBasisText: "R&D&I Framework" },
-            },
-            subsidyFullAmountRange: "£NA",
-            subsidyFullAmountExact: "597,336",
-            subsidyObjective: "Energy efficiency",
-            subsidyInstrument: "Direct Grant",
-            spendingSector: "Administrative and support service activities",
-            legalGrantingDate: "13 October 2020",
-            spendingRegion: "Scotland",
+        awardNumber: 22,
+        beneficiary: {
+          beneficiaryName: "Absolem Productions Limited",
+        },
+        subsidyMeasure: {
+          subsidyMeasureTitle:
+            "COVID-19 Temporary Framework for UK authorities",
+          scNumber: "SC10033",
+          adhoc: false,
+          legalBasis: {
+            legalBasisText: "R&D&I Framework",
           },
-        ],
+        },
+        subsidyFullAmountRange: "£NA",
+        subsidyFullAmountExact: "597,336",
+        subsidyObjective: "Energy efficiency",
+        subsidyInstrument: "Direct Grant",
+        spendingSector: "Arts, entertainment and recreation",
+        legalGrantingDate: "13 October 2020",
+        spendingRegion: "Scotland",
       },
     ],
+  };
+
+  axios.post.mockResolvedValue({
+    status: 200,
+    data: {
+      totalSearchResults: 49,
+      currentPage: 1,
+      totalPages: 5,
+      awards: [
+        {
+          awardNumber: 22,
+          beneficiary: {
+            beneficiaryName: "Absolem Productions Limited",
+          },
+          subsidyMeasure: {
+            subsidyMeasureTitle:
+              "COVID-19 Temporary Framework for UK authorities",
+            scNumber: "SC10033",
+            adhoc: false,
+            legalBasis: {
+              legalBasisText: "R&D&I Framework",
+            },
+          },
+          subsidyFullAmountRange: "£NA",
+          subsidyFullAmountExact: "597,336",
+          subsidyObjective: "Energy efficiency",
+          subsidyInstrument: "Direct Grant",
+          spendingSector: "Arts, entertainment and recreation",
+          legalGrantingDate: "13 October 2020",
+          spendingRegion: "Scotland",
+        },
+      ],
+    },
   });
   const res = {};
   request(app)
     .post("/hidefilter", (req, res))
-    .expect(200);
+    .expect(200, done);
 });
 
-test("Unit testing for hide filter route Test for GET call", async() => {
+test("Unit testing for hide filter route Test for GET call", (done) => {
   const req = mockRequest();
 
   global.text_beneficiaryname = "";
@@ -77,6 +115,42 @@ test("Unit testing for hide filter route Test for GET call", async() => {
   global.pageCount = 10;
   global.current_page_active = 1;
   global.routing_pagenumber = 1;
+
+  global.beneficiary_arrow = "upanddown";
+  global.legalgrantingdate_arrow = "upanddown";
+  global.subsidyamount_arrow = "upanddown";
+  global.start_record = 1;
+  global.end_record = 10;
+  global.totalrows = 10;
+  global.start_page = 1;
+  global.end_page = 10;
+  global.searchawards = {
+    awards: [
+      {
+        awardNumber: 22,
+        beneficiary: {
+          beneficiaryName: "Absolem Productions Limited",
+        },
+        subsidyMeasure: {
+          subsidyMeasureTitle:
+            "COVID-19 Temporary Framework for UK authorities",
+          scNumber: "SC10033",
+          adhoc: false,
+          legalBasis: {
+            legalBasisText: "R&D&I Framework",
+          },
+        },
+        subsidyFullAmountRange: "£NA",
+        subsidyFullAmountExact: "597,336",
+        subsidyObjective: "Energy efficiency",
+        subsidyInstrument: "Direct Grant",
+        spendingSector: "Arts, entertainment and recreation",
+        legalGrantingDate: "13 October 2020",
+        spendingRegion: "Scotland",
+      },
+    ],
+  };
+
   axios.post.mockResolvedValue({
     status: 200,
     data: {
@@ -113,5 +187,6 @@ test("Unit testing for hide filter route Test for GET call", async() => {
   request(app)
     .get("/hidefilter", (req, res))
     .query({ page: 2 })
-    .expect(200);
+    .expect(200, done);
+  // expect(resp).toBe(200);
 });

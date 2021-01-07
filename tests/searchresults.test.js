@@ -11,6 +11,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: false }));
 app.use("/", index);
+const axios = require("axios");
+jest.mock("axios");
 
 const mockRequest = (sessionData, body) => ({
   session: { data: sessionData },
@@ -33,6 +35,38 @@ test("Unit testing for search results route - Test for POST call", (done) => {
   global.actual_spending_sector = '"Accommodation"';
   global.actual_subsidy_instrument = '"Guarantee"';
   const res = {};
+  axios.post.mockResolvedValue({
+    status: "success",
+    data: {
+      totalSearchResults: 49,
+      currentPage: 1,
+      totalPages: 1,
+      awards: [
+        {
+          awardNumber: 22,
+          beneficiary: {
+            beneficiaryName: "Absolem Productions Limited",
+          },
+          subsidyMeasure: {
+            subsidyMeasureTitle:
+              "COVID-19 Temporary Framework for UK authorities",
+            scNumber: "SC10033",
+            adhoc: false,
+            legalBasis: {
+              legalBasisText: "R&D&I Framework",
+            },
+          },
+          subsidyFullAmountRange: "£NA",
+          subsidyFullAmountExact: "597,336",
+          subsidyObjective: "Energy efficiency",
+          subsidyInstrument: "Direct Grant",
+          spendingSector: "Arts, entertainment and recreation",
+          legalGrantingDate: "13 October 2020",
+          spendingRegion: "Scotland",
+        },
+      ],
+    },
+  });
   request(app)
     .post("/searchresults", (req, res))
     .send({
@@ -46,7 +80,7 @@ test("Unit testing for search results route - Test for POST call", (done) => {
     .expect(200, done);
 });
 
-test("Unit testing for search results route Test for GET call", async() => {
+test("Unit testing for search results route Test for GET call", async () => {
   const req = mockRequest({});
   global.date_legal_granting_date_day = "01";
   global.date_legal_granting_date_month = "01";
@@ -61,7 +95,7 @@ test("Unit testing for search results route Test for GET call", async() => {
   global.date_legal_granting_date_day1_Error = "";
   global.date_legal_granting_date_year1_Error = "";
   const res = {};
-  request(app)
+  await request(app)
     .get("/searchresults", (req, res))
     .expect(200);
 });

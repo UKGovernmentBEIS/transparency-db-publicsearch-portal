@@ -1,16 +1,12 @@
 // ********************************************************************
-// Gov.UK public user search subsidy awards subsidy objective routing 
+// Gov.UK public user search subsidy awards subsidy objective routing
 // ********************************************************************
 
-
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 
-router.post('/', (req, res) => {
-  const {
-    Beneficiary_name,
-    beneficiaryname
-  } = req.body;
+router.post("/", (req, res) => {
+  const { Beneficiary_name, beneficiaryname } = req.body;
   text_beneficiaryname = Beneficiary_name;
   radio_beneficiaryname = beneficiaryname;
 
@@ -41,18 +37,12 @@ router.post('/', (req, res) => {
     check_subsidyobjective12 = "";
     check_subsidyobjective12_pass = "";
   }
-
-
-
-  res.render('publicusersearch/subsidyobjective');
+  res.render("publicusersearch/subsidyobjective");
 });
 
-router.get('/', (req, res) => {
-
+router.get("/", (req, res) => {
   subsidy_objective_isfirst = "No";
-
-  res.render('publicusersearch/subsidyobjective');
+  res.render("publicusersearch/subsidyobjective");
 });
-
 
 module.exports = router;
