@@ -235,7 +235,7 @@ Gov.UK public user search - header rendering design
 <script>
   window.saveFile = function saveFile(data_request_clientside) {
     console.log(JSON.stringify(data_request_clientside));
-    requestUrl = 'https://subsidy-search-service.azurewebsites.net/searchResults';
+    requestUrl = 'http://dev-beis-tp-db-public-search-service.azurewebsites.net/searchResults/';
 
     var api_data;
     $.ajax({

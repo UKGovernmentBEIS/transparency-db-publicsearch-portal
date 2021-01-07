@@ -36,7 +36,7 @@
     console.log(data_request_clientside);
     var api_data;
     $.ajax({
-      url: 'http://subsidy-search-service.azurewebsites.net/searchResults',
+      url: 'https://dev-beis-tp-db-public-search-service.azurewebsites.net/searchResults/',
       type: "POST",
       headers: { 'Access-Control-Allow-Origin': '*' },
       data: data_request_clientside,
@@ -69,7 +69,6 @@
 
       },
       error: function (error) {
-        debugger;
         console.log("Something went wrong", error);
 
       }
