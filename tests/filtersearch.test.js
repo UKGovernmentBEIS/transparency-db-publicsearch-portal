@@ -70,6 +70,28 @@ test("Unit testing for spending filter route - Test for POST call", (done) => {
   global.beneficiary_arrow = "upanddown";
   global.legalgrantingdate_arrow = "upanddown";
   global.subsidyamount_arrow = "upanddown";
+  global.frontend_totalRecordsPerPage = "10";
+  global.start_record = 1;
+  global.end_record = 10;
+  global.totalrows = 10;
+  global.start_page = 1;
+  global.end_page = 10;
+  global.next_page = 2;
+  global.pageCount = "10";
+  const data_request = {
+    beneficiaryName: "",
+    subsidyMeasureTitle: "",
+    subsidyObjective: [],
+    spendingRegion: [],
+    subsidyInstrument: [],
+    spendingSector: [],
+    legalGrantingFromDate: "",
+    legalGrantingToDate: "",
+    pageNumber: 1,
+    totalRecordsPerPage: 500000,
+    sortBy: [""],
+  };
+  global.data_request_clientside = JSON.stringify(data_request);
   global.searchawards = {
     awards: [
       {
@@ -97,45 +119,15 @@ test("Unit testing for spending filter route - Test for POST call", (done) => {
     ],
   };
   const res = {};
-  axios.post.mockResolvedValue({
-    status: "success",
-    data: {
-      totalSearchResults: 49,
-      currentPage: 1,
-      totalPages: 1,
-      awards: [
-        {
-          awardNumber: 22,
-          beneficiary: {
-            beneficiaryName: "Absolem Productions Limited",
-          },
-          subsidyMeasure: {
-            subsidyMeasureTitle:
-              "COVID-19 Temporary Framework for UK authorities",
-            scNumber: "SC10033",
-            adhoc: false,
-            legalBasis: {
-              legalBasisText: "R&D&I Framework",
-            },
-          },
-          subsidyFullAmountRange: "£NA",
-          subsidyFullAmountExact: "597,336",
-          subsidyObjective: "Energy efficiency",
-          subsidyInstrument: "Direct Grant",
-          spendingSector: "Arts, entertainment and recreation",
-          legalGrantingDate: "13 October 2020",
-          spendingRegion: "Scotland",
-        },
-      ],
-    },
-  });
+
   request(app)
     .post("/filtersearch", (req, res))
     .send({ showfiter: "Yes" })
+    // expect(response).toBe(200);
     .expect(200, done);
 });
 
-test("Unit testing for spending filter route - Test for POST call", (done) => {
+test("Unit testing for spending filter route - Test for GET call", (done) => {
   const req = mockRequest();
   global.check_subsidyobjective0 = "";
   global.check_subsidyobjective1 = "";
@@ -184,6 +176,28 @@ test("Unit testing for spending filter route - Test for POST call", (done) => {
   global.beneficiary_arrow = "upanddown";
   global.legalgrantingdate_arrow = "upanddown";
   global.subsidyamount_arrow = "upanddown";
+  global.frontend_totalRecordsPerPage = "10";
+  global.start_record = 1;
+  global.end_record = 10;
+  global.totalrows = 10;
+  global.start_page = 1;
+  global.end_page = 10;
+  global.next_page = 2;
+  global.pageCount = "10";
+  const data_request = {
+    beneficiaryName: "",
+    subsidyMeasureTitle: "",
+    subsidyObjective: [],
+    spendingRegion: [],
+    subsidyInstrument: [],
+    spendingSector: [],
+    legalGrantingFromDate: "",
+    legalGrantingToDate: "",
+    pageNumber: 1,
+    totalRecordsPerPage: 500000,
+    sortBy: [""],
+  };
+  global.data_request_clientside = JSON.stringify(data_request);
   global.searchawards = {
     awards: [
       {
@@ -212,6 +226,7 @@ test("Unit testing for spending filter route - Test for POST call", (done) => {
   };
   axios.post.mockResolvedValue({
     status: "success",
+    data_request_clientside: JSON.stringify(data_request),
     data: {
       totalSearchResults: 49,
       currentPage: 1,
@@ -247,4 +262,5 @@ test("Unit testing for spending filter route - Test for POST call", (done) => {
   request(app)
     .get("/filtersearch", (req, res))
     .expect(200, done);
+  // expect(resp).toBe(200);
 });

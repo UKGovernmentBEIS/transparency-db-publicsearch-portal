@@ -21,20 +21,46 @@ const mockRequest = (sessionData, body) => ({
 
 const res = {};
 
-test("Unit testing for hide filter route - Test for POST call", (done) => {
+test("Unit testing for hide filter route - Test for POST call", async () => {
   global.spending_sector_isfirst = "Yes";
   const req = mockRequest(
     {},
     { check_subsidyobjective: "Research and development" }
   );
-  global.beneficiary_arrow = "upanddown";
-  global.legalgrantingdate_arrow = "upanddown";
-  global.subsidyamount_arrow = "upanddown";
+  global.text_beneficiaryname = "";
+  global.actual_subsidy_objective_pass1 = [];
+  global.actual_subsidy_instrument_pass1 = [];
+  global.actual_spending_sector_pass1 = "";
+  global.legal_granting_from_date = "";
+  global.legal_granting_to_date = "";
+  global.fetch_pagenumber = "";
+  global.frontend_totalRecordsPerPage = 3;
+  global.sorting_order_pass = [];
+  global.pageCount = 10;
+  global.current_page_active = 1;
+  global.routing_pagenumber = 1;
   global.start_record = 1;
   global.end_record = 10;
   global.totalrows = 10;
   global.start_page = 1;
   global.end_page = 10;
+  global.beneficiary_arrow = "upanddown";
+  global.legalgrantingdate_arrow = "upanddown";
+  global.subsidyamount_arrow = "upanddown";
+  const data_request = {
+    beneficiaryName: "",
+    subsidyMeasureTitle: "",
+    subsidyObjective: [],
+    spendingRegion: [],
+    subsidyInstrument: [],
+    spendingSector: [],
+    legalGrantingFromDate: "",
+    legalGrantingToDate: "",
+    pageNumber: 1,
+    totalRecordsPerPage: 500000,
+    sortBy: [""],
+  };
+  global.data_request_clientside = JSON.stringify(data_request);
   global.searchawards = {
     awards: [
       {
@@ -63,6 +89,7 @@ test("Unit testing for hide filter route - Test for POST call", (done) => {
   };
 
   axios.post.mockResolvedValue({
+    data_request_clientside: JSON.stringify(data_request),
     status: 200,
     data: {
       totalSearchResults: 49,
@@ -97,7 +124,7 @@ test("Unit testing for hide filter route - Test for POST call", (done) => {
   const res = {};
   request(app)
     .post("/hidefilter", (req, res))
-    .expect(200, done);
+    .expect(200);
 });
 
 test("Unit testing for hide filter route Test for GET call", (done) => {
@@ -115,15 +142,28 @@ test("Unit testing for hide filter route Test for GET call", (done) => {
   global.pageCount = 10;
   global.current_page_active = 1;
   global.routing_pagenumber = 1;
-
-  global.beneficiary_arrow = "upanddown";
-  global.legalgrantingdate_arrow = "upanddown";
-  global.subsidyamount_arrow = "upanddown";
   global.start_record = 1;
   global.end_record = 10;
   global.totalrows = 10;
   global.start_page = 1;
   global.end_page = 10;
+  global.beneficiary_arrow = "upanddown";
+  global.legalgrantingdate_arrow = "upanddown";
+  global.subsidyamount_arrow = "upanddown";
+  const data_request = {
+    beneficiaryName: "",
+    subsidyMeasureTitle: "",
+    subsidyObjective: [],
+    spendingRegion: [],
+    subsidyInstrument: [],
+    spendingSector: [],
+    legalGrantingFromDate: "",
+    legalGrantingToDate: "",
+    pageNumber: 1,
+    totalRecordsPerPage: 500000,
+    sortBy: [""],
+  };
+  global.data_request_clientside = JSON.stringify(data_request);
   global.searchawards = {
     awards: [
       {
@@ -153,6 +193,7 @@ test("Unit testing for hide filter route Test for GET call", (done) => {
 
   axios.post.mockResolvedValue({
     status: 200,
+    data_request_clientside: JSON.stringify(data_request),
     data: {
       totalSearchResults: 49,
       currentPage: 1,
