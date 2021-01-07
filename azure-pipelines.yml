@@ -10,12 +10,6 @@ variables:
 
   # Azure Resource Manager connection created during pipeline creation
   azureSubscription: '8e9969b3-7574-441c-a10f-7114dc3314f7'
-  
-  # Web app name
-  webAppName: 'dev-beis-tp-db-publicsearch-portal'
-  
-  # Environment name
-  environmentName: 'dev-beis-tp-db-publicsearch-portal'
 
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
@@ -35,8 +29,8 @@ stages:
         versionSpec: '12.9'
       displayName: 'Install Node.js'
 
-    - script: |
-        npm install
+    - script: | 
+        npm cache clear --force && npm install --no-shrinkwrap --update-binary
         npm run build --if-present
       #  npm run test --if-present
       displayName: 'npm install, build and test'
