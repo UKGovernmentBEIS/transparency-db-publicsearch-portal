@@ -169,9 +169,6 @@ app.use("/pageroute", pageroute);
 var noresults = require("./routes/noresults");
 app.use("/noresults", noresults);
 
-var filterroute = require("./routes/filterroute");
-app.use("/filterroute", filterroute);
-
 var filtersearch = require("./routes/filtersearch");
 app.use("/filtersearch", filtersearch);
 
