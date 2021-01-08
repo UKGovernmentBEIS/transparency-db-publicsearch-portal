@@ -54,7 +54,7 @@ router.get("/", async (req, res) => {
 
   try {
     const apidata = await axios.post(
-      beis_url + "/searchResults",
+      beis_url_publicsearch + "/searchResults",
       data
     );
     console.log(`Status: ${apidata.status}`);

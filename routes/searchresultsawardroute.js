@@ -14,7 +14,7 @@ router.get("/", async (req, res) => {
   console.log("awardnumber : " + awardnumber);
 
   var awardendpoint =
-    beis_url + "/searchResults/award/" +
+  beis_url_publicsearch + "/searchResults/award/" +
     awardnumber;
 
   try {

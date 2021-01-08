@@ -71,7 +71,7 @@ router.get('/', async (req, res) => {
   console.log("request data : " + data);
 
   try {
-    const apidata = await axios.post(beis_url + '/searchResults', data);
+    const apidata = await axios.post(beis_url_publicsearch + '/searchResults', data);
     console.log(`Status: ${apidata.status}`);
     console.log('Body: ', apidata.data);
     searchawards = apidata.data;

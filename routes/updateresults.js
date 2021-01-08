@@ -884,7 +884,7 @@ router.post('/', async (req, res) => {
   console.log("request :" + JSON.stringify(data));
 
   try {
-    const apidata = await axios.post(beis_url + '/searchResults', data);
+    const apidata = await axios.post(beis_url_publicsearch + '/searchResults', data);
     console.log(`Status: ${apidata.status}`);
 
     API_response_code = `${apidata.status}`;
