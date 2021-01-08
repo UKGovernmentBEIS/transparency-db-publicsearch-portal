@@ -36,8 +36,8 @@ stages:
       displayName: 'npm install, build and test'
       
     - script: | 
-        npm i jest
-        npm test -- --coverage
+      #  npm i jest
+      #  npm test -- --coverage
       #  npm run test --if-present
       displayName: 'npm test coverage'
 
