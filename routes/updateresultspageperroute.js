@@ -68,7 +68,7 @@ router.get("/", async (req, res) => {
 
   try {
     const apidata = await axios.post(
-      "http://subsidy-search-service.azurewebsites.net/searchResults",
+      beis_url + "/searchResults",
       data
     );
     console.log(`Status: ${apidata.status}`);

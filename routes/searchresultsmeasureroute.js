@@ -12,7 +12,7 @@ router.get('/', async (req, res) => {
   console.log("req.query.page: " + req.query.page);
   scnumber = req.query.page;
   console.log("scnumber : " + scnumber);
-  var measureendpoint = 'http://subsidy-search-service.azurewebsites.net/searchResults/award/' + scnumber;
+  var measureendpoint = beis_url + '/searchResults/award/' + scnumber;
 
   try {
     const measureapidata = await axios.get(measureendpoint);
