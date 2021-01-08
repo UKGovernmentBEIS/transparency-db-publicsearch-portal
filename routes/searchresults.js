@@ -448,7 +448,9 @@ router.post("/", async (req, res) => {
 
     try {
       const apidata = await axios.post(
-        "http://subsidy-search-service.azurewebsites.net/searchResults",
+        // "http://subsidy-search-service.azurewebsites.net/searchResults",
+    
+        "http://dev-beis-tp-db-public-search-service.azurewebsites.net/searchResults",
         data
       );
       console.log(`Status: ${apidata.status}`);
