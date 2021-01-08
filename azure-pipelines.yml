@@ -52,15 +52,3 @@ stages:
 
     - upload: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
       artifact: drop
-
-    - task: ArchiveFiles@2
-      displayName: 'Archive Coverage files'
-      inputs:
-        rootFolderOrFile: '$(System.Coverage)'
-        includeRootFolder: false
-        archiveType: zip
-        archiveFile: $(Build.ArtifactStagingDirectory)/$("coverage").zip
-        replaceExistingArchive: true
-
-    - upload: $(Build.ArtifactStagingDirectory)/$("coverage").zip
-      artifact: drop
