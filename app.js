@@ -169,9 +169,6 @@ app.use("/pageroute", pageroute);
 var noresults = require("./routes/noresults");
 app.use("/noresults", noresults);
 
-var filterroute = require("./routes/filterroute");
-app.use("/filterroute", filterroute);
-
 var filtersearch = require("./routes/filtersearch");
 app.use("/filtersearch", filtersearch);
 
@@ -189,9 +186,6 @@ app.use("/searchresultsmeasureroute", searchresultsmeasureroute);
 
 var searchresultsawardroute = require("./routes/searchresultsawardroute");
 app.use("/searchresultsawardroute", searchresultsawardroute);
-
-var exportexcel = require("./routes/exportexcel");
-app.use("/exportexcel", exportexcel);
 
 var pageperroute = require("./routes/pageperroute");
 app.use("/pageperroute", pageperroute);
