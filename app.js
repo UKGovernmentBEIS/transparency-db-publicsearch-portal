@@ -129,6 +129,9 @@ app.locals.legalgrantingdate_arrow;
 app.locals.searchawarddetails;
 app.locals.searchmeasuredetails;
 app.locals.data_request_clientside;
+app.locals.beis_url_publishing ;
+app.locals.beis_url_accessmanagement;
+app.locals.beis_url_publicsearch;
 
 /***************************************************** */
 /* Default login screen - Web application Launch screen */

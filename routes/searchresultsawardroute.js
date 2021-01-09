@@ -14,7 +14,7 @@ router.get("/", async (req, res) => {
   console.log("awardnumber : " + awardnumber);
 
   var awardendpoint =
-    "http://subsidy-search-service.azurewebsites.net/searchResults/award/" +
+  beis_url_publicsearch + "/searchResults/award/" +
     awardnumber;
 
   try {
