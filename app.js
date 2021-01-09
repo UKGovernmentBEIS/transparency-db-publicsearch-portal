@@ -196,7 +196,6 @@ app.use("/pageperroute", pageperroute);
 var updateresultspageperroute = require("./routes/updateresultspageperroute");
 app.use("/updateresultspageperroute", updateresultspageperroute);
 
-var searchsubsidytransparency = require("./routes/search-subsidytransparencydatabase");
-app.use("/searchsubsidytransparency", searchsubsidytransparency);
+
 
 module.exports = app;
