@@ -17,7 +17,7 @@ beis_url_accessmanagement = 'https://dev-beis-tp-db-accessmanagement-service-app
 beis_url_publicsearch = 'https://dev-beis-tp-db-public-search-service.azurewebsites.net';
 console.log(beis_url_publishing);
 console.log(beis_url_accessmanagement);
-console.log( beis_url_publicsearch);
+console.log(beis_url_publicsearch);
 }
 
 else if (Environment_variable == 'env=integ') {
