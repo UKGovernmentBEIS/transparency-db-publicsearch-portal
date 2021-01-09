@@ -34,6 +34,7 @@ test("Unit testing for search results route - Test for POST call", (done) => {
   global.actual_subsidy_objective = '"Employment"';
   global.actual_spending_sector = '"Accommodation"';
   global.actual_subsidy_instrument = '"Guarantee"';
+  global.beis_url_publicsearch  = "https://dev-beis-tp-db-public-search-service.azurewebsites.net";
   const res = {};
   axios.post.mockResolvedValue({
     status: "success",

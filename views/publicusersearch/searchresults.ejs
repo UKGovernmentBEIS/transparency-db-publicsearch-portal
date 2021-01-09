@@ -32,11 +32,13 @@
 <script src="http://alasql.org/console/xlsx.core.min.js"></script>
 
 <script>
-  window.saveFile = function saveFile(data_request_clientside) {
+  window.saveFile = function saveFile(data_request_clientside,beis_url_publicsearch) {
     console.log(data_request_clientside);
+
     var api_data;
     $.ajax({
-      url: 'http://dev-beis-tp-db-public-search-service.azurewebsites.net/searchResults',
+      // url: 'http://dev-beis-tp-db-public-search-service.azurewebsites.net/searchResults',
+      url:  beis_url_publicsearch  + '/searchResults',
       type: "POST",
       headers: { 'Access-Control-Allow-Origin': '*' },
       data: data_request_clientside,
@@ -129,7 +131,7 @@
             <button class="govuk-button" data-module="govuk-button">New search </button>
           </a>
 
-          <button class="govuk-button" data-module="govuk-button" onclick="saveFile('<%= data_request_clientside %>')">
+          <button class="govuk-button" data-module="govuk-button" onclick="saveFile('<%= data_request_clientside %>','<%= beis_url_publicsearch %>')">
             Download results </button>
 
 

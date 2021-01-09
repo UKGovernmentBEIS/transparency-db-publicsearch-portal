@@ -32,6 +32,7 @@ const mockRequest = (sessionData, body) => ({
 const res = {};
 
 test("Unit testing for page route - Test for POST call", async () => {
+  global.beis_url_publicsearch  = "https://dev-beis-tp-db-public-search-service.azurewebsites.net";
   const req = mockRequest();
 
   const res = {};
@@ -86,6 +87,7 @@ test("Unit testing for page route Test for GET call", async () => {
   global.legal_granting_from_date = "";
   global.frontend_totalRecordsPerPage = "10";
   global.sorting_order_pass = [""];
+  global.beis_url_publicsearch  = "https://dev-beis-tp-db-public-search-service.azurewebsites.net";
 
   const req = mockRequest();
 
@@ -143,6 +145,7 @@ test("Unit testing for page route Test for GET call", async () => {
   global.frontend_totalRecordsPerPage = "10";
   global.sorting_order_pass = [""];
   global.beneficiary_sorting_order = "asc";
+  global.beis_url_publicsearch  = "https://dev-beis-tp-db-public-search-service.azurewebsites.net";
 
   const req = mockRequest();
 
@@ -200,6 +203,7 @@ test("Unit testing for page route Test for GET call", async () => {
   global.frontend_totalRecordsPerPage = "10";
   global.sorting_order_pass = [""];
   global.legalgrantingdate_sorting_order = "asc";
+  global.beis_url_publicsearch  = "https://dev-beis-tp-db-public-search-service.azurewebsites.net";
 
   const req = mockRequest();
 
@@ -257,6 +261,7 @@ test("Unit testing for page route Test for GET call", async () => {
   global.frontend_totalRecordsPerPage = "10";
   global.sorting_order_pass = [""];
   global.subsidyamount_sorting_order = "asc";
+  global.beis_url_publicsearch  = "https://dev-beis-tp-db-public-search-service.azurewebsites.net";
 
   const req = mockRequest();
 

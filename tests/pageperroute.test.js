@@ -78,6 +78,7 @@ test("Unit testing for page per route Test for GET call", (done) => {
   global.beneficiary_arrow = "upanddown";
   global.legalgrantingdate_arrow = "upanddown";
   global.subsidyamount_arrow = "upanddown";
+  global.beis_url_publicsearch  = "https://dev-beis-tp-db-public-search-service.azurewebsites.net";
   const req = mockRequest();
 
   const res = {};

@@ -12,6 +12,7 @@ app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: false }));
 app.use("/", index);
 const axios = require("axios");
+
 jest.mock("axios");
 
 const mockRequest = (sessionData, body) => ({
@@ -21,6 +22,7 @@ const mockRequest = (sessionData, body) => ({
 
 test("Unit testing for search results ward route Test for GET call", (done) => {
   const req = mockRequest();
+  global.beis_url_publicsearch  = "https://dev-beis-tp-db-public-search-service.azurewebsites.net";
   global.searchmeasuredetails = {
     awardNumber: 22,
     beneficiary: {

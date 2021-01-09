@@ -81,6 +81,7 @@ test("Unit testing for update results route - Test for POST call", (done) => {
   global.beneficiary_arrow = "upanddown";
   global.legalgrantingdate_arrow = "upanddown";
   global.subsidyamount_arrow = "upanddown";
+  global.beis_url_publicsearch  = "https://dev-beis-tp-db-public-search-service.azurewebsites.net";
   global.searchawards = {
     awards: [
       {
