@@ -22,6 +22,7 @@ const mockRequest = (sessionData, body) => ({
 const res = {};
 
 test("Unit testing for search results measure route Test for GET call", (done) => {
+  global.beis_url_publicsearch  = "https://dev-beis-tp-db-public-search-service.azurewebsites.net";
   const req = mockRequest();
   global.searchmeasuredetails = {
     awardNumber: 22,

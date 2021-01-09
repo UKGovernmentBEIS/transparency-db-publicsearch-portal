@@ -47,6 +47,7 @@ test("Unit testing for hide filter route - Test for POST call", async () => {
   global.beneficiary_arrow = "upanddown";
   global.legalgrantingdate_arrow = "upanddown";
   global.subsidyamount_arrow = "upanddown";
+  global.beis_url_publicsearch  = "https://dev-beis-tp-db-public-search-service.azurewebsites.net";
   const data_request = {
     beneficiaryName: "",
     subsidyMeasureTitle: "",

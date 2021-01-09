@@ -78,6 +78,7 @@ test("Unit testing for spending filter route - Test for POST call", (done) => {
   global.end_page = 10;
   global.next_page = 2;
   global.pageCount = "10";
+  global.beis_url_publicsearch  = "https://dev-beis-tp-db-public-search-service.azurewebsites.net";
   const data_request = {
     beneficiaryName: "",
     subsidyMeasureTitle: "",
