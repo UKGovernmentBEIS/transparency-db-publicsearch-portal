@@ -85,7 +85,7 @@ router.post("/", (req, res) => {
   }
 
   if (subsidyinstrument9) {
-    check_subsidyinstrument9 = '"' + "others-" + subsidyinstrument9 + '"';
+    check_subsidyinstrument9 = '"' + "Other-" + subsidyinstrument9 + '"';
     check_subsidyinstrument9_pass = subsidyinstrument9;
     subsidyinstrument8 = "";
     count = count + 1;

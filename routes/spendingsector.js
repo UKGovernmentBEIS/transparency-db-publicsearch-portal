@@ -138,7 +138,7 @@ router.post("/", (req, res) => {
   // **********************************************
 
   if (subsidyobjective12) {
-    check_subsidyobjective12 = '"' + "others-" + subsidyobjective12 + '"';
+    check_subsidyobjective12 = '"' + "Other-" + subsidyobjective12 + '"';
     count = count + 1;
     (check_subsidyobjective12_pass = subsidyobjective12),
       (subsidyobjective11 = "");
