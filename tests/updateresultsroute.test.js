@@ -57,6 +57,8 @@ test("Unit testing for update results route Test for GET call", (done) => {
   global.check_subsidyinstrument7 = "";
   global.check_subsidyinstrument8 = "";
   global.check_subsidyinstrument9_pass = "";
+  global.check_subsidyinstrument8_pass = "";
+  global.check_subsidyobjective11_pass = "";
   global.check_spendingsector0 = "";
   global.check_spendingsector1 = "";
   global.check_spendingsector2 = "";
@@ -145,10 +147,6 @@ test("Unit testing for update results route Test for GET call", (done) => {
     .get("/updateresultsroute", (req, res))
     .query({ page: "2" })
     .expect(200, done);
-  // return expect(x).toBe(200);
-  // await
-  //   .expect(200, done);
-  // done();
 });
 
 test("Unit testing for page route Test for GET call", (done) => {
@@ -246,6 +244,8 @@ test("Unit testing for page route Test for GET call", (done) => {
   global.beneficiary_arrow = "upanddown";
   global.legalgrantingdate_arrow = "upanddown";
   global.subsidyamount_arrow = "upanddown";
+  global.beis_url_publicsearch  = "https://dummy.net";
+
   global.searchawards = {
     awards: [
       {

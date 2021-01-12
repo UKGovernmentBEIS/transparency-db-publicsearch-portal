@@ -251,7 +251,8 @@ Gov.UK public user search - Body design
 
    
     <div class="govuk-checkboxes__item">
-      <input class="govuk-checkboxes__input" id="subsidyobjective-11" name="subsidyobjective11" type="checkbox" value="Other" data-aria-controls="conditional-subsidyobjective-11"  "<% if (check_subsidyobjective11_pass) { %> checked <% } %>">
+      <input class="govuk-checkboxes__input" id="subsidyobjective-11" name="subsidyobjective11" type="checkbox" 
+      value="Other" data-aria-controls="conditional-subsidyobjective-11"  "<% if (check_subsidyobjective11_pass) { %> checked <% } %>">
       <label class="govuk-label govuk-checkboxes__label" for="subsidyobjective-11">
         Other
       </label>
@@ -260,10 +261,12 @@ Gov.UK public user search - Body design
           <div class="govuk-checkboxes__conditional " id="conditional-subsidyobjective-111">
             <div class="govuk-form-group">
                <label class="govuk-label govuk-label-other" for="subsidyobjective-11">
-                Enter the subsidy purpose that you want to search for
+                Enter the purpose of the subsidy that you want to search for
                </label>
                <% if (check_subsidyobjective12_pass) { %> %>
-              <input class="govuk-input govuk-!-width-one-half" id="subsidyobjective-12" name="subsidyobjective12" type="subsidyobjective" spellcheck="false"  value= "<%= check_subsidyobjective12_pass %>">
+              <input class="govuk-input govuk-!-width-one-half" id="subsidyobjective-12" 
+              name="subsidyobjective12" type="subsidyobjective" spellcheck="false" 
+               value= "<%= check_subsidyobjective12_pass %>">
               <% } else { %>
                 <input class="govuk-input govuk-!-width-one-half" id="subsidyobjective-12" name="subsidyobjective12" type="subsidyobjective" spellcheck="false" >
                 <% }  %>  

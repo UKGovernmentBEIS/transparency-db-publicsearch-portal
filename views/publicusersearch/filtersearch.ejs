@@ -133,7 +133,7 @@ Gov.UK public user search - header rendering design
     else if ($('#subsidyinstrument-7').is(":checked")) {
       $('.govuk-input-subsidyinstrument').show();
       $('.govuk-label-subsidyinstrument').show();
-      $('.govuk-input-subsidyinstrument').val('');
+      // $('.govuk-input-subsidyinstrument').val('');
     }
     else {
       $('.govuk-input-subsidyinstrument').hide();
@@ -159,7 +159,7 @@ Gov.UK public user search - header rendering design
         $('.govuk-label-subsidyinstrument').hide();
       }
       else if ($('#subsidyinstrument-7').is(":checked")) {
-        $('.govuk-input-subsidyinstrument').val('');
+        // $('.govuk-input-subsidyinstrument').val('');
         $('.govuk-input-subsidyinstrument').show();
         $('.govuk-label-subsidyinstrument').show();
       }
@@ -373,7 +373,8 @@ Gov.UK public user search - header rendering design
           </form>
         </div>
       </div>
-
+     
+     
 
       <form action="/updateresults" method="POST">
         <div class="govuk-accordion" data-module="govuk-accordion" id="accordion-default">

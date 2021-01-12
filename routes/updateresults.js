@@ -13,43 +13,43 @@ router.post('/', async (req, res) => {
   // Subsidy objective read section from filter display results call 
   // ***************************************************************
 
-  const {
+  var  {
     subsidyobjective0
   } = req.body;
-  const {
+  var  {
     subsidyobjective1
   } = req.body;
-  const {
+  var  {
     subsidyobjective2
   } = req.body;
-  const {
+  var  {
     subsidyobjective3
   } = req.body;
-  const {
+  var  {
     subsidyobjective4
   } = req.body;
-  const {
+  var  {
     subsidyobjective5
   } = req.body;
-  const {
+  var  {
     subsidyobjective6
   } = req.body;
-  const {
+  var  {
     subsidyobjective7
   } = req.body;
-  const {
+  var  {
     subsidyobjective8
   } = req.body;
-  const {
+  var  {
     subsidyobjective9
   } = req.body;
-  const {
+  var  {
     subsidyobjective10
   } = req.body;
-  const {
+  var  {
     subsidyobjective11
   } = req.body;
-  const {
+  var  {
     subsidyobjective12
   } = req.body;
 
@@ -132,24 +132,27 @@ router.post('/', async (req, res) => {
     check_subsidyobjective10 = '';
   }
 
-  if (subsidyobjective11) {
-    check_subsidyobjective11 = "\"" + subsidyobjective11 + "\"";
+  if (subsidyobjective11 && !subsidyobjective12) {
+    check_subsidyobjective11 = '"' + subsidyobjective11 + '"';
+    check_subsidyobjective11_pass = subsidyobjective11;
     count = count + 1;
   } else {
-    check_subsidyobjective11 = '';
+    check_subsidyobjective11 = "";
+    check_subsidyobjective11_pass = subsidyobjective11;
   }
-
 
   // **********************************************
   // the 11th element is Other, hence not considered while preparing payload
   // **********************************************
 
   if (subsidyobjective12) {
-    check_subsidyobjective12 = "\"" + subsidyobjective12 + "\"";
+    check_subsidyobjective12 = '"' + "Other-" + subsidyobjective12 + '"';
     count = count + 1;
-    check_subsidyobjective12_pass = subsidyobjective12;
+    (check_subsidyobjective12_pass = subsidyobjective12),
+      (subsidyobjective11 = "");
   } else {
-    check_subsidyobjective12 = '';
+    check_subsidyobjective12 = "";
+    check_subsidyobjective12_pass = "";
   }
 
 
@@ -169,7 +172,6 @@ router.post('/', async (req, res) => {
 
 
   if (single_select == "Yes") {
-
     if (subsidyobjective1) {
       actual_subsidy_objective = check_subsidyobjective1;
     } else if (subsidyobjective2) {
@@ -190,11 +192,11 @@ router.post('/', async (req, res) => {
       actual_subsidy_objective = check_subsidyobjective9;
     } else if (subsidyobjective10) {
       actual_subsidy_objective = check_subsidyobjective10;
+    } else if (subsidyobjective11) {
+      actual_subsidy_objective = check_subsidyobjective11;
     } else if (subsidyobjective12) {
       actual_subsidy_objective = check_subsidyobjective12;
     }
-
-
   }
 
   if (nothing_selected == "Yes") {
@@ -231,12 +233,17 @@ router.post('/', async (req, res) => {
       multiple_subsidy_objective = multiple_subsidy_objective + check_subsidyobjective9 + ",";
     }
     if (subsidyobjective10) {
-      multiple_subsidy_objective = multiple_subsidy_objective + check_subsidyobjective10 + ",";
+      multiple_subsidy_objective =
+        multiple_subsidy_objective + check_subsidyobjective10 + ",";
+    }
+    if (subsidyobjective11 && !subsidyobjective12) {
+      multiple_subsidy_objective =
+        multiple_subsidy_objective + check_subsidyobjective11 + ",";
     }
     if (subsidyobjective12) {
-      multiple_subsidy_objective = multiple_subsidy_objective + check_subsidyobjective12 + ",";
+      multiple_subsidy_objective =
+        multiple_subsidy_objective + check_subsidyobjective12 + ",";
     }
-
     var stringlength = multiple_subsidy_objective.length - 1;
 
     actual_subsidy_objective = multiple_subsidy_objective.substr(0, stringlength);
@@ -268,67 +275,67 @@ router.post('/', async (req, res) => {
   // Start of spending sector read from filter display results call 
   // ************************************************************
 
-  const {
+  var  {
     spendingsector0
   } = req.body;
-  const {
+  var  {
     spendingsector1
   } = req.body;
-  const {
+  var  {
     spendingsector2
   } = req.body;
-  const {
+  var  {
     spendingsector3
   } = req.body;
-  const {
+  var  {
     spendingsector4
   } = req.body;
-  const {
+  var  {
     spendingsector5
   } = req.body;
-  const {
+  var  {
     spendingsector6
   } = req.body;
-  const {
+  var  {
     spendingsector7
   } = req.body;
-  const {
+  var  {
     spendingsector8
   } = req.body;
-  const {
+  var  {
     spendingsector9
   } = req.body;
-  const {
+  var  {
     spendingsector10
   } = req.body;
-  const {
+  var  {
     spendingsector11
   } = req.body;
-  const {
+  var  {
     spendingsector12
   } = req.body;
-  const {
+  var  {
     spendingsector13
   } = req.body;
-  const {
+  var  {
     spendingsector14
   } = req.body;
-  const {
+  var  {
     spendingsector15
   } = req.body;
-  const {
+  var  {
     spendingsector16
   } = req.body;
-  const {
+  var  {
     spendingsector17
   } = req.body;
-  const {
+  var  {
     spendingsector18
   } = req.body;
-  const {
+  var  {
     spendingsector19
   } = req.body;
-  const {
+  var  {
     spendingsector20
   } = req.body;
 
@@ -627,34 +634,34 @@ router.post('/', async (req, res) => {
   // Start of subsidy instrument read from filter display results call 
   // ************************************************************
 
-  const {
+  var  {
     subsidyinstrument0
   } = req.body;
-  const {
+  var  {
     subsidyinstrument1
   } = req.body;
-  const {
+  var  {
     subsidyinstrument2
   } = req.body;
-  const {
+  var  {
     subsidyinstrument3
   } = req.body;
-  const {
+  var  {
     subsidyinstrument4
   } = req.body;
-  const {
+  var  {
     subsidyinstrument5
   } = req.body;
-  const {
+  var  {
     subsidyinstrument6
   } = req.body;
-  const {
+  var  {
     subsidyinstrument7
   } = req.body;
-  const {
+  var  {
     subsidyinstrument8
   } = req.body;
-  const {
+  var  {
     subsidyinstrument9
   } = req.body;
 
@@ -716,21 +723,24 @@ router.post('/', async (req, res) => {
     check_subsidyinstrument7 = '';
   }
 
-  if (subsidyinstrument8) {
-    check_subsidyinstrument8 = "\"" + subsidyinstrument8 + "\"";
+  if (subsidyinstrument8 && !subsidyinstrument9) {
+    check_subsidyinstrument8 = '"' + subsidyinstrument8 + '"';
+    check_subsidyinstrument8_pass = subsidyinstrument8;
     count = count + 1;
   } else {
-    check_subsidyinstrument8 = '';
+    check_subsidyinstrument8 = "";
+    check_subsidyinstrument8_pass = subsidyinstrument8;
   }
 
   if (subsidyinstrument9) {
-    check_subsidyinstrument9 = "\"" + subsidyinstrument9 + "\"";
+    check_subsidyinstrument9 = '"' + "Other-" + subsidyinstrument9 + '"';
     check_subsidyinstrument9_pass = subsidyinstrument9;
+    subsidyinstrument8 = "";
     count = count + 1;
   } else {
-    check_subsidyinstrument9 = '';
+    check_subsidyinstrument9 = "";
+    check_subsidyinstrument9_pass = "";
   }
-
 
   single_select = '';
   multiple_select = '';
@@ -748,7 +758,6 @@ router.post('/', async (req, res) => {
 
 
   if (single_select == "Yes") {
-
     if (subsidyinstrument1) {
       actual_subsidy_instrument = check_subsidyinstrument1;
     } else if (subsidyinstrument2) {
@@ -763,11 +772,11 @@ router.post('/', async (req, res) => {
       actual_subsidy_instrument = check_subsidyinstrument6;
     } else if (subsidyinstrument7) {
       actual_subsidy_instrument = check_subsidyinstrument7;
+    } else if (subsidyinstrument8) {
+      actual_subsidy_instrument = check_subsidyinstrument8;
     } else if (subsidyinstrument9) {
       actual_subsidy_instrument = check_subsidyinstrument9;
     }
-
-
   }
 
   if (nothing_selected == "Yes") {
@@ -795,12 +804,17 @@ router.post('/', async (req, res) => {
       multiple_subsidy_instrument = multiple_subsidy_instrument + check_subsidyinstrument6 + ",";
     }
     if (subsidyinstrument7) {
-      multiple_subsidy_instrument = multiple_subsidy_instrument + check_subsidyinstrument7 + ",";
+      multiple_subsidy_instrument =
+        multiple_subsidy_instrument + check_subsidyinstrument7 + ",";
+    }
+    if (subsidyinstrument8 && !subsidyinstrument9) {
+      multiple_subsidy_instrument =
+        multiple_subsidy_instrument + check_subsidyinstrument8 + ",";
     }
     if (subsidyinstrument9) {
-      multiple_subsidy_instrument = multiple_subsidy_instrument + check_subsidyinstrument9 + ",";
+      multiple_subsidy_instrument =
+        multiple_subsidy_instrument + check_subsidyinstrument9 + ",";
     }
-
 
     var stringlength = multiple_subsidy_instrument.length - 1;
 
@@ -816,7 +830,9 @@ router.post('/', async (req, res) => {
   console.log("check_subsidyinstrument5:" + check_subsidyinstrument5);
   console.log("check_subsidyinstrument6:" + check_subsidyinstrument6);
   console.log("check_subsidyinstrument7:" + check_subsidyinstrument7);
+  console.log("check_subsidyinstrument8:" + check_subsidyinstrument8);
   console.log("check_subsidyinstrument9:" + check_subsidyinstrument9);
+  console.log("check_subsidyinstrument9_pass:" + check_subsidyinstrument9_pass);
 
 
   console.log(" actual_subsidy_instrument:" + actual_subsidy_instrument);
@@ -954,9 +970,9 @@ router.post('/', async (req, res) => {
 
 
 
-router.get('/', (req, res) => {
-  res.render('publicusersearch/searchresults');
-});
+// router.get('/', (req, res) => {
+//   res.render('publicusersearch/searchresults');
+// });
 
 
 module.exports = router;

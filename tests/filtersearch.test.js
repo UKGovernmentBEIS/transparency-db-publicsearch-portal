@@ -46,6 +46,8 @@ test("Unit testing for spending filter route - Test for POST call", (done) => {
   global.check_subsidyinstrument7 = "";
   global.check_subsidyinstrument8 = "";
   global.check_subsidyinstrument9_pass = "";
+  global.check_subsidyinstrument8_pass = "";
+  global.check_subsidyobjective11_pass = "";
   global.check_spendingsector0 = "";
   global.check_spendingsector1 = "";
   global.check_spendingsector2 = "";
@@ -263,5 +265,4 @@ test("Unit testing for spending filter route - Test for GET call", (done) => {
   request(app)
     .get("/filtersearch", (req, res))
     .expect(200, done);
-  // expect(resp).toBe(200);
 });
