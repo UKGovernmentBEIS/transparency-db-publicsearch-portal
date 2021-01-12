@@ -196,11 +196,11 @@ test("Unit testing for update results route - Test for POST call", (done) => {
     .expect(200, done);
 });
 
-test("Unit testing for update results route Test for GET call", async () => {
-  const req = mockRequest();
+// test("Unit testing for update results route Test for GET call", async () => {
+//   const req = mockRequest();
 
-  const res = {};
-  request(app)
-    .get("/updateresults", (req, res))
-    .expect(200);
-});
+//   const res = {};
+//   request(app)
+//     .get("/updateresults", (req, res))
+//     .expect(200);
+// });

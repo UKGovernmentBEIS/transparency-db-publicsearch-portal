@@ -970,9 +970,9 @@ router.post('/', async (req, res) => {
 
 
 
-router.get('/', (req, res) => {
-  res.render('publicusersearch/searchresults');
-});
+// router.get('/', (req, res) => {
+//   res.render('publicusersearch/searchresults');
+// });
 
 
 module.exports = router;
