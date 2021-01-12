@@ -47,6 +47,8 @@ test("Unit testing for update results page per route Test for GET call", (done) 
   global.check_subsidyobjective10 = "";
   global.check_subsidyobjective11 = "";
   global.check_subsidyobjective12_pass = "";
+  global.check_subsidyinstrument8_pass = "";
+  global.check_subsidyobjective11_pass = "";
   global.check_subsidyinstrument0 = "";
   global.check_subsidyinstrument1 = "";
   global.check_subsidyinstrument2 = "";
