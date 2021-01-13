@@ -108,7 +108,11 @@
           Subsidy Element Full Amount
         </dt>
         <dd class="govuk-summary-list__value">
+          <% if(searchawarddetails.subsidyFullAmountExact != '0' && searchawarddetails.subsidyFullAmountExact != 'NA'){ %>
           £<%= searchawarddetails.subsidyFullAmountExact%>
+          <% }else{ %>
+          <%= searchawarddetails.subsidyFullAmountExact%>
+          <% }%>
         </dd>
       </div>
 
