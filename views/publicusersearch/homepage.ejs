@@ -8,95 +8,99 @@
 <!--**************************************************
 Gov.UK public user search - header rendering design 
 **************************************************** -->
-    <%- include('../partials/header.ejs') %>
-    <body class="govuk-template__body app-example-page">
-      <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
-     
-    <div class="govuk-width-container ">
-      <%- include('../partials/banner.ejs') %>
-      <main class="govuk-main-wrapper " id="main-content" role="main">   
-  
-             <!--***********************************************************
+<%- include('../partials/header.ejs') %>
+
+<body class="govuk-template__body app-example-page">
+  <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+
+  <div class="govuk-width-container ">
+    <%- include('../partials/banner.ejs') %>
+    <main class="govuk-main-wrapper " id="main-content" role="main">
+
+      <!--***********************************************************
                Gov.UK public user search - Breadcrumbs HTML rendering design 
                *********************************************************** -->
-        
-                    <div class="govuk-breadcrumbs ">
-                      <ol class="govuk-breadcrumbs__list">
-                        <li class="govuk-breadcrumbs__list-item">
-                          <a class="govuk-breadcrumbs__link" href="/homepage">Home</a>
-                        </li>
-                      
-                      </ol>
-                    </div>   
-                    <br />
 
-               <!--************************************
+      <div class="govuk-breadcrumbs ">
+        <ol class="govuk-breadcrumbs__list">
+          <li class="govuk-breadcrumbs__list-item">
+            <a class="govuk-breadcrumbs__link" href="/homepage">Home</a>
+          </li>
+
+        </ol>
+      </div>
+      <br />
+
+      <!--************************************
                Gov.UK public user search - Body design 
                ************************************ -->
-               <div class="govuk-grid-row">
-                <div class="govuk-grid-column-two-thirds">
-                      <h1 class="govuk-heading-xl">
-                        Search for subsidy measures and awards</h1>
-                </div>
-              </div>      
-                                       
-                      <br >
-                      <div class="govuk-grid-row">
-                        <div class="govuk-grid-column-two-thirds">
-                         
-                         
-                          <p class="govuk-body">A subsidy is a financial contribution that a public authority awards to a business - for example, a grant, soft loan or tax credit. Subsidies provide a benefit to the business that receives them.
-                           <br /> <br />
-                            You can use this service to view and download details of subsidies that public authorities have awarded. For example, you can search for: </p>
-                          
-                         
-                            <ul class="govuk-list govuk-list--bullet">
-                            <li>a specific company</li>
-                            <li>the purpose of the subsidy</li>
-                            <li>industries that have received subsidies</li>
-                            <li>different types of subsidy</li>
-                            <li>the date that the subsidy was awarded</li>
-                            </ul>
-                            <br><br>
-                            <p>You cannot use this service to apply for a subsidy. Visit GOV.UK to learn about <a href="/homepage">support for businesses.</a></p>
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+          <h1 class="govuk-heading-xl">
+            Search for subsidy measures and awards</h1>
+        </div>
+      </div>
 
-                            <hr />
-                        </div>
-            
-                      </div>
-                      
-                      <div>
-                        
-                        <form action="/beneficiaryname" method="POST" >
-                          <button class="govuk-button govuk-button--start" data-module="govuk-button">
-                            Start now
-                          <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="17.5" height="19" viewBox="0 0 33 40" aria-hidden="true" focusable="false">
-                            <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z" />
-                          </svg></a>
-                        </button>
+      <br>
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
 
-                        <!-- <a href="/beneficiaryname" role="button" draggable="false" class="govuk-button govuk-button--start" data-module="govuk-button">
+
+          <p class="govuk-body">A subsidy is a financial contribution that a public authority awards to a business - for
+            example, a grant, soft loan or tax credit. Subsidies provide a benefit to the business that receives them.
+            <br /> <br />
+            You can use this service to view and download details of subsidies that public authorities have awarded. For
+            example, you can search for: </p>
+
+
+          <ul class="govuk-list govuk-list--bullet">
+            <li>a specific company</li>
+            <li>the purpose of the subsidy</li>
+            <li>industries that have received subsidies</li>
+            <li>different types of subsidy</li>
+            <li>the date that the subsidy was awarded</li>
+          </ul>
+          <br><br>
+          <p>You cannot use this service to apply for a subsidy. Visit GOV.UK to learn about <a href="/homepage"
+              class="govuk-link">support for businesses.</a></p>
+
+          <hr />
+        </div>
+
+      </div>
+
+      <div>
+
+        <form action="/beneficiaryname" method="POST">
+          <button class="govuk-button govuk-button--start" data-module="govuk-button">
+            Start now
+            <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="17.5" height="19"
+              viewBox="0 0 33 40" aria-hidden="true" focusable="false">
+              <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z" />
+            </svg></a>
+          </button>
+
+          <!-- <a href="/beneficiaryname" role="button" draggable="false" class="govuk-button govuk-button--start" data-module="govuk-button">
                           Start now
                           <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="17.5" height="19" viewBox="0 0 33 40" aria-hidden="true" focusable="false">
                             <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z" />
                           </svg></a> -->
 
-                        </form>
+        </form>
 
-                      </div>
-                   
+      </div>
 
-                    </main>
-                  </div>
 
-          <!--************************************************
+    </main>
+  </div>
+
+  <!--************************************************
           Gov.UK public user search - Footer rendering design 
           ************************************************ -->
 
 
 
-                <%- include('../partials/footer.ejs') %>
-    </body>
+  <%- include('../partials/footer.ejs') %>
+</body>
 
 </html>
-    

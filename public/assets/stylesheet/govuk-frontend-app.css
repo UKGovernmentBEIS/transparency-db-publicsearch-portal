@@ -21,7 +21,9 @@ margin-right:auto;
 margin-left:auto;
 } 
 
-
+.govuk-capitalize::first-letter{
+  text-transform: capitalize;
+}
 .app-navigation {
   display: inline-block;
   margin-right: 15px;

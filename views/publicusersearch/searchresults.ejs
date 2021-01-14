@@ -28,8 +28,8 @@
 <script src="https://cdn.jsdelivr.net/jquery.cookie/1.4.0/jquery.cookie.min.js"></script>
 <script src="https://cdn.jsdelivr.net/alasql/0.3/alasql.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.7.12/xlsx.core.min.js"></script>
-<script src="http://alasql.org/console/alasql.min.js"></script>
-<script src="http://alasql.org/console/xlsx.core.min.js"></script>
+<!-- <script src="http://alasql.org/console/alasql.min.js"></script>
+<script src="http://alasql.org/console/xlsx.core.min.js"></script> -->
 
 <script>
   window.saveFile = function saveFile(data_request_clientside,beis_url_publicsearch) {
@@ -229,7 +229,7 @@
             <tbody class="govuk-table__body">
               <% searchawards.awards.forEach(function(item) { %>
               <tr>
-                <td class="govuk-table__cell"><a
+                <td class="govuk-table__cell"><a class="govuk-link"
                     href="/searchresultsawardroute/?page=<%=item.awardNumber %>"><%= item.beneficiary.beneficiaryName  %>
                   </a> </td>
                 <td class="govuk-table__cell"><%= item.subsidyObjective %></td>
@@ -238,7 +238,7 @@
 
                 <td class="govuk-table__cell" style="text-align:center"><%= item.legalGrantingDate%></td>
                 <!-- <td class="govuk-table__cell"><a href="#"><%= item.awardNumber  %> </a> </td> -->
-                <td class="govuk-table__cell"><a
+                <td class="govuk-table__cell"><a class="govuk-link"
                     href="/searchresultsmeasureroute/?page=<%=item.awardNumber %>"><%= item.subsidyMeasure.subsidyMeasureTitle  %></a>
                 </td>
                 <% if (item.subsidyInstrument == "Tax measures (tax credit, or tax/duty exemption)") { %>
