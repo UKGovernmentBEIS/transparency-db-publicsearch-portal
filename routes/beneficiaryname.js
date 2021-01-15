@@ -13,6 +13,7 @@ Environment_variable = process.argv[2];
 if (Environment_variable == "env=dev") {
   beis_url_publicsearch =
     "https://dev-beis-tp-db-public-search-service.azurewebsites.net";
+  
   console.log(beis_url_publicsearch);
 } else if (Environment_variable == "env=integ") {
   beis_url_publicsearch =
