@@ -34,6 +34,7 @@ test("beneficiary name route works", (done) => {
     {},
     {
       Subsidy_measure_title: "london",
+      homepage_button : "start_now"
     }
   );
 
@@ -43,6 +44,7 @@ test("beneficiary name route works", (done) => {
 
     .send({
       Subsidy_measure_title: "london",
+      homepage_button : "start_now"
     })
     .expect(200, done);
 });

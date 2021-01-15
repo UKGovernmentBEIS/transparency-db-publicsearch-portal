@@ -151,8 +151,6 @@ router.post("/", async(req, res) => {
       const seachawardstring = JSON.stringify(searchawards_api);
       const seachawardJSON = JSON.parse(seachawardstring);
       totalrows = searchawards.totalSearchResults;
-      // console.log('seachawardJSON ' + seachawardJSON.awards[0]  );
-      // console.log(searchawards.award[0].beneficiary.beneficiaryType);
       console.log(searchawards.awards[0].subsidyFullAmountExact);
 
       pageCount = Math.ceil(totalrows / frontend_totalRecordsPerPage);
