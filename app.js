@@ -130,6 +130,7 @@ app.locals.searchawarddetails;
 app.locals.searchmeasuredetails;
 app.locals.data_request_clientside;
 app.locals.beis_url_publicsearch;
+app.locals.beis_url_accessmanagement; 
 
 /***************************************************** */
 /* Default login screen - Web application Launch screen */

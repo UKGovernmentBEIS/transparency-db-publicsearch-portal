@@ -162,6 +162,12 @@ Gov.UK public user search - Body design
     </div>
   </legend>
 
+  <br />
+  <label class="govuk-label " for="subsidylabel">
+    You can select more than one purpose, or leave all options unselected to search for all purposes.
+  </label>
+  <br />
+
   <div class="govuk-checkboxes" data-module="govuk-checkboxes"> 
     <div class="govuk-checkboxes__item">
       <input class="govuk-checkboxes__input " id="subsidyobjective-0" name="subsidyobjective0" type="checkbox" value="Select all" data-aria-controls="conditional-subsidyobjective-0"  "<% if (check_subsidyobjective0) { %> checked <% } %>">
@@ -261,7 +267,8 @@ Gov.UK public user search - Body design
           <div class="govuk-checkboxes__conditional " id="conditional-subsidyobjective-111">
             <div class="govuk-form-group">
                <label class="govuk-label govuk-label-other" for="subsidyobjective-11">
-                Enter the purpose of the subsidy that you want to search for
+                
+                Enter the subsidy purpose that you want to search for
                </label>
                <% if (check_subsidyobjective12_pass) { %> %>
               <input class="govuk-input govuk-!-width-one-half" id="subsidyobjective-12" 
