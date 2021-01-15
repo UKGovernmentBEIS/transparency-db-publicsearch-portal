@@ -65,12 +65,24 @@
     <dl class="govuk-summary-list govuk-!-margin-bottom-9">
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
-          Subsidy control (SC) number
+          Subsidy control number
         </dt>
         <dd class="govuk-summary-list__value">
-          <%= searchawarddetails.subsidyMeasure.scNumber %>
+          <a class="govuk-link"
+          href="/searchresultsmeasureroute/?page=<%=awardnumber %>">
+          <%= searchawarddetails.subsidyMeasure.scNumber %> </a>
         </dd>
       </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Subsidy award number
+        </dt>
+        <dd class="govuk-summary-list__value">
+          <%= searchawarddetails.awardNumber %>
+        </dd>
+      </div>
+
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
           Subsidy name
@@ -95,26 +107,30 @@
           <%= searchawarddetails.subsidyInstrument%>
         </dd>
       </div>
+
+      <% if (searchawarddetails.subsidyInstrument == "Tax measures (tax credit, or tax/duty exemption)") { %>
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
-          Subsidy Element Full Amount Range
+          Subsidy range
         </dt>
         <dd class="govuk-summary-list__value">
           <%= searchawarddetails.subsidyFullAmountRange%>
         </dd>
       </div>
+      <% } else { %>
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
-          Subsidy Element Full Amount
+          Subsidy amount
         </dt>
         <dd class="govuk-summary-list__value">
           £<%= searchawarddetails.subsidyFullAmountExact%>
         </dd>
       </div>
+      <% } %>
 
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
-          Granting Authority
+          Granting authority
         </dt>
         <dd class="govuk-summary-list__value">
           <%= searchawarddetails.grantingAuthorityResponse.grantingAuthorityName  %>
@@ -123,7 +139,7 @@
 
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
-          Award date
+          Date awarded
         </dt>
         <dd class="govuk-summary-list__value">
           <%= searchawarddetails.legalGrantingDate %>

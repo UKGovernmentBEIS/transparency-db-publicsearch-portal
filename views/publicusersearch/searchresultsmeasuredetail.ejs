@@ -9,7 +9,7 @@
       <%- include('../partials/banner.ejs') %>
       <main class="govuk-main-wrapper " id="main-content" role="main">       
         
-       <div class="govuk-breadcrumbs ">
+       <!-- <div class="govuk-breadcrumbs ">
          <ol class="govuk-breadcrumbs__list">
            <li class="govuk-breadcrumbs__list-item">
              <a class="govuk-breadcrumbs__link" href="/homepage">Home</a>
@@ -23,7 +23,7 @@
           </li>
 
          </ol>
-       </div>
+       </div> -->
        <br />
 
        <a href="/searchresults" class="govuk-back-link">Back</a>   <br> <br>
@@ -31,8 +31,9 @@
        <div class="govuk-grid-row">
         <div class="govuk-grid-column-three-quarters">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-                <h1 class="govuk-fieldset__heading">
-                  <%= searchmeasuredetails.subsidyMeasure.subsidyMeasureTitle%>
+                <h1 class="govuk-fieldset__heading"> 
+                    Subsidy scheme details
+                  <!-- <%= searchmeasuredetails.subsidyMeasure.subsidyMeasureTitle%> -->
                 </h1>
             </legend>
          </div>
@@ -50,11 +51,30 @@
       <br />
       <div>
       <label class="govuk-label" >
-        Explanation text helping user provide the context. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-      </label></div>
+        Overview of the subsidy scheme and the local authority that awarded it.
+      </label></div> 
       <br />
 
       <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Subsidy scheme name
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <%= searchmeasuredetails.subsidyMeasure.subsidyMeasureTitle%>
+          </dd>
+          </div>
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Subsidy control (SC) number
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <%= searchmeasuredetails.subsidyMeasure.scNumber %>
+            </dd>
+          </div>
+
             <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
                 Region
@@ -65,7 +85,7 @@
             </div>
             <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-                Objective(s)    
+                Purpose    
             </dt>
             <dd class="govuk-summary-list__value">
               <%= searchmeasuredetails.subsidyObjective %>
@@ -79,9 +99,31 @@
               <%= searchmeasuredetails.spendingSector %>
             </dd>
             </div>
+
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">     
+              Legal basis
+              </dt>
+              <dd class="govuk-summary-list__value">
+                <%= searchmeasuredetails.subsidyMeasure.legalBasis.legalBasisText %>
+              </dd>
+              </div>
+
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">     
+                  Weblink to Granting Authority Text of Subsidy
+                </dt>
+                <dd class="govuk-summary-list__value">
+                 <a href= <%= searchmeasuredetails.subsidyMeasure.gaSubsidyWebLink %> > 
+                  <%= searchmeasuredetails.subsidyMeasure.gaSubsidyWebLink %>
+
+                 </a> 
+                  </dd>
+                </div>
+
             <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-                Aid Instrument
+                Subsidy type
             </dt>
             <dd class="govuk-summary-list__value">
               <%= searchmeasuredetails.subsidyInstrument %>
@@ -105,7 +147,7 @@
                 Duration
             </dt>
             <dd class="govuk-summary-list__value">
-              From <%= searchmeasuredetails.subsidyMeasure.startDate %> - To <%= searchmeasuredetails.subsidyMeasure.endDate %> 
+              From <%= searchmeasuredetails.subsidyMeasure.startDate %>  to <%= searchmeasuredetails.subsidyMeasure.endDate %> 
             </dd>
             </div> 
             <div class="govuk-summary-list__row">
