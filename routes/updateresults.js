@@ -53,6 +53,7 @@ router.post('/', async (req, res) => {
     subsidyobjective12
   } = req.body;
 
+  console.log("subsidyobjective11 & 12 ====" + subsidyobjective11 + subsidyobjective12)
   var count = 0;
 
   if (subsidyobjective0) {
@@ -145,7 +146,7 @@ router.post('/', async (req, res) => {
   // the 11th element is Other, hence not considered while preparing payload
   // **********************************************
 
-  if (subsidyobjective12) {
+  if (subsidyobjective11 && subsidyobjective12) {
     check_subsidyobjective12 = '"' + "Other-" + subsidyobjective12 + '"';
     count = count + 1;
     (check_subsidyobjective12_pass = subsidyobjective12),
@@ -233,16 +234,13 @@ router.post('/', async (req, res) => {
       multiple_subsidy_objective = multiple_subsidy_objective + check_subsidyobjective9 + ",";
     }
     if (subsidyobjective10) {
-      multiple_subsidy_objective =
-        multiple_subsidy_objective + check_subsidyobjective10 + ",";
+      multiple_subsidy_objective = multiple_subsidy_objective + check_subsidyobjective10 + ",";
     }
     if (subsidyobjective11 && !subsidyobjective12) {
-      multiple_subsidy_objective =
-        multiple_subsidy_objective + check_subsidyobjective11 + ",";
+      multiple_subsidy_objective = multiple_subsidy_objective + check_subsidyobjective11 + ",";
     }
-    if (subsidyobjective12) {
-      multiple_subsidy_objective =
-        multiple_subsidy_objective + check_subsidyobjective12 + ",";
+    if (subsidyobjective11 && subsidyobjective12) {
+      multiple_subsidy_objective = multiple_subsidy_objective + check_subsidyobjective12 + ",";
     }
     var stringlength = multiple_subsidy_objective.length - 1;
 
@@ -732,7 +730,7 @@ router.post('/', async (req, res) => {
     check_subsidyinstrument8_pass = subsidyinstrument8;
   }
 
-  if (subsidyinstrument9) {
+  if (subsidyinstrument8 && subsidyinstrument9) {
     check_subsidyinstrument9 = '"' + "Other-" + subsidyinstrument9 + '"';
     check_subsidyinstrument9_pass = subsidyinstrument9;
     subsidyinstrument8 = "";
@@ -804,16 +802,13 @@ router.post('/', async (req, res) => {
       multiple_subsidy_instrument = multiple_subsidy_instrument + check_subsidyinstrument6 + ",";
     }
     if (subsidyinstrument7) {
-      multiple_subsidy_instrument =
-        multiple_subsidy_instrument + check_subsidyinstrument7 + ",";
+      multiple_subsidy_instrument = multiple_subsidy_instrument + check_subsidyinstrument7 + ",";
     }
     if (subsidyinstrument8 && !subsidyinstrument9) {
-      multiple_subsidy_instrument =
-        multiple_subsidy_instrument + check_subsidyinstrument8 + ",";
+      multiple_subsidy_instrument = multiple_subsidy_instrument + check_subsidyinstrument8 + ",";
     }
-    if (subsidyinstrument9) {
-      multiple_subsidy_instrument =
-        multiple_subsidy_instrument + check_subsidyinstrument9 + ",";
+    if ( subsidyinstrument8 && subsidyinstrument9) {
+      multiple_subsidy_instrument = multiple_subsidy_instrument + check_subsidyinstrument9 + ",";
     }
 
     var stringlength = multiple_subsidy_instrument.length - 1;
