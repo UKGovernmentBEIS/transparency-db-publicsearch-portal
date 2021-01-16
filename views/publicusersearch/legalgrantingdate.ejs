@@ -46,24 +46,10 @@ Gov.UK public user search - header rendering design
       <%- include('../partials/banner.ejs') %>
       <main class="govuk-main-wrapper " id="main-content" role="main">  
         <form action="/searchresults" method="POST" >
-
-        <!-- ---------------------------
-        Bread crumbs design section 
-        --------------------------- -->
-<!--       
-            <div class="govuk-breadcrumbs ">
-                <ol class="govuk-breadcrumbs__list">
-                <li class="govuk-breadcrumbs__list-item">
-                    <a class="govuk-breadcrumbs__link" href="/homepage">Home</a>
-                </li>
-                <li class="govuk-breadcrumbs__list-item">
-                    <a class="govuk-breadcrumbs__link" href="/beneficiaryname">Search subsidy awards</a>
-                </li>
-                </ol>
-            </div>   -->
-  
+ 
             <a href="/subsidyinstrument" class="govuk-back-link">Back</a>   <br> <br>
-  
+
+             
               <!-- Error display -->
 
                    <% if( locals.SubsidyArraySize > 0 ){ %>   

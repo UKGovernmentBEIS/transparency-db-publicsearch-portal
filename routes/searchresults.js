@@ -497,7 +497,7 @@ router.post("/", async (req, res) => {
       sorting_order_pass = JSON.parse("[]");
       beneficiary_arrow = "upanddown";
       subsidyamount_arrow = "upanddown";
-      legalgrantingdate_arrow = "updecending";
+      legalgrantingdate_arrow = "downacending";
 
       start_page = 1;
       if (pageCount < 10) {
