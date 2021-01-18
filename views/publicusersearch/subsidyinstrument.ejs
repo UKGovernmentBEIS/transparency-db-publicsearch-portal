@@ -95,7 +95,7 @@ Gov.UK public user search - header rendering design
         <main class="govuk-main-wrapper " id="main-content" role="main">     
             <form action="/legalgrantingdate" method="POST" >  
            
-           <a href="/spendingsector" class="govuk-back-link">Back</a>
+           <a href="/spendingsector" class="govuk-back-link"  aria-label="Back to spending sector question page">Back</a>
 
            <br>
            <br>
@@ -162,16 +162,17 @@ Gov.UK public user search - Body design
         </div>
 
         <div class="govuk-checkboxes__item">
-          <input class="govuk-checkboxes__input" id="subsidyinstrument-4" name="subsidyinstrument5" type="checkbox" value="Purchase of goods or services above market prices" data-aria-controls="conditional-subsidyinstrument-4" <% if (check_subsidyinstrument5) { %> checked <% } %>>
+          <input class="govuk-checkboxes__input" id="subsidyinstrument-4" name="subsidyinstrument5" type="checkbox" value="Provision of goods or services below market prices" data-aria-controls="conditional-subsidyinstrument-4" <% if (check_subsidyinstrument5) { %> checked <% } %>>
           <label class="govuk-label govuk-checkboxes__label" for="subsidyinstrument-4">
-            Purchase of goods or services above market prices
+            Provision of goods or services below market prices
+
           </label>
         </div>
 
         <div class="govuk-checkboxes__item">
-          <input class="govuk-checkboxes__input" id="subsidyinstrument-5" name="subsidyinstrument6" type="checkbox" value="Sale of goods or services below market prices" data-aria-controls="conditional-subsidyinstrument-5" <% if (check_subsidyinstrument6) { %> checked <% } %>>
+          <input class="govuk-checkboxes__input" id="subsidyinstrument-5" name="subsidyinstrument6" type="checkbox" value="Purchase of goods or services above market prices" data-aria-controls="conditional-subsidyinstrument-5" <% if (check_subsidyinstrument6) { %> checked <% } %>>
           <label class="govuk-label govuk-checkboxes__label" for="subsidyinstrument-5">
-            Sale of goods or services below market prices
+            Purchase of goods or services above market prices
           </label>
         </div>
 
