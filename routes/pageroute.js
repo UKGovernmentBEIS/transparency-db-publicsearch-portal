@@ -9,6 +9,7 @@ var request = require("request");
 
 router.get("/", async (req, res) => {
   console.log("req.query.page: " + req.query.page);
+  console.log("beneficiary_sorting_order :" + beneficiary_sorting_order);
   //  frontend_totalRecordsPerPage = 3;
   routing_pagenumber = req.query.page;
 

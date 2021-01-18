@@ -86,6 +86,49 @@ router.post("/", async(req, res) => {
 
 
   console.log("homepage_button : " + homepage_button );
+  actual_spending_sector = '';
+  actual_subsidy_instrument ='';
+  actual_subsidy_objective ='';
+
+  actual_subsidy_objective_trim = actual_subsidy_objective.replace(
+    /^"(.+)"$/,
+    "$1"
+  );
+  actual_subsidy_objective_brace = "[" + actual_subsidy_objective + "]";
+  actual_subsidy_objective_pass = actual_subsidy_objective_brace.replace(
+    /^"(.*)"$/,
+    "$1"
+  );
+
+  actual_subsidy_objective_pass1 = JSON.parse(actual_subsidy_objective_pass);
+  console.log("OBJECTIVE:----", actual_subsidy_objective_pass1);
+  actual_subsidy_instrument_trim = actual_subsidy_instrument.replace(
+    /^"(.+)"$/,
+    "$1"
+  );
+  actual_subsidy_instrument_brace = "[" + actual_subsidy_instrument + "]";
+  actual_subsidy_instrument_pass = actual_subsidy_instrument_brace.replace(
+    /^"(.*)"$/,
+    "$1"
+  );
+  actual_subsidy_instrument_pass1 = JSON.parse(
+    actual_subsidy_instrument_pass
+  );
+
+  actual_spending_sector_trim = actual_spending_sector.replace(
+    /^"(.+)"$/,
+    "$1"
+  );
+  actual_spending_sector_brace = "[" + actual_spending_sector + "]";
+  actual_spending_sector_pass = actual_spending_sector_brace.replace(
+    /^"(.*)"$/,
+    "$1"
+  );
+  actual_spending_sector_pass1 = JSON.parse(actual_spending_sector_pass);
+
+  console.log("actual_spending_sector_pass :" + actual_spending_sector_pass);
+
+
 
   radio_beneficiaryname = "";
   text_beneficiaryname = "";
@@ -168,6 +211,8 @@ router.post("/", async(req, res) => {
       beneficiary_arrow = "upanddown";
       subsidyamount_arrow = "upanddown";
       legalgrantingdate_arrow = "updecending";
+
+      console.log("beneficiary_sorting_order :" + beneficiary_sorting_order);
 
       start_page = 1;
       if (pageCount < 10) {
