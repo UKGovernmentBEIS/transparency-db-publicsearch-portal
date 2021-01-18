@@ -42,8 +42,11 @@ test("Unit testing for page route - Test for POST call", async () => {
     .expect(200);
 });
 
-test("Unit testing for page route Test for GET call", async () => {
-  global.current_page = "";
+test("Unit testing for page route Test for GET call", (done) => {
+  const req = mockRequest();
+  global.beis_url_publicsearch =
+    "https://dev-beis-tp-db-public-search-service.azurewebsites.net";
+  global.current_page = "2";
   global.text_beneficiaryname = "";
   global.actual_subsidy_objective_pass1 = [];
   global.actual_subsidy_instrument_pass1 = [];
@@ -52,6 +55,7 @@ test("Unit testing for page route Test for GET call", async () => {
   global.legal_granting_from_date = "";
   global.frontend_totalRecordsPerPage = "10";
   global.sorting_order_pass = [""];
+  global.beneficiary_sorting_order = "asc";
 
   global.pageCount = 10;
   global.current_page_active = 1;
@@ -79,6 +83,7 @@ test("Unit testing for page route Test for GET call", async () => {
     totalRecordsPerPage: 500000,
     sortBy: [""],
   };
+
   global.data_request_clientside = JSON.stringify(data_request);
   global.searchawards = {
     totalSearchResults: 49,
@@ -109,17 +114,13 @@ test("Unit testing for page route Test for GET call", async () => {
       },
     ],
   };
-  global.beis_url_publicsearch =
-    "https://dev-beis-tp-db-public-search-service.azurewebsites.net";
-
-  const req = mockRequest();
 
   const res = {};
   request(app)
     .get("/pageroute", (req, res))
     .query({ page: "2" })
     // expect(resp).toBe(200);
-    .expect(200);
+    .expect(200, done);
 });
 
 test("Unit testing for page route Test for GET call", (done) => {

@@ -325,7 +325,60 @@ test("Unit testing for search results route - Test for POST call", (done) => {
     .expect(200, done);
 });
 
-test("Unit testing for search results route Test for GET call", async () => {
+test("Unit testing for search results route - Test for POST call", (done) => {
+  const req = mockRequest();
+  global.text_beneficiaryname = "";
+
+  global.actual_subsidy_objective_pass1 = "";
+  global.actual_subsidy_instrument_pass1 = "";
+  global.actual_spending_sector_pass1 = "";
+  global.legal_granting_from_date = "";
+  global.legal_granting_to_date = "";
+  global.sorting_order_pass = "";
+  global.actual_subsidy_objective = '"Employment"';
+  global.actual_spending_sector = '"Accommodation"';
+  global.actual_subsidy_instrument = '"Guarantee"';
+  global.beis_url_publicsearch =
+    "https://dev-beis-tp-db-public-search-service.azurewebsites.net";
+  const res = {};
+  axios.post.mockResolvedValue({
+    status: "success",
+    data: {
+      totalSearchResults: 49,
+      currentPage: 1,
+      totalPages: 1,
+      awards: [
+        {
+          awardNumber: 22,
+          beneficiary: {
+            beneficiaryName: "Absolem Productions Limited",
+          },
+          subsidyMeasure: {
+            subsidyMeasureTitle:
+              "COVID-19 Temporary Framework for UK authorities",
+            scNumber: "SC10033",
+            adhoc: false,
+            legalBasis: {
+              legalBasisText: "R&D&I Framework",
+            },
+          },
+          subsidyFullAmountRange: "£NA",
+          subsidyFullAmountExact: "597,336",
+          subsidyObjective: "Energy efficiency",
+          subsidyInstrument: "Direct Grant",
+          spendingSector: "Arts, entertainment and recreation",
+          legalGrantingDate: "13 October 2020",
+          spendingRegion: "Scotland",
+        },
+      ],
+    },
+  });
+  request(app)
+    .post("/searchresults", (req, res))
+    .expect(200, done);
+});
+
+test("Unit testing for search results route Test for GET call", (done) => {
   const req = mockRequest({});
   global.date_legal_granting_date_day = "01";
   global.date_legal_granting_date_month = "01";
@@ -340,7 +393,7 @@ test("Unit testing for search results route Test for GET call", async () => {
   global.date_legal_granting_date_day1_Error = "";
   global.date_legal_granting_date_year1_Error = "";
   const res = {};
-  await request(app)
+  request(app)
     .get("/searchresults", (req, res))
-    .expect(200);
+    .expect(200, done);
 });
