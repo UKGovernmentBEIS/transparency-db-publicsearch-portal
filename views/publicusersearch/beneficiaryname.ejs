@@ -55,7 +55,7 @@ Gov.UK public user search - header rendering design
               </div>
 
             </legend>
-            <label class="govuk-label">
+            <label id="beneficiary_name-hint" class="govuk-label">
               The recipient is the business that received the subsidy
             </label>
             <div class="govuk-radios govuk-radios--conditional" data-module="govuk-radios">
@@ -73,10 +73,10 @@ Gov.UK public user search - header rendering design
                     Enter business name
                   </label>
                   <% if (text_beneficiaryname) { %> %>
-                  <input class="govuk-input govuk-!-width-one-half" id="beneficiaryname" name="Beneficiary_name"
+                  <input class="govuk-input govuk-!-width-one-half" id="Beneficiary_name" name="Beneficiary_name"
                     type="beneficiaryname" spellcheck="false" value="<%= text_beneficiaryname %>">
                   <% } else { %>
-                  <input class="govuk-input govuk-!-width-one-half" id="beneficiaryname" name="Beneficiary_name"
+                  <input class="govuk-input govuk-!-width-one-half" id="Beneficiary_name" name="Beneficiary_name"
                     type="beneficiaryname" spellcheck="false">
                   <% }  %>
 
