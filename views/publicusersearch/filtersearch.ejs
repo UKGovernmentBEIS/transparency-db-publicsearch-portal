@@ -402,11 +402,11 @@ Gov.UK public user search - header rendering design
                 <a href="/pageroute/?page=999997" style="text-decoration: none">
                   Recipient Name
                   <% if (beneficiary_arrow == "upanddown" ) { %>
-                  <img id="updownarrow" src="/assets/images/UpDownArrow.jpg">
+                  <img id="beneficiary_updownarrow" src="/assets/images/UpDownArrow.jpg" alt="No sort">
                   <% } else if (beneficiary_arrow == "updecending" ) { %>
-                  <img id="downarrow" src="/assets/images/DownArrow.jpg">
+                  <img id="beneficiary_downarrow" src="/assets/images/DownArrow.jpg" alt="Descending">
                   <% } else { %>
-                  <img id="uparrow" src="/assets/images/UpArrow.jpg">
+                  <img id="beneficiary_uparrow" src="/assets/images/UpArrow.jpg"  alt="Ascending">
                   <% } %>
 
                 </a>
@@ -418,11 +418,11 @@ Gov.UK public user search - header rendering design
                 <a href="/pageroute/?page=999998" style="text-decoration: none">
                   Subsidy date
                   <% if (legalgrantingdate_arrow == "upanddown" ) { %>
-                  <img id="updownarrow" src="/assets/images/UpDownArrow.jpg">
+                  <img id="legalgrantingdate_updownarrow" src="/assets/images/UpDownArrow.jpg" alt="No sort">
                   <% } else if (legalgrantingdate_arrow == "updecending" ) { %>
-                  <img id="downarrow" src="/assets/images/DownArrow.jpg">
+                  <img id="legalgrantingdate_downarrow" src="/assets/images/DownArrow.jpg" alt="Descending">
                   <% } else { %>
-                  <img id="uparrow" src="/assets/images/UpArrow.jpg">
+                  <img id="legalgrantingdate_uparrow" src="/assets/images/UpArrow.jpg" alt="Ascending">
                   <% } %>
 
                 </a></th>
@@ -433,11 +433,11 @@ Gov.UK public user search - header rendering design
                 <a href="/pageroute/?page=999999" style="text-decoration: none">
                   Subsidy amount
                   <% if (subsidyamount_arrow == "upanddown" ) { %>
-                  <img id="updownarrow" src="/assets/images/UpDownArrow.jpg">
+                  <img id="subsidyamount_updownarrow" src="/assets/images/UpDownArrow.jpg " alt="No sort">
                   <% } else if (subsidyamount_arrow == "updecending" ) { %>
-                  <img id="downarrow" src="/assets/images/DownArrow.jpg">
+                  <img id="subsidyamount_downarrow" src="/assets/images/DownArrow.jpg" alt="Descending">
                   <% } else { %>
-                  <img id="uparrow" src="/assets/images/UpArrow.jpg">
+                  <img id="subsidyamount_uparrow" src="/assets/images/UpArrow.jpg"  alt="Ascending">
                   <% } %>
 
                 </a>
@@ -498,23 +498,23 @@ Gov.UK public user search - header rendering design
             <% if (pageCount > 1) { %>
 
             <% if (current_page_active != 1) { %>
-            <a href="/updateresultsroute/?page=1" id="paginationlink" class="first round"><img id="govuk-left-arrow"
+            <a href="/updateresultsroute/?page=1" id="paginationlink_first_page" class="first round"><img id="govuk-left-arrow"
                 src="/assets/images/govuk-left-arrow.jpg"></a>
-            <a href="/updateresultsroute/?page=<%= previous_page %>" id="paginationlink" class="previous round">Previous
+            <a href="/updateresultsroute/?page=<%= previous_page %>" id="paginationlink_previous_page" class="previous round">Previous
               Page</a>
             <% } %>
 
             <% for (var i = start_page; i <= end_page; i++) { %>
             <% if (current_page_active != i ) { %>
-            <a id="paginationlink" class="round btn-page" href="/updateresultsroute/?page=<%= i %>"><%= i %></a>
+            <a id="paginationlink<%= i %>" class="round btn-page" href="/updateresultsroute/?page=<%= i %>"><%= i %></a>
             <% } else { %>
-            <a id="paginationlink" class="round btn-page active" href="/updateresultsroute/?page=<%= i %>"><%= i %></a>
+            <a id="paginationlink<%= i %>" class="round btn-page active" href="/updateresultsroute/?page=<%= i %>"><%= i %></a>
             <% } %>
             <% } %>
 
             <% if (current_page_active != pageCount) { %>
-            <a href="/updateresultsroute/?page=<%= next_page %>" id="paginationlink" class="next round">Next Page</a>
-            <a href="/updateresultsroute/?page=<%= pageCount %>" id="paginationlink" class="last round"><img
+            <a href="/updateresultsroute/?page=<%= next_page %>" id="paginationlink_next_page" class="next round">Next Page</a>
+            <a href="/updateresultsroute/?page=<%= pageCount %>" id="paginationlink_last_page" class="last round"><img
                 id="govuk-right-arrow" src="/assets/images/govuk-right-arrow.jpg"></a>
             <% } %>
             <% } %>
