@@ -123,16 +123,7 @@ Gov.UK public user search - header rendering design
 Gov.UK public user search - Breadcrumbs HTML rendering design 
 *********************************************************** -->
            
-           <!-- <div class="govuk-breadcrumbs ">
-             <ol class="govuk-breadcrumbs__list">
-               <li class="govuk-breadcrumbs__list-item">
-                 <a class="govuk-breadcrumbs__link" href="/homepage">Home</a>
-               </li>
-               <li class="govuk-breadcrumbs__list-item">
-                 <a class="govuk-breadcrumbs__link" href="/beneficiaryname">Search subsidy awards</a>
-               </li>
-             </ol>
-           </div> -->
+       
            <br />
 
            <a href="/beneficiaryname"  class="govuk-back-link">Back</a>
@@ -149,7 +140,7 @@ Gov.UK public user search - Body design
 
 <form action="/spendingsector" method="POST" >
 <div class="govuk-form-group">
-<fieldset class="govuk-fieldset" aria-describedby="beneficiary_name-hint">
+<fieldset class="govuk-fieldset" aria-describedby="subsidy-hint">
   <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
@@ -163,7 +154,7 @@ Gov.UK public user search - Body design
   </legend>
 
   <br />
-  <label class="govuk-label " for="subsidylabel">
+  <label id="subsidy-hint" class="govuk-label " for="subsidylabel">
     You can select more than one purpose, or leave all options unselected to search for all purposes.
   </label>
   <br />
