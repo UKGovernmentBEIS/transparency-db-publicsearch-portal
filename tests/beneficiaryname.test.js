@@ -19,6 +19,8 @@ app.use(
   })
 );
 app.use("/", index);
+const axios = require("axios");
+jest.mock("axios");
 
 const mockRequest = (sessionData, body) => ({
   session: {
@@ -30,21 +32,76 @@ const mockRequest = (sessionData, body) => ({
 const res = {};
 
 test("beneficiary name route works", (done) => {
-  const req = mockRequest(
-    {},
-    {
-      Subsidy_measure_title: "london",
-      homepage_button : "start_now"
-    }
-  );
-
+  const req = mockRequest();
+  global.process.argv = ["", "", "env=dev"];
+  global.text_beneficiaryname = "";
+  global.radio_beneficiaryname = "No";
   const res = {};
   request(app)
     .post("/beneficiaryname", (req, res))
-
     .send({
-      Subsidy_measure_title: "london",
-      homepage_button : "start_now"
+      homepage_button: "start_now",
+    })
+    .expect(200, done);
+});
+
+test("beneficiary name route works", (done) => {
+  const req = mockRequest();
+  global.process.argv = ["", "", "env=stag"];
+  global.text_beneficiaryname = "";
+  global.radio_beneficiaryname = "Yes";
+  const res = {};
+  request(app)
+    .post("/beneficiaryname", (req, res))
+    .send({
+      homepage_button: "start_now",
+    })
+    .expect(200, done);
+});
+
+test("beneficiary name route works", (done) => {
+  const req = mockRequest();
+  global.process.argv = ["", "", "env=integ"];
+  global.text_beneficiaryname = "";
+  global.radio_beneficiaryname = "No";
+  global.beis_url_publicsearch = "";
+  const res = {};
+  axios.post.mockResolvedValue({
+    status: 200,
+    data: {
+      totalSearchResults: 49,
+      currentPage: 1,
+      totalPages: 5,
+      awards: [
+        {
+          awardNumber: 22,
+          beneficiary: {
+            beneficiaryName: "Absolem Productions Limited",
+          },
+          subsidyMeasure: {
+            subsidyMeasureTitle:
+              "COVID-19 Temporary Framework for UK authorities",
+            scNumber: "SC10033",
+            adhoc: false,
+            legalBasis: {
+              legalBasisText: "R&D&I Framework",
+            },
+          },
+          subsidyFullAmountRange: "£NA",
+          subsidyFullAmountExact: "597,336",
+          subsidyObjective: "Energy efficiency",
+          subsidyInstrument: "Direct Grant",
+          spendingSector: "Arts, entertainment and recreation",
+          legalGrantingDate: "13 October 2020",
+          spendingRegion: "Scotland",
+        },
+      ],
+    },
+  });
+  request(app)
+    .post("/beneficiaryname", (req, res))
+    .send({
+      homepage_button: "show_results",
     })
     .expect(200, done);
 });

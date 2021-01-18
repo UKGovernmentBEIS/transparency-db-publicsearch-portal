@@ -32,13 +32,13 @@
 <script src="http://alasql.org/console/xlsx.core.min.js"></script> -->
 
 <script>
-  window.saveFile = function saveFile(data_request_clientside,beis_url_publicsearch) {
+  window.saveFile = function saveFile(data_request_clientside, beis_url_publicsearch) {
     console.log(data_request_clientside);
 
     var api_data;
     $.ajax({
       // url: 'http://dev-beis-tp-db-public-search-service.azurewebsites.net/searchResults',
-      url:  beis_url_publicsearch  + '/searchResults',
+      url: beis_url_publicsearch + '/searchResults',
       type: "POST",
       headers: { 'Access-Control-Allow-Origin': '*' },
       data: data_request_clientside,
@@ -123,15 +123,17 @@
 
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-two-thirds filter-input-div">
-          <a href="/filtersearch/?page=1" style="color : black; text-decoration: none">
-            <button class="govuk-button  govuk-button--secondary" name="showfiter" value="showfilt">
-              Show filters</button>
+          <a href="/filtersearch/?page=1" style=" text-decoration: none" class="govuk-button  govuk-button--secondary"
+            name="showfiter" value="showfilt">
+
+            Show filters
           </a>
-          <a href="/homepage" style="color : black; text-decoration: none">
-            <button class="govuk-button" data-module="govuk-button">New search </button>
+          <a href="/homepage" style="text-decoration: none" class="govuk-button" data-module="govuk-button">
+            New search
           </a>
 
-          <button class="govuk-button" data-module="govuk-button" onclick="saveFile('<%= data_request_clientside %>','<%= beis_url_publicsearch %>')">
+          <button class="govuk-button" data-module="govuk-button"
+            onclick="saveFile('<%= data_request_clientside %>','<%= beis_url_publicsearch %>')">
             Download results as spreadsheet file </button>
 
 
@@ -180,11 +182,11 @@
                   <a href="/pageroute/?page=999997" style="text-decoration: none">
                     Recipient Name
                     <% if (beneficiary_arrow == "upanddown" ) { %>
-                    <img id="updownarrow" src="/assets/images/UpDownArrow.jpg">
+                    <img id="updownarrow" src="/assets/images/UpDownArrow.jpg" alt="No sort">
                     <% } else if (beneficiary_arrow == "updecending" ) { %>
-                    <img id="downarrow" src="/assets/images/DownArrow.jpg">
+                    <img id="downarrow" src="/assets/images/DownArrow.jpg" alt="Descending">
                     <% } else { %>
-                    <img id="uparrow" src="/assets/images/UpArrow.jpg">
+                    <img id="uparrow" src="/assets/images/UpArrow.jpg" alt="Ascending">
                     <% } %>
 
                   </a>
@@ -196,11 +198,11 @@
                   <a href="/pageroute/?page=999998" style="text-decoration: none">
                     Subsidy date
                     <% if (legalgrantingdate_arrow == "upanddown" ) { %>
-                    <img id="updownarrow" src="/assets/images/UpDownArrow.jpg">
+                    <img id="updownarrow" src="/assets/images/UpDownArrow.jpg" alt="No sort">
                     <% } else if (legalgrantingdate_arrow == "updecending" ) { %>
-                    <img id="downarrow" src="/assets/images/DownArrow.jpg">
+                    <img id="downarrow" src="/assets/images/DownArrow.jpg" alt="Descending">
                     <% } else { %>
-                    <img id="uparrow" src="/assets/images/UpArrow.jpg">
+                    <img id="uparrow" src="/assets/images/UpArrow.jpg" alt="Ascending">
                     <% } %>
 
                   </a></th>
@@ -211,19 +213,15 @@
                   <a href="/pageroute/?page=999999" style="text-decoration: none">
                     Subsidy amount
                     <% if (subsidyamount_arrow == "upanddown" ) { %>
-                    <img id="updownarrow" src="/assets/images/UpDownArrow.jpg">
+                    <img id="updownarrow" src="/assets/images/UpDownArrow.jpg" alt="No sort">
                     <% } else if (subsidyamount_arrow == "updecending" ) { %>
-                    <img id="downarrow" src="/assets/images/DownArrow.jpg">
+                    <img id="downarrow" src="/assets/images/DownArrow.jpg" alt="Descending">
                     <% } else { %>
-                    <img id="uparrow" src="/assets/images/UpArrow.jpg">
+                    <img id="uparrow" src="/assets/images/UpArrow.jpg" alt="Ascending">
                     <% } %>
 
                   </a>
                 </th>
-
-
-
-
               </tr>
             </thead>
             <tbody class="govuk-table__body">
