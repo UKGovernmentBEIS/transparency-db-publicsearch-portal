@@ -56,6 +56,17 @@ test("Unit testing for subsidy instrument route - Test for POST call", (done) =>
   done();
 });
 
+test("Unit testing for subsidy instrument route - Test for POST call", (done) => {
+  const req = mockRequest({}, { check_spendingsector: "Education" });
+  global.subsidy_instrument_isfirst = "Yes";
+  global.single_select = "Yes";
+  const res = {};
+  request(app)
+    .post("/subsidyinstrument", (req, res))
+    .expect(200, done);
+  done();
+});
+
 test("Unit testing for subsidy instrument route Test for GET call", (done) => {
   const req = mockRequest({});
 

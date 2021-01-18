@@ -49,6 +49,19 @@ test("Unit testing for spending sector route - Test for POST call", (done) => {
     .expect(200, done);
 });
 
+test("Unit testing for spending sector route - Test for POST call", (done) => {
+  global.spending_sector_isfirst = "Yes";
+  global.single_select = "Yes";
+  const req = mockRequest(
+    {},
+    { check_subsidyobjective: "Research and development" }
+  );
+
+  const res = {};
+  request(app)
+    .post("/spendingsector", (req, res))
+    .expect(200, done);
+});
 test("Unit testing for spending sector route Test for GET call", (done) => {
   const req = mockRequest({});
 
