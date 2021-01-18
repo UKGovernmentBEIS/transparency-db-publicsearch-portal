@@ -375,6 +375,14 @@ test("Unit testing for search results route - Test for POST call", (done) => {
   });
   request(app)
     .post("/searchresults", (req, res))
+    .send({
+      legal_granting_date_day: "",
+      legal_granting_date_month: "",
+      legal_granting_date_year: "",
+      legal_granting_date_day1: "",
+      legal_granting_date_month1: "",
+      legal_granting_date_year1: "",
+    })
     .expect(200, done);
 });
 
