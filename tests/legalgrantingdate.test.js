@@ -44,6 +44,18 @@ test("Unit testing for legal granting date route - Test for POST call", (done) =
     .expect(200, done);
 });
 
+test("Unit testing for legal granting date route - Test for POST call", (done) => {
+  const req = mockRequest(
+    {},
+    { check_subsidyinstrument0: "Equity", subsidyinstrument0: "Loan" }
+  );
+  global.single_select = "Yes";
+  const res = {};
+  request(app)
+    .post("/legalgrantingdate", (req, res))
+    .expect(200, done);
+});
+
 test("Unit testing for legal granting date route Test for GET call", (done) => {
   const req = mockRequest({});
 

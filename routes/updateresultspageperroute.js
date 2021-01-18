@@ -20,13 +20,14 @@ router.get("/", async (req, res) => {
   if (current_page == 1) {
     previous_page = 1;
     next_page = 2;
-  } else if (current_page == pageCount) {
-    previous_page = pageCount - 1;
-    next_page = pageCount;
-  } else {
-    previous_page = current_page - 1;
-    next_page = current_page + 1;
   }
+  //  else if (current_page == pageCount) {
+  //   previous_page = pageCount - 1;
+  //   next_page = pageCount;
+  // } else {
+  //   previous_page = current_page - 1;
+  //   next_page = current_page + 1;
+  // }
 
   start_index = current_page;
 
@@ -88,16 +89,17 @@ router.get("/", async (req, res) => {
     if (current_page == 1) {
       start_record = 1;
       end_record = frontend_totalRecordsPerPage;
-    } else if (current_page == pageCount) {
-      start_record = (current_page - 1) * frontend_totalRecordsPerPage + 1;
-      end_record = totalrows;
-    } else {
-      start_record =
-        current_page * frontend_totalRecordsPerPage -
-        frontend_totalRecordsPerPage +
-        1;
-      end_record = current_page * frontend_totalRecordsPerPage;
     }
+    // else if (current_page == pageCount) {
+    //   start_record = (current_page - 1) * frontend_totalRecordsPerPage + 1;
+    //   end_record = totalrows;
+    // } else {
+    //   start_record =
+    //     current_page * frontend_totalRecordsPerPage -
+    //     frontend_totalRecordsPerPage +
+    //     1;
+    //   end_record = current_page * frontend_totalRecordsPerPage;
+    // }
 
     pageCount = Math.ceil(totalrows / frontend_totalRecordsPerPage);
     // this is for page management section

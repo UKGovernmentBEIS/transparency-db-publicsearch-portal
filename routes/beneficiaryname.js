@@ -26,6 +26,11 @@ else if (Environment_variable == "env=stag") {
     "https://stag-transparency-db-public-search-service.azurewebsites.net";
   console.log(beis_url_publicsearch);
 }
+else if (Environment_variable == "env=prod") {
+  beis_url_publicsearch =
+    "https://prod-transparency-db-public-search-service.azurewebsites.net";
+  console.log(beis_url_publicsearch);
+}
 
 router.post("/", async(req, res) => {
   var { homepage_button } = req.body;
