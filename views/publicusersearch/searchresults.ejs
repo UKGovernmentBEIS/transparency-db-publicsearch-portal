@@ -128,8 +128,12 @@
 
             Show filters
           </a>
-          <a href="/homepage" style="text-decoration: none" class="govuk-button" data-module="govuk-button">
+          <!-- <a href="/homepage" style="text-decoration: none" class="govuk-button" data-module="govuk-button">
             New search
+          </a> -->
+
+          <a href="/homepage" style="color : black; text-decoration: none">
+            <button class="govuk-button" data-module="govuk-button">New search </button>
           </a>
 
           <button class="govuk-button" data-module="govuk-button"
@@ -145,7 +149,7 @@
           </label>
 
           <form class="govuk-grid-column-one-third" action="/pageperroute" method="GET">
-            <select class="govuk-select" id="sort" name="sort" onchange="this.form.submit()">
+            <select class="govuk-select" id="sort" aria-label="Results per page shown in current page" name="sort" onchange="this.form.submit()">
               <% if(frontend_totalRecordsPerPage  == 10) { %>
               <option value="10" selected>10</option>
               <% } else { %>
@@ -272,7 +276,7 @@
               <% if (pageCount > 1) { %>
 
               <% if (current_page_active != 1) { %>
-              <a href="/pageroute/?page=1" id="paginationlink_first_page" class="first round"><svg version="1.1" width="19px"
+              <a href="/pageroute/?page=1" id="paginationlink_first_page" class="first round"><svg version="1.1" width="19px" alt="go to first page"
                   height="30px">
                   <defs>
                     <mask fill="white" id="clip2">
@@ -297,16 +301,16 @@
 
               <% for (var i = start_page; i <= end_page; i++) { %>
               <% if (current_page_active != i ) { %>
-              <a id="paginationlink<%= i %>" class="round btn-page" href="/pageroute/?page=<%= i %>"><%= i %></a>
+              <a id="paginationlink<%= i %>" aria-label="go to page <%= i %>" class="round btn-page" href="/pageroute/?page=<%= i %>"><%= i %></a>
               <% } else { %>
-              <a id="paginationlink<%= i %>" class="round btn-page active" href="/pageroute/?page=<%= i %>"><%= i %></a>
+              <a id="paginationlink<%= i %>" aria-label="go to page <%= i %>" class="round btn-page active" href="/pageroute/?page=<%= i %>"><%= i %></a>
               <% } %>
               <% } %>
 
               <% if (current_page_active != pageCount) { %>
               <a href="/pageroute/?page=<%= next_page %>" id="paginationlink_next_page" class="next round">Next Page</a>
               <a href="/pageroute/?page=<%= pageCount %>" id="paginationlink_last_page" class="last round">
-                <img id="govuk-right-arrow" src="/assets/images/govuk-right-arrow.jpg">
+                <img id="govuk-right-arrow" src="/assets/images/govuk-right-arrow.jpg" alt="go to last page">
                 <!-- <svg version="1.1" width="19px" height="30px" class="left-arrow">
                   <defs>
                     <mask fill="white" id="clip3">

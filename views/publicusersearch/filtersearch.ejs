@@ -348,7 +348,7 @@ Gov.UK public user search - header rendering design
           </label>
 
           <form class="govuk-grid-column-one-third" action="/updateresultspageperroute" method="GET">
-            <select class="govuk-select" id="sort" name="sort" onchange="this.form.submit()">
+            <select class="govuk-select" id="sort" name="sort" aria-label="Results per page shown in current page" onchange="this.form.submit()">
               <% if(frontend_totalRecordsPerPage  == 10) { %>
               <option value="10" selected>10</option>
               <% } else { %>
