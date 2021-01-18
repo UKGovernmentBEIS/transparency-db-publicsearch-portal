@@ -42,7 +42,7 @@ test("Unit testing for page route - Test for POST call", async () => {
     .expect(200);
 });
 
-test("Unit testing for page route Test for GET call", (done) => {
+test("Unit testing for page route Test for GET call", async () => {
   const req = mockRequest();
   global.beis_url_publicsearch =
     "https://dev-beis-tp-db-public-search-service.azurewebsites.net";
@@ -120,7 +120,7 @@ test("Unit testing for page route Test for GET call", (done) => {
     .get("/pageroute", (req, res))
     .query({ page: "2" })
     // expect(resp).toBe(200);
-    .expect(200, done);
+    .expect(200);
 });
 
 test("Unit testing for page route Test for GET call", (done) => {
