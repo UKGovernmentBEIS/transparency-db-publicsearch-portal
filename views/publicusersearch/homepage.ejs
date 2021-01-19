@@ -1,17 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="govuk-template ">
 
 <head>
   <title>GOV.UK - Public user search page</title>
+  <%- include('../partials/headercss.ejs') %>
 </head>
 
 <!--**************************************************
 Gov.UK public user search - header rendering design 
 **************************************************** -->
-<%- include('../partials/header.ejs') %>
 
 <body class="govuk-template__body app-example-page">
   <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+
+  <%- include('../partials/header.ejs') %>
+
 
   <div class="govuk-width-container ">
     <%- include('../partials/banner.ejs') %>
@@ -21,7 +24,7 @@ Gov.UK public user search - header rendering design
                Gov.UK public user search - Breadcrumbs HTML rendering design 
                *********************************************************** -->
 
-     
+
       <br />
 
       <!--************************************
@@ -30,7 +33,7 @@ Gov.UK public user search - header rendering design
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-two-thirds">
           <h1 class="govuk-heading-xl">
-          Search for UK subsidies</h1>
+            Search for UK subsidies</h1>
         </div>
       </div>
 
@@ -65,7 +68,8 @@ Gov.UK public user search - header rendering design
       <div>
 
         <form action="/beneficiaryname" method="POST">
-          <button class="govuk-button" data-module="govuk-button" id="homepage_button_start_now" name="homepage_button" value="start_now">
+          <button class="govuk-button" data-module="govuk-button" id="homepage_button_start_now" name="homepage_button"
+            value="start_now">
             Start now
             <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="15.5" height="16"
               viewBox="0 0 33 40" aria-hidden="true" focusable="false">
@@ -73,11 +77,12 @@ Gov.UK public user search - header rendering design
             </svg></a>
           </button>
 
-          <button class="govuk-button govuk-button--secondary" data-module="govuk-button" id="homepage_button_show_results" name="homepage_button" value="show_results">
+          <button class="govuk-button govuk-button--secondary" data-module="govuk-button"
+            id="homepage_button_show_results" name="homepage_button" value="show_results">
             Show all results
           </button>
 
-    
+
 
         </form>
 

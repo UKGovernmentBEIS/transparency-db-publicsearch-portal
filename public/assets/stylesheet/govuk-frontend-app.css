@@ -11,12 +11,12 @@
   white-space: nowrap;
 }
 
-.govuk-width-container {
+/* .govuk-width-container {
   max-width: 960px;
   width: 960px;
   margin-right: auto;
   margin-left: auto;
-}
+} */
 
 .govuk-capitalize::first-letter {
   text-transform: capitalize;

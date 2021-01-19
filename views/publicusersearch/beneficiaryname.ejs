@@ -3,6 +3,7 @@
 
 <head>
   <title>GOV.UK - Public user search page</title>
+  <%- include('../partials/headercss.ejs') %>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145652997-21"></script>
   <script>
@@ -19,12 +20,13 @@
 <!--**************************************************
 Gov.UK public user search - header rendering design 
 **************************************************** -->
-<%- include('../partials/header.ejs') %>
+
 
 <body class="govuk-template__body app-example-page">
   <script>
     document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');
   </script>
+  <%- include('../partials/header.ejs') %>
   <div class="govuk-width-container ">
 
     <%- include('../partials/banner.ejs') %>

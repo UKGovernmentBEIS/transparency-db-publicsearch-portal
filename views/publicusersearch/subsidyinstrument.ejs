@@ -3,6 +3,7 @@
 
 <head>
   <title>GOV.UK - Public user search page</title>
+  <%- include('../partials/headercss.ejs') %>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145652997-21"></script>
   <script>
@@ -16,21 +17,22 @@
   </script>
 </head>
 
-<script type="text/javascript" language="javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" language="javascript"
+  src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/jquery.cookie/1.4.0/jquery.cookie.min.js"></script>
 
 <script>
 
-$(document).ready(function () {
+  $(document).ready(function () {
 
     if (($('#subsidyinstrument-7').is(":checked")) && ($('#subsidyinstrument-0').is(":checked"))) {
       $('.govuk-input').hide();
-      $('.govuk-label-other').hide(); 
+      $('.govuk-label-other').hide();
     }
-    else if ($('#subsidyinstrument-7').is(":checked")){
+    else if ($('#subsidyinstrument-7').is(":checked")) {
       $('.govuk-input').show();
-      $('.govuk-label-other').show(); 
+      $('.govuk-label-other').show();
     }
     else {
       $('.govuk-input').hide();
@@ -38,204 +40,230 @@ $(document).ready(function () {
     }
 
 
-$("#subsidyinstrument-0").change(function(){  //"select all" change 
-    $(".govuk-checkboxes__input").prop('checked', $(this).prop("checked")); //change all ".checkbox" checked status
-    if($('#subsidyinstrument-0').is(":checked")){   
-    $('.govuk-input').hide();
-    $('.govuk-label-other').hide(); }
-
-});//"select all" close
-
-$('#subsidyinstrument-7').change(function(){ 
-      if($('#subsidyinstrument-0').is(":checked")){
-      $('.govuk-input').hide();
-      $('.govuk-label-other').hide();
+    $("#subsidyinstrument-0").change(function () {  //"select all" change 
+      $(".govuk-checkboxes__input").prop('checked', $(this).prop("checked")); //change all ".checkbox" checked status
+      if ($('#subsidyinstrument-0').is(":checked")) {
+        $('.govuk-input').hide();
+        $('.govuk-label-other').hide();
       }
-      else if ($('#subsidyinstrument-7').is(":checked")){
+
+    });//"select all" close
+
+    $('#subsidyinstrument-7').change(function () {
+      if ($('#subsidyinstrument-0').is(":checked")) {
+        $('.govuk-input').hide();
+        $('.govuk-label-other').hide();
+      }
+      else if ($('#subsidyinstrument-7').is(":checked")) {
         $('.govuk-input').show();
-      $('.govuk-label-other').show();}
+        $('.govuk-label-other').show();
+      }
 
       else {
         $('.govuk-input').hide();
-      $('.govuk-label-other').hide();
+        $('.govuk-label-other').hide();
       }
-});
+    });
 
-//".checkbox" change 
-$('.govuk-checkboxes__input').change(function(){ 
-	  //uncheck "select all", if one of the listed checkbox item is unchecked
-    if(false == $(this).prop("checked")){ //if this item is unchecked
+    //".checkbox" change 
+    $('.govuk-checkboxes__input').change(function () {
+      //uncheck "select all", if one of the listed checkbox item is unchecked
+      if (false == $(this).prop("checked")) { //if this item is unchecked
         $("#subsidyinstrument-0").prop('checked', false); //change "select all" checked status to false
-      if($('#subsidyinstrument-7').is(":checked")) {
-      $('.govuk-input').show();
-      $('.govuk-label-other').show(); }
-    }
-  // alert($('.govuk-checkboxes__input:checked').length );
-	//check "select all" if all checkbox items are checked
-	if ($('.govuk-checkboxes__input:checked').length == $('.govuk-checkboxes__input').length - 1 ){
-    $("#subsidyinstrument-0").prop('checked', true); 
-    $('.govuk-input').hide();
-    $('.govuk-label-other').hide(); 
+        if ($('#subsidyinstrument-7').is(":checked")) {
+          $('.govuk-input').show();
+          $('.govuk-label-other').show();
+        }
+      }
+      // alert($('.govuk-checkboxes__input:checked').length );
+      //check "select all" if all checkbox items are checked
+      if ($('.govuk-checkboxes__input:checked').length == $('.govuk-checkboxes__input').length - 1) {
+        $("#subsidyinstrument-0").prop('checked', true);
+        $('.govuk-input').hide();
+        $('.govuk-label-other').hide();
       }
     });
   });
 
-</script> 
+</script>
 
 <!--**************************************************
 Gov.UK public user search - header rendering design 
 **************************************************** -->
 
-<%- include('../partials/header.ejs') %>
+
 <body class="govuk-template__body app-example-page">
   <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+
+  <%- include('../partials/header.ejs') %>
   <div class="govuk-width-container ">
     <%- include('../partials/banner.ejs') %>
-    
-        <main class="govuk-main-wrapper " id="main-content" role="main">     
-            <form action="/legalgrantingdate" method="POST" >  
-           
-           <a href="/spendingsector" class="govuk-back-link"  aria-label="Back to spending sector question page">Back</a>
 
-           <br>
-           <br>
+    <main class="govuk-main-wrapper " id="main-content" role="main">
+      <form action="/legalgrantingdate" method="POST">
 
-<!--************************************
+        <a href="/spendingsector" class="govuk-back-link" aria-label="Back to spending sector question page">Back</a>
+
+        <br>
+        <br>
+
+        <!--************************************
 Gov.UK public user search - Body design 
 ************************************ -->
 
 
-<div class="govuk-form-group">
-<fieldset class="govuk-fieldset" aria-describedby="type-hint">
-  <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-two-thirds">
-    <h1 class="govuk-fieldset__heading">
-      Which types of subsidies do you want to search for?
-    </h1>
-    </div>
-    <br />
-    </div>
-  </legend>
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="type-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <div class="govuk-grid-row">
+                <div class="govuk-grid-column-two-thirds">
+                  <h1 class="govuk-fieldset__heading">
+                    Which types of subsidies do you want to search for?
+                  </h1>
+                </div>
+                <br />
+              </div>
+            </legend>
 
- <br />
-  <label id="type-hint" class="govuk-label " for="subsidylabel">
-    You can select more than one type, or leave all options unselected to search for all types.
-  </label>
-  <br />
+            <br />
+            <label id="type-hint" class="govuk-label " for="subsidylabel">
+              You can select more than one type, or leave all options unselected to search for all types.
+            </label>
+            <br />
 
-  <div class="govuk-checkboxes" data-module="govuk-checkboxes"> 
-    <div class="govuk-checkboxes__item">
-      <input class="govuk-checkboxes__input" id="subsidyinstrument-0" name="subsidyinstrument0" type="checkbox" value="Select all" data-aria-controls="conditional-subsidyinstrument-0"  "<% if (check_subsidyinstrument0) { %> checked <% } %>">
-      <label class="govuk-label govuk-checkboxes__label" for="subsidyinstrument-0">
-        Select all
-      </label>
-    </div>
+            <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="subsidyinstrument-0" name="subsidyinstrument0"
+                  type="checkbox" value="Select all"
+                  data-aria-controls="conditional-subsidyinstrument-0" "<% if (check_subsidyinstrument0) { %> checked <% } %>">
+                <label class="govuk-label govuk-checkboxes__label" for="subsidyinstrument-0">
+                  Select all
+                </label>
+              </div>
 
-    <div class="govuk-checkboxes__conditional" id="conditional-subsidyinstrument0">
-        <div class="govuk-checkboxes__item">
-          <input class="govuk-checkboxes__input" id="subsidyinstrument" name="subsidyinstrument1" type="checkbox" value="Direct Grant" data-aria-controls="conditional-subsidyinstrument" <% if (check_subsidyinstrument1) { %> checked <% } %>>
-          <label class="govuk-label govuk-checkboxes__label" for="subsidyinstrument">
-            Direct Grant
-          </label>
-        </div>
+              <div class="govuk-checkboxes__conditional" id="conditional-subsidyinstrument0">
+                <div class="govuk-checkboxes__item">
+                  <input class="govuk-checkboxes__input" id="subsidyinstrument" name="subsidyinstrument1"
+                    type="checkbox" value="Direct Grant" data-aria-controls="conditional-subsidyinstrument"
+                    <% if (check_subsidyinstrument1) { %> checked <% } %>>
+                  <label class="govuk-label govuk-checkboxes__label" for="subsidyinstrument">
+                    Direct Grant
+                  </label>
+                </div>
 
-        <div class="govuk-checkboxes__item">
-          <input class="govuk-checkboxes__input" id="subsidyinstrument-1" name="subsidyinstrument2" type="checkbox" value="Equity" data-aria-controls="conditional-subsidyinstrument-1" <% if (check_subsidyinstrument2) { %> checked <% } %>>
-          <label class="govuk-label govuk-checkboxes__label" for="subsidyinstrument-1">
-            Equity
-          </label>
-        </div>
+                <div class="govuk-checkboxes__item">
+                  <input class="govuk-checkboxes__input" id="subsidyinstrument-1" name="subsidyinstrument2"
+                    type="checkbox" value="Equity" data-aria-controls="conditional-subsidyinstrument-1"
+                    <% if (check_subsidyinstrument2) { %> checked <% } %>>
+                  <label class="govuk-label govuk-checkboxes__label" for="subsidyinstrument-1">
+                    Equity
+                  </label>
+                </div>
 
-        <div class="govuk-checkboxes__item">
-          <input class="govuk-checkboxes__input" id="subsidyinstrument-2" name="subsidyinstrument3" type="checkbox" value="Guarantee" data-aria-controls="conditional-subsidyinstrument-2" <% if (check_subsidyinstrument3) { %> checked <% } %>>
-          <label class="govuk-label govuk-checkboxes__label" for="subsidyinstrument-2">
-            Guarantee
-          </label>
-        </div>
+                <div class="govuk-checkboxes__item">
+                  <input class="govuk-checkboxes__input" id="subsidyinstrument-2" name="subsidyinstrument3"
+                    type="checkbox" value="Guarantee" data-aria-controls="conditional-subsidyinstrument-2"
+                    <% if (check_subsidyinstrument3) { %> checked <% } %>>
+                  <label class="govuk-label govuk-checkboxes__label" for="subsidyinstrument-2">
+                    Guarantee
+                  </label>
+                </div>
 
-        <div class="govuk-checkboxes__item">
-          <input class="govuk-checkboxes__input" id="subsidyinstrument-3" name="subsidyinstrument4" type="checkbox" value="Loan" data-aria-controls="conditional-subsidyinstrument-3" <% if (check_subsidyinstrument4) { %> checked <% } %>>
-          <label class="govuk-label govuk-checkboxes__label" for="subsidyinstrument-3">
-            Loan
-          </label>
-        </div>
+                <div class="govuk-checkboxes__item">
+                  <input class="govuk-checkboxes__input" id="subsidyinstrument-3" name="subsidyinstrument4"
+                    type="checkbox" value="Loan" data-aria-controls="conditional-subsidyinstrument-3"
+                    <% if (check_subsidyinstrument4) { %> checked <% } %>>
+                  <label class="govuk-label govuk-checkboxes__label" for="subsidyinstrument-3">
+                    Loan
+                  </label>
+                </div>
 
-        <div class="govuk-checkboxes__item">
-          <input class="govuk-checkboxes__input" id="subsidyinstrument-4" name="subsidyinstrument5" type="checkbox" value="Provision of goods or services below market prices" data-aria-controls="conditional-subsidyinstrument-4" <% if (check_subsidyinstrument5) { %> checked <% } %>>
-          <label class="govuk-label govuk-checkboxes__label" for="subsidyinstrument-4">
-            Provision of goods or services below market prices
+                <div class="govuk-checkboxes__item">
+                  <input class="govuk-checkboxes__input" id="subsidyinstrument-4" name="subsidyinstrument5"
+                    type="checkbox" value="Provision of goods or services below market prices"
+                    data-aria-controls="conditional-subsidyinstrument-4" <% if (check_subsidyinstrument5) { %> checked
+                    <% } %>>
+                  <label class="govuk-label govuk-checkboxes__label" for="subsidyinstrument-4">
+                    Provision of goods or services below market prices
 
-          </label>
-        </div>
+                  </label>
+                </div>
 
-        <div class="govuk-checkboxes__item">
-          <input class="govuk-checkboxes__input" id="subsidyinstrument-5" name="subsidyinstrument6" type="checkbox" value="Purchase of goods or services above market prices" data-aria-controls="conditional-subsidyinstrument-5" <% if (check_subsidyinstrument6) { %> checked <% } %>>
-          <label class="govuk-label govuk-checkboxes__label" for="subsidyinstrument-5">
-            Purchase of goods or services above market prices
-          </label>
-        </div>
+                <div class="govuk-checkboxes__item">
+                  <input class="govuk-checkboxes__input" id="subsidyinstrument-5" name="subsidyinstrument6"
+                    type="checkbox" value="Purchase of goods or services above market prices"
+                    data-aria-controls="conditional-subsidyinstrument-5" <% if (check_subsidyinstrument6) { %> checked
+                    <% } %>>
+                  <label class="govuk-label govuk-checkboxes__label" for="subsidyinstrument-5">
+                    Purchase of goods or services above market prices
+                  </label>
+                </div>
 
 
 
-        <div class="govuk-checkboxes__item">
-          <input class="govuk-checkboxes__input" id="subsidyinstrument-6" name="subsidyinstrument7" type="checkbox" value="Tax measures (tax credit, or tax/duty exemption)" data-aria-controls="conditional-subsidyinstrument-6" <% if (check_subsidyinstrument7) { %> checked <% } %>>
-          <label class="govuk-label govuk-checkboxes__label" for="subsidyinstrument-6">
-            Tax measures (tax credit, or tax/duty exemption)
-           
-          </label>
-        </div>     
-   
-        <div class="govuk-checkboxes__item">
-          <input class="govuk-checkboxes__input" id="subsidyinstrument-7" name="subsidyinstrument8" type="checkbox" value="Other" data-aria-controls="conditional-subsidyinstrument-7" <% if (check_subsidyinstrument8_pass) { %> checked <% } %>>
-          <label class="govuk-label govuk-checkboxes__label" for="subsidyinstrument-7">
-            Other
-          </label>
-        </div>
+                <div class="govuk-checkboxes__item">
+                  <input class="govuk-checkboxes__input" id="subsidyinstrument-6" name="subsidyinstrument7"
+                    type="checkbox" value="Tax measures (tax credit, or tax/duty exemption)"
+                    data-aria-controls="conditional-subsidyinstrument-6" <% if (check_subsidyinstrument7) { %> checked
+                    <% } %>>
+                  <label class="govuk-label govuk-checkboxes__label" for="subsidyinstrument-6">
+                    Tax measures (tax credit, or tax/duty exemption)
 
-          <div class="govuk-checkboxes__conditional " id="conditional-subsidyinstrument-71">
-            <div class="govuk-form-group">
-               <label class="govuk-label govuk-label-other" for="subsidyinstrument-7">
-                Enter the type of subsidy that you want to search for
-               </label>
-               <% if (check_subsidyinstrument9_pass) { %> %>
-              <input class="govuk-input govuk-!-width-one-half" id="subsidyinstrument-8" 
-              name="subsidyinstrument9" type="subsidyinstrument" spellcheck="false"  
-              value= "<%= check_subsidyinstrument9_pass %>">
-              <% } else { %>
-              <input class="govuk-input govuk-!-width-one-half" id="subsidyinstrument-8" 
-              name="subsidyinstrument9" type="subsidyinstrument" spellcheck="false">
-              <% }  %>  
+                  </label>
+                </div>
+
+                <div class="govuk-checkboxes__item">
+                  <input class="govuk-checkboxes__input" id="subsidyinstrument-7" name="subsidyinstrument8"
+                    type="checkbox" value="Other" data-aria-controls="conditional-subsidyinstrument-7"
+                    <% if (check_subsidyinstrument8_pass) { %> checked <% } %>>
+                  <label class="govuk-label govuk-checkboxes__label" for="subsidyinstrument-7">
+                    Other
+                  </label>
+                </div>
+
+                <div class="govuk-checkboxes__conditional " id="conditional-subsidyinstrument-71">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-label-other" for="subsidyinstrument-7">
+                      Enter the type of subsidy that you want to search for
+                    </label>
+                    <% if (check_subsidyinstrument9_pass) { %> %>
+                    <input class="govuk-input govuk-!-width-one-half" id="subsidyinstrument-8" name="subsidyinstrument9"
+                      type="subsidyinstrument" spellcheck="false" value="<%= check_subsidyinstrument9_pass %>">
+                    <% } else { %>
+                    <input class="govuk-input govuk-!-width-one-half" id="subsidyinstrument-8" name="subsidyinstrument9"
+                      type="subsidyinstrument" spellcheck="false">
+                    <% }  %>
+                  </div>
+                </div>
+
+              </div>
             </div>
-          </div>
 
-</div>
-</div>
-          
 
-</fieldset>
-</div>
+          </fieldset>
+        </div>
 
-<div>
-    <button class="govuk-button" data-module="govuk-button">
-    Continue </button>
-         
-</div>
-</form> 
+        <div>
+          <button class="govuk-button" data-module="govuk-button">
+            Continue </button>
 
-</main>
-</div>
+        </div>
+      </form>
 
-<!--************************************************
+    </main>
+  </div>
+
+  <!--************************************************
 Gov.UK public user search - Footer rendering design 
 ************************************************ -->
 
-<%- include('../partials/footer.ejs') %>
-      
-    
-    <script type="text/javascript" src="/assets/javascripts/example.js"></script>
-    <script type="text/javascript" src="/assets/javascripts/vendor/modernizr.js"></script>
-    <script type="text/javascript" src="/assets/javascripts/govuk-frontend-checkbox.js"></script>
-    <script type="text/javascript" src="/assets/javascripts/vendor/iframeResizer.contentWindow.js"></script>
-  </body>
+  <%- include('../partials/footer.ejs') %>
+
+
+  <script type="text/javascript" src="/assets/javascripts/example.js"></script>
+  <script type="text/javascript" src="/assets/javascripts/vendor/modernizr.js"></script>
+  <script type="text/javascript" src="/assets/javascripts/govuk-frontend-checkbox.js"></script>
+  <script type="text/javascript" src="/assets/javascripts/vendor/iframeResizer.contentWindow.js"></script>
+</body>
+
 </html>

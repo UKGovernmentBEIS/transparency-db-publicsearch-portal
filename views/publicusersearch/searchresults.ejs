@@ -3,6 +3,7 @@
 
 <head>
   <title>GOV.UK - Public user search page</title>
+  <%- include('../partials/headercss.ejs') %>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145652997-21"></script>
   <script>
@@ -86,13 +87,13 @@
 
 
 
-<%- include('../partials/header.ejs') %>
+
 
 <body class="govuk-template__body app-example-page">
   <script>
     document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');
   </script>
-
+  <%- include('../partials/header.ejs') %>
   <div class="govuk-width-container ">
     <%- include('../partials/banner.ejs') %>
     <main class="govuk-main-wrapper " id="main-content" role="main">
@@ -149,7 +150,8 @@
           </label>
 
           <form class="govuk-grid-column-one-third" action="/pageperroute" method="GET">
-            <select class="govuk-select" id="sort" aria-label="Results per page shown in current page" name="sort" onchange="this.form.submit()">
+            <select class="govuk-select" id="sort" aria-label="Results per page shown in current page" name="sort"
+              onchange="this.form.submit()">
               <% if(frontend_totalRecordsPerPage  == 10) { %>
               <option value="10" selected>10</option>
               <% } else { %>
@@ -276,8 +278,8 @@
               <% if (pageCount > 1) { %>
 
               <% if (current_page_active != 1) { %>
-              <a href="/pageroute/?page=1" id="paginationlink_first_page" class="first round"><svg version="1.1" width="19px" alt="go to first page"
-                  height="30px">
+              <a href="/pageroute/?page=1" id="paginationlink_first_page" class="first round"><svg version="1.1"
+                  width="19px" alt="go to first page" height="30px">
                   <defs>
                     <mask fill="white" id="clip2">
                       <path
@@ -295,15 +297,18 @@
                       mask="url(#clip2)" />
                   </g>
                 </svg></a>
-              <a href="/pageroute/?page=<%= previous_page %>" id="paginationlink_previous_page" class="previous round">Previous
+              <a href="/pageroute/?page=<%= previous_page %>" id="paginationlink_previous_page"
+                class="previous round">Previous
                 Page</a>
               <% } %>
 
               <% for (var i = start_page; i <= end_page; i++) { %>
               <% if (current_page_active != i ) { %>
-              <a id="paginationlink<%= i %>" aria-label="go to page <%= i %>" class="round btn-page" href="/pageroute/?page=<%= i %>"><%= i %></a>
+              <a id="paginationlink<%= i %>" aria-label="go to page <%= i %>" class="round btn-page"
+                href="/pageroute/?page=<%= i %>"><%= i %></a>
               <% } else { %>
-              <a id="paginationlink<%= i %>" aria-label="go to page <%= i %>" class="round btn-page active" href="/pageroute/?page=<%= i %>"><%= i %></a>
+              <a id="paginationlink<%= i %>" aria-label="go to page <%= i %>" class="round btn-page active"
+                href="/pageroute/?page=<%= i %>"><%= i %></a>
               <% } %>
               <% } %>
 
