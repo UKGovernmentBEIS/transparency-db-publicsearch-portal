@@ -2,35 +2,36 @@
 <html lang="en">
 
 <head>
-  <title>GOV.UK - Public user search page</title>
-   <!-- Global site tag (gtag.js) - Google Analytics -->
-   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145652997-21"></script>
-   <script>
-     window.dataLayer = window.dataLayer || [];
- 
-     function gtag() {
-       dataLayer.push(arguments);
-     }
-     gtag('js', new Date());
-     gtag('config', 'UA-145652997-21');
-   </script>
+    <title>GOV.UK - Public user search page</title>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145652997-21"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'UA-145652997-21');
+    </script>
 </head>
 
-<script type="text/javascript" language="javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" language="javascript"
+    src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/jquery.cookie/1.4.0/jquery.cookie.min.js"></script>
 <script>
 
-$(document).ready(function () {
+    $(document).ready(function () {
 
-    $('.govuk-input').on('keypress', function(e){
-  return e.metaKey || // cmd/ctrl
-    e.which <= 0 || // arrow keys
-    e.which == 8 || // delete key
-    /[0-9]/.test(String.fromCharCode(e.which)); // numbers
-})
+        $('.govuk-input').on('keypress', function (e) {
+            return e.metaKey || // cmd/ctrl
+                e.which <= 0 || // arrow keys
+                e.which == 8 || // delete key
+                /[0-9]/.test(String.fromCharCode(e.which)); // numbers
+        })
 
-});
+    });
 
 </script>
 
@@ -38,370 +39,471 @@ $(document).ready(function () {
 Gov.UK public user search - header rendering design 
 **************************************************** -->
 <%- include('../partials/header.ejs') %>
- <body class="govuk-template__body app-example-page">
+
+<body class="govuk-template__body app-example-page">
     <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
-   
+
     <div class="govuk-width-container ">
-    
-      <%- include('../partials/banner.ejs') %>
-      <main class="govuk-main-wrapper " id="main-content" role="main">  
-        <form action="/searchresults" method="POST" >
- 
-            <a href="/subsidyinstrument" class="govuk-back-link" aria-label="Back to spending types question page">Back</a>   <br> <br>
 
-             
-              <!-- Error display -->
+        <%- include('../partials/banner.ejs') %>
+        <main class="govuk-main-wrapper " id="main-content" role="main">
+            <form action="/searchresults" method="POST">
 
-                   <% if( locals.SubsidyArraySize > 0 ){ %>   
-                                
-                    <div tabindex="-1" class="govuk-error-summary" role="alert" aria-labelledby="error-summary-title" data-module="govuk-error-summary">
-                        <h2 class="govuk-error-summary__title" id="error-summary-title">There is a problem</h2>
-                    
-                        <div class="govuk-error-summary__body">  
-                        <% for(var i=0; i < locals.SubsidyArraySize  ; i++) {%>         
-                            <ul class="govuk-list govuk-error-summary__list">  
-                        
-                        <li> <a href="<%= locals.SubsidyFocus[i] %>"> <%= locals.SubsidyErrors[i] %> </a> </li> 
+                <a href="/subsidyinstrument" class="govuk-back-link"
+                    aria-label="Back to spending types question page">Back</a> <br> <br>
+
+
+                <!-- Error display -->
+
+                <% if( locals.SubsidyArraySize > 0 ){ %>
+
+                <div tabindex="-1" class="govuk-error-summary" role="alert" aria-labelledby="error-summary-title"
+                    data-module="govuk-error-summary">
+                    <h2 class="govuk-error-summary__title" id="error-summary-title">There is a problem</h2>
+
+                    <div class="govuk-error-summary__body">
+                        <% for(var i=0; i < locals.SubsidyArraySize  ; i++) {%>
+                        <ul class="govuk-list govuk-error-summary__list">
+
+                            <li> <a href="<%= locals.SubsidyFocus[i] %>"> <%= locals.SubsidyErrors[i] %> </a> </li>
                         </ul>
                         <% } %>
-                        </div> 
-                        
-                    </div> 
-                    
-                    <% } %>
-
-         <div class="govuk-form-group">
-            <fieldset class="govuk-fieldset" role="group" aria-describedby="legalgrantingdate-hint">
-                          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-                            <div class="govuk-grid-row">
-                              <div class="govuk-grid-column-two-thirds">
-                            <h1 class="govuk-fieldset__heading">
-                              Are you searching for subsidies that were awarded in a specific period?
-                            </h1>
-                              </div>
-                              <br />
-                            </div>
-                          </legend>
-         
-                    <div class="govuk-radios govuk-radios--conditional" data-module="govuk-radios">
-                        <div class="govuk-radios__item">
-                       <% if( locals.SubsidyArraySize > 0 ){ %> 
-                        
-
-                          <input class="govuk-radios__input" id="legalgrantingdate_radio" name="legalgrantingdate" type="radio" value="Yes" data-aria-controls="conditional-legalgrantingdate" checked >
-                          <% } else { %>
-                          <input class="govuk-radios__input" id="legalgrantingdate_radio" name="legalgrantingdate" type="radio" value="Yes" data-aria-controls="conditional-legalgrantingdate">
-                          <% } %>
-                          <label class="govuk-label govuk-radios__label" for="legalgrantingdate">
-                            Yes
-                          </label>
-                        </div>
-                          
-                        <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-legalgrantingdate">
-
-                            <!-- From date error process starts here  -->
-                            <% if( date_legal_granting_date_day_Error || date_legal_granting_date_month_Error || date_legal_granting_date_year_Error) { %>  
-
-                            <div class="govuk-form-group govuk-form-group--error">
-
-                                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-                        
-                                    <div class="govuk-grid-row">
-                                    <div class="govuk-grid-column-full">
-                                        <label class="govuk-label" for="legalgrantingdate">From </label>   
-                                        <div id="legalgrantingdate-hint" class="govuk-hint">
-                                        For example, 31 3 2008 
-                                        </div> 
-                                      
-                                    </div>
-                                    </div> 
-                                    </legend>
-                        
-                                    <div class="govuk-grid-row">
-                                        <div class="govuk-grid-column-full">
-                                            <% if( date_legal_granting_date_day_Error || date_legal_granting_date_month_Error || date_legal_granting_date_year_Error) { %> 
-                                                <span class="govuk-error-message" id="legal_granting_date_error">
-                                                    <span class="govuk-visually-hidden">Error:</span> Enter the valid from date
-                                                 </span>
-                                            <% } %>     
-
-                                        <div class="govuk-date-input" id="legal-granting-date_day">
-                                        <div class="govuk-date-input__item">
-                                            <div class="govuk-form-group">
-                                            <label class="govuk-label govuk-date-input__label" for="legal_granting_date_day">
-                                                Day
-                                            </label>
-
-                                            <% if( date_legal_granting_date_day_Error) { %> 
-                                           <input class="govuk-input govuk-date-input__input govuk-input--width-2 govuk-input--error" id="legal_granting_date_day_text" name="legal_granting_date_day" type="text" pattern="[0-9]*" inputmode="numeric"
-                                            <% if(date_legal_granting_date_day) {%> value="<%= date_legal_granting_date_day%>" <% } %>  />
-                                            <% } else { %>
-                                            <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="legal_granting_date_day_text" name="legal_granting_date_day" type="text" pattern="[0-9]*" inputmode="numeric"
-                                            <% if(date_legal_granting_date_day) {%> value="<%= date_legal_granting_date_day%>" <% } %>  />
-                                            <% }  %>
-                                        </div>
-                                        </div>
-                                        <div class="govuk-date-input__item">
-                                             
-                                            <div class="govuk-form-group">
-                                            <label class="govuk-label govuk-date-input__label" for="legal_granting_date_month">
-                                                Month
-                                            </label>
-                                            <% if( date_legal_granting_date_month_Error) { %> 
-                                            <input class="govuk-input govuk-date-input__input govuk-input--width-2  govuk-input--error" id="legal_granting_date_month" name="legal_granting_date_month" type="text" pattern="[0-9]*" inputmode="numeric"
-                                            <% if(date_legal_granting_date_month) {%> value="<%= date_legal_granting_date_month%>" <% } %>  />
-                                            <% } else { %>
-                                            <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="legal_granting_date_month" name="legal_granting_date_month" type="text" pattern="[0-9]*" inputmode="numeric"
-                                            <% if(date_legal_granting_date_month) {%> value="<%= date_legal_granting_date_month%>" <% } %>  />
-                                            <% }  %>
-                                        
-                                        </div>
-                                        </div>
-                                        <div class="govuk-date-input__item">
-                                            <div class="govuk-form-group">
-                                            <label class="govuk-label govuk-date-input__label" for="legal_granting_date_year">
-                                                Year
-                                            </label>
-                                            <% if( date_legal_granting_date_year_Error) { %> 
-                                            <input class="govuk-input govuk-date-input__input govuk-input--width-4 govuk-input--error" id="legal_granting_date_year" name="legal_granting_date_year" type="text" pattern="[0-9]*" inputmode="numeric"
-                                            <% if(date_legal_granting_date_year) {%> value="<%= date_legal_granting_date_year%>" <% } %>  />
-                                            <% } else { %>
-                                            <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="legal_granting_date_year" name="legal_granting_date_year" type="text" pattern="[0-9]*" inputmode="numeric"
-                                            <% if(date_legal_granting_date_year) {%> value="<%= date_legal_granting_date_year%>" <% } %>  />
-                                            <% }  %>
-
-                                        </div>
-                                        </div>
-                                        </div>
-                                        </div>
-                                    </div>
-                            </div>
-                            <!-- From date error process ends here  -->
-                            <% } else { %>
-
-                            <!-- From date starts here  -->
-                            <div class="govuk-form-group">
-
-                                <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-                    
-                                <div class="govuk-grid-row">
-                                <div class="govuk-grid-column-full">
-                                    <label class="govuk-label" for="legalgrantingdate">From </label>   
-                                    <div id="legalgrantingdate-hint" class="govuk-hint">
-                                    For example, 31 3 2008 
-                                    </div> 
-                                  
-
-                                </div>
-                                </div> 
-                                </legend>
-                    
-                                <div class="govuk-grid-row">
-                                    <div class="govuk-grid-column-full">
-                                    <div class="govuk-date-input" id="legal-granting-date_day1">
-                                    <div class="govuk-date-input__item">
-                                        <div class="govuk-form-group">
-                                        <label class="govuk-label govuk-date-input__label" for="legal_granting_date_day">
-                                            Day
-                                        </label>
-
-                                        <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="legal_granting_date_day" name="legal_granting_date_day" type="text" pattern="[0-9]*" inputmode="numeric"
-                                        <% if(date_legal_granting_date_day) {%> value="<%= date_legal_granting_date_day%>" <% } %>  />                                   
-                                    </div>
-                                    </div>
-                                    <div class="govuk-date-input__item">
-                                        <div class="govuk-form-group">
-                                        <label class="govuk-label govuk-date-input__label" for="legal_granting_date_month">
-                                            Month
-                                        </label>
-                                        <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="legal_granting_date_month" name="legal_granting_date_month" type="text" pattern="[0-9]*" inputmode="numeric"
-                                        <% if(date_legal_granting_date_month) {%> value="<%= date_legal_granting_date_month %>" <% } %>  />
-                                    </div>
-                                    </div>
-                                    <div class="govuk-date-input__item">
-                                        <div class="govuk-form-group">
-                                        <label class="govuk-label govuk-date-input__label" for="legal_granting_date_year">
-                                            Year
-                                        </label>
-                                        <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="legal_granting_date_year" name="legal_granting_date_year" type="text" pattern="[0-9]*" inputmode="numeric"
-                                        <% if(date_legal_granting_date_year) {%> value="<%= date_legal_granting_date_year%>" <% } %>  />
-                                    </div>
-                                    </div>
-                                    </div>
-                                    </div>
-                                </div>
-                        </div>
-                        <!-- From date ends here  -->
-                        <% }  %>
-
-
-                        <% if( date_legal_granting_date_day1_Error || date_legal_granting_date_month1_Error || date_legal_granting_date_year1_Error) { %>  
- 
-                            <!-- TO date error process starts here  -->
-                            <div class="govuk-form-group govuk-form-group--error">
-
-                                <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-                    
-                                <div class="govuk-grid-row">
-                                <div class="govuk-grid-column-full">
-                                    <label class="govuk-label" for="legalgrantingdate">To </label>   
-                                    <!-- <div id="legalgrantingdate-hint" class="govuk-hint">
-                                    For example, 31 3 2008 
-                                    </div>  -->
-                                </div>
-                                </div> 
-                                </legend>
-                    
-                                <div class="govuk-grid-row">
-                                    <div class="govuk-grid-column-full">
-                                        <% if( date_legal_granting_date_day1_Error || date_legal_granting_date_month1_Error || date_legal_granting_date_year1_Error) { %> 
-                                            <span class="govuk-error-message" id="date_legal_granting_date_day1_Error">
-                                                <span class="govuk-visually-hidden">Error:</span> Enter the valid to date
-                                             </span>
-                                        <% } %>  
-                                    <div class="govuk-date-input" id="legal-granting-date1">
-                                    <div class="govuk-date-input__item">
-                                         
-                                        <div class="govuk-form-group">
-                                        <label class="govuk-label govuk-date-input__label" for="legal_granting_date_day1">
-                                            Day
-                                        </label>
-                                        <% if( date_legal_granting_date_day1_Error) { %>
-                                        <input class="govuk-input govuk-date-input__input govuk-input--width-2 govuk-input--error" id="legal_granting_date_day1" name="legal_granting_date_day1" type="text" pattern="[0-9]*" inputmode="numeric"
-                                        <% if(date_legal_granting_date_day1) {%> value="<%= date_legal_granting_date_day1%>" <% } %>  />
-                                        <% } else { %>
-                                        <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="legal_granting_date_day1" name="legal_granting_date_day1" type="text" pattern="[0-9]*" inputmode="numeric"
-                                        <% if(date_legal_granting_date_day1) {%> value="<%= date_legal_granting_date_day1%>" <% } %>  />
-                                        <% }  %>
-                                    </div>
-                                    </div>
-                                    <div class="govuk-date-input__item">
-                                        <div class="govuk-form-group">
-                                        <label class="govuk-label govuk-date-input__label" for="legal_granting_date_month1">
-                                            Month
-                                        </label>
-                                        <% if( date_legal_granting_date_month1_Error) { %>
-                                        <input class="govuk-input govuk-date-input__input govuk-input--width-2 govuk-input--error" id="legal_granting_date_month1" name="legal_granting_date_month1" type="text" pattern="[0-9]*" inputmode="numeric"
-                                        <% if(date_legal_granting_date_month1) {%> value="<%= date_legal_granting_date_month1%>" <% } %>  />
-                                        <% } else { %>
-                                        <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="legal_granting_date_month1" name="legal_granting_date_month1" type="text" pattern="[0-9]*" inputmode="numeric"
-                                        <% if(date_legal_granting_date_month1) {%> value="<%= date_legal_granting_date_month1%>" <% } %>  />
-                                        <% }  %>
-                                    </div>
-                                    </div>
-                                    <div class="govuk-date-input__item">
-                                        <div class="govuk-form-group">
-                                        <label class="govuk-label govuk-date-input__label" for="legal_granting_date_year1">
-                                            Year
-                                        </label>
-                                        <% if( date_legal_granting_date_year1_Error) { %>
-                                        <input class="govuk-input govuk-date-input__input govuk-input--width-4 govuk-input--error" id="legal_granting_date_year1" name="legal_granting_date_year1" type="text" pattern="[0-9]*" inputmode="numeric"
-                                        <% if(date_legal_granting_date_year1) {%> value="<%= date_legal_granting_date_year1%>" <% } %>  />
-
-                                        <% } else { %>
-                                        <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="legal_granting_date_year1" name="legal_granting_date_year1" type="text" pattern="[0-9]*" inputmode="numeric"
-                                        <% if(date_legal_granting_date_year1) {%> value="<%= date_legal_granting_date_year1%>" <% } %>  />
-                                        <% } %>
-                                    </div>
-                                    </div>
-                                    </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- TO date error process ends here  -->
-                            <% } else { %>
-                            <!-- TO date starts here  -->
-                            <div class="govuk-form-group">
-
-                                <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-                    
-                                <div class="govuk-grid-row">
-                                <div class="govuk-grid-column-full">
-                                    <label class="govuk-label" for="legalgrantingdate">To </label>   
-                                    <!-- <div id="legalgrantingdate-hint" class="govuk-hint">
-                                    For example, 31 3 2008 
-                                    </div>  -->
-                                </div>
-                                </div> 
-                                </legend>
-                    
-                                <div class="govuk-grid-row">
-                                    <div class="govuk-grid-column-full">
-                                    <div class="govuk-date-input" id="legal-granting-date1">
-                                    <div class="govuk-date-input__item">
-                                        <div class="govuk-form-group">
-                                        <label class="govuk-label govuk-date-input__label" for="legal_granting_date_day1">
-                                            Day
-                                        </label>
-                                        <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="legal_granting_date_day1" name="legal_granting_date_day1" type="text" pattern="[0-9]*" inputmode="numeric"
-                                        <% if(date_legal_granting_date_day1) {%> value="<%= date_legal_granting_date_day1%>" <% } %>  /> 
-                                    </div>
-                                    </div>
-                                    <div class="govuk-date-input__item">
-                                        <div class="govuk-form-group">
-                                        <label class="govuk-label govuk-date-input__label" for="legal_granting_date_month1">
-                                            Month
-                                        </label>
-                                        <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="legal_granting_date_month1" name="legal_granting_date_month1" type="text" pattern="[0-9]*" inputmode="numeric"
-                                        <% if(date_legal_granting_date_month1) {%> value="<%= date_legal_granting_date_month1 %>" <% } %>  /> 
-                                    </div>
-                                    </div>
-                                    <div class="govuk-date-input__item">
-                                        <div class="govuk-form-group">
-                                        <label class="govuk-label govuk-date-input__label" for="legal_granting_date_year1">
-                                            Year
-                                        </label>
-                                        <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="legal_granting_date_year1" name="legal_granting_date_year1" type="text" pattern="[0-9]*" inputmode="numeric"
-                                        <% if(date_legal_granting_date_year1) {%> value="<%= date_legal_granting_date_year1 %>" <% } %>  /> 
-                                    </div>
-                                    </div>
-                                    </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- TO date ends here  -->
-                            <% }  %>
-
-
-
-                        </div>  
-                           <!--   conditional rendering ends here -->
-                            <div class="govuk-radios__item">
-                            <input class="govuk-radios__input" id="legalgrantingdate-2" name="legalgrantingdate" type="radio" value="No" data-aria-controls="conditional-legalgrantingdate-2">
-                            <label class="govuk-label govuk-radios__label" for="legalgrantingdate-2">
-                                No
-                            </label>
-                            </div>
                     </div>
 
-                <!-- -------------------------- 
+                </div>
+
+                <% } %>
+
+                <div class="govuk-form-group">
+                    <fieldset class="govuk-fieldset" role="group" aria-describedby="legalgrantingdate-hint">
+                        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                            <div class="govuk-grid-row">
+                                <div class="govuk-grid-column-two-thirds">
+                                    <h1 class="govuk-fieldset__heading">
+                                        Are you searching for subsidies that were awarded in a specific period?
+                                    </h1>
+                                </div>
+                                <br />
+                            </div>
+                        </legend>
+
+                        <div class="govuk-radios govuk-radios--conditional" data-module="govuk-radios">
+                            <div class="govuk-radios__item">
+                                <% if( locals.SubsidyArraySize > 0 ){ %>
+                                <input class="govuk-radios__input" id="legalgrantingdate_radio" name="legalgrantingdate"
+                                    type="radio" value="Yes" data-aria-controls="conditional-legalgrantingdate" checked>
+                                <% } else { %>
+                                <input class="govuk-radios__input" id="legalgrantingdate_radio" name="legalgrantingdate"
+                                    type="radio" value="Yes" data-aria-controls="conditional-legalgrantingdate">
+                                <% } %>
+                                <label class="govuk-label govuk-radios__label" for="legalgrantingdate_radio">
+                                    Yes
+                                </label>
+                            </div>
+
+                            <div class="govuk-radios__conditional govuk-radios__conditional--hidden"
+                                id="conditional-legalgrantingdate">
+
+                                <!-- From date error process starts here  -->
+                                <% if( date_legal_granting_date_day_Error || date_legal_granting_date_month_Error || date_legal_granting_date_year_Error) { %>
+
+                                <div class="govuk-form-group govuk-form-group--error">
+
+                                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+
+                                        <div class="govuk-grid-row">
+                                            <div class="govuk-grid-column-full">
+                                                <label class="govuk-label" for="legalgrantingdate">From </label>
+                                                <div id="legalgrantingdate-hint" class="govuk-hint">
+                                                    For example, 31 3 2008
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </legend>
+
+                                    <div class="govuk-grid-row">
+                                        <div class="govuk-grid-column-full">
+                                            <% if( date_legal_granting_date_day_Error || date_legal_granting_date_month_Error || date_legal_granting_date_year_Error) { %>
+                                            <span class="govuk-error-message" id="legal_granting_date_error">
+                                                <span class="govuk-visually-hidden">Error:</span> Enter the valid from
+                                                date
+                                            </span>
+                                            <% } %>
+
+                                            <div class="govuk-date-input" id="legal-granting-date_day">
+                                                <div class="govuk-date-input__item">
+                                                    <div class="govuk-form-group">
+                                                        <label class="govuk-label govuk-date-input__label"
+                                                            for="legal_granting_date_day">
+                                                            Day
+                                                        </label>
+
+                                                        <% if( date_legal_granting_date_day_Error) { %>
+                                                        <input
+                                                            class="govuk-input govuk-date-input__input govuk-input--width-2 govuk-input--error"
+                                                            id="legal_granting_date_day_text"
+                                                            name="legal_granting_date_day" type="text" pattern="[0-9]*"
+                                                            inputmode="numeric" <% if(date_legal_granting_date_day) {%>
+                                                            value="<%= date_legal_granting_date_day%>" <% } %> />
+                                                        <% } else { %>
+                                                        <input
+                                                            class="govuk-input govuk-date-input__input govuk-input--width-2"
+                                                            id="legal_granting_date_day_text"
+                                                            name="legal_granting_date_day" type="text" pattern="[0-9]*"
+                                                            inputmode="numeric" <% if(date_legal_granting_date_day) {%>
+                                                            value="<%= date_legal_granting_date_day%>" <% } %> />
+                                                        <% }  %>
+                                                    </div>
+                                                </div>
+                                                <div class="govuk-date-input__item">
+
+                                                    <div class="govuk-form-group">
+                                                        <label class="govuk-label govuk-date-input__label"
+                                                            for="legal_granting_date_month">
+                                                            Month
+                                                        </label>
+                                                        <% if( date_legal_granting_date_month_Error) { %>
+                                                        <input
+                                                            class="govuk-input govuk-date-input__input govuk-input--width-2  govuk-input--error"
+                                                            id="legal_granting_date_month"
+                                                            name="legal_granting_date_month" type="text"
+                                                            pattern="[0-9]*" inputmode="numeric"
+                                                            <% if(date_legal_granting_date_month) {%>
+                                                            value="<%= date_legal_granting_date_month%>" <% } %> />
+                                                        <% } else { %>
+                                                        <input
+                                                            class="govuk-input govuk-date-input__input govuk-input--width-2"
+                                                            id="legal_granting_date_month"
+                                                            name="legal_granting_date_month" type="text"
+                                                            pattern="[0-9]*" inputmode="numeric"
+                                                            <% if(date_legal_granting_date_month) {%>
+                                                            value="<%= date_legal_granting_date_month%>" <% } %> />
+                                                        <% }  %>
+
+                                                    </div>
+                                                </div>
+                                                <div class="govuk-date-input__item">
+                                                    <div class="govuk-form-group">
+                                                        <label class="govuk-label govuk-date-input__label"
+                                                            for="legal_granting_date_year">
+                                                            Year
+                                                        </label>
+                                                        <% if( date_legal_granting_date_year_Error) { %>
+                                                        <input
+                                                            class="govuk-input govuk-date-input__input govuk-input--width-4 govuk-input--error"
+                                                            id="legal_granting_date_year"
+                                                            name="legal_granting_date_year" type="text" pattern="[0-9]*"
+                                                            inputmode="numeric" <% if(date_legal_granting_date_year) {%>
+                                                            value="<%= date_legal_granting_date_year%>" <% } %> />
+                                                        <% } else { %>
+                                                        <input
+                                                            class="govuk-input govuk-date-input__input govuk-input--width-4"
+                                                            id="legal_granting_date_year"
+                                                            name="legal_granting_date_year" type="text" pattern="[0-9]*"
+                                                            inputmode="numeric" <% if(date_legal_granting_date_year) {%>
+                                                            value="<%= date_legal_granting_date_year%>" <% } %> />
+                                                        <% }  %>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- From date error process ends here  -->
+                                <% } else { %>
+
+                                <!-- From date starts here  -->
+                                <div class="govuk-form-group">
+
+                                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+
+                                        <div class="govuk-grid-row">
+                                            <div class="govuk-grid-column-full">
+                                                <label class="govuk-label" for="legalgrantingdate">From </label>
+                                                <div id="legalgrantingdate-hint" class="govuk-hint">
+                                                    For example, 31 3 2008
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                    </legend>
+
+                                    <div class="govuk-grid-row">
+                                        <div class="govuk-grid-column-full">
+                                            <div class="govuk-date-input" id="legal-granting-date_day1">
+                                                <div class="govuk-date-input__item">
+                                                    <div class="govuk-form-group">
+                                                        <label class="govuk-label govuk-date-input__label"
+                                                            for="legal_granting_date_day">
+                                                            Day
+                                                        </label>
+
+                                                        <input
+                                                            class="govuk-input govuk-date-input__input govuk-input--width-2"
+                                                            id="legal_granting_date_day" name="legal_granting_date_day"
+                                                            type="text" pattern="[0-9]*" inputmode="numeric"
+                                                            <% if(date_legal_granting_date_day) {%>
+                                                            value="<%= date_legal_granting_date_day%>" <% } %> />
+                                                    </div>
+                                                </div>
+                                                <div class="govuk-date-input__item">
+                                                    <div class="govuk-form-group">
+                                                        <label class="govuk-label govuk-date-input__label"
+                                                            for="legal_granting_date_month">
+                                                            Month
+                                                        </label>
+                                                        <input
+                                                            class="govuk-input govuk-date-input__input govuk-input--width-2"
+                                                            id="legal_granting_date_month"
+                                                            name="legal_granting_date_month" type="text"
+                                                            pattern="[0-9]*" inputmode="numeric"
+                                                            <% if(date_legal_granting_date_month) {%>
+                                                            value="<%= date_legal_granting_date_month %>" <% } %> />
+                                                    </div>
+                                                </div>
+                                                <div class="govuk-date-input__item">
+                                                    <div class="govuk-form-group">
+                                                        <label class="govuk-label govuk-date-input__label"
+                                                            for="legal_granting_date_year">
+                                                            Year
+                                                        </label>
+                                                        <input
+                                                            class="govuk-input govuk-date-input__input govuk-input--width-4"
+                                                            id="legal_granting_date_year"
+                                                            name="legal_granting_date_year" type="text" pattern="[0-9]*"
+                                                            inputmode="numeric" <% if(date_legal_granting_date_year) {%>
+                                                            value="<%= date_legal_granting_date_year%>" <% } %> />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- From date ends here  -->
+                                <% }  %>
+
+
+                                <% if( date_legal_granting_date_day1_Error || date_legal_granting_date_month1_Error || date_legal_granting_date_year1_Error) { %>
+
+                                <!-- TO date error process starts here  -->
+                                <div class="govuk-form-group govuk-form-group--error">
+
+                                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+
+                                        <div class="govuk-grid-row">
+                                            <div class="govuk-grid-column-full">
+                                                <label class="govuk-label" for="legalgrantingdate">To </label>
+                                                <!-- <div id="legalgrantingdate-hint" class="govuk-hint">
+                                    For example, 31 3 2008 
+                                    </div>  -->
+                                            </div>
+                                        </div>
+                                    </legend>
+
+                                    <div class="govuk-grid-row">
+                                        <div class="govuk-grid-column-full">
+                                            <% if( date_legal_granting_date_day1_Error || date_legal_granting_date_month1_Error || date_legal_granting_date_year1_Error) { %>
+                                            <span class="govuk-error-message" id="date_legal_granting_date_day1_Error">
+                                                <span class="govuk-visually-hidden">Error:</span> Enter the valid to
+                                                date
+                                            </span>
+                                            <% } %>
+                                            <div class="govuk-date-input" id="legal-granting-date1">
+                                                <div class="govuk-date-input__item">
+
+                                                    <div class="govuk-form-group">
+                                                        <label class="govuk-label govuk-date-input__label"
+                                                            for="legal_granting_date_day1">
+                                                            Day
+                                                        </label>
+                                                        <% if( date_legal_granting_date_day1_Error) { %>
+                                                        <input
+                                                            class="govuk-input govuk-date-input__input govuk-input--width-2 govuk-input--error"
+                                                            id="legal_granting_date_day1"
+                                                            name="legal_granting_date_day1" type="text" pattern="[0-9]*"
+                                                            inputmode="numeric" <% if(date_legal_granting_date_day1) {%>
+                                                            value="<%= date_legal_granting_date_day1%>" <% } %> />
+                                                        <% } else { %>
+                                                        <input
+                                                            class="govuk-input govuk-date-input__input govuk-input--width-2"
+                                                            id="legal_granting_date_day1"
+                                                            name="legal_granting_date_day1" type="text" pattern="[0-9]*"
+                                                            inputmode="numeric" <% if(date_legal_granting_date_day1) {%>
+                                                            value="<%= date_legal_granting_date_day1%>" <% } %> />
+                                                        <% }  %>
+                                                    </div>
+                                                </div>
+                                                <div class="govuk-date-input__item">
+                                                    <div class="govuk-form-group">
+                                                        <label class="govuk-label govuk-date-input__label"
+                                                            for="legal_granting_date_month1">
+                                                            Month
+                                                        </label>
+                                                        <% if( date_legal_granting_date_month1_Error) { %>
+                                                        <input
+                                                            class="govuk-input govuk-date-input__input govuk-input--width-2 govuk-input--error"
+                                                            id="legal_granting_date_month1"
+                                                            name="legal_granting_date_month1" type="text"
+                                                            pattern="[0-9]*" inputmode="numeric"
+                                                            <% if(date_legal_granting_date_month1) {%>
+                                                            value="<%= date_legal_granting_date_month1%>" <% } %> />
+                                                        <% } else { %>
+                                                        <input
+                                                            class="govuk-input govuk-date-input__input govuk-input--width-2"
+                                                            id="legal_granting_date_month1"
+                                                            name="legal_granting_date_month1" type="text"
+                                                            pattern="[0-9]*" inputmode="numeric"
+                                                            <% if(date_legal_granting_date_month1) {%>
+                                                            value="<%= date_legal_granting_date_month1%>" <% } %> />
+                                                        <% }  %>
+                                                    </div>
+                                                </div>
+                                                <div class="govuk-date-input__item">
+                                                    <div class="govuk-form-group">
+                                                        <label class="govuk-label govuk-date-input__label"
+                                                            for="legal_granting_date_year1">
+                                                            Year
+                                                        </label>
+                                                        <% if( date_legal_granting_date_year1_Error) { %>
+                                                        <input
+                                                            class="govuk-input govuk-date-input__input govuk-input--width-4 govuk-input--error"
+                                                            id="legal_granting_date_year1"
+                                                            name="legal_granting_date_year1" type="text"
+                                                            pattern="[0-9]*" inputmode="numeric"
+                                                            <% if(date_legal_granting_date_year1) {%>
+                                                            value="<%= date_legal_granting_date_year1%>" <% } %> />
+
+                                                        <% } else { %>
+                                                        <input
+                                                            class="govuk-input govuk-date-input__input govuk-input--width-4"
+                                                            id="legal_granting_date_year1"
+                                                            name="legal_granting_date_year1" type="text"
+                                                            pattern="[0-9]*" inputmode="numeric"
+                                                            <% if(date_legal_granting_date_year1) {%>
+                                                            value="<%= date_legal_granting_date_year1%>" <% } %> />
+                                                        <% } %>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- TO date error process ends here  -->
+                                <% } else { %>
+                                <!-- TO date starts here  -->
+                                <div class="govuk-form-group">
+
+                                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+
+                                        <div class="govuk-grid-row">
+                                            <div class="govuk-grid-column-full">
+                                                <label class="govuk-label" for="legalgrantingdate">To </label>
+                                                <!-- <div id="legalgrantingdate-hint" class="govuk-hint">
+                                    For example, 31 3 2008 
+                                    </div>  -->
+                                            </div>
+                                        </div>
+                                    </legend>
+
+                                    <div class="govuk-grid-row">
+                                        <div class="govuk-grid-column-full">
+                                            <div class="govuk-date-input" id="legal-granting-date1">
+                                                <div class="govuk-date-input__item">
+                                                    <div class="govuk-form-group">
+                                                        <label class="govuk-label govuk-date-input__label"
+                                                            for="legal_granting_date_day1">
+                                                            Day
+                                                        </label>
+                                                        <input
+                                                            class="govuk-input govuk-date-input__input govuk-input--width-2"
+                                                            id="legal_granting_date_day1"
+                                                            name="legal_granting_date_day1" type="text" pattern="[0-9]*"
+                                                            inputmode="numeric" <% if(date_legal_granting_date_day1) {%>
+                                                            value="<%= date_legal_granting_date_day1%>" <% } %> />
+                                                    </div>
+                                                </div>
+                                                <div class="govuk-date-input__item">
+                                                    <div class="govuk-form-group">
+                                                        <label class="govuk-label govuk-date-input__label"
+                                                            for="legal_granting_date_month1">
+                                                            Month
+                                                        </label>
+                                                        <input
+                                                            class="govuk-input govuk-date-input__input govuk-input--width-2"
+                                                            id="legal_granting_date_month1"
+                                                            name="legal_granting_date_month1" type="text"
+                                                            pattern="[0-9]*" inputmode="numeric"
+                                                            <% if(date_legal_granting_date_month1) {%>
+                                                            value="<%= date_legal_granting_date_month1 %>" <% } %> />
+                                                    </div>
+                                                </div>
+                                                <div class="govuk-date-input__item">
+                                                    <div class="govuk-form-group">
+                                                        <label class="govuk-label govuk-date-input__label"
+                                                            for="legal_granting_date_year1">
+                                                            Year
+                                                        </label>
+                                                        <input
+                                                            class="govuk-input govuk-date-input__input govuk-input--width-4"
+                                                            id="legal_granting_date_year1"
+                                                            name="legal_granting_date_year1" type="text"
+                                                            pattern="[0-9]*" inputmode="numeric"
+                                                            <% if(date_legal_granting_date_year1) {%>
+                                                            value="<%= date_legal_granting_date_year1 %>" <% } %> />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- TO date ends here  -->
+                                <% }  %>
+
+
+
+                            </div>
+                            <!--   conditional rendering ends here -->
+                            <div class="govuk-radios__item">
+                                <input class="govuk-radios__input" id="legalgrantingdate-2" name="legalgrantingdate"
+                                    type="radio" value="No" data-aria-controls="conditional-legalgrantingdate-2">
+                                <label class="govuk-label govuk-radios__label" for="legalgrantingdate-2">
+                                    No
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- -------------------------- 
                 Question body ends here 
                 --------------------------- -->
 
-                    <br />
-                <div>  
-                    <button class="govuk-button" data-module="govuk-button">
-                   Show results </button>    
+                        <br />
+                        <div>
+                            <button class="govuk-button" data-module="govuk-button">
+                                Show results </button>
+                        </div>
+
+                    </fieldset>
                 </div>
 
-            </fieldset>
-        </div>
+            </form>
+        </main>
+    </div>
+    <!-- container div ends here -->
 
-        </form> 
-      </main>
-</div>
-<!-- container div ends here -->
-
-<!-- ---------------
+    <!-- ---------------
 Footer section 
 -------------- -->
 
-<%- include('../partials/footer.ejs') %>
-      
-  
+    <%- include('../partials/footer.ejs') %>
+
+
     <script type="text/javascript" src="/assets/javascripts/example.js"></script>
     <script type="text/javascript" src="/assets/javascripts/vendor/modernizr.js"></script>
     <script type="text/javascript" src="/assets/javascripts/govuk-frontend-radio.js"></script>
     <script type="text/javascript" src="/assets/javascripts/vendor/iframeResizer.contentWindow.js"></script>
-  </body>
+</body>
+
 </html>
