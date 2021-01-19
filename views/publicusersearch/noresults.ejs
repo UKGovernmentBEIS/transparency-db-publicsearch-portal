@@ -1,38 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="govuk-template ">
 
 <head>
   <title>GOV.UK - Public user search page</title>
+  <%- include('../partials/headercss.ejs') %>
 </head>
-    
-    <%- include('../partials/header.ejs') %>
 
- 
-    
-    <div class="govuk-width-container ">
-      <%- include('../partials/banner.ejs') %>
-      <main class="govuk-main-wrapper " id="main-content" role="main">       
-        <form action="/homepage" method="POST" > 
-     
-       <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+<%- include('../partials/header.ejs') %>
+
+
+
+<div class="govuk-width-container ">
+  <%- include('../partials/banner.ejs') %>
+  <main class="govuk-main-wrapper " id="main-content" role="main">
+    <form action="/homepage" method="POST">
+
+      <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
         <h1 class="govuk-fieldset__heading">
           No results found for the search criteria
         </h1>
       </legend>
-        
-        
-        <div>
-        
-            <button class="govuk-button" data-module="govuk-button">
-            New search </button>
-              
-        </div>
-      </form>  
 
-      </main>
-    </div>
 
-      <%- include('../partials/footer.ejs') %>
+      <div>
+
+        <button class="govuk-button" data-module="govuk-button">
+          New search </button>
+
+      </div>
+    </form>
+
+  </main>
+</div>
+
+<%- include('../partials/footer.ejs') %>
 
 </html>
-    

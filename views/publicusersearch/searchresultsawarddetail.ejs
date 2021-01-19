@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="govuk-template ">
 
 <head>
   <title>GOV.UK - Public user search page</title>
@@ -11,7 +11,7 @@
   <%- include('../partials/banner.ejs') %>
   <main class="govuk-main-wrapper " id="main-content" role="main">
 
-  
+
     <br />
 
     <a href="/searchresults" class="govuk-back-link">Back</a> <br> <br>
@@ -54,9 +54,8 @@
           Subsidy control number
         </dt>
         <dd class="govuk-summary-list__value">
-          <a class="govuk-link"
-          href="/searchresultsmeasureroute/?page=<%=awardnumber %>">
-          <%= searchawarddetails.subsidyMeasure.scNumber %> </a>
+          <a class="govuk-link" href="/searchresultsmeasureroute/?page=<%=awardnumber %>">
+            <%= searchawarddetails.subsidyMeasure.scNumber %> </a>
         </dd>
       </div>
 

@@ -468,10 +468,13 @@
 .govuk-main-wrapper--l {
   padding-top: 50px;
 }
-
+.govuk-width-container {
+  margin-right: max(15px, calc(15px + env(safe-area-inset-right)));
+  margin-left: max(15px, calc(15px + env(safe-area-inset-left)));
+}
 .govuk-width-container {
   max-width: 960px;
-  width: 960px;
+  /* width: 960px; */
   margin-right: auto;
   margin-left: auto;
 }
