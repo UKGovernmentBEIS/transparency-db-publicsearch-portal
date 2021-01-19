@@ -41,6 +41,9 @@ router.post('/', async (req, res) => {
     subsidyobjective8
   } = req.body;
   var  {
+    subsidyobjective8a
+  } = req.body;
+  var  {
     subsidyobjective9
   } = req.body;
   var  {
@@ -119,6 +122,13 @@ router.post('/', async (req, res) => {
     check_subsidyobjective8 = '';
   }
 
+  if (subsidyobjective8a) {
+    check_subsidyobjective8a = "\"" + subsidyobjective8a + "\"";
+    count = count + 1;
+  } else {
+    check_subsidyobjective8a = '';
+  }
+
   if (subsidyobjective9) {
     check_subsidyobjective9 = "\"" + subsidyobjective9 + "\"";
     count = count + 1;
@@ -189,6 +199,8 @@ router.post('/', async (req, res) => {
       actual_subsidy_objective = check_subsidyobjective7;
     } else if (subsidyobjective8) {
       actual_subsidy_objective = check_subsidyobjective8;
+    } else if (subsidyobjective8a) {
+      actual_subsidy_objective = check_subsidyobjective8a;
     } else if (subsidyobjective9) {
       actual_subsidy_objective = check_subsidyobjective9;
     } else if (subsidyobjective10) {
@@ -230,6 +242,9 @@ router.post('/', async (req, res) => {
     if (subsidyobjective8) {
       multiple_subsidy_objective = multiple_subsidy_objective + check_subsidyobjective8 + ",";
     }
+    if (subsidyobjective8a) {
+      multiple_subsidy_objective = multiple_subsidy_objective + check_subsidyobjective8a + ",";
+    }
     if (subsidyobjective9) {
       multiple_subsidy_objective = multiple_subsidy_objective + check_subsidyobjective9 + ",";
     }
@@ -257,6 +272,7 @@ router.post('/', async (req, res) => {
   console.log("check_subsidyobjective6:" + check_subsidyobjective6);
   console.log("check_subsidyobjective7:" + check_subsidyobjective7);
   console.log("check_subsidyobjective8:" + check_subsidyobjective8);
+  console.log("check_subsidyobjective8a:" + check_subsidyobjective8a);
   console.log("check_subsidyobjective9:" + check_subsidyobjective9);
   console.log("check_subsidyobjective10:" + check_subsidyobjective10);
   console.log("check_subsidyobjective10:" + check_subsidyobjective11);
