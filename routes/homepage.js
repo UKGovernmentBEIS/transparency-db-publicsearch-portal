@@ -21,6 +21,7 @@ router.post('/',(req, res) => {
   check_subsidyobjective6 = "";
   check_subsidyobjective7 = "";
   check_subsidyobjective8 = "";
+  check_subsidyobjective8a = "";
   check_subsidyobjective9 = "";
   check_subsidyobjective10 = "";
   check_subsidyobjective11 = "";

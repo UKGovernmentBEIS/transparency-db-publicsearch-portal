@@ -403,7 +403,6 @@ router.post("/", async (req, res) => {
     );
 
     actual_subsidy_objective_pass1 = JSON.parse(actual_subsidy_objective_pass);
-    console.log("OBJECTIVE:----", actual_subsidy_objective_pass1);
     actual_subsidy_instrument_trim = actual_subsidy_instrument.replace(
       /^"(.+)"$/,
       "$1"
