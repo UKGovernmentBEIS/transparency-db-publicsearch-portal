@@ -498,23 +498,23 @@ Gov.UK public user search - header rendering design
             <% if (pageCount > 1) { %>
 
             <% if (current_page_active != 1) { %>
-            <a href="/updateresultsroute/?page=1" id="paginationlink_first_page" class="first round"><img id="govuk-left-arrow"
+            <a href="/updateresultsroute/?page=1" id="paginationlink_first_page" aria-label="go to first page search results" class="first round"><img id="govuk-left-arrow"
                 src="/assets/images/govuk-left-arrow.jpg"></a>
-            <a href="/updateresultsroute/?page=<%= previous_page %>" id="paginationlink_previous_page" class="previous round">Previous
+            <a href="/updateresultsroute/?page=<%= previous_page %>" id="paginationlink_previous_page" ria-label="go to next page search results" class="previous round">Previous
               Page</a>
             <% } %>
 
             <% for (var i = start_page; i <= end_page; i++) { %>
             <% if (current_page_active != i ) { %>
-            <a id="paginationlink<%= i %>" class="round btn-page" href="/updateresultsroute/?page=<%= i %>"><%= i %></a>
+            <a id="paginationlink<%= i %>" class="round btn-page" aria-label="go to page <%= i %> search results" href="/updateresultsroute/?page=<%= i %>"><%= i %></a>
             <% } else { %>
-            <a id="paginationlink<%= i %>" class="round btn-page active" href="/updateresultsroute/?page=<%= i %>"><%= i %></a>
+            <a id="paginationlink<%= i %>" class="round btn-page active" aria-label="go to page <%= i %> search results" href="/updateresultsroute/?page=<%= i %>"><%= i %></a>
             <% } %>
             <% } %>
 
             <% if (current_page_active != pageCount) { %>
-            <a href="/updateresultsroute/?page=<%= next_page %>" id="paginationlink_next_page" class="next round">Next Page</a>
-            <a href="/updateresultsroute/?page=<%= pageCount %>" id="paginationlink_last_page" class="last round"><img
+            <a href="/updateresultsroute/?page=<%= next_page %>" id="paginationlink_next_page" aria-label="go to next page search results" class="next round">Next Page</a>
+            <a href="/updateresultsroute/?page=<%= pageCount %>" id="paginationlink_last_page" aria-label="go to last page search results"class="last round"><img
                 id="govuk-right-arrow" src="/assets/images/govuk-right-arrow.jpg"></a>
             <% } %>
             <% } %>
