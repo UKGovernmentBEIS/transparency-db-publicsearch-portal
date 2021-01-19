@@ -43,6 +43,7 @@ test("Unit testing for update results page per route Test for GET call", (done) 
   global.check_subsidyobjective6 = "";
   global.check_subsidyobjective7 = "";
   global.check_subsidyobjective8 = "";
+  global.check_subsidyobjective8a = "";
   global.check_subsidyobjective9 = "";
   global.check_subsidyobjective10 = "";
   global.check_subsidyobjective11 = "";
