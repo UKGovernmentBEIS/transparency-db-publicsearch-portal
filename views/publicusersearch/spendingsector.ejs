@@ -15,42 +15,43 @@
     gtag('js', new Date());
     gtag('config', 'UA-145652997-21');
   </script>
-</head>
 
-<script type="text/javascript" language="javascript" src="
-https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/jquery.cookie/1.4.0/jquery.cookie.min.js"></script>
 
-<script>
+  <!-- <script type="text/javascript" language="javascript" src="
+https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script> -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/jquery.cookie/1.4.0/jquery.cookie.min.js"></script>
 
-  $(document).ready(function () {
+  <script>
 
-    $("#spendingsector-0").change(function () {  //"select all" change 
-      $(".govuk-checkboxes__input").prop('checked', $(this).prop("checked")); //change all ".checkbox" checked status
+    $(document).ready(function () {
+
+      $("#spendingsector-0").change(function () {  //"select all" change 
+        $(".govuk-checkboxes__input").prop('checked', $(this).prop("checked")); //change all ".checkbox" checked status
+      });
+
+      //".checkbox" change 
+      $('.govuk-checkboxes__input').change(function () {
+        //uncheck "select all", if one of the listed checkbox item is unchecked
+        if (false == $(this).prop("checked")) { //if this item is unchecked
+          $("#spendingsector-0").prop('checked', false); //change "select all" checked status to false
+        }
+
+        // alert($('.govuk-checkboxes__input:checked').length );
+        //check "select all" if all checkbox items are checked
+        if ($('.govuk-checkboxes__input:checked').length == $('.govuk-checkboxes__input').length - 1) {
+          $("#spendingsector-0").prop('checked', true);
+
+        }
+
+      });
     });
 
-    //".checkbox" change 
-    $('.govuk-checkboxes__input').change(function () {
-      //uncheck "select all", if one of the listed checkbox item is unchecked
-      if (false == $(this).prop("checked")) { //if this item is unchecked
-        $("#spendingsector-0").prop('checked', false); //change "select all" checked status to false
-      }
-
-      // alert($('.govuk-checkboxes__input:checked').length );
-      //check "select all" if all checkbox items are checked
-      if ($('.govuk-checkboxes__input:checked').length == $('.govuk-checkboxes__input').length - 1) {
-        $("#spendingsector-0").prop('checked', true);
-
-      }
-
-    });
-  });
-
-</script>
-<!--**************************************************
+  </script>
+  <!--**************************************************
 Gov.UK public user search - header rendering design 
 **************************************************** -->
+</head>
 
 <body class="govuk-template__body app-example-page">
   <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
