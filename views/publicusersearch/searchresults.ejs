@@ -97,18 +97,18 @@
     <main class="govuk-main-wrapper " id="main-content" role="main">
 
      
-      <br />
+      <p> </p>
       <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
         <h1 class="govuk-fieldset__heading">
           Search results
         </h1>
       </legend>
-      <br />
+      <p> </p>
       <div>
         <label class="govuk-label">
           We've found <b><%= searchawards.totalSearchResults %></b> subsidy awards
         </label></div>
-      <br />
+        <p> </p>
 
 
       <div class="govuk-grid-row">
@@ -133,13 +133,13 @@
 
         </div>
 
-        <div class="govuk-grid-column-one-third govuk-display-flex">
+        <div class="govuk-grid-column-one-third govuk-display-flex" ria-autocomplete="list">
           <label class="govuk-grid-column-two-thirds">
             Results per page
           </label>
 
           <form class="govuk-grid-column-one-third" action="/pageperroute" method="GET">
-            <select class="govuk-select" id="sort" aria-label="Results per page shown in current page" name="sort"
+            <select class="govuk-select" id="sort" aria-label="Results per page shown in current page" aria-autocomplete="list" name="sort"
               onchange="this.form.submit()">
               <% if(frontend_totalRecordsPerPage  == 10) { %>
               <option value="10" selected>10</option>
