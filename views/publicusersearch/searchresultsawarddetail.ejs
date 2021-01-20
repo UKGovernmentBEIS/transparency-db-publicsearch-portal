@@ -51,11 +51,11 @@
 
     <dl class="govuk-summary-list govuk-!-margin-bottom-9">
       <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
+        <dt class="govuk-summary-list__key" id="subsidycontrolnumber">
           Subsidy control number
         </dt>
         <dd class="govuk-summary-list__value">
-          <a class="govuk-link" href="/searchresultsmeasureroute/?page=<%=awardnumber %>">
+          <a class="govuk-link" href="/searchresultsmeasureroute/?page=<%=awardnumber %>" aria-labelledby="subsidycontrolnumber">
             <%= searchawarddetails.subsidyMeasure.scNumber %> </a>
         </dd>
       </div>
