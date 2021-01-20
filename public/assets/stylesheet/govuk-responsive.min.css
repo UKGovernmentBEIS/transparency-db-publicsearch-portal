@@ -7579,3 +7579,12 @@ p code {
 .app-prose-scope > :last-child {
   margin-bottom: 0;
 }
+
+@media screen and (max-width: 767px){
+.govuk-table-responsive {
+    width: 100%;
+    margin-bottom: 15px;
+    overflow-y: hidden;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+}
