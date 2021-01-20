@@ -620,3 +620,8 @@ button.link {
   margin: 0;
   opacity: 0;
 }
+
+.govuk-table-responsive {
+  min-height: 0.01%;
+  overflow-x: auto;
+}

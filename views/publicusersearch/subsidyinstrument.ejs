@@ -15,42 +15,18 @@
     gtag('js', new Date());
     gtag('config', 'UA-145652997-21');
   </script>
-</head>
-
-<script type="text/javascript" language="javascript"
-  src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/jquery.cookie/1.4.0/jquery.cookie.min.js"></script>
-
-<script>
-
-  $(document).ready(function () {
-
-    if (($('#subsidyinstrument-7').is(":checked")) && ($('#subsidyinstrument-0').is(":checked"))) {
-      $('.govuk-input').hide();
-      $('.govuk-label-other').hide();
-    }
-    else if ($('#subsidyinstrument-7').is(":checked")) {
-      $('.govuk-input').show();
-      $('.govuk-label-other').show();
-    }
-    else {
-      $('.govuk-input').hide();
-      $('.govuk-label-other').hide();
-    }
 
 
-    $("#subsidyinstrument-0").change(function () {  //"select all" change 
-      $(".govuk-checkboxes__input").prop('checked', $(this).prop("checked")); //change all ".checkbox" checked status
-      if ($('#subsidyinstrument-0').is(":checked")) {
-        $('.govuk-input').hide();
-        $('.govuk-label-other').hide();
-      }
+  <!-- <script type="text/javascript" language="javascript"
+  src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script> -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/jquery.cookie/1.4.0/jquery.cookie.min.js"></script>
 
-    });//"select all" close
+  <script>
 
-    $('#subsidyinstrument-7').change(function () {
-      if ($('#subsidyinstrument-0').is(":checked")) {
+    $(document).ready(function () {
+
+      if (($('#subsidyinstrument-7').is(":checked")) && ($('#subsidyinstrument-0').is(":checked"))) {
         $('.govuk-input').hide();
         $('.govuk-label-other').hide();
       }
@@ -58,39 +34,63 @@
         $('.govuk-input').show();
         $('.govuk-label-other').show();
       }
-
       else {
         $('.govuk-input').hide();
         $('.govuk-label-other').hide();
       }
-    });
 
-    //".checkbox" change 
-    $('.govuk-checkboxes__input').change(function () {
-      //uncheck "select all", if one of the listed checkbox item is unchecked
-      if (false == $(this).prop("checked")) { //if this item is unchecked
-        $("#subsidyinstrument-0").prop('checked', false); //change "select all" checked status to false
-        if ($('#subsidyinstrument-7').is(":checked")) {
+
+      $("#subsidyinstrument-0").change(function () {  //"select all" change 
+        $(".govuk-checkboxes__input").prop('checked', $(this).prop("checked")); //change all ".checkbox" checked status
+        if ($('#subsidyinstrument-0').is(":checked")) {
+          $('.govuk-input').hide();
+          $('.govuk-label-other').hide();
+        }
+
+      });//"select all" close
+
+      $('#subsidyinstrument-7').change(function () {
+        if ($('#subsidyinstrument-0').is(":checked")) {
+          $('.govuk-input').hide();
+          $('.govuk-label-other').hide();
+        }
+        else if ($('#subsidyinstrument-7').is(":checked")) {
           $('.govuk-input').show();
           $('.govuk-label-other').show();
         }
-      }
-      // alert($('.govuk-checkboxes__input:checked').length );
-      //check "select all" if all checkbox items are checked
-      if ($('.govuk-checkboxes__input:checked').length == $('.govuk-checkboxes__input').length - 1) {
-        $("#subsidyinstrument-0").prop('checked', true);
-        $('.govuk-input').hide();
-        $('.govuk-label-other').hide();
-      }
+
+        else {
+          $('.govuk-input').hide();
+          $('.govuk-label-other').hide();
+        }
+      });
+
+      //".checkbox" change 
+      $('.govuk-checkboxes__input').change(function () {
+        //uncheck "select all", if one of the listed checkbox item is unchecked
+        if (false == $(this).prop("checked")) { //if this item is unchecked
+          $("#subsidyinstrument-0").prop('checked', false); //change "select all" checked status to false
+          if ($('#subsidyinstrument-7').is(":checked")) {
+            $('.govuk-input').show();
+            $('.govuk-label-other').show();
+          }
+        }
+        // alert($('.govuk-checkboxes__input:checked').length );
+        //check "select all" if all checkbox items are checked
+        if ($('.govuk-checkboxes__input:checked').length == $('.govuk-checkboxes__input').length - 1) {
+          $("#subsidyinstrument-0").prop('checked', true);
+          $('.govuk-input').hide();
+          $('.govuk-label-other').hide();
+        }
+      });
     });
-  });
 
-</script>
+  </script>
 
-<!--**************************************************
+  <!--**************************************************
 Gov.UK public user search - header rendering design 
 **************************************************** -->
-
+</head>
 
 <body class="govuk-template__body app-example-page">
   <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
