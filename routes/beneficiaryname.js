@@ -89,6 +89,19 @@ router.post("/", async(req, res) => {
 
   legal_granting_from_date ="";
   legal_granting_to_date ="" 
+  date_legal_granting_date_day ="";
+  date_legal_granting_date_month ="";
+  date_legal_granting_date_year="";
+  date_legal_granting_date_day1 ="";
+  date_legal_granting_date_month1 ="";
+  date_legal_granting_date_year1 ="";
+  date_legal_granting_date_day_Error = false;
+  date_legal_granting_date_month_Error = false;
+  date_legal_granting_date_year_Error = false;
+  date_legal_granting_date_day1_Error = false;
+  date_legal_granting_date_month1_Error = false;
+  date_legal_granting_date_year1_Error = false;
+
 
 
   console.log("homepage_button : " + homepage_button );
