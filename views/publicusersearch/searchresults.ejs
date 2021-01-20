@@ -49,7 +49,7 @@
         api_data = response;
         parsedResponse = JSON.parse(api_data);
         var filteredResponse = [];
-        for (var i = 0; i < parsedResponse.totalSearchResults; i++) {
+        for (var i = 0; i < parsedResponse.totalSearchResults; i++) {   
           filteredResponse[filteredResponse.length] = {
             "Subsidy Control (SC) Number": parsedResponse.awards[i].subsidyMeasure.scNumber,
             "Subsidy Measure Title": parsedResponse.awards[i].subsidyMeasure.subsidyMeasureTitle,
