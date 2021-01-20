@@ -55,7 +55,7 @@
           Subsidy control number
         </dt>
         <dd class="govuk-summary-list__value">
-          <a class="govuk-link" href="/searchresultsmeasureroute/?page=<%=awardnumber %>" aria-label="subsidy control number  <%= searchawarddetails.subsidyMeasure.scNumber %>">
+          <a class="govuk-link" href="/searchresultsmeasureroute/?page=<%=awardnumber %>" aria-label="subsidy control number  <%= (searchawarddetails.subsidyMeasure.scNumber).substring(2,7) %>">
             <%= searchawarddetails.subsidyMeasure.scNumber %> </a>
         </dd>
       </div>
