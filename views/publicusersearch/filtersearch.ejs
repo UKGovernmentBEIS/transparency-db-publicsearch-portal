@@ -368,7 +368,7 @@ Gov.UK public user search - header rendering design
 
           <form class="govuk-grid-column-one-third" action="/updateresultspageperroute" method="GET">
             <select class="govuk-select" id="sort" name="sort" aria-label="Results per page shown in current page"
-              onchange="this.form.submit()">
+            aria-describedby="info-message"  onchange="this.form.submit()">
               <% if(frontend_totalRecordsPerPage  == 10) { %>
               <option value="10" selected>10</option>
               <% } else { %>
@@ -394,7 +394,8 @@ Gov.UK public user search - header rendering design
         </div>
       </div>
 
-
+      <span id="info-message" style="display:none" aria-hidden="true">
+        On selecting, the page will reload and display the search results</span>
 
       <form action="/updateresults" method="POST">
         <div class="govuk-accordion" data-module="govuk-accordion" id="accordion-default">
