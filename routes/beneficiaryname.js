@@ -31,6 +31,11 @@ else if (Environment_variable == "env=prod") {
     "https://prod-transparency-db-public-search-service.azurewebsites.net";
   console.log(beis_url_publicsearch);
 }
+else if (Environment_variable == "env=preprod") {
+  beis_url_publicsearch =
+    "https://default-transparency-db-public-search-service.azurewebsites.net";
+  console.log(beis_url_publicsearch);
+}
 
 router.post("/", async(req, res) => {
   var { homepage_button } = req.body;
