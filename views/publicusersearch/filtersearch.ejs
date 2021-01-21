@@ -254,7 +254,7 @@ Gov.UK public user search - header rendering design
         for (var i = 0; i < parsedResponse.totalSearchResults; i++) {
           filteredResponse[filteredResponse.length] = {
             "Subsidy Control (SC) Number": parsedResponse.awards[i].subsidyMeasure.scNumber,
-            "Subsidy Measure Title": parsedResponse.awards[i].subsidyMeasure.subsidyMeasureTitle,
+            "Subsidy Scheme": parsedResponse.awards[i].subsidyMeasure.subsidyMeasureTitle,
             "Subsidy Award Number": parsedResponse.awards[i].awardNumber,
             "Subsidy Purpose": parsedResponse.awards[i].subsidyObjective,
             "Subsidy Type": parsedResponse.awards[i].subsidyInstrument,
