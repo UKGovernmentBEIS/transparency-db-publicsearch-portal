@@ -332,6 +332,9 @@ router.post('/', async (req, res) => {
     spendingsector13
   } = req.body;
   var  {
+    spendingsector13a
+  } = req.body;
+  var  {
     spendingsector14
   } = req.body;
   var  {
@@ -439,6 +442,12 @@ router.post('/', async (req, res) => {
   } else {
     check_spendingsector13 = '';
   }
+  if (spendingsector13a) {
+    check_spendingsector13a = "\"" + spendingsector13a + "\"";
+    count = count + 1;
+  } else {
+    check_spendingsector13a = '';
+  }
   if (spendingsector14) {
     check_spendingsector14 = "\"" + spendingsector14 + "\"";
     count = count + 1;
@@ -525,6 +534,8 @@ router.post('/', async (req, res) => {
       actual_spending_sector = check_spendingsector12;
     } else if (spendingsector13) {
       actual_spending_sector = check_spendingsector13;
+    } else if (spendingsector13a) {
+      actual_spending_sector = check_spendingsector13a;
     } else if (spendingsector14) {
       actual_spending_sector = check_spendingsector14;
     } else if (spendingsector15) {
@@ -588,6 +599,9 @@ router.post('/', async (req, res) => {
     if (spendingsector13) {
       multiple_spending_sector = multiple_spending_sector + check_spendingsector13 + ",";
     }
+    if (spendingsector13a) {
+      multiple_spending_sector = multiple_spending_sector + check_spendingsector13a + ",";
+    }
     if (spendingsector14) {
       multiple_spending_sector = multiple_spending_sector + check_spendingsector14 + ",";
     }
@@ -630,6 +644,7 @@ router.post('/', async (req, res) => {
   console.log("check_spendingsector11:" + check_spendingsector11);
   console.log("check_spendingsector12:" + check_spendingsector12);
   console.log("check_spendingsector13:" + check_spendingsector13);
+  console.log("check_spendingsector13a:" + check_spendingsector13a);
   console.log("check_spendingsector14:" + check_spendingsector14);
   console.log("check_spendingsector15:" + check_spendingsector15);
   console.log("check_spendingsector16:" + check_spendingsector16);

@@ -56,6 +56,7 @@ router.post('/',(req, res) => {
   check_spendingsector11 = "";
   check_spendingsector12 = "";
   check_spendingsector13 = "";
+  check_spendingsector13a = "";
   check_spendingsector14 = "";
   check_spendingsector15 = "";
   check_spendingsector16 = "";
