@@ -71,6 +71,7 @@ test("Unit testing for update results route - Test for POST call", (done) => {
   global.check_spendingsector11 = "";
   global.check_spendingsector12 = "";
   global.check_spendingsector13 = "";
+  global.check_spendingsector13a = "";
   global.check_spendingsector14 = "";
   global.check_spendingsector15 = "";
   global.check_spendingsector16 = "";
@@ -176,6 +177,7 @@ test("Unit testing for update results route - Test for POST call", (done) => {
       spendingsector11: "Manufacturing",
       spendingsector12: "Mining and quarrying",
       spendingsector13: "Mining and quarrying",
+      spendingsector13a: "Mining and quarrying",
       spendingsector14: "Mining and quarrying",
       spendingsector15: "Mining and quarrying",
       spendingsector16: "Mining and quarrying",
@@ -247,6 +249,7 @@ test("Unit testing for update results route - Test for POST call", (done) => {
   global.check_spendingsector11 = "";
   global.check_spendingsector12 = "";
   global.check_spendingsector13 = "";
+  global.check_spendingsector13a = "";
   global.check_spendingsector14 = "";
   global.check_spendingsector15 = "";
   global.check_spendingsector16 = "";

@@ -44,6 +44,7 @@ test("Unit testing for subsidy instrument route - Test for POST call", (done) =>
       spendingsector11: "Manufacturing",
       spendingsector12: "Mining and quarrying",
       spendingsector13: "Mining and quarrying",
+      spendingsector13a: "Mining and quarrying",
       spendingsector14: "Mining and quarrying",
       spendingsector15: "Mining and quarrying",
       spendingsector16: "Mining and quarrying",
