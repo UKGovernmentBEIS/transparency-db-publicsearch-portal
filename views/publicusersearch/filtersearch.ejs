@@ -256,14 +256,14 @@ Gov.UK public user search - header rendering design
             "Subsidy Control (SC) Number": parsedResponse.awards[i].subsidyMeasure.scNumber,
             "Subsidy Measure Title": parsedResponse.awards[i].subsidyMeasure.subsidyMeasureTitle,
             "Subsidy Award Number": parsedResponse.awards[i].awardNumber,
-            "Subsidy Objective": parsedResponse.awards[i].subsidyObjective,
-            "Subsidy Instrument": parsedResponse.awards[i].subsidyInstrument,
+            "Subsidy Purpose": parsedResponse.awards[i].subsidyObjective,
+            "Subsidy Type": parsedResponse.awards[i].subsidyInstrument,
             "Subsidy Element Full Amount": parsedResponse.awards[i].subsidyFullAmountExact,
             "Subsidy Element Full Amount Range": parsedResponse.awards[i].subsidyFullAmountRange,
-            "Beneficiary Name": parsedResponse.awards[i].beneficiary.beneficiaryName,
+            "Recipient Name": parsedResponse.awards[i].beneficiary.beneficiaryName,
             "Spending Region": parsedResponse.awards[i].spendingRegion,
             "Spending Sector": parsedResponse.awards[i].spendingSector,
-            "Legal Granting Date": parsedResponse.awards[i].legalGrantingDate
+            "Awarded Date": parsedResponse.awards[i].legalGrantingDate
           }
         }
         var data = JSON.parse(JSON.stringify(filteredResponse));
