@@ -96,6 +96,7 @@ app.locals.check_spendingsector10;
 app.locals.check_spendingsector11;
 app.locals.check_spendingsector12;
 app.locals.check_spendingsector13;
+app.locals.check_spendingsector13a;
 app.locals.check_spendingsector14;
 app.locals.check_spendingsector15;
 app.locals.check_spendingsector16;

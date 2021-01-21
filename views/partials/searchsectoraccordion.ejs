@@ -27,10 +27,10 @@
 
               <div class="govuk-checkboxes__item">
                 <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector"
-                  id="spendingsector-accommodation" name="spendingsector1" type="checkbox" value="Accommodation"
+                  id="spendingsector-accommodation" name="spendingsector1" type="checkbox" value="Accommodation and food service activities"
                   <% if (check_spendingsector1) { %> checked <% } %>>
                 <label class="govuk-label govuk-checkboxes__label" for="spendingsector-accommodation">
-                  Accommodation
+                  Accommodation and food service activities
                 </label>
               </div>
 
@@ -41,6 +41,16 @@
                   checked <% } %>>
                 <label class="govuk-label govuk-checkboxes__label" for="spendingsector-activities-of-extraterritorial">
                   Activities of extraterritorial organisations and bodies
+                </label>
+              </div>
+
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector"
+                  id="spendingsector-undifferentiated-goods" name="spendingsector18" type="checkbox"
+                  value="Activities of households as employers; undifferentiated goods- and services-producing activities of households for own use"
+                  <% if (check_spendingsector18) { %> checked <% } %>>
+                <label class="govuk-label govuk-checkboxes__label" for="spendingsector-undifferentiated-goods">
+                  Activities of households as employers; undifferentiated goods- and services-producing activities of households for own use
                 </label>
               </div>
 
@@ -155,6 +165,17 @@
 
               <div class="govuk-checkboxes__item">
                 <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector"
+                  id="spendingsector-Other-service-activities" name="spendingsector13a" type="checkbox"
+                  value="Other service activities" <% if (check_spendingsector13a) { %> checked <% } %>>
+                <label class="govuk-label govuk-checkboxes__label" for="spendingsector-Other-service-activities">
+                  Other service activities
+                </label>
+              </div>
+
+             
+
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector"
                   id="spendingsector-professional" name="spendingsector14" type="checkbox"
                   value="Professional, scientific and technical activities" <% if (check_spendingsector14) { %> checked
                   <% } %>>
@@ -191,15 +212,7 @@
                 </label>
               </div>
 
-              <div class="govuk-checkboxes__item">
-                <input class="govuk-checkboxes__input govuk-checkboxes__input_spendingsector"
-                  id="spendingsector-undifferentiated-goods" name="spendingsector18" type="checkbox"
-                  value="Undifferentiated goods and services-producing activities of households for own use"
-                  <% if (check_spendingsector18) { %> checked <% } %>>
-                <label class="govuk-label govuk-checkboxes__label" for="spendingsector-undifferentiated-goods">
-                  Undifferentiated goods and services-producing activities of households for own use
-                </label>
-              </div>
+
 
 
               <div class="govuk-checkboxes__item">

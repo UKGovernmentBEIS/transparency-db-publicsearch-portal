@@ -115,9 +115,9 @@ Gov.UK public user search - Body design
 
                 <div class="govuk-checkboxes__item">
                   <input class="govuk-checkboxes__input" id="spendingsector-accommodation" name="spendingsector1"
-                    type="checkbox" value="Accommodation" <% if (check_spendingsector1) { %> checked <% } %>>
+                    type="checkbox" value="Accommodation and food service activities" <% if (check_spendingsector1) { %> checked <% } %>>
                   <label class="govuk-label govuk-checkboxes__label" for="spendingsector-accommodation">
-                    Accommodation
+                    Accommodation and food service activities
                   </label>
                 </div>
 
@@ -129,6 +129,16 @@ Gov.UK public user search - Body design
                   <label class="govuk-label govuk-checkboxes__label"
                     for="spendingsector-activities-of-extraterritorial">
                     Activities of extraterritorial organisations and bodies
+                  </label>
+                </div>
+
+                <div class="govuk-checkboxes__item">
+                  <input class="govuk-checkboxes__input" id="spendingsector-undifferentiated-goods"
+                    name="spendingsector18" type="checkbox"
+                    value="Activities of households as employers; undifferentiated goods- and services-producing activities of households for own use"
+                    <% if (check_spendingsector18) { %> checked <% } %>>
+                  <label class="govuk-label govuk-checkboxes__label" for="spendingsector-undifferentiated-goods">
+                    Activities of households as employers; undifferentiated goods- and services-producing activities of households for own use
                   </label>
                 </div>
 
@@ -234,6 +244,15 @@ Gov.UK public user search - Body design
                 </div>
 
                 <div class="govuk-checkboxes__item">
+                  <input class="govuk-checkboxes__input" id="spendingsector-Other-service-activities"
+                    name="spendingsector13a" type="checkbox" value="Other service activities"
+                    <% if (check_spendingsector13a) { %> checked <% } %>>
+                  <label class="govuk-label govuk-checkboxes__label" for="spendingsector-Other-service-activities">
+                    Other service activities
+                  </label>
+                </div>
+
+                <div class="govuk-checkboxes__item">
                   <input class="govuk-checkboxes__input" id="spendingsector-professional" name="spendingsector14"
                     type="checkbox" value="Professional, scientific and technical activities"
                     <% if (check_spendingsector14) { %> checked <% } %>>
@@ -269,17 +288,6 @@ Gov.UK public user search - Body design
                     Transportation and storage
                   </label>
                 </div>
-
-                <div class="govuk-checkboxes__item">
-                  <input class="govuk-checkboxes__input" id="spendingsector-undifferentiated-goods"
-                    name="spendingsector18" type="checkbox"
-                    value="Undifferentiated goods and services-producing activities of households for own use"
-                    <% if (check_spendingsector18) { %> checked <% } %>>
-                  <label class="govuk-label govuk-checkboxes__label" for="spendingsector-undifferentiated-goods">
-                    Undifferentiated goods and services-producing activities of households for own use
-                  </label>
-                </div>
-
 
                 <div class="govuk-checkboxes__item">
                   <input class="govuk-checkboxes__input" id="spendingsector-water-supply" name="spendingsector19"

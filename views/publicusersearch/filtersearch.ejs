@@ -310,15 +310,25 @@ Gov.UK public user search - header rendering design
         </ol>
       </div> -->
       <p> </p>
-      <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-        <h1 class="govuk-fieldset__heading">
-          Search results
-        </h1>
-      </legend>
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-fieldset__heading">
+              Search results
+            </h1>
+          </legend>
+       </div>
+       <form  action="/homepage" method="GET">
+       <div class="govuk-grid-column-one-third">
+          <button class="govuk-button" data-module="govuk-button" style="float:right;">
+            New search </button>
+        </div>
+      </form>
+    </div>
       <p> </p>
       <div>
         <label class="govuk-label">
-          We've found <b><%= searchawards.totalSearchResults  %></b> subsidy awards
+          <b><%= searchawards.totalSearchResults  %></b> subsidy award(s) found
 
         </label></div>
         <p> </p>
@@ -338,9 +348,9 @@ Gov.UK public user search - header rendering design
               Hide filters
             </a>
 
-          <a href="/homepage" style="color : rgb(250, 245, 245); text-decoration: none"
+          <!-- <a href="/homepage" style="color : rgb(250, 245, 245); text-decoration: none"
              class="govuk-button" data-module="govuk-button">New search 
-          </a>
+          </a> -->
           <!-- <a href="/exportexcel" style="color : black; text-decoration: none">
            <button class="govuk-button" data-module="govuk-button"> Download results </button>
           </a> -->
