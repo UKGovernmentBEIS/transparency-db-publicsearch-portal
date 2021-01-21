@@ -152,7 +152,7 @@
 
           <form class="govuk-grid-column-one-third" action="/pageperroute" method="GET">
             <select class="govuk-select" id="sort" aria-label="Results per page shown in current page" 
-           aria-autocomplete="list" name="sort"
+            aria-describedby="info-message" aria-autocomplete="list" name="sort"
               onchange="this.form.submit()">
               <% if(frontend_totalRecordsPerPage  == 10) { %>
               <option value="10" selected>10</option>
@@ -178,6 +178,10 @@
           </form>
         </div>
       </div>
+
+      <span id="info-message" style="display:none" aria-hidden="true">
+        On selecting, the page will reload and display the search results</span>
+
       <form action="/homepage" method="POST">
         <section class="govuk-table-responsive">
           <table class="govuk-table" id="searchresult-table">
