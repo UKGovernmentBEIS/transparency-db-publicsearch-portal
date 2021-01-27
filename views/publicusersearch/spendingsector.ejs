@@ -16,11 +16,11 @@
     gtag('config', 'UA-145652997-21');
   </script>
 
-
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <!-- <script type="text/javascript" language="javascript" src="
 https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script> -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/jquery.cookie/1.4.0/jquery.cookie.min.js"></script>
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/jquery.cookie/1.4.0/jquery.cookie.min.js"></script> -->
 
   <script>
 
@@ -77,7 +77,7 @@ Gov.UK public user search - Breadcrumbs HTML rendering design
 
         <a href="/subsidyobjective" class="govuk-back-link" aria-label="Back to subsidy purpose question page">Back</a>
 
-      
+
 
         <!--************************************
 Gov.UK public user search - Body design 
@@ -115,7 +115,8 @@ Gov.UK public user search - Body design
 
                 <div class="govuk-checkboxes__item">
                   <input class="govuk-checkboxes__input" id="spendingsector-accommodation" name="spendingsector1"
-                    type="checkbox" value="Accommodation and food service activities" <% if (check_spendingsector1) { %> checked <% } %>>
+                    type="checkbox" value="Accommodation and food service activities" <% if (check_spendingsector1) { %>
+                    checked <% } %>>
                   <label class="govuk-label govuk-checkboxes__label" for="spendingsector-accommodation">
                     Accommodation and food service activities
                   </label>
@@ -138,7 +139,8 @@ Gov.UK public user search - Body design
                     value="Activities of households as employers; undifferentiated goods- and services-producing activities of households for own use"
                     <% if (check_spendingsector18) { %> checked <% } %>>
                   <label class="govuk-label govuk-checkboxes__label" for="spendingsector-undifferentiated-goods">
-                    Activities of households as employers; undifferentiated goods- and services-producing activities of households for own use
+                    Activities of households as employers; undifferentiated goods- and services-producing activities of
+                    households for own use
                   </label>
                 </div>
 
