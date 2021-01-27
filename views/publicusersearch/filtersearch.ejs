@@ -25,10 +25,10 @@ Gov.UK public user search - header rendering design
 <script type="text/javascript" src="/assets/javascripts/script.js" defer></script>
 <link href="/assets/stylesheet/govuk-accordion1.css" rel="stylesheet" media="all" />
 <script src="/assets/javascripts/vendor/modernizr.js"></script>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <!-- <script type="text/javascript" language="javascript"
   src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script> -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> -->
 <script src="https://cdn.jsdelivr.net/jquery.cookie/1.4.0/jquery.cookie.min.js"></script>
 <script src="https://cdn.jsdelivr.net/alasql/0.3/alasql.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.7.12/xlsx.core.min.js"></script>
@@ -317,21 +317,21 @@ Gov.UK public user search - header rendering design
               Search results
             </h1>
           </legend>
-       </div>
-       <form  action="/homepage" method="GET">
-       <div class="govuk-grid-column-one-third">
-          <button class="govuk-button" data-module="govuk-button" style="float:right;">
-            New search </button>
         </div>
-      </form>
-    </div>
+        <form action="/homepage" method="GET">
+          <div class="govuk-grid-column-one-third">
+            <button class="govuk-button" data-module="govuk-button" style="float:right;">
+              New search </button>
+          </div>
+        </form>
+      </div>
       <p> </p>
       <div>
         <label class="govuk-label">
           <b><%= searchawards.totalSearchResults  %></b> subsidy award(s) found
 
         </label></div>
-        <p> </p>
+      <p> </p>
 
       <!-- *********************
       Adding filter section
@@ -343,10 +343,10 @@ Gov.UK public user search - header rendering design
             <button class=" govuk-button govuk-button--secondary ">
               Hide filters </button> </a> -->
 
-            <a href="/hidefilter/?page=<%= current_page_active  %>" style=" text-decoration: none" class="govuk-button  govuk-button--secondary"
-              name="showfiter" value="showfilt">
-              Hide filters
-            </a>
+          <a href="/hidefilter/?page=<%= current_page_active  %>" style=" text-decoration: none"
+            class="govuk-button  govuk-button--secondary" name="showfiter" value="showfilt">
+            Hide filters
+          </a>
 
           <!-- <a href="/homepage" style="color : rgb(250, 245, 245); text-decoration: none"
              class="govuk-button" data-module="govuk-button">New search 
@@ -368,7 +368,7 @@ Gov.UK public user search - header rendering design
 
           <form class="govuk-grid-column-one-third" action="/updateresultspageperroute" method="GET">
             <select class="govuk-select" id="sort" name="sort" aria-label="Results per page shown in current page"
-            aria-describedby="info-message"  onchange="this.form.submit()">
+              aria-describedby="info-message" onchange="this.form.submit()">
               <% if(frontend_totalRecordsPerPage  == 10) { %>
               <option value="10" selected>10</option>
               <% } else { %>
@@ -425,9 +425,11 @@ Gov.UK public user search - header rendering design
                   <% if (beneficiary_arrow == "upanddown" ) { %>
                   <img id="beneficiary_updownarrow" src="/assets/images/UpDownArrow.jpg" alt="Curently not sorted">
                   <% } else if (beneficiary_arrow == "updecending" ) { %>
-                  <img id="beneficiary_downarrow" src="/assets/images/DownArrow.jpg" alt="Currently sorted by Descending order">
+                  <img id="beneficiary_downarrow" src="/assets/images/DownArrow.jpg"
+                    alt="Currently sorted by Descending order">
                   <% } else { %>
-                  <img id="beneficiary_uparrow" src="/assets/images/UpArrow.jpg" alt="Currently sorted by Ascending order">
+                  <img id="beneficiary_uparrow" src="/assets/images/UpArrow.jpg"
+                    alt="Currently sorted by Ascending order">
                   <% } %>
 
                 </a>
@@ -439,11 +441,14 @@ Gov.UK public user search - header rendering design
                 <a href="/pageroute/?page=999998" style="text-decoration: none">
                   Subsidy date
                   <% if (legalgrantingdate_arrow == "upanddown" ) { %>
-                  <img id="legalgrantingdate_updownarrow" src="/assets/images/UpDownArrow.jpg" alt="Curently not sorted">
+                  <img id="legalgrantingdate_updownarrow" src="/assets/images/UpDownArrow.jpg"
+                    alt="Curently not sorted">
                   <% } else if (legalgrantingdate_arrow == "updecending" ) { %>
-                  <img id="legalgrantingdate_downarrow" src="/assets/images/DownArrow.jpg" alt="Currently sorted by Descending order">
+                  <img id="legalgrantingdate_downarrow" src="/assets/images/DownArrow.jpg"
+                    alt="Currently sorted by Descending order">
                   <% } else { %>
-                  <img id="legalgrantingdate_uparrow" src="/assets/images/UpArrow.jpg" alt="Currently sorted by Ascending order">
+                  <img id="legalgrantingdate_uparrow" src="/assets/images/UpArrow.jpg"
+                    alt="Currently sorted by Ascending order">
                   <% } %>
 
                 </a></th>
@@ -456,9 +461,11 @@ Gov.UK public user search - header rendering design
                   <% if (subsidyamount_arrow == "upanddown" ) { %>
                   <img id="subsidyamount_updownarrow" src="/assets/images/UpDownArrow.jpg " alt="Curently not sorted">
                   <% } else if (subsidyamount_arrow == "updecending" ) { %>
-                  <img id="subsidyamount_downarrow" src="/assets/images/DownArrow.jpg" alt="Currently sorted by Descending order">
+                  <img id="subsidyamount_downarrow" src="/assets/images/DownArrow.jpg"
+                    alt="Currently sorted by Descending order">
                   <% } else { %>
-                  <img id="subsidyamount_uparrow" src="/assets/images/UpArrow.jpg" alt="Currently sorted by Ascending order">
+                  <img id="subsidyamount_uparrow" src="/assets/images/UpArrow.jpg"
+                    alt="Currently sorted by Ascending order">
                   <% } %>
 
                 </a>
@@ -529,15 +536,17 @@ Gov.UK public user search - header rendering design
 
             <% for (var i = start_page; i <= end_page; i++) { %>
             <% if (current_page_active != i ) { %>
-            <a id="paginationlink<%= i %>" class="round btn-page" aria-label="go to page <%= i %> search results" href="/updateresultsroute/?page=<%= i %>"><%= i %></a>
+            <a id="paginationlink<%= i %>" class="round btn-page" aria-label="go to page <%= i %> search results"
+              href="/updateresultsroute/?page=<%= i %>"><%= i %></a>
             <% } else { %>
-            <a id="paginationlink<%= i %>" class="round btn-page active"  aria-label="go to page <%= i %> search results" 
+            <a id="paginationlink<%= i %>" class="round btn-page active" aria-label="go to page <%= i %> search results"
               href="/updateresultsroute/?page=<%= i %>"><%= i %></a>
             <% } %>
             <% } %>
 
             <% if (current_page_active != pageCount) { %>
-            <a href="/updateresultsroute/?page=<%= next_page %>" aria-label="go to next page" id="paginationlink_next_page" class="next round">Next
+            <a href="/updateresultsroute/?page=<%= next_page %>" aria-label="go to next page"
+              id="paginationlink_next_page" class="next round">Next
               Page</a>
             <a href="/updateresultsroute/?page=<%= pageCount %>" id="paginationlink_last_page" class="last round"><img
                 id="govuk-right-arrow" src="/assets/images/govuk-right-arrow.jpg" alt="go to last page"></a>
