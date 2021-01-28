@@ -6,32 +6,16 @@ const express = require("express");
 const router = express.Router();
 const axios = require("axios");
 var request = require("request");
-const {
-  debug
-} = require("request");
+const { debug } = require("request");
 
 router.post("/", async (req, res) => {
-  var {
-    legalgrantingdate
-  } = req.body;
-  var {
-    legal_granting_date_day
-  } = req.body;
-  var {
-    legal_granting_date_month
-  } = req.body;
-  var {
-    legal_granting_date_year
-  } = req.body;
-  var {
-    legal_granting_date_day1
-  } = req.body;
-  var {
-    legal_granting_date_month1
-  } = req.body;
-  var {
-    legal_granting_date_year1
-  } = req.body;
+  var { legalgrantingdate } = req.body;
+  var { legal_granting_date_day } = req.body;
+  var { legal_granting_date_month } = req.body;
+  var { legal_granting_date_year } = req.body;
+  var { legal_granting_date_day1 } = req.body;
+  var { legal_granting_date_month1 } = req.body;
+  var { legal_granting_date_year1 } = req.body;
 
   frontend_totalRecordsPerPage = 10;
 
@@ -177,7 +161,8 @@ router.post("/", async (req, res) => {
         (date_legal_granting_date_year % 4 == 0 &&
           date_legal_granting_date_year % 100 != 0) ||
         date_legal_granting_date_year % 400 == 0
-      ) {} else {
+      ) {
+      } else {
         date_legal_granting_date_day_Error = true;
         SubsidyErrors[Additem] = "     Enter the valid day";
         SubsidyFocus[Additem] = "#legal_granting_date_day";
@@ -391,7 +376,7 @@ router.post("/", async (req, res) => {
     // ***********************
     // API integration section
     // ***********************
-    debug;
+
     actual_subsidy_objective_trim = actual_subsidy_objective.replace(
       /^"(.+)"$/,
       "$1"
@@ -465,7 +450,14 @@ router.post("/", async (req, res) => {
     try {
       const apidata = await axios.post(
         beis_url_publicsearch + "/searchResults",
-        data
+        data,
+        {
+          headers: {
+            "X-Content-Type-Options": "nosniff",
+            "X-Frame-Options": "DENY",
+            "Content-Security-Policy": "frame-ancestors 'self'",
+          },
+        }
       );
       console.log(`Status: ${apidata.status}`);
 

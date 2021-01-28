@@ -14,30 +14,27 @@ Environment_variable = process.argv[2];
 if (Environment_variable == "env=dev") {
   beis_url_publicsearch =
     "https://dev-beis-tp-db-public-search-service.azurewebsites.net";
-  
+
   console.log(beis_url_publicsearch);
 } else if (Environment_variable == "env=integ") {
   beis_url_publicsearch =
-  "https://integ-transparency-db-public-search-service.azurewebsites.net";
+    "https://integ-transparency-db-public-search-service.azurewebsites.net";
   console.log(beis_url_publicsearch);
-}
-else if (Environment_variable == "env=stag") {
+} else if (Environment_variable == "env=stag") {
   beis_url_publicsearch =
     "https://stag-transparency-db-public-search-service.azurewebsites.net";
   console.log(beis_url_publicsearch);
-}
-else if (Environment_variable == "env=prod") {
+} else if (Environment_variable == "env=prod") {
   beis_url_publicsearch =
     "https://prod-transparency-db-public-search-service.azurewebsites.net";
   console.log(beis_url_publicsearch);
-}
-else if (Environment_variable == "env=preprod") {
+} else if (Environment_variable == "env=preprod") {
   beis_url_publicsearch =
     "https://default-transparency-db-public-search-service.azurewebsites.net";
   console.log(beis_url_publicsearch);
 }
 
-router.post("/", async(req, res) => {
+router.post("/", async (req, res) => {
   var { homepage_button } = req.body;
 
   check_subsidyobjective0 = "";
@@ -93,14 +90,14 @@ router.post("/", async(req, res) => {
   check_subsidyinstrument9 = "";
   check_subsidyinstrument9_pass = "";
 
-  legal_granting_from_date ="";
-  legal_granting_to_date ="" 
-  date_legal_granting_date_day ="";
-  date_legal_granting_date_month ="";
-  date_legal_granting_date_year="";
-  date_legal_granting_date_day1 ="";
-  date_legal_granting_date_month1 ="";
-  date_legal_granting_date_year1 ="";
+  legal_granting_from_date = "";
+  legal_granting_to_date = "";
+  date_legal_granting_date_day = "";
+  date_legal_granting_date_month = "";
+  date_legal_granting_date_year = "";
+  date_legal_granting_date_day1 = "";
+  date_legal_granting_date_month1 = "";
+  date_legal_granting_date_year1 = "";
   date_legal_granting_date_day_Error = false;
   date_legal_granting_date_month_Error = false;
   date_legal_granting_date_year_Error = false;
@@ -108,12 +105,10 @@ router.post("/", async(req, res) => {
   date_legal_granting_date_month1_Error = false;
   date_legal_granting_date_year1_Error = false;
 
-
-
-  console.log("homepage_button : " + homepage_button );
-  actual_spending_sector = '';
-  actual_subsidy_instrument ='';
-  actual_subsidy_objective ='';
+  console.log("homepage_button : " + homepage_button);
+  actual_spending_sector = "";
+  actual_subsidy_instrument = "";
+  actual_subsidy_objective = "";
 
   actual_subsidy_objective_trim = actual_subsidy_objective.replace(
     /^"(.+)"$/,
@@ -136,9 +131,7 @@ router.post("/", async(req, res) => {
     /^"(.*)"$/,
     "$1"
   );
-  actual_subsidy_instrument_pass1 = JSON.parse(
-    actual_subsidy_instrument_pass
-  );
+  actual_subsidy_instrument_pass1 = JSON.parse(actual_subsidy_instrument_pass);
 
   actual_spending_sector_trim = actual_spending_sector.replace(
     /^"(.+)"$/,
@@ -153,8 +146,6 @@ router.post("/", async(req, res) => {
 
   console.log("actual_spending_sector_pass :" + actual_spending_sector_pass);
 
-
-
   radio_beneficiaryname = "";
   text_beneficiaryname = "";
   subsidy_objective_isfirst = "Yes";
@@ -163,17 +154,14 @@ router.post("/", async(req, res) => {
   console.log("subsidy_objective_isfirst bene :" + subsidy_objective_isfirst);
   frontend_totalRecordsPerPage = 10;
   if (homepage_button == "start_now") {
-  res.render("publicusersearch/beneficiaryname"); 
-  }
-
-  else if ( homepage_button == "show_results") {
-
+    res.render("publicusersearch/beneficiaryname");
+  } else if (homepage_button == "show_results") {
     const data_request_all = {
       beneficiaryName: "",
       subsidyMeasureTitle: "",
       subsidyObjective: [],
       spendingRegion: [],
-      subsidyInstrument:[],
+      subsidyInstrument: [],
       spendingSector: [],
       legalGrantingFromDate: "",
       legalGrantingToDate: "",
@@ -189,7 +177,7 @@ router.post("/", async(req, res) => {
       subsidyMeasureTitle: "",
       subsidyObjective: [],
       spendingRegion: [],
-      subsidyInstrument:[],
+      subsidyInstrument: [],
       spendingSector: [],
       legalGrantingFromDate: "",
       legalGrantingToDate: "",
@@ -198,7 +186,6 @@ router.post("/", async(req, res) => {
       sortBy: [""],
     };
 
-
     var data = JSON.parse(JSON.stringify(data_request));
 
     console.log("request :" + JSON.stringify(data));
@@ -206,7 +193,13 @@ router.post("/", async(req, res) => {
     try {
       const apidata = await axios.post(
         beis_url_publicsearch + "/searchResults",
-        data
+        data,
+        {
+          headers: {
+            "X-Frame-Options": "DENY",
+            "Content-Security-Policy": "frame-ancestors 'self'",
+          },
+        }
       );
       console.log(`Status: ${apidata.status}`);
 
@@ -260,16 +253,10 @@ router.post("/", async(req, res) => {
       console.log("response_error_message catch : " + response_error_message);
       res.render("publicusersearch/noresults");
     }
-
-
   }
-
 });
 
 router.get("/", (req, res) => {
-
-  
-
   res.render("publicusersearch/beneficiaryname");
 });
 
