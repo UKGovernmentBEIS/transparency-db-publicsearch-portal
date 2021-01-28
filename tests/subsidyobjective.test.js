@@ -33,7 +33,7 @@ test("Unit testing for subsidy objective route - Test for with beneficiary name"
 test("Unit testing for subsidy objective route Test for with out beneficiary name", (done) => {
   const req = mockRequest({}, { radio_beneficiaryname: "No" });
   global.subsidy_objective_isfirst = "Yes";
-  global.beis_url_publicsearch = "";
+  // global.beis_url_publicsearch = "";
   const res = {};
   request(app)
     .post("/subsidyobjective", (req, res))

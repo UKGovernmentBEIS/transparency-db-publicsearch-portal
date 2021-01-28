@@ -21,7 +21,7 @@ const res = {};
 
 test("Unit testing for home page route - Test for POST call", (done) => {
   const req = mockRequest();
-  global.beis_url_publicsearch = "";
+  // global.beis_url_publicsearch = "";
   const res = {};
   request(app)
     .post("/homepage", (req, res))
@@ -30,7 +30,7 @@ test("Unit testing for home page route - Test for POST call", (done) => {
 
 test("Unit testing for home page route Test for GET call", (done) => {
   const req = mockRequest();
-  global.beis_url_publicsearch = "";
+  // global.beis_url_publicsearch = "";
   const res = {};
   request(app)
     .get("/homepage", (req, res))

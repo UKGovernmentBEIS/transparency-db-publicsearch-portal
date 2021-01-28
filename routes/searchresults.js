@@ -9,10 +9,10 @@ var request = require("request");
 const { debug } = require("request");
 
 router.post("/", async (req, res) => {
-  res.set("X-Frame-Options", "DENY");
-  res.set("X-Content-Type-Options", "nosniff");
-  res.set("Content-Security-Policy", 'frame-ancestors "self"');
-  res.set("Access-Control-Allow-Origin", beis_url_publicsearch);
+  // res.set("X-Frame-Options", "DENY");
+  // res.set("X-Content-Type-Options", "nosniff");
+  // res.set("Content-Security-Policy", 'frame-ancestors "self"');
+  // res.set("Access-Control-Allow-Origin", beis_url_publicsearch);
 
   console.log("HOMEPAGE button", req.body.homepage_button);
   if (req.body.homepage_button == "show_results") {
@@ -759,10 +759,10 @@ router.post("/", async (req, res) => {
 });
 
 router.get("/", (req, res) => {
-  res.set("X-Frame-Options", "DENY");
-  res.set("X-Content-Type-Options", "nosniff");
-  res.set("Content-Security-Policy", 'frame-ancestors "self"');
-  res.set("Access-Control-Allow-Origin", beis_url_publicsearch);
+  // res.set("X-Frame-Options", "DENY");
+  // res.set("X-Content-Type-Options", "nosniff");
+  // res.set("Content-Security-Policy", 'frame-ancestors "self"');
+  // res.set("Access-Control-Allow-Origin", beis_url_publicsearch);
 
   res.render("publicusersearch/searchresults", {
     date_legal_granting_date_day,

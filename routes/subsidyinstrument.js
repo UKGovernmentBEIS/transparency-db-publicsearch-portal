@@ -358,20 +358,20 @@ router.post("/", (req, res) => {
 
   console.log(" actual_spending_sector:" + actual_spending_sector);
 
-  res.set("X-Frame-Options", "DENY");
-  res.set("X-Content-Type-Options", "nosniff");
-  res.set("Content-Security-Policy", 'frame-ancestors "self"');
-  res.set("Access-Control-Allow-Origin", beis_url_publicsearch);
+  // res.set("X-Frame-Options", "DENY");
+  // res.set("X-Content-Type-Options", "nosniff");
+  // res.set("Content-Security-Policy", 'frame-ancestors "self"');
+  // res.set("Access-Control-Allow-Origin", beis_url_publicsearch);
 
   res.render("publicusersearch/subsidyinstrument");
 });
 
 router.get("/", (req, res) => {
   subsidy_instrument_isfirst = "No";
-  res.set("X-Frame-Options", "DENY");
-  res.set("X-Content-Type-Options", "nosniff");
-  res.set("Content-Security-Policy", 'frame-ancestors "self"');
-  res.set("Access-Control-Allow-Origin", beis_url_publicsearch);
+  // res.set("X-Frame-Options", "DENY");
+  // res.set("X-Content-Type-Options", "nosniff");
+  // res.set("Content-Security-Policy", 'frame-ancestors "self"');
+  // res.set("Access-Control-Allow-Origin", beis_url_publicsearch);
 
   res.render("publicusersearch/subsidyinstrument");
 });
