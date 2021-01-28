@@ -207,19 +207,19 @@ router.post("/", (req, res) => {
   date_legal_granting_date_month1 = "";
   date_legal_granting_date_year1 = "";
 
-  res.set("X-Frame-Options", "DENY");
-  res.set("X-Content-Type-Options", "nosniff");
-  res.set("Content-Security-Policy", 'frame-ancestors "self"');
-  res.set("Access-Control-Allow-Origin", beis_url_publicsearch);
+  // res.set("X-Frame-Options", "DENY");
+  // res.set("X-Content-Type-Options", "nosniff");
+  // res.set("Content-Security-Policy", 'frame-ancestors "self"');
+  // res.set("Access-Control-Allow-Origin", beis_url_publicsearch);
 
   res.render("publicusersearch/legalgrantingdate");
 });
 
 router.get("/", (req, res) => {
-  res.set("X-Frame-Options", "DENY");
-  res.set("X-Content-Type-Options", "nosniff");
-  res.set("Content-Security-Policy", 'frame-ancestors "self"');
-  res.set("Access-Control-Allow-Origin", beis_url_publicsearch);
+  // res.set("X-Frame-Options", "DENY");
+  // res.set("X-Content-Type-Options", "nosniff");
+  // res.set("Content-Security-Policy", 'frame-ancestors "self"');
+  // res.set("Access-Control-Allow-Origin", beis_url_publicsearch);
   res.render("publicusersearch/legalgrantingdate");
 });
 
