@@ -24,7 +24,7 @@ test("Unit testing for legal granting date route - Test for POST call", (done) =
     {},
     { check_subsidyinstrument0: "Equity", subsidyinstrument0: "Loan" }
   );
-
+  global.beis_url_publicsearch = "";
   const res = {};
   request(app)
     .post("/legalgrantingdate", (req, res))
@@ -55,6 +55,7 @@ test("Unit testing for legal granting date route - Test for POST call", (done) =
   request(app)
     .post("/legalgrantingdate", (req, res))
     .expect(200, done);
+  // expect(resp).toBe(200);
 });
 
 test("Unit testing for legal granting date route Test for GET call", (done) => {
