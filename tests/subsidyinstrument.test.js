@@ -22,7 +22,7 @@ const res = {};
 test("Unit testing for subsidy instrument route - Test for POST call", (done) => {
   global.subsidy_instrument_isfirst = "Yes";
   const req = mockRequest({}, { check_spendingsector: "Education" });
-
+  global.beis_url_publicsearch = "";
   const res = {};
   request(app)
     .post("/subsidyinstrument", (req, res))
@@ -61,6 +61,7 @@ test("Unit testing for subsidy instrument route - Test for POST call", (done) =>
   const req = mockRequest({}, { check_spendingsector: "Education" });
   global.subsidy_instrument_isfirst = "Yes";
   global.single_select = "Yes";
+  global.beis_url_publicsearch = "";
   const res = {};
   request(app)
     .post("/subsidyinstrument", (req, res))
@@ -70,7 +71,7 @@ test("Unit testing for subsidy instrument route - Test for POST call", (done) =>
 
 test("Unit testing for subsidy instrument route Test for GET call", (done) => {
   const req = mockRequest({});
-
+  global.beis_url_publicsearch = "";
   const res = {};
   request(app)
     .get("/subsidyinstrument", (req, res))
