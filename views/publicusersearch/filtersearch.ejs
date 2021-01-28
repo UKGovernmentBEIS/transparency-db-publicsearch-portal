@@ -238,7 +238,7 @@ Gov.UK public user search - header rendering design
       // url: 'http://dev-beis-tp-db-public-search-service.azurewebsites.net/searchResults',
       url: beis_url_publicsearch + '/searchResults',
       type: "POST",
-      headers: { 'Access-Control-Allow-Origin': beis_url_publicsearch },
+      headers: { 'Access-Control-Allow-Origin': '*' },
       data: data_request_clientside,
       contentType: 'application/json;charset=utf-8',
       dataType: 'json',

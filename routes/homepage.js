@@ -1,14 +1,17 @@
 // *********************************************************
-// Gov.UK public user search subsidy awards homepage routing 
+// Gov.UK public user search subsidy awards homepage routing
 // *********************************************************
 
-
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 
-router.post('/',(req, res) => {
-
+router.post("/", (req, res) => {
   // All declarations goes here
+
+  res.set("X-Frame-Options", "DENY");
+  res.set("X-Content-Type-Options", "nosniff");
+  res.set("Content-Security-Policy", 'frame-ancestors "self"');
+  res.set("Access-Control-Allow-Origin", beis_url_publicsearch);
 
   radio_beneficiaryname = "";
   text_beneficiaryname = "";
@@ -29,18 +32,18 @@ router.post('/',(req, res) => {
   check_subsidyobjective12 = "";
   check_subsidyobjective12_pass = "";
 
-  check_subsidyinstrument0="";
-  check_subsidyinstrument1="";
-  check_subsidyinstrument2="";
-  check_subsidyinstrument3="";
-  check_subsidyinstrument4="";
-  check_subsidyinstrument5="";
-  check_subsidyinstrument6="";
-  check_subsidyinstrument7="";
-  check_subsidyinstrument8="";
-  check_subsidyinstrument8_pass="";
-  check_subsidyinstrument9="";
-  check_subsidyinstrument9_pass ="";
+  check_subsidyinstrument0 = "";
+  check_subsidyinstrument1 = "";
+  check_subsidyinstrument2 = "";
+  check_subsidyinstrument3 = "";
+  check_subsidyinstrument4 = "";
+  check_subsidyinstrument5 = "";
+  check_subsidyinstrument6 = "";
+  check_subsidyinstrument7 = "";
+  check_subsidyinstrument8 = "";
+  check_subsidyinstrument8_pass = "";
+  check_subsidyinstrument9 = "";
+  check_subsidyinstrument9_pass = "";
 
   check_spendingsector0 = "";
   check_spendingsector1 = "";
@@ -69,19 +72,22 @@ router.post('/',(req, res) => {
   current_page = 1;
 
   date_legal_granting_date_day = "";
-  date_legal_granting_date_month ="";
-  date_legal_granting_date_year ="";
+  date_legal_granting_date_month = "";
+  date_legal_granting_date_year = "";
   date_legal_granting_date_day1 = "";
-  date_legal_granting_date_month1 ="";
-  date_legal_granting_date_year1 ="";
+  date_legal_granting_date_month1 = "";
+  date_legal_granting_date_year1 = "";
 
+  res.render("publicusersearch/homepage");
+});
 
+router.get("/", (req, res) => {
+  res.set("X-Frame-Options", "DENY");
+  res.set("X-Content-Type-Options", "nosniff");
+  res.set("Content-Security-Policy", 'frame-ancestors "self"');
+  res.set("Access-Control-Allow-Origin", beis_url_publicsearch);
 
-    res.render('publicusersearch/homepage')
-  });
-
-  router.get('/',(req, res) => {
-    res.render('publicusersearch/homepage')
-  });
+  res.render("publicusersearch/homepage");
+});
 
 module.exports = router;

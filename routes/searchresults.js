@@ -9,6 +9,11 @@ var request = require("request");
 const { debug } = require("request");
 
 router.post("/", async (req, res) => {
+  res.set("X-Frame-Options", "DENY");
+  res.set("X-Content-Type-Options", "nosniff");
+  res.set("Content-Security-Policy", 'frame-ancestors "self"');
+  res.set("Access-Control-Allow-Origin", beis_url_publicsearch);
+
   var { legalgrantingdate } = req.body;
   var { legal_granting_date_day } = req.body;
   var { legal_granting_date_month } = req.body;
@@ -496,6 +501,7 @@ router.post("/", async (req, res) => {
       } else {
         end_page = 10;
       }
+
       res.render("publicusersearch/searchresults", {
         pageCount,
         previous_page,
@@ -525,6 +531,11 @@ router.post("/", async (req, res) => {
 });
 
 router.get("/", (req, res) => {
+  res.set("X-Frame-Options", "DENY");
+  res.set("X-Content-Type-Options", "nosniff");
+  res.set("Content-Security-Policy", 'frame-ancestors "self"');
+  res.set("Access-Control-Allow-Origin", beis_url_publicsearch);
+
   res.render("publicusersearch/searchresults", {
     date_legal_granting_date_day,
     date_legal_granting_date_month,

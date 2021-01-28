@@ -123,6 +123,10 @@ router.get("/", async (req, res) => {
     console.log("Start Page :" + start_page);
     console.log("end page :" + end_page);
     console.log("page count: " + pageCount);
+    res.set("X-Frame-Options", "DENY");
+    res.set("X-Content-Type-Options", "nosniff");
+    res.set("Content-Security-Policy", 'frame-ancestors "self"');
+    res.set("Access-Control-Allow-Origin", beis_url_publicsearch);
     res.render("publicusersearch/searchresults", {
       pageCount,
       previous_page,
@@ -140,6 +144,10 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/", (req, res) => {
+  res.set("X-Frame-Options", "DENY");
+  res.set("X-Content-Type-Options", "nosniff");
+  res.set("Content-Security-Policy", 'frame-ancestors "self"');
+  res.set("Access-Control-Allow-Origin", beis_url_publicsearch);
   res.render("publicusersearch/searchresults");
 });
 
