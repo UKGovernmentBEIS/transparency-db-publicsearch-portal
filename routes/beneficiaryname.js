@@ -9,6 +9,7 @@ var request = require("request");
 // ********************************************************
 // Read environment property file and set the API URL end points
 // ********************************************************
+
 Environment_variable = process.argv[2];
 
 if (Environment_variable == "env=dev") {
@@ -35,6 +36,11 @@ if (Environment_variable == "env=dev") {
 }
 
 router.post("/", async (req, res) => {
+  res.set("X-Frame-Options", "DENY");
+  res.set("X-Content-Type-Options", "nosniff");
+  res.set("Content-Security-Policy", 'frame-ancestors "self"');
+  res.set("Access-Control-Allow-Origin", beis_url_publicsearch);
+
   var { homepage_button } = req.body;
 
   check_subsidyobjective0 = "";
@@ -257,6 +263,11 @@ router.post("/", async (req, res) => {
 });
 
 router.get("/", (req, res) => {
+  res.set("X-Frame-Options", "DENY");
+  res.set("X-Content-Type-Options", "nosniff");
+  res.set("Content-Security-Policy", 'frame-ancestors "self"');
+  res.set("Access-Control-Allow-Origin", beis_url_publicsearch);
+
   res.render("publicusersearch/beneficiaryname");
 });
 

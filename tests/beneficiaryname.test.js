@@ -36,6 +36,7 @@ test("beneficiary name route works", (done) => {
   global.process.argv = ["", "", "env=dev"];
   global.text_beneficiaryname = "";
   global.radio_beneficiaryname = "No";
+  global.beis_url_publicsearch = "";
   const res = {};
   request(app)
     .post("/beneficiaryname", (req, res))
@@ -50,6 +51,7 @@ test("beneficiary name route works", (done) => {
   global.process.argv = ["", "", "env=stag"];
   global.text_beneficiaryname = "";
   global.radio_beneficiaryname = "Yes";
+  global.beis_url_publicsearch = "";
   const res = {};
   request(app)
     .post("/beneficiaryname", (req, res))

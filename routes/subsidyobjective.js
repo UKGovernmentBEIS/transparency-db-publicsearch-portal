@@ -38,11 +38,21 @@ router.post("/", (req, res) => {
     check_subsidyobjective12 = "";
     check_subsidyobjective12_pass = "";
   }
+  res.set("X-Frame-Options", "DENY");
+  res.set("X-Content-Type-Options", "nosniff");
+  res.set("Content-Security-Policy", 'frame-ancestors "self"');
+  res.set("Access-Control-Allow-Origin", beis_url_publicsearch);
+
   res.render("publicusersearch/subsidyobjective");
 });
 
 router.get("/", (req, res) => {
   subsidy_objective_isfirst = "No";
+  res.set("X-Frame-Options", "DENY");
+  res.set("X-Content-Type-Options", "nosniff");
+  res.set("Content-Security-Policy", 'frame-ancestors "self"');
+  res.set("Access-Control-Allow-Origin", beis_url_publicsearch);
+
   res.render("publicusersearch/subsidyobjective");
 });
 
