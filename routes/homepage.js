@@ -8,10 +8,10 @@ const router = express.Router();
 router.post("/", (req, res) => {
   // All declarations goes here
 
-  // res.set("X-Frame-Options", "DENY");
-  // res.set("X-Content-Type-Options", "nosniff");
-  // res.set("Content-Security-Policy", 'frame-ancestors "self"');
-  // res.set("Access-Control-Allow-Origin", beis_url_publicsearch);
+  res.set("X-Frame-Options", "DENY");
+  res.set("X-Content-Type-Options", "nosniff");
+  res.set("Content-Security-Policy", 'frame-ancestors "self"');
+  res.set("Access-Control-Allow-Origin", beis_url_publicsearch);
 
   radio_beneficiaryname = "";
   text_beneficiaryname = "";
@@ -82,10 +82,10 @@ router.post("/", (req, res) => {
 });
 
 router.get("/", (req, res) => {
-  // res.set("X-Frame-Options", "DENY");
-  // res.set("X-Content-Type-Options", "nosniff");
-  // res.set("Content-Security-Policy", 'frame-ancestors "self"');
-  // res.set("Access-Control-Allow-Origin", beis_url_publicsearch);
+  res.set("X-Frame-Options", "DENY");
+  res.set("X-Content-Type-Options", "nosniff");
+  res.set("Content-Security-Policy", 'frame-ancestors "self"');
+  res.set("Access-Control-Allow-Origin", beis_url_publicsearch);
 
   res.render("publicusersearch/homepage");
 });

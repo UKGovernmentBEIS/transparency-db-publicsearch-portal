@@ -24,7 +24,7 @@ test("Unit testing for legal granting date route - Test for POST call", (done) =
     {},
     { check_subsidyinstrument0: "Equity", subsidyinstrument0: "Loan" }
   );
-  // global.beis_url_publicsearch = "";
+  global.beis_url_publicsearch = "";
   const res = {};
   request(app)
     .post("/legalgrantingdate", (req, res))
@@ -50,7 +50,7 @@ test("Unit testing for legal granting date route - Test for POST call", (done) =
     { check_subsidyinstrument0: "Equity", subsidyinstrument0: "Loan" }
   );
   global.single_select = "Yes";
-  // global.beis_url_publicsearch = "";
+  global.beis_url_publicsearch = "";
   const res = {};
   request(app)
     .post("/legalgrantingdate", (req, res))
@@ -60,7 +60,7 @@ test("Unit testing for legal granting date route - Test for POST call", (done) =
 
 test("Unit testing for legal granting date route Test for GET call", (done) => {
   const req = mockRequest({});
-  // global.beis_url_publicsearch = "";
+  global.beis_url_publicsearch = "";
   const res = {};
   request(app)
     .get("/legalgrantingdate", (req, res))

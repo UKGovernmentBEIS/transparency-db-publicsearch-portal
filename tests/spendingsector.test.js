@@ -25,7 +25,7 @@ test("Unit testing for spending sector route - Test for POST call", (done) => {
     {},
     { check_subsidyobjective: "Research and development" }
   );
-  // global.beis_url_publicsearch = "";
+  global.beis_url_publicsearch = "";
   const res = {};
   request(app)
     .post("/spendingsector", (req, res))
@@ -52,7 +52,7 @@ test("Unit testing for spending sector route - Test for POST call", (done) => {
 test("Unit testing for spending sector route - Test for POST call", (done) => {
   global.spending_sector_isfirst = "Yes";
   global.single_select = "Yes";
-  // global.beis_url_publicsearch = "";
+  global.beis_url_publicsearch = "";
   const req = mockRequest(
     {},
     { check_subsidyobjective: "Research and development" }

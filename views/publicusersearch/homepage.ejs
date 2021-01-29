@@ -32,55 +32,88 @@ Gov.UK public user search - header rendering design
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-two-thirds">
           <h1 class="govuk-heading-xl">
-            Search for UK subsidies</h1>
+            View subsidies awarded by UK government</h1>
         </div>
       </div>
 
       <div class="govuk-grid-row">
-        <div class="govuk-grid-column-two-thirds">
+        <div class="govuk-grid-column-two-thirds" style="text-align: justify;">
 
-
-          <p class="govuk-body">A subsidy is a financial contribution that a public authority awards to a business - for
-            example, a grant, soft loan or tax credit. Subsidies provide a benefit to the business that receives them.
-          <p> </p>
+          <p class="govuk-body">Use this service to find details of subsidies given by UK government to businesses since
+            1 January 2021.</p>
+          <p class="govuk-body">Subsidies are financial help, for example loans, grants or tax credits. They're given in
+            return for a business helping to meet a government policy goal, for example carrying out research in a
+            particular industry.
+          </p>
+          <!-- <p> </p>
           You can use this service to view and download details of subsidies that public authorities have awarded. For
-          example, you can search for: </p>
+          example, you can search for: </p> -->
 
-
+          <p class="govuk-body">You can search by:</p>
           <ul class="govuk-list govuk-list--bullet">
-            <li>a specific company</li>
-            <li>the purpose of the subsidy</li>
-            <li>industries that have received subsidies</li>
-            <li>different types of subsidy</li>
-            <li>the date that the subsidy was awarded</li>
+            <li>name of the company given the subsidy</li>
+            <li>industry sector</li>
+            <li>purpose of the subsidy</li>
+            <li>type of subsidy</li>
+            <li>date the subsidy was awarded</li>
           </ul>
+          <p class="govuk-body">You can only use this service to search for UK subsidies awarded since
 
-          <p>You cannot use this service to apply for a subsidy. Visit GOV.UK to learn about <a href="/homepage"
-              class="govuk-link">support for businesses.</a></p>
+            1 January 2021. <a aria-label="Search for subsidies awarded before 1 January 2021."
+              href="https://ec.europa.eu/transparencyregister/public/consultation/search.do?locale=en">Search for
+              subsidies awarded before 1 January
+              2021.</a></p>
 
+          <p class="govuk-body">You cannot use this service to apply for a subsidy. <a
+              href="https://www.gov.uk/business-finance-support" aria-label="Read about finance and support for
+              businesses">Read about finance and support for
+              businesses.
+            </a></p>
+
+          <h3 class="govuk-heading-l">
+            Contact</h3>
+          <p class="govuk-body">Contact the Department for Business, Energy and Industrial Strategy if you have any
+            questions or need help.
+          </p>
+        </div>
+        <div class="govuk-grid-column-full">
+          <h3 class="govuk-heading-m">
+            Department for Business, Energy and Industrial Strategy</h3>
+          <div class="govuk-form-group">
+            <label>Email</label>
+            <br>
+            <a href="mailto:enquiries@beis.gov.uk" aria-label="Email">enquiries@beis.gov.uk</a></div>
+          <div class="govuk-form-group"><label>Telephone</label>
+            <br>
+            <span>020 7215 5000</span><br>
+            <a href="https://www.gov.uk/call-charges" aria-label="Find out about call charges">Find out about call
+              charges</a></div>
+          <!-- <p>You cannot use this service to apply for a subsidy. Visit GOV.UK to learn about <a href="/homepage"
+              class="govuk-link">support for businesses.</a></p> -->
+          <form action="/beneficiaryname" method="POST" class="govuk-grid-column-one-quarter govuk-padding-0">
+            <button class="govuk-button" data-module="govuk-button" id="homepage_button_start_now"
+              name="homepage_button" value="start_now">
+              Start now
+              <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="15.5" height="16"
+                viewBox="0 0 33 40" aria-hidden="true" focusable="false">
+                <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z" />
+              </svg>
+            </button>
+            <!-- <button class="govuk-button govuk-button--secondary" data-module="govuk-button"
+                id="homepage_button_show_results" name="homepage_button" value="show_results">
+                Show results
+              </button> -->
+          </form>
+          <form action="/searchresults" method="POST" class="govuk-grid-column-one-quarter govuk-padding-0">
+            <button class="govuk-button govuk-button--secondary" data-module="govuk-button"
+              id="homepage_button_show_results" name="homepage_button" value="show_results">
+              Show results
+            </button>
+          </form>
 
         </div>
 
       </div>
-
-      <form action="/beneficiaryname" method="POST">
-        <button class="govuk-button" data-module="govuk-button" id="homepage_button_start_now" name="homepage_button"
-          value="start_now">
-          Start now
-          <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="15.5" height="16"
-            viewBox="0 0 33 40" aria-hidden="true" focusable="false">
-            <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z" />
-          </svg></a>
-        </button>
-        <button class="govuk-button govuk-button--secondary" data-module="govuk-button"
-          id="homepage_button_show_results" name="homepage_button" value="show_results">
-          Show results
-        </button>
-      </form>
-      <!-- <form action="/searchresults" method="POST"> -->
-
-      <!-- </form> -->
-
 
 
 

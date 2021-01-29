@@ -21,7 +21,7 @@ const res = {};
 
 test("Unit testing for no results route - Test for POST call", (done) => {
   const req = mockRequest();
-  // global.beis_url_publicsearch = "";
+  global.beis_url_publicsearch = "";
   const res = {};
   request(app)
     .post("/noresults", (req, res))
@@ -30,7 +30,7 @@ test("Unit testing for no results route - Test for POST call", (done) => {
 
 test("Unit testing for no results route Test for GET call", (done) => {
   const req = mockRequest();
-  // global.beis_url_publicsearch = "";
+  global.beis_url_publicsearch = "";
   const res = {};
   request(app)
     .get("/noresults", (req, res))

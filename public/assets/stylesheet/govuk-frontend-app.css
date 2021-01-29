@@ -625,3 +625,7 @@ button.link {
   min-height: 0.01%;
   overflow-x: auto;
 }
+
+.govuk-padding-0 {
+  padding: 0% !important;
+}

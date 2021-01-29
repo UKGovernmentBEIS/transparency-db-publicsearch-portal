@@ -131,7 +131,7 @@ app.locals.searchawarddetails;
 app.locals.searchmeasuredetails;
 app.locals.data_request_clientside;
 app.locals.beis_url_publicsearch;
-app.locals.beis_url_accessmanagement; 
+app.locals.beis_url_accessmanagement;
 app.locals.awardnumber;
 
 /***************************************************** */
@@ -139,6 +139,11 @@ app.locals.awardnumber;
 /****************************************************** */
 
 app.get("/", (req, res) => {
+  res.set("X-Frame-Options", "DENY");
+  res.set("X-Content-Type-Options", "nosniff");
+  res.set("Content-Security-Policy", 'frame-ancestors "self"');
+  res.set("Access-Control-Allow-Origin", beis_url_publicsearch);
+
   res.render("publicusersearch/homepage");
 });
 
@@ -196,7 +201,5 @@ app.use("/pageperroute", pageperroute);
 
 var updateresultspageperroute = require("./routes/updateresultspageperroute");
 app.use("/updateresultspageperroute", updateresultspageperroute);
-
-
 
 module.exports = app;
