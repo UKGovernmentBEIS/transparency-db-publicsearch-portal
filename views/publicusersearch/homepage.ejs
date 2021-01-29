@@ -90,27 +90,28 @@ Gov.UK public user search - header rendering design
               charges</a></div>
           <!-- <p>You cannot use this service to apply for a subsidy. Visit GOV.UK to learn about <a href="/homepage"
               class="govuk-link">support for businesses.</a></p> -->
-          <form action="/beneficiaryname" method="POST" class="govuk-grid-column-one-quarter govuk-padding-0">
-            <button class="govuk-button" data-module="govuk-button" id="homepage_button_start_now"
-              name="homepage_button" value="start_now">
-              Start now
-              <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="15.5" height="16"
-                viewBox="0 0 33 40" aria-hidden="true" focusable="false">
-                <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z" />
-              </svg>
-            </button>
-            <!-- <button class="govuk-button govuk-button--secondary" data-module="govuk-button"
+          <div class="govuk-grid-column-one-third govuk-padding-0">
+            <form action="/beneficiaryname" method="POST" class="govuk-grid-column-one-half govuk-padding-0">
+              <button class="govuk-button" data-module="govuk-button" id="homepage_button_start_now"
+                name="homepage_button" value="start_now">
+                Start now
+                <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="15.5" height="16"
+                  viewBox="0 0 33 40" aria-hidden="true" focusable="false">
+                  <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z" />
+                </svg>
+              </button>
+              <!-- <button class="govuk-button govuk-button--secondary" data-module="govuk-button"
                 id="homepage_button_show_results" name="homepage_button" value="show_results">
                 Show results
               </button> -->
-          </form>
-          <form action="/searchresults" method="POST" class="govuk-grid-column-one-quarter govuk-padding-0">
-            <button class="govuk-button govuk-button--secondary" data-module="govuk-button"
-              id="homepage_button_show_results" name="homepage_button" value="show_results">
-              Show results
-            </button>
-          </form>
-
+            </form>
+            <form action="/searchresults" method="POST" class="govuk-grid-column-one-half govuk-padding-0">
+              <button class="govuk-button govuk-button--secondary" data-module="govuk-button"
+                id="homepage_button_show_results" name="homepage_button" value="show_results">
+                Show results
+              </button>
+            </form>
+          </div>
         </div>
 
       </div>
