@@ -25,11 +25,12 @@ Gov.UK public user search - header rendering design
 <script type="text/javascript" src="/assets/javascripts/script.js" defer></script>
 <link href="/assets/stylesheet/govuk-accordion1.css" rel="stylesheet" media="all" />
 <script src="/assets/javascripts/vendor/modernizr.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="/assets/javascripts/jquery.min.js"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
 <!-- <script type="text/javascript" language="javascript"
   src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script> -->
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> -->
-<script src="https://cdn.jsdelivr.net/jquery.cookie/1.4.0/jquery.cookie.min.js"></script>
+<!-- <script src="https://cdn.jsdelivr.net/jquery.cookie/1.4.0/jquery.cookie.min.js"></script> -->
 <script src="https://cdn.jsdelivr.net/alasql/0.3/alasql.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.7.12/xlsx.core.min.js"></script>
 
@@ -453,9 +454,9 @@ Gov.UK public user search - header rendering design
 
               <th scope="col" style="text-align:left" class="govuk-table__header app-custom-class">Subsidy scheme</th>
               <th scope="col" class="govuk-table__header app-custom-class" aria-sort="none">
-                <a href="/pageroute/?page=999999" style="text-decoration: none">
-                  Subsidy amount
-                  <% if (subsidyamount_arrow == "upanddown" ) { %>
+                <!-- <a href="/pageroute/?page=999999" style="text-decoration: none"> -->
+                Subsidy amount
+                <!-- <% if (subsidyamount_arrow == "upanddown" ) { %>
                   <img id="subsidyamount_updownarrow" src="/assets/images/UpDownArrow.jpg " alt="Curently not sorted">
                   <% } else if (subsidyamount_arrow == "updecending" ) { %>
                   <img id="subsidyamount_downarrow" src="/assets/images/DownArrow.jpg"
@@ -465,12 +466,8 @@ Gov.UK public user search - header rendering design
                     alt="Currently sorted by Ascending order">
                   <% } %>
 
-                </a>
+                </a> -->
               </th>
-
-
-
-
             </tr>
           </thead>
           <tbody class="govuk-table__body">
