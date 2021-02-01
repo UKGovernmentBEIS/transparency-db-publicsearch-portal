@@ -2,19 +2,19 @@
 <html lang="en">
 
 <head>
-  <title>GOV.UK - Public user search page</title>
+  <title>GOV.UK - Public user search measure details page</title>
   <%- include('../partials/headercss.ejs') %>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145652997-21"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-  
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag('js', new Date());
-      gtag('config', 'UA-145652997-21');
-    </script>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145652997-21"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+    gtag('config', 'UA-145652997-21');
+  </script>
 </head>
 <%- include('../partials/header.ejs') %>
 <div class="govuk-width-container ">
@@ -36,7 +36,7 @@
 
          </ol>
        </div> -->
-       <p> </p>
+    <p> </p>
 
     <a href="/searchresults" class="govuk-back-link" aria-label="Back to search results page">Back</a>
     <p> </p>
@@ -67,7 +67,7 @@
       <label class="govuk-label">
         Overview of the subsidy scheme and the local authority that awarded it.
       </label></div>
-      <p> </p>
+    <p> </p>
 
     <dl class="govuk-summary-list govuk-!-margin-bottom-9">
 
@@ -128,7 +128,8 @@
           Weblink to Granting Authority Text of Subsidy
         </dt>
         <dd class="govuk-summary-list__value">
-          <a aria-label="Weblink to granting authority" href=<%= searchmeasuredetails.subsidyMeasure.gaSubsidyWebLink %>>
+          <a aria-label="Weblink to granting authority"
+            href=<%= searchmeasuredetails.subsidyMeasure.gaSubsidyWebLink %>>
             <%= searchmeasuredetails.subsidyMeasure.gaSubsidyWebLink %>
 
           </a>
