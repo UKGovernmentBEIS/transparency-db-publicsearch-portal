@@ -63,8 +63,8 @@ Gov.UK public user search - header rendering design
             <div class="govuk-radios govuk-radios--conditional" data-module="govuk-radios">
               <div class="govuk-radios__item">
                 <input class="govuk-radios__input" id="beneficiary_name_radio_button" name="beneficiaryname"
-                  type="radio" value="Yes"
-                  data-aria-controls="conditional-beneficiaryname" "<% if (radio_beneficiaryname == "Yes") { %> checked <% } %>">
+                  type="radio" value="Yes" data-aria-controls="conditional-beneficiaryname"
+                  <% if (radio_beneficiaryname == "Yes") { %> checked <% } %>>
                 <label class="govuk-label govuk-radios__label" for="beneficiary_name_radio_button">
                   Yes
                 </label>
@@ -72,7 +72,7 @@ Gov.UK public user search - header rendering design
 
               <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-beneficiaryname">
                 <div class="govuk-form-group">
-                  <label class="govuk-label" for="beneficiaryname">
+                  <label class="govuk-label" for="Beneficiary_name_text">
                     Enter business name
                   </label>
                   <% if (text_beneficiaryname) { %> %>
@@ -87,7 +87,8 @@ Gov.UK public user search - header rendering design
               </div>
               <div class="govuk-radios__item">
                 <input class="govuk-radios__input" id="beneficiaryname-2" name="beneficiaryname" type="radio" value="No"
-                  data-aria-controls="conditional-beneficiaryname-2" "<% if (radio_beneficiaryname == "No") { %> checked <% } %>">
+                  data-aria-controls="conditional-beneficiaryname-2" <% if (radio_beneficiaryname == "No") { %> checked
+                  <% } %>>
                 <label class="govuk-label govuk-radios__label" for="beneficiaryname-2">
                   No
                 </label>
