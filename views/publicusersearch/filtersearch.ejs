@@ -297,7 +297,7 @@ Gov.UK public user search - header rendering design
   <div class="govuk-width-container ">
     <%- include('../partials/banner.ejs') %>
 
-    <main class="govuk-main-wrapper " id="main-content" role="main">
+    <main id="main-content" role="main">
 
       <!-- <div class="govuk-breadcrumbs ">
         <ol class="govuk-breadcrumbs__list">
@@ -309,156 +309,154 @@ Gov.UK public user search - header rendering design
           </li>
         </ol>
       </div> -->
-      <p> </p>
-      <div class="govuk-grid-row">
-        <div class="govuk-grid-column-two-thirds">
-          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-            <h1 class="govuk-fieldset__heading">
+      <div class="govuk-main-wrapper ">
+        <div class="govuk-grid-row">
+          <div class="govuk-grid-column-two-thirds">
+            <!-- <legend class="govuk-fieldset__legend govuk-fieldset__legend--l"> -->
+            <h1 class="govuk-heading-l">
               Search results
             </h1>
-          </legend>
-        </div>
-        <form action="/homepage" method="GET">
-          <div class="govuk-grid-column-one-third">
-            <button class="govuk-button" data-module="govuk-button" style="float:right;">
-              New search </button>
+            <!-- </legend> -->
           </div>
-        </form>
-      </div>
-      <p> </p>
-      <div>
+          <form action="/homepage" method="GET">
+            <div class="govuk-grid-column-one-third">
+              <button class="govuk-button" data-module="govuk-button" style="float:right;">
+                New search </button>
+            </div>
+          </form>
+        </div>
         <label class="govuk-label">
           <b><%= searchawards.totalSearchResults  %></b> subsidy award(s) found
 
-        </label></div>
-      <p> </p>
+        </label>
 
-      <!-- *********************
+
+        <!-- *********************
       Adding filter section
       ********************* -->
 
-      <div class="govuk-grid-row">
-        <div class="govuk-grid-column-two-thirds">
-          <!-- <a href="/hidefilter/?page=<%= current_page_active  %>" style="color : black; text-decoration: none">
+        <div class="govuk-grid-row">
+          <div class="govuk-grid-column-two-thirds">
+            <!-- <a href="/hidefilter/?page=<%= current_page_active  %>" style="color : black; text-decoration: none">
             <button class=" govuk-button govuk-button--secondary ">
               Hide filters </button> </a> -->
 
-          <a href="/hidefilter/?page=<%= current_page_active  %>" style=" text-decoration: none"
-            class="govuk-button  govuk-button--secondary" name="showfiter" value="showfilt">
-            Hide filters
-          </a>
+            <a href="/hidefilter/?page=<%= current_page_active  %>" style=" text-decoration: none"
+              class="govuk-button  govuk-button--secondary" name="showfiter" value="showfilt">
+              Hide filters
+            </a>
 
-          <!-- <a href="/homepage" style="color : rgb(250, 245, 245); text-decoration: none"
+            <!-- <a href="/homepage" style="color : rgb(250, 245, 245); text-decoration: none"
              class="govuk-button" data-module="govuk-button">New search 
           </a> -->
-          <!-- <a href="/exportexcel" style="color : black; text-decoration: none">
+            <!-- <a href="/exportexcel" style="color : black; text-decoration: none">
            <button class="govuk-button" data-module="govuk-button"> Download results </button>
           </a> -->
 
-          <button class="govuk-button" data-module="govuk-button"
-            onclick="saveFile('<%= data_request_clientside %>','<%= beis_url_publicsearch %>')">
-            Download results as spreadsheet file </button>
+            <button class="govuk-button" data-module="govuk-button"
+              onclick="saveFile('<%= data_request_clientside %>','<%= beis_url_publicsearch %>')">
+              Download results as spreadsheet file </button>
 
 
+          </div>
+          <div class="govuk-grid-column-one-third govuk-display-flex">
+            <label class="govuk-grid-column-two-thirds" for="sort">
+              Results per page
+            </label>
+
+            <form class="govuk-grid-column-one-third" action="/updateresultspageperroute" method="GET">
+              <select class="govuk-select" id="sort" name="sort" aria-label="Results per page shown in current page"
+                aria-describedby="info-message" onchange="this.form.submit()">
+                <% if(frontend_totalRecordsPerPage  == 10) { %>
+                <option value="10" selected>10</option>
+                <% } else { %>
+                <option value="10">10</option>
+                <% }  %>
+                <% if(frontend_totalRecordsPerPage  == 20) { %>
+                <option value="20" selected>20</option>
+                <% } else { %>
+                <option value="20">20</option>
+                <% }  %>
+                <% if(frontend_totalRecordsPerPage  == 50) { %>
+                <option value="50" selected>50</option>
+                <% } else { %>
+                <option value="50">50</option>
+                <% }  %>
+                <% if(frontend_totalRecordsPerPage  == 100) { %>
+                <option value="100" selected>100</option>
+                <% } else { %>
+                <option value="100">100</option>
+                <% }  %>
+              </select>
+            </form>
+          </div>
         </div>
-        <div class="govuk-grid-column-one-third govuk-display-flex">
-          <label class="govuk-grid-column-two-thirds" for="sort">
-            Results per page
-          </label>
 
-          <form class="govuk-grid-column-one-third" action="/updateresultspageperroute" method="GET">
-            <select class="govuk-select" id="sort" name="sort" aria-label="Results per page shown in current page"
-              aria-describedby="info-message" onchange="this.form.submit()">
-              <% if(frontend_totalRecordsPerPage  == 10) { %>
-              <option value="10" selected>10</option>
-              <% } else { %>
-              <option value="10">10</option>
-              <% }  %>
-              <% if(frontend_totalRecordsPerPage  == 20) { %>
-              <option value="20" selected>20</option>
-              <% } else { %>
-              <option value="20">20</option>
-              <% }  %>
-              <% if(frontend_totalRecordsPerPage  == 50) { %>
-              <option value="50" selected>50</option>
-              <% } else { %>
-              <option value="50">50</option>
-              <% }  %>
-              <% if(frontend_totalRecordsPerPage  == 100) { %>
-              <option value="100" selected>100</option>
-              <% } else { %>
-              <option value="100">100</option>
-              <% }  %>
-            </select>
-          </form>
-        </div>
-      </div>
+        <span id="info-message" style="display:none" aria-hidden="true">
+          On selecting, the page will reload and display the search results</span>
 
-      <span id="info-message" style="display:none" aria-hidden="true">
-        On selecting, the page will reload and display the search results</span>
+        <form action="/updateresults" method="POST">
+          <div class="govuk-accordion" data-module="govuk-accordion" id="accordion-default">
+            <%- include('../partials/searchobjectiveaccordion.ejs') %>
+            <%- include('../partials/searchsectoraccordion.ejs') %>
+            <%- include('../partials/searchinstrumentaccordion.ejs') %>
+          </div>
+          <div>
+            <button class="govuk-button" data-module="govuk-button">
+              Update results </button>
+          </div>
+        </form>
 
-      <form action="/updateresults" method="POST">
-        <div class="govuk-accordion" data-module="govuk-accordion" id="accordion-default">
-          <%- include('../partials/searchobjectiveaccordion.ejs') %>
-          <%- include('../partials/searchsectoraccordion.ejs') %>
-          <%- include('../partials/searchinstrumentaccordion.ejs') %>
-        </div>
-        <div>
-          <button class="govuk-button" data-module="govuk-button">
-            Update results </button>
-        </div>
-      </form>
+        <div id="myDiv"></div>
+        <div class="second"></div>
 
-      <div id="myDiv"></div>
-      <div class="second"></div>
+        <section class="govuk-table-responsive">
+          <table class="govuk-table">
+            <caption class="govuk-table__caption">
+              <h1 class="govuk-fieldset__heading"></h1>
+            </caption>
+            <thead class="govuk-table__head">
+              <tr class="govuk-table__row">
+                <th scope="col" class="govuk-table__header" aria-sort="ascending">
+                  <a href="/pageroute/?page=999997" style="text-decoration: none">
+                    Recipient name
+                    <% if (beneficiary_arrow == "upanddown" ) { %>
+                    <img id="beneficiary_updownarrow" src="/assets/images/UpDownArrow.jpg" alt="Curently not sorted">
+                    <% } else if (beneficiary_arrow == "updecending" ) { %>
+                    <img id="beneficiary_downarrow" src="/assets/images/DownArrow.jpg"
+                      alt="Currently sorted by Descending order">
+                    <% } else { %>
+                    <img id="beneficiary_uparrow" src="/assets/images/UpArrow.jpg"
+                      alt="Currently sorted by Ascending order">
+                    <% } %>
 
-      <section class="govuk-table-responsive">
-        <table class="govuk-table">
-          <caption class="govuk-table__caption">
-            <h1 class="govuk-fieldset__heading"></h1>
-          </caption>
-          <thead class="govuk-table__head">
-            <tr class="govuk-table__row">
-              <th scope="col" class="govuk-table__header" aria-sort="ascending">
-                <a href="/pageroute/?page=999997" style="text-decoration: none">
-                  Recipient name
-                  <% if (beneficiary_arrow == "upanddown" ) { %>
-                  <img id="beneficiary_updownarrow" src="/assets/images/UpDownArrow.jpg" alt="Curently not sorted">
-                  <% } else if (beneficiary_arrow == "updecending" ) { %>
-                  <img id="beneficiary_downarrow" src="/assets/images/DownArrow.jpg"
-                    alt="Currently sorted by Descending order">
-                  <% } else { %>
-                  <img id="beneficiary_uparrow" src="/assets/images/UpArrow.jpg"
-                    alt="Currently sorted by Ascending order">
-                  <% } %>
+                  </a>
+                </th>
+                <th scope="col" class="govuk-table__header app-custom-class">Subsidy purpose</th>
+                <th scope="col" class="govuk-table__header app-custom-class">Spending sector</th>
+                <th scope="col" class="govuk-table__header app-custom-class">Subsidy type</th>
+                <th scope="col" class="govuk-table__header app-custom-class" aria-sort="none">
+                  <a href="/pageroute/?page=999998" style="text-decoration: none">
+                    Subsidy date
+                    <% if (legalgrantingdate_arrow == "upanddown" ) { %>
+                    <img id="legalgrantingdate_updownarrow" src="/assets/images/UpDownArrow.jpg"
+                      alt="Curently not sorted">
+                    <% } else if (legalgrantingdate_arrow == "updecending" ) { %>
+                    <img id="legalgrantingdate_downarrow" src="/assets/images/DownArrow.jpg"
+                      alt="Currently sorted by Descending order">
+                    <% } else { %>
+                    <img id="legalgrantingdate_uparrow" src="/assets/images/UpArrow.jpg"
+                      alt="Currently sorted by Ascending order">
+                    <% } %>
 
-                </a>
-              </th>
-              <th scope="col" class="govuk-table__header app-custom-class">Subsidy purpose</th>
-              <th scope="col" class="govuk-table__header app-custom-class">Spending sector</th>
-              <th scope="col" class="govuk-table__header app-custom-class">Subsidy type</th>
-              <th scope="col" class="govuk-table__header app-custom-class" aria-sort="none">
-                <a href="/pageroute/?page=999998" style="text-decoration: none">
-                  Subsidy date
-                  <% if (legalgrantingdate_arrow == "upanddown" ) { %>
-                  <img id="legalgrantingdate_updownarrow" src="/assets/images/UpDownArrow.jpg"
-                    alt="Curently not sorted">
-                  <% } else if (legalgrantingdate_arrow == "updecending" ) { %>
-                  <img id="legalgrantingdate_downarrow" src="/assets/images/DownArrow.jpg"
-                    alt="Currently sorted by Descending order">
-                  <% } else { %>
-                  <img id="legalgrantingdate_uparrow" src="/assets/images/UpArrow.jpg"
-                    alt="Currently sorted by Ascending order">
-                  <% } %>
-
-                </a></th>
+                  </a></th>
 
 
-              <th scope="col" style="text-align:left" class="govuk-table__header app-custom-class">Subsidy scheme</th>
-              <th scope="col" class="govuk-table__header app-custom-class" aria-sort="none">
-                <!-- <a href="/pageroute/?page=999999" style="text-decoration: none"> -->
-                Subsidy amount
-                <!-- <% if (subsidyamount_arrow == "upanddown" ) { %>
+                <th scope="col" style="text-align:left" class="govuk-table__header app-custom-class">Subsidy scheme</th>
+                <th scope="col" class="govuk-table__header app-custom-class" aria-sort="none">
+                  <!-- <a href="/pageroute/?page=999999" style="text-decoration: none"> -->
+                  Subsidy amount
+                  <!-- <% if (subsidyamount_arrow == "upanddown" ) { %>
                   <img id="subsidyamount_updownarrow" src="/assets/images/UpDownArrow.jpg " alt="Curently not sorted">
                   <% } else if (subsidyamount_arrow == "updecending" ) { %>
                   <img id="subsidyamount_downarrow" src="/assets/images/DownArrow.jpg"
@@ -469,100 +467,101 @@ Gov.UK public user search - header rendering design
                   <% } %>
 
                 </a> -->
-              </th>
-            </tr>
-          </thead>
-          <tbody class="govuk-table__body">
-            <% searchawards.awards.forEach(function(item) { %>
-            <tr>
-              <td class="govuk-table__cell"><a
-                  href="/searchresultsawardroute/?page=<%=item.awardNumber %>"><%= item.beneficiary.beneficiaryName  %>
-                </a> </td>
-              <td class="govuk-table__cell"><%= item.subsidyObjective %></td>
-              <td class="govuk-table__cell"><%= item.spendingSector %></td>
-              <td class="govuk-table__cell"><%= item.subsidyInstrument %></td>
+                </th>
+              </tr>
+            </thead>
+            <tbody class="govuk-table__body">
+              <% searchawards.awards.forEach(function(item) { %>
+              <tr>
+                <td class="govuk-table__cell"><a
+                    href="/searchresultsawardroute/?page=<%=item.awardNumber %>"><%= item.beneficiary.beneficiaryName  %>
+                  </a> </td>
+                <td class="govuk-table__cell"><%= item.subsidyObjective %></td>
+                <td class="govuk-table__cell"><%= item.spendingSector %></td>
+                <td class="govuk-table__cell"><%= item.subsidyInstrument %></td>
 
-              <td class="govuk-table__cell" style="text-align:center"><%= item.legalGrantingDate%></td>
-              <!-- <td class="govuk-table__cell"><a href="#"><%= item.awardNumber  %> </a> </td> -->
-              <td class="govuk-table__cell"><a
-                  href="/searchresultsmeasureroute/?page=<%=item.awardNumber %>"><%= item.subsidyMeasure.subsidyMeasureTitle  %></a>
-              </td>
-              <% if (item.subsidyInstrument == "Tax measures (tax credit, or tax/duty exemption)") { %>
-              <td class="govuk-table__cell"><%= item.subsidyFullAmountRange %></td>
-              <% } else { %>
-              <td class="govuk-table__cell">£<%= item.subsidyFullAmountExact %></td>
-              <% } %>
-
-
-            </tr>
-
-            <% } ); %>
-
-          </tbody>
-        </table>
-
-        <!-- ********************** -->
-        <!-- Pagination starts here -->
-        <!-- ********************** -->
-
-        <div id="pagination1" class="pagination">
-
-          <% if (pageCount > 1) { %>
-
-          <div class="col first">
-            <p class="pagination-label">
-              Showing <span><%= start_record %></span> - <span><%= end_record %></span> of <span><%= totalrows %></span>
-              records
-            </p>
-          </div>
-
-          <% } %>
+                <td class="govuk-table__cell" style="text-align:center"><%= item.legalGrantingDate%></td>
+                <!-- <td class="govuk-table__cell"><a href="#"><%= item.awardNumber  %> </a> </td> -->
+                <td class="govuk-table__cell"><a
+                    href="/searchresultsmeasureroute/?page=<%=item.awardNumber %>"><%= item.subsidyMeasure.subsidyMeasureTitle  %></a>
+                </td>
+                <% if (item.subsidyInstrument == "Tax measures (tax credit, or tax/duty exemption)") { %>
+                <td class="govuk-table__cell"><%= item.subsidyFullAmountRange %></td>
+                <% } else { %>
+                <td class="govuk-table__cell">£<%= item.subsidyFullAmountExact %></td>
+                <% } %>
 
 
-          <div class="col last">
+              </tr>
+
+              <% } ); %>
+
+            </tbody>
+          </table>
+
+          <!-- ********************** -->
+          <!-- Pagination starts here -->
+          <!-- ********************** -->
+
+          <div id="pagination1" class="pagination">
+
             <% if (pageCount > 1) { %>
 
-            <% if (current_page_active != 1) { %>
-            <a href="/updateresultsroute/?page=1" id="paginationlink_first_page" class="first round"><img
-                id="govuk-left-arrow" src="/assets/images/govuk-left-arrow.jpg" alt="go to first page"></a>
-            <a href="/updateresultsroute/?page=<%= previous_page %>" id="paginationlink_previous_page"
-              class="previous round">Previous
-              Page</a>
+            <div class="col first">
+              <p class="pagination-label">
+                Showing <span><%= start_record %></span> - <span><%= end_record %></span> of
+                <span><%= totalrows %></span>
+                records
+              </p>
+            </div>
+
             <% } %>
 
-            <% for (var i = start_page; i <= end_page; i++) { %>
-            <% if (current_page_active != i ) { %>
-            <a id="paginationlink<%= i %>" class="round btn-page" aria-label="go to page <%= i %> search results"
-              href="/updateresultsroute/?page=<%= i %>"><%= i %></a>
-            <% } else { %>
-            <a id="paginationlink<%= i %>" class="round btn-page active" aria-label="go to page <%= i %> search results"
-              href="/updateresultsroute/?page=<%= i %>"><%= i %></a>
-            <% } %>
-            <% } %>
 
-            <% if (current_page_active != pageCount) { %>
-            <a href="/updateresultsroute/?page=<%= next_page %>" aria-label="go to next page"
-              id="paginationlink_next_page" class="next round">Next
-              Page</a>
-            <a href="/updateresultsroute/?page=<%= pageCount %>" id="paginationlink_last_page" class="last round"><img
-                id="govuk-right-arrow" src="/assets/images/govuk-right-arrow.jpg" alt="go to last page"></a>
-            <% } %>
-            <% } %>
+            <div class="col last">
+              <% if (pageCount > 1) { %>
+
+              <% if (current_page_active != 1) { %>
+              <a href="/updateresultsroute/?page=1" id="paginationlink_first_page" class="first round"><img
+                  id="govuk-left-arrow" src="/assets/images/govuk-left-arrow.jpg" alt="go to first page"></a>
+              <a href="/updateresultsroute/?page=<%= previous_page %>" id="paginationlink_previous_page"
+                class="previous round">Previous
+                Page</a>
+              <% } %>
+
+              <% for (var i = start_page; i <= end_page; i++) { %>
+              <% if (current_page_active != i ) { %>
+              <a id="paginationlink<%= i %>" class="round btn-page" aria-label="go to page <%= i %> search results"
+                href="/updateresultsroute/?page=<%= i %>"><%= i %></a>
+              <% } else { %>
+              <a id="paginationlink<%= i %>" class="round btn-page active"
+                aria-label="go to page <%= i %> search results" href="/updateresultsroute/?page=<%= i %>"><%= i %></a>
+              <% } %>
+              <% } %>
+
+              <% if (current_page_active != pageCount) { %>
+              <a href="/updateresultsroute/?page=<%= next_page %>" aria-label="go to next page"
+                id="paginationlink_next_page" class="next round">Next
+                Page</a>
+              <a href="/updateresultsroute/?page=<%= pageCount %>" id="paginationlink_last_page" class="last round"><img
+                  id="govuk-right-arrow" src="/assets/images/govuk-right-arrow.jpg" alt="go to last page"></a>
+              <% } %>
+              <% } %>
+            </div>
           </div>
-        </div>
 
-      </section>
-      <!-- ********************** -->
-      <!-- Pagination ends here -->
-      <!-- ********************** -->
-      <form action="/homepage" method="POST">
-        <div>
-          <button class="govuk-button" data-module="govuk-button">
-            New search </button>
-        </div>
-      </form>
+        </section>
+        <!-- ********************** -->
+        <!-- Pagination ends here -->
+        <!-- ********************** -->
+        <form action="/homepage" method="POST">
+          <div>
+            <button class="govuk-button" data-module="govuk-button">
+              New search </button>
+          </div>
+        </form>
 
-
+      </div>
     </main>
     <!-- container division ends here -->
   </div>

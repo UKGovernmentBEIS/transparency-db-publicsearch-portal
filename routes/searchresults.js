@@ -352,7 +352,7 @@ router.post("/", async (req, res) => {
         MonthNotaNumber == "Yes"
       ) {
         date_legal_granting_date_month_Error = true;
-        SubsidyErrors[Additem] = "     Enter the valid month";
+        SubsidyErrors[Additem] = "Enter the valid from month";
         SubsidyFocus[Additem] = "#legal_granting_date_month";
         Additem = Additem + 1;
       }
@@ -364,7 +364,7 @@ router.post("/", async (req, res) => {
         DayNotaNumber == "Yes"
       ) {
         date_legal_granting_date_day_Error = true;
-        SubsidyErrors[Additem] = "     Enter the valid day";
+        SubsidyErrors[Additem] = "     Enter the valid from day";
         SubsidyFocus[Additem] = "#legal_granting_date_day";
         Additem = Additem + 1;
       }
@@ -378,7 +378,7 @@ router.post("/", async (req, res) => {
           date_legal_granting_date_month == 11)
       ) {
         date_legal_granting_date_day_Error = true;
-        SubsidyErrors[Additem] = "     Enter the valid day";
+        SubsidyErrors[Additem] = "     Enter the valid from day";
         SubsidyFocus[Additem] = "#legal_granting_date_day";
         Additem = Additem + 1;
       }
@@ -394,7 +394,7 @@ router.post("/", async (req, res) => {
         ) {
         } else {
           date_legal_granting_date_day_Error = true;
-          SubsidyErrors[Additem] = "     Enter the valid day";
+          SubsidyErrors[Additem] = "     Enter the valid from day";
           SubsidyFocus[Additem] = "#legal_granting_date_day";
           Additem = Additem + 1;
         }
@@ -405,7 +405,7 @@ router.post("/", async (req, res) => {
         date_legal_granting_date_month == parseInt("02", 8)
       ) {
         date_legal_granting_date_day_Error = true;
-        SubsidyErrors[Additem] = "     Enter the valid day";
+        SubsidyErrors[Additem] = "     Enter the valid from day";
         SubsidyFocus[Additem] = "#legal_granting_date_day";
         Additem = Additem + 1;
       }
@@ -417,7 +417,7 @@ router.post("/", async (req, res) => {
         YearNotaNumber == "Yes"
       ) {
         date_legal_granting_date_year_Error = true;
-        SubsidyErrors[Additem] = "     Enter the valid year";
+        SubsidyErrors[Additem] = "     Enter the valid from year";
         SubsidyFocus[Additem] = "#legal_granting_date_year";
         Additem = Additem + 1;
       }
@@ -455,7 +455,7 @@ router.post("/", async (req, res) => {
         MonthNotaNumber1 == "Yes"
       ) {
         date_legal_granting_date_month1_Error = true;
-        SubsidyErrors[Additem] = "     Enter the valid month";
+        SubsidyErrors[Additem] = "     Enter the valid to month";
         SubsidyFocus[Additem] = "#legal_granting_date_month1";
         Additem = Additem + 1;
       }
@@ -467,7 +467,7 @@ router.post("/", async (req, res) => {
         DayNotaNumber1 == "Yes"
       ) {
         date_legal_granting_date_day1_Error = true;
-        SubsidyErrors[Additem] = "     Enter the valid day";
+        SubsidyErrors[Additem] = "     Enter the valid to day";
         SubsidyFocus[Additem] = "#legal_granting_date_day1";
         Additem = Additem + 1;
       }
@@ -478,7 +478,7 @@ router.post("/", async (req, res) => {
         YearNotaNumber1 == "Yes"
       ) {
         date_legal_granting_date_year1_Error = true;
-        SubsidyErrors[Additem] = "     Enter the valid year";
+        SubsidyErrors[Additem] = "     Enter the valid to year";
         SubsidyFocus[Additem] = "#legal_granting_date_year1";
         Additem = Additem + 1;
       }
