@@ -120,9 +120,9 @@ Gov.UK public user search - header rendering design
           </legend>
           <div class="govuk-grid-row govuk-form-group">
             <div class="govuk-grid-column-full">
-              <label id="type-hint" class="govuk-label " for="subsidylabel">
+              <p id="type-hint" class="govuk-body " for="subsidylabel">
                 You can select more than one type, or leave all options unselected to search for all types.
-              </label>
+              </p>
             </div>
           </div>
           <div class="govuk-checkboxes govuk-form-group" data-module="govuk-checkboxes">
@@ -217,14 +217,14 @@ Gov.UK public user search - header rendering design
 
               <div class="govuk-checkboxes__conditional " id="conditional-subsidyinstrument-71">
                 <div class="govuk-form-group">
-                  <label class="govuk-label govuk-label-other" for="subsidyinstrument-7">
+                  <p class="govuk-body govuk-label-other" for="subsidyinstrument-7">
                     Enter the type of subsidy that you want to search for
-                  </label>
+                  </p>
                   <% if (check_subsidyinstrument9_pass) { %> %>
-                  <input class="govuk-input govuk-!-width-one-half" id="subsidyinstrument-8" name="subsidyinstrument9"
+                  <input class="govuk-input govuk-!-width-one-half" id="subsidyinstrument-7" name="subsidyinstrument9"
                     type="subsidyinstrument" spellcheck="false" value="<%= check_subsidyinstrument9_pass %>">
                   <% } else { %>
-                  <input class="govuk-input govuk-!-width-one-half" id="subsidyinstrument-8" name="subsidyinstrument9"
+                  <input class="govuk-input govuk-!-width-one-half" id="subsidyinstrument-7" name="subsidyinstrument9"
                     type="subsidyinstrument" spellcheck="false">
                   <% }  %>
                 </div>

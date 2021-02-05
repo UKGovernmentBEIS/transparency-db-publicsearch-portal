@@ -184,13 +184,14 @@
                     <a href="/pageroute/?page=999997" style="text-decoration: none">
                       Recipient name
                       <% if (beneficiary_arrow == "upanddown" ) { %>
-                      <img id="beneficiary_updownarrow" src="/assets/images/UpDownArrow.jpg" alt="Curently not sorted">
+                      <img id="beneficiary_updownarrow" src="/assets/images/UpDownArrow.jpg"
+                        aria-hidden="Curently not sorted">
                       <% } else if (beneficiary_arrow == "updecending" ) { %>
                       <img id="beneficiary_downarrow" src="/assets/images/DownArrow.jpg"
-                        alt="Currently sorted by Descending order">
+                        aria-hidden="Currently sorted by Descending order">
                       <% } else { %>
                       <img id="beneficiary_uparrow" src="/assets/images/UpArrow.jpg"
-                        alt="Currently sorted by Ascending order">
+                        aria-hidden="Currently sorted by Ascending order">
                       <% } %>
 
                     </a>
@@ -203,13 +204,13 @@
                       Subsidy date
                       <% if (legalgrantingdate_arrow == "upanddown" ) { %>
                       <img id="legalgrantingdate_updownarrow" src="/assets/images/UpDownArrow.jpg"
-                        alt="Curently not sorted">
+                        aria-hidden="Curently not sorted">
                       <% } else if (legalgrantingdate_arrow == "updecending" ) { %>
                       <img id="legalgrantingdate_downarrow" src="/assets/images/DownArrow.jpg"
-                        alt="Currently sorted by Descending order">
+                        aria-hidden="Currently sorted by Descending order">
                       <% } else { %>
                       <img id="legalgrantingdate_uparrow" src="/assets/images/UpArrow.jpg"
-                        alt="Currently sorted by Ascending order">
+                        aria-hidden="Currently sorted by Ascending order">
                       <% } %>
 
                     </a></th>
@@ -221,13 +222,13 @@
                     <!-- <a href="/pageroute/?page=999999" style="text-decoration: none"> -->
                     Subsidy amount
                     <!-- <% if (subsidyamount_arrow == "upanddown" ) { %>
-                    <img id="subsidyamount_updownarrow" src="/assets/images/UpDownArrow.jpg" alt="Curently not sorted">
+                    <img id="subsidyamount_updownarrow" src="/assets/images/UpDownArrow.jpg" aria-hidden="Curently not sorted">
                     <% } else if (subsidyamount_arrow == "updecending" ) { %>
                     <img id="subsidyamount_downarrow" src="/assets/images/DownArrow.jpg"
-                      alt="Currently sorted by Descending order">
+                      aria-hidden="Currently sorted by Descending order">
                     <% } else { %>
                     <img id="subsidyamount_uparrow" src="/assets/images/UpArrow.jpg"
-                      alt="Currently sorted by Ascending order">
+                      aria-hidden="Currently sorted by Ascending order">
                     <% } %>
 
                   </a> -->
@@ -283,9 +284,9 @@
 
                 <% if (current_page_active != 1) { %>
                 <a href="/pageroute/?page=1" id="paginationlink_first_page" class="first round"><img
-                    id="govuk-left-arrow" src="/assets/images/govuk-left-arrow.jpg" alt="go to first page"></a>
-                <!-- <a href="/pageroute/?page=1" id="paginationlink_first_page" alt="go to first page" class="first round"><svg version="1.1"
-                  width="19px" alt="go to first page" height="30px">
+                    id="govuk-left-arrow" src="/assets/images/govuk-left-arrow.jpg" aria-hidden="go to first page"></a>
+                <!-- <a href="/pageroute/?page=1" id="paginationlink_first_page" aria-hidden="go to first page" class="first round"><svg version="1.1"
+                  width="19px" aria-hidden="go to first page" height="30px">
                   <defs>
                     <mask fill="white" id="clip2">
                       <path
@@ -322,7 +323,7 @@
                 <a href="/pageroute/?page=<%= next_page %>" id="paginationlink_next_page" aria-label="go to next page"
                   class="next round">Next Page</a>
                 <a href="/pageroute/?page=<%= pageCount %>" id="paginationlink_last_page" class="last round">
-                  <img id="govuk-right-arrow" src="/assets/images/govuk-right-arrow.jpg" alt="go to last page">
+                  <img id="govuk-right-arrow" src="/assets/images/govuk-right-arrow.jpg" aria-hidden="go to last page">
                   <!-- <svg version="1.1" width="19px" height="30px" class="left-arrow">
                   <defs>
                     <mask fill="white" id="clip3">
