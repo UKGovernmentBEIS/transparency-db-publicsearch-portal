@@ -2,7 +2,7 @@
   <div class="govuk-accordion__section-header">
     <h2 class="govuk-accordion__section-heading">
       <span class="govuk-accordion__section-button" id="accordion-default-heading-3">
-        Type  
+        Type
       </span>
     </h2>
   </div>
@@ -109,8 +109,8 @@
               <div class="govuk-checkboxes__item">
                 <input class="govuk-checkboxes__input govuk-checkboxes__input_subsidyinstrument"
                   id="subsidyinstrument-7" name="subsidyinstrument8" type="checkbox" value="Other"
-                  data-aria-controls="conditional-subsidyinstrument-7" <% if (check_subsidyinstrument8_pass) { %> checked
-                  <% } %>>
+                  data-aria-controls="conditional-subsidyinstrument-7" <% if (check_subsidyinstrument8_pass) { %>
+                  checked <% } %>>
                 <label class="govuk-label govuk-checkboxes__label" for="subsidyinstrument-7">
                   Other
                 </label>
@@ -118,17 +118,17 @@
 
               <div class="govuk-checkboxes__conditional " id="conditional-subsidyinstrument-71">
                 <div class="govuk-form-group">
-                   <label class="govuk-label govuk-label-other govuk-input-subsidyinstrument" for="subsidyinstrument-7">
+                  <label class="govuk-label govuk-label-other govuk-input-subsidyinstrument" for="subsidyinstrument-8">
                     Enter the type of subsidy that you want to search for
-                   </label>
-                   <% if (check_subsidyinstrument9_pass) { %> %>
-                  <input class="govuk-input govuk-!-width-full govuk-input-subsidyinstrument" id="subsidyinstrument-8" 
-                  name="subsidyinstrument9" type="subsidyinstrument" spellcheck="false"  
-                  value= "<%= check_subsidyinstrument9_pass %>">
+                  </label>
+                  <% if (check_subsidyinstrument9_pass) { %> %>
+                  <input class="govuk-input govuk-!-width-full govuk-input-subsidyinstrument" id="subsidyinstrument-8"
+                    name="subsidyinstrument9" type="text" spellcheck="false"
+                    value="<%= check_subsidyinstrument9_pass %>">
                   <% } else { %>
-                  <input class="govuk-input govuk-!-width-full govuk-input-subsidyinstrument" id="subsidyinstrument-8" 
-                  name="subsidyinstrument9" type="subsidyinstrument" spellcheck="false">
-                  <% }  %>  
+                  <input class="govuk-input govuk-!-width-full govuk-input-subsidyinstrument" id="subsidyinstrument-8"
+                    name="subsidyinstrument9" type="text" spellcheck="false">
+                  <% }  %>
                 </div>
               </div>
 

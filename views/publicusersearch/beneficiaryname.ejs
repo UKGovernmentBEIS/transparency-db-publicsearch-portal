@@ -28,17 +28,15 @@ Gov.UK public user search - header rendering design
   </script>
   <%- include('../partials/header.ejs') %>
   <div class="govuk-width-container ">
-
-    <%- include('../partials/banner.ejs') %>
-
-    <main class="govuk-main-wrapper " id="main-content" role="main">
-      <form action="/subsidyobjective" method="POST">
+    <main id="main-content" role="main">
+      <%- include('../partials/banner.ejs') %>
+      <form action="/subsidyobjective" method="POST" class="govuk-main-wrapper ">
 
         <!--***********************************************************
                Gov.UK public user search - Breadcrumbs HTML rendering design 
                *********************************************************** -->
 
-        <p> </p>
+
 
         <!--************************************
                Gov.UK public user search - Body design 
@@ -47,61 +45,62 @@ Gov.UK public user search - header rendering design
 
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset" aria-describedby="beneficiary_name-hint">
-            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-              <div class="govuk-grid-row">
-                <div class="govuk-grid-column-two-thirds">
-                  <h1 class="govuk-fieldset__heading">
-                    Are you searching for a specific subsidy recipient?
-                  </h1>
-                </div>
-              </div>
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-grid-column-two-thirds">
+              <!-- <div class="govuk-grid-row">
+                <div class="govuk-grid-column-two-thirds"> -->
+              <h1 class="govuk-fieldset__heading">
+                Are you searching for a specific subsidy recipient?
+              </h1>
+              <!-- </div>
+              </div> -->
 
             </legend>
-            <label id="beneficiary_name-hint" class="govuk-label">
-              The recipient is the business that received the subsidy
-            </label>
-            <div class="govuk-radios govuk-radios--conditional" data-module="govuk-radios">
-              <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="beneficiary_name_radio_button" name="beneficiaryname"
-                  type="radio" value="Yes" data-aria-controls="conditional-beneficiaryname"
-                  <% if (radio_beneficiaryname == "Yes") { %> checked <% } %>>
-                <label class="govuk-label govuk-radios__label" for="beneficiary_name_radio_button">
-                  Yes
-                </label>
-              </div>
+            <div class="govuk-grid-row">
+              <div class="govuk-grid-column-full">
+                <p id="beneficiary_name-hint" class="govuk-body">
+                  The recipient is the business that received the subsidy
+                </p>
+                <div class="govuk-radios govuk-radios--conditional" data-module="govuk-radios">
+                  <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="beneficiary_name_radio_button" name="beneficiaryname"
+                      type="radio" value="Yes" data-aria-controls="conditional-beneficiaryname"
+                      <% if (radio_beneficiaryname == "Yes") { %> checked <% } %>>
+                    <label class="govuk-label govuk-radios__label" for="beneficiary_name_radio_button">
+                      Yes
+                    </label>
+                  </div>
 
-              <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-beneficiaryname">
-                <div class="govuk-form-group">
-                  <label class="govuk-label" for="Beneficiary_name_text">
-                    Enter business name
-                  </label>
-                  <% if (text_beneficiaryname) { %> %>
-                  <input class="govuk-input govuk-!-width-one-half" id="Beneficiary_name_text" name="Beneficiary_name"
-                    type="beneficiaryname" spellcheck="false" value="<%= text_beneficiaryname %>">
-                  <% } else { %>
-                  <input class="govuk-input govuk-!-width-one-half" id="Beneficiary_name_text" name="Beneficiary_name"
-                    type="beneficiaryname" spellcheck="false">
-                  <% }  %>
+                  <div class="govuk-radios__conditional govuk-radios__conditional--hidden"
+                    id="conditional-beneficiaryname">
+                    <div class="govuk-form-group">
+                      <label class="govuk-label" for="Beneficiary_name_text">
+                        Enter business name
+                      </label>
+                      <% if (text_beneficiaryname) { %> %>
+                      <input class="govuk-input govuk-!-width-one-half" id="Beneficiary_name_text"
+                        name="Beneficiary_name" type="text" spellcheck="false" value="<%= text_beneficiaryname %>">
+                      <% } else { %>
+                      <input class="govuk-input govuk-!-width-one-half" id="Beneficiary_name_text"
+                        name="Beneficiary_name" type="text" spellcheck="false">
+                      <% }  %>
 
+                    </div>
+                  </div>
+                  <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="beneficiaryname-2" name="beneficiaryname" type="radio"
+                      value="No" data-aria-controls="conditional-beneficiaryname-2"
+                      <% if (radio_beneficiaryname == "No") { %> checked <% } %>>
+                    <label class="govuk-label govuk-radios__label" for="beneficiaryname-2">
+                      No
+                    </label>
+                  </div>
                 </div>
-              </div>
-              <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="beneficiaryname-2" name="beneficiaryname" type="radio" value="No"
-                  data-aria-controls="conditional-beneficiaryname-2" <% if (radio_beneficiaryname == "No") { %> checked
-                  <% } %>>
-                <label class="govuk-label govuk-radios__label" for="beneficiaryname-2">
-                  No
-                </label>
               </div>
           </fieldset>
         </div>
 
-        <div>
-          <button class="govuk-button" data-module="govuk-button">
-            Continue </button>
-        </div>
-
-
+        <button class="govuk-button" data-module="govuk-button">
+          Continue </button>
       </form>
     </main>
   </div>

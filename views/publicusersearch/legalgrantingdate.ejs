@@ -46,16 +46,12 @@ Gov.UK public user search - header rendering design
     <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
     <%- include('../partials/header.ejs') %>
     <div class="govuk-width-container ">
-
-        <%- include('../partials/banner.ejs') %>
-        <main class="govuk-main-wrapper " id="main-content" role="main">
-            <form action="/searchresults" method="POST">
+        <main id="main-content" role="main">
+            <%- include('../partials/banner.ejs') %>
+            <form action="/searchresults" method="POST" class="govuk-main-wrapper ">
 
                 <a href="/subsidyinstrument" class="govuk-back-link"
                     aria-label="Back to subsidy types question page">Back</a>
-
-
-
                 <!-- Error display -->
 
                 <% if( locals.SubsidyArraySize > 0 ){ %>
@@ -77,47 +73,46 @@ Gov.UK public user search - header rendering design
 
                 <% } %>
 
-                <div class="govuk-form-group">
-                    <fieldset class="govuk-fieldset" role="group" aria-describedby="legalgrantingdate-hint">
-                        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-                            <div class="govuk-grid-row">
-                                <div class="govuk-grid-column-two-thirds">
-                                    <h1 class="govuk-fieldset__heading">
-                                        Are you searching for subsidies that were awarded in a specific period?
-                                    </h1>
-                                </div>
-                                <p> </p>
-                            </div>
-                        </legend>
+                <fieldset class="govuk-fieldset" role="group" aria-describedby="legalgrantingdate-hint">
+                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-grid-column-two-thirds">
+                        <!-- <div class="govuk-grid-row">
+                                <div class="govuk-grid-column-two-thirds"> -->
+                        <h1 class="govuk-fieldset__heading">
+                            Are you searching for subsidies that were awarded in a specific period?
+                        </h1>
+                        <!-- </div>
+                            </div> -->
+                    </legend>
 
-                        <div class="govuk-radios govuk-radios--conditional" data-module="govuk-radios">
-                            <div class="govuk-radios__item">
-                                <% if( locals.SubsidyArraySize > 0 ){ %>
-                                <input class="govuk-radios__input" id="legalgrantingdate_radio" name="legalgrantingdate"
-                                    type="radio" value="Yes" data-aria-controls="conditional-legalgrantingdate" checked>
-                                <% } else { %>
-                                <input class="govuk-radios__input" id="legalgrantingdate_radio" name="legalgrantingdate"
-                                    type="radio" value="Yes" data-aria-controls="conditional-legalgrantingdate">
-                                <% } %>
-                                <label class="govuk-label govuk-radios__label" for="legalgrantingdate_radio">
-                                    Yes
-                                </label>
-                            </div>
+                    <div class="govuk-radios govuk-radios--conditional govuk-form-group" data-module="govuk-radios">
+                        <div class="govuk-radios__item">
+                            <% if( locals.SubsidyArraySize > 0 ){ %>
+                            <input class="govuk-radios__input" id="legalgrantingdate_radio" name="legalgrantingdate"
+                                type="radio" value="Yes" data-aria-controls="conditional-legalgrantingdate" checked>
+                            <% } else { %>
+                            <input class="govuk-radios__input" id="legalgrantingdate_radio" name="legalgrantingdate"
+                                type="radio" value="Yes" data-aria-controls="conditional-legalgrantingdate">
+                            <% } %>
+                            <label class="govuk-label govuk-radios__label" for="legalgrantingdate_radio">
+                                Yes
+                            </label>
+                        </div>
 
-                            <div class="govuk-radios__conditional govuk-radios__conditional--hidden"
-                                id="conditional-legalgrantingdate">
+                        <div class="govuk-radios__conditional govuk-radios__conditional--hidden"
+                            id="conditional-legalgrantingdate">
 
-                                <!-- From date error process starts here  -->
-                                <% if( date_legal_granting_date_day_Error || date_legal_granting_date_month_Error || date_legal_granting_date_year_Error) { %>
+                            <!-- From date error process starts here  -->
+                            <% if( date_legal_granting_date_day_Error || date_legal_granting_date_month_Error || date_legal_granting_date_year_Error) { %>
 
-                                <div class="govuk-form-group govuk-form-group--error">
-
+                            <div class="govuk-form-group govuk-form-group--error">
+                                <fieldset class="govuk-fieldset" role="group"
+                                    aria-describedby="legalgrantingdate-from-hint">
                                     <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
 
                                         <div class="govuk-grid-row">
                                             <div class="govuk-grid-column-full">
                                                 <label class="govuk-label" for="legalgrantingdate">From </label>
-                                                <div id="legalgrantingdate-hint" class="govuk-hint">
+                                                <div id="legalgrantingdate-from-hint" class="govuk-hint">
                                                     For example, 31 3 2008
                                                 </div>
 
@@ -126,6 +121,7 @@ Gov.UK public user search - header rendering design
                                     </legend>
 
                                     <div class="govuk-grid-row">
+
                                         <div class="govuk-grid-column-full">
                                             <% if( date_legal_granting_date_day_Error || date_legal_granting_date_month_Error || date_legal_granting_date_year_Error) { %>
                                             <span class="govuk-error-message" id="legal_granting_date_error">
@@ -213,23 +209,23 @@ Gov.UK public user search - header rendering design
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <!-- From date error process ends here  -->
-                                <% } else { %>
+                                </fieldset>
+                            </div>
+                            <!-- From date error process ends here  -->
+                            <% } else { %>
 
-                                <!-- From date starts here  -->
-                                <div class="govuk-form-group">
-
+                            <!-- From date starts here  -->
+                            <div class="govuk-form-group">
+                                <fieldset class="govuk-fieldset" role="group"
+                                    aria-describedby="legalgrantingdate-to-hint">
                                     <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
 
                                         <div class="govuk-grid-row">
                                             <div class="govuk-grid-column-full">
                                                 <label class="govuk-label" for="legalgrantingdate">From </label>
-                                                <div id="legalgrantingdate-hint" class="govuk-hint">
+                                                <div id="legalgrantingdate-to-hint" class="govuk-hint">
                                                     For example, 31 3 2008
                                                 </div>
-
-
                                             </div>
                                         </div>
                                     </legend>
@@ -284,16 +280,17 @@ Gov.UK public user search - header rendering design
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <!-- From date ends here  -->
-                                <% }  %>
+                                </fieldset>
+                            </div>
+                            <!-- From date ends here  -->
+                            <% }  %>
 
 
-                                <% if( date_legal_granting_date_day1_Error || date_legal_granting_date_month1_Error || date_legal_granting_date_year1_Error) { %>
+                            <% if( date_legal_granting_date_day1_Error || date_legal_granting_date_month1_Error || date_legal_granting_date_year1_Error) { %>
 
-                                <!-- TO date error process starts here  -->
-                                <div class="govuk-form-group govuk-form-group--error">
-
+                            <!-- TO date error process starts here  -->
+                            <div class="govuk-form-group govuk-form-group--error">
+                                <fieldset class="govuk-fieldset" role="group">
                                     <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
 
                                         <div class="govuk-grid-row">
@@ -393,12 +390,13 @@ Gov.UK public user search - header rendering design
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <!-- TO date error process ends here  -->
-                                <% } else { %>
-                                <!-- TO date starts here  -->
-                                <div class="govuk-form-group">
-
+                                </fieldset>
+                            </div>
+                            <!-- TO date error process ends here  -->
+                            <% } else { %>
+                            <!-- TO date starts here  -->
+                            <div class="govuk-form-group">
+                                <fieldset class="govuk-fieldset" role="group">
                                     <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
 
                                         <div class="govuk-grid-row">
@@ -461,38 +459,33 @@ Gov.UK public user search - header rendering design
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <!-- TO date ends here  -->
-                                <% }  %>
-
-
-
+                                </fieldset>
                             </div>
-                            <!--   conditional rendering ends here -->
-                            <div class="govuk-radios__item">
-                                <input class="govuk-radios__input" id="legalgrantingdate-2" name="legalgrantingdate"
-                                    type="radio" value="No" data-aria-controls="conditional-legalgrantingdate-2">
-                                <label class="govuk-label govuk-radios__label" for="legalgrantingdate-2">
-                                    No
-                                </label>
-                            </div>
+                            <!-- TO date ends here  -->
+                            <% }  %>
+
+
+
                         </div>
+                        <!--   conditional rendering ends here -->
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="legalgrantingdate-2" name="legalgrantingdate"
+                                type="radio" value="No" data-aria-controls="conditional-legalgrantingdate-2">
+                            <label class="govuk-label govuk-radios__label" for="legalgrantingdate-2">
+                                No
+                            </label>
+                        </div>
+                    </div>
 
-                        <!-- -------------------------- 
+                    <!-- -------------------------- 
                 Question body ends here 
                 --------------------------- -->
-
-                        <p> </p>
-                        <div>
-                            <button class="govuk-button" data-module="govuk-button">
-                                Show results </button>
-                        </div>
-
-                    </fieldset>
-                </div>
-
-            </form>
-        </main>
+                    <button class="govuk-button" data-module="govuk-button">
+                        Show results </button>
+                </fieldset>
+    </div>
+    </form>
+    </main>
     </div>
     <!-- container div ends here -->
 

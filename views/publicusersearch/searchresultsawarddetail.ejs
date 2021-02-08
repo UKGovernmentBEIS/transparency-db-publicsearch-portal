@@ -23,14 +23,7 @@
 <div class="govuk-width-container ">
   <%- include('../partials/banner.ejs') %>
   <main class="govuk-main-wrapper " id="main-content" role="main">
-
-
-    <p> </p>
-
     <a href="/searchresults" class="govuk-back-link" aria-label="back to search results page">Back</a>
-    <p> </p>
-    <p> </p>
-
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-three-quarters">
         <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
@@ -48,22 +41,18 @@
       </div>
     </div>
 
+    <label class="govuk-label">
+      Overview of the subsidy, the recipient and the local authority that awarded the subsidy.
+    </label>
 
-
-
-    <div>
-      <label class="govuk-label">
-        Overview of the subsidy, the recipient and the local authority that awarded the subsidy.
-      </label></div>
-    <p> </p>
 
     <h2 class="govuk-heading-m">
       Subsidy details
     </h2>
 
-    <p> </p>
 
-    <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+
+    <ul class="govuk-summary-list govuk-!-margin-bottom-9">
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key" id="subsidycontrolnumber">
           Subsidy control number
@@ -146,16 +135,16 @@
           <%= searchawarddetails.legalGrantingDate %>
         </dd>
       </div>
-    </dl>
-    <p> </p>
+    </ul>
+
 
     <h2 class="govuk-heading-m">
       Recipient details
     </h2>
 
-    <p> </p>
 
-    <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+
+    <ul class="govuk-summary-list govuk-!-margin-bottom-9">
 
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
@@ -218,7 +207,7 @@
         </dd>
       </div>
 
-    </dl>
+    </ul>
 
 
     <form action="/searchresults" method="GET">

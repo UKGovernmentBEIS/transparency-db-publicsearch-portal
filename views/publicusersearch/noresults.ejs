@@ -11,23 +11,20 @@
 
 
 <div class="govuk-width-container ">
-  <%- include('../partials/banner.ejs') %>
-  <main class="govuk-main-wrapper " id="main-content" role="main">
-    <form action="/homepage" method="POST">
 
-      <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-        <h1 class="govuk-fieldset__heading">
-          No results found for the search criteria
-        </h1>
-      </legend>
+  <main id="main-content" role="main">
+    <%- include('../partials/banner.ejs') %>
+    <form action="/homepage" method="POST" class="govuk-main-wrapper ">
 
+      <!-- <legend class="govuk-fieldset__legend govuk-fieldset__legend--l"> -->
+      <h1 class="govuk-heading-l">
+        No results found for the search criteria
+      </h1>
+      <!-- </legend> -->
 
-      <div>
+      <button class="govuk-button" data-module="govuk-button">
+        New search </button>
 
-        <button class="govuk-button" data-module="govuk-button">
-          New search </button>
-
-      </div>
     </form>
 
   </main>
