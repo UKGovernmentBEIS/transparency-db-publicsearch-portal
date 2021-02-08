@@ -112,7 +112,12 @@
         </div>
 
         <label class="govuk-label">
-          <b><%= searchawards.totalSearchResults %></b> subsidy award(s) found
+         <% if(searchawards.totalSearchResults == 1)  { %>
+          <b><%= searchawards.totalSearchResults %></b> subsidy award found
+         <% } else { %> 
+          <b><%= searchawards.totalSearchResults %></b> subsidy awards found
+         <% } %>
+
         </label>
 
         <div class="govuk-grid-row">
@@ -131,7 +136,7 @@
 
             <button class="govuk-button" data-module="govuk-button"
               onclick="saveFile('<%= data_request_clientside %>','<%= beis_url_publicsearch %>')">
-              Download results as spreadsheet file </button>
+              Download results as Excel file </button>
 
 
           </div>
