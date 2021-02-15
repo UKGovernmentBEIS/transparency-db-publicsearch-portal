@@ -341,7 +341,7 @@ Gov.UK public user search - header rendering design
       ********************* -->
 
         <div class="govuk-grid-row">
-          <div class="govuk-grid-column-two-thirds">
+          <div class="govuk-grid-column-one-half">
             <!-- <a href="/hidefilter/?page=<%= current_page_active  %>" style="color : black; text-decoration: none">
             <button class=" govuk-button govuk-button--secondary ">
               Hide filters </button> </a> -->
@@ -364,12 +364,51 @@ Gov.UK public user search - header rendering design
 
 
           </div>
-          <div class="govuk-grid-column-one-third govuk-display-flex">
+          <!-- <div class="govuk-grid-column-one-third govuk-display-flex">
             <label class="govuk-grid-column-two-thirds" for="sort">
               Results per page
-            </label>
+            </label> -->
 
-            <form class="govuk-grid-column-one-third" action="/updateresultspageperroute" method="GET">
+            <div class="govuk-grid-column-one-half govuk-display-flex" aria-autocomplete="list">
+            <label class="govuk-grid-column-two-thirds">
+              Results per page
+            </label>
+            <ul class="pagination govuk-grid-column-one-third pagination-style-modified"
+              style="display: inline;  margin: 0;  padding: 0;">
+              <% if(frontend_totalRecordsPerPage  == 10) { %>
+              <a aria-label="10 records per page " class="round btn-page active"
+                href="/updateresultspageperroute/?sort=10">10</a>
+ 
+              <% } else { %>
+              <a aria-label="10 records per page " class="round btn-page"
+                href="/updateresultspageperroute/?sort=10">10</a>
+              <% }  %>
+              <% if(frontend_totalRecordsPerPage  == 20) { %>
+              <a aria-label="20 records per page " class="round btn-page active"
+                href="/updateresultspageperroute/?sort=20">20</a>
+              <% } else { %>
+              <a aria-label="20 records per page " class="round btn-page"
+                href="/updateresultspageperroute/?sort=20">20</a>
+              <% }  %>
+ 
+              <% if(frontend_totalRecordsPerPage  == 50) { %>
+              <a aria-label="50 records per page " class="round btn-page active"
+                href="/updateresultspageperroute/?sort=50">50</a>
+              <% } else { %>
+              <a aria-label="50 records per page " class="round btn-page"
+                href="/updateresultspageperroute/?sort=50">50</a>
+              <% }  %>
+ 
+              <% if(frontend_totalRecordsPerPage  == 100) { %>
+              <a aria-label="100 records per page " class="round btn-page active"
+                href="/updateresultspageperroute/?sort=100">100</a>
+              <% } else { %>
+              <a aria-label="100 records per page " class="round btn-page"
+                href="/updateresultspageperroute/?sort=100">100</a>
+              <% }  %>
+            </ul>
+
+            <!-- <form class="govuk-grid-column-one-third" action="/updateresultspageperroute" method="GET">
               <select class="govuk-select" id="sort" name="sort" aria-label="Results per page shown in current page"
                 aria-describedby="info-message" onchange="this.form.submit()">
                 <% if(frontend_totalRecordsPerPage  == 10) { %>
@@ -393,7 +432,7 @@ Gov.UK public user search - header rendering design
                 <option value="100">100</option>
                 <% }  %>
               </select>
-            </form>
+            </form> -->
           </div>
         </div>
 

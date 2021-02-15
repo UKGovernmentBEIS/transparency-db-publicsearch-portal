@@ -633,3 +633,8 @@ button.link {
 .govuk-padding-top-2 {
   padding-top: 2%;
 }
+
+
+.pagination-style-modified a {
+  padding: 8px 3px !important;
+}
