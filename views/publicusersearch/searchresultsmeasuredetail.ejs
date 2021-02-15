@@ -106,11 +106,18 @@
             Weblink to Granting Authority Text of Subsidy
           </dt>
           <dd class="govuk-summary-list__value">
+            <% if(searchmeasuredetails.subsidyMeasure.gaSubsidyWebLink.includes('https://')) { %>
             <a aria-label="Weblink to granting authority"
-              href=<%= searchmeasuredetails.subsidyMeasure.gaSubsidyWebLink %>>
+              href="<%= searchmeasuredetails.subsidyMeasure.gaSubsidyWebLink %>">
               <%= searchmeasuredetails.subsidyMeasure.gaSubsidyWebLink %>
 
             </a>
+            <% } else { %>
+            <a aria-label="Weblink to granting authority"
+              href="https://<%= searchmeasuredetails.subsidyMeasure.gaSubsidyWebLink %>">
+              <%= searchmeasuredetails.subsidyMeasure.gaSubsidyWebLink %>
+            </a>
+            <% } %>
           </dd>
         </div>
 

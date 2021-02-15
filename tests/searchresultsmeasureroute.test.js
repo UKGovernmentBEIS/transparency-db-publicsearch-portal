@@ -22,7 +22,8 @@ const mockRequest = (sessionData, body) => ({
 const res = {};
 
 test("Unit testing for search results measure route Test for GET call", (done) => {
-  global.beis_url_publicsearch  = "https://dev-beis-tp-db-public-search-service.azurewebsites.net";
+  global.beis_url_publicsearch =
+    "https://dev-beis-tp-db-public-search-service.azurewebsites.net";
   const req = mockRequest();
   global.searchmeasuredetails = {
     awardNumber: 22,
@@ -30,6 +31,7 @@ test("Unit testing for search results measure route Test for GET call", (done) =
       beneficiaryName: "Absolem Productions Limited",
     },
     subsidyMeasure: {
+      gaSubsidyWebLink: "",
       subsidyMeasureTitle: "COVID-19 Temporary Framework for UK authorities",
       scNumber: "SC10033",
       adhoc: false,
@@ -53,6 +55,7 @@ test("Unit testing for search results measure route Test for GET call", (done) =
         beneficiaryName: "Absolem Productions Limited",
       },
       subsidyMeasure: {
+        gaSubsidyWebLink: "",
         subsidyMeasureTitle: "COVID-19 Temporary Framework for UK authorities",
         scNumber: "SC10033",
         adhoc: false,
