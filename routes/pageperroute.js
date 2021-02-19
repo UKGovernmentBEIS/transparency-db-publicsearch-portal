@@ -10,6 +10,7 @@ var request = require("request");
 router.get("/", async (req, res) => {
   console.log("req.query.page: " + req.query.sort);
   routing_pagenumber = req.query.sort;
+  console.log("Records per page :" + routing_pagenumber) ;
   frontend_totalRecordsPerPage = routing_pagenumber;
   fetch_pagenumber = 1;
   current_page = 1;
@@ -89,14 +90,7 @@ router.get("/", async (req, res) => {
       start_record = 1;
       end_record = frontend_totalRecordsPerPage;
     }
-    // else if (current_page == pageCount) {
-    //   start_record = (current_page - 1) * frontend_totalRecordsPerPage + 1;
-    //   end_record = totalrows;
-    // } else {
-    //   start_record = current_page * frontend_totalRecordsPerPage - frontend_totalRecordsPerPage + 1;
-    //   end_record = current_page * frontend_totalRecordsPerPage;
-    // }
-
+   
     pageCount = Math.ceil(totalrows / frontend_totalRecordsPerPage);
 
     // this is for page management section
