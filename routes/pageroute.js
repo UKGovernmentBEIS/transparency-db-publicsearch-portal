@@ -10,7 +10,7 @@ var request = require("request");
 router.get("/", async (req, res) => {
   console.log("req.query.page: " + req.query.page);
   console.log("beneficiary_sorting_order :" + beneficiary_sorting_order);
-  //  frontend_totalRecordsPerPage = 3;
+
   routing_pagenumber = req.query.page;
 
   if (routing_pagenumber == 999997) {
@@ -56,7 +56,7 @@ router.get("/", async (req, res) => {
     sorting_order_pass = JSON.parse(sorting_order_interium);
     console.log("sorting_order_interium :" + sorting_order_interium);
   } else if (routing_pagenumber == 999999) {
-    // frontend_totalRecordsPerPage = 10;
+   
     current_page = 1;
     fetch_pagenumber = 1;
     if (subsidyamount_sorting_order == "asc") {
@@ -135,6 +135,8 @@ router.get("/", async (req, res) => {
   var data = JSON.parse(JSON.stringify(data_request));
   console.log("request data : " + data);
 
+  console.log("frontend_totalRecordsPerPage :" + frontend_totalRecordsPerPage);
+
   try {
     const apidata = await axios.post(
       beis_url_publicsearch + "/searchResults",
@@ -192,56 +194,7 @@ router.get("/", async (req, res) => {
       }
     }
 
-    // if ( pageCount < 11) { start_page = 1; end_page = pageCount }
-    // if ( pageCount > 10  )
-    // {
-    //     if (current_page == 1) {  start_page = 1; end_page = 10    }
-    //     else if (current_page % 10 == 1 && current_page != 1 )
-    //       { start_page = current_page - 10; end_page = current_page - 1  }
-    //     else if (current_page % 10 == 0 && current_page != pageCount)
-
-    //       {
-    //          start_page = current_page + 1;
-    //          end_page = current_page + 10
-
-    //          check_nearby_last_page = pageCount - start_page;
-
-    //          if (check_nearby_last_page < 9) {
-    //           end_page = pageCount
-    //           start_page = pageCount -9
-
-    //          }
-
-    //         else if (end_page > pageCount)
-    //           {
-    //             console.log("last pagination")
-    //             end_page = pageCount
-    //             start_page = pageCount -9
-    //           }
-
-    //         else if (end_page == pageCount)
-    //         {
-    //           console.log("eactly last pagecount")
-    //           end_page = pageCount;
-    //           start_page = pageCount -9
-    //              }
-
-    //        }
-    //   else if(current_page == pageCount) {
-
-    //     console.log("eactly last pagecount out")
-    //     end_page = pageCount;
-    //     start_page = pageCount -9
-    //   }
-
-    //   else if(current_page % 10 != 0 && current_page % 10 != 1) {
-    //     console.log("ordinary")
-    //     round_value = Math.floor(current_page /10);
-    //     start_page = round_value * 10 + 1;
-    //     end_page   = start_page + 9;
-    //   }
-
-    // }
+    
 
     console.log("Start Page :" + start_page);
     console.log("end page :" + end_page);
