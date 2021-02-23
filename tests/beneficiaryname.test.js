@@ -68,42 +68,11 @@ test("beneficiary name route works", (done) => {
   global.radio_beneficiaryname = "No";
   global.beis_url_publicsearch = "";
   const res = {};
-  axios.post.mockResolvedValue({
-    status: 200,
-    data: {
-      totalSearchResults: 49,
-      currentPage: 1,
-      totalPages: 5,
-      awards: [
-        {
-          awardNumber: 22,
-          beneficiary: {
-            beneficiaryName: "Absolem Productions Limited",
-          },
-          subsidyMeasure: {
-            subsidyMeasureTitle:
-              "COVID-19 Temporary Framework for UK authorities",
-            scNumber: "SC10033",
-            adhoc: false,
-            legalBasis: {
-              legalBasisText: "R&D&I Framework",
-            },
-          },
-          subsidyFullAmountRange: "£NA",
-          subsidyFullAmountExact: "597,336",
-          subsidyObjective: "Energy efficiency",
-          subsidyInstrument: "Direct Grant",
-          spendingSector: "Arts, entertainment and recreation",
-          legalGrantingDate: "13 October 2020",
-          spendingRegion: "Scotland",
-        },
-      ],
-    },
-  });
+
   request(app)
     .post("/beneficiaryname", (req, res))
     .send({
-      homepage_button: "show_results",
+      homepage_button: "start_now",
     })
     .expect(200, done);
 });

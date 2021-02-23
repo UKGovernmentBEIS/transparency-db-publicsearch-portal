@@ -215,25 +215,22 @@ Gov.UK public user search - header rendering design
                 </label>
               </div>
 
-              <div class="govuk-checkboxes__conditional " id="conditional-subsidyinstrument-71">
+              <div class="govuk-checkboxes__conditional" id="conditional-subsidyinstrument-71">
                 <div class="govuk-form-group">
-                  <p class="govuk-body govuk-label-other" for="subsidyinstrument-7">
+                  <label class="govuk-body govuk-label-other" for="subsidyinstrument-7">
                     Enter the type of subsidy that you want to search for
-                  </p>
+                  </label>
                   <% if (check_subsidyinstrument9_pass) { %> %>
-                  <input class="govuk-input govuk-!-width-one-half" id="subsidyinstrument-7" name="subsidyinstrument9"
+                  <input class="govuk-input govuk-!-width-one-half" id="subsidyinstrument-71" name="subsidyinstrument9"
                     type="subsidyinstrument" spellcheck="false" value="<%= check_subsidyinstrument9_pass %>">
                   <% } else { %>
-                  <input class="govuk-input govuk-!-width-one-half" id="subsidyinstrument-7" name="subsidyinstrument9"
+                  <input class="govuk-input govuk-!-width-one-half" id="subsidyinstrument-71" name="subsidyinstrument9"
                     type="subsidyinstrument" spellcheck="false">
                   <% }  %>
                 </div>
               </div>
-
             </div>
           </div>
-
-
         </fieldset>
 
         <button class="govuk-button" data-module="govuk-button">

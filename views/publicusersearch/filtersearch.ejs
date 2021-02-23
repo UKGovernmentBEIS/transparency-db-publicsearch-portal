@@ -326,12 +326,12 @@ Gov.UK public user search - header rendering design
           </form>
         </div>
         <label class="govuk-label">
-         
+
           <% if(searchawards.totalSearchResults == 1)  { %>
-            <b><%= searchawards.totalSearchResults %></b> subsidy award found
-           <% } else { %> 
-            <b><%= searchawards.totalSearchResults %></b> subsidy awards found
-           <% } %>
+          <b><%= searchawards.totalSearchResults %></b> subsidy award found
+          <% } else { %>
+          <b><%= searchawards.totalSearchResults %></b> subsidy awards found
+          <% } %>
 
         </label>
 
@@ -346,8 +346,8 @@ Gov.UK public user search - header rendering design
             <button class=" govuk-button govuk-button--secondary ">
               Hide filters </button> </a> -->
 
-            <a href="/hidefilter/?page=<%= current_page_active  %>" style=" text-decoration: none"
-              class="govuk-button" name="showfiter" value="showfilt">
+            <a href="/hidefilter/?page=<%= current_page_active  %>" style=" text-decoration: none" class="govuk-button"
+              name="showfiter" value="showfilt">
               Hide filters
             </a>
 
@@ -368,7 +368,7 @@ Gov.UK public user search - header rendering design
             <label class="govuk-grid-column-two-thirds">
               Results per page
             </label>
-            <ul class="pagination govuk-grid-column-one-third pagination-style-modified"
+            <div class="pagination govuk-grid-column-one-third pagination-style-modified"
               style="display: inline;  margin: 0;  padding: 0;">
               <% if(frontend_totalRecordsPerPage  == 10) { %>
               <a aria-label="10 records per page " class="round btn-page active"
@@ -401,7 +401,7 @@ Gov.UK public user search - header rendering design
               <a aria-label="100 records per page " class="round btn-page"
                 href="/updateresultspageperroute/?sort=100">100</a>
               <% }  %>
-            </ul>
+            </div>
 
             <!-- <select class="govuk-select" id="sort" aria-label="Results per page shown in current page"
               aria-describedby="info-message" aria-autocomplete="list" name="sort" onchange="this.form.submit()">

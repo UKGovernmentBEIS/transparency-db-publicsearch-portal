@@ -145,7 +145,7 @@
             <label class="govuk-grid-column-two-thirds">
               Results per page
             </label>
-            <ul class="pagination govuk-grid-column-one-third pagination-style-modified"
+            <div class="pagination govuk-grid-column-one-third pagination-style-modified"
               style="display: inline;  margin: 0;  padding: 0;">
               <!-- <form class="govuk-grid-column-one-third" action="/pageperroute" method="GET"> -->
               <% if(frontend_totalRecordsPerPage  == 10) { %>
@@ -171,7 +171,7 @@
               <% } else { %>
               <a aria-label="100 records per page " class="round btn-page" href="/pageperroute/?sort=100">100</a>
               <% }  %>
-            </ul>
+            </div>
 
             <!-- <select class="govuk-select" id="sort" aria-label="Results per page shown in current page"
               aria-describedby="info-message" aria-autocomplete="list" name="sort" onchange="this.form.submit()">
@@ -351,8 +351,8 @@
                 <% } %>
 
                 <% if (current_page_active != pageCount) { %>
-                <a href="/pageroute/?page=<%= next_page %>" id="paginationlink_next_page" aria-label="go to next page"
-                  class="next round">Next Page</a>
+                <a href="/pageroute/?page=<%= next_page %>&totalrecords=<%= frontend_totalRecordsPerPage %>"
+                  id="paginationlink_next_page" aria-label="go to next page" class="next round">Next Page</a>
                 <a href="/pageroute/?page=<%= pageCount %>" id="paginationlink_last_page" class="last round">
                   <img id="govuk-right-arrow" src="/assets/images/govuk-right-arrow.jpg" aria-hidden="go to last page">
                   <!-- <svg version="1.1" width="19px" height="30px" class="left-arrow">
