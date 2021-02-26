@@ -74,18 +74,22 @@ table tbody tr:hover{
 .pagination a {
   border: solid 1px #ffffff;
   padding: 8px 10px;
-  text-decoration: underline;
+  text-decoration: none;
   /* color:rgb(22, 10, 134); */
   color: #1d70b8;
 }
+
 .pagination a:nth-child(1),
 .pagination a:last-child {
   padding: 8px 0;
 }
-.pagination a:hover,
+.pagination a:hover {
+  color: rgb(86, 148, 202);
+}
 .pagination a.active {
   /* background-color: rgb(229, 235, 236); */
   text-decoration: none;
+  color: black;
 }
 .govuk-font-bold {
   font-weight: bold;

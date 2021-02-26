@@ -625,7 +625,9 @@ button.link {
   min-height: 0.01%;
   overflow-x: auto;
 }
-
+.pagination-style-modified a {
+  padding: 8px 3px !important;
+}
 .govuk-padding-0 {
   padding: 0% !important;
 }

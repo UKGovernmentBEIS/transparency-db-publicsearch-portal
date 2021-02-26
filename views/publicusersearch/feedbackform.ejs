@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Feeback form</title>
+    <%- include('../partials/headercss.ejs') %>
+</head>
+
+<body class="govuk-template__body app-example-page">
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+    <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
+
+    <%- include('../partials/header.ejs') %>
+    <div class="govuk-width-container ">
+        <main id="main-content" role="main">
+            <%- include('../partials/banner.ejs') %>
+            <!-- Body header starts here -->
+
+            <div class="govuk-form-group govuk-main-wrapper">
+                <form action="/submitfeedback" method="POST">
+                    <fieldset class="govuk-fieldset">
+                        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                            <h1 class="govuk-fieldset__heading">
+                                Give feedback
+                            </h1>
+                        </legend>
+                        <p class="govuk-body govuk-!-font-size-19 govuk-!-font-weight-bold">
+                            Overall, how did you feel about the service you used today?</p>
+                        <div class="govuk-radios govuk-form-group">
+                            <div class="govuk-radios__item">
+                                <input class="govuk-radios__input" id="very-satisfied" name="feedback" type="radio"
+                                    value="Very satisfied">
+                                <label class="govuk-label govuk-radios__label" for="very-satisfied">
+                                    Very satisfied
+                                </label>
+                            </div>
+                            <div class="govuk-radios__item">
+                                <input class="govuk-radios__input" id="satisfied" name="feedback" type="radio"
+                                    value="satisfied">
+                                <label class="govuk-label govuk-radios__label" for="satisfied">
+                                    Satisfied
+                                </label>
+                            </div>
+                            <div class="govuk-radios__item">
+                                <input class="govuk-radios__input" id="neither-satisfied-nor-dissatisfied"
+                                    name="feedback" type="radio" value="neithersatisfiednordissatisfied">
+                                <label class="govuk-label govuk-radios__label" for="neither-satisfied-nor-dissatisfied">
+                                    Neither satisfied nor dissatisfied
+                                </label>
+                            </div>
+                            <div class="govuk-radios__item">
+                                <input class="govuk-radios__input" id="dis-satisfied" name="feedback" type="radio"
+                                    value="dissatisfied">
+                                <label class="govuk-label govuk-radios__label" for="dis-satisfied">
+                                    Dissatisfied
+                                </label>
+                            </div>
+                            <div class="govuk-radios__item">
+                                <input class="govuk-radios__input" id="very-dissatisfied" name="feedback" type="radio"
+                                    value="verydissatisfied">
+                                <label class="govuk-label govuk-radios__label" for="very-dissatisfied">
+                                    Very dissatisfied
+                                </label>
+                            </div>
+                        </div>
+
+
+                        <div class="govuk-grid-row govuk-form-group">
+                            <div class="govuk-character-count  govuk-grid-column-two-thirds"
+                                data-module="govuk-character-count" data-maxlength="1200">
+                                <div class="govuk-form-group">
+                                    <h1 class="govuk-label-wrapper"><label class="govuk-label govuk-label--m"
+                                            for="more-detail">
+                                            How can we improve this service?
+                                        </label>
+                                    </h1>
+                                    <div id="more-detail-hint" class="govuk-hint">
+                                        If your feedback relates to a specific question or
+                                        page, please provide the question number
+                                        or page title.<br />
+                                        If you think you've found a bug in the service,
+                                        please
+                                        let us know what you were doing when
+                                        the problem occurred.
+                                    </div>
+                                    <textarea class="govuk-textarea govuk-js-character-count" id="more-detail"
+                                        name="comment" rows="5"
+                                        aria-describedby="more-detail-info more-detail-hint"></textarea>
+                                </div>
+
+                                <div id="more-detail-info" class="govuk-hint govuk-character-count__message"
+                                    aria-live="polite">
+                                    You can enter up to 1,200 characters
+                                </div>
+                            </div>
+                        </div>
+                        <p class="govuk-body">Please don't inlcude any personal or financial information.</p>
+
+                        <button class="govuk-button">Send feedback</button>
+
+                    </fieldset>
+                </form>
+            </div>
+            <!-- Body header ends here -->
+
+        </main>
+    </div>
+
+    <%- include('../partials/footer.ejs') %>
+
+    <!-- Added for char count -->
+
+</body>
+
+</html>

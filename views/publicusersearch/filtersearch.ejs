@@ -117,8 +117,6 @@ Gov.UK public user search - header rendering design
         $('.govuk-label-subsidyobjective').hide();
       }
 
-
-
     });
 
 
@@ -268,8 +266,6 @@ Gov.UK public user search - header rendering design
         }
         var data = JSON.parse(JSON.stringify(filteredResponse));
         var res = alasql('SELECT * INTO XLSX("publicsearchawards.xlsx",?) FROM ?', [data, [data]]);
-
-
       },
       error: function (error) {
         console.log("Something went wrong", error);
@@ -278,18 +274,7 @@ Gov.UK public user search - header rendering design
     });
   }  //end of save file
 
-  // $(document).ready(function () {
-  //   $('body,html').animate({ scrollTop: 300 }, 1500);
-  // });
-
 </script>
-
-
-
-
-
-
-
 
 <body class="govuk-template__body app-example-page">
   <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
@@ -298,25 +283,12 @@ Gov.UK public user search - header rendering design
     <%- include('../partials/banner.ejs') %>
 
     <main id="main-content" role="main">
-
-      <!-- <div class="govuk-breadcrumbs ">
-        <ol class="govuk-breadcrumbs__list">
-          <li class="govuk-breadcrumbs__list-item">
-            <a class="govuk-breadcrumbs__link" href="/homepage">Home</a>
-          </li>
-          <li class="govuk-breadcrumbs__list-item">
-            <a class="govuk-breadcrumbs__link" href="/beneficiaryname">Search subsidy awards</a>
-          </li>
-        </ol>
-      </div> -->
       <div class="govuk-main-wrapper ">
         <div class="govuk-grid-row">
           <div class="govuk-grid-column-two-thirds">
-            <!-- <legend class="govuk-fieldset__legend govuk-fieldset__legend--l"> -->
             <h1 class="govuk-heading-l">
               Search results
             </h1>
-            <!-- </legend> -->
           </div>
           <form action="/homepage" method="GET">
             <div class="govuk-grid-column-one-third">
@@ -326,12 +298,12 @@ Gov.UK public user search - header rendering design
           </form>
         </div>
         <label class="govuk-label">
-         
+
           <% if(searchawards.totalSearchResults == 1)  { %>
-            <b><%= searchawards.totalSearchResults %></b> subsidy award found
-           <% } else { %> 
-            <b><%= searchawards.totalSearchResults %></b> subsidy awards found
-           <% } %>
+          <b><%= searchawards.totalSearchResults %></b> subsidy award found
+          <% } else { %>
+          <b><%= searchawards.totalSearchResults %></b> subsidy awards found
+          <% } %>
 
         </label>
 
@@ -342,43 +314,24 @@ Gov.UK public user search - header rendering design
 
         <div class="govuk-grid-row">
           <div class="govuk-grid-column-one-half">
-            <!-- <a href="/hidefilter/?page=<%= current_page_active  %>" style="color : black; text-decoration: none">
-            <button class=" govuk-button govuk-button--secondary ">
-              Hide filters </button> </a> -->
-
-            <a href="/hidefilter/?page=<%= current_page_active  %>" style=" text-decoration: none"
-              class="govuk-button" name="showfiter" value="showfilt">
+            <a href="/hidefilter/?page=<%= current_page_active  %>" style=" text-decoration: none" class="govuk-button"
+              name="showfiter" value="showfilt">
               Hide filters
             </a>
-
-            <!-- <a href="/homepage" style="color : rgb(250, 245, 245); text-decoration: none"
-             class="govuk-button" data-module="govuk-button">New search 
-          </a> -->
-            <!-- <a href="/exportexcel" style="color : black; text-decoration: none">
-           <button class="govuk-button" data-module="govuk-button"> Download results </button>
-          </a> -->
-
             <button class="govuk-button" data-module="govuk-button"
               onclick="saveFile('<%= data_request_clientside %>','<%= beis_url_publicsearch %>')">
               Download results as Excel file </button>
-
-
           </div>
-          <!-- <div class="govuk-grid-column-one-third govuk-display-flex">
-            <label class="govuk-grid-column-two-thirds" for="sort">
-              Results per page
-            </label> -->
-
-            <div class="govuk-grid-column-one-half govuk-display-flex" aria-autocomplete="list">
+          <div class="govuk-grid-column-one-half govuk-display-flex" aria-autocomplete="list">
             <label class="govuk-grid-column-two-thirds">
               Results per page
             </label>
-            <ul class="pagination govuk-grid-column-one-third pagination-style-modified"
+            <div class="pagination govuk-grid-column-one-third pagination-style-modified"
               style="display: inline;  margin: 0;  padding: 0;">
               <% if(frontend_totalRecordsPerPage  == 10) { %>
               <a aria-label="10 records per page " class="round btn-page active"
                 href="/updateresultspageperroute/?sort=10">10</a>
- 
+
               <% } else { %>
               <a aria-label="10 records per page " class="round btn-page"
                 href="/updateresultspageperroute/?sort=10">10</a>
@@ -390,7 +343,7 @@ Gov.UK public user search - header rendering design
               <a aria-label="20 records per page " class="round btn-page"
                 href="/updateresultspageperroute/?sort=20">20</a>
               <% }  %>
- 
+
               <% if(frontend_totalRecordsPerPage  == 50) { %>
               <a aria-label="50 records per page " class="round btn-page active"
                 href="/updateresultspageperroute/?sort=50">50</a>
@@ -398,7 +351,7 @@ Gov.UK public user search - header rendering design
               <a aria-label="50 records per page " class="round btn-page"
                 href="/updateresultspageperroute/?sort=50">50</a>
               <% }  %>
- 
+
               <% if(frontend_totalRecordsPerPage  == 100) { %>
               <a aria-label="100 records per page " class="round btn-page active"
                 href="/updateresultspageperroute/?sort=100">100</a>
@@ -406,15 +359,11 @@ Gov.UK public user search - header rendering design
               <a aria-label="100 records per page " class="round btn-page"
                 href="/updateresultspageperroute/?sort=100">100</a>
               <% }  %>
-            </ul>
-
-         
+            </div>
           </div>
+          <span id="info-message" style="display:none" aria-hidden="true">
+            On selecting, the page will reload and display the search results</span>
         </div>
-
-        <span id="info-message" style="display:none" aria-hidden="true">
-          On selecting, the page will reload and display the search results</span>
-
         <form action="/updateresults" method="POST">
           <div class="govuk-accordion" data-module="govuk-accordion" id="accordion-default">
             <%- include('../partials/searchobjectiveaccordion.ejs') %>
@@ -473,11 +422,12 @@ Gov.UK public user search - header rendering design
                   </a></th>
 
 
-                <th scope="col" style="text-align:left" class="govuk-table__header app-custom-class">Subsidy scheme</th>
+                <th scope="col" style="text-align:left" class="govuk-table__header app-custom-class">Subsidy scheme
+                </th>
                 <th scope="col" class="govuk-table__header app-custom-class" aria-sort="none">
                   <!-- <a href="/pageroute/?page=999999" style="text-decoration: none"> -->
                   Subsidy amount
-               
+
                 </th>
               </tr>
             </thead>

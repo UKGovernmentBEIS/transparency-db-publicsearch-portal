@@ -63,25 +63,19 @@ Gov.UK public user search - header rendering design
                     <div class="govuk-error-summary__body">
                         <% for(var i=0; i < locals.SubsidyArraySize  ; i++) {%>
                         <ul class="govuk-list govuk-error-summary__list">
-
                             <li> <a href="<%= locals.SubsidyFocus[i] %>"> <%= locals.SubsidyErrors[i] %> </a> </li>
                         </ul>
                         <% } %>
                     </div>
-
                 </div>
 
                 <% } %>
 
-                <fieldset class="govuk-fieldset" role="group" aria-describedby="legalgrantingdate-hint">
+                <fieldset class="govuk-fieldset" role="group">
                     <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-grid-column-two-thirds">
-                        <!-- <div class="govuk-grid-row">
-                                <div class="govuk-grid-column-two-thirds"> -->
                         <h1 class="govuk-fieldset__heading">
                             Are you searching for subsidies that were awarded in a specific period?
                         </h1>
-                        <!-- </div>
-                            </div> -->
                     </legend>
 
                     <div class="govuk-radios govuk-radios--conditional govuk-form-group" data-module="govuk-radios">
@@ -108,21 +102,15 @@ Gov.UK public user search - header rendering design
                                 <fieldset class="govuk-fieldset" role="group"
                                     aria-describedby="legalgrantingdate-from-hint">
                                     <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-
-                                        <div class="govuk-grid-row">
-                                            <div class="govuk-grid-column-full">
-                                                <label class="govuk-label" for="legalgrantingdate">From </label>
-                                                <div id="legalgrantingdate-from-hint" class="govuk-hint">
-                                                    For example, 31 3 2008
-                                                </div>
-
-                                            </div>
-                                        </div>
+                                        From
                                     </legend>
 
                                     <div class="govuk-grid-row">
 
                                         <div class="govuk-grid-column-full">
+                                            <div id="legalgrantingdate-from-hint" class="govuk-hint">
+                                                For example, 31 3 2008
+                                            </div>
                                             <% if( date_legal_granting_date_day_Error || date_legal_granting_date_month_Error || date_legal_granting_date_year_Error) { %>
                                             <span class="govuk-error-message" id="legal_granting_date_error">
                                                 <span class="govuk-visually-hidden">Error:</span> Enter the valid from
@@ -219,19 +207,14 @@ Gov.UK public user search - header rendering design
                                 <fieldset class="govuk-fieldset" role="group"
                                     aria-describedby="legalgrantingdate-to-hint">
                                     <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-
-                                        <div class="govuk-grid-row">
-                                            <div class="govuk-grid-column-full">
-                                                <label class="govuk-label" for="legalgrantingdate">From </label>
-                                                <div id="legalgrantingdate-to-hint" class="govuk-hint">
-                                                    For example, 31 3 2008
-                                                </div>
-                                            </div>
-                                        </div>
+                                        From
                                     </legend>
 
                                     <div class="govuk-grid-row">
                                         <div class="govuk-grid-column-full">
+                                            <div id="legalgrantingdate-to-hint" class="govuk-hint">
+                                                For example, 31 3 2008
+                                            </div>
                                             <div class="govuk-date-input" id="legal-granting-date_day1">
                                                 <div class="govuk-date-input__item">
                                                     <div class="govuk-form-group">
@@ -292,15 +275,10 @@ Gov.UK public user search - header rendering design
                             <div class="govuk-form-group govuk-form-group--error">
                                 <fieldset class="govuk-fieldset" role="group">
                                     <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-
-                                        <div class="govuk-grid-row">
-                                            <div class="govuk-grid-column-full">
-                                                <label class="govuk-label" for="legalgrantingdate">To </label>
-                                                <!-- <div id="legalgrantingdate-hint" class="govuk-hint">
+                                        To
+                                        <!-- <div id="legalgrantingdate-hint" class="govuk-hint">
                                     For example, 31 3 2008 
                                     </div>  -->
-                                            </div>
-                                        </div>
                                     </legend>
 
                                     <div class="govuk-grid-row">
@@ -398,15 +376,11 @@ Gov.UK public user search - header rendering design
                             <div class="govuk-form-group">
                                 <fieldset class="govuk-fieldset" role="group">
                                     <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-
-                                        <div class="govuk-grid-row">
-                                            <div class="govuk-grid-column-full">
-                                                <label class="govuk-label" for="legalgrantingdate">To </label>
-                                                <!-- <div id="legalgrantingdate-hint" class="govuk-hint">
+                                        To
+                                        <!-- <div id="legalgrantingdate-hint" class="govuk-hint">
                                     For example, 31 3 2008 
                                     </div>  -->
-                                            </div>
-                                        </div>
+
                                     </legend>
 
                                     <div class="govuk-grid-row">
@@ -483,15 +457,9 @@ Gov.UK public user search - header rendering design
                     <button class="govuk-button" data-module="govuk-button">
                         Show results </button>
                 </fieldset>
+            </form>
+        </main>
     </div>
-    </form>
-    </main>
-    </div>
-    <!-- container div ends here -->
-
-    <!-- ---------------
-Footer section 
--------------- -->
 
     <%- include('../partials/footer.ejs') %>
 

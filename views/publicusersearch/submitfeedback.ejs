@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>GOV.UK - Feedback Submitted</title>
+    <%- include('../partials/headercss.ejs') %>
+</head>
+
+<body class="govuk-template__body app-example-page">
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+    <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
+    <%- include('../partials/header.ejs') %>
+    <div class="govuk-width-container ">
+        <main id="main-content" role="main">
+            <%- include('../partials/banner.ejs') %>
+            <div class="govuk-grid-row govuk-main-wrapper">
+                <div class="govuk-grid-column-two-thirds govuk-form-group">
+                    <div class="govuk-panel govuk-panel--confirmation">
+                        <h1 class="govuk-panel__title">
+                            Thank you for your feedback
+                        </h1>
+                    </div>
+                </div>
+                <div class="govuk-grid-column-full govuk-form-group">
+                    <button class="govuk-button" onclick="history.back(2);">Return to search</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <%- include('../partials/footer.ejs') %>
+
+
+</body>
+
+</html>
