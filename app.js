@@ -202,4 +202,10 @@ app.use("/pageperroute", pageperroute);
 var updateresultspageperroute = require("./routes/updateresultspageperroute");
 app.use("/updateresultspageperroute", updateresultspageperroute);
 
+var feedbackform = require("./routes/feedbackform");
+app.use("/feedbackform", feedbackform);
+
+var submitfeedback = require("./routes/submitfeedback");
+app.use("/submitfeedback", submitfeedback);
+
 module.exports = app;
