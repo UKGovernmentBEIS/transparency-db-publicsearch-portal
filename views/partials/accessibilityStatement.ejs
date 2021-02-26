@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en" class="govuk-template ">
+
+<head>
+    <title>GOV.UK - Accessibility statement document</title>
+    <%- include('../partials/headercss.ejs') %>
+</head>
+
+<!--**************************************************
+Gov.UK public user search - header rendering design 
+**************************************************** -->
+
+
+<body class="govuk-template__body app-example-page">
+    <script>
+        document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');
+    </script>
+    <%- include('../partials/header.ejs') %>
+    <div class="govuk-width-container ">
+        <main id="main-content" role="main">
+            <%- include('../partials/banner.ejs') %>
+            <div class="govuk-main-wrapper ">
+                <h1 class="govuk-heading-xl">Accessibility statement for Search for UK subsidies</h1>
+                <div class="govuk-grid-row">
+                    <div class="govuk-grid-column-three-quarters">
+                        <div class="govuk-form-group">
+                            <p class="govuk-body">This accessibility statement applies to <a
+                                    href=" https://www.gov.uk/guidance/view-subsidies-awarded-by-uk-government">
+                                    https://www.gov.uk/guidance/view-subsidies-awarded-by-uk-government</a> It does not
+                                cover subdomains and other content.</p>
+                            <p class="govuk-body">This website is run by Department of Business, Energy & Industrial
+                                Strategy (BEIS). We want
+                                as many people as possible to be able to use this website. For example, that means you
+                                should be able to:</p>
+                            <ul class="govuk-list  govuk-list--bullet">
+                                <li>
+                                    change colours, contrast levels and fonts
+                                </li>
+                                <li>
+                                    navigate most of the website using just a keyboard
+                                </li>
+                                <li>
+                                    navigate most of the website using speech recognition software
+                                </li>
+                                <li>
+                                    listen to most of the website using a screen reader (including the most recent
+                                    versions
+                                    of JAWS, NVDA and VoiceOver)
+                                </li>
+                            </ul>
+                            <p class="govuk-body">We’ve also made the website text as simple as possible to understand.
+                                <a href="https://mcmw.abilitynet.org.uk/">AbilityNet</a> has advice on making your
+                                device
+                                easier to use if you have a disability.
+                            </p>
+                        </div>
+                        <div class="govuk-form-group">
+                            <h2 class="govuk-heading-l">How accessible this website is</h2>
+                            <ul class="govuk-list  govuk-list--bullet">
+                                <li>
+                                    We know some parts of this website are not fully accessible:
+                                </li>
+                                <li>
+                                    Some form labels are visually associated with input elements but they are not
+                                    programmatically associated. The purpose of those input elements may not be
+                                    completely clear to some screen reader software users.
+                                </li>
+                                <li>
+                                    The search results data table may require some horizontal scrolling in order to view
+                                    all the content when a browser’s Zoom tool is used. Data tables are exempt from the
+                                    WCAG 2.1 reflow requirement.
+                                </li>
+                                <li>
+                                    The page title does not change when a new page loads. The main heading of each page
+                                    does describe the page, however, which will confirm that the expected page has been
+                                    loaded.
+                                </li>
+                                <li>
+                                    When interacting with the Show filters, Hide filters and Results per page controls
+                                    on the search results page, keyboard focus is sent to the top of the page.
+                                    Keyboard-only users and screen reader software users will need to navigate back down
+                                    the screen to get back to their original position.
+                                </li>
+                                <li>
+                                    On the Search results page, screen reader software users may find that the buttons
+                                    used to sort the results by ascending or descending values are initially not
+                                    correct. Once used, however, the values become correct.
+                                </li>
+                                <li>
+                                    Screen reader software shortcut keys used to navigate by Region will not find the
+                                    “beta” notification at the top of the page. It can be read normally using the ARROW
+                                    keys.
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="govuk-form-group">
+                            <h2 class="govuk-heading-l">Reporting accessibility problems with this website</h2>
+                            <p class="govuk-body">We’re always looking to improve the accessibility of this website. If
+                                you find any
+                                problems not listed on this page or think we’re not meeting accessibility requirements,
+                                contact: <a href="mailto:enquiries@beis.gov.uk">enquiries@beis.gov.uk</a></p>
+                        </div>
+                        <div class="govuk-form-group">
+                            <h2 class="govuk-heading-l">Enforcement procedure</h2>
+                            <p class="govuk-body">The Equality and Human Rights Commission (EHRC) is responsible for
+                                enforcing the Public Sector Bodies (Websites and Mobile Applications) (No. 2)
+                                Accessibility Regulations 2018 (the ‘accessibility regulations’). If you’re not happy
+                                with how we respond to your complaint, contact the Equality Advisory and Support Service
+                                (EASS).</p>
+                        </div>
+                        <div class="govuk-form-group">
+                            <h2 class="govuk-heading-l">Technical information about this website’s accessibility</h2>
+                            <p class="govuk-body">The Department of Business, Energy & Industrial Strategy (BEIS) is
+                                committed to making its website accessible, in accordance with the Public Sector Bodies
+                                (Websites and Mobile Applications) (No. 2) Accessibility Regulations 2018.</p>
+                        </div>
+                        <div class="govuk-form-group">
+                            <h2 class="govuk-heading-l">Compliance status</h2>
+                            <p class="govuk-body">This website is partially compliant with the Web Content Accessibility
+                                Guidelines version 2.1 AA standard, due to the non-compliances listed below.</p>
+                        </div>
+                        <div class="govuk-form-group">
+                            <h2 class="govuk-heading-l">Non-accessible content</h2>
+                            <p class="govuk-body">The content listed below is non-accessible for the following reasons.
+                            </p>
+                        </div>
+                        <div class="govuk-form-group">
+                            <h2 class="govuk-heading-l">Non-compliance with the accessibility regulations</h2>
+                            <p class="govuk-body">We plan to correctly associate input elements with their text labels
+                                in the next update to the website, due in February 2021.
+                            </p>
+                            <p class="govuk-body">The ‘beta’ message is not in a landmark region. This fails WCAG 2.1
+                                success criterion 1.3.1 (Info and relationships).
+                            </p>
+                            <p class="govuk-body">We plan to put the ‘beta’ message in a landmark region in the next
+                                update to the website, due in February 2021.
+                            </p>
+                            <p class="govuk-body">The page title element has the same value on all the pages. This fails
+                                WCAG 2.1 success criterion 2.4.2 (Page Titled).
+                            </p>
+                            <p class="govuk-body">We plan to create unique and descriptive title values for each page in
+                                the next update to the website, due in March 2021.
+                            </p>
+                        </div>
+                        <div class="govuk-form-group">
+                            <h2 class="govuk-heading-l">What we’re doing to improve accessibility</h2>
+                            <p class="govuk-body">We are working to fix the issues described above which fail to meet
+                                the Web Content Accessibility Guidelines version 2.1 AA standard. We expect that they
+                                will be resolved when the website is next updated, in February 2021. We will update this
+                                page when issues are fixed.
+                            </p>
+                        </div>
+                        <div class="govuk-form-group">
+                            <h2 class="govuk-heading-l">Preparation of this accessibility statement</h2>
+                            <div class="govuk-inset-text">
+                                <p class="govuk-body">This statement was prepared on 27 January 2021.</p>
+                                <p class="govuk-body">This website was last tested on 21 January 2021. The test was
+                                    carried out by Test Partners Ltd.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!--************************************************
+Gov.UK public user search - Footer rendering design 
+************************************************ -->
+
+    <%- include('../partials/footer.ejs') %>
+
+</body>
+
+</html>

@@ -208,4 +208,7 @@ app.use("/feedbackform", feedbackform);
 var submitfeedback = require("./routes/submitfeedback");
 app.use("/submitfeedback", submitfeedback);
 
+var accessibilityStatement = require("./routes/accessibilityStatement");
+app.use("/accessibilityStatement", accessibilityStatement);
+
 module.exports = app;
