@@ -11,7 +11,7 @@ router.post("/", async (req, res) => {
 
   console.log("req.body.feedback", req.body.feedback);
   console.log("req.body.comment", req.body.comment);
-
+  Environment_variable = process.argv[2];
   if (Environment_variable == "env=dev") {
     beis_url_accessmanagement =
       "https://dev-beis-tp-db-accessmanagement-service-app.azurewebsites.net";
