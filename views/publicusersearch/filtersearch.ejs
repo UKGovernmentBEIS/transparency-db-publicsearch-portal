@@ -36,195 +36,26 @@ Gov.UK public user search - header rendering design
 <!-- <script src="https://cdn.jsdelivr.net/alasql/0.3/alasql.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.7.12/xlsx.core.min.js"></script> -->
 
+<script src="/assets/javascripts/searchfilterAccordion.js"></script>
 <script>
-
-  $(document).ready(function () {
-    //****************************************************
-    // checkbox select all scripts for subsidy objective
-    //****************************************************
-
-    if (($('#subsidyobjective-7').is(":checked")) && ($('#subsidyobjective-0').is(":checked"))) {
-      $('.govuk-input-subsidyobjective').val('').hide();
-      $('.govuk-label-subsidyobjective').hide();
-    }
-
-    else if ($('#subsidyobjective-11').is(":checked")) {
-      $('.govuk-input-subsidyobjective').show();
-      $('.govuk-label-subsidyobjective').show();
-    }
-
-    else {
-      $('.govuk-input-subsidyobjective').hide();
-      $('.govuk-label-subsidyobjective').hide();
-
-    }
-
-    $("#subsidyobjective-0").on('change', function () {  //"select all" change 
-      $(".govuk-checkboxes__input_subsidyobjective").prop('checked', $(this).prop("checked")); //change all ".checkbox" checked status
-      if ($('#subsidyobjective-0').is(":checked")) {
-
-        $('.govuk-input-subsidyobjective').val('').hide();
-        $('.govuk-label-subsidyobjective').hide();
-      }
-
-    });//"select all" close
-
-    //".checkbox" change 
-
-    $(document).on('change', '#subsidyobjective-11', function () {
-      if ($('#subsidyobjective-0').is(":checked")) {
-        $('.govuk-input-subsidyobjective').val('');
-        $('.govuk-input-subsidyobjective').hide();
-        $('.govuk-label-subsidyobjective').hide();
-      }
-
-      else if ($('#subsidyobjective-11').is(":checked")) {
-        $('.govuk-input-subsidyobjective').val('');
-        $('.govuk-input-subsidyobjective').show();
-        $('.govuk-label-subsidyobjective').show();
-      }
-
-      // else if ($('#subsidyobjective-11').not(":checked")){
-      //   $('.govuk-input-subsidyobjective').show();
-      // $('.govuk-label-subsidyobjective').show();}
-
-      else {
-        $('.govuk-input-subsidyobjective').hide();
-        $('.govuk-label-subsidyobjective').hide();
-
-      }
-
-    });
+// $(document).ready(function () {
+//****************************************************
+// checkbox select all scripts for subsidy objective
+//****************************************************
 
 
-    $('.govuk-checkboxes__input_subsidyobjective').change(function () {
-      //uncheck "select all", if one of the listed checkbox item is unchecked
-      if (false == $(this).prop("checked")) { //if this item is unchecked
-        $("#subsidyobjective-0").prop('checked', false); //change "select all" checked status to false
-        // alert("change fn" + $('#subsidyobjective-11').is(":checked"))
-        if ($('#subsidyobjective-11').is(":checked")) {
-
-          $('.govuk-input-subsidyobjective').show();
-          $('.govuk-label-subsidyobjective').show();
-        }
-      }
-
-      // alert($('.govuk-checkboxes__input:checked').length );
-      //check "select all" if all checkbox items are checked
-      if ($('.govuk-checkboxes__input_subsidyobjective:checked').length == $('.govuk-checkboxes__input_subsidyobjective').length - 1) {
-        $("#subsidyobjective-0").prop('checked', true);
-        $('.govuk-input-subsidyobjective').hide();
-        $('.govuk-label-subsidyobjective').hide();
-      }
-
-    });
 
 
-    //****************************************************
-    // checkbox select all scripts for subsidy instrument
-    //****************************************************
-    if (($('#subsidyinstrument-7').is(":checked")) && ($('#subsidyinstrument-0').is(":checked"))) {
-      $('.govuk-input-subsidyinstrument').val('');
-      $('.govuk-input-subsidyinstrument').hide();
-      $('.govuk-label-subsidyinstrument').hide();
-    }
-    else if ($('#subsidyinstrument-7').is(":checked")) {
-      $('.govuk-input-subsidyinstrument').show();
-      $('.govuk-label-subsidyinstrument').show();
-      // $('.govuk-input-subsidyinstrument').val('');
-    }
-    else {
-      $('.govuk-input-subsidyinstrument').hide();
-      $('.govuk-label-subsidyinstrument').hide();
-      $('.govuk-input-subsidyinstrument').val('');
-    }
+// document.getElementById("myDiv").scrollIntoView();
+// $('html,body').animate({
+// scrollTop: $(".second").offset().top
+// },
+// 'slow');
+// var element = document.getElementById("myDiv")
+// element.scrollIntoView({behavior: "smooth"});
 
 
-    $("#subsidyinstrument-0").change(function () {  //"select all" change 
-      $(".govuk-checkboxes__input_subsidyinstrument").prop('checked', $(this).prop("checked")); //change all ".checkbox" checked status
-      if ($('#subsidyinstrument-0').is(":checked")) {
-        $('.govuk-input-subsidyinstrument').val('');
-        $('.govuk-input-subsidyinstrument').hide();
-        $('.govuk-label-subsidyinstrument').hide();
-      }
-
-    });//"select all" close
-
-    $('#subsidyinstrument-7').change(function () {
-      if ($('#subsidyinstrument-0').is(":checked")) {
-        $('.govuk-input-subsidyinstrument').val('');
-        $('.govuk-input-subsidyinstrument').hide();
-        $('.govuk-label-subsidyinstrument').hide();
-      }
-      else if ($('#subsidyinstrument-7').is(":checked")) {
-        // $('.govuk-input-subsidyinstrument').val('');
-        $('.govuk-input-subsidyinstrument').show();
-        $('.govuk-label-subsidyinstrument').show();
-      }
-
-      else {
-        $('.govuk-input-subsidyinstrument').hide();
-        $('.govuk-label-subsidyinstrument').hide();
-        $('.govuk-input-subsidyinstrument').val('');
-      }
-    });
-
-    //".checkbox" change 
-    $('.govuk-checkboxes__input_subsidyinstrument').change(function () {
-      //uncheck "select all", if one of the listed checkbox item is unchecked
-      if (false == $(this).prop("checked")) { //if this item is unchecked
-        $("#subsidyinstrument-0").prop('checked', false); //change "select all" checked status to false
-        if ($('#subsidyinstrument-7').is(":checked")) {
-          $('.govuk-input-subsidyinstrument').val('');
-          $('.govuk-input-subsidyinstrument').show();
-          $('.govuk-label-subsidyinstrument').show();
-        }
-      }
-      // alert($('.govuk-checkboxes__input_subsidyinstrument:checked').length );
-      //check "select all" if all checkbox items are checked
-      if ($('.govuk-checkboxes__input_subsidyinstrument:checked').length == $('.govuk-checkboxes__input_subsidyinstrument').length - 1) {
-        $("#subsidyinstrument-0").prop('checked', true);
-        $('.govuk-input-subsidyinstrument').val('');
-        $('.govuk-input-subsidyinstrument').hide();
-        $('.govuk-label-subsidyinstrument').hide();
-      }
-    });
-
-    //****************************************************
-    // checkbox select all scripts for subsidy instrument
-    //****************************************************
-
-    $("#spendingsector-0").change(function () {  //"select all" change 
-      $(".govuk-checkboxes__input_spendingsector").prop('checked', $(this).prop("checked")); //change all ".checkbox" checked status
-    });
-
-    //".checkbox" change 
-    $('.govuk-checkboxes__input_spendingsector').change(function () {
-      //uncheck "select all", if one of the listed checkbox item is unchecked
-      if (false == $(this).prop("checked")) { //if this item is unchecked
-        $("#spendingsector-0").prop('checked', false); //change "select all" checked status to false
-      }
-
-      // alert($('.govuk-checkboxes__input_spendingsector:checked').length );
-      //check "select all" if all checkbox items are checked
-      if ($('.govuk-checkboxes__input_spendingsector:checked').length == $('.govuk-checkboxes__input_spendingsector').length - 1) {
-        $("#spendingsector-0").prop('checked', true);
-
-      }
-
-    });
-
-
-    // document.getElementById("myDiv").scrollIntoView();
-    // $('html,body').animate({
-    //   scrollTop: $(".second").offset().top
-    // },
-    //   'slow');
-    // var element = document.getElementById("myDiv")
-    // element.scrollIntoView({behavior: "smooth"});
-
-
-  });
+// });
 
 </script>
 
@@ -314,10 +145,11 @@ Gov.UK public user search - header rendering design
 
         <div class="govuk-grid-row">
           <div class="govuk-grid-column-one-half">
-            <a href="/hidefilter/?page=<%= current_page_active  %>" style=" text-decoration: none" class="govuk-button"
+            <!-- <a href="/hidefilter/?page=<%= current_page_active  %>" style=" text-decoration: none" class="govuk-button"
               name="showfiter" value="showfilt">
               Hide filters
-            </a>
+            </a> -->
+            <button class="govuk-button" onclick="toggleFilterDiv()"><span id="filterText">Hide</span> filters</button>
             <button class="govuk-button" data-module="govuk-button"
               onclick="saveFile('<%= data_request_clientside %>','<%= beis_url_publicsearch %>')">
               Download results as Excel file </button>
@@ -329,7 +161,7 @@ Gov.UK public user search - header rendering design
             <div class="pagination govuk-grid-column-one-third pagination-style-modified"
               style="display: inline;  margin: 0;  padding: 0;">
               <% if(frontend_totalRecordsPerPage  == 10) { %>
-              <a aria-label="10 records per page " class="round btn-page active"
+              <a aria-label="10 records per page selected" aria-selected="true" class="round btn-page active"
                 href="/updateresultspageperroute/?sort=10">10</a>
 
               <% } else { %>
@@ -337,7 +169,7 @@ Gov.UK public user search - header rendering design
                 href="/updateresultspageperroute/?sort=10">10</a>
               <% }  %>
               <% if(frontend_totalRecordsPerPage  == 20) { %>
-              <a aria-label="20 records per page " class="round btn-page active"
+              <a aria-label="20 records per page selected" aria-selected="true" class="round btn-page active"
                 href="/updateresultspageperroute/?sort=20">20</a>
               <% } else { %>
               <a aria-label="20 records per page " class="round btn-page"
@@ -345,7 +177,7 @@ Gov.UK public user search - header rendering design
               <% }  %>
 
               <% if(frontend_totalRecordsPerPage  == 50) { %>
-              <a aria-label="50 records per page " class="round btn-page active"
+              <a aria-label="50 records per page selected" aria-selected="true" class="round btn-page active"
                 href="/updateresultspageperroute/?sort=50">50</a>
               <% } else { %>
               <a aria-label="50 records per page " class="round btn-page"
@@ -353,7 +185,7 @@ Gov.UK public user search - header rendering design
               <% }  %>
 
               <% if(frontend_totalRecordsPerPage  == 100) { %>
-              <a aria-label="100 records per page " class="round btn-page active"
+              <a aria-label="100 records per page selected" aria-selected="true" class="round btn-page active"
                 href="/updateresultspageperroute/?sort=100">100</a>
               <% } else { %>
               <a aria-label="100 records per page " class="round btn-page"
@@ -364,7 +196,7 @@ Gov.UK public user search - header rendering design
           <span id="info-message" style="display:none" aria-hidden="true">
             On selecting, the page will reload and display the search results</span>
         </div>
-        <form action="/updateresults" method="POST">
+        <form action="/updateresults" method="POST" id="filter-accordion-div">
           <div class="govuk-accordion" data-module="govuk-accordion" id="accordion-default">
             <%- include('../partials/searchobjectiveaccordion.ejs') %>
             <%- include('../partials/searchsectoraccordion.ejs') %>
@@ -380,10 +212,10 @@ Gov.UK public user search - header rendering design
         <div class="second"></div>
 
         <section class="govuk-table-responsive">
+
+
           <table class="govuk-table">
-            <caption class="govuk-table__caption">
-              <h1 class="govuk-fieldset__heading"></h1>
-            </caption>
+            <caption class="govuk-table__caption govuk-table__caption--m"></caption>
             <thead class="govuk-table__head">
               <tr class="govuk-table__row">
                 <th scope="col" class="govuk-table__header" aria-sort="ascending">
