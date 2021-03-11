@@ -51,6 +51,56 @@ test("Unit testing for page per route - Test for POST call", (done) => {
     totalRecordsPerPage: 500000,
     sortBy: [""],
   };
+
+  global.check_subsidyobjective0 = "";
+  global.check_subsidyobjective1 = "";
+  global.check_subsidyobjective2 = "";
+  global.check_subsidyobjective3 = "";
+  global.check_subsidyobjective4 = "";
+  global.check_subsidyobjective5 = "";
+  global.check_subsidyobjective6 = "";
+  global.check_subsidyobjective7 = "";
+  global.check_subsidyobjective8 = "";
+  global.check_subsidyobjective8a = "";
+  global.check_subsidyobjective9 = "";
+  global.check_subsidyobjective10 = "";
+  global.check_subsidyobjective11_pass = "";
+  global.check_subsidyobjective12_pass = "";
+
+  global.check_spendingsector0 = "";
+  global.check_spendingsector1 = "";
+  global.check_spendingsector2 = "";
+  global.check_spendingsector18 = "";
+  global.check_spendingsector3 = "";
+  global.check_spendingsector4 = "";
+  global.check_spendingsector5 = "";
+  global.check_spendingsector6 = "";
+  global.check_spendingsector7 = "";
+  global.check_spendingsector8 = "";
+  global.check_spendingsector9 = "";
+  global.check_spendingsector10 = "";
+  global.check_spendingsector11 = "";
+  global.check_spendingsector12 = "";
+  global.check_spendingsector13 = "";
+  global.check_spendingsector13a = "";
+  global.check_spendingsector14 = "";
+  global.check_spendingsector15 = "";
+  global.check_spendingsector16 = "";
+  global.check_spendingsector17 = "";
+  global.check_spendingsector19 = "";
+  global.check_spendingsector20 = "";
+
+  global.check_subsidyinstrument0 = "";
+  global.check_subsidyinstrument1 = "";
+  global.check_subsidyinstrument2 = "";
+  global.check_subsidyinstrument3 = "";
+  global.check_subsidyinstrument4 = "";
+  global.check_subsidyinstrument5 = "";
+  global.check_subsidyinstrument6 = "";
+  global.check_subsidyinstrument7 = "";
+  global.check_subsidyinstrument8_pass = "";
+  global.check_subsidyinstrument9_pass = "";
+
   global.data_request_clientside = JSON.stringify(data_request);
   global.searchawards = {
     totalSearchResults: 49,
@@ -121,15 +171,64 @@ test("Unit testing for page per route Test for GET call", (done) => {
       ],
     },
   });
-
+  global.actual_subsidy_objective_pass1 = "";
+  global.actual_subsidy_instrument_pass1 = "";
+  global.actual_spending_sector_pass1 = "";
   global.start_page = 1;
   global.end_page = 1;
   global.end_record = 1;
   global.pageCount = 10;
   global.text_beneficiaryname = "";
-  global.actual_subsidy_objective_pass1 = [];
-  global.actual_subsidy_instrument_pass1 = [];
-  global.actual_spending_sector_pass1 = [];
+
+  global.check_subsidyobjective0 = "";
+  global.check_subsidyobjective1 = "";
+  global.check_subsidyobjective2 = "";
+  global.check_subsidyobjective3 = "";
+  global.check_subsidyobjective4 = "";
+  global.check_subsidyobjective5 = "";
+  global.check_subsidyobjective6 = "";
+  global.check_subsidyobjective7 = "";
+  global.check_subsidyobjective8 = "";
+  global.check_subsidyobjective8a = "";
+  global.check_subsidyobjective9 = "";
+  global.check_subsidyobjective10 = "";
+  global.check_subsidyobjective11_pass = "";
+  global.check_subsidyobjective12_pass = "";
+
+  global.check_spendingsector0 = "";
+  global.check_spendingsector1 = "";
+  global.check_spendingsector2 = "";
+  global.check_spendingsector18 = "";
+  global.check_spendingsector3 = "";
+  global.check_spendingsector4 = "";
+  global.check_spendingsector5 = "";
+  global.check_spendingsector6 = "";
+  global.check_spendingsector7 = "";
+  global.check_spendingsector8 = "";
+  global.check_spendingsector9 = "";
+  global.check_spendingsector10 = "";
+  global.check_spendingsector11 = "";
+  global.check_spendingsector12 = "";
+  global.check_spendingsector13 = "";
+  global.check_spendingsector13a = "";
+  global.check_spendingsector14 = "";
+  global.check_spendingsector15 = "";
+  global.check_spendingsector16 = "";
+  global.check_spendingsector17 = "";
+  global.check_spendingsector19 = "";
+  global.check_spendingsector20 = "";
+
+  global.check_subsidyinstrument0 = "";
+  global.check_subsidyinstrument1 = "";
+  global.check_subsidyinstrument2 = "";
+  global.check_subsidyinstrument3 = "";
+  global.check_subsidyinstrument4 = "";
+  global.check_subsidyinstrument5 = "";
+  global.check_subsidyinstrument6 = "";
+  global.check_subsidyinstrument7 = "";
+  global.check_subsidyinstrument8_pass = "";
+  global.check_subsidyinstrument9_pass = "";
+
   global.legal_granting_from_date = "";
   global.legal_granting_to_date = "";
   global.sorting_order_pass = [""];
@@ -148,6 +247,9 @@ test("Unit testing for page per route Test for GET call", (done) => {
 });
 
 test("Unit testing for page per route Test for GET call", (done) => {
+  global.actual_subsidy_objective_pass1 = "";
+  global.actual_subsidy_instrument_pass1 = "";
+  global.actual_spending_sector_pass1 = "";
   axios.post.mockResolvedValue({
     status: "success",
     data: {
@@ -186,9 +288,56 @@ test("Unit testing for page per route Test for GET call", (done) => {
   global.end_record = 1;
   global.pageCount = 10;
   global.text_beneficiaryname = "";
-  global.actual_subsidy_objective_pass1 = [];
-  global.actual_subsidy_instrument_pass1 = [];
-  global.actual_spending_sector_pass1 = [];
+
+  global.check_subsidyobjective0 = "";
+  global.check_subsidyobjective1 = "";
+  global.check_subsidyobjective2 = "";
+  global.check_subsidyobjective3 = "";
+  global.check_subsidyobjective4 = "";
+  global.check_subsidyobjective5 = "";
+  global.check_subsidyobjective6 = "";
+  global.check_subsidyobjective7 = "";
+  global.check_subsidyobjective8 = "";
+  global.check_subsidyobjective8a = "";
+  global.check_subsidyobjective9 = "";
+  global.check_subsidyobjective10 = "";
+  global.check_subsidyobjective11_pass = "";
+  global.check_subsidyobjective12_pass = "";
+
+  global.check_spendingsector0 = "";
+  global.check_spendingsector1 = "";
+  global.check_spendingsector2 = "";
+  global.check_spendingsector18 = "";
+  global.check_spendingsector3 = "";
+  global.check_spendingsector4 = "";
+  global.check_spendingsector5 = "";
+  global.check_spendingsector6 = "";
+  global.check_spendingsector7 = "";
+  global.check_spendingsector8 = "";
+  global.check_spendingsector9 = "";
+  global.check_spendingsector10 = "";
+  global.check_spendingsector11 = "";
+  global.check_spendingsector12 = "";
+  global.check_spendingsector13 = "";
+  global.check_spendingsector13a = "";
+  global.check_spendingsector14 = "";
+  global.check_spendingsector15 = "";
+  global.check_spendingsector16 = "";
+  global.check_spendingsector17 = "";
+  global.check_spendingsector19 = "";
+  global.check_spendingsector20 = "";
+
+  global.check_subsidyinstrument0 = "";
+  global.check_subsidyinstrument1 = "";
+  global.check_subsidyinstrument2 = "";
+  global.check_subsidyinstrument3 = "";
+  global.check_subsidyinstrument4 = "";
+  global.check_subsidyinstrument5 = "";
+  global.check_subsidyinstrument6 = "";
+  global.check_subsidyinstrument7 = "";
+  global.check_subsidyinstrument8_pass = "";
+  global.check_subsidyinstrument9_pass = "";
+
   global.legal_granting_from_date = "";
   global.legal_granting_to_date = "";
   global.sorting_order_pass = [""];
