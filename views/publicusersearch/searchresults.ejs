@@ -15,76 +15,87 @@
     gtag('js', new Date());
     gtag('config', 'UA-145652997-21');
   </script>
-</head>
 
-<link href="/assets/stylesheet/style.css" rel="stylesheet" type="text/css">
-<script type="text/javascript" src="/assets/javascripts/pagination.class.js"></script>
-<script type="text/javascript" src="/assets/javascripts/script.js" defer></script>
-<link href="/assets/stylesheet/govuk-accordion1.css" rel="stylesheet" media="all" />
-<script src="/assets/javascripts/vendor/modernizr.js"></script>
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
-<script src="/assets/javascripts/jquery.min.js"></script>
-<script src="/assets/javascripts/alasql.min.js"></script>
-<script src="/assets/javascripts/xlsx.core.min.js"></script>
-<!-- <script type="text/javascript" language="javascript"
+
+  <link href="/assets/stylesheet/style.css" rel="stylesheet" type="text/css">
+  <script type="text/javascript" src="/assets/javascripts/pagination.class.js"></script>
+  <script type="text/javascript" src="/assets/javascripts/script.js" defer></script>
+  <link href="/assets/stylesheet/govuk-accordion1.css" rel="stylesheet" media="all" />
+  <script src="/assets/javascripts/vendor/modernizr.js"></script>
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+  <script src="/assets/javascripts/jquery.min.js"></script>
+  <script src="/assets/javascripts/alasql.min.js"></script>
+  <script src="/assets/javascripts/xlsx.core.min.js"></script>
+  <!-- <script type="text/javascript" language="javascript"
   src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script> -->
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> -->
-<!-- <script src="https://cdn.jsdelivr.net/jquery.cookie/1.4.0/jquery.cookie.min.js"></script> -->
-<!-- <script src="https://cdn.jsdelivr.net/alasql/0.3/alasql.min.js"></script>
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> -->
+  <!-- <script src="https://cdn.jsdelivr.net/jquery.cookie/1.4.0/jquery.cookie.min.js"></script> -->
+  <!-- <script src="https://cdn.jsdelivr.net/alasql/0.3/alasql.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.7.12/xlsx.core.min.js"></script> -->
-<!-- <script src="http://alasql.org/console/alasql.min.js"></script>
+  <!-- <script src="http://alasql.org/console/alasql.min.js"></script>
 <script src="http://alasql.org/console/xlsx.core.min.js"></script> -->
 
-<script>
-  window.saveFile = function saveFile(data_request_clientside, beis_url_publicsearch) {
-    console.log(data_request_clientside);
-    var api_data;
-    $.ajax({
-      // url: 'http://dev-beis-tp-db-public-search-service.azurewebsites.net/searchResults',
-      url: beis_url_publicsearch + '/searchResults',
-      type: "POST",
-      headers: { 'Access-Control-Allow-Origin': '*' },
-      data: data_request_clientside,
-      contentType: 'application/json;charset=utf-8',
-      dataType: 'text',
-      success: function (response) {
-        console.log(response);
-        api_data = response;
-        parsedResponse = JSON.parse(api_data);
-        var filteredResponse = [];
-        for (var i = 0; i < parsedResponse.totalSearchResults; i++) {
-          filteredResponse[filteredResponse.length] = {
-            "Subsidy Control (SC) Number": parsedResponse.awards[i].subsidyMeasure.scNumber,
-            "Subsidy Scheme": parsedResponse.awards[i].subsidyMeasure.subsidyMeasureTitle,
-            "Subsidy Award Number": parsedResponse.awards[i].awardNumber,
-            "Subsidy Purpose": parsedResponse.awards[i].subsidyObjective,
-            "Subsidy Type": parsedResponse.awards[i].subsidyInstrument,
-            "Subsidy Element Full Amount": parsedResponse.awards[i].subsidyFullAmountExact,
-            "Subsidy Element Full Amount Range": parsedResponse.awards[i].subsidyFullAmountRange,
-            "Recipient Name": parsedResponse.awards[i].beneficiary.beneficiaryName,
-            "Spending Region": parsedResponse.awards[i].spendingRegion,
-            "Spending Sector": parsedResponse.awards[i].spendingSector,
-            "Awarded Date": parsedResponse.awards[i].legalGrantingDate
+  <script src="/assets/javascripts/searchfilterAccordion.js"></script>
+  <script>
+    window.saveFile = function saveFile(data_request_clientside, beis_url_publicsearch) {
+      console.log(data_request_clientside);
+      var api_data;
+      $.ajax({
+        // url: 'http://dev-beis-tp-db-public-search-service.azurewebsites.net/searchResults',
+        url: beis_url_publicsearch + '/searchResults',
+        type: "POST",
+        headers: { 'Access-Control-Allow-Origin': '*' },
+        data: data_request_clientside,
+        contentType: 'application/json;charset=utf-8',
+        dataType: 'text',
+        success: function (response) {
+          console.log(response);
+          api_data = response;
+          parsedResponse = JSON.parse(api_data);
+          var filteredResponse = [];
+          for (var i = 0; i < parsedResponse.totalSearchResults; i++) {
+            filteredResponse[filteredResponse.length] = {
+              "Subsidy Control (SC) Number": parsedResponse.awards[i].subsidyMeasure.scNumber,
+              "Subsidy Scheme": parsedResponse.awards[i].subsidyMeasure.subsidyMeasureTitle,
+              "Subsidy Award Number": parsedResponse.awards[i].awardNumber,
+              "Subsidy Purpose": parsedResponse.awards[i].subsidyObjective,
+              "Subsidy Type": parsedResponse.awards[i].subsidyInstrument,
+              "Subsidy Element Full Amount": parsedResponse.awards[i].subsidyFullAmountExact,
+              "Subsidy Element Full Amount Range": parsedResponse.awards[i].subsidyFullAmountRange,
+              "Recipient Name": parsedResponse.awards[i].beneficiary.beneficiaryName,
+              "Spending Region": parsedResponse.awards[i].spendingRegion,
+              "Spending Sector": parsedResponse.awards[i].spendingSector,
+              "Awarded Date": parsedResponse.awards[i].legalGrantingDate
+            }
           }
+          var data = JSON.parse(JSON.stringify(filteredResponse));
+          var res = alasql('SELECT * INTO XLSX("publicsearchawards.xlsx",?) FROM ?', [data, [data]]);
+
+
+        },
+        error: function (error) {
+          console.log("Something went wrong", error);
+
         }
-        var data = JSON.parse(JSON.stringify(filteredResponse));
-        var res = alasql('SELECT * INTO XLSX("publicsearchawards.xlsx",?) FROM ?', [data, [data]]);
-
-
-      },
-      error: function (error) {
-        console.log("Something went wrong", error);
-
+      });
+    }  //end of save file
+    $(document).ready(function () {
+      if (
+        $(".govuk-accordion__section").hasClass(
+          "govuk-accordion__section--expanded"
+        )
+      ) {
+        $(".govuk-accordion__section").removeClass(
+          "govuk-accordion__section--expanded"
+        );
       }
     });
-  }  //end of save file
-
-
   // $(document).ready(function () {
   //   $('body,html').animate({ scrollTop: 300 }, 1500);
   // });
     //Set the File URL.
-</script>
+  </script>
+</head>
 
 <body class="govuk-template__body app-example-page">
   <script>
@@ -122,11 +133,13 @@
 
         <div class="govuk-grid-row">
           <div class="govuk-grid-column-one-half filter-input-div">
-            <a href="/filtersearch/?page=1" style=" text-decoration: none" class="govuk-button" name="showfiter"
+            <!-- <a href="/filtersearch/?page=1" style=" text-decoration: none" class="govuk-button" name="showfiter"
               value="showfilt">
-
               Show filters
-            </a>
+            </a> -->
+            <button class="govuk-button" name="showfiter" value="showfilt" onclick="toggleFilterDiv()">
+              <span id="filterText">Hide</span> filters
+            </button>
             <!-- <a href="/homepage" style="text-decoration: none" class="govuk-button" data-module="govuk-button">
             New search
           </a> -->
@@ -150,25 +163,29 @@
               style="display: inline;  margin: 0;  padding: 0;">
               <!-- <form class="govuk-grid-column-one-third" action="/pageperroute" method="GET"> -->
               <% if(frontend_totalRecordsPerPage  == 10) { %>
-              <a aria-label="10 records per page " class="round btn-page active" href="/pageperroute/?sort=10">10</a>
+              <a aria-label="10 records per page selected" aria-selected="true" class="round btn-page active"
+                href="/pageperroute/?sort=10">10</a>
               <!-- <li class="hmcts-pagination__item hmcts-pagination__item--active">10</li> -->
               <% } else { %>
               <a aria-label="10 records per page " class="round btn-page" href="/pageperroute/?sort=10">10</a>
               <% }  %>
               <% if(frontend_totalRecordsPerPage  == 20) { %>
-              <a aria-label="20 records per page " class="round btn-page active" href="/pageperroute/?sort=20">20</a>
+              <a aria-label="20 records per page selected" aria-selected="true" class="round btn-page active"
+                href="/pageperroute/?sort=20">20</a>
               <% } else { %>
               <a aria-label="20 records per page " class="round btn-page" href="/pageperroute/?sort=20">20</a>
               <% }  %>
 
               <% if(frontend_totalRecordsPerPage  == 50) { %>
-              <a aria-label="50 records per page " class="round btn-page active" href="/pageperroute/?sort=50">50</a>
+              <a aria-label="50 records per page selected" aria-selected="true" class="round btn-page active"
+                href="/pageperroute/?sort=50">50</a>
               <% } else { %>
               <a aria-label="50 records per page " class="round btn-page" href="/pageperroute/?sort=50">50</a>
               <% }  %>
 
               <% if(frontend_totalRecordsPerPage  == 100) { %>
-              <a aria-label="100 records per page " class="round btn-page active" href="/pageperroute/?sort=100">100</a>
+              <a aria-label="100 records per page selected" aria-selected="true" class="round btn-page active"
+                href="/pageperroute/?sort=100">100</a>
               <% } else { %>
               <a aria-label="100 records per page " class="round btn-page" href="/pageperroute/?sort=100">100</a>
               <% }  %>
@@ -179,6 +196,17 @@
         <span id="info-message" style="display:none" aria-hidden="true">
           On selecting, the page will reload and display the search results</span>
       </div>
+      <form action="/updateresults" method="POST" id="filter-accordion-div">
+        <div class="govuk-accordion" data-module="govuk-accordion" id="accordion-default">
+          <%- include('../partials/searchobjectiveaccordion.ejs') %>
+          <%- include('../partials/searchsectoraccordion.ejs') %>
+          <%- include('../partials/searchinstrumentaccordion.ejs') %>
+        </div>
+        <div>
+          <button class="govuk-button" data-module="govuk-button">
+            Update results </button>
+        </div>
+      </form>
       <form action="/homepage" method="POST">
         <section class="govuk-table-responsive">
           <table class="govuk-table" id="searchresult-table">
@@ -366,7 +394,6 @@
 
   <%- include('../partials/footer.ejs') %>
   <script src="/assets/javascripts/vendor/iframeResizer.contentWindow.js"></script>
-  <script src="/assets/javascripts/accordion/govuk-frontend.js"></script>
   <script src="/assets/javascripts/accordion/example.js"></script>
   <script type="text/javascript" src="/assets/javascripts/example.js"></script>
   <script type="text/javascript" src="/assets/javascripts/vendor/modernizr.js"></script>
