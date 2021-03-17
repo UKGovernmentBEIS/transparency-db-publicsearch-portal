@@ -561,7 +561,7 @@
 .govuk-body-m,
 .govuk-body,
 .app-prose-scope p {
-  color: #0b0c0c;
+  /* color: #0b0c0c; */
   font-family: "GDS Transport", arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -929,7 +929,7 @@
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   width: 100%;
-  padding: 0 15px;
+  /* padding: 0 15px; */
 }
 @media (min-width: 40.0625em) {
   .govuk-grid-column-one-half {
@@ -1644,7 +1644,8 @@
   }
 }
 @media (min-width: 40.0625em) {
-  .govuk-button {
+  .govuk-button,
+  .govuk-login-button {
     width: auto;
   }
 }
@@ -6100,9 +6101,9 @@
 }
 .app-example {
   position: relative;
-  border: 1px solid #b1b4b6;
-  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAJUlEQVQoU2P88ePHfwY0wMHBwYguxjgUFKI7GsTH5m4M3w1ChQAZTSeO0/AZpgAAAABJRU5ErkJggg==")
-    repeat;
+  border: 5px solid rgba(29, 112, 184, 1);
+  /* background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAJUlEQVQoU2P88ePHfwY0wMHBwYguxjgUFKI7GsTH5m4M3w1ChQAZTSeO0/AZpgAAAABJRU5ErkJggg==")
+    repeat; */
 }
 .app-example--tabs {
   margin-bottom: 0;
@@ -6119,8 +6120,11 @@
 }
 .app-example__toolbar {
   padding: 10px;
-  border-bottom: 1px solid #b1b4b6;
-  background: #fff;
+  font-weight: bold;
+  color: white;
+  font-size: 19px;
+  /* border-bottom: 1px solid #b1b4b6; */
+  background: rgba(29, 112, 184, 1);
 }
 .app-example__new-window {
   font-family: "GDS Transport", arial, sans-serif;
@@ -6154,8 +6158,17 @@
   width: 100%;
   max-width: 100%;
   border: 0;
-  border-right: 1px solid #b1b4b6;
-  background: #fff;
+  /* border-right: 1px solid #b1b4b6;
+  background: #fff; */
+}
+.app-example__frame p {
+  padding: 1%;
+  margin-top: 0;
+  font-family: "Arial Bold", "Arial";
+  font-weight: 700;
+  font-style: normal;
+  font-size: 24px;
+  color: #0b0c0c;
 }
 .app-example__iframe,
 .app-example__frame--xs {
@@ -7581,11 +7594,11 @@ p code {
   margin-bottom: 0;
 }
 
-@media screen and (max-width: 767px){
-.govuk-table-responsive {
+@media screen and (max-width: 767px) {
+  .govuk-table-responsive {
     width: 100%;
     margin-bottom: 15px;
     overflow-y: hidden;
     -ms-overflow-style: -ms-autohiding-scrollbar;
-}
+  }
 }

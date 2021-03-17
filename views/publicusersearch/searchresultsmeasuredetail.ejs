@@ -46,7 +46,25 @@
           Overview of the subsidy scheme and the local authority that awarded it.
         </label>
       </div>
+      <!-- Reject Message Block -->
 
+      <% if(  searchmeasuredetails.status =="Deleted") { %>
+
+      <div class="govuk-form-group app-example">
+        <div class="app-example__toolbar">
+          <label>Comments</label>
+        </div>
+        <div class="app-example__frame">
+          <% if(searchmeasuredetails.rejectReason) { %>
+          <p> <%= searchmeasuredetails.rejectReason %></p>
+          <% } else { %>
+          <p>The subsidy scheme reject reason not mentioned </p>
+          <% } %>
+        </div>
+      </div>
+
+      <% } %>
+      <!-- Reject Message Block -->
       <ul class="govuk-summary-list govuk-!-margin-bottom-9">
 
         <div class="govuk-summary-list__row">
