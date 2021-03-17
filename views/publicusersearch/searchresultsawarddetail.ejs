@@ -45,7 +45,25 @@
       Overview of the subsidy, the recipient and the local authority that awarded the subsidy.
     </label>
 
+    <% if( searchawarddetails.status=="Rejected" || searchawarddetails.status =="Deleted") { %>
 
+    <div class="govuk-form-group app-example">
+      <div class="app-example__toolbar">
+        <label>Comments</label>
+      </div>
+      <div class="app-example__frame">
+        <% if(searchawarddetails.rejectReason) { %>
+        <p> <%= searchawarddetails.rejectReason %></p>
+        <% } else { %>
+        <p>The subsidy award <% if( searchawarddetails.status=="Rejected"){
+           %> reject <%
+           } else {%> delete<%}%> reason not mentioned </p>
+        <% } %>
+      </div>
+    </div>
+
+    <% } %>
+    <!-- Reject Message Block -->
     <h2 class="govuk-heading-m">
       Subsidy details
     </h2>
