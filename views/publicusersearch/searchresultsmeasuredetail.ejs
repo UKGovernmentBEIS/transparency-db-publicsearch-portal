@@ -15,6 +15,13 @@
     gtag('js', new Date());
     gtag('config', 'UA-145652997-21');
   </script>
+  <style>
+    .govuk-inative-status {
+      float: left;
+      width: 100%;
+      padding: 1%;
+    }
+  </style>
 </head>
 <%- include('../partials/header.ejs') %>
 <div class="govuk-width-container ">
@@ -48,20 +55,25 @@
       </div>
       <!-- Reject Message Block -->
 
-      <% if(  searchmeasuredetails.status =="Deleted") { %>
-
-      <div class="govuk-form-group app-example">
+      <% if(  searchmeasuredetails.status =="Inactive") { %>
+      <div class="govuk-form-group app-example govuk-inative-status">
         <div class="app-example__toolbar">
-          <label>Comments</label>
+          <label>This scheme is not active</label>
         </div>
-        <div class="app-example__frame">
+      </div>
+
+      <!-- <div class="govuk-form-group app-example">
+        <div class="app-example__toolbar">
+          <label>This scheme is not active</label>
+        </div> -->
+      <!-- <div class="app-example__frame">
           <% if(searchmeasuredetails.rejectReason) { %>
           <p> <%= searchmeasuredetails.rejectReason %></p>
           <% } else { %>
-          <p>The subsidy scheme reject reason not mentioned </p>
+          <p>The subsidy scheme deleted reason not mentioned </p>
           <% } %>
-        </div>
-      </div>
+        </div> -->
+      <!-- </div> -->
 
       <% } %>
       <!-- Reject Message Block -->

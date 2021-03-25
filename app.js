@@ -211,4 +211,9 @@ app.use("/submitfeedback", submitfeedback);
 var accessibilityStatement = require("./routes/accessibilityStatement");
 app.use("/accessibilityStatement", accessibilityStatement);
 
+// Cookies Consent
+
+var cookieshelp = require("./routes/cookies-help");
+app.use("/cookieshelp", cookieshelp);
+
 module.exports = app;
