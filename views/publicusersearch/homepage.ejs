@@ -12,7 +12,7 @@ Gov.UK public user search - header rendering design
 
 <body class="govuk-template__body app-example-page">
   <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
-<%- include('../partials/cookies-consent.ejs') %>
+  <%- include('../partials/cookies-consent.ejs') %>
   <%- include('../partials/header.ejs') %>
 
 
@@ -57,14 +57,12 @@ Gov.UK public user search - header rendering design
               </button>
               <p></p>
             </form>
-            <p class="govuk-body">No subsidies have been published yet for 2021. You will be able to view the details of
+            <!-- <p class="govuk-body">No subsidies have been published yet for 2021. You will be able to view the details of
               awarded subsidies as soon as they are published.
-            </p>
-            <a aria-label="No subsidies have been published in 2021. You will be able to view the details of awarded subsidies as soon as they are published."
-              class="govuk-link" target="_blank"
+            </p> -->
+            <a aria-label="Search for subsidies awarded before 1 January 2021" class="govuk-link" target="_blank"
               href="https://ec.europa.eu/transparencyregister/public/consultation/search.do?locale=en">Search for
-              subsidies awarded before 1 January
-              2021.</a>
+              subsidies awarded before 1 January 2021.</a>
           </div>
           <!-- <div class="govuk-grid-column-two-thirds" style="text-align: justify;">
 
