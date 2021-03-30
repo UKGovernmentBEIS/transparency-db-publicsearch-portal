@@ -9,27 +9,28 @@
 <%- include('../partials/header.ejs') %>
 
 
+<body class="govuk-template__body app-example-page">
+  <div class="govuk-width-container ">
 
-<div class="govuk-width-container ">
+    <main id="main-content" role="main">
+      <%- include('../partials/banner.ejs') %>
+      <form action="/homepage" method="POST" class="govuk-main-wrapper ">
 
-  <main id="main-content" role="main">
-    <%- include('../partials/banner.ejs') %>
-    <form action="/homepage" method="POST" class="govuk-main-wrapper ">
+        <!-- <legend class="govuk-fieldset__legend govuk-fieldset__legend--l"> -->
+        <h1 class="govuk-heading-l">
+          No results found for the search criteria
+        </h1>
+        <!-- </legend> -->
 
-      <!-- <legend class="govuk-fieldset__legend govuk-fieldset__legend--l"> -->
-      <h1 class="govuk-heading-l">
-        No results found for the search criteria
-      </h1>
-      <!-- </legend> -->
+        <button class="govuk-button" data-module="govuk-button">
+          New search </button>
 
-      <button class="govuk-button" data-module="govuk-button">
-        New search </button>
+      </form>
 
-    </form>
+    </main>
+  </div>
 
-  </main>
-</div>
-
-<%- include('../partials/footer.ejs') %>
+  <%- include('../partials/footer.ejs') %>
+</body>
 
 </html>

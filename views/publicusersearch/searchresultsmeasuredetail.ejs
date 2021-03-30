@@ -23,185 +23,188 @@
     }
   </style>
 </head>
-<%- include('../partials/header.ejs') %>
-<div class="govuk-width-container ">
 
-  <main id="main-content" role="main">
-    <%- include('../partials/banner.ejs') %>
+<body class="govuk-template__body app-example-page">
+  <%- include('../partials/header.ejs') %>
+  <div class="govuk-width-container ">
 
-    <div class="govuk-main-wrapper ">
-      <a href="/searchresults" class="govuk-back-link" aria-label="Back to search results page">Back</a>
-      <div class="govuk-grid-row">
-        <div class="govuk-grid-column-three-quarters">
-          <!-- <legend class="govuk-fieldset__legend govuk-fieldset__legend--l"> -->
-          <h1 class="govuk-heading-l">
-            Subsidy scheme details
-            <!-- <%= searchmeasuredetails.subsidyMeasure.subsidyMeasureTitle%> -->
-          </h1>
-          <!-- </legend> -->
+    <main id="main-content" role="main">
+      <%- include('../partials/banner.ejs') %>
+
+      <div class="govuk-main-wrapper ">
+        <a href="/searchresults" class="govuk-back-link" aria-label="Back to search results page">Back</a>
+        <div class="govuk-grid-row">
+          <div class="govuk-grid-column-three-quarters">
+            <!-- <legend class="govuk-fieldset__legend govuk-fieldset__legend--l"> -->
+            <h1 class="govuk-heading-l">
+              Subsidy scheme details
+              <!-- <%= searchmeasuredetails.subsidyMeasure.subsidyMeasureTitle%> -->
+            </h1>
+            <!-- </legend> -->
+          </div>
+
+          <div class="govuk-grid-column-one-quarter">
+            <!-- <form action="/homepage" method="POST" >         -->
+            <button class="govuk-button_cancel_last_xl" data-module="govuk-button" onclick="window.print()">
+              Print page </button>
+            <!-- </form>   -->
+          </div>
+        </div>
+        <div class="govuk-form-group">
+          <label class="govuk-label">
+            Overview of the subsidy scheme and the local authority that awarded it.
+          </label>
+        </div>
+        <!-- Reject Message Block -->
+
+        <% if(  searchmeasuredetails.status =="Inactive") { %>
+        <div class="govuk-form-group app-example govuk-inative-status">
+          <div class="app-example__toolbar">
+            <label>This scheme is not active</label>
+          </div>
         </div>
 
-        <div class="govuk-grid-column-one-quarter">
-          <!-- <form action="/homepage" method="POST" >         -->
-          <button class="govuk-button_cancel_last_xl" data-module="govuk-button" onclick="window.print()">
-            Print page </button>
-          <!-- </form>   -->
-        </div>
-      </div>
-      <div class="govuk-form-group">
-        <label class="govuk-label">
-          Overview of the subsidy scheme and the local authority that awarded it.
-        </label>
-      </div>
-      <!-- Reject Message Block -->
-
-      <% if(  searchmeasuredetails.status =="Inactive") { %>
-      <div class="govuk-form-group app-example govuk-inative-status">
-        <div class="app-example__toolbar">
-          <label>This scheme is not active</label>
-        </div>
-      </div>
-
-      <!-- <div class="govuk-form-group app-example">
+        <!-- <div class="govuk-form-group app-example">
         <div class="app-example__toolbar">
           <label>This scheme is not active</label>
         </div> -->
-      <!-- <div class="app-example__frame">
+        <!-- <div class="app-example__frame">
           <% if(searchmeasuredetails.rejectReason) { %>
           <p> <%= searchmeasuredetails.rejectReason %></p>
           <% } else { %>
           <p>The subsidy scheme deleted reason not mentioned </p>
           <% } %>
         </div> -->
-      <!-- </div> -->
+        <!-- </div> -->
 
-      <% } %>
-      <!-- Reject Message Block -->
-      <ul class="govuk-summary-list govuk-!-margin-bottom-9">
+        <% } %>
+        <!-- Reject Message Block -->
+        <ul class="govuk-summary-list govuk-!-margin-bottom-9">
 
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Subsidy scheme name
-          </dt>
-          <dd class="govuk-summary-list__value">
-            <%= searchmeasuredetails.subsidyMeasure.subsidyMeasureTitle%>
-          </dd>
-        </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Subsidy scheme name
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <%= searchmeasuredetails.subsidyMeasure.subsidyMeasureTitle%>
+            </dd>
+          </div>
 
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Subsidy control (SC) number
-          </dt>
-          <dd class="govuk-summary-list__value">
-            <%= searchmeasuredetails.subsidyMeasure.scNumber %>
-          </dd>
-        </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Subsidy control (SC) number
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <%= searchmeasuredetails.subsidyMeasure.scNumber %>
+            </dd>
+          </div>
 
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Region
-          </dt>
-          <dd class="govuk-summary-list__value">
-            <%= searchmeasuredetails.spendingRegion %>
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Purpose
-          </dt>
-          <dd class="govuk-summary-list__value">
-            <%= searchmeasuredetails.subsidyObjective %>
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Sector
-          </dt>
-          <dd class="govuk-summary-list__value">
-            <%= searchmeasuredetails.spendingSector %>
-          </dd>
-        </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Region
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <%= searchmeasuredetails.spendingRegion %>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Purpose
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <%= searchmeasuredetails.subsidyObjective %>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Sector
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <%= searchmeasuredetails.spendingSector %>
+            </dd>
+          </div>
 
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Legal basis
-          </dt>
-          <dd class="govuk-summary-list__value">
-            <%= searchmeasuredetails.subsidyMeasure.legalBasis.legalBasisText %>
-          </dd>
-        </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Legal basis
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <%= searchmeasuredetails.subsidyMeasure.legalBasis.legalBasisText %>
+            </dd>
+          </div>
 
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Weblink to Granting Authority Text of Subsidy
-          </dt>
-          <dd class="govuk-summary-list__value">
-            <% if(searchmeasuredetails.subsidyMeasure.gaSubsidyWebLink.includes('https://') || searchmeasuredetails.subsidyMeasure.gaSubsidyWebLink.includes('http://')) { %>
-            <a aria-label="Weblink to granting authority" target="_blank"
-              href="<%= searchmeasuredetails.subsidyMeasure.gaSubsidyWebLink %>">
-              <%= searchmeasuredetails.subsidyMeasure.gaSubsidyWebLink %>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Weblink to Granting Authority Text of Subsidy
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <% if(searchmeasuredetails.subsidyMeasure.gaSubsidyWebLink.includes('https://') || searchmeasuredetails.subsidyMeasure.gaSubsidyWebLink.includes('http://')) { %>
+              <a aria-label="Weblink to granting authority" target="_blank"
+                href="<%= searchmeasuredetails.subsidyMeasure.gaSubsidyWebLink %>">
+                <%= searchmeasuredetails.subsidyMeasure.gaSubsidyWebLink %>
 
-            </a>
-            <% } else { %>
-            <a aria-label="Weblink to granting authority" target="_blank"
-              href="https://<%= searchmeasuredetails.subsidyMeasure.gaSubsidyWebLink %>">
-              <%= searchmeasuredetails.subsidyMeasure.gaSubsidyWebLink %>
-            </a>
-            <% } %>
-          </dd>
-        </div>
+              </a>
+              <% } else { %>
+              <a aria-label="Weblink to granting authority" target="_blank"
+                href="https://<%= searchmeasuredetails.subsidyMeasure.gaSubsidyWebLink %>">
+                <%= searchmeasuredetails.subsidyMeasure.gaSubsidyWebLink %>
+              </a>
+              <% } %>
+            </dd>
+          </div>
 
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Subsidy type
-          </dt>
-          <dd class="govuk-summary-list__value">
-            <%= searchmeasuredetails.subsidyInstrument %>
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Case Type
-          </dt>
-          <dd class="govuk-summary-list__value">
-            <% if (searchmeasuredetails.subsidyMeasure.adhoc == false) { %>
-            Regular Case
-            <% } else { %>
-            Ad Hoc Case
-            <% } %>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Subsidy type
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <%= searchmeasuredetails.subsidyInstrument %>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Case Type
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <% if (searchmeasuredetails.subsidyMeasure.adhoc == false) { %>
+              Regular Case
+              <% } else { %>
+              Ad Hoc Case
+              <% } %>
 
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Duration
-          </dt>
-          <dd class="govuk-summary-list__value">
-            From <%= searchmeasuredetails.subsidyMeasure.startDate %> to
-            <%= searchmeasuredetails.subsidyMeasure.endDate %>
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Notification or Registration Date
-          </dt>
-          <dd class="govuk-summary-list__value">
-            <%= searchmeasuredetails.subsidyMeasure.startDate %>
-          </dd>
-        </div>
-      </ul>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Duration
+            </dt>
+            <dd class="govuk-summary-list__value">
+              From <%= searchmeasuredetails.subsidyMeasure.startDate %> to
+              <%= searchmeasuredetails.subsidyMeasure.endDate %>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Notification or Registration Date
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <%= searchmeasuredetails.subsidyMeasure.startDate %>
+            </dd>
+          </div>
+        </ul>
 
 
-      <form action="/searchresults" method="GET">
-        <div>
-          <button class="govuk-button" data-module="govuk-button">
-            Back to search results </button>
-        </div>
-      </form>
-    </div>
-  </main>
-</div>
+        <form action="/searchresults" method="GET">
+          <div>
+            <button class="govuk-button" data-module="govuk-button">
+              Back to search results </button>
+          </div>
+        </form>
+      </div>
+    </main>
+  </div>
 
-<%- include('../partials/footer.ejs') %>
+  <%- include('../partials/footer.ejs') %>
+</body>
 
 </html>
