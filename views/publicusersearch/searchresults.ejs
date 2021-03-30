@@ -296,11 +296,11 @@
           <!-- Pagination starts here -->
           <!-- ********************** -->
 
-          <div id="pagination1" class="pagination">
+          <div id="pagination1" class="pagination govuk-grid-row">
 
             <% if (pageCount > 1) { %>
 
-            <div class="col first">
+            <div class="govuk-grid-column-one-third first">
               <p class="pagination-label">
                 Showing <span><%= start_record %></span> - <span><%= end_record %></span> of
                 <span><%= totalrows %></span> records
@@ -310,7 +310,7 @@
             <% } %>
 
 
-            <div class="col last">
+            <div class="govuk-grid-column-two-thirds last govuk-padding-0 govuk-display-flex">
               <% if (pageCount > 1) { %>
 
               <% if (current_page_active != 1) { %>

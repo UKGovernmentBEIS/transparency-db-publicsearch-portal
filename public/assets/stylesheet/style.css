@@ -45,8 +45,8 @@ table tbody tr:hover{
 } */
 
 .pagination {
-  display: grid;
-  grid-template-columns: auto auto;
+  /* display: grid;
+  grid-template-columns: auto auto; */
   padding: 10px 0px;
   margin-top: 20px;
 }
@@ -131,6 +131,7 @@ a {
   display: flex;
   align-items: center;
   text-align: right;
+  justify-content: flex-end;
 }
 .govuk-display-flex form {
   padding: 0;
