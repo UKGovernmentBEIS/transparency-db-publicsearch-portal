@@ -18,225 +18,227 @@
   </script>
 </head>
 
-<%- include('../partials/header.ejs') %>
+<body class="govuk-template__body app-example-page">
+  <%- include('../partials/header.ejs') %>
 
-<div class="govuk-width-container ">
-  <%- include('../partials/banner.ejs') %>
-  <main class="govuk-main-wrapper " id="main-content" role="main">
-    <a href="/searchresults" class="govuk-back-link" aria-label="back to search results page">Back</a>
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-three-quarters">
-        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-          <h1 class="govuk-heading-xl">
-            Subsidy awards details
-          </h1>
-        </legend>
+  <div class="govuk-width-container ">
+    <%- include('../partials/banner.ejs') %>
+    <main class="govuk-main-wrapper " id="main-content" role="main">
+      <a href="/searchresults" class="govuk-back-link" aria-label="back to search results page">Back</a>
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-three-quarters">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-heading-xl">
+              Subsidy awards details
+            </h1>
+          </legend>
+        </div>
+
+        <div class="govuk-grid-column-one-quarter">
+          <!-- <form action="/homepage" method="POST" >         -->
+          <button class="govuk-button_cancel_last_xl" data-module="govuk-button" onclick="window.print()">
+            Print page </button>
+          <!-- </form>   -->
+        </div>
       </div>
 
-      <div class="govuk-grid-column-one-quarter">
-        <!-- <form action="/homepage" method="POST" >         -->
-        <button class="govuk-button_cancel_last_xl" data-module="govuk-button" onclick="window.print()">
-          Print page </button>
-        <!-- </form>   -->
-      </div>
-    </div>
+      <label class="govuk-label">
+        Overview of the subsidy, the recipient and the local authority that awarded the subsidy.
+      </label>
 
-    <label class="govuk-label">
-      Overview of the subsidy, the recipient and the local authority that awarded the subsidy.
-    </label>
+      <% if( searchawarddetails.status=="Rejected" || searchawarddetails.status =="Deleted") { %>
 
-    <% if( searchawarddetails.status=="Rejected" || searchawarddetails.status =="Deleted") { %>
-
-    <div class="govuk-form-group app-example">
-      <div class="app-example__toolbar">
-        <label>Comments</label>
-      </div>
-      <div class="app-example__frame">
-        <% if(searchawarddetails.rejectReason) { %>
-        <p> <%= searchawarddetails.rejectReason %></p>
-        <% } else { %>
-        <p>The subsidy award <% if( searchawarddetails.status=="Rejected"){
+      <div class="govuk-form-group app-example">
+        <div class="app-example__toolbar">
+          <label>Comments</label>
+        </div>
+        <div class="app-example__frame">
+          <% if(searchawarddetails.rejectReason) { %>
+          <p> <%= searchawarddetails.rejectReason %></p>
+          <% } else { %>
+          <p>The subsidy award <% if( searchawarddetails.status=="Rejected"){
            %> reject <%
            } else {%> delete<%}%> reason not mentioned </p>
         <% } %>
-      </div>
-    </div>
-
-    <% } %>
-    <!-- Reject Message Block -->
-    <h2 class="govuk-heading-m">
-      Subsidy details
-    </h2>
-
-
-
-    <ul class="govuk-summary-list govuk-!-margin-bottom-9">
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key" id="subsidycontrolnumber">
-          Subsidy control number
-        </dt>
-        <dd class="govuk-summary-list__value">
-          <a class="govuk-link" href="/searchresultsmeasureroute/?page=<%=awardnumber %>"
-            aria-label="subsidy control number  <%= (searchawarddetails.subsidyMeasure.scNumber).substring(2,7) %>">
-            <%= searchawarddetails.subsidyMeasure.scNumber %> </a>
-        </dd>
+        </div>
       </div>
 
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
-          Subsidy award number
-        </dt>
-        <dd class="govuk-summary-list__value">
-          <%= searchawarddetails.awardNumber %>
-        </dd>
-      </div>
-
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
-          Subsidy scheme
-        </dt>
-        <dd class="govuk-summary-list__value">
-          <%= searchawarddetails.subsidyMeasure.subsidyMeasureTitle %>
-        </dd>
-      </div>
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
-          Subsidy purpose
-        </dt>
-        <dd class="govuk-summary-list__value govuk-capitalize">
-          <%= searchawarddetails.subsidyObjective %>
-        </dd>
-      </div>
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
-          Subsidy type
-        </dt>
-        <dd class="govuk-summary-list__value">
-          <%= searchawarddetails.subsidyInstrument%>
-        </dd>
-      </div>
-
-      <% if (searchawarddetails.subsidyInstrument == "Tax measures (tax credit, or tax/duty exemption)") { %>
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
-          Subsidy range
-        </dt>
-        <dd class="govuk-summary-list__value">
-          <%= searchawarddetails.subsidyFullAmountRange%>
-        </dd>
-      </div>
-      <% } else { %>
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
-          Subsidy amount
-        </dt>
-        <dd class="govuk-summary-list__value">
-          £<%= searchawarddetails.subsidyFullAmountExact%>
-        </dd>
-      </div>
       <% } %>
-
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
-          Granting authority
-        </dt>
-        <dd class="govuk-summary-list__value">
-          <%= searchawarddetails.grantingAuthorityResponse.grantingAuthorityName  %>
-        </dd>
-      </div>
-
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
-          Date awarded
-        </dt>
-        <dd class="govuk-summary-list__value">
-          <%= searchawarddetails.legalGrantingDate %>
-        </dd>
-      </div>
-    </ul>
-
-
-    <h2 class="govuk-heading-m">
-      Recipient details
-    </h2>
+      <!-- Reject Message Block -->
+      <h2 class="govuk-heading-m">
+        Subsidy details
+      </h2>
 
 
 
-    <ul class="govuk-summary-list govuk-!-margin-bottom-9">
+      <ul class="govuk-summary-list govuk-!-margin-bottom-9">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key" id="subsidycontrolnumber">
+            Subsidy control number
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <a class="govuk-link" href="/searchresultsmeasureroute/?page=<%=awardnumber %>"
+              aria-label="subsidy control number  <%= (searchawarddetails.subsidyMeasure.scNumber).substring(2,7) %>">
+              <%= searchawarddetails.subsidyMeasure.scNumber %> </a>
+          </dd>
+        </div>
 
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
-          Organisation name
-        </dt>
-        <dd class="govuk-summary-list__value">
-          <%= searchawarddetails.beneficiary.beneficiaryName  %>
-        </dd>
-      </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Subsidy award number
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <%= searchawarddetails.awardNumber %>
+          </dd>
+        </div>
 
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
-          Organisation size
-        </dt>
-        <dd class="govuk-summary-list__value">
-          <%= searchawarddetails.beneficiary.orgSize %>
-        </dd>
-      </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Subsidy scheme
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <%= searchawarddetails.subsidyMeasure.subsidyMeasureTitle %>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Subsidy purpose
+          </dt>
+          <dd class="govuk-summary-list__value govuk-capitalize">
+            <%= searchawarddetails.subsidyObjective %>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Subsidy type
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <%= searchawarddetails.subsidyInstrument%>
+          </dd>
+        </div>
 
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
-          ID Type
-        </dt>
-        <dd class="govuk-summary-list__value">
-          <%= searchawarddetails.beneficiary.nationalIdType   %>
-        </dd>
-      </div>
+        <% if (searchawarddetails.subsidyInstrument == "Tax measures (tax credit, or tax/duty exemption)") { %>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Subsidy range
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <%= searchawarddetails.subsidyFullAmountRange%>
+          </dd>
+        </div>
+        <% } else { %>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Subsidy amount
+          </dt>
+          <dd class="govuk-summary-list__value">
+            £<%= searchawarddetails.subsidyFullAmountExact%>
+          </dd>
+        </div>
+        <% } %>
 
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
-          ID number
-        </dt>
-        <dd class="govuk-summary-list__value">
-          <%= searchawarddetails.beneficiary.nationalId  %>
-        </dd>
-      </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Granting authority
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <%= searchawarddetails.grantingAuthorityResponse.grantingAuthorityName  %>
+          </dd>
+        </div>
 
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
-          Provider of (good or services)
-        </dt>
-        <dd class="govuk-summary-list__value">
-          <%= searchawarddetails.goodsServicesFilter %>
-        </dd>
-      </div>
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
-          Region
-        </dt>
-        <dd class="govuk-summary-list__value">
-          <%= searchawarddetails.spendingRegion %>
-        </dd>
-      </div>
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
-          Sector
-        </dt>
-        <dd class="govuk-summary-list__value">
-          <%= searchawarddetails.spendingSector %>
-        </dd>
-      </div>
-
-    </ul>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Date awarded
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <%= searchawarddetails.legalGrantingDate %>
+          </dd>
+        </div>
+      </ul>
 
 
-    <form action="/searchresults" method="GET">
-      <div>
-        <button class="govuk-button" data-module="govuk-button">
-          Back to search results </button>
-      </div>
-    </form>
-  </main>
-</div>
+      <h2 class="govuk-heading-m">
+        Recipient details
+      </h2>
 
-<%- include('../partials/footer.ejs') %>
+
+
+      <ul class="govuk-summary-list govuk-!-margin-bottom-9">
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Organisation name
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <%= searchawarddetails.beneficiary.beneficiaryName  %>
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Organisation size
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <%= searchawarddetails.beneficiary.orgSize %>
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            ID Type
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <%= searchawarddetails.beneficiary.nationalIdType   %>
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            ID number
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <%= searchawarddetails.beneficiary.nationalId  %>
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Provider of (good or services)
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <%= searchawarddetails.goodsServicesFilter %>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Region
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <%= searchawarddetails.spendingRegion %>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Sector
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <%= searchawarddetails.spendingSector %>
+          </dd>
+        </div>
+
+      </ul>
+
+
+      <form action="/searchresults" method="GET">
+        <div>
+          <button class="govuk-button" data-module="govuk-button">
+            Back to search results </button>
+        </div>
+      </form>
+    </main>
+  </div>
+
+  <%- include('../partials/footer.ejs') %>
+</body>
 
 </html>
