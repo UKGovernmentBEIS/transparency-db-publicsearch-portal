@@ -54,12 +54,12 @@
                         such as the pages you
                         visit.</p>
                     <h2 class="govuk-heading-m">Cookie settings</h2>
-                    <p class="govuk-body">We use 4 types of cookie. You can choose which cookies you're happy for us
+                    <p class="govuk-body">We use 2 types of cookie. You can choose which cookies you're happy for us
                         to
                         use.</p>
-                    <h3 class="govuk-heading-m">Cookies that measure website use
-                    </h3>
-                    <p class="govuk-body">We use Google Analytics to measure how you use the website so we can
+                    <!-- <h3 class="govuk-heading-m">Cookies that measure website use
+                    </h3> -->
+                    <!-- <p class="govuk-body">We use Google Analytics to measure how you use the website so we can
                         improve
                         it based on user needs. We do not allow Google to use or share the data about how you use
                         this
@@ -70,7 +70,7 @@
                         <li>the pages you visit on GOV.UK and government digital services, and how long you spend on
                             each page</li>
                         <li>what you click on while you're visiting the site</li>
-                    </ul>
+                    </ul> -->
                     <!-- <div class="govuk-form-group">
                         <fieldset class="govuk-fieldset">
                             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
@@ -98,7 +98,7 @@
                         </fieldset>
                     </div> -->
 
-                    <form data-module="cookie-settings">
+                    <form data-module="cookie-settings" onsubmit="return delete_cookie_help()">
 
 
                         <div class="govuk-form-group">
@@ -258,13 +258,13 @@
                                 example
                                 a licence application)</p>
                             <p>They always need to be on.</p>
-                            <p>
+                            <!-- <p>
                                 <a href="/help/cookie-details" data-module="gem-track-click"
                                     data-track-category="cookieSettings"
                                     data-track-action="Find out more about cookies">
                                     Find out more about cookies on GOV.UK
                                 </a>
-                            </p>
+                            </p> -->
 
                         </div>
                         <button class="gem-c-button govuk-button" type="submit">Save changes</button>
@@ -279,6 +279,27 @@
     <script src="/assets/javascripts/jquery.min.js"></script>
     <script src="/assets/javascripts/header-footer-only.js"></script>
     <script src="/assets/javascripts/application.js"></script>
+    <script>
+        var delete_cookie_help = function () {
+
+            var getSelectedValue = document.querySelector('input[name="cookies-usage"]:checked');
+            if (getSelectedValue != null && getSelectedValue.value == 'off') {
+                document.cookie = '_ga=;expires=;' + new Date();
+                document.cookie = '_gid=;expires=' + new Date();
+                document.cookie = '_gat_gtag_UA_145652997_21=;expires=' + new Date();
+            }
+            else if (getSelectedValue != null && getSelectedValue.value == 'on') {
+                window.dataLayer = window.dataLayer || [];
+
+                function gtag() {
+                    dataLayer.push(arguments);
+                }
+                gtag('js', new Date());
+                gtag('config', 'UA-145652997-21');
+            }
+
+        };
+    </script>
 </body>
 
 </html>

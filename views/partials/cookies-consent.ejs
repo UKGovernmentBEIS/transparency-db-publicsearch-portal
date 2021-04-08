@@ -17,10 +17,12 @@
             <div class="govuk-button-group">
                 <button class="gem-c-button govuk-button" type="submit" data-module="gem-track-click"
                     data-accept-cookies="true" data-track-category="cookieBanner"
-                    data-track-action="Cookie banner accepted" data-cookie-types="all">Accept analytics cookies</button>
-                <button class="gem-c-button govuk-button" type="submit" data-module="gem-track-click"
-                    data-reject-cookies="true" data-track-category="cookieBanner"
+                    data-track-action="Cookie banner accepted" data-cookie-types="all" onclick="getGACookies()">Accept
+                    analytics cookies</button>
+                <button class="gem-c-button govuk-button" type="submit" onclick="delete_cookie()"
+                    data-module="gem-track-click" data-reject-cookies="true" data-track-category="cookieBanner"
                     data-track-action="Cookie banner rejected">Reject analytics cookies</button>
+
                 <a class="govuk-link" href="/cookieshelp">View cookies</a>
             </div>
         </div>
@@ -40,3 +42,18 @@
 <script src="/assets/javascripts/jquery.min.js"></script>
 <script src="/assets/javascripts/header-footer-only.js"></script>
 <script src="/assets/javascripts/application.js"></script>
+<script>
+    function getGACookies() {
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'UA-145652997-21');
+    }
+    var delete_cookie = function () {
+        document.cookie = '_ga=;expires=;' + new Date();
+        document.cookie = '_gid=;expires=' + new Date();
+    };
+</script>
