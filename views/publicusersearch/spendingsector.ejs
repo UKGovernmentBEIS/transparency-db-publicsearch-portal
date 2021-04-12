@@ -55,6 +55,7 @@ Gov.UK public user search - header rendering design
 
 <body class="govuk-template__body app-example-page">
   <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+  <%- include('../partials/cookies-consent.ejs') %>
   <%- include('../partials/header.ejs') %>
   <div class="govuk-width-container ">
 
