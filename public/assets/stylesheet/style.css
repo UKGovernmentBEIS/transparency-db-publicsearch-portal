@@ -140,3 +140,12 @@ a {
 .govuk-display-flex form select {
   width: 100%;
 }
+
+@media only screen and (max-width: 450px) {
+  .pagination a {
+    padding: 12px 6px;
+  }
+  #pagination1 .govuk-display-flex {
+    display: block;
+  }
+}

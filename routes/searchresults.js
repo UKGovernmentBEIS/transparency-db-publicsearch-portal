@@ -221,7 +221,7 @@ router.post("/", async (req, res) => {
         previous_page,
         next_page,
         end_record,
-        end_record,
+        start_record,
         totalrows,
         current_page_active,
       });
