@@ -13,8 +13,12 @@ var request = require("request");
 Environment_variable = process.argv[2];
 
 if (Environment_variable == "env=dev") {
+  // beis_url_publicsearch =          PREVIOUS URL
+  //   "https://dev-beis-tp-db-public-search-service.azurewebsites.net";
+  
+  // DM 30-04-21
   beis_url_publicsearch =
-    "https://dev-beis-tp-db-public-search-service.azurewebsites.net";
+      "https://dev-transparency-db-publicsearch-portal.azurewebsites.net";
 
   console.log(beis_url_publicsearch);
 } else if (Environment_variable == "env=integ") {
