@@ -9,7 +9,7 @@ trigger:
 variables:
 
   # Azure Resource Manager connection created during pipeline creation
-  azureSubscription: '8e9969b3-7574-441c-a10f-7114dc3314f7'
+  azureSubscription: 'CGI-AzureDevOps-BEIS'
 
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
