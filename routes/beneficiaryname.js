@@ -16,9 +16,9 @@ if (Environment_variable == "env=dev") {
   // beis_url_publicsearch =          PREVIOUS URL
   //   "https://dev-beis-tp-db-public-search-service.azurewebsites.net";
   
-  // DM 30-04-21
+  // JP 10-05-21
   beis_url_publicsearch =
-      "https://dev-transparency-db-publicsearch-portal.azurewebsites.net";
+      "https://dev-transparency-db-public-search-service.azurewebsites.net";
 
   console.log(beis_url_publicsearch);
 } else if (Environment_variable == "env=integ") {
