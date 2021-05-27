@@ -66,7 +66,7 @@ stages:
                 - task: AzureRmWebAppDeployment@4
                   inputs:
                     ConnectionType: 'AzureRM'
-                    azureSubscription: 'CGI-AzureDevOps-BEIS'
+                    azureSubscription: 'BEIS-Subsidy-Control-TestDev'
                     appType: 'webAppLinux'
                     WebAppName: 'dev-transparency-db-publicsearch-portal'
                     packageForLinux: '$(Pipeline.Workspace)/**/$(Build.BuildId).zip'
