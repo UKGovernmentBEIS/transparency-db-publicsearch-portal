@@ -50,8 +50,8 @@ stages:
     dependsOn: Build
     condition: succeeded()
     jobs:
-      - deployment: DeployLinuxWebApp
-        displayName: Deploy Linux Web App
+      - deployment: DeployLinuxWebAppDev
+        displayName: Deploy Linux Web App - TestDev
         environment: 'dev'
         pool:
           vmImage: $(vmImageName)
@@ -70,3 +70,20 @@ stages:
                     appType: 'webAppLinux'
                     WebAppName: 'dev-transparency-db-publicsearch-portal'
                     packageForLinux: '$(Pipeline.Workspace)/**/$(Build.BuildId).zip'
+      - deployment: DeployLinuxWebAppStg
+        displayName: Deploy Linux Web App - Staging
+        environment: 'dev'
+        pool:
+          vmImage: $(vmImageName)
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - task: AzureRmWebAppDeployment@4
+                  inputs:
+                    ConnectionType: 'AzureRM'
+                    azureSubscription: 'BEIS-Subsidy-Control-Staging'
+                    appType: 'webAppLinux'
+                    WebAppName: 'stg-transparency-db-publicsearch-portal'
+                    packageForLinux: '$(Pipeline.Workspace)/**/$(Build.BuildId).zip'
+
