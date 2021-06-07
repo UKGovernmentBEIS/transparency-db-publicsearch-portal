@@ -25,9 +25,9 @@ if (Environment_variable == "env=dev") {
   beis_url_publicsearch =
     "https://integ-transparency-db-public-search-service.azurewebsites.net";
   console.log(beis_url_publicsearch);
-} else if (Environment_variable == "env=stag") {
+} else if (Environment_variable == "env=stg") {
   beis_url_publicsearch =
-    "https://stag-transparency-db-public-search-service.azurewebsites.net";
+    "https://stg-transparency-db-public-search-service.azurewebsites.net";
   console.log(beis_url_publicsearch);
 } else if (Environment_variable == "env=prod") {
   beis_url_publicsearch =
