@@ -11,8 +11,15 @@ var request = require("request");
 // ********************************************************
 
 Environment_variable = process.argv[2];
+if (Environment_variable == "env=local") {
+  // beis_url_publicsearch =          PREVIOUS URL
+  //   "https://dev-beis-tp-db-public-search-service.azurewebsites.net";
+  
+  beis_url_publicsearch =
+      "http://localhost:8581"; //http://localhost:8581
 
-if (Environment_variable == "env=dev") {
+  console.log(beis_url_publicsearch);
+} else if (Environment_variable == "env=dev") {
   // beis_url_publicsearch =          PREVIOUS URL
   //   "https://dev-beis-tp-db-public-search-service.azurewebsites.net";
   
