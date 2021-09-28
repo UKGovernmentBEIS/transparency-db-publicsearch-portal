@@ -73,7 +73,7 @@ stages:
       - deployment: DeployLinuxWebAppStg
         displayName: Deploy Linux Web App - Staging
         environment: 'stg'
-        condition: eq(variables['Build.SourceBranch'], 'refs/heads/main')
+        condition: and(succeededOrFailed(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
         pool:
           vmImage: $(vmImageName)
         strategy:
