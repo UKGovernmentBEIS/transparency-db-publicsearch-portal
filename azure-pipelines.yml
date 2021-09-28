@@ -62,6 +62,7 @@ stages:
       - deployment: DeployLinuxWebAppDev
         displayName: Deploy Linux Web App - TestDev
         environment: 'dev'
+        dependsOn: waitForValidation
         pool:
           vmImage: $(vmImageName)
         strategy:
