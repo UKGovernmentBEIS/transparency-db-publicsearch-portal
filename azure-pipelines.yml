@@ -83,12 +83,11 @@ stages:
   - stage:
     displayName: Deploy to staging environment
     dependsOn: Build
-    condition: succeeded()
+    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
     jobs:
       - deployment: DeployLinuxWebAppStg
         displayName: Deploy Linux Web App - Staging
         environment: 'stg'
-        condition: eq(variables['Build.SourceBranch'], 'refs/heads/main')
         pool:
           vmImage: $(vmImageName)
         strategy:
