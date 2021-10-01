@@ -48,7 +48,7 @@ stages:
   - stage:
     displayName: Deploy to dev/test environment
     dependsOn: Build
-    condition: succeeded()
+    condition: and(succeeded(), eq(variables['Build.Reason'], 'PullRequest'))
     jobs:
       - job: waitForValidation
         displayName: Confirm dev/test deployment
