@@ -1,0 +1,4 @@
+requests
+selenium
+pytest
+msedge-selenium-tools
