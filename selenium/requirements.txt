@@ -1,4 +1,5 @@
 requests
 selenium
 pytest
+pytest-azurepipelines
 msedge-selenium-tools
