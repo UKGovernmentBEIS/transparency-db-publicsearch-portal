@@ -45,7 +45,7 @@ stages:
             inputs:
               targetPath: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
   
-  - stage:
+  - stage: DeployDevTest
     displayName: Deploy to dev/test environment
     dependsOn: Build
     condition: and(succeeded(), eq(variables['Build.Reason'], 'PullRequest'))
@@ -80,6 +80,23 @@ stages:
                     appType: 'webAppLinux'
                     WebAppName: 'dev-transparency-db-publicsearch-portal'
                     packageForLinux: '$(Pipeline.Workspace)/**/$(Build.BuildId).zip'
+
+  - stage: Test
+    displayName: Run selenium on dev/test environment
+    dependsOn: DeployDevTest
+    condition: succeeded()
+    jobs:
+      - job: runSelenium
+        displayName: Run selenium tests
+        pool:
+          vmImage: windows-latest
+        steps:
+        - task: UsePythonVersion@0
+          inputs:
+            versionSpec: '3.6'
+        - script: pip install -r selenium/requirements.txt
+          displayName: 'Install requirements'
+
   - stage:
     displayName: Deploy to staging environment
     dependsOn: Build
