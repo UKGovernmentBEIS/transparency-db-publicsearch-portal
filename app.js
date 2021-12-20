@@ -172,6 +172,9 @@ app.use("/legalgrantingdate", legalgrantingdate);
 var searchresults = require("./routes/searchresults");
 app.use("/searchresults", searchresults);
 
+var searchresults = require("./routes/schemes");
+app.use("/searchresults/schemes", searchresults);
+
 var pageroute = require("./routes/pageroute");
 app.use("/pageroute", pageroute);
 
