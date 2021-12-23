@@ -207,11 +207,8 @@ router.post("/", async (req, res) => {
       beneficiary_sorting_order = "desc";
       subsidyamount_sorting_order = "desc";
       sorting_order_pass = JSON.parse("[]");
-      beneficiary_arrow = "upanddown";
-      subsidyamount_arrow = "upanddown";
-      legalgrantingdate_arrow = "updecending";
+      scnumber_arrow = "upanddown";
 
-      console.log("beneficiary_sorting_order :" + beneficiary_sorting_order);
 
       start_page = 1;
       if (pageCount < 10) {
