@@ -90,6 +90,8 @@ router.post("/", async (req, res) => {
     actual_subsidy_instrument = "";
     actual_subsidy_objective = "";
 
+    sortBy = ["startDate,desc"]
+
     actual_subsidy_objective_trim = actual_subsidy_objective.replace(
       /^"(.+)"$/,
       "$1"
@@ -146,7 +148,7 @@ router.post("/", async (req, res) => {
       legalGrantingToDate: "",
       pageNumber: 1,
       totalRecordsPerPage: 500000,
-      sortBy: [""],
+      sortBy: sortBy,
     };
 
     data_request_clientside = JSON.stringify(data_request_all);
@@ -162,7 +164,7 @@ router.post("/", async (req, res) => {
       legalGrantingToDate: "",
       pageNumber: 1,
       totalRecordsPerPage: 10,
-      sortBy: ["startDate,DESC"],
+      sortBy: sortBy,
     };
 
     var data = JSON.parse(JSON.stringify(data_request));
@@ -231,7 +233,7 @@ router.post("/", async (req, res) => {
       console.log("response_error_message catch : " + response_error_message);
       res.render("publicusersearch/noresults");
     }
-  }
+  } 
   // end of POST call
 });
 
