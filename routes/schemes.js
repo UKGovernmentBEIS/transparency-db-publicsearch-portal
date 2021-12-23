@@ -185,15 +185,15 @@ router.post("/", async (req, res) => {
       API_response_code = `${apidata.status}`;
       console.log("API_response_code: try" + API_response_code);
       console.log("Body: ", apidata.data);
-      schemes = apidata.data;
+      searchschemes = apidata.data;
 
       //TODO: Refactor below to work for schemes, not awards
-      var searchawards_api = apidata.data;
-      console.log("searchawards" + searchawards_api);
-      const seachawardstring = JSON.stringify(searchawards_api);
+      var searchschemes_api = apidata.data;
+      console.log("searchschemes" + searchschemes_api);
+      const seachawardstring = JSON.stringify(searchschemes_api);
       const seachawardJSON = JSON.parse(seachawardstring);
-      totalrows = searchawards.totalSearchResults;
-      console.log(searchawards.awards[0].subsidyFullAmountExact);
+      totalrows = searchschemes.totalResults;
+      console.log(searchschemes.subsidySchemes[0].scNumber);
 
       pageCount = Math.ceil(totalrows / frontend_totalRecordsPerPage);
       console.log("totalrows :" + totalrows);
