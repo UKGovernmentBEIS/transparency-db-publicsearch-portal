@@ -170,7 +170,7 @@ router.post("/", async (req, res) => {
 
     try {
       const apidata = await axios.post(
-        beis_url_publicsearch + "/searchResults/schemes",
+        beis_url_publicsearch + "/schemes",
         data,
         {
           headers: {
