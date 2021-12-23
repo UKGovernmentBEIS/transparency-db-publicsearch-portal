@@ -37,14 +37,12 @@
 
   <script src="/assets/javascripts/searchfilterAccordion.js"></script>
   <script>
-    window.saveFile = function saveFile(data_request_clientside, beis_url_publicsearch) {
-      console.log(data_request_clientside);
+    window.saveFile = function saveFile(beis_url_publicsearch) {
       var api_data;
       $.ajax({
-        url: beis_url_publicsearch + '/schemes',
-        type: "POST",
+        url: beis_url_publicsearch + '/schemes?sortBy=scNumber,desc&numRecords=50000',
+        type: "GET",
         headers: { 'Access-Control-Allow-Origin': '*' },
-        data: data_request_clientside,
         contentType: 'application/json;charset=utf-8',
         dataType: 'text',
         success: function (response) {
@@ -52,23 +50,13 @@
           api_data = response;
           parsedResponse = JSON.parse(api_data);
           var filteredResponse = [];
-          for (var i = 0; i < parsedResponse.totalSearchResults; i++) {
+          for (var i = 0; i < parsedResponse.totalResults; i++) {
             filteredResponse[filteredResponse.length] = {
-              "Subsidy Control (SC) Number": parsedResponse.awards[i].subsidyMeasure.scNumber,
-              "Subsidy Scheme": parsedResponse.awards[i].subsidyMeasure.subsidyMeasureTitle,
-              "Subsidy Award Number": parsedResponse.awards[i].awardNumber,
-              "Subsidy Purpose": parsedResponse.awards[i].subsidyObjective,
-              "Subsidy Type": parsedResponse.awards[i].subsidyInstrument,
-              "Subsidy Element Full Amount": parsedResponse.awards[i].subsidyFullAmountExact,
-              "Subsidy Element Full Amount Range": parsedResponse.awards[i].subsidyFullAmountRange,
-              "Recipient Name": parsedResponse.awards[i].beneficiary.beneficiaryName,
-              "Spending Region": parsedResponse.awards[i].spendingRegion,
-              "Spending Sector": parsedResponse.awards[i].spendingSector,
-              "Awarded Date": parsedResponse.awards[i].legalGrantingDate
+              "Subsidy Control (SC) Number": parsedResponse.subsidySchemes[i].scNumber,
             }
           }
           var data = JSON.parse(JSON.stringify(filteredResponse));
-          var res = alasql('SELECT * INTO XLSX("publicsearchschemes.xlsx",?) FROM ?', [data, [data]]);
+          var res = alasql('SELECT * INTO XLSX("subsidyschemes.xlsx",?) FROM ?', [data, [data]]);
 
 
         },
@@ -149,7 +137,7 @@
           </a> -->
 
             <button class="govuk-button" data-module="govuk-button"
-              onclick="saveFile('<%= data_request_clientside %>','<%= beis_url_publicsearch %>')">
+              onclick="saveFile('<%= beis_url_publicsearch %>')">
               Download results as Excel file </button>
 
 
@@ -196,17 +184,15 @@
         <span id="info-message" style="display:none" aria-hidden="true">
           On selecting, the page will reload and display the search results</span>
       </div>
-      <form action="/updateresults" method="POST" id="filter-accordion-div">
+      <!-- <form action="/updateresults" method="POST" id="filter-accordion-div">
         <div class="govuk-accordion" data-module="govuk-accordion" id="accordion-default">
-          <%- include('../partials/searchobjectiveaccordion.ejs') %>
-          <%- include('../partials/searchsectoraccordion.ejs') %>
-          <%- include('../partials/searchinstrumentaccordion.ejs') %>
+          TBD
         </div>
         <div>
           <button class="govuk-button" data-module="govuk-button">
             Update results </button>
         </div>
-      </form>
+      </form> -->
       <form action="/homepage" method="POST">
         <div class="govuk-grid-row">
           <section class="govuk-table-responsive govuk-grid-column-full">
