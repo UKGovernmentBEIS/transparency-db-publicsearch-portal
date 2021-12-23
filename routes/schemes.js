@@ -7,6 +7,7 @@ const router = express.Router();
 const axios = require("axios");
 var request = require("request");
 const { debug } = require("request");
+const render = "publicusersearch/schemes";
 
 router.post("/", async (req, res) => {
   res.set("X-Frame-Options", "DENY");
@@ -218,7 +219,7 @@ router.post("/", async (req, res) => {
       } else {
         end_page = 10;
       }
-      res.render("publicusersearch/searchresults", {
+      res.render(render, {
         pageCount,
         previous_page,
         next_page,
@@ -244,19 +245,7 @@ router.get("/", (req, res) => {
   res.set("Access-Control-Allow-Origin", beis_url_publicsearch);
   res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
 
-  res.render("publicusersearch/searchresults", {
-    date_legal_granting_date_day,
-    date_legal_granting_date_month,
-    date_legal_granting_date_year,
-    date_legal_granting_date_day1,
-    date_legal_granting_date_month1,
-    date_legal_granting_date_year1,
-    date_legal_granting_date_month_Error,
-    date_legal_granting_date_day_Error,
-    date_legal_granting_date_year_Error,
-    date_legal_granting_date_month1_Error,
-    date_legal_granting_date_day1_Error,
-    date_legal_granting_date_year1_Error,
+  res.render(render, {
   });
 });
 
