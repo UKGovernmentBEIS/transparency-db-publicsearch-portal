@@ -40,7 +40,7 @@
     window.saveFile = function saveFile(beis_url_publicsearch) {
       var api_data;
       $.ajax({
-        url: beis_url_publicsearch + '/schemes?sortBy=scNumber,desc&numRecords=50000',
+        url: beis_url_publicsearch + '/schemes?sort=-scNumber&limit=50000',
         type: "GET",
         headers: { 'Access-Control-Allow-Origin': '*' },
         contentType: 'application/json;charset=utf-8',
@@ -201,7 +201,7 @@
               <thead class="govuk-table__head">
                 <tr class="govuk-table__row">
                   <th scope="col" class="govuk-table__header">
-                    <a href="./schemes/?order=scnumber" style="text-decoration: none">
+                    <a href="./schemes/?sort=scnumber" style="text-decoration: none">
                       Subsidy control (SC) number
                       <% if (scnumber_arrow == "upanddown" ) { %>
                       <img id="scnumber_updownarrow" src="/assets/images/UpDownArrow.jpg" alt="Curently not sorted">
