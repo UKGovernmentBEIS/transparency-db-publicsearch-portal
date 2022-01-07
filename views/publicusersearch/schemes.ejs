@@ -184,15 +184,16 @@
         <span id="info-message" style="display:none" aria-hidden="true">
           On selecting, the page will reload and display the search results</span>
       </div>
-      <!-- <form action="/updateresults" method="POST" id="filter-accordion-div">
+      <form action="/schemes" method="GET" id="filter-accordion-div">
         <div class="govuk-accordion" data-module="govuk-accordion" id="accordion-default">
-          TBD
+          <label class="govuk-label govuk-label-other" for="filter-scnumber">Subsidy Control (SC) Number</label>
+          <input class="govuk-input" id="filter-scnumber" type="text" name="filter-scnumber" placeholder="Subsidy Control (SC) Number">
         </div>
         <div>
           <button class="govuk-button" data-module="govuk-button">
             Update results </button>
         </div>
-      </form> -->
+      </form>
       <form action="/homepage" method="POST">
         <div class="govuk-grid-row">
           <section class="govuk-table-responsive govuk-grid-column-full">
