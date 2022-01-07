@@ -55,11 +55,9 @@ router.get("/", async (req, res) => {
     start_record = 1;
     end_record = frontend_totalRecordsPerPage;
     current_page_active = 1;
-    legalgrantingdate_sorting_order = "desc";
-    beneficiary_sorting_order = "desc";
-    subsidyamount_sorting_order = "desc";
     sorting_order_pass = JSON.parse("[]");
-    scnumber_arrow = "upanddown";
+    
+    scnumber_arrow = "updecending";
 
 
     start_page = 1;
