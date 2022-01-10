@@ -202,7 +202,12 @@
               <thead class="govuk-table__head">
                 <tr class="govuk-table__row">
                   <th scope="col" class="govuk-table__header">
-                    <a href="./schemes/?sort=scnumber" style="text-decoration: none">
+                    <% sort="-scNumber" 
+                       if (scnumber_arrow == "updecending" ) {
+                         sort="scNumber"
+                       }                    
+                    %>
+                    <a href="./schemes?sort=<%= sort %>" style="text-decoration: none">
                       Subsidy control (SC) number
                       <% if (scnumber_arrow == "upanddown" ) { %>
                       <img id="scnumber_updownarrow" src="/assets/images/UpDownArrow.jpg" alt="Curently not sorted">
