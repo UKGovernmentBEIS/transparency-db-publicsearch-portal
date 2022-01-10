@@ -186,8 +186,7 @@
       </div>
       <form action="/schemes" method="GET" id="filter-accordion-div">
         <div class="govuk-accordion" data-module="govuk-accordion" id="accordion-default">
-          <label class="govuk-label govuk-label-other" for="filter-scnumber">Subsidy Control (SC) Number</label>
-          <input class="govuk-input" id="filter-scnumber" type="text" name="filter-scnumber" placeholder="Subsidy Control (SC) Number">
+          <%- include('../partials/filter-scnumber.ejs') %>
         </div>
         <div>
           <button class="govuk-button" data-module="govuk-button">
