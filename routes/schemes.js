@@ -40,36 +40,13 @@ router.get("/", async (req, res) => {
 
   // need to get this from the URL (where possible)
   frontend_totalRecordsPerPage = 10;
-  ssn = req.session;
-
-  requestSort = false;
-  sessionSort = false;
-
-  if (req.query.sort != null){
-    requestSort = true;
-  }
-
-  if(ssn.sort != null){
-    sessionSort = true;
-  }
-
-  if (requestSort){
-    ssn.sort = req.query.sort
-  }
-
-  sorting = ssn.sort;
 
   try {
-    // if sorting isn't in the URL, get it from the session and add it to the URL
-    sortParam = ""
-    if(!requestSort){
-      sortParam = "&sort=" + sorting
-    }
     const apidata = await axios.get(
       // will likely need to build this URL up from it's component parts, and add the total records per page if not included.
       // this is order to allow for the results per page to persist
       // will likely need to do the same for the filtering options - probably use ssn?
-      beis_url_publicsearch + req.originalUrl + sortParam,
+      beis_url_publicsearch + req.originalUrl,
       {
         headers: {
           "X-Frame-Options": "DENY",
@@ -103,6 +80,8 @@ router.get("/", async (req, res) => {
     sorting_order_pass = JSON.parse("[]");
 
     scnumber_arrow = "updecending";
+
+    sorting = req.query.sort;
 
     if(sorting != null){
       switch(sorting){
