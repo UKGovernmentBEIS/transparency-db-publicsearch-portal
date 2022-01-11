@@ -81,6 +81,24 @@ router.get("/", async (req, res) => {
     
     scnumber_arrow = "updecending";
 
+    // populate filters
+    filters = {
+      scnumber:"",
+      name:"",
+      ga:"",
+    }
+
+    if(req.query["filter-ga"] != null){
+      filters.ga = req.query["filter-ga"];
+    }
+
+    if(req.query["filter-scnumber"] != null){
+      filters.scnumber = req.query["filter-scnumber"];
+    }
+
+    if(req.query["filter-name"] != null){
+      filters.name = req.query["filter-name"];
+    }
 
     start_page = 1;
     if (pageCount < 10) {
@@ -90,6 +108,7 @@ router.get("/", async (req, res) => {
     }
     res.render(render, {
       gaList,
+      filters,
       pageCount,
       previous_page,
       next_page,

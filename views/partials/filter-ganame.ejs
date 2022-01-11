@@ -11,9 +11,13 @@
     <div class="govuk-form-group">
       <select class="govuk-select" id="filter-ga" name="filter-ga"
       aria-label="Drop down list that shows Filter by type">
-        <option value="" selected></option>
+        <option value=""></option>
         <% gaList.forEach(function(ga){ %>
-          <option value="<%= ga.grantingAuthorityName %>"> <%= ga.grantingAuthorityName %> </option>
+          <% if (filters.ga == ga.grantingAuthorityName) { %>
+            <option value="<%= ga.grantingAuthorityName %>" selected> <%= ga.grantingAuthorityName %></option>
+          <% }else{ %>
+            <option value="<%= ga.grantingAuthorityName %>"> <%= ga.grantingAuthorityName %> </option>
+          <% } %>
         <% })%>
       </select>
     </div>
