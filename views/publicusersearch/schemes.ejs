@@ -40,7 +40,7 @@
     window.saveFile = function saveFile(beis_url_publicsearch) {
       var api_data;
       $.ajax({
-        url: beis_url_publicsearch + '/schemes?sort=-scNumber&limit=50000',
+        url: beis_url_publicsearch + window.location.pathname + window.location.search + '&limit=50000',
         type: "GET",
         headers: { 'Access-Control-Allow-Origin': '*' },
         contentType: 'application/json;charset=utf-8',
