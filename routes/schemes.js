@@ -78,17 +78,9 @@ router.get("/", async (req, res) => {
     end_record = frontend_totalRecordsPerPage;
     current_page_active = 1;
     sorting_order_pass = JSON.parse("[]");
-
+    
     scnumber_arrow = "updecending";
 
-    sorting = req.query.sort;
-
-    if(sorting != null){
-      switch(sorting){
-        case "scNumber":
-          scnumber_arrow = "downacending"
-      }
-    }
 
     start_page = 1;
     if (pageCount < 10) {
