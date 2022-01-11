@@ -16,6 +16,28 @@ router.get("/", async (req, res) => {
   res.set("Access-Control-Allow-Origin", beis_url_publicsearch);
   res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
 
+  try{
+    const gaListRequest = await axios.get(
+      beis_url_publicsearch + "/schemes/all_gas",
+      {
+        headers: {
+          "X-Frame-Options": "DENY",
+          "Content-Security-Policy": "frame-ancestors 'self'",
+        },
+      }
+    );
+    console.log(`Status: ${gaListRequest.status}`);
+
+    API_response_code = `${gaListRequest.status}`;
+    console.log("All GAs API_response_code: try" + API_response_code);
+    gaList = gaListRequest.data.gaList;
+  }catch(err){
+    response_error_message = err;
+    console.log("message error : " + err);
+    console.log("response_error_message catch : " + response_error_message);
+    res.render("publicusersearch/noresults");
+  }
+
   // need to get this from the URL (where possible)
   frontend_totalRecordsPerPage = 10;
   ssn = req.session;
@@ -104,6 +126,7 @@ router.get("/", async (req, res) => {
       end_page = 10;
     }
     res.render(render, {
+      gaList,
       pageCount,
       previous_page,
       next_page,
