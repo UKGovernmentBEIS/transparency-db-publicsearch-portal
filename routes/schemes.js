@@ -54,11 +54,7 @@ router.get("/", async (req, res) => {
   }
 
   if (requestSort){
-    ssn.sort = req.query.sort;
-  }
-
-  if(!requestSort && !sessionSort){
-    ssn.sort = "-scNumber";
+    ssn.sort = req.query.sort
   }
 
   sorting = ssn.sort;
@@ -67,11 +63,7 @@ router.get("/", async (req, res) => {
     // if sorting isn't in the URL, get it from the session and add it to the URL
     sortParam = ""
     if(!requestSort){
-      if(Object.keys(req.query) > 0){
-        sortParam = "&sort=" + sorting
-      }else{
-        sortParam = "?sort=" + sorting
-      }
+      sortParam = "&sort=" + sorting
     }
     const apidata = await axios.get(
       // will likely need to build this URL up from it's component parts, and add the total records per page if not included.
