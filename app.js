@@ -214,6 +214,9 @@ app.use("/hidefilter", hidefilter);
 var searchresultsmeasureroute = require("./routes/searchresultsmeasureroute");
 app.use("/searchresultsmeasureroute", searchresultsmeasureroute);
 
+var schemedetailsroute = require("./routes/schemedetailsroute");
+app.use("/scheme", schemedetailsroute);
+
 var searchresultsawardroute = require("./routes/searchresultsawardroute");
 app.use("/searchresultsawardroute", searchresultsawardroute);
 
