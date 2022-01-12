@@ -268,7 +268,7 @@
                 <% if (pageCount > 1) { %>
 
                 <% if (current_page_active != 1) { %>
-                <a href="/pageroute/?page=1" id="paginationlink_first_page" class="first round">
+                <a href="/schemes/?page=1" id="paginationlink_first_page" class="first round">
                   <!-- <img
                     id="govuk-left-arrow" src="/assets/images/govuk-left-arrow.jpg" alt="go to first page"> -->
                   <svg version="1.1" width="19px" height="30px" aria-label="go to first page">
@@ -291,7 +291,7 @@
                   </svg>
                 </a>
 
-                <a href="/pageroute/?page=<%= previous_page %>" id="paginationlink_previous_page"
+                <a href="/schemes/?page=<%= previous_page %>" id="paginationlink_previous_page"
                   class="previous round">Previous
                   Page</a>
                 <% } %>
@@ -299,17 +299,17 @@
                 <% for (var i = start_page; i <= end_page; i++) { %>
                 <% if (current_page_active != i ) { %>
                 <a id="paginationlink<%= i %>" aria-label="go to page <%= i %>" class="round btn-page"
-                  href="/pageroute/?page=<%= i %>"><%= i %></a>
+                  href="/schemes/?page=<%= i %>"><%= i %></a>
                 <% } else { %>
                 <a id="paginationlink<%= i %>" aria-label="go to page <%= i %>" class="round btn-page active"
-                  href="/pageroute/?page=<%= i %>"><%= i %></a>
+                  href="/schemes/?page=<%= i %>"><%= i %></a>
                 <% } %>
                 <% } %>
 
                 <% if (current_page_active != pageCount) { %>
-                <a href="/pageroute/?page=<%= next_page %>&totalrecords=<%= frontend_totalRecordsPerPage %>"
+                <a href="/schemes/?page=<%= next_page %>&totalrecords=<%= frontend_totalRecordsPerPage %>"
                   id="paginationlink_next_page" aria-label="go to next page" class="next round">Next Page</a>
-                <a href="/pageroute/?page=<%= pageCount %>" id="paginationlink_last_page" class="last round">
+                <a href="/schemes/?page=<%= pageCount %>" id="paginationlink_last_page" class="last round">
                   <svg version="1.1" width="19px" height="30px" class="left-arrow" aria-label="go to last page">
                     <defs>
                       <mask fill="white" id="clip3">

@@ -81,6 +81,35 @@ router.get("/", async (req, res) => {
     
     scnumber_arrow = "updecending";
 
+    if(req.query.page != "" && req.query.page != null){
+      current_page_active = parseInt(req.query.page);
+    }
+
+    if (current_page_active == 1) {
+      previous_page = 1;
+      next_page = 2;
+    } else if (current_page_active == pageCount) {
+      previous_page = pageCount - 1;
+      next_page = pageCount;
+    } else {
+      previous_page = current_page_active - 1;
+      next_page = current_page_active + 1;
+    }
+
+    if (current_page_active == 1) {
+      start_record = 1;
+      end_record = frontend_totalRecordsPerPage;
+    } else if (current_page_active == pageCount) {
+      start_record = (current_page_active - 1) * frontend_totalRecordsPerPage + 1;
+      end_record = totalrows;
+    } else {
+      start_record =
+      current_page_active * frontend_totalRecordsPerPage -
+        frontend_totalRecordsPerPage +
+        1;
+      end_record = current_page_active * frontend_totalRecordsPerPage;
+    }
+
     // populate filters
     filters = {
       scnumber:"",
