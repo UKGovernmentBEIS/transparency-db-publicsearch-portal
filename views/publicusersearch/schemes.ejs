@@ -186,6 +186,7 @@
       </div>
       <form action="/schemes" method="GET" id="filter-accordion-div">
         <div class="govuk-accordion" data-module="govuk-accordion" id="accordion-default">
+          <%- include('../partials/results-per-page.ejs') %>
           <%- include('../partials/filter-scnumber.ejs') %>
           <%- include('../partials/filter-name.ejs') %>
           <%- include('../partials/filter-ganame.ejs') %>
