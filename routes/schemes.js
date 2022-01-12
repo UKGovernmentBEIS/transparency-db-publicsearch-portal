@@ -117,16 +117,21 @@ router.get("/", async (req, res) => {
       ga:"",
     }
 
+    filterString = "";
+
     if(req.query["filter-ga"] != null){
       filters.ga = req.query["filter-ga"];
+      filterString += "&filter-ga=" + filters.ga
     }
 
     if(req.query["filter-scnumber"] != null){
       filters.scnumber = req.query["filter-scnumber"];
+      filterString += "&filter-scnumber=" + filters.scnumber
     }
 
     if(req.query["filter-name"] != null){
       filters.name = req.query["filter-name"];
+      filterString += "&filter-name=" + filters.name
     }
 
     start_page = 1;
@@ -138,6 +143,7 @@ router.get("/", async (req, res) => {
     res.render(render, {
       gaList,
       filters,
+      filterString,
       pageCount,
       previous_page,
       next_page,
