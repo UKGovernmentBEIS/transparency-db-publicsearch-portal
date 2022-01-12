@@ -240,7 +240,13 @@
                   <td><%= item.endDate %></td>
                   <td><%= item.budget %></td>
                   <td><%= item.status %></td>
-                  <td><%= item.adhoc %></td>
+                  <td>
+                    <% if (item.adhoc == false) { %>
+                      No
+                      <% } else { %>
+                      Yes
+                      <% } %>
+                  </td>
                 </tr>
                 <% } ); %>
 
