@@ -152,30 +152,30 @@
               <!-- <form class="govuk-grid-column-one-third" action="/pageperroute" method="GET"> -->
               <% if(frontend_totalRecordsPerPage  == 10) { %>
               <a aria-label="10 records per page selected" aria-selected="true" class="round btn-page active"
-                href="/pageperroute/?sort=10">10</a>
+                href="/schemes/?limit=10<%=filterString%>">10</a>
               <!-- <li class="hmcts-pagination__item hmcts-pagination__item--active">10</li> -->
               <% } else { %>
-              <a aria-label="10 records per page " class="round btn-page" href="/pageperroute/?sort=10">10</a>
+              <a aria-label="10 records per page " class="round btn-page" href="/schemes/?limit=10<%=filterString%>">10</a>
               <% }  %>
               <% if(frontend_totalRecordsPerPage  == 20) { %>
               <a aria-label="20 records per page selected" aria-selected="true" class="round btn-page active"
-                href="/pageperroute/?sort=20">20</a>
+                href="/schemes/?limit=20<%=filterString%>">20</a>
               <% } else { %>
-              <a aria-label="20 records per page " class="round btn-page" href="/pageperroute/?sort=20">20</a>
+              <a aria-label="20 records per page " class="round btn-page" href="/schemes/?limit=20<%=filterString%>">20</a>
               <% }  %>
 
               <% if(frontend_totalRecordsPerPage  == 50) { %>
               <a aria-label="50 records per page selected" aria-selected="true" class="round btn-page active"
-                href="/pageperroute/?sort=50">50</a>
+                href="/schemes/?limit=50<%=filterString%>">50</a>
               <% } else { %>
-              <a aria-label="50 records per page " class="round btn-page" href="/pageperroute/?sort=50">50</a>
+              <a aria-label="50 records per page " class="round btn-page" href="/schemes/?limit=50<%=filterString%>">50</a>
               <% }  %>
 
               <% if(frontend_totalRecordsPerPage  == 100) { %>
               <a aria-label="100 records per page selected" aria-selected="true" class="round btn-page active"
-                href="/pageperroute/?sort=100">100</a>
+                href="/schemes/?limit=100<%=filterString%>">100</a>
               <% } else { %>
-              <a aria-label="100 records per page " class="round btn-page" href="/pageperroute/?sort=100">100</a>
+              <a aria-label="100 records per page " class="round btn-page" href="/schemes/?limit=100<%=filterString%>">100</a>
               <% }  %>
             </div>
           </div>
@@ -268,7 +268,7 @@
                 <% if (pageCount > 1) { %>
 
                 <% if (current_page_active != 1) { %>
-                <a href="/schemes/?page=1<%=filterString%>" id="paginationlink_first_page" class="first round">
+                <a href="/schemes/?page=1&limit=&limit=<%= frontend_totalRecordsPerPage %><%=filterString%>" id="paginationlink_first_page" class="first round">
                   <!-- <img
                     id="govuk-left-arrow" src="/assets/images/govuk-left-arrow.jpg" alt="go to first page"> -->
                   <svg version="1.1" width="19px" height="30px" aria-label="go to first page">
@@ -291,7 +291,7 @@
                   </svg>
                 </a>
 
-                <a href="/schemes/?page=<%= previous_page %><%=filterString%>" id="paginationlink_previous_page"
+                <a href="/schemes/?page=<%= previous_page %>&limit=<%= frontend_totalRecordsPerPage %><%=filterString%>" id="paginationlink_previous_page"
                   class="previous round">Previous
                   Page</a>
                 <% } %>
@@ -299,17 +299,17 @@
                 <% for (var i = start_page; i <= end_page; i++) { %>
                 <% if (current_page_active != i ) { %>
                 <a id="paginationlink<%= i %>" aria-label="go to page <%= i %>" class="round btn-page"
-                  href="/schemes/?page=<%= i %><%=filterString%>"><%= i %></a>
+                  href="/schemes/?page=<%= i %>&limit=<%= frontend_totalRecordsPerPage %><%=filterString%>"><%= i %></a>
                 <% } else { %>
                 <a id="paginationlink<%= i %>" aria-label="go to page <%= i %>" class="round btn-page active"
-                  href="/schemes/?page=<%= i %><%=filterString%>"><%= i %></a>
+                  href="/schemes/?page=<%= i %>&limit=<%= frontend_totalRecordsPerPage %><%=filterString%>"><%= i %></a>
                 <% } %>
                 <% } %>
 
                 <% if (current_page_active != pageCount) { %>
-                <a href="/schemes/?page=<%= next_page %>&totalrecords=<%= frontend_totalRecordsPerPage %><%=filterString%>"
+                <a href="/schemes/?page=<%= next_page %>&limit=<%= frontend_totalRecordsPerPage %><%=filterString%>"
                   id="paginationlink_next_page" aria-label="go to next page" class="next round">Next Page</a>
-                <a href="/schemes/?page=<%= pageCount %><%=filterString%>" id="paginationlink_last_page" class="last round">
+                <a href="/schemes/?page=<%= pageCount %>&limit=<%= frontend_totalRecordsPerPage %><%=filterString%>" id="paginationlink_last_page" class="last round">
                   <svg version="1.1" width="19px" height="30px" class="left-arrow" aria-label="go to last page">
                     <defs>
                       <mask fill="white" id="clip3">

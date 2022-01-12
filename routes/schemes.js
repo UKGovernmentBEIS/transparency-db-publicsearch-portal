@@ -41,6 +41,10 @@ router.get("/", async (req, res) => {
   // need to get this from the URL (where possible)
   frontend_totalRecordsPerPage = 10;
 
+  if(req.query.limit != "" && req.query.limit != null){
+    frontend_totalRecordsPerPage = req.query.limit;
+  }
+
   try {
     const apidata = await axios.get(
       // will likely need to build this URL up from it's component parts, and add the total records per page if not included.
