@@ -1,0 +1,74 @@
+<div class="govuk-accordion__section ">
+  <div class="govuk-accordion__section-header">
+     <h2 class="govuk-accordion__section-heading">
+        <span class="govuk-accordion__section-button" id="accordion-default-heading-1">
+        Start Date
+        </span>
+     </h2>
+  </div>
+  <div id="accordion-default-content-1" class="govuk-accordion__section-content"
+     aria-labelledby="accordion-default-heading-1">
+     <div class="govuk-form-group">
+        <div class="govuk-form-group govuk-grid-row">
+          <div class="govuk-grid-column-one-half"> <!-- From Start Date Colum Start -->
+            <label class="govuk-label" for="address-line-1" id="startDateFromLabel">
+            From
+            </label>
+            <div class="govuk-hint">
+                For example, 01 03 2020
+            </div>
+            <div class="govuk-date-input" id="scheme-issued">
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                      <label class="govuk-label govuk-date-input__label" for="filter-start-day-from">Day</label>
+                      <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="filter-start-day-from" name="filter-start-day-from" type="text" placeholder="DD" maxlength="2" pattern="(3[01]|[12][0-9]|0[1-9])" inputmode="numeric" value="">
+                  </div>
+                </div>
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                      <label class="govuk-label govuk-date-input__label" for="filter-start-month-from">Month</label>
+                      <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="filter-start-month-from" value="" name="filter-start-month-from" placeholder="MM" type="text" maxlength="2" pattern="(1[0-2]|0[1-9])" inputmode="numeric">
+                  </div>
+                </div>
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                      <label class="govuk-label govuk-date-input__label" for="filter-start-year-from">Year</label>
+                      <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="filter-start-year-from" name="filter-start-year-from" type="text" maxlength="4" pattern="[0-9]{4}" inputmode="numeric" value="" placeholder="YYYY">
+                  </div>
+                </div>
+            </div>
+          </div> <!-- Start Date Column End -->
+
+          <div class="govuk-grid-column-one-half"> <!-- End Date Colum Start -->
+            <label class="govuk-label" for="address-line-1" id="startDateToLabel">
+            To
+            </label>
+            <div class="govuk-hint">
+                For example, 31 03 2020
+            </div>
+            <div class="govuk-date-input" id="scheme-issued">
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                      <label class="govuk-label govuk-date-input__label" for="filter-end-day-to">Day</label>
+                      <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="filter-end-day-to" name="filter-end-day-to" type="text" placeholder="DD" maxlength="2" pattern="(3[01]|[12][0-9]|0[1-9])" inputmode="numeric" value="">
+                  </div>
+                </div>
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                      <label class="govuk-label govuk-date-input__label" for="filter-end-month-to">Month</label>
+                      <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="filter-end-month-to" value="" name="filter-end-month-to" placeholder="MM" type="text" maxlength="2" pattern="(1[0-2]|0[1-9])" inputmode="numeric">
+                  </div>
+                </div>
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                      <label class="govuk-label govuk-date-input__label" for="filter-end-year-to">Year</label>
+                      <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="filter-end-year-to" name="filter-end-year-to" type="text" maxlength="4" pattern="[0-9]{4}" inputmode="numeric" value="" placeholder="YYYY">
+                  </div>
+                </div>
+            </div>
+          </div> <!-- End Date Column End -->
+
+        </div>
+     </div>
+  </div>
+</div>
