@@ -1,74 +1,95 @@
-<div class="govuk-accordion__section ">
-  <div class="govuk-accordion__section-header">
-     <h2 class="govuk-accordion__section-heading">
-        <span class="govuk-accordion__section-button" id="accordion-default-heading-1">
-        Start Date
-        </span>
-     </h2>
-  </div>
-  <div id="accordion-default-content-1" class="govuk-accordion__section-content"
-     aria-labelledby="accordion-default-heading-1">
-     <div class="govuk-form-group">
-        <div class="govuk-form-group govuk-grid-row">
-          <div class="govuk-grid-column-one-half"> <!-- From Start Date Colum Start -->
-            <label class="govuk-label" for="address-line-1" id="startDateFromLabel">
-            From
-            </label>
-            <div class="govuk-hint">
-                For example, 01 03 2020
-            </div>
-            <div class="govuk-date-input" id="scheme-issued">
-                <div class="govuk-date-input__item">
-                  <div class="govuk-form-group">
-                      <label class="govuk-label govuk-date-input__label" for="filter-start-day-from">Day</label>
-                      <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="filter-start-day-from" name="filter-start-day-from" type="text" placeholder="DD" maxlength="2" pattern="(3[01]|[12][0-9]|0[1-9])" inputmode="numeric" value="<%= filters.startFromDay %>">
+<% ["start","end"].forEach(function(startEnd){ 
+  switch(startEnd){
+    case 'start':
+      fromDay = filters.startFromDay;
+      fromMonth = filters.startFromMonth;
+      fromYear = filters.startFromYear;
+      toDay = filters.startToDay;
+      toMonth = filters.startToMonth;
+      toYear = filters.startToYear;
+      break;
+    case 'end':
+      fromDay = "01";
+      fromMonth = "01";
+      fromYear = "2001";
+      toDay = "02";
+      toMonth = "02";
+      toYear = "2002";
+      break;
+  }
+  %>
+  <div class="govuk-accordion__section ">
+    <div class="govuk-accordion__section-header">
+      <h2 class="govuk-accordion__section-heading">
+          <span class="govuk-accordion__section-button" id="accordion-default-heading-1">
+          <%= startEnd.charAt(0).toUpperCase() + startEnd.slice(1); %> Date
+          </span>
+      </h2>
+    </div>
+    <div id="accordion-default-content-1" class="govuk-accordion__section-content"
+      aria-labelledby="accordion-default-heading-1">
+      <div class="govuk-form-group">
+          <div class="govuk-form-group govuk-grid-row">
+            <div class="govuk-grid-column-one-half"> <!-- From Start Date Colum Start -->
+              <label class="govuk-label" for="address-line-1" id="<%= startEnd %>DateFromLabel">
+              From
+              </label>
+              <div class="govuk-hint">
+                  For example, 01 03 2020
+              </div>
+              <div class="govuk-date-input" id="scheme-issued">
+                  <div class="govuk-date-input__item">
+                    <div class="govuk-form-group">
+                        <label class="govuk-label govuk-date-input__label" for="filter-<%= startEnd %>-day-from">Day</label>
+                        <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="filter-<%= startEnd %>-day-from" name="filter-<%= startEnd %>-day-from" type="text" placeholder="DD" maxlength="2" pattern="(3[01]|[12][0-9]|0[1-9])" inputmode="numeric" value="<%= fromDay %>">
+                    </div>
                   </div>
-                </div>
-                <div class="govuk-date-input__item">
-                  <div class="govuk-form-group">
-                      <label class="govuk-label govuk-date-input__label" for="filter-start-month-from">Month</label>
-                      <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="filter-start-month-from" value="<%= filters.startFromMonth %>" name="filter-start-month-from" placeholder="MM" type="text" maxlength="2" pattern="(1[0-2]|0[1-9])" inputmode="numeric">
+                  <div class="govuk-date-input__item">
+                    <div class="govuk-form-group">
+                        <label class="govuk-label govuk-date-input__label" for="filter-<%= startEnd %>-month-from">Month</label>
+                        <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="filter-<%= startEnd %>-month-from" value="<%= fromMonth %>" name="filter-<%= startEnd %>-month-from" placeholder="MM" type="text" maxlength="2" pattern="(1[0-2]|0[1-9])" inputmode="numeric">
+                    </div>
                   </div>
-                </div>
-                <div class="govuk-date-input__item">
-                  <div class="govuk-form-group">
-                      <label class="govuk-label govuk-date-input__label" for="filter-start-year-from">Year</label>
-                      <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="filter-start-year-from" name="filter-start-year-from" type="text" maxlength="4" pattern="[0-9]{4}" inputmode="numeric" value="<%= filters.startFromYear %>" placeholder="YYYY">
+                  <div class="govuk-date-input__item">
+                    <div class="govuk-form-group">
+                        <label class="govuk-label govuk-date-input__label" for="filter-<%= startEnd %>-year-from">Year</label>
+                        <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="filter-<%= startEnd %>-year-from" name="filter-<%= startEnd %>-year-from" type="text" maxlength="4" pattern="[0-9]{4}" inputmode="numeric" value="<%= fromYear %>" placeholder="YYYY">
+                    </div>
                   </div>
-                </div>
-            </div>
-          </div> <!-- Start Date Column End -->
+              </div>
+            </div> <!-- Start Date Column End -->
 
-          <div class="govuk-grid-column-one-half"> <!-- End Date Colum Start -->
-            <label class="govuk-label" for="address-line-1" id="startDateToLabel">
-            To
-            </label>
-            <div class="govuk-hint">
-                For example, 31 03 2020
-            </div>
-            <div class="govuk-date-input" id="scheme-issued">
-                <div class="govuk-date-input__item">
-                  <div class="govuk-form-group">
-                      <label class="govuk-label govuk-date-input__label" for="filter-start-day-to">Day</label>
-                      <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="filter-start-day-to" name="filter-start-day-to" type="text" placeholder="DD" maxlength="2" pattern="(3[01]|[12][0-9]|0[1-9])" inputmode="numeric" value="<%= filters.startToDay %>">
+            <div class="govuk-grid-column-one-half"> <!-- End Date Colum Start -->
+              <label class="govuk-label" for="address-line-1" id="<%= startEnd %>DateToLabel">
+              To
+              </label>
+              <div class="govuk-hint">
+                  For example, 31 03 2020
+              </div>
+              <div class="govuk-date-input" id="scheme-issued">
+                  <div class="govuk-date-input__item">
+                    <div class="govuk-form-group">
+                        <label class="govuk-label govuk-date-input__label" for="filter-<%= startEnd %>-day-to">Day</label>
+                        <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="filter-<%= startEnd %>-day-to" name="filter-<%= startEnd %>-day-to" type="text" placeholder="DD" maxlength="2" pattern="(3[01]|[12][0-9]|0[1-9])" inputmode="numeric" value="<%= toDay %>">
+                    </div>
                   </div>
-                </div>
-                <div class="govuk-date-input__item">
-                  <div class="govuk-form-group">
-                      <label class="govuk-label govuk-date-input__label" for="filter-start-month-to">Month</label>
-                      <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="filter-start-month-to" value="<%= filters.startToMonth %>" name="filter-start-month-to" placeholder="MM" type="text" maxlength="2" pattern="(1[0-2]|0[1-9])" inputmode="numeric">
+                  <div class="govuk-date-input__item">
+                    <div class="govuk-form-group">
+                        <label class="govuk-label govuk-date-input__label" for="filter-<%= startEnd %>-month-to">Month</label>
+                        <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="filter-<%= startEnd %>-month-to" value="<%= toMonth %>" name="filter-<%= startEnd %>-month-to" placeholder="MM" type="text" maxlength="2" pattern="(1[0-2]|0[1-9])" inputmode="numeric">
+                    </div>
                   </div>
-                </div>
-                <div class="govuk-date-input__item">
-                  <div class="govuk-form-group">
-                      <label class="govuk-label govuk-date-input__label" for="filter-start-year-to">Year</label>
-                      <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="filter-start-year-to" name="filter-start-year-to" type="text" maxlength="4" pattern="[0-9]{4}" inputmode="numeric" value="<%= filters.startToYear %>" placeholder="YYYY">
+                  <div class="govuk-date-input__item">
+                    <div class="govuk-form-group">
+                        <label class="govuk-label govuk-date-input__label" for="filter-<%= startEnd %>-year-to">Year</label>
+                        <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="filter-<%= startEnd %>-year-to" name="filter-<%= startEnd %>-year-to" type="text" maxlength="4" pattern="[0-9]{4}" inputmode="numeric" value="<%= toYear %>" placeholder="YYYY">
+                    </div>
                   </div>
-                </div>
-            </div>
-          </div> <!-- End Date Column End -->
+              </div>
+            </div> <!-- End Date Column End -->
 
-        </div>
-     </div>
+          </div>
+      </div>
+    </div>
   </div>
-</div>
+<% }); %>
