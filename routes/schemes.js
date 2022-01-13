@@ -228,6 +228,11 @@ router.get("/", async (req, res) => {
       filterString += "&filter-status=" + filters.status
     }
 
+    if(req.query["filter-adhoc"] != null){
+      filters.adhoc = req.query["filter-adhoc"];
+      filterString += "&filter-adhoc=" + filters.adhoc
+    }
+
     start_page = 1;
     if (pageCount < 10) {
       end_page = pageCount;
