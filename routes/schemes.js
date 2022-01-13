@@ -125,6 +125,12 @@ router.get("/", async (req, res) => {
       startToDay:"",
       startToMonth:"",
       startToYear:"",
+      endFromDay:"",
+      endFromMonth:"",
+      endFromYear:"",
+      endToDay:"",
+      endToMonth:"",
+      endToYear:"",
     }
 
     filterString = "";
@@ -143,6 +149,8 @@ router.get("/", async (req, res) => {
       filters.name = req.query["filter-name"];
       filterString += "&filter-name=" + filters.name
     }
+
+    // filter start date
 
     if(req.query["filter-start-day-from"] != null){
       filters.startFromDay = req.query["filter-start-day-from"];
@@ -174,7 +182,37 @@ router.get("/", async (req, res) => {
       filterString += "&filter-start-year-to=" + filters.startToYear
     }
 
-    // add end from/to filter details
+    // filter end date
+
+    if(req.query["filter-end-day-from"] != null){
+      filters.endFromDay = req.query["filter-end-day-from"];
+      filterString += "&filter-end-day-from=" + filters.endFromDay
+    }
+    
+    if(req.query["filter-end-month-from"] != null){
+      filters.endFromMonth = req.query["filter-end-month-from"];
+      filterString += "&filter-end-month-from=" + filters.endFromMonth
+    }
+    
+    if(req.query["filter-end-year-from"] != null){
+      filters.endFromYear = req.query["filter-end-year-from"];
+      filterString += "&filter-end-year-from=" + filters.endFromYear
+    }
+    
+    if(req.query["filter-end-day-to"] != null){
+      filters.endToDay = req.query["filter-end-day-to"];
+      filterString += "&filter-end-day-to=" + filters.endToDay
+    }
+    
+    if(req.query["filter-end-month-to"] != null){
+      filters.endToMonth = req.query["filter-end-month-to"];
+      filterString += "&filter-end-month-to=" + filters.endToMonth
+    }
+    
+    if(req.query["filter-end-year-to"] != null){
+      filters.endToYear = req.query["filter-end-year-to"];
+      filterString += "&filter-end-year-to=" + filters.endToYear
+    }
 
     start_page = 1;
     if (pageCount < 10) {
