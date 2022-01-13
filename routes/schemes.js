@@ -131,6 +131,7 @@ router.get("/", async (req, res) => {
       endToDay:"",
       endToMonth:"",
       endToYear:"",
+      status: "",
     }
 
     filterString = "";
