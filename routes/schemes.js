@@ -135,15 +135,21 @@ router.get("/", async (req, res) => {
 
     filterString = "";
 
+    // Granting authority filter
+
     if(req.query["filter-ga"] != null){
       filters.ga = req.query["filter-ga"];
       filterString += "&filter-ga=" + filters.ga
     }
 
+    // SC number filter
+
     if(req.query["filter-scnumber"] != null){
       filters.scnumber = req.query["filter-scnumber"];
       filterString += "&filter-scnumber=" + filters.scnumber
     }
+
+    // name filter
 
     if(req.query["filter-name"] != null){
       filters.name = req.query["filter-name"];
@@ -212,6 +218,13 @@ router.get("/", async (req, res) => {
     if(req.query["filter-end-year-to"] != null){
       filters.endToYear = req.query["filter-end-year-to"];
       filterString += "&filter-end-year-to=" + filters.endToYear
+    }
+
+    // status filter
+
+    if(req.query["filter-status"] != null){
+      filters.status = req.query["filter-status"];
+      filterString += "&filter-status=" + filters.status
     }
 
     start_page = 1;
