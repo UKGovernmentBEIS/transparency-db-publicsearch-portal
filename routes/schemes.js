@@ -119,6 +119,12 @@ router.get("/", async (req, res) => {
       scnumber:"",
       name:"",
       ga:"",
+      startFromDay:"",
+      startFromMonth:"",
+      startFromYear:"",
+      startToDay:"",
+      startToMonth:"",
+      startToYear:"",
     }
 
     filterString = "";
@@ -137,6 +143,38 @@ router.get("/", async (req, res) => {
       filters.name = req.query["filter-name"];
       filterString += "&filter-name=" + filters.name
     }
+
+    if(req.query["filter-start-day-from"] != null){
+      filters.startFromDay = req.query["filter-start-day-from"];
+      filterString += "&filter-start-day-from=" + filters.startFromDay
+    }
+    
+    if(req.query["filter-start-month-from"] != null){
+      filters.startFromMonth = req.query["filter-start-month-from"];
+      filterString += "&filter-start-month-from=" + filters.startFromMonth
+    }
+    
+    if(req.query["filter-start-year-from"] != null){
+      filters.startFromYear = req.query["filter-start-year-from"];
+      filterString += "&filter-start-year-from=" + filters.startFromYear
+    }
+    
+    if(req.query["filter-start-day-to"] != null){
+      filters.startToDay = req.query["filter-start-day-to"];
+      filterString += "&filter-start-day-to=" + filters.startToDay
+    }
+    
+    if(req.query["filter-start-month-to"] != null){
+      filters.startToMonth = req.query["filter-start-month-to"];
+      filterString += "&filter-start-month-to=" + filters.startToMonth
+    }
+    
+    if(req.query["filter-start-year-to"] != null){
+      filters.startToYear = req.query["filter-start-year-to"];
+      filterString += "&filter-start-year-to=" + filters.startToYear
+    }
+
+    // add end from/to filter details
 
     start_page = 1;
     if (pageCount < 10) {

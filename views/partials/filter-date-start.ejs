@@ -21,19 +21,19 @@
                 <div class="govuk-date-input__item">
                   <div class="govuk-form-group">
                       <label class="govuk-label govuk-date-input__label" for="filter-start-day-from">Day</label>
-                      <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="filter-start-day-from" name="filter-start-day-from" type="text" placeholder="DD" maxlength="2" pattern="(3[01]|[12][0-9]|0[1-9])" inputmode="numeric" value="">
+                      <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="filter-start-day-from" name="filter-start-day-from" type="text" placeholder="DD" maxlength="2" pattern="(3[01]|[12][0-9]|0[1-9])" inputmode="numeric" value="<%= filters.startFromDay %>">
                   </div>
                 </div>
                 <div class="govuk-date-input__item">
                   <div class="govuk-form-group">
                       <label class="govuk-label govuk-date-input__label" for="filter-start-month-from">Month</label>
-                      <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="filter-start-month-from" value="" name="filter-start-month-from" placeholder="MM" type="text" maxlength="2" pattern="(1[0-2]|0[1-9])" inputmode="numeric">
+                      <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="filter-start-month-from" value="<%= filters.startFromMonth %>" name="filter-start-month-from" placeholder="MM" type="text" maxlength="2" pattern="(1[0-2]|0[1-9])" inputmode="numeric">
                   </div>
                 </div>
                 <div class="govuk-date-input__item">
                   <div class="govuk-form-group">
                       <label class="govuk-label govuk-date-input__label" for="filter-start-year-from">Year</label>
-                      <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="filter-start-year-from" name="filter-start-year-from" type="text" maxlength="4" pattern="[0-9]{4}" inputmode="numeric" value="" placeholder="YYYY">
+                      <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="filter-start-year-from" name="filter-start-year-from" type="text" maxlength="4" pattern="[0-9]{4}" inputmode="numeric" value="<%= filters.startFromYear %>" placeholder="YYYY">
                   </div>
                 </div>
             </div>
@@ -50,19 +50,19 @@
                 <div class="govuk-date-input__item">
                   <div class="govuk-form-group">
                       <label class="govuk-label govuk-date-input__label" for="filter-start-day-to">Day</label>
-                      <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="filter-start-day-to" name="filter-start-day-to" type="text" placeholder="DD" maxlength="2" pattern="(3[01]|[12][0-9]|0[1-9])" inputmode="numeric" value="">
+                      <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="filter-start-day-to" name="filter-start-day-to" type="text" placeholder="DD" maxlength="2" pattern="(3[01]|[12][0-9]|0[1-9])" inputmode="numeric" value="<%= filters.startToDay %>">
                   </div>
                 </div>
                 <div class="govuk-date-input__item">
                   <div class="govuk-form-group">
                       <label class="govuk-label govuk-date-input__label" for="filter-start-month-to">Month</label>
-                      <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="filter-start-month-to" value="" name="filter-start-month-to" placeholder="MM" type="text" maxlength="2" pattern="(1[0-2]|0[1-9])" inputmode="numeric">
+                      <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="filter-start-month-to" value="<%= filters.startToMonth %>" name="filter-start-month-to" placeholder="MM" type="text" maxlength="2" pattern="(1[0-2]|0[1-9])" inputmode="numeric">
                   </div>
                 </div>
                 <div class="govuk-date-input__item">
                   <div class="govuk-form-group">
                       <label class="govuk-label govuk-date-input__label" for="filter-start-year-to">Year</label>
-                      <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="filter-start-year-to" name="filter-start-year-to" type="text" maxlength="4" pattern="[0-9]{4}" inputmode="numeric" value="" placeholder="YYYY">
+                      <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="filter-start-year-to" name="filter-start-year-to" type="text" maxlength="4" pattern="[0-9]{4}" inputmode="numeric" value="<%= filters.startToYear %>" placeholder="YYYY">
                   </div>
                 </div>
             </div>
