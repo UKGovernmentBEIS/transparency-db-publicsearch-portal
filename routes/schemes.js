@@ -132,6 +132,8 @@ router.get("/", async (req, res) => {
       endToMonth:"",
       endToYear:"",
       status: "",
+      budgetFrom: "",
+      budgetTo: "",
     }
 
     filterString = "";
@@ -231,6 +233,16 @@ router.get("/", async (req, res) => {
     if(req.query["filter-adhoc"] != null){
       filters.adhoc = req.query["filter-adhoc"];
       filterString += "&filter-adhoc=" + filters.adhoc
+    }
+
+    if(req.query["filter-budget-from"] != null){
+      filters.budgetFrom = req.query["filter-budget-from"];
+      filterString += "&filter-budget-from=" + filters.budgetFrom
+    }
+
+    if(req.query["filter-budget-to"] != null){
+      filters.budgetTo = req.query["filter-budget-to"];
+      filterString += "&filter-budget-to=" + filters.budgetTo
     }
 
     start_page = 1;
