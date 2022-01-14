@@ -140,109 +140,109 @@ router.get("/", async (req, res) => {
 
     // Granting authority filter
 
-    if(req.query["filter-ga"] != null){
-      filters.ga = req.query["filter-ga"];
-      filterString += "&filter-ga=" + filters.ga
+    if(req.query["ga"] != null){
+      filters.ga = req.query["ga"];
+      filterString += "&ga=" + filters.ga
     }
 
     // SC number filter
 
-    if(req.query["filter-scnumber"] != null){
-      filters.scnumber = req.query["filter-scnumber"];
-      filterString += "&filter-scnumber=" + filters.scnumber
+    if(req.query["scnumber"] != null){
+      filters.scnumber = req.query["scnumber"];
+      filterString += "&scnumber=" + filters.scnumber
     }
 
     // name filter
 
-    if(req.query["filter-name"] != null){
-      filters.name = req.query["filter-name"];
-      filterString += "&filter-name=" + filters.name
+    if(req.query["name"] != null){
+      filters.name = req.query["name"];
+      filterString += "&name=" + filters.name
     }
 
     // filter start date
 
-    if(req.query["filter-start-day-from"] != null){
-      filters.startFromDay = req.query["filter-start-day-from"];
-      filterString += "&filter-start-day-from=" + filters.startFromDay
+    if(req.query["start-day-from"] != null){
+      filters.startFromDay = req.query["start-day-from"];
+      filterString += "&start-day-from=" + filters.startFromDay
     }
     
-    if(req.query["filter-start-month-from"] != null){
-      filters.startFromMonth = req.query["filter-start-month-from"];
-      filterString += "&filter-start-month-from=" + filters.startFromMonth
+    if(req.query["start-month-from"] != null){
+      filters.startFromMonth = req.query["start-month-from"];
+      filterString += "&start-month-from=" + filters.startFromMonth
     }
     
-    if(req.query["filter-start-year-from"] != null){
-      filters.startFromYear = req.query["filter-start-year-from"];
-      filterString += "&filter-start-year-from=" + filters.startFromYear
+    if(req.query["start-year-from"] != null){
+      filters.startFromYear = req.query["start-year-from"];
+      filterString += "&start-year-from=" + filters.startFromYear
     }
     
-    if(req.query["filter-start-day-to"] != null){
-      filters.startToDay = req.query["filter-start-day-to"];
-      filterString += "&filter-start-day-to=" + filters.startToDay
+    if(req.query["start-day-to"] != null){
+      filters.startToDay = req.query["start-day-to"];
+      filterString += "&start-day-to=" + filters.startToDay
     }
     
-    if(req.query["filter-start-month-to"] != null){
-      filters.startToMonth = req.query["filter-start-month-to"];
-      filterString += "&filter-start-month-to=" + filters.startToMonth
+    if(req.query["start-month-to"] != null){
+      filters.startToMonth = req.query["start-month-to"];
+      filterString += "&start-month-to=" + filters.startToMonth
     }
     
-    if(req.query["filter-start-year-to"] != null){
-      filters.startToYear = req.query["filter-start-year-to"];
-      filterString += "&filter-start-year-to=" + filters.startToYear
+    if(req.query["start-year-to"] != null){
+      filters.startToYear = req.query["start-year-to"];
+      filterString += "&start-year-to=" + filters.startToYear
     }
 
     // filter end date
 
-    if(req.query["filter-end-day-from"] != null){
-      filters.endFromDay = req.query["filter-end-day-from"];
-      filterString += "&filter-end-day-from=" + filters.endFromDay
+    if(req.query["end-day-from"] != null){
+      filters.endFromDay = req.query["end-day-from"];
+      filterString += "&end-day-from=" + filters.endFromDay
     }
     
-    if(req.query["filter-end-month-from"] != null){
-      filters.endFromMonth = req.query["filter-end-month-from"];
-      filterString += "&filter-end-month-from=" + filters.endFromMonth
+    if(req.query["end-month-from"] != null){
+      filters.endFromMonth = req.query["end-month-from"];
+      filterString += "&end-month-from=" + filters.endFromMonth
     }
     
-    if(req.query["filter-end-year-from"] != null){
-      filters.endFromYear = req.query["filter-end-year-from"];
-      filterString += "&filter-end-year-from=" + filters.endFromYear
+    if(req.query["end-year-from"] != null){
+      filters.endFromYear = req.query["end-year-from"];
+      filterString += "&end-year-from=" + filters.endFromYear
     }
     
-    if(req.query["filter-end-day-to"] != null){
-      filters.endToDay = req.query["filter-end-day-to"];
-      filterString += "&filter-end-day-to=" + filters.endToDay
+    if(req.query["end-day-to"] != null){
+      filters.endToDay = req.query["end-day-to"];
+      filterString += "&end-day-to=" + filters.endToDay
     }
     
-    if(req.query["filter-end-month-to"] != null){
-      filters.endToMonth = req.query["filter-end-month-to"];
-      filterString += "&filter-end-month-to=" + filters.endToMonth
+    if(req.query["end-month-to"] != null){
+      filters.endToMonth = req.query["end-month-to"];
+      filterString += "&end-month-to=" + filters.endToMonth
     }
     
-    if(req.query["filter-end-year-to"] != null){
-      filters.endToYear = req.query["filter-end-year-to"];
-      filterString += "&filter-end-year-to=" + filters.endToYear
+    if(req.query["end-year-to"] != null){
+      filters.endToYear = req.query["end-year-to"];
+      filterString += "&end-year-to=" + filters.endToYear
     }
 
     // status filter
 
-    if(req.query["filter-status"] != null){
-      filters.status = req.query["filter-status"];
-      filterString += "&filter-status=" + filters.status
+    if(req.query["status"] != null){
+      filters.status = req.query["status"];
+      filterString += "&status=" + filters.status
     }
 
-    if(req.query["filter-adhoc"] != null){
-      filters.adhoc = req.query["filter-adhoc"];
-      filterString += "&filter-adhoc=" + filters.adhoc
+    if(req.query["adhoc"] != null){
+      filters.adhoc = req.query["adhoc"];
+      filterString += "&adhoc=" + filters.adhoc
     }
 
-    if(req.query["filter-budget-from"] != null){
-      filters.budgetFrom = req.query["filter-budget-from"];
-      filterString += "&filter-budget-from=" + filters.budgetFrom
+    if(req.query["budget-from"] != null){
+      filters.budgetFrom = req.query["budget-from"];
+      filterString += "&budget-from=" + filters.budgetFrom
     }
 
-    if(req.query["filter-budget-to"] != null){
-      filters.budgetTo = req.query["filter-budget-to"];
-      filterString += "&filter-budget-to=" + filters.budgetTo
+    if(req.query["budget-to"] != null){
+      filters.budgetTo = req.query["budget-to"];
+      filterString += "&budget-to=" + filters.budgetTo
     }
 
     start_page = 1;
