@@ -14,7 +14,6 @@ const { callbackify } = require("util");
 const { Http2ServerRequest } = require("http2");
 const { contains } = require("jquery");
 const axios = require("axios");
-var session = require("express-session");
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: false }));
@@ -22,20 +21,6 @@ app.use(methodOverride("_method"));
 app.use(express.static(__dirname + "/public"));
 var cors = require("cors");
 app.use(cors());
-app.use(
-  session({
-    secret: "Key",
-    cookie: {
-      maxAge: 24 * 60 * 60 * 1000,
-    },
-    httpOnly: false,
-    secure: true,
-    sameSite: "none",
-    resave: true,
-    saveUninitialized: true,
-  })
-);
-var ssn = {};
 // ********************************************************
 // Gov.UK public user search - Global variable declarations
 // ********************************************************
@@ -160,9 +145,6 @@ app.get("/", (req, res) => {
   res.set("Access-Control-Allow-Origin", beis_url_publicsearch);
 
   res.render("publicusersearch/homepage");
-  var ssn = {};
-
-  ssn = req.session;
 });
 
 /****************************************************** */
