@@ -29,7 +29,7 @@ router.get("/", async (req, res) => {
     console.log(`Status: ${gaListRequest.status}`);
 
     API_response_code = `${gaListRequest.status}`;
-    console.log("All GAs API_response_code: try" + API_response_code);
+    console.log("All GAs API_response_code: try " + API_response_code);
     gaList = gaListRequest.data.gaList;
   }catch(err){
     response_error_message = err;
@@ -57,16 +57,12 @@ router.get("/", async (req, res) => {
     console.log(`Status: ${apidata.status}`);
 
     API_response_code = `${apidata.status}`;
-    console.log("API_response_code: try" + API_response_code);
-    console.log("Body: ", apidata.data);
+    console.log("API_response_code: try " + API_response_code);
+    //console.log("Body: ", apidata.data);
     searchschemes = apidata.data;
 
     var searchschemes_api = apidata.data;
-    console.log("searchschemes" + searchschemes_api);
-    const seachawardstring = JSON.stringify(searchschemes_api);
-    const seachawardJSON = JSON.parse(seachawardstring);
     totalrows = searchschemes.totalResults;
-    console.log(searchschemes.subsidySchemes[0].scNumber);
 
     pageCount = Math.ceil(totalrows / frontend_totalRecordsPerPage);
     console.log("totalrows :" + totalrows);
