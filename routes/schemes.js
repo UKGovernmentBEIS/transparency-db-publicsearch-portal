@@ -38,7 +38,6 @@ router.get("/", async (req, res) => {
     res.render("publicusersearch/noresults");
   }
 
-  // need to get this from the URL (where possible)
   frontend_totalRecordsPerPage = 10;
 
   if(req.query.limit != "" && req.query.limit != null){
@@ -47,9 +46,6 @@ router.get("/", async (req, res) => {
 
   try {
     const apidata = await axios.get(
-      // will likely need to build this URL up from it's component parts, and add the total records per page if not included.
-      // this is order to allow for the results per page to persist
-      // will likely need to do the same for the filtering options - probably use ssn?
       beis_url_publicsearch + req.originalUrl,
       {
         headers: {
@@ -65,7 +61,6 @@ router.get("/", async (req, res) => {
     console.log("Body: ", apidata.data);
     searchschemes = apidata.data;
 
-    //TODO: Refactor below to work for schemes, not awards
     var searchschemes_api = apidata.data;
     console.log("searchschemes" + searchschemes_api);
     const seachawardstring = JSON.stringify(searchschemes_api);
