@@ -102,6 +102,15 @@
 
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
+              Granting Authority (GA) name
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <%= searchmeasuredetails.grantingAuthorityResponse.grantingAuthorityName %>
+            </dd>
+          </div>
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
               Region
             </dt>
             <dd class="govuk-summary-list__value">
@@ -173,6 +182,14 @@
               Ad Hoc Case
               <% } %>
 
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Budget or amount
+            </dt>
+            <dd class="govuk-summary-list__value">
+              £<%= searchmeasuredetails.subsidyMeasure.budget %>
             </dd>
           </div>
           <div class="govuk-summary-list__row">
