@@ -267,6 +267,7 @@
 
                   </a> -->
                   </th>
+                  <th scope="col" class="govuk-table__header app-custom-class">Scheme Status</th>
                 </tr>
               </thead>
               <tbody class="govuk-table__body">
@@ -289,6 +290,8 @@
                   <% } else { %>
                   <td class="govuk-table__cell">£<%= item.subsidyFullAmountExact %></td>
                   <% } %>
+                  <!-- Change line below to read status + change response to return status for use -->
+                  <td class="govuk-table__cell"><%= item.subsidyMeasure.subsidyMeasureTitle %></td>
                 </tr>
                 <% } ); %>
 
