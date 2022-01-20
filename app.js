@@ -172,6 +172,9 @@ app.use("/legalgrantingdate", legalgrantingdate);
 var searchresults = require("./routes/searchresults");
 app.use("/searchresults", searchresults);
 
+var searchresults = require("./routes/schemes");
+app.use("/schemes", searchresults);
+
 var pageroute = require("./routes/pageroute");
 app.use("/pageroute", pageroute);
 
@@ -192,6 +195,9 @@ app.use("/hidefilter", hidefilter);
 
 var searchresultsmeasureroute = require("./routes/searchresultsmeasureroute");
 app.use("/searchresultsmeasureroute", searchresultsmeasureroute);
+
+var schemedetailsroute = require("./routes/schemedetailsroute");
+app.use("/scheme", schemedetailsroute);
 
 var searchresultsawardroute = require("./routes/searchresultsawardroute");
 app.use("/searchresultsawardroute", searchresultsawardroute);

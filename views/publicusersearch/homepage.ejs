@@ -53,9 +53,13 @@ Gov.UK public user search - header rendering design
             <form action="/searchresults" method="POST" class="govuk-padding-top-2">
               <button class="govuk-button " data-module="govuk-button" id="homepage_button_show_results"
                 name="homepage_button" value="show_results">
-                View all schemes and subsidies
+                View all subsidy awards
               </button>
-              <p></p>
+            </form>
+            <form action="/schemes" method="GET" class="govuk-padding-top-2">
+              <button class="govuk-button " data-module="govuk-button" id="homepage_button_show_schemes">
+                View all subsidy schemes
+              </button>
             </form>
             <!-- <p class="govuk-body">No subsidies have been published yet for 2021. You will be able to view the details of
               awarded subsidies as soon as they are published.
