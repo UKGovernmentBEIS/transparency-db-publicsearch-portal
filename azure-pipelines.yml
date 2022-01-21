@@ -5,6 +5,7 @@
 
 pr:
   - master
+  - cr*
 
 variables:
 
