@@ -58,6 +58,7 @@
               "Subsidy Control (SC) Number": parsedResponse.awards[i].subsidyMeasure.scNumber,
               "Subsidy Scheme": parsedResponse.awards[i].subsidyMeasure.subsidyMeasureTitle,
               "Subsidy Award Number": parsedResponse.awards[i].awardNumber,
+              "Subsidy Status":parsedResponse.awards[i].status,
               "Subsidy Purpose": parsedResponse.awards[i].subsidyObjective,
               "Subsidy Type": parsedResponse.awards[i].subsidyInstrument,
               "Subsidy Element Full Amount": parsedResponse.awards[i].subsidyFullAmountExact,
@@ -290,8 +291,7 @@
                   <% } else { %>
                   <td class="govuk-table__cell">£<%= item.subsidyFullAmountExact %></td>
                   <% } %>
-                  <!-- Change line below to read status + change response to return status for use -->
-                  <td class="govuk-table__cell"><%= item.subsidyMeasure.subsidyMeasureTitle %></td>
+                  <td class="govuk-table__cell"><%= item.status %></td>
                 </tr>
                 <% } ); %>
 
