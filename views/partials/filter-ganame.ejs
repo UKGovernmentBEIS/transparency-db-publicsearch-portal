@@ -13,7 +13,7 @@
       aria-label="Drop down list that shows Filter by type">
         <option value=""></option>
         <% gaList.forEach(function(ga){ %>
-          <% if (filters.ga == ga.grantingAuthorityName) { %>
+          <% if (filters.ga.toLowerCase() == ga.grantingAuthorityName.toLowerCase()) { %>
             <option value="<%= ga.grantingAuthorityName %>" selected> <%= ga.grantingAuthorityName %></option>
           <% }else{ %>
             <option value="<%= ga.grantingAuthorityName %>"> <%= ga.grantingAuthorityName %> </option>
