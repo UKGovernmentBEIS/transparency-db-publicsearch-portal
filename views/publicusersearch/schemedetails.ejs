@@ -145,6 +145,15 @@
           </div>
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
+              Weblink Description
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <%= searchmeasuredetails.gaSubsidyWebLinkDescription %>
+            </dd>
+          </div>
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
               Case Type
             </dt>
             <dd class="govuk-summary-list__value">
@@ -169,7 +178,7 @@
               Duration
             </dt>
             <dd class="govuk-summary-list__value">
-              From <%= searchmeasuredetails.startDate %> to
+              <%= searchmeasuredetails.duration %> Days from <%= searchmeasuredetails.startDate %> to
               <%= searchmeasuredetails.endDate %>
             </dd>
           </div>
@@ -187,6 +196,38 @@
             </dt>
             <dd class="govuk-summary-list__value">
               <%= searchmeasuredetails.publishedMeasureDate%>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Date & Time Created
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <%= searchmeasuredetails.createdTimestamp%>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Date & Time Last Modified 
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <%= searchmeasuredetails.lastModifiedTimestamp%>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Created by
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <%= searchmeasuredetails.createdBy%>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Approved by
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <%= searchmeasuredetails.approvedBy%>
             </dd>
           </div>
         </ul>
