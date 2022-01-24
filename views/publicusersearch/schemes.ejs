@@ -61,12 +61,18 @@
               "Granting Duthority": parsedResponse.subsidySchemes[i].grantingAuthorityName,
               "Start Date": parsedResponse.subsidySchemes[i].startDate,
               "End Date": parsedResponse.subsidySchemes[i].endDate,
-              "Budget": parsedResponse.subsidySchemes[i].budget,
+              "Published Date": parsedResponse.subsidySchemes[i].publishedMeasureDate,
+              "Budget/£": parsedResponse.subsidySchemes[i].budget,
               "Status": parsedResponse.subsidySchemes[i].status,
               "Ad Hoc": parsedResponse.subsidySchemes[i].adhoc ? "Yes" : "No",
-              "Duration": parsedResponse.subsidySchemes[i].duration,
+              "Duration/days": parsedResponse.subsidySchemes[i].duration,
               "Legal Basis": parsedResponse.subsidySchemes[i].legalBasis.legalBasisText,
               "URL": parsedResponse.subsidySchemes[i].gaSubsidyWebLink,
+              "URL Description": parsedResponse.subsidySchemes[i].gaSubsidyWebLinkDescription,
+              "Created Date & Time": parsedResponse.subsidySchemes[i].createdTimestamp,
+              "Last Modified Date & Time": parsedResponse.subsidySchemes[i].lastModifiedTimestamp,
+              "Created By": parsedResponse.subsidySchemes[i].createdBy,
+              "Approved By": parsedResponse.subsidySchemes[i].approvedBy,
             }
           }
           var data = JSON.parse(JSON.stringify(filteredResponse));
