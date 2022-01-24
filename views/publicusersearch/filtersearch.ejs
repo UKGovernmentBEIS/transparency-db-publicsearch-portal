@@ -85,6 +85,7 @@ Gov.UK public user search - header rendering design
             "Subsidy Control (SC) Number": parsedResponse.awards[i].subsidyMeasure.scNumber,
             "Subsidy Scheme": parsedResponse.awards[i].subsidyMeasure.subsidyMeasureTitle,
             "Subsidy Award Number": parsedResponse.awards[i].awardNumber,
+            "Subsidy Status":parsedResponse.awards[i].status,
             "Subsidy Purpose": parsedResponse.awards[i].subsidyObjective,
             "Subsidy Type": parsedResponse.awards[i].subsidyInstrument,
             "Subsidy Element Full Amount": parsedResponse.awards[i].subsidyFullAmountExact,
@@ -259,8 +260,8 @@ Gov.UK public user search - header rendering design
                   <th scope="col" class="govuk-table__header app-custom-class" aria-sort="none">
                     <!-- <a href="/pageroute/?page=999999" style="text-decoration: none"> -->
                     Subsidy amount
-
                   </th>
+                  <th scope="col" class="govuk-table__header app-custom-class">Scheme Status</th>
                 </tr>
               </thead>
               <tbody class="govuk-table__body">
@@ -283,6 +284,7 @@ Gov.UK public user search - header rendering design
                   <% } else { %>
                   <td class="govuk-table__cell">£<%= item.subsidyFullAmountExact %></td>
                   <% } %>
+                  <td class="govuk-table__cell"><%= item.status %></td>
 
 
                 </tr>

@@ -101,7 +101,15 @@
           </div>
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Granting Authority
+              Subsidy scheme status
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <%= searchmeasuredetails.status %>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Granting Authority (GA) name
             </dt>
             <dd class="govuk-summary-list__value">
               <%= searchmeasuredetails.grantingAuthorityName %>
@@ -171,6 +179,14 @@
             </dt>
             <dd class="govuk-summary-list__value">
               <%= searchmeasuredetails.startDate %>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Date published
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <%= searchmeasuredetails.publishedMeasureDate%>
             </dd>
           </div>
         </ul>
