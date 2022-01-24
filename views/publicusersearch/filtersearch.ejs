@@ -62,7 +62,7 @@ Gov.UK public user search - header rendering design
 
 
 <script>
-  window.saveFile = function saveFile(data_request_clientside, beis_url_publicsearch) {
+  window.saveFile = function saveFile(data_request_clientside, beis_url_publicsearch, format) {
     console.log(data_request_clientside);
 
     var api_data;
@@ -97,7 +97,20 @@ Gov.UK public user search - header rendering design
           }
         }
         var data = JSON.parse(JSON.stringify(filteredResponse));
-        var res = alasql('SELECT * INTO XLSX("publicsearchawards.xlsx",?) FROM ?', [data, [data]]);
+        switch (format) {
+            case 'xlsx':
+              console.log("Downloading an xlsx file")
+              var res = alasql('SELECT * INTO XLSX("publicsearchawards.xlsx",?) FROM ?', [data, [data]]);
+              break;
+
+            case 'csv':
+              console.log("Downloading a csv file")
+              var res = alasql('SELECT * INTO CSV("publicsearchawards.csv",{headers:true, separator:","}) FROM ?', [data, [data]]);
+              break;
+
+            default:
+              console.log("This is not a valid download format");
+          }
       },
       error: function (error) {
         console.log("Something went wrong", error);
@@ -153,8 +166,12 @@ Gov.UK public user search - header rendering design
             </a> -->
             <button class="govuk-button" onclick="toggleFilterDiv()"><span id="filterText">Hide</span> filters</button>
             <button class="govuk-button" data-module="govuk-button"
-              onclick="saveFile('<%= data_request_clientside %>','<%= beis_url_publicsearch %>')">
-              Download results as Excel file </button>
+              onclick="saveFile('<%= data_request_clientside %>','<%= beis_url_publicsearch %>', 'xlsx')">
+              Export as Excel file </button>
+
+            <button class="govuk-button" data-module="govuk-button"
+              onclick="saveFile('<%= data_request_clientside %>','<%= beis_url_publicsearch %>', 'csv')">
+              Export as csv file </button>
           </div>
           <div class="govuk-grid-column-one-half govuk-display-flex" aria-autocomplete="list">
             <label class="govuk-grid-column-two-thirds">
