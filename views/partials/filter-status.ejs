@@ -13,7 +13,7 @@
       aria-label="Drop down list that shows Filter by type">
         <option value=""></option>
         <% ["Active","Inactive"].forEach(function(status){ %>
-          <% if (filters.status == status) { %>
+          <% if ((filters.status + "").toLowerCase() == status.toLowerCase()) { %>
             <option value="<%= status %>" selected> <%= status %></option>
           <% }else{ %>
             <option value="<%= status %>"> <%= status %> </option>

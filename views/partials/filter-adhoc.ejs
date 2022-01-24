@@ -13,7 +13,7 @@
       aria-label="Drop down list that shows Filter by type">
         <option value=""></option>
         <% ["No","Yes"].forEach(function(adhoc){ %>
-          <% if (filters.adhoc == adhoc) { %>
+          <% if ((filters.adhoc + "").toLowerCase() == adhoc.toLowerCase()) { %>
             <option value="<%= adhoc %>" selected> <%= adhoc %></option>
           <% }else{ %>
             <option value="<%= adhoc %>"> <%= adhoc %> </option>
