@@ -56,17 +56,28 @@
           for (var i = 0; i < parsedResponse.totalSearchResults; i++) {
             filteredResponse[filteredResponse.length] = {
               "Subsidy Control (SC) Number": parsedResponse.awards[i].subsidyMeasure.scNumber,
-              "Subsidy Scheme": parsedResponse.awards[i].subsidyMeasure.subsidyMeasureTitle,
+              "Subsidy Scheme Name": parsedResponse.awards[i].subsidyMeasure.subsidyMeasureTitle,
               "Subsidy Award Number": parsedResponse.awards[i].awardNumber,
-              "Subsidy Award Status":parsedResponse.awards[i].status,
+              "Subsidy Award Status": parsedResponse.awards[i].status,
+              "Subsidy Rejection Reason": parsedResponse.awards[i].rejectReason,
               "Subsidy Purpose": parsedResponse.awards[i].subsidyObjective,
               "Subsidy Type": parsedResponse.awards[i].subsidyInstrument,
+              "Goods or Services": parsedResponse.awards[i].goodsServicesFilter,
               "Subsidy Element Full Amount": parsedResponse.awards[i].subsidyFullAmountExact,
               "Subsidy Element Full Amount Range": parsedResponse.awards[i].subsidyFullAmountRange,
+              "Granting Authority Name": parsedResponse.awards[i].grantingAuthorityResponse.grantingAuthorityName,
               "Recipient Name": parsedResponse.awards[i].beneficiary.beneficiaryName,
+              "Recipient Size": parsedResponse.awards[i].beneficiary.orgSize,
+              "ID Number": parsedResponse.awards[i].beneficiary.nationalId,
+              "ID Type": parsedResponse.awards[i].beneficiary.nationalIdType,
               "Spending Region": parsedResponse.awards[i].spendingRegion,
               "Spending Sector": parsedResponse.awards[i].spendingSector,
-              "Awarded Date": parsedResponse.awards[i].legalGrantingDate
+              "Awarded Date": parsedResponse.awards[i].legalGrantingDate,
+              "Published Date": parsedResponse.awards[i].publishedAwardDate,
+              "Created Date": parsedResponse.awards[i].createdTimestamp,
+              "Last Modified Date": parsedResponse.awards[i].lastModifiedTimestamp,
+              "Created By": parsedResponse.awards[i].createdBy,
+              "Approved By": parsedResponse.awards[i].approvedBy,
             }
           }
           var data = JSON.parse(JSON.stringify(filteredResponse));
