@@ -55,24 +55,24 @@
           var filteredResponse = [];
           for (var i = 0; i < parsedResponse.totalResults; i++) {
             filteredResponse[filteredResponse.length] = {
-              "Subsidy Control (SC) Number": parsedResponse.subsidySchemes[i].scNumber,
-              "Subsidy Scheme Name": parsedResponse.subsidySchemes[i].subsidyMeasureTitle,
-              "Subsidy Status":parsedResponse.subsidySchemes[i].status,
-              "Granting Duthority": parsedResponse.subsidySchemes[i].grantingAuthorityName,
-              "Start Date": parsedResponse.subsidySchemes[i].startDate,
-              "End Date": parsedResponse.subsidySchemes[i].endDate,
-              "Published Date": parsedResponse.subsidySchemes[i].publishedMeasureDate,
+              "Subsidy control (SC) number": parsedResponse.subsidySchemes[i].scNumber,
+              "Subsidy scheme name": parsedResponse.subsidySchemes[i].subsidyMeasureTitle,
+              "Subsidy status":parsedResponse.subsidySchemes[i].status,
+              "Granting authority": parsedResponse.subsidySchemes[i].grantingAuthorityName,
+              "Start date": parsedResponse.subsidySchemes[i].startDate,
+              "End date": parsedResponse.subsidySchemes[i].endDate,
+              "Published date": parsedResponse.subsidySchemes[i].publishedMeasureDate,
               "Budget/£": parsedResponse.subsidySchemes[i].budget,
               "Status": parsedResponse.subsidySchemes[i].status,
-              "Ad Hoc": parsedResponse.subsidySchemes[i].adhoc ? "Yes" : "No",
+              "Ad hoc": parsedResponse.subsidySchemes[i].adhoc ? "Yes" : "No",
               "Duration/days": parsedResponse.subsidySchemes[i].duration,
-              "Legal Basis": parsedResponse.subsidySchemes[i].legalBasis.legalBasisText,
+              "Legal basis": parsedResponse.subsidySchemes[i].legalBasis.legalBasisText,
               "URL": parsedResponse.subsidySchemes[i].gaSubsidyWebLink,
-              "URL Description": parsedResponse.subsidySchemes[i].gaSubsidyWebLinkDescription,
-              "Created Date & Time": parsedResponse.subsidySchemes[i].createdTimestamp,
-              "Last Modified Date & Time": parsedResponse.subsidySchemes[i].lastModifiedTimestamp,
-              "Created By": parsedResponse.subsidySchemes[i].createdBy,
-              "Approved By": parsedResponse.subsidySchemes[i].approvedBy,
+              "URL description": parsedResponse.subsidySchemes[i].gaSubsidyWebLinkDescription,
+              "Created date & time": parsedResponse.subsidySchemes[i].createdTimestamp,
+              "Last modified date & time": parsedResponse.subsidySchemes[i].lastModifiedTimestamp,
+              "Created by": parsedResponse.subsidySchemes[i].createdBy,
+              "Approved by": parsedResponse.subsidySchemes[i].approvedBy,
             }
           }
           var data = JSON.parse(JSON.stringify(filteredResponse));
@@ -229,7 +229,7 @@
                 <tr class="govuk-table__row">
                   <th scope="col" class="govuk-table__header">
                     <!-- <a href="./schemes/?sort=scnumber" style="text-decoration: none"> -->
-                      Subsidy control (SC) number
+                      Subsidy control number
                       <!-- <% if (scnumber_arrow == "upanddown" ) { %>
                       <img id="scnumber_updownarrow" src="/assets/images/UpDownArrow.jpg" alt="Curently not sorted">
                       <% } else if (scnumber_arrow == "updecending" ) { %>
@@ -248,7 +248,7 @@
                   <th scope="col" class="govuk-table__header">End date</th>
                   <th scope="col" class="govuk-table__header">Budget</th>
                   <th scope="col" class="govuk-table__header">Status</th>
-                  <th scope="col" class="govuk-table__header">Ad Hoc</th>
+                  <th scope="col" class="govuk-table__header">Ad hoc</th>
                 </tr>
               </thead>
               <tbody class="govuk-table__body">

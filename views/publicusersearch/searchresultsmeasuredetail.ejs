@@ -93,7 +93,7 @@
 
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Subsidy control (SC) number
+              Subsidy control number
             </dt>
             <dd class="govuk-summary-list__value">
               <%= searchmeasuredetails.subsidyMeasure.scNumber %>
@@ -111,7 +111,7 @@
 
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Granting Authority (GA) name
+              Granting authority name
             </dt>
             <dd class="govuk-summary-list__value">
               <%= searchmeasuredetails.grantingAuthorityResponse.grantingAuthorityName %>
@@ -129,7 +129,7 @@
 
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Weblink to Granting Authority Text of Subsidy
+              Weblink to granting authority text of subsidy
             </dt>
             <dd class="govuk-summary-list__value">
               <% if(searchmeasuredetails.subsidyMeasure.gaSubsidyWebLink.includes('https://') || searchmeasuredetails.subsidyMeasure.gaSubsidyWebLink.includes('http://')) { %>
@@ -148,7 +148,7 @@
           </div>
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Weblink Description
+              Weblink description
             </dt>
             <dd class="govuk-summary-list__value">
               <%= searchmeasuredetails.subsidyMeasure.gaSubsidyWebLinkDescription %>
@@ -157,13 +157,13 @@
 
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Case Type
+              Case type
             </dt>
             <dd class="govuk-summary-list__value">
               <% if (searchmeasuredetails.subsidyMeasure.adhoc == false) { %>
-              Regular Case
+              Regular case
               <% } else { %>
-              Ad Hoc Case
+              Ad hoc Case
               <% } %>
 
             </dd>
@@ -188,7 +188,7 @@
           </div>
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Notification or Registration Date
+              Notification or registration date
             </dt>
             <dd class="govuk-summary-list__value">
               <%= searchmeasuredetails.subsidyMeasure.startDate %>
@@ -196,7 +196,7 @@
           </div>
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Date Published
+              Date published
             </dt>
             <dd class="govuk-summary-list__value">
               <%= searchmeasuredetails.subsidyMeasure.publishedMeasureDate %>
@@ -204,7 +204,7 @@
           </div>
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Date & Time Created
+              Date & time created
             </dt>
             <dd class="govuk-summary-list__value">
               <%= searchmeasuredetails.subsidyMeasure.createdTimestamp%>
@@ -212,7 +212,7 @@
           </div>
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Date & Time Last Modified 
+              Date & time last modified
             </dt>
             <dd class="govuk-summary-list__value">
               <%= searchmeasuredetails.subsidyMeasure.lastModifiedTimestamp%>
