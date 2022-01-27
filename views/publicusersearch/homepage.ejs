@@ -50,15 +50,15 @@ Gov.UK public user search - header rendering design
             <p class="govuk-body">You can view the full list of active subsidy schemes and all the businesses that have
               received subsidies
               under each scheme.</p>
+            <form action="/schemes" method="GET" class="govuk-padding-top-2">
+              <button class="govuk-button " data-module="govuk-button" id="homepage_button_show_schemes">
+                View all subsidy schemes
+              </button>
+            </form>
             <form action="/searchresults" method="POST" class="govuk-padding-top-2">
               <button class="govuk-button " data-module="govuk-button" id="homepage_button_show_results"
                 name="homepage_button" value="show_results">
                 View all subsidy awards
-              </button>
-            </form>
-            <form action="/schemes" method="GET" class="govuk-padding-top-2">
-              <button class="govuk-button " data-module="govuk-button" id="homepage_button_show_schemes">
-                View all subsidy schemes
               </button>
             </form>
             <!-- <p class="govuk-body">No subsidies have been published yet for 2021. You will be able to view the details of
