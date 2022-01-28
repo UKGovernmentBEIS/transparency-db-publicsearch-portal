@@ -27,7 +27,12 @@ router.get("/", async (req, res) => {
     console.log(`Status: ${awardapidata.status}`);
     console.log("Body: ", awardapidata.data);
     searchawarddetails = awardapidata.data;
-    res.render("publicusersearch/searchresultsawarddetail");
+
+    if(searchawarddetails.subsidyMeasure.status == "Deleted"){
+      res.render("publicusersearch/noresults");
+    }else{
+      res.render("publicusersearch/searchresultsawarddetail");
+    }
   } catch (err) {
     console.error(err);
   }
