@@ -25,7 +25,11 @@ router.get("/", async (req, res) => {
     console.log(`Status: ${measureapidata.status}`);
     console.log("Body: ", measureapidata.data);
     searchmeasuredetails = measureapidata.data;
-    res.render("publicusersearch/schemedetails");
+    if(measureapidata.data.status == "Deleted"){
+      res.render("publicusersearch/noresults");
+    }else{
+      res.render("publicusersearch/schemedetails");
+    }
   } catch (err) {
     console.error(err);
   }
