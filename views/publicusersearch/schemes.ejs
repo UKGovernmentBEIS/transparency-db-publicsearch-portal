@@ -69,8 +69,8 @@
               "Legal basis": parsedResponse.subsidySchemes[i].legalBasis.legalBasisText,
               "URL": parsedResponse.subsidySchemes[i].gaSubsidyWebLink,
               "URL description": parsedResponse.subsidySchemes[i].gaSubsidyWebLinkDescription,
-              "Created date & time": parsedResponse.subsidySchemes[i].createdTimestamp,
-              "Last modified date & time": parsedResponse.subsidySchemes[i].lastModifiedTimestamp,
+              "Created date": parsedResponse.subsidySchemes[i].createdTimestamp,
+              "Last modified date": parsedResponse.subsidySchemes[i].lastModifiedTimestamp,
             }
           }
           var data = JSON.parse(JSON.stringify(filteredResponse));
