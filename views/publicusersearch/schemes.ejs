@@ -55,7 +55,7 @@
           var filteredResponse = [];
           for (var i = 0; i < parsedResponse.totalResults; i++) {
             filteredResponse[filteredResponse.length] = {
-              "Subsidy control (SC) number": parsedResponse.subsidySchemes[i].scNumber,
+              "Subsidy control number": parsedResponse.subsidySchemes[i].scNumber,
               "Subsidy scheme name": parsedResponse.subsidySchemes[i].subsidyMeasureTitle,
               "Subsidy status":parsedResponse.subsidySchemes[i].status,
               "Granting authority": parsedResponse.subsidySchemes[i].grantingAuthorityName,
