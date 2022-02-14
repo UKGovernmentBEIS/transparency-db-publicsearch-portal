@@ -93,7 +93,7 @@
 
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Subsidy control (SC) number
+              Subsidy control number
             </dt>
             <dd class="govuk-summary-list__value">
               <%= searchmeasuredetails.scNumber %>
@@ -109,7 +109,7 @@
           </div>
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Granting Authority (GA) name
+              Granting authority name
             </dt>
             <dd class="govuk-summary-list__value">
               <%= searchmeasuredetails.grantingAuthorityName %>
@@ -126,7 +126,7 @@
 
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Weblink to Granting Authority Text of Subsidy
+              Weblink to granting authority text of subsidy
             </dt>
             <dd class="govuk-summary-list__value">
               <% if(searchmeasuredetails.gaSubsidyWebLink.includes('https://') || searchmeasuredetails.gaSubsidyWebLink.includes('http://')) { %>
@@ -145,13 +145,22 @@
           </div>
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Case Type
+              Weblink description
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <%= searchmeasuredetails.gaSubsidyWebLinkDescription %>
+            </dd>
+          </div>
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Case type
             </dt>
             <dd class="govuk-summary-list__value">
               <% if (searchmeasuredetails.adhoc == false) { %>
-              Regular Case
+              Regular case
               <% } else { %>
-              Ad Hoc Case
+              Ad hoc case
               <% } %>
 
             </dd>
@@ -169,8 +178,16 @@
               Duration
             </dt>
             <dd class="govuk-summary-list__value">
-              From <%= searchmeasuredetails.startDate %> to
+              <%= searchmeasuredetails.duration %> days from <%= searchmeasuredetails.startDate %> to
               <%= searchmeasuredetails.endDate %>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Notification or registration date
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <%= searchmeasuredetails.startDate %>
             </dd>
           </div>
           <div class="govuk-summary-list__row">
@@ -179,6 +196,22 @@
             </dt>
             <dd class="govuk-summary-list__value">
               <%= searchmeasuredetails.publishedMeasureDate%>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Date created
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <%= searchmeasuredetails.createdTimestamp%>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Date last modified 
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <%= searchmeasuredetails.lastModifiedTimestamp%>
             </dd>
           </div>
         </ul>

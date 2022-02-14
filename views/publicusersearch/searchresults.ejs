@@ -55,18 +55,27 @@
           var filteredResponse = [];
           for (var i = 0; i < parsedResponse.totalSearchResults; i++) {
             filteredResponse[filteredResponse.length] = {
-              "Subsidy Control (SC) Number": parsedResponse.awards[i].subsidyMeasure.scNumber,
-              "Subsidy Scheme Name": parsedResponse.awards[i].subsidyMeasure.subsidyMeasureTitle,
-              "Subsidy Award Number": parsedResponse.awards[i].awardNumber,
-              "Subsidy Status":parsedResponse.awards[i].status,
-              "Subsidy Purpose": parsedResponse.awards[i].subsidyObjective,
-              "Subsidy Type": parsedResponse.awards[i].subsidyInstrument,
-              "Subsidy Element Full Amount": parsedResponse.awards[i].subsidyFullAmountExact,
-              "Subsidy Element Full Amount Range": parsedResponse.awards[i].subsidyFullAmountRange,
-              "Recipient Name": parsedResponse.awards[i].beneficiary.beneficiaryName,
-              "Spending Region": parsedResponse.awards[i].spendingRegion,
-              "Spending Sector": parsedResponse.awards[i].spendingSector,
-              "Awarded Date": parsedResponse.awards[i].legalGrantingDate
+              "Subsidy control number": parsedResponse.awards[i].subsidyMeasure.scNumber,
+              "Subsidy scheme name": parsedResponse.awards[i].subsidyMeasure.subsidyMeasureTitle,
+              "Subsidy award number": parsedResponse.awards[i].awardNumber,
+              "Subsidy award status": parsedResponse.awards[i].status,
+              "Subsidy rejection reason": parsedResponse.awards[i].rejectReason,
+              "Subsidy purpose": parsedResponse.awards[i].subsidyObjective,
+              "Subsidy type": parsedResponse.awards[i].subsidyInstrument,
+              "Goods or services": parsedResponse.awards[i].goodsServicesFilter,
+              "Subsidy element full amount/£": parsedResponse.awards[i].subsidyFullAmountExact,
+              "Subsidy element full amount range/£": parsedResponse.awards[i].subsidyFullAmountRange,
+              "Granting authority name": parsedResponse.awards[i].grantingAuthorityResponse.grantingAuthorityName,
+              "Recipient name": parsedResponse.awards[i].beneficiary.beneficiaryName,
+              "Recipient size": parsedResponse.awards[i].beneficiary.orgSize,
+              "ID type": parsedResponse.awards[i].beneficiary.nationalIdType,
+              "ID number": parsedResponse.awards[i].beneficiary.nationalId,
+              "Spending region": parsedResponse.awards[i].spendingRegion,
+              "Spending sector": parsedResponse.awards[i].spendingSector,
+              "Awarded date": parsedResponse.awards[i].legalGrantingDate,
+              "Published date": parsedResponse.awards[i].publishedAwardDate,
+              "Created date": parsedResponse.awards[i].createdTimestamp,
+              "Last modified date": parsedResponse.awards[i].lastModifiedTimestamp,
             }
           }
           var data = JSON.parse(JSON.stringify(filteredResponse));
@@ -285,7 +294,7 @@
 
                   </a> -->
                   </th>
-                  <th scope="col" class="govuk-table__header app-custom-class">Scheme Status</th>
+                  <th scope="col" class="govuk-table__header app-custom-class">Scheme status</th>
                 </tr>
               </thead>
               <tbody class="govuk-table__body">
