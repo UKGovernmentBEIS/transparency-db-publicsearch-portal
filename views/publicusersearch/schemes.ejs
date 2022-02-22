@@ -39,7 +39,7 @@
   <script>
     window.saveFile = function saveFile(beis_url_publicsearch, format) {
       var api_data;
-      var search = window.location.search.replace(/limit=[\d]*&*/g,"");
+      var search = window.location.search.replace(/limit=[\d]*&*/g,"").replace(/page=[\d]*&*/g,"");
       search = search.replace(/^\?/,"&")
 
       $.ajax({
