@@ -81,6 +81,14 @@
         <% } %>
         <!-- Reject Message Block -->
         <ul class="govuk-summary-list govuk-!-margin-bottom-9">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Subsidy control number
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <%= searchmeasuredetails.subsidyMeasure.scNumber %>
+            </dd>
+          </div>
 
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
@@ -88,15 +96,6 @@
             </dt>
             <dd class="govuk-summary-list__value">
               <%= searchmeasuredetails.subsidyMeasure.subsidyMeasureTitle%>
-            </dd>
-          </div>
-
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Subsidy control number
-            </dt>
-            <dd class="govuk-summary-list__value">
-              <%= searchmeasuredetails.subsidyMeasure.scNumber %>
             </dd>
           </div>
 

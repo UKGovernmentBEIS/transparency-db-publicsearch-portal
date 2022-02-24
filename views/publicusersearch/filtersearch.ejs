@@ -83,26 +83,26 @@ Gov.UK public user search - header rendering design
         for (var i = 0; i < parsedResponse.totalSearchResults; i++) {
           filteredResponse[filteredResponse.length] = {
             "Subsidy control number": parsedResponse.awards[i].subsidyMeasure.scNumber,
-            "Subsidy scheme name": parsedResponse.awards[i].subsidyMeasure.subsidyMeasureTitle,
             "Subsidy award number": parsedResponse.awards[i].awardNumber,
             "Subsidy award status": parsedResponse.awards[i].status,
-            "Subsidy rejection reason": parsedResponse.awards[i].rejectReason,
+            "Subsidy scheme name": parsedResponse.awards[i].subsidyMeasure.subsidyMeasureTitle,
             "Subsidy purpose": parsedResponse.awards[i].subsidyObjective,
             "Subsidy type": parsedResponse.awards[i].subsidyInstrument,
-            "Goods or services": parsedResponse.awards[i].goodsServicesFilter,
             "Subsidy element full amount/£": parsedResponse.awards[i].subsidyFullAmountExact,
             "Subsidy element full amount range/£": parsedResponse.awards[i].subsidyFullAmountRange,
             "Granting authority name": parsedResponse.awards[i].grantingAuthorityResponse.grantingAuthorityName,
-            "Recipient name": parsedResponse.awards[i].beneficiary.beneficiaryName,
-            "Recipient size": parsedResponse.awards[i].beneficiary.orgSize,
-            "ID type": parsedResponse.awards[i].beneficiary.nationalIdType,
-            "ID number": parsedResponse.awards[i].beneficiary.nationalId,
-            "Spending region": parsedResponse.awards[i].spendingRegion,
-            "Spending sector": parsedResponse.awards[i].spendingSector,
             "Awarded date": parsedResponse.awards[i].legalGrantingDate,
             "Published date": parsedResponse.awards[i].publishedAwardDate,
             "Created date": parsedResponse.awards[i].createdTimestamp,
             "Last modified date": parsedResponse.awards[i].lastModifiedTimestamp,
+            "Subsidy rejection reason": parsedResponse.awards[i].rejectReason,
+            "Recipient name": parsedResponse.awards[i].beneficiary.beneficiaryName,
+            "Recipient size": parsedResponse.awards[i].beneficiary.orgSize,
+            "ID type": parsedResponse.awards[i].beneficiary.nationalIdType,
+            "ID number": parsedResponse.awards[i].beneficiary.nationalId,
+            "Goods or services": parsedResponse.awards[i].goodsServicesFilter,
+            "Spending region": parsedResponse.awards[i].spendingRegion,
+            "Spending sector": parsedResponse.awards[i].spendingSector,
           }
         }
         var data = JSON.parse(JSON.stringify(filteredResponse));
@@ -287,7 +287,7 @@ Gov.UK public user search - header rendering design
                     <!-- <a href="/pageroute/?page=999999" style="text-decoration: none"> -->
                     Subsidy amount
                   </th>
-                  <th scope="col" class="govuk-table__header app-custom-class">Scheme Status</th>
+                  <th scope="col" class="govuk-table__header app-custom-class">Subsidy status</th>
                 </tr>
               </thead>
               <tbody class="govuk-table__body">
