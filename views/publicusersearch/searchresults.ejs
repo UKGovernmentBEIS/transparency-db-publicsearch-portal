@@ -37,7 +37,7 @@
 
   <script src="/assets/javascripts/searchfilterAccordion.js"></script>
   <script>
-    window.saveFile = function saveFile(data_request_clientside, beis_url_publicsearch) {
+    window.saveFile = function saveFile(data_request_clientside, beis_url_publicsearch, format) {
       console.log(data_request_clientside);
       var api_data;
       $.ajax({
@@ -55,21 +55,44 @@
           var filteredResponse = [];
           for (var i = 0; i < parsedResponse.totalSearchResults; i++) {
             filteredResponse[filteredResponse.length] = {
-              "Subsidy Control (SC) Number": parsedResponse.awards[i].subsidyMeasure.scNumber,
-              "Subsidy Scheme": parsedResponse.awards[i].subsidyMeasure.subsidyMeasureTitle,
-              "Subsidy Award Number": parsedResponse.awards[i].awardNumber,
-              "Subsidy Purpose": parsedResponse.awards[i].subsidyObjective,
-              "Subsidy Type": parsedResponse.awards[i].subsidyInstrument,
-              "Subsidy Element Full Amount": parsedResponse.awards[i].subsidyFullAmountExact,
-              "Subsidy Element Full Amount Range": parsedResponse.awards[i].subsidyFullAmountRange,
-              "Recipient Name": parsedResponse.awards[i].beneficiary.beneficiaryName,
-              "Spending Region": parsedResponse.awards[i].spendingRegion,
-              "Spending Sector": parsedResponse.awards[i].spendingSector,
-              "Awarded Date": parsedResponse.awards[i].legalGrantingDate
+              "Subsidy control number": parsedResponse.awards[i].subsidyMeasure.scNumber,
+              "Subsidy award number": parsedResponse.awards[i].awardNumber,
+              "Subsidy award status": parsedResponse.awards[i].status,
+              "Subsidy scheme name": parsedResponse.awards[i].subsidyMeasure.subsidyMeasureTitle,
+              "Subsidy purpose": parsedResponse.awards[i].subsidyObjective,
+              "Subsidy type": parsedResponse.awards[i].subsidyInstrument,
+              "Subsidy element full amount/£": parsedResponse.awards[i].subsidyFullAmountExact,
+              "Subsidy element full amount range/£": parsedResponse.awards[i].subsidyFullAmountRange,
+              "Granting authority name": parsedResponse.awards[i].grantingAuthorityResponse.grantingAuthorityName,
+              "Awarded date": parsedResponse.awards[i].legalGrantingDate,
+              "Published date": parsedResponse.awards[i].publishedAwardDate,
+              "Created date": parsedResponse.awards[i].createdTimestamp,
+              "Last modified date": parsedResponse.awards[i].lastModifiedTimestamp,
+              "Subsidy rejection reason": parsedResponse.awards[i].rejectReason,
+              "Recipient name": parsedResponse.awards[i].beneficiary.beneficiaryName,
+              "Recipient size": parsedResponse.awards[i].beneficiary.orgSize,
+              "ID type": parsedResponse.awards[i].beneficiary.nationalIdType,
+              "ID number": parsedResponse.awards[i].beneficiary.nationalId,
+              "Goods or services": parsedResponse.awards[i].goodsServicesFilter,
+              "Spending region": parsedResponse.awards[i].spendingRegion,
+              "Spending sector": parsedResponse.awards[i].spendingSector,
             }
           }
           var data = JSON.parse(JSON.stringify(filteredResponse));
-          var res = alasql('SELECT * INTO XLSX("publicsearchawards.xlsx",?) FROM ?', [data, [data]]);
+          switch (format) {
+            case 'xlsx':
+              console.log("Downloading an xlsx file")
+              var res = alasql('SELECT * INTO XLSX("publicsearchawards.xlsx",?) FROM ?', [data, [data]]);
+              break;
+
+            case 'csv':
+              console.log("Downloading a csv file")
+              var res = alasql('SELECT * INTO CSV("publicsearchawards.csv",{headers:true, separator:","}) FROM ?', [data, [data]]);
+              break;
+
+            default:
+              console.log("This is not a valid download format");
+          }
 
 
         },
@@ -150,8 +173,12 @@
           </a> -->
 
             <button class="govuk-button" data-module="govuk-button"
-              onclick="saveFile('<%= data_request_clientside %>','<%= beis_url_publicsearch %>')">
-              Download results as Excel file </button>
+              onclick="saveFile('<%= data_request_clientside %>','<%= beis_url_publicsearch %>', 'xlsx')">
+              Export as Excel file </button>
+
+            <button class="govuk-button" data-module="govuk-button"
+              onclick="saveFile('<%= data_request_clientside %>','<%= beis_url_publicsearch %>', 'csv')">
+              Export as csv file </button>
 
 
           </div>
@@ -267,6 +294,7 @@
 
                   </a> -->
                   </th>
+                  <th scope="col" class="govuk-table__header app-custom-class">Subsidy status</th>
                 </tr>
               </thead>
               <tbody class="govuk-table__body">
@@ -289,6 +317,7 @@
                   <% } else { %>
                   <td class="govuk-table__cell">£<%= item.subsidyFullAmountExact %></td>
                   <% } %>
+                  <td class="govuk-table__cell"><%= item.status %></td>
                 </tr>
                 <% } ); %>
 

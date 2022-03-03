@@ -14,22 +14,22 @@ router.get("/", async (req, res) => {
   res.set("Access-Control-Allow-Origin", beis_url_publicsearch);
   res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
 
-  console.log("req.query.page: " + req.query.page);
-  scnumber = req.query.page;
-  console.log("scnumber : " + scnumber);
+  console.log("req.query.scnumber: " + req.query.scheme);
+  scheme = req.query.scheme;
+  console.log("scnumber : " + scheme);
   var measureendpoint =
-    beis_url_publicsearch + "/searchResults/award/" + scnumber;
+    beis_url_publicsearch + "/schemes/scheme/" + scheme;
 
   try {
     const measureapidata = await axios.get(measureendpoint);
     console.log(`Status: ${measureapidata.status}`);
     console.log("Body: ", measureapidata.data);
     searchmeasuredetails = measureapidata.data;
-    if (searchmeasuredetails.subsidyMeasure.status == "Deleted"){
+    if(measureapidata.data.status == "Deleted"){
       res.render("publicusersearch/noresults");
     }else{
-      res.render("publicusersearch/searchresultsmeasuredetail");
-    }    
+      res.render("publicusersearch/schemedetails");
+    }
   } catch (err) {
     console.error(err);
   }

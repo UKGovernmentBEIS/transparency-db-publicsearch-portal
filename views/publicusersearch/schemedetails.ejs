@@ -33,13 +33,13 @@
       <%- include('../partials/banner.ejs') %>
 
       <div class="govuk-main-wrapper ">
-        <a href="/searchresults" class="govuk-back-link" aria-label="Back to search results page">Back</a>
+        <a href="/schemes" class="govuk-back-link" aria-label="Back to search results page">Back</a>
         <div class="govuk-grid-row">
           <div class="govuk-grid-column-three-quarters">
             <!-- <legend class="govuk-fieldset__legend govuk-fieldset__legend--l"> -->
             <h1 class="govuk-heading-l">
               Subsidy scheme details
-              <!-- <%= searchmeasuredetails.subsidyMeasure.subsidyMeasureTitle%> -->
+              <!-- <%= searchmeasuredetails.subsidyMeasureTitle%> -->
             </h1>
             <!-- </legend> -->
           </div>
@@ -58,7 +58,7 @@
         </div>
         <!-- Reject Message Block -->
 
-        <% if( searchmeasuredetails.subsidyMeasure.status == "Inactive") { %>
+        <% if( searchmeasuredetails.status == "Inactive") { %>
         <div class="govuk-form-group app-example govuk-inative-status">
           <div class="app-example__toolbar">
             <label>This scheme is not active</label>
@@ -86,43 +86,39 @@
               Subsidy control number
             </dt>
             <dd class="govuk-summary-list__value">
-              <%= searchmeasuredetails.subsidyMeasure.scNumber %>
+              <%= searchmeasuredetails.scNumber %>
             </dd>
           </div>
-
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
               Subsidy scheme name
             </dt>
             <dd class="govuk-summary-list__value">
-              <%= searchmeasuredetails.subsidyMeasure.subsidyMeasureTitle%>
+              <%= searchmeasuredetails.subsidyMeasureTitle%>
             </dd>
           </div>
-
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
               Subsidy scheme status
             </dt>
             <dd class="govuk-summary-list__value">
-              <%= searchmeasuredetails.subsidyMeasure.status %>
+              <%= searchmeasuredetails.status %>
             </dd>
           </div>
-
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
               Granting authority name
             </dt>
             <dd class="govuk-summary-list__value">
-              <%= searchmeasuredetails.grantingAuthorityResponse.grantingAuthorityName %>
+              <%= searchmeasuredetails.grantingAuthorityName %>
             </dd>
           </div>
-
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
               Legal basis
             </dt>
             <dd class="govuk-summary-list__value">
-              <%= searchmeasuredetails.subsidyMeasure.legalBasis.legalBasisText %>
+              <%= searchmeasuredetails.legalBasis.legalBasisText %>
             </dd>
           </div>
 
@@ -131,16 +127,16 @@
               Weblink to granting authority text of subsidy
             </dt>
             <dd class="govuk-summary-list__value">
-              <% if(searchmeasuredetails.subsidyMeasure.gaSubsidyWebLink.includes('https://') || searchmeasuredetails.subsidyMeasure.gaSubsidyWebLink.includes('http://')) { %>
+              <% if(searchmeasuredetails.gaSubsidyWebLink.includes('https://') || searchmeasuredetails.gaSubsidyWebLink.includes('http://')) { %>
               <a aria-label="Weblink to granting authority" target="_blank"
-                href="<%= searchmeasuredetails.subsidyMeasure.gaSubsidyWebLink %>">
-                <%= searchmeasuredetails.subsidyMeasure.gaSubsidyWebLink %>
+                href="<%= searchmeasuredetails.gaSubsidyWebLink %>">
+                <%= searchmeasuredetails.gaSubsidyWebLink %>
 
               </a>
               <% } else { %>
               <a aria-label="Weblink to granting authority" target="_blank"
-                href="https://<%= searchmeasuredetails.subsidyMeasure.gaSubsidyWebLink %>">
-                <%= searchmeasuredetails.subsidyMeasure.gaSubsidyWebLink %>
+                href="https://<%= searchmeasuredetails.gaSubsidyWebLink %>">
+                <%= searchmeasuredetails.gaSubsidyWebLink %>
               </a>
               <% } %>
             </dd>
@@ -150,7 +146,7 @@
               Weblink description
             </dt>
             <dd class="govuk-summary-list__value">
-              <%= searchmeasuredetails.subsidyMeasure.gaSubsidyWebLinkDescription %>
+              <%= searchmeasuredetails.gaSubsidyWebLinkDescription %>
             </dd>
           </div>
 
@@ -159,10 +155,10 @@
               Case type
             </dt>
             <dd class="govuk-summary-list__value">
-              <% if (searchmeasuredetails.subsidyMeasure.adhoc == false) { %>
+              <% if (searchmeasuredetails.adhoc == false) { %>
               Regular case
               <% } else { %>
-              Ad hoc Case
+              Ad hoc case
               <% } %>
 
             </dd>
@@ -172,7 +168,7 @@
               Budget or amount
             </dt>
             <dd class="govuk-summary-list__value">
-              £<%= searchmeasuredetails.subsidyMeasure.budget %>
+              £<%= searchmeasuredetails.budget %>
             </dd>
           </div>
           <div class="govuk-summary-list__row">
@@ -180,9 +176,8 @@
               Duration
             </dt>
             <dd class="govuk-summary-list__value">
-              <%= searchmeasuredetails.subsidyMeasure.duration %> days from 
-              <%= searchmeasuredetails.subsidyMeasure.startDate %> to
-              <%= searchmeasuredetails.subsidyMeasure.endDate %>
+              <%= searchmeasuredetails.duration %> days from <%= searchmeasuredetails.startDate %> to
+              <%= searchmeasuredetails.endDate %>
             </dd>
           </div>
           <div class="govuk-summary-list__row">
@@ -190,7 +185,7 @@
               Notification or registration date
             </dt>
             <dd class="govuk-summary-list__value">
-              <%= searchmeasuredetails.subsidyMeasure.startDate %>
+              <%= searchmeasuredetails.startDate %>
             </dd>
           </div>
           <div class="govuk-summary-list__row">
@@ -198,7 +193,7 @@
               Date published
             </dt>
             <dd class="govuk-summary-list__value">
-              <%= searchmeasuredetails.subsidyMeasure.publishedMeasureDate %>
+              <%= searchmeasuredetails.publishedMeasureDate%>
             </dd>
           </div>
           <div class="govuk-summary-list__row">
@@ -206,21 +201,21 @@
               Date created
             </dt>
             <dd class="govuk-summary-list__value">
-              <%= searchmeasuredetails.subsidyMeasure.createdTimestamp%>
+              <%= searchmeasuredetails.createdTimestamp%>
             </dd>
           </div>
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Date last modified
+              Date last modified 
             </dt>
             <dd class="govuk-summary-list__value">
-              <%= searchmeasuredetails.subsidyMeasure.lastModifiedTimestamp%>
+              <%= searchmeasuredetails.lastModifiedTimestamp%>
             </dd>
           </div>
         </ul>
 
 
-        <form action="/searchresults" method="GET">
+        <form action="/schemes" method="GET">
           <div>
             <button class="govuk-button" data-module="govuk-button">
               Back to search results </button>

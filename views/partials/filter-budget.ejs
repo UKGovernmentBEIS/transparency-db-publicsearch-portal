@@ -1,0 +1,49 @@
+<div class="govuk-accordion__section ">
+    <div class="govuk-accordion__section-header">
+      <h2 class="govuk-accordion__section-heading">
+          <span class="govuk-accordion__section-button" id="accordion-default-heading-6">
+          Budget
+          </span>
+      </h2>
+    </div>
+    <div id="accordion-default-content-1" class="govuk-accordion__section-content"
+      aria-labelledby="accordion-default-heading-1">
+      <div class="govuk-form-group">
+        <div class="govuk-form-group govuk-grid-row">
+          <div class="govuk-grid-column-one-half"> <!-- From Column Start -->
+            <label class="govuk-label" for="budget-from" id="budgetFromLabel">
+              From
+            </label>
+            <div class="govuk-hint">
+              For example, £1000000
+            </div>
+            <div class="govuk-date-input" id="budget-from">
+              <div class="govuk-form-group">
+                <div class="govuk-input__wrapper">
+                  <div class="govuk-input__prefix" aria-hidden="true">£</div>
+                  <input class="govuk-input govuk-!-width-two-thirds" id="filter-budget-from" name="budget-from" type="number" min="0" step=".01" placeholder="From" value="<%= filters.budgetFrom %>">
+                </div>
+              </div>
+            </div>
+          </div> <!-- From Column End -->
+
+          <div class="govuk-grid-column-one-half"> <!-- To Column Start -->
+            <label class="govuk-label" for="address-line-1" id="budgetToLabel">
+              To
+            </label>
+            <div class="govuk-hint">
+                For example, £2000000
+            </div>
+            <div class="govuk-date-input" id="budget-to">
+              <div class="govuk-form-group">
+                <div class="govuk-input__wrapper">
+                  <div class="govuk-input__prefix" aria-hidden="true">£</div>
+                  <input class="govuk-input govuk-!-width-two-thirds" id="filter-budget-to" name="budget-to" type="number" min="0" step=".01" placeholder="To" value="<%= filters.budgetTo %>">
+                </div>
+              </div>
+          </div> <!-- To Column End -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

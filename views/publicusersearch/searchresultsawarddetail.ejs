@@ -95,6 +95,15 @@
 
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
+            Subsidy award status
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <%= searchawarddetails.status %>
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
             Subsidy scheme
           </dt>
           <dd class="govuk-summary-list__value">
@@ -153,6 +162,31 @@
           </dt>
           <dd class="govuk-summary-list__value">
             <%= searchawarddetails.legalGrantingDate %>
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Date published
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <%= searchawarddetails.publishedAwardDate %>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Date created
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <%= searchawarddetails.createdTimestamp%>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Date last modified 
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <%= searchawarddetails.lastModifiedTimestamp%>
           </dd>
         </div>
       </ul>
