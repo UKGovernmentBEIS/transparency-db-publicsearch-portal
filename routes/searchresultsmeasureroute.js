@@ -29,9 +29,15 @@ router.get("/", async (req, res) => {
       res.render("publicusersearch/noresults");
     }else{
       res.render("publicusersearch/searchresultsmeasuredetail");
-    }    
+    }
   } catch (err) {
-    console.error(err);
+
+    if (err.toString().includes("404")) {
+      res.render("publicusersearch/noresults");
+      console.warn("No results found for award number " + awardnumber);
+    } else {
+      console.error(err);
+    }
   }
 });
 
