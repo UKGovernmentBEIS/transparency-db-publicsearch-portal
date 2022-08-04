@@ -28,7 +28,7 @@
     "jest-html-reporter": "^3.3.0",
     "jquery": "^3.5.1",
     "method-override": "^3.0.0",
-    "node-fetch": "^2.6.1",
+    "node-fetch": "^2.6.7",
     "nodemon": "^1.19.1",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
