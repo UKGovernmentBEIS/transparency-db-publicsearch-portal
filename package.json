@@ -13,7 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "@types/express-fileupload": "^1.1.4",
-    "axios": "^0.21.1",
+    "axios": "^0.21.2",
     "cors": "^2.8.5",
     "ejs": "^2.6.2",
     "express": "^4.17.1",
