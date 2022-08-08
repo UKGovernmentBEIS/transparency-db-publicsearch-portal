@@ -37,7 +37,7 @@ router.get("/", async (req, res) => {
 
     if (err.toString().includes("404")) {
       res.render("publicusersearch/noresults");
-      console.warn("No results found for award number" + awardnumber);
+      console.warn("No results found for award number " + awardnumber);
     } else {
       console.error(err);
     }
