@@ -162,7 +162,7 @@
           </a> -->
 
             <!-- <a href="/homepage" style="color : rgb(250, 245, 245); text-decoration: none"
-            class="govuk-button" data-module="govuk-button">New search 
+            class="govuk-button" data-module="govuk-button">New search
           </a> -->
 
             <button class="govuk-button" data-module="govuk-button"
@@ -269,12 +269,18 @@
                 <tr>
                   <td class="govuk-table__cell"><a class="govuk-link"
                       href="/scheme/?scheme=<%= item.scNumber %>"><%= item.scNumber  %>
-                    </a> 
+                    </a>
                   </td>
                   <td><%= item.subsidyMeasureTitle %></td>
                   <td><%= item.grantingAuthorityName %></td>
                   <td><%= item.startDate %></td>
-                  <td><%= item.endDate %></td>
+                  <td>
+                    <% if((!item.endDate) || (item.endDate == "31 December 9999")) { %>
+                      Not applicable
+                    <% } else { %>
+                      <%= item.endDate %>
+                    <% } %>
+                  </td>
                   <td>£<%= item.budget %></td>
                   <td><%= item.status %></td>
                   <td>
