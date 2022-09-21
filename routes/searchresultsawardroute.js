@@ -28,13 +28,19 @@ router.get("/", async (req, res) => {
     console.log("Body: ", awardapidata.data);
     searchawarddetails = awardapidata.data;
 
-    if(searchawarddetails.subsidyMeasure.status == "Deleted"){
+    if (searchawarddetails.subsidyMeasure.status == "Deleted") {
       res.render("publicusersearch/noresults");
-    }else{
+    } else {
       res.render("publicusersearch/searchresultsawarddetail");
     }
   } catch (err) {
-    console.error(err);
+
+    if (err.toString().includes("404")) {
+      res.render("publicusersearch/noresults");
+      console.warn("No results found for award number " + awardnumber);
+    } else {
+      console.error(err);
+    }
   }
 });
 

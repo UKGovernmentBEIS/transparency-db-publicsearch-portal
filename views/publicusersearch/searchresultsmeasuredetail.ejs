@@ -180,9 +180,13 @@
               Duration
             </dt>
             <dd class="govuk-summary-list__value">
-              <%= searchmeasuredetails.subsidyMeasure.duration %> days from 
-              <%= searchmeasuredetails.subsidyMeasure.startDate %> to
-              <%= searchmeasuredetails.subsidyMeasure.endDate %>
+              <% if (searchmeasuredetails.subsidyMeasure.duration == 0) { %>
+                <%= searchmeasuredetails.subsidyMeasure.duration %> days
+              <% } else { %>
+                <%= searchmeasuredetails.subsidyMeasure.duration %> days from
+                <%= searchmeasuredetails.subsidyMeasure.startDate %> to
+                <%= searchmeasuredetails.subsidyMeasure.endDate %>
+              <% } %>
             </dd>
           </div>
           <div class="govuk-summary-list__row">
