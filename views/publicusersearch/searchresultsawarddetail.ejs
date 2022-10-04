@@ -25,7 +25,11 @@
   <div class="govuk-width-container ">
     <%- include('../partials/banner.ejs') %>
     <main class="govuk-main-wrapper " id="main-content" role="main">
-      <a href="/searchresults" class="govuk-back-link" aria-label="back to search results page">Back</a>
+      <a <% if(searchawarddetails.standaloneAward.toLowerCase() == "yes"){ %>
+        href="/standaloneawards"
+      <% }else{ %>
+        href="/searchresults"
+      <% } %> class="govuk-back-link" aria-label="back to search results page">Back</a>
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-three-quarters">
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
@@ -74,13 +78,33 @@
 
       <ul class="govuk-summary-list govuk-!-margin-bottom-9">
         <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Standalone subsidy award
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <%= searchawarddetails.standaloneAward %>
+          </dd>
+        </div>
+        <% if(searchawarddetails.standaloneAward.toLowerCase() == "yes"){ %>
+          <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Standalone award description 
+          </dt>
+          <dd class="govuk-summary-list__value render-newlines"><%= searchawarddetails.subsidyAwardDescription %></dd>
+        </div>
+        <% } %>
+        <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key" id="subsidycontrolnumber">
             Subsidy control number
           </dt>
           <dd class="govuk-summary-list__value">
-            <a class="govuk-link" href="/searchresultsmeasureroute/?page=<%=awardnumber %>"
+            <% if(searchawarddetails.subsidyMeasure.scNumber == 'NA'){ %>
+              <%= searchawarddetails.subsidyMeasure.scNumber %>
+            <% }else{ %>
+              <a class="govuk-link" href="/searchresultsmeasureroute/?page=<%=awardnumber %>"
               aria-label="subsidy control number  <%= (searchawarddetails.subsidyMeasure.scNumber).substring(2,7) %>">
               <%= searchawarddetails.subsidyMeasure.scNumber %> </a>
+            <% } %>
           </dd>
         </div>
 
@@ -264,7 +288,12 @@
       </ul>
 
 
-      <form action="/searchresults" method="GET">
+      <form <% if(searchawarddetails.standaloneAward.toLowerCase() == "yes"){ %>
+        action="/standaloneawards"
+      <% }else{ %>
+        action="/searchresults"
+      <% } %>
+         method="GET">
         <div>
           <button class="govuk-button" data-module="govuk-button">
             Back to search results </button>
