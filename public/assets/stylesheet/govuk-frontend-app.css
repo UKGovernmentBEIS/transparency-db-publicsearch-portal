@@ -640,3 +640,7 @@ button.link {
 .pagination-style-modified a {
   padding: 8px 3px !important;
 }
+
+.render-newlines {
+  white-space: pre-line;
+}
