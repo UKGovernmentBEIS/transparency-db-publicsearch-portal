@@ -25,10 +25,17 @@ router.get("/", async (req, res) => {
     console.log(`Status: ${measureapidata.status}`);
     console.log("Body: ", measureapidata.data);
     searchmeasuredetails = measureapidata.data;
+    if(typeof searchmeasuredetails.spendingSectors !== 'undefined'){
+      var spendingSectorArray = JSON.parse(searchmeasuredetails.spendingSectors);
+    }else{
+      var spendingSectorArray = ["NA"];
+    }
     if(measureapidata.data.status == "Deleted"){
       res.render("publicusersearch/noresults");
     }else{
-      res.render("publicusersearch/schemedetails");
+      res.render("publicusersearch/schemedetails",{
+        spendingSectorArray,
+      });
     }
   } catch (err) {
 
