@@ -176,7 +176,11 @@
               Confirmation date
             </dt>
             <dd class="govuk-summary-list__value">
-              <%= searchmeasuredetails.confirmationDate %>
+              <% if (searchmeasuredetails.confirmationDate != null) { %>
+                <%= searchmeasuredetails.confirmationDate %>
+              <% } else { %>
+                NA
+              <% } %>
             </dd>
           </div>
           <div class="govuk-summary-list__row">
@@ -185,7 +189,6 @@
             </dt>
             <dd class="govuk-summary-list__value">
               <% if ((searchmeasuredetails.duration == 0) || (searchmeasuredetails.endDate == "31 December 9999")) { %>
-                <!-- <%= searchmeasuredetails.duration %> days -->
                 Not applicable
               <% } else { %>
                 <%= searchmeasuredetails.duration %> days from <%= searchmeasuredetails.startDate %> to
