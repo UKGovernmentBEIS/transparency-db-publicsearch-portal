@@ -222,11 +222,15 @@
               Spending Sectors
             </dt>
             <dd class="govuk-summary-list__value">
-              <ul class="govuk-list govuk-list--bullet">
-                <% spendingSectorArray.forEach(function(item) { %> 
-                  <li> <%=item %> </li>
-                <% }); %> 
-              </ul>
+                <% if(typeof spendingSectorArray !== 'undefined') { %>
+                  <ul class="govuk-list govuk-list--bullet">
+                      <% spendingSectorArray.forEach(function(item) { %>
+                      <li> <%=item %> </li>
+                      <% }); %>
+                  </ul>
+                  <% } else { %>
+                      NA
+                   <% } %>
             </dd>
           </div>
         </ul>

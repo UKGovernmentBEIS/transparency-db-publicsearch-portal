@@ -27,8 +27,8 @@ router.get("/", async (req, res) => {
     searchmeasuredetails = measureapidata.data;
     if(typeof searchmeasuredetails.spendingSectors !== 'undefined'){
       var spendingSectorArray = JSON.parse(searchmeasuredetails.spendingSectors);
-    }else{
-      var spendingSectorArray = ["NA"];
+    // }else{
+    //   var spendingSectorArray = ["NA"];
     }
     if(measureapidata.data.status == "Deleted"){
       res.render("publicusersearch/noresults");
