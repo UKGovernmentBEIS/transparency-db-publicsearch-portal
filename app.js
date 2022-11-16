@@ -218,6 +218,7 @@ var accessibilityStatement = require("./routes/accessibilityStatement");
 app.use("/accessibilityStatement", accessibilityStatement);
 
 app.use("/mfaawards", require("./routes/mfaawards"));
+app.use("/mfaaward", require("./routes/mfaawarddetails"));
 
 // Cookies Consent
 
