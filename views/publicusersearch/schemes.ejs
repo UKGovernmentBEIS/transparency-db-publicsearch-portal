@@ -70,6 +70,7 @@
               "Published date": parsedResponse.subsidySchemes[i].publishedMeasureDate,
               "Created date": parsedResponse.subsidySchemes[i].createdTimestamp,
               "Last modified date": parsedResponse.subsidySchemes[i].lastModifiedTimestamp,
+              "Spending Sectors": parsedResponse.subsidySchemes[i].spendingSectors ? JSON.parse(parsedResponse.subsidySchemes[i].spendingSectors) : ""
             }
           }
           var data = JSON.parse(JSON.stringify(filteredResponse));
