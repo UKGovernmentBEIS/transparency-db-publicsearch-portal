@@ -38,11 +38,10 @@
   <script src="/assets/javascripts/searchfilterAccordion.js"></script>
   <script>
     window.saveFile = function saveFile(data_request_clientside, beis_url_publicsearch, format) {
-      console.log(data_request_clientside);
       var api_data;
+      
       $.ajax({
-        // url: 'http://dev-beis-tp-db-public-search-service.azurewebsites.net/searchResults',
-        url: beis_url_publicsearch + '/searchResults',
+        url: beis_url_publicsearch + '/searchResults' + window.location.pathname,
         type: "POST",
         headers: { 'Access-Control-Allow-Origin': '*' },
         data: data_request_clientside,
@@ -84,18 +83,17 @@
           switch (format) {
             case 'xlsx':
               console.log("Downloading an xlsx file")
-              var res = alasql('SELECT * INTO XLSX("publicsearchawards.xlsx",?) FROM ?', [data, [data]]);
+              var res = alasql('SELECT * INTO XLSX("standaloneawards.xlsx",?) FROM ?', [data, [data]]);
               break;
 
             case 'csv':
               console.log("Downloading a csv file")
-              var res = alasql('SELECT * INTO CSV("publicsearchawards.csv",{headers:true, separator:","}) FROM ?', [data, [data]]);
+              var res = alasql('SELECT * INTO CSV("standaloneawards.csv",{headers:true, separator:","}) FROM ?', [data, [data]]);
               break;
 
             default:
               console.log("This is not a valid download format");
           }
-
 
         },
         error: function (error) {
@@ -104,17 +102,6 @@
         }
       });
     }  //end of save file
-    $(document).ready(function () {
-      if (
-        $(".govuk-accordion__section").hasClass(
-          "govuk-accordion__section--expanded"
-        )
-      ) {
-        $(".govuk-accordion__section").removeClass(
-          "govuk-accordion__section--expanded"
-        );
-      }
-    });
   // $(document).ready(function () {
   //   $('body,html').animate({ scrollTop: 300 }, 1500);
   // });
@@ -149,10 +136,10 @@
         </div>
 
         <label class="govuk-label">
-          <% if(searchawards.totalSearchResults == 1)  { %>
-          <b><%= searchawards.totalSearchResults %></b> subsidy award found
+          <% if(totalrows == 1)  { %>
+          <b><%= totalrows %></b> standalone subsidy award found
           <% } else { %>
-          <b><%= searchawards.totalSearchResults %></b> subsidy awards found
+          <b><%= totalrows %></b> standalone subsidy award found
           <% } %>
 
         </label>
@@ -171,15 +158,15 @@
           </a> -->
 
             <!-- <a href="/homepage" style="color : rgb(250, 245, 245); text-decoration: none"
-            class="govuk-button" data-module="govuk-button">New search 
+            class="govuk-button" data-module="govuk-button">New search
           </a> -->
 
             <button class="govuk-button" data-module="govuk-button"
-              onclick="saveFile('<%= data_request_clientside %>','<%= beis_url_publicsearch %>', 'xlsx')">
+              onclick="saveFile('<%= data_request_clientside %>', '<%= beis_url_publicsearch %>', 'xlsx')">
               Export as Excel file </button>
 
             <button class="govuk-button" data-module="govuk-button"
-              onclick="saveFile('<%= data_request_clientside %>','<%= beis_url_publicsearch %>', 'csv')">
+              onclick="saveFile('<%= data_request_clientside %>', '<%= beis_url_publicsearch %>', 'csv')">
               Export as csv file </button>
 
 
@@ -194,30 +181,30 @@
               <!-- <form class="govuk-grid-column-one-third" action="/pageperroute" method="GET"> -->
               <% if(frontend_totalRecordsPerPage  == 10) { %>
               <a aria-label="10 records per page selected" aria-selected="true" class="round btn-page active"
-                href="/pageperroute/?sort=10">10</a>
+                href="/standaloneawards/?limit=10<%=filterString%>">10</a>
               <!-- <li class="hmcts-pagination__item hmcts-pagination__item--active">10</li> -->
               <% } else { %>
-              <a aria-label="10 records per page " class="round btn-page" href="/pageperroute/?sort=10">10</a>
+              <a aria-label="10 records per page " class="round btn-page" href="/standaloneawards/?limit=10<%=filterString%>">10</a>
               <% }  %>
               <% if(frontend_totalRecordsPerPage  == 20) { %>
               <a aria-label="20 records per page selected" aria-selected="true" class="round btn-page active"
-                href="/pageperroute/?sort=20">20</a>
+                href="/standaloneawards/?limit=20<%=filterString%>">20</a>
               <% } else { %>
-              <a aria-label="20 records per page " class="round btn-page" href="/pageperroute/?sort=20">20</a>
+              <a aria-label="20 records per page " class="round btn-page" href="/standaloneawards/?limit=20<%=filterString%>">20</a>
               <% }  %>
 
               <% if(frontend_totalRecordsPerPage  == 50) { %>
               <a aria-label="50 records per page selected" aria-selected="true" class="round btn-page active"
-                href="/pageperroute/?sort=50">50</a>
+                href="/standaloneawards/?limit=50<%=filterString%>">50</a>
               <% } else { %>
-              <a aria-label="50 records per page " class="round btn-page" href="/pageperroute/?sort=50">50</a>
+              <a aria-label="50 records per page " class="round btn-page" href="/standaloneawards/?limit=50<%=filterString%>">50</a>
               <% }  %>
 
               <% if(frontend_totalRecordsPerPage  == 100) { %>
               <a aria-label="100 records per page selected" aria-selected="true" class="round btn-page active"
-                href="/pageperroute/?sort=100">100</a>
+                href="/standaloneawards/?limit=100<%=filterString%>">100</a>
               <% } else { %>
-              <a aria-label="100 records per page " class="round btn-page" href="/pageperroute/?sort=100">100</a>
+              <a aria-label="100 records per page " class="round btn-page" href="/standaloneawards/?limit=100<%=filterString%>">100</a>
               <% }  %>
             </div>
           </div>
@@ -226,8 +213,9 @@
         <span id="info-message" style="display:none" aria-hidden="true">
           On selecting, the page will reload and display the search results</span>
       </div>
-      <form action="/updateresults" method="POST" id="filter-accordion-div">
+      <form action="/standaloneawards/" method="GET" id="filter-accordion-div">
         <div class="govuk-accordion" data-module="govuk-accordion" id="accordion-default">
+          <%- include('../partials/results-per-page.ejs') %>
           <%- include('../partials/searchobjectiveaccordion.ejs') %>
           <%- include('../partials/searchsectoraccordion.ejs') %>
           <%- include('../partials/searchinstrumentaccordion.ejs') %>
@@ -245,56 +233,17 @@
               <thead class="govuk-table__head">
                 <tr class="govuk-table__row">
                   <th scope="col" class="govuk-table__header">
-                    <a href="/pageroute/?page=999997" style="text-decoration: none">
                       Recipient name
-                      <% if (beneficiary_arrow == "upanddown" ) { %>
-                      <img id="beneficiary_updownarrow" src="/assets/images/UpDownArrow.jpg" alt="Curently not sorted">
-                      <% } else if (beneficiary_arrow == "updecending" ) { %>
-                      <img id="beneficiary_downarrow" src="/assets/images/DownArrow.jpg"
-                        alt="Currently sorted by Descending order">
-                      <% } else { %>
-                      <img id="beneficiary_uparrow" src="/assets/images/UpArrow.jpg"
-                        alt="Currently sorted by Ascending order">
-                      <% } %>
-
-                    </a>
                   </th>
                   <th scope="col" class="govuk-table__header app-custom-class">Subsidy purpose</th>
                   <th scope="col" class="govuk-table__header app-custom-class">Spending sector</th>
                   <th scope="col" class="govuk-table__header app-custom-class">Subsidy type</th>
                   <th scope="col" class="govuk-table__header app-custom-class" aria-sort="none">
-                    <a href="/pageroute/?page=999998" style="text-decoration: none">
                       Subsidy date
-                      <% if (legalgrantingdate_arrow == "upanddown" ) { %>
-                      <img id="legalgrantingdate_updownarrow" src="/assets/images/UpDownArrow.jpg"
-                        alt="Curently not sorted">
-                      <% } else if (legalgrantingdate_arrow == "updecending" ) { %>
-                      <img id="legalgrantingdate_downarrow" src="/assets/images/DownArrow.jpg"
-                        alt="Currently sorted by Descending order">
-                      <% } else { %>
-                      <img id="legalgrantingdate_uparrow" src="/assets/images/UpArrow.jpg"
-                        alt="Currently sorted by Ascending order">
-                      <% } %>
-
-                    </a></th>
-
-
                   <th scope="col" style="text-align:left" class="govuk-table__header app-custom-class">Subsidy scheme
                   </th>
                   <th scope="col" class="govuk-table__header app-custom-class" aria-sort="none">
-                    <!-- <a href="/pageroute/?page=999999" style="text-decoration: none"> -->
                     Subsidy amount
-                    <!-- <% if (subsidyamount_arrow == "upanddown" ) { %>
-                    <img id="subsidyamount_updownarrow" src="/assets/images/UpDownArrow.jpg" alt="Curently not sorted">
-                    <% } else if (subsidyamount_arrow == "updecending" ) { %>
-                    <img id="subsidyamount_downarrow" src="/assets/images/DownArrow.jpg"
-                      alt="Currently sorted by Descending order">
-                    <% } else { %>
-                    <img id="subsidyamount_uparrow" src="/assets/images/UpArrow.jpg"
-                      alt="Currently sorted by Ascending order">
-                    <% } %>
-
-                  </a> -->
                   </th>
                   <th scope="col" class="govuk-table__header app-custom-class">Subsidy status</th>
                 </tr>
@@ -311,9 +260,7 @@
 
                   <td class="govuk-table__cell" style="text-align:center"><%= item.legalGrantingDate%></td>
                   <!-- <td class="govuk-table__cell"><a href="#"><%= item.awardNumber  %> </a> </td> -->
-                  <td class="govuk-table__cell"><a class="govuk-link"
-                      href="/searchresultsmeasureroute/?page=<%=item.awardNumber %>"><%= item.subsidyMeasure.subsidyMeasureTitle  %></a>
-                  </td>
+                  <td class="govuk-table__cell"><%= item.subsidyMeasure.subsidyMeasureTitle  %></td>
                   <% if (item.subsidyInstrument == "Tax measures (tax credit, or tax/duty exemption)") { %>
                   <td class="govuk-table__cell"><%= item.subsidyFullAmountRange %></td>
                   <% } else { %>
@@ -348,7 +295,7 @@
                 <% if (pageCount > 1) { %>
 
                 <% if (current_page_active != 1) { %>
-                <a href="/pageroute/?page=1" id="paginationlink_first_page" class="first round">
+                <a href="/standaloneawards/?page=1&limit=<%= frontend_totalRecordsPerPage %><%=filterString%>" id="paginationlink_first_page" class="first round">
                   <!-- <img
                     id="govuk-left-arrow" src="/assets/images/govuk-left-arrow.jpg" alt="go to first page"> -->
                   <svg version="1.1" width="19px" height="30px" aria-label="go to first page">
@@ -371,7 +318,7 @@
                   </svg>
                 </a>
 
-                <a href="/pageroute/?page=<%= previous_page %>" id="paginationlink_previous_page"
+                <a href="/standaloneawards/?page=<%= previous_page %>&limit=<%= frontend_totalRecordsPerPage %><%=filterString%>" id="paginationlink_previous_page"
                   class="previous round">Previous
                   Page</a>
                 <% } %>
@@ -379,17 +326,17 @@
                 <% for (var i = start_page; i <= end_page; i++) { %>
                 <% if (current_page_active != i ) { %>
                 <a id="paginationlink<%= i %>" aria-label="go to page <%= i %>" class="round btn-page"
-                  href="/pageroute/?page=<%= i %>"><%= i %></a>
+                  href="/standaloneawards/?page=<%= i %>&limit=<%= frontend_totalRecordsPerPage %><%=filterString%>"><%= i %></a>
                 <% } else { %>
                 <a id="paginationlink<%= i %>" aria-label="go to page <%= i %>" class="round btn-page active"
-                  href="/pageroute/?page=<%= i %>"><%= i %></a>
+                  href="/standaloneawards/?page=<%= i %>&limit=<%= frontend_totalRecordsPerPage %><%=filterString%>"><%= i %></a>
                 <% } %>
                 <% } %>
 
                 <% if (current_page_active != pageCount) { %>
-                <a href="/pageroute/?page=<%= next_page %>&totalrecords=<%= frontend_totalRecordsPerPage %>"
+                <a href="/standaloneawards/?page=<%= next_page %>&limit=<%= frontend_totalRecordsPerPage %><%=filterString%>"
                   id="paginationlink_next_page" aria-label="go to next page" class="next round">Next Page</a>
-                <a href="/pageroute/?page=<%= pageCount %>" id="paginationlink_last_page" class="last round">
+                <a href="/standaloneawards/?page=<%= pageCount %>&limit=<%= frontend_totalRecordsPerPage %><%=filterString%>" id="paginationlink_last_page" class="last round">
                   <svg version="1.1" width="19px" height="30px" class="left-arrow" aria-label="go to last page">
                     <defs>
                       <mask fill="white" id="clip3">
