@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>GOV.UK - Public user search MFA / SPEIA award details page</title>
+  <%- include('../partials/headercss.ejs') %>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145652997-21"></script>
+</head>
+
+<body class="govuk-template__body app-example-page">
+  <%- include('../partials/cookies-consent.ejs') %>
+  <%- include('../partials/header.ejs') %>
+
+  <div class="govuk-width-container ">
+    <%- include('../partials/banner.ejs') %>
+    <main class="govuk-main-wrapper " id="main-content" role="main">
+      <a href="/mfaawards" class="govuk-back-link" aria-label="back to search results page">Back</a>
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-three-quarters">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-heading-xl">
+              MFA / SPEIA award details
+            </h1>
+          </legend>
+        </div>
+
+        <div class="govuk-grid-column-one-quarter">
+          <button class="govuk-button_cancel_last_xl" data-module="govuk-button" onclick="window.print()">
+            Print page </button>
+        </div>
+      </div>
+
+      <label class="govuk-label">
+        Overview of the MFA / SPEI Assistance award, the recipient, and the local authority that awarded it.
+      </label>
+
+      <h2 class="govuk-heading-m">
+        Award details
+      </h2>
+
+
+
+      <ul class="govuk-summary-list govuk-!-margin-bottom-9">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Award number
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <%= mfaAward.mfaAwardNumber %>
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            SPEI assistance award
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <%= mfaAward.isSpeiAssistance %>
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            MFA grouping
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <%= mfaAward.hasMfaGrouping ? mfaAward.mfaGroupingResponse.mfaGroupingName : "NA" %>
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Award full amount
+          </dt>
+          <dd class="govuk-summary-list__value">
+            £<%= mfaAward.awardAmountFormatted %>
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Confirmation date
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <%= mfaAward.confirmationDate %>
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Published date
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <%= mfaAward.publishedDate %>
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Created date
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <%= mfaAward.createdTimestamp %>
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Last modified date
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <%= mfaAward.lastModifiedTimestamp %>
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Status
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <%= mfaAward.status %>
+          </dd>
+        </div>
+
+      </ul>
+
+
+      <h2 class="govuk-heading-m">
+        Recipient details
+      </h2>
+
+
+
+      <ul class="govuk-summary-list govuk-!-margin-bottom-9">
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Recipient name
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <%= mfaAward.recipientName  %>
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            ID Type
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <%= mfaAward.recipientIdType   %>
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            ID number
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <%= mfaAward.recipientIdNumber  %>
+          </dd>
+        </div>
+      </ul>
+
+
+      <form action="/mfaawards" method="GET">
+        <div>
+          <button class="govuk-button" data-module="govuk-button">
+            Back to search results </button>
+        </div>
+      </form>
+    </main>
+  </div>
+
+  <%- include('../partials/footer.ejs') %>
+</body>
+
+</html>

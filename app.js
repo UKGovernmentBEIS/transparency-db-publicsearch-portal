@@ -220,6 +220,9 @@ app.use("/submitfeedback", submitfeedback);
 var accessibilityStatement = require("./routes/accessibilityStatement");
 app.use("/accessibilityStatement", accessibilityStatement);
 
+app.use("/mfaawards", require("./routes/mfaawards"));
+app.use("/mfaaward", require("./routes/mfaawarddetails"));
+
 // Cookies Consent
 
 var cookieshelp = require("./routes/cookies-help");
