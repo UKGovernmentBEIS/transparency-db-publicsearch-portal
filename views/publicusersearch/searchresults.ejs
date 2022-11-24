@@ -55,7 +55,9 @@
           var filteredResponse = [];
           for (var i = 0; i < parsedResponse.totalSearchResults; i++) {
             filteredResponse[filteredResponse.length] = {
+              "Standalone award": parsedResponse.awards[i].standaloneAward,
               "Subsidy control number": parsedResponse.awards[i].subsidyMeasure.scNumber,
+              "Subsidy award description": parsedResponse.awards[i].subsidyAwardDescription ? parsedResponse.awards[i].subsidyAwardDescription : "",
               "Subsidy award number": parsedResponse.awards[i].awardNumber,
               "Subsidy award status": parsedResponse.awards[i].status,
               "Subsidy scheme name": parsedResponse.awards[i].subsidyMeasure.subsidyMeasureTitle,

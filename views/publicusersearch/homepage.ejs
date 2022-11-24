@@ -36,16 +36,8 @@ Gov.UK public user search - header rendering design
               <button class="govuk-button" data-module="govuk-button" id="homepage_button_start_now"
                 name="homepage_button" value="start_now">
                 Start search
-                <!-- <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="15.5" height="16"
-                  viewBox="0 0 33 40" aria-hidden="true" focusable="false">
-                  <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z" />
-                </svg> -->
               </button>
               <p></p>
-              <!-- <button class="govuk-button govuk-button--secondary" data-module="govuk-button"
-              id="homepage_button_show_results" name="homepage_button" value="show_results">
-              Show results
-            </button> -->
             </form>
             <p class="govuk-body">You can view the full list of active subsidy schemes and all the businesses that have
               received subsidies
@@ -61,75 +53,21 @@ Gov.UK public user search - header rendering design
                 View all subsidy awards
               </button>
             </form>
-            <!-- <p class="govuk-body">No subsidies have been published yet for 2021. You will be able to view the details of
-              awarded subsidies as soon as they are published.
-            </p> -->
+            <form action="/mfaawards" method="GET" class="govuk-padding-top-2">
+              <button class="govuk-button " data-module="govuk-button" id="homepage_button_show_results">
+                View all MFA / SPEI Assistance awards
+              </button>
+            </form>
+            <form action="/standaloneawards" method="GET" class="govuk-padding-top-2">
+              <button class="govuk-button " data-module="govuk-button" id="homepage_button_show_standalone">
+                View all standalone subsidy awards
+              </button>
+            </form>
             <a aria-label="Search for subsidies awarded before 1 January 2021" class="govuk-link" target="_blank"
               href="https://ec.europa.eu/transparencyregister/public/consultation/search.do?locale=en">Search for
               subsidies awarded before 1 January 2021.</a>
           </div>
-          <!-- <div class="govuk-grid-column-two-thirds" style="text-align: justify;">
-
-            <p class="govuk-body">Use this service to find details of subsidies given by UK government to businesses
-              since
-              1 January 2021.</p>
-            <p class="govuk-body">Subsidies are financial help, for example loans, grants or tax credits. They're given
-              in
-              return for a business helping to meet a government policy goal, for example carrying out research in a
-              particular industry.
-            </p>
-            
-
-            <p class="govuk-body">You can search by:</p>
-            <ul class="govuk-list govuk-list--bullet">
-              <li>name of the company given the subsidy</li>
-              <li>industry sector</li>
-              <li>purpose of the subsidy</li>
-              <li>type of subsidy</li>
-              <li>date the subsidy was awarded</li>
-            </ul>
-            <p class="govuk-body">No subsidies have been published yet for 2021. You will be able to view the details of
-              awarded subsidies as soon as they are published.
-              <a aria-label="No subsidies have been published in 2021. You will be able to view the details of awarded subsidies as soon as they are published."
-                class="govuk-link" target="_blank"
-                href="https://ec.europa.eu/transparencyregister/public/consultation/search.do?locale=en">Search for
-                subsidies awarded before 1 January
-                2021.</a></p>
-
-            <p class="govuk-body">You cannot use this service to apply for a subsidy. <a
-                href="https://www.gov.uk/business-finance-support" class="govuk-link" target="_blank" aria-label="Read about finance and support for
-              businesses">Read about finance and support for
-                businesses.
-              </a></p>
-
-            <h2 class="govuk-heading-l">
-              Contact</h2>
-            <p class="govuk-body">Contact the Department for Business, Energy and Industrial Strategy if you have any
-              questions or need help.
-            </p>
-          </div> -->
-          <!-- <div class="govuk-grid-column-full">
-            <h3 class="govuk-heading-m">
-              Department for Business, Energy and Industrial Strategy</h3>
-            <div class="govuk-form-group">
-              <label>Email</label>
-              <br>
-              <a href="mailto:enquiries@beis.gov.uk" aria-label="Email" class="govuk-link">enquiries@beis.gov.uk</a>
-            </div>
-            <div class="govuk-form-group"><label>Telephone</label>
-              <br>
-              <span>020 7215 5000</span><br>
-              <a href="https://www.gov.uk/call-charges" target="_blank" class="govuk-link"
-                aria-label="Find out about call charges">Find out
-                about call
-                charges</a></div>
-
-
-          </div> -->
-
         </div>
-
-
       </div>
     </main>
   </div>

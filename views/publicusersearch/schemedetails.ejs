@@ -179,11 +179,22 @@
           </div>
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
+              Confirmation date
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <% if (searchmeasuredetails.confirmationDate != null) { %>
+                <%= searchmeasuredetails.confirmationDate %>
+              <% } else { %>
+                NA
+              <% } %>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
               Duration
             </dt>
             <dd class="govuk-summary-list__value">
               <% if ((searchmeasuredetails.duration == 0) || (searchmeasuredetails.endDate == "31 December 9999")) { %>
-                <!-- <%= searchmeasuredetails.duration %> days -->
                 Not applicable
               <% } else { %>
                 <%= searchmeasuredetails.duration %> days from <%= searchmeasuredetails.startDate %> to
@@ -221,6 +232,22 @@
             </dt>
             <dd class="govuk-summary-list__value">
               <%= searchmeasuredetails.lastModifiedTimestamp%>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Spending Sectors
+            </dt>
+            <dd class="govuk-summary-list__value">
+                <% if(typeof spendingSectorArray !== 'undefined') { %>
+                  <ul class="govuk-list govuk-list--bullet">
+                      <% spendingSectorArray.forEach(function(item) { %>
+                      <li> <%=item %> </li>
+                      <% }); %>
+                  </ul>
+                  <% } else { %>
+                      NA
+                   <% } %>
             </dd>
           </div>
         </ul>
