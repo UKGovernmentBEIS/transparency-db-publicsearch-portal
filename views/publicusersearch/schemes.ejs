@@ -49,7 +49,7 @@
         contentType: 'application/json;charset=utf-8',
         dataType: 'text',
         success: function (response) {
-          console.log(response);
+          console.log("HERE" + response);
           api_data = response;
           parsedResponse = JSON.parse(api_data);
           var filteredResponse = [];
@@ -65,6 +65,7 @@
               "URL description": parsedResponse.subsidySchemes[i].gaSubsidyWebLinkDescription,
               "Ad hoc": parsedResponse.subsidySchemes[i].adhoc ? "Yes" : "No",
               "Budget/£": parsedResponse.subsidySchemes[i].budget,
+              "Maximum amount given under a scheme": parsedResponse.subsidySchemes[i].maximumAmountUnderScheme ? parsedResponse.subsidySchemes[i].maximumAmountUnderScheme : "",
               "Confirmation date": parsedResponse.subsidySchemes[i].confirmationDate,
               "Start date": parsedResponse.subsidySchemes[i].startDate,
               "End date": parsedResponse.subsidySchemes[i].endDate,
