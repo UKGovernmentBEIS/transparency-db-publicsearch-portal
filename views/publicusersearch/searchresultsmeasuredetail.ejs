@@ -186,6 +186,18 @@
           </div>
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
+              Maximum amount given under this scheme
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <% if (searchmeasuredetails.subsidyMeasure.maximumAmountUnderScheme == null) { %>
+                NA
+              <% } else { %>
+                <%= searchmeasuredetails.subsidyMeasure.maximumAmountUnderScheme %>
+              <% } %>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
               Confirmation date
             </dt>
             <dd class="govuk-summary-list__value">
