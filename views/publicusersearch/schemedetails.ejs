@@ -115,6 +115,12 @@
           </div>
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
+              Subsidy scheme description
+            </dt>
+            <dd class="govuk-summary-list__value render-newlines"><%= searchmeasuredetails.subsidySchemeDescription %></dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
               Legal basis
             </dt>
             <dd class="govuk-summary-list__value">
@@ -171,14 +177,37 @@
               £<%= searchmeasuredetails.budget %>
             </dd>
           </div>
+            <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Maximum amount given under this scheme
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <% if (searchmeasuredetails.maximumAmountUnderScheme == null) { %>
+                NA
+              <% } else { %>
+                <%= searchmeasuredetails.maximumAmountUnderScheme %>
+              <% } %>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Confirmation date
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <% if (searchmeasuredetails.confirmationDate != null) { %>
+                <%= searchmeasuredetails.confirmationDate %>
+              <% } else { %>
+                NA
+              <% } %>
+            </dd>
+          </div>
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
               Duration
             </dt>
             <dd class="govuk-summary-list__value">
               <% if ((searchmeasuredetails.duration == 0) || (searchmeasuredetails.endDate == "31 December 9999")) { %>
-                <!-- <%= searchmeasuredetails.duration %> days -->
-                Not applicable
+                NA
               <% } else { %>
                 <%= searchmeasuredetails.duration %> days from <%= searchmeasuredetails.startDate %> to
                 <%= searchmeasuredetails.endDate %>

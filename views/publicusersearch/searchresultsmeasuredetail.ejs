@@ -119,6 +119,14 @@
 
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
+              Subsidy scheme description
+            </dt>
+            <dd class="govuk-summary-list__value render-newlines"><%= searchmeasuredetails.subsidyMeasure.subsidySchemeDescription %>
+            </dd>
+          </div>
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
               Legal basis
             </dt>
             <dd class="govuk-summary-list__value">
@@ -173,6 +181,30 @@
             </dt>
             <dd class="govuk-summary-list__value">
               £<%= searchmeasuredetails.subsidyMeasure.budget %>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Maximum amount given under this scheme
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <% if (searchmeasuredetails.subsidyMeasure.maximumAmountUnderScheme == null) { %>
+                NA
+              <% } else { %>
+                <%= searchmeasuredetails.subsidyMeasure.maximumAmountUnderScheme %>
+              <% } %>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Confirmation date
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <% if (searchmeasuredetails.subsidyMeasure.confirmationDate != null) { %>
+                <%= searchmeasuredetails.subsidyMeasure.confirmationDate %>
+              <% } else { %>
+                NA
+              <% } %>
             </dd>
           </div>
           <div class="govuk-summary-list__row">
