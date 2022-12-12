@@ -110,7 +110,7 @@
 
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Granting authority name
+              Public authority name
             </dt>
             <dd class="govuk-summary-list__value">
               <%= searchmeasuredetails.subsidyMeasure.grantingAuthorityName %>
@@ -136,17 +136,17 @@
 
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Weblink to granting authority text of subsidy
+              Weblink to public authority text of subsidy
             </dt>
             <dd class="govuk-summary-list__value">
               <% if(searchmeasuredetails.subsidyMeasure.gaSubsidyWebLink.includes('https://') || searchmeasuredetails.subsidyMeasure.gaSubsidyWebLink.includes('http://')) { %>
-              <a aria-label="Weblink to granting authority" target="_blank"
+              <a aria-label="Weblink to public authority" target="_blank"
                 href="<%= searchmeasuredetails.subsidyMeasure.gaSubsidyWebLink %>">
                 <%= searchmeasuredetails.subsidyMeasure.gaSubsidyWebLink %>
 
               </a>
               <% } else { %>
-              <a aria-label="Weblink to granting authority" target="_blank"
+              <a aria-label="Weblink to public authority" target="_blank"
                 href="https://<%= searchmeasuredetails.subsidyMeasure.gaSubsidyWebLink %>">
                 <%= searchmeasuredetails.subsidyMeasure.gaSubsidyWebLink %>
               </a>
