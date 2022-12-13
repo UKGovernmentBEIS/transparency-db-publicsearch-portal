@@ -21,17 +21,28 @@ router.get("/", async (req, res) => {
     beis_url_publicsearch + "/schemes/scheme/" + scheme;
 
   try {
-    const measureapidata = await axios.get(measureendpoint);
+    const measureapidata =await axios.get(measureendpoint);
     console.log(`Status: ${measureapidata.status}`);
     console.log("Body: ", measureapidata.data);
     searchmeasuredetails = measureapidata.data;
+    if(typeof searchmeasuredetails.spendingSectors !== 'undefined'){
+      var spendingSectorArray = JSON.parse(searchmeasuredetails.spendingSectors);
+    }
     if(measureapidata.data.status == "Deleted"){
       res.render("publicusersearch/noresults");
     }else{
-      res.render("publicusersearch/schemedetails");
+      res.render("publicusersearch/schemedetails",{
+        spendingSectorArray,
+      });
     }
   } catch (err) {
-    console.error(err);
+
+    if (err.toString().includes("404")) {
+      res.render("publicusersearch/noresults");
+      console.warn("No results found for award number " + scheme);
+    } else {
+      console.error(err);
+    }
   }
 });
 

@@ -25,13 +25,27 @@ router.get("/", async (req, res) => {
     console.log(`Status: ${measureapidata.status}`);
     console.log("Body: ", measureapidata.data);
     searchmeasuredetails = measureapidata.data;
+    if(typeof searchmeasuredetails.subsidyMeasure.spendingSectors !== 'undefined'){
+      var spendingSectorArray = JSON.parse(searchmeasuredetails.subsidyMeasure.spendingSectors);
+    }else{
+      var spendingSectorArray = ["NA"];
+    }
+    
     if (searchmeasuredetails.subsidyMeasure.status == "Deleted"){
       res.render("publicusersearch/noresults");
     }else{
-      res.render("publicusersearch/searchresultsmeasuredetail");
-    }    
+      res.render("publicusersearch/searchresultsmeasuredetail",{
+        spendingSectorArray,
+      });
+    }
   } catch (err) {
-    console.error(err);
+
+    if (err.toString().includes("404")) {
+      res.render("publicusersearch/noresults");
+      console.warn("No results found for award number " + awardnumber);
+    } else {
+      console.error(err);
+    }
   }
 });
 

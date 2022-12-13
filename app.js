@@ -175,6 +175,9 @@ app.use("/searchresults", searchresults);
 var searchresults = require("./routes/schemes");
 app.use("/schemes", searchresults);
 
+var standaloneawards = require("./routes/standaloneawards");
+app.use("/standaloneawards", standaloneawards);
+
 var pageroute = require("./routes/pageroute");
 app.use("/pageroute", pageroute);
 
@@ -216,6 +219,9 @@ app.use("/submitfeedback", submitfeedback);
 
 var accessibilityStatement = require("./routes/accessibilityStatement");
 app.use("/accessibilityStatement", accessibilityStatement);
+
+app.use("/mfaawards", require("./routes/mfaawards"));
+app.use("/mfaaward", require("./routes/mfaawarddetails"));
 
 // Cookies Consent
 

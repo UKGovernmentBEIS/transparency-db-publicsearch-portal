@@ -14,30 +14,26 @@ router.get("/", async (req, res) => {
   res.set("Access-Control-Allow-Origin", beis_url_publicsearch);
   res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
 
-  console.log("req.query.page: " + req.query.page);
-  awardnumber = req.query.page;
-
-  console.log("awardnumber : " + awardnumber);
-
-  var awardendpoint =
-    beis_url_publicsearch + "/searchResults/award/" + awardnumber;
+  mfaAwardNumber = req.query.id;
+  var endpoint =
+    beis_url_publicsearch + "/searchResults/mfa/" + mfaAwardNumber;
 
   try {
-    const awardapidata = await axios.get(awardendpoint);
-    console.log(`Status: ${awardapidata.status}`);
-    console.log("Body: ", awardapidata.data);
-    searchawarddetails = awardapidata.data;
+    const response = await axios.get(endpoint);
 
-    if (searchawarddetails.subsidyMeasure.status == "Deleted") {
+    var mfaAward = response.data;
+    if(response.data.status.toLowerCase() == "rejected" || response.data.status.toLowerCase() == "awaiting approval"){
       res.render("publicusersearch/noresults");
-    } else {
-      res.render("publicusersearch/searchresultsawarddetail");
+    }else{
+      res.render("publicusersearch/mfaawarddetails",{
+        mfaAward,
+      });;
     }
   } catch (err) {
 
     if (err.toString().includes("404")) {
       res.render("publicusersearch/noresults");
-      console.warn("No results found for award number " + awardnumber);
+      console.warn("No results found for award number " + scheme);
     } else {
       console.error(err);
     }
