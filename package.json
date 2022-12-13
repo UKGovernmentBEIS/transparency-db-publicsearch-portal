@@ -16,7 +16,7 @@
     "axios": "^0.21.1",
     "cors": "^2.8.5",
     "ejs": "^2.6.2",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "express-fileupload": "^1.2.0",
     "express-flash": "0.0.2",
     "express-session": "^1.16.2",
