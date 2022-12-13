@@ -49,7 +49,7 @@
         contentType: 'application/json;charset=utf-8',
         dataType: 'text',
         success: function (response) {
-          console.log(response);
+          console.log("HERE" + response);
           api_data = response;
           parsedResponse = JSON.parse(api_data);
           var filteredResponse = [];
@@ -58,12 +58,14 @@
               "Subsidy control number": parsedResponse.subsidySchemes[i].scNumber,
               "Subsidy scheme name": parsedResponse.subsidySchemes[i].subsidyMeasureTitle,
               "Subsidy status":parsedResponse.subsidySchemes[i].status,
-              "Granting authority": parsedResponse.subsidySchemes[i].grantingAuthorityName,
+              "Public authority": parsedResponse.subsidySchemes[i].grantingAuthorityName,
+              "Subsidy scheme description":parsedResponse.subsidySchemes[i].subsidySchemeDescription ? parsedResponse.subsidySchemes[i].subsidySchemeDescription : "",
               "Legal basis": parsedResponse.subsidySchemes[i].legalBasis.legalBasisText,
               "URL": parsedResponse.subsidySchemes[i].gaSubsidyWebLink,
               "URL description": parsedResponse.subsidySchemes[i].gaSubsidyWebLinkDescription,
               "Ad hoc": parsedResponse.subsidySchemes[i].adhoc ? "Yes" : "No",
               "Budget/£": parsedResponse.subsidySchemes[i].budget,
+              "Maximum amount given under a scheme": parsedResponse.subsidySchemes[i].maximumAmountUnderScheme ? parsedResponse.subsidySchemes[i].maximumAmountUnderScheme : "",
               "Confirmation date": parsedResponse.subsidySchemes[i].confirmationDate ? parsedResponse.subsidySchemes[i].confirmationDate : "NA",
               "Start date": parsedResponse.subsidySchemes[i].startDate,
               "End date": parsedResponse.subsidySchemes[i].endDate ? parsedResponse.subsidySchemes[i].endDate : "NA",
@@ -258,7 +260,7 @@
                     </a>
                   </th>
                   <th scope="col" class="govuk-table__header">Subsidy scheme name</th>
-                  <th scope="col" class="govuk-table__header">Granting authority</th>
+                  <th scope="col" class="govuk-table__header">Public authority</th>
                   <th scope="col" class="govuk-table__header">Start date</th>
                   <th scope="col" class="govuk-table__header">End date</th>
                   <th scope="col" class="govuk-table__header">Budget</th>

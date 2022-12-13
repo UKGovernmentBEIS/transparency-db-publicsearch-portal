@@ -107,11 +107,17 @@
           </div>
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Granting authority name
+              Public authority name
             </dt>
             <dd class="govuk-summary-list__value">
               <%= searchmeasuredetails.grantingAuthorityName %>
             </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Subsidy scheme description
+            </dt>
+            <dd class="govuk-summary-list__value render-newlines"><%= searchmeasuredetails.subsidySchemeDescription %></dd>
           </div>
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
@@ -124,17 +130,17 @@
 
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Weblink to granting authority text of subsidy
+              Weblink to public authority text of subsidy
             </dt>
             <dd class="govuk-summary-list__value">
               <% if(searchmeasuredetails.gaSubsidyWebLink.includes('https://') || searchmeasuredetails.gaSubsidyWebLink.includes('http://')) { %>
-              <a aria-label="Weblink to granting authority" target="_blank"
+              <a aria-label="Weblink to public authority" target="_blank"
                 href="<%= searchmeasuredetails.gaSubsidyWebLink %>">
                 <%= searchmeasuredetails.gaSubsidyWebLink %>
 
               </a>
               <% } else { %>
-              <a aria-label="Weblink to granting authority" target="_blank"
+              <a aria-label="Weblink to public authority" target="_blank"
                 href="https://<%= searchmeasuredetails.gaSubsidyWebLink %>">
                 <%= searchmeasuredetails.gaSubsidyWebLink %>
               </a>
@@ -171,6 +177,18 @@
               £<%= searchmeasuredetails.budget %>
             </dd>
           </div>
+            <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Maximum amount given under this scheme
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <% if (searchmeasuredetails.maximumAmountUnderScheme == null) { %>
+                NA
+              <% } else { %>
+                <%= searchmeasuredetails.maximumAmountUnderScheme %>
+              <% } %>
+            </dd>
+          </div>
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
               Confirmation date
@@ -189,7 +207,7 @@
             </dt>
             <dd class="govuk-summary-list__value">
               <% if ((searchmeasuredetails.duration == 0) || (searchmeasuredetails.endDate == "31 December 9999")) { %>
-                Not applicable
+                NA
               <% } else { %>
                 <%= searchmeasuredetails.duration %> days from <%= searchmeasuredetails.startDate %> to
                 <%= searchmeasuredetails.endDate %>
