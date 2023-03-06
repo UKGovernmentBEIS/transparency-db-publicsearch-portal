@@ -30,7 +30,7 @@
     "method-override": "^3.0.0",
     "node-fetch": "^2.6.1",
     "nodemon": "^1.19.1",
-    "passport": "^0.4.0",
+    "passport": "^0.6.0",
     "passport-local": "^1.0.0",
     "path": "^0.12.7",
     "properties-reader": "^2.2.0",
