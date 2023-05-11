@@ -2,7 +2,7 @@
 <html lang="en" class="govuk-template ">
 
 <head>
-  <title>GOV.UK - Public user search result page</title>
+  <title>GOV.UK - Public user MFA / SPEIA award result page</title>
   <%- include('../partials/headercss.ejs') %>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145652997-21"></script>
@@ -119,24 +119,24 @@
 
         <label class="govuk-label">
           <% if(totalrows == 1)  { %>
-          <b><%= totalrows %></b> MFA / SPEIA award found
+          <b id="number-of-results"><%= totalrows %></b> MFA / SPEIA award found
           <% } else { %>
-          <b><%= totalrows %></b> MFA / SPEIA awards found
+          <b id="number-of-results"><%= totalrows %></b> MFA / SPEIA awards found
           <% } %>
 
         </label>
 
         <div class="govuk-grid-row">
           <div class="govuk-grid-column-one-half filter-input-div">
-            <button class="govuk-button" name="showfiter" value="showfilt" onclick="toggleFilterDiv()">
+            <button class="govuk-button" id="filters_button" name="showfiter" value="showfilt" onclick="toggleFilterDiv()">
               <span id="filterText">Hide</span> filters
             </button>
 
-            <button class="govuk-button" data-module="govuk-button"
+            <button class="govuk-button" id="export_excel_button" data-module="govuk-button"
               onclick="saveFile('<%= beis_url_publicsearch %>', 'xlsx')">
               Export as Excel file </button>
 
-            <button class="govuk-button" data-module="govuk-button"
+            <button class="govuk-button" id="export_csv_button" data-module="govuk-button"
               onclick="saveFile('<%= beis_url_publicsearch %>', 'csv')">
               Export as csv file </button>
 
@@ -151,31 +151,31 @@
               style="display: inline;  margin: 0;  padding: 0;">
 
               <% if(frontend_totalRecordsPerPage  == 10) { %>
-              <a aria-label="10 records per page selected" aria-selected="true" class="round btn-page active"
+              <a id="results-per-page-10" aria-label="10 records per page selected" aria-selected="true" class="round btn-page active"
                 href="/mfaawards/?limit=10<%=filterString%>">10</a>
 
               <% } else { %>
-              <a aria-label="10 records per page " class="round btn-page" href="/mfaawards/?limit=10<%=filterString%>">10</a>
+              <a id="results-per-page-10" aria-label="10 records per page " class="round btn-page" href="/mfaawards/?limit=10<%=filterString%>">10</a>
               <% }  %>
               <% if(frontend_totalRecordsPerPage  == 20) { %>
-              <a aria-label="20 records per page selected" aria-selected="true" class="round btn-page active"
+              <a id="results-per-page-20" aria-label="20 records per page selected" aria-selected="true" class="round btn-page active"
                 href="/mfaawards/?limit=20<%=filterString%>">20</a>
               <% } else { %>
-              <a aria-label="20 records per page " class="round btn-page" href="/mfaawards/?limit=20<%=filterString%>">20</a>
+              <a id="results-per-page-20" aria-label="20 records per page " class="round btn-page" href="/mfaawards/?limit=20<%=filterString%>">20</a>
               <% }  %>
 
               <% if(frontend_totalRecordsPerPage  == 50) { %>
-              <a aria-label="50 records per page selected" aria-selected="true" class="round btn-page active"
+              <a id="results-per-page-50" aria-label="50 records per page selected" aria-selected="true" class="round btn-page active"
                 href="/mfaawards/?limit=50<%=filterString%>">50</a>
               <% } else { %>
-              <a aria-label="50 records per page " class="round btn-page" href="/mfaawards/?limit=50<%=filterString%>">50</a>
+              <a id="results-per-page-50" aria-label="50 records per page " class="round btn-page" href="/mfaawards/?limit=50<%=filterString%>">50</a>
               <% }  %>
 
               <% if(frontend_totalRecordsPerPage  == 100) { %>
-              <a aria-label="100 records per page selected" aria-selected="true" class="round btn-page active"
+              <a aid="results-per-page-100" ria-label="100 records per page selected" aria-selected="true" class="round btn-page active"
                 href="/mfaawards/?limit=100<%=filterString%>">100</a>
               <% } else { %>
-              <a aria-label="100 records per page " class="round btn-page" href="/mfaawards/?limit=100<%=filterString%>">100</a>
+              <a id="results-per-page-100" aria-label="100 records per page " class="round btn-page" href="/mfaawards/?limit=100<%=filterString%>">100</a>
               <% }  %>
             </div>
           </div>
@@ -196,7 +196,7 @@
           <%- include('../partials/filter-award-status.ejs') %>
         </div>
         <div>
-          <button class="govuk-button" data-module="govuk-button">
+          <button class="govuk-button" id="update-results-button" data-module="govuk-button">
             Update results </button>
         </div>
       </form>
@@ -208,15 +208,15 @@
               <thead class="govuk-table__head">
                 <tr class="govuk-table__row">
                   <th scope="col" class="govuk-table__header">Recipient name</th>
-                  <th scope="col" class="govuk-table__header">SPIEA</th>
+                  <th scope="col" class="govuk-table__header">SPEI Assistance</th>
                   <th scope="col" class="govuk-table__header">Confirmation date</th>
-                  <th scope="col" class="govuk-table__header">MFA / SPEIA grouping</th>
+                  <th scope="col" class="govuk-table__header">MFA grouping name</th>
                   <th scope="col" class="govuk-table__header">Award amount</th>
                   <th scope="col" class="govuk-table__header">Public authority</th>
                   <th scope="col" class="govuk-table__header">Status</th>
                 </tr>
               </thead>
-              <tbody class="govuk-table__body">
+              <tbody class="govuk-table__body" id="searchresult-table-body">
                 <% mfaResults.mfaAwards.forEach(function(item) { %>
                 <tr>
                   <td class="govuk-table__cell"><a class="govuk-link"
