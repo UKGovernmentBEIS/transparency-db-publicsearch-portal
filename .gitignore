@@ -20,13 +20,13 @@ coverage/lcov-report/transparency-db-publicsearch-portal/routes/filtersearch.js.
 coverage/lcov-report/transparency-db-publicsearch-portal/routes/hidefilter.js.html
 coverage/lcov-report/transparency-db-publicsearch-portal/routes/homepage.js.html
 coverage/lcov-report/transparency-db-publicsearch-portal/routes/index.html
-coverage/lcov-report/transparency-db-publicsearch-portal/routes/legalgrantingdate.js.html
+coverage/lcov-report/transparency-db-publicsearcßh-portal/routes/legalgrantingdate.js.html
 coverage/lcov-report/transparency-db-publicsearch-portal/routes/noresults.js.html
 coverage/lcov-report/transparency-db-publicsearch-portal/routes/pageperroute.js.html
 coverage/lcov-report/transparency-db-publicsearch-portal/routes/pageroute.js.html
 coverage/lcov-report/transparency-db-publicsearch-portal/routes/search-subsidytransparencydatabase.js.html
 coverage/lcov-report/transparency-db-publicsearch-portal/routes/searchresults.js.html
-coverage/lcov-report/transparency-db-publicsearch-portal/routes/searchresultsawardroute.js.html
+coverage/lcov-report/transparency-db-publicsearch-portßßal/routes/searchresultsawardroute.js.html
 coverage/lcov-report/transparency-db-publicsearch-portal/routes/searchresultsmeasureroute.js.html
 coverage/lcov-report/transparency-db-publicsearch-portal/routes/spendingsector.js.html
 coverage/lcov-report/transparency-db-publicsearch-portal/routes/subsidyinstrument.js.html
@@ -35,3 +35,4 @@ coverage/lcov-report/transparency-db-publicsearch-portal/routes/updateresults.js
 coverage/lcov-report/transparency-db-publicsearch-portal/routes/updateresultspageperroute.js.html
 coverage/lcov-report/transparency-db-publicsearch-portal/routes/updateresultsroute.js.html
 test-report.html
+.DS_Store
