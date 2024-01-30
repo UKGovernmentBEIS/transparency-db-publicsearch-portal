@@ -13,7 +13,7 @@ pr:
   - cr*
 
 variables:
-  Agent.Diagnostic: 'true'
+  system.debug: 'true'
   vmImageName: "ubuntu-latest"
 
 stages:
