@@ -13,7 +13,7 @@ pr:
   - cr*
 
 variables:
-
+  system.debug: 'true'
   vmImageName: "ubuntu-latest"
 
 stages:
