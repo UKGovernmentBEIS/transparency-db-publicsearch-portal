@@ -22,7 +22,7 @@
     "express-session": "^1.18.0",
     "form-data": "^4.0.0",
     "fs": "0.0.1-security",
-    "govuk-frontend": "^3.10.1",
+    "govuk-frontend": "^5.0.0",
     "http": "0.0.1-security",
     "https": "^1.0.0",
     "jest-html-reporter": "^3.3.0",
