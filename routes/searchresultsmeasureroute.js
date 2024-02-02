@@ -5,7 +5,6 @@
 const express = require("express");
 const router = express.Router();
 const axios = require("axios");
-var request = require("request");
 
 router.get("/", async (req, res) => {
   res.set("X-Frame-Options", "DENY");

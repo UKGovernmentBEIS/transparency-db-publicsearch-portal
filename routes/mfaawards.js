@@ -5,8 +5,6 @@
 const express = require("express");
 const router = express.Router();
 const axios = require("axios");
-var request = require("request");
-const { debug } = require("request");
 const render = "publicusersearch/mfaawards";
 
 router.get("/", async (req, res) => {
