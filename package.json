@@ -25,7 +25,7 @@
     "govuk-frontend": "^5.0.0",
     "http": "0.0.1-security",
     "https": "^1.0.0",
-    "jest-html-reporter": "^3.3.0",
+    "jest-html-reporter": "^3.10.2",
     "jquery": "^3.5.1",
     "method-override": "^3.0.0",
     "node-fetch": "^2.6.1",
