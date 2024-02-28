@@ -5,7 +5,6 @@
 const express = require("express");
 const router = express.Router();
 const axios = require("axios");
-var request = require("request");
 
 router.post("/", async (req, res) => {
   // ***************************************************************
