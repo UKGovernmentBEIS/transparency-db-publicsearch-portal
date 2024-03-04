@@ -7,6 +7,10 @@ trigger:
   tags:
     include:
       - '*'
+  branches:
+    include:
+      - 'cr*'
+
 
 pr:
   - master
@@ -54,7 +58,7 @@ stages:
   - stage:
     displayName: Deploy to dev/test environment
     dependsOn: Build
-    condition: and(succeeded(), eq(variables['Build.Reason'], 'PullRequest'))
+    condition: and(succeeded(), or(eq(variables['Build.Reason'], 'PullRequest'), startsWith(variables['build.sourceBranch'], 'refs/heads/cr')))
     jobs:
       - deployment: DeployLinuxWebAppDev
         displayName: Deploy Linux Web App - TestDev
