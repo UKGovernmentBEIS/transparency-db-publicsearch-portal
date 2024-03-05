@@ -35,3 +35,4 @@ coverage/lcov-report/transparency-db-publicsearch-portal/routes/updateresults.js
 coverage/lcov-report/transparency-db-publicsearch-portal/routes/updateresultspageperroute.js.html
 coverage/lcov-report/transparency-db-publicsearch-portal/routes/updateresultsroute.js.html
 test-report.html
+.DS_Store
