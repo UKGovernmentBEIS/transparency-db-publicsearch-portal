@@ -221,11 +221,6 @@ router.get("/", async (req, res) => {
       filterString += "&status=" + filters.status
     }
 
-    if(req.query["adhoc"] != null){
-      filters.adhoc = req.query["adhoc"];
-      filterString += "&adhoc=" + filters.adhoc
-    }
-
     if(req.query["budget-from"] != null){
       filters.budgetFrom = req.query["budget-from"];
       filterString += "&budget-from=" + filters.budgetFrom
