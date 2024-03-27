@@ -93,8 +93,7 @@
             <% if(searchawarddetails.subsidyMeasure.scNumber == 'NA'){ %>
               <%= searchawarddetails.subsidyMeasure.scNumber %>
             <% }else{ %>
-              <a class="govuk-link" href="/scheme/?scheme=<%=searchawarddetails.subsidyMeasure.scNumber%>"
-              aria-label="subsidy control number  <%= (searchawarddetails.subsidyMeasure.scNumber).substring(2,7) %>">
+              <a class="govuk-link" href="/scheme/?scheme=<%=searchawarddetails.subsidyMeasure.scNumber%>">
               <%= searchawarddetails.subsidyMeasure.scNumber %> </a>
             <% } %>
           </dd>
@@ -287,17 +286,10 @@
       </ul>
 
 
-      <form <% if(searchawarddetails.standaloneAward.toLowerCase() == "yes"){ %>
-        action="/standaloneawards"
-      <% }else{ %>
-        action="/searchresults"
-      <% } %>
-         method="GET">
         <div>
-          <button class="govuk-button" data-module="govuk-button">
+          <button class="govuk-button" onClick="history.back()" data-module="govuk-button">
             Back to search results </button>
         </div>
-      </form>
     </main>
   </div>
 
