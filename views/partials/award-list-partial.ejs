@@ -5,16 +5,17 @@ totalSearchResults - total number of search results
 totalPages - integer total number of pages
 prevPage, nextPage - integer of previous/next page
 currentURI - current url for setURIParameter() function (in utils.js)
+noAwardMessage - message displayed when no awards are available
 %>
 <div>
-    <%if(typeof searchawards == undefined || !hasAwards) { %>
+    <%if(typeof searchawards === 'undefined' || !hasAwards) { %>
         <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1"
         data-module="govuk-error-summary">
 
         <div class="govuk-error-summary__body">
           <ul class="govuk-list govuk-error-summary__list">
             <li>
-              <a aria-label="No associated awards found for this subsidy scheme">No associated awards found for this subsidy scheme.</a>
+              <a aria-label="<%=(typeof noAwardMessage === 'undefined') ? 'No awards found' : noAwardMessage %>"><%=(typeof noAwardMessage === 'undefined') ? 'No awards found' : noAwardMessage%></a>
             </li>
 
           </ul>
@@ -66,7 +67,7 @@ currentURI - current url for setURIParameter() function (in utils.js)
                 <% searchawards.forEach(function(item) { %>
                     <tr>
                         <td class="govuk-table__cell">
-                            <a href="/subsidyawardfetch/?award=<%= item.awardNumber %>">
+                            <a href="/searchresultsawardroute/?page=<%= item.awardNumber %>">
                                 <%= item.awardNumber %>
                             </a>
                         </td>

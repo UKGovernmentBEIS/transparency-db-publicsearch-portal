@@ -53,17 +53,21 @@ router.get("/", async (req, res) => {
       console.log("Body: ", response.data);
       searchmeasuredetails = response.data;
       totalSearchResults = response.data.awardSearchResults.totalSearchResults;
-      totalPages = response.data.awardSearchResults.totalPages;
-      hasAwards = totalSearchResults > 0;
-      console.log(hasAwards);
-      console.log(totalSearchResults)
-      startRecord = ((currentPage - 1) * perPage) + 1;
-      endRecord = Math.min((currentPage * perPage), totalSearchResults);
+      if(totalSearchResults > 0){      
+        totalPages = response.data.awardSearchResults.totalPages;
+        hasAwards = true;
+        console.log(hasAwards);
+        console.log(totalSearchResults)
+        startRecord = ((currentPage - 1) * perPage) + 1;
+        endRecord = Math.min((currentPage * perPage), totalSearchResults);
 
-      searchawards = response.data.awardSearchResults.awards;
-      nextPage = Math.min(totalPages, currentPage + 1);
-      pagingStart = Math.max(1, currentPage - 5);
-      pagingEnd = Math.min(totalPages, currentPage + 5);
+        searchawards = response.data.awardSearchResults.awards;
+        nextPage = Math.min(totalPages, currentPage + 1);
+        pagingStart = Math.max(1, currentPage - 5);
+        pagingEnd = Math.min(totalPages, currentPage + 5);
+      }
+      else
+        hasAwards = false;
 
       var spendingSectorArray = new Array();
       if(typeof searchmeasuredetails.spendingSectors !== 'undefined'){
