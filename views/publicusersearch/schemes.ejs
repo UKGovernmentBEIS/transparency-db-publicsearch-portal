@@ -62,7 +62,6 @@
               "Legal basis": parsedResponse.subsidySchemes[i].legalBasis.legalBasisText,
               "URL": parsedResponse.subsidySchemes[i].gaSubsidyWebLink,
               "URL description": parsedResponse.subsidySchemes[i].gaSubsidyWebLinkDescription,
-              "Ad hoc": parsedResponse.subsidySchemes[i].adhoc ? "Yes" : "No",
               "Budget/£": parsedResponse.subsidySchemes[i].budget,
               "Maximum amount given under a scheme": parsedResponse.subsidySchemes[i].maximumAmountUnderScheme ? parsedResponse.subsidySchemes[i].maximumAmountUnderScheme : "",
               "Confirmation date": parsedResponse.subsidySchemes[i].confirmationDate ? parsedResponse.subsidySchemes[i].confirmationDate : "NA",
@@ -229,7 +228,6 @@
           <%- include('../partials/filter-date-start_end.ejs') %>
           <%- include('../partials/filter-budget.ejs') %>
           <%- include('../partials/filter-status.ejs') %>
-          <%- include('../partials/filter-adhoc.ejs') %>
         </div>
         <div>
           <button class="govuk-button" id="update-results-button" data-module="govuk-button">
@@ -264,7 +262,6 @@
                   <th scope="col" class="govuk-table__header">End Date</th>
                   <th scope="col" class="govuk-table__header">Budget</th>
                   <th scope="col" class="govuk-table__header">Status</th>
-                  <th scope="col" class="govuk-table__header">Ad Hoc</th>
                 </tr>
               </thead>
               <tbody class="govuk-table__body" id="searchresult-table-body">
@@ -286,13 +283,6 @@
                   </td>
                   <td>£<%= item.budget %></td>
                   <td><%= item.status %></td>
-                  <td>
-                    <% if (item.adhoc == false) { %>
-                      No
-                      <% } else { %>
-                      Yes
-                      <% } %>
-                  </td>
                 </tr>
                 <% } ); %>
 
