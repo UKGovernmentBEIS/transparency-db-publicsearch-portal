@@ -2,7 +2,7 @@
 <html lang="en" class="govuk-template ">
 
 <head>
-  <title>GOV.UK - Public user search subsidy objective page</title>
+  <title>GOV.UK - Public user subsidy objective page</title>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145652997-21"></script>
   <script>
@@ -17,7 +17,7 @@
   <%- include('../partials/headercss.ejs') %>
   <script src="/assets/javascripts/jquery.min.js"></script>
   <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
-  <!-- 
+  <!--
 <script type="text/javascript" language="javascript"
   src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script> -->
   <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
@@ -43,7 +43,7 @@
 
       }
 
-      $("#subsidyobjective-0").change(function () {  //"select all" change 
+      $("#subsidyobjective-0").change(function () {  //"select all" change
         $(".govuk-checkboxes__input").prop('checked', $(this).prop("checked")); //change all ".checkbox" checked status
         if ($('#subsidyobjective-0').is(":checked")) {
 
@@ -53,7 +53,7 @@
 
       });//"select all" close
 
-      //".checkbox" change 
+      //".checkbox" change
 
       $('#subsidyobjective-11').change(function () {
 
@@ -111,7 +111,7 @@
   </script>
 
   <!--**************************************************
-Gov.UK public user search - header rendering design 
+Gov.UK public user search - header rendering design
 **************************************************** -->
 
 </head>
@@ -125,7 +125,7 @@ Gov.UK public user search - header rendering design
     <main id="main-content" role="main">
       <%- include('../partials/banner.ejs') %>
       <!--************************************
-      Gov.UK public user search - Body design 
+      Gov.UK public user search - Body design
       ************************************ -->
 
       <form action="/spendingsector" method="POST" class="govuk-main-wrapper ">
@@ -139,7 +139,7 @@ Gov.UK public user search - header rendering design
               Which subsidy purposes do you want to search for?
             </h1>
             <!-- </div>
-                
+
               </div> -->
           </legend>
           <div class="govuk-grid-row">
@@ -152,7 +152,7 @@ Gov.UK public user search - header rendering design
 
           <div class="govuk-checkboxes govuk-form-group" data-module="govuk-checkboxes">
             <div class="govuk-checkboxes__item">
-              <input class="govuk-checkboxes__input " id="subsidyobjective-0" name="subsidyobjective0" type="checkbox"
+              <input class="govuk-checkboxes__input" id="subsidyobjective-0" name="subsidyobjective0" type="checkbox"
                 value="Select all"
                 data-aria-controls="conditional-subsidyobjective-0" "<% if (check_subsidyobjective0) { %> checked <% } %>">
               <label class="govuk-label govuk-checkboxes__label" for="subsidyobjective-0">
@@ -309,7 +309,7 @@ Gov.UK public user search - header rendering design
   </div>
 
   <!--************************************************
-Gov.UK public user search - Footer rendering design 
+Gov.UK public user search - Footer rendering design
 ************************************************ -->
 
   <%- include('../partials/footer.ejs') %>

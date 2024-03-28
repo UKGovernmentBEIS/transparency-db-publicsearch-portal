@@ -24,7 +24,6 @@ app.use(cors());
 // ********************************************************
 // Gov.UK public user search - Global variable declarations
 // ********************************************************
-
 app.locals.radio_beneficiaryname;
 app.locals.text_beneficiaryname;
 app.locals.subsidy_objective_isfirst;

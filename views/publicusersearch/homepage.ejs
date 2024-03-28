@@ -7,7 +7,7 @@
 </head>
 
 <!--**************************************************
-Gov.UK public user search - header rendering design 
+Gov.UK public user search - header rendering design
 **************************************************** -->
 
 <body class="govuk-template__body app-example-page">
@@ -33,7 +33,7 @@ Gov.UK public user search - header rendering design
             <p class="govuk-body">You can answer a number of questions to search for particular subsidies.</p>
             <form action="/beneficiaryname" method="POST" class="govuk-padding-top-2">
 
-              <button class="govuk-button" data-module="govuk-button" id="homepage_button_start_now"
+              <button class="govuk-button" data-module="govuk-button" id="homepage_button_start_search"
                 name="homepage_button" value="start_now">
                 Start search
               </button>
@@ -43,23 +43,23 @@ Gov.UK public user search - header rendering design
               received subsidies
               under each scheme.</p>
             <form action="/schemes" method="GET" class="govuk-padding-top-2">
-              <button class="govuk-button " data-module="govuk-button" id="homepage_button_show_schemes">
+              <button class="govuk-button " data-module="govuk-button" id="homepage_button_view_all_schemes">
                 View all subsidy schemes
               </button>
             </form>
             <form action="/searchresults" method="POST" class="govuk-padding-top-2">
-              <button class="govuk-button " data-module="govuk-button" id="homepage_button_show_results"
+              <button class="govuk-button " data-module="govuk-button" id="homepage_button_view_all_awards"
                 name="homepage_button" value="show_results">
                 View all subsidy awards
               </button>
             </form>
             <form action="/mfaawards" method="GET" class="govuk-padding-top-2">
-              <button class="govuk-button " data-module="govuk-button" id="homepage_button_show_results">
+              <button class="govuk-button " data-module="govuk-button" id="homepage_button_view_all_mfa_spei">
                 View all MFA / SPEI Assistance awards
               </button>
             </form>
             <form action="/standaloneawards" method="GET" class="govuk-padding-top-2">
-              <button class="govuk-button " data-module="govuk-button" id="homepage_button_show_standalone">
+              <button class="govuk-button " data-module="govuk-button" id="homepage_button_view_all_standalone_awards">
                 View all standalone subsidy awards
               </button>
             </form>
@@ -73,7 +73,7 @@ Gov.UK public user search - header rendering design
   </div>
 
   <!--************************************************
-          Gov.UK public user search - Footer rendering design 
+          Gov.UK public user search - Footer rendering design
     ************************************************ -->
 
   <%- include('../partials/footer.ejs') %>

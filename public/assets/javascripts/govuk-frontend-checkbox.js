@@ -408,7 +408,8 @@
                 this.$openAllButton.innerHTML = 'Open all <span class="govuk-visually-hidden">sections</span>',
                 this.$openAllButton.setAttribute("class", this.openAllClass),
                 this.$openAllButton.setAttribute("aria-expanded", "false"),
-                this.$openAllButton.setAttribute("type", "button");
+                this.$openAllButton.setAttribute("type", "button"),
+                this.$openAllButton.setAttribute("id", "open_all");
                 var e = document.createElement("div");
                 e.setAttribute("class", this.controlsClass),
                 e.appendChild(this.$openAllButton),
@@ -496,6 +497,7 @@
                 var t = e ? "Close all" : "Open all";
                 t += '<span class="govuk-visually-hidden"> sections</span>',
                 this.$openAllButton.setAttribute("aria-expanded", e),
+                this.$openAllButton.setAttribute("id", e ? "close_all" : "open_all");
                 this.$openAllButton.innerHTML = t
             }
             ;
