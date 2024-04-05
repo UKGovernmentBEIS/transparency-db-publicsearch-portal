@@ -2,7 +2,7 @@
 <html lang="en" class="govuk-template ">
 
 <head>
-  <title>GOV.UK - Public user search result page</title>
+  <title>GOV.UK - Public user schemes result page</title>
   <%- include('../partials/headercss.ejs') %>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145652997-21"></script>
@@ -49,7 +49,6 @@
         contentType: 'application/json;charset=utf-8',
         dataType: 'text',
         success: function (response) {
-          console.log("HERE" + response);
           api_data = response;
           parsedResponse = JSON.parse(api_data);
           var filteredResponse = [];
@@ -144,9 +143,9 @@
 
         <label class="govuk-label">
           <% if(searchschemes.totalResults == 1)  { %>
-          <b><%= searchschemes.totalResults %></b> subsidy scheme found
+          <b id="number-of-results"><%= searchschemes.totalResults %></b> subsidy scheme found
           <% } else { %>
-          <b><%= searchschemes.totalResults %></b> subsidy schemes found
+          <b id="number-of-results"><%= searchschemes.totalResults %></b> subsidy schemes found
           <% } %>
 
         </label>
@@ -157,7 +156,7 @@
               value="showfilt">
               Show filters
             </a> -->
-            <button class="govuk-button" name="showfiter" value="showfilt" onclick="toggleFilterDiv()">
+            <button class="govuk-button" id="filters_button" name="showfiter" value="showfilt" onclick="toggleFilterDiv()">
               <span id="filterText">Hide</span> filters
             </button>
             <!-- <a href="/homepage" style="text-decoration: none" class="govuk-button" data-module="govuk-button">
@@ -168,11 +167,11 @@
             class="govuk-button" data-module="govuk-button">New search
           </a> -->
 
-            <button class="govuk-button" data-module="govuk-button"
+            <button class="govuk-button" id="export_excel_button" data-module="govuk-button"
               onclick="saveFile('<%= beis_url_publicsearch %>', 'xlsx')">
               Export as Excel file </button>
 
-            <button class="govuk-button" data-module="govuk-button"
+            <button class="govuk-button" id="export_csv_button" data-module="govuk-button"
               onclick="saveFile('<%= beis_url_publicsearch %>', 'csv')">
               Export as csv file </button>
 
@@ -187,31 +186,31 @@
               style="display: inline;  margin: 0;  padding: 0;">
               <!-- <form class="govuk-grid-column-one-third" action="/pageperroute" method="GET"> -->
               <% if(frontend_totalRecordsPerPage  == 10) { %>
-              <a aria-label="10 records per page selected" aria-selected="true" class="round btn-page active"
+              <a id="results-per-page-10" aria-label="10 records per page selected" aria-selected="true" class="round btn-page active"
                 href="/schemes/?limit=10<%=filterString%>">10</a>
               <!-- <li class="hmcts-pagination__item hmcts-pagination__item--active">10</li> -->
               <% } else { %>
-              <a aria-label="10 records per page " class="round btn-page" href="/schemes/?limit=10<%=filterString%>">10</a>
+              <a id="results-per-page-10" aria-label="10 records per page " class="round btn-page" href="/schemes/?limit=10<%=filterString%>">10</a>
               <% }  %>
               <% if(frontend_totalRecordsPerPage  == 20) { %>
-              <a aria-label="20 records per page selected" aria-selected="true" class="round btn-page active"
+              <a id="results-per-page-20" aria-label="20 records per page selected" aria-selected="true" class="round btn-page active"
                 href="/schemes/?limit=20<%=filterString%>">20</a>
               <% } else { %>
-              <a aria-label="20 records per page " class="round btn-page" href="/schemes/?limit=20<%=filterString%>">20</a>
+              <a id="results-per-page-20" aria-label="20 records per page " class="round btn-page" href="/schemes/?limit=20<%=filterString%>">20</a>
               <% }  %>
 
               <% if(frontend_totalRecordsPerPage  == 50) { %>
-              <a aria-label="50 records per page selected" aria-selected="true" class="round btn-page active"
+              <a id="results-per-page-50" aria-label="50 records per page selected" aria-selected="true" class="round btn-page active"
                 href="/schemes/?limit=50<%=filterString%>">50</a>
               <% } else { %>
-              <a aria-label="50 records per page " class="round btn-page" href="/schemes/?limit=50<%=filterString%>">50</a>
+              <a id="results-per-page-50" aria-label="50 records per page " class="round btn-page" href="/schemes/?limit=50<%=filterString%>">50</a>
               <% }  %>
 
               <% if(frontend_totalRecordsPerPage  == 100) { %>
-              <a aria-label="100 records per page selected" aria-selected="true" class="round btn-page active"
+              <a id="results-per-page-100" aria-label="100 records per page selected" aria-selected="true" class="round btn-page active"
                 href="/schemes/?limit=100<%=filterString%>">100</a>
               <% } else { %>
-              <a aria-label="100 records per page " class="round btn-page" href="/schemes/?limit=100<%=filterString%>">100</a>
+              <a id="results-per-page-100" aria-label="100 records per page " class="round btn-page" href="/schemes/?limit=100<%=filterString%>">100</a>
               <% }  %>
             </div>
           </div>
@@ -231,7 +230,7 @@
           <%- include('../partials/filter-status.ejs') %>
         </div>
         <div>
-          <button class="govuk-button" data-module="govuk-button">
+          <button class="govuk-button" id="update-results-button" data-module="govuk-button">
             Update results </button>
         </div>
       </form>
@@ -244,7 +243,7 @@
                 <tr class="govuk-table__row">
                   <th scope="col" class="govuk-table__header">
                     <!-- <a href="./schemes/?sort=scnumber" style="text-decoration: none"> -->
-                      Subsidy control number
+                      Subsidy Control (SC) Number
                       <!-- <% if (scnumber_arrow == "upanddown" ) { %>
                       <img id="scnumber_updownarrow" src="/assets/images/UpDownArrow.jpg" alt="Curently not sorted">
                       <% } else if (scnumber_arrow == "updecending" ) { %>
@@ -257,15 +256,15 @@
 
                     </a>
                   </th>
-                  <th scope="col" class="govuk-table__header">Subsidy scheme name</th>
-                  <th scope="col" class="govuk-table__header">Public authority</th>
-                  <th scope="col" class="govuk-table__header">Start date</th>
-                  <th scope="col" class="govuk-table__header">End date</th>
+                  <th scope="col" class="govuk-table__header">Subsidy Scheme Name</th>
+                  <th scope="col" class="govuk-table__header">Public Authority</th>
+                  <th scope="col" class="govuk-table__header">Start Date</th>
+                  <th scope="col" class="govuk-table__header">End Date</th>
                   <th scope="col" class="govuk-table__header">Budget</th>
                   <th scope="col" class="govuk-table__header">Status</th>
                 </tr>
               </thead>
-              <tbody class="govuk-table__body">
+              <tbody class="govuk-table__body" id="searchresult-table-body">
                 <% searchschemes.subsidySchemes.forEach(function(item) { %>
                 <tr>
                   <td class="govuk-table__cell"><a class="govuk-link"

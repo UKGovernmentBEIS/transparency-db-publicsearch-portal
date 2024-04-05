@@ -18,7 +18,7 @@
 </head>
 
 <!--**************************************************
-Gov.UK public user search - header rendering design 
+Gov.UK public user search - header rendering design
 **************************************************** -->
 <link href="/assets/stylesheet/style.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="/assets/javascripts/pagination.class.js"></script>
@@ -155,9 +155,9 @@ Gov.UK public user search - header rendering design
         <label class="govuk-label">
 
           <% if(searchawards.totalSearchResults == 1)  { %>
-          <b><%= searchawards.totalSearchResults %></b> subsidy award found
+          <b id="number-of-results"><%= searchawards.totalSearchResults %></b> subsidy award found
           <% } else { %>
-          <b><%= searchawards.totalSearchResults %></b> subsidy awards found
+          <b id="number-of-results"><%= searchawards.totalSearchResults %></b> subsidy awards found
           <% } %>
 
         </label>
@@ -174,11 +174,11 @@ Gov.UK public user search - header rendering design
               Hide filters
             </a> -->
             <button class="govuk-button" onclick="toggleFilterDiv()"><span id="filterText">Hide</span> filters</button>
-            <button class="govuk-button" data-module="govuk-button"
+            <button class="govuk-button" id="export_excel_button" data-module="govuk-button"
               onclick="saveFile('<%= data_request_clientside %>','<%= beis_url_publicsearch %>', 'xlsx')">
               Export as Excel file </button>
 
-            <button class="govuk-button" data-module="govuk-button"
+            <button class="govuk-button" id="export_csv_button" data-module="govuk-button"
               onclick="saveFile('<%= data_request_clientside %>','<%= beis_url_publicsearch %>', 'csv')">
               Export as csv file </button>
           </div>
@@ -189,34 +189,34 @@ Gov.UK public user search - header rendering design
             <div class="pagination govuk-grid-column-one-third pagination-style-modified"
               style="display: inline;  margin: 0;  padding: 0;">
               <% if(frontend_totalRecordsPerPage  == 10) { %>
-              <a aria-label="10 records per page selected" aria-selected="true" class="round btn-page active"
+              <a id="results-per-page-10" aria-label="10 records per page selected" aria-selected="true" class="round btn-page active"
                 href="/updateresultspageperroute/?sort=10">10</a>
 
               <% } else { %>
-              <a aria-label="10 records per page " class="round btn-page"
+              <a id="results-per-page-10" aria-label="10 records per page " class="round btn-page"
                 href="/updateresultspageperroute/?sort=10">10</a>
               <% }  %>
               <% if(frontend_totalRecordsPerPage  == 20) { %>
-              <a aria-label="20 records per page selected" aria-selected="true" class="round btn-page active"
+              <a id="results-per-page-20" aria-label="20 records per page selected" aria-selected="true" class="round btn-page active"
                 href="/updateresultspageperroute/?sort=20">20</a>
               <% } else { %>
-              <a aria-label="20 records per page " class="round btn-page"
+              <a id="results-per-page-20" aria-label="20 records per page " class="round btn-page"
                 href="/updateresultspageperroute/?sort=20">20</a>
               <% }  %>
 
               <% if(frontend_totalRecordsPerPage  == 50) { %>
-              <a aria-label="50 records per page selected" aria-selected="true" class="round btn-page active"
+              <a id="results-per-page-50" aria-label="50 records per page selected" aria-selected="true" class="round btn-page active"
                 href="/updateresultspageperroute/?sort=50">50</a>
               <% } else { %>
-              <a aria-label="50 records per page " class="round btn-page"
+              <a id="results-per-page-50" aria-label="50 records per page " class="round btn-page"
                 href="/updateresultspageperroute/?sort=50">50</a>
               <% }  %>
 
               <% if(frontend_totalRecordsPerPage  == 100) { %>
-              <a aria-label="100 records per page selected" aria-selected="true" class="round btn-page active"
+              <a id="results-per-page-100" aria-label="100 records per page selected" aria-selected="true" class="round btn-page active"
                 href="/updateresultspageperroute/?sort=100">100</a>
               <% } else { %>
-              <a aria-label="100 records per page " class="round btn-page"
+              <a id="results-per-page-100" aria-label="100 records per page " class="round btn-page"
                 href="/updateresultspageperroute/?sort=100">100</a>
               <% }  %>
             </div>
@@ -231,7 +231,7 @@ Gov.UK public user search - header rendering design
             <%- include('../partials/searchinstrumentaccordion.ejs') %>
           </div>
           <div>
-            <button class="govuk-button" data-module="govuk-button">
+            <button class="govuk-button" id="update-results-button" data-module="govuk-button">
               Update results </button>
           </div>
         </form>
@@ -242,7 +242,7 @@ Gov.UK public user search - header rendering design
           <section class="govuk-table-responsive govuk-grid-column-full">
 
 
-            <table class="govuk-table">
+            <table class="govuk-table" id="searchresult-table">
               <!-- <caption class="govuk-table__caption govuk-table__caption--m"></caption> -->
               <thead class="govuk-table__head">
                 <tr class="govuk-table__row">
@@ -290,7 +290,7 @@ Gov.UK public user search - header rendering design
                   <th scope="col" class="govuk-table__header app-custom-class">Subsidy status</th>
                 </tr>
               </thead>
-              <tbody class="govuk-table__body">
+              <tbody class="govuk-table__body" id="searchresult-table-body">
                 <% searchawards.awards.forEach(function(item) { %>
                 <tr>
                   <td class="govuk-table__cell"><a
