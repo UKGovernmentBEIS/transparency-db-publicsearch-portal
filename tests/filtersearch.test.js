@@ -108,7 +108,6 @@ test("Unit testing for spending filter route - Test for POST call", (done) => {
           subsidyMeasureTitle:
             "COVID-19 Temporary Framework for UK authorities",
           scNumber: "SC10033",
-          adhoc: false,
           legalBasis: {
             legalBasisText: "R&D&I Framework",
           },
@@ -216,7 +215,6 @@ test("Unit testing for spending filter route - Test for GET call", (done) => {
           subsidyMeasureTitle:
             "COVID-19 Temporary Framework for UK authorities",
           scNumber: "SC10033",
-          adhoc: false,
           legalBasis: {
             legalBasisText: "R&D&I Framework",
           },
@@ -248,7 +246,6 @@ test("Unit testing for spending filter route - Test for GET call", (done) => {
             subsidyMeasureTitle:
               "COVID-19 Temporary Framework for UK authorities",
             scNumber: "SC10033",
-            adhoc: false,
             legalBasis: {
               legalBasisText: "R&D&I Framework",
             },

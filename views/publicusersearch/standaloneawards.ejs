@@ -2,7 +2,7 @@
 <html lang="en" class="govuk-template ">
 
 <head>
-  <title>GOV.UK - Public user search result page</title>
+  <title>GOV.UK - Public user standalone awards result page</title>
   <%- include('../partials/headercss.ejs') %>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145652997-21"></script>
@@ -39,7 +39,7 @@
   <script>
     window.saveFile = function saveFile(data_request_clientside, beis_url_publicsearch, format) {
       var api_data;
-      
+
       $.ajax({
         url: beis_url_publicsearch + '/searchResults' + window.location.pathname,
         type: "POST",
@@ -137,9 +137,9 @@
 
         <label class="govuk-label">
           <% if(totalrows == 1)  { %>
-          <b><%= totalrows %></b> standalone subsidy award found
+          <b id="number-of-results"><%= totalrows %></b> standalone subsidy award found
           <% } else { %>
-          <b><%= totalrows %></b> standalone subsidy award found
+          <b id="number-of-results"><%= totalrows %></b> standalone subsidy award found
           <% } %>
 
         </label>
@@ -150,7 +150,7 @@
               value="showfilt">
               Show filters
             </a> -->
-            <button class="govuk-button" name="showfiter" value="showfilt" onclick="toggleFilterDiv()">
+            <button class="govuk-button" id="filters_button" name="showfiter" value="showfilt" onclick="toggleFilterDiv()">
               <span id="filterText">Hide</span> filters
             </button>
             <!-- <a href="/homepage" style="text-decoration: none" class="govuk-button" data-module="govuk-button">
@@ -161,11 +161,11 @@
             class="govuk-button" data-module="govuk-button">New search
           </a> -->
 
-            <button class="govuk-button" data-module="govuk-button"
+            <button class="govuk-button" id="export_excel_button" data-module="govuk-button"
               onclick="saveFile('<%= data_request_clientside %>', '<%= beis_url_publicsearch %>', 'xlsx')">
               Export as Excel file </button>
 
-            <button class="govuk-button" data-module="govuk-button"
+            <button class="govuk-button" id="export_csv_button" data-module="govuk-button"
               onclick="saveFile('<%= data_request_clientside %>', '<%= beis_url_publicsearch %>', 'csv')">
               Export as csv file </button>
 
@@ -180,31 +180,31 @@
               style="display: inline;  margin: 0;  padding: 0;">
               <!-- <form class="govuk-grid-column-one-third" action="/pageperroute" method="GET"> -->
               <% if(frontend_totalRecordsPerPage  == 10) { %>
-              <a aria-label="10 records per page selected" aria-selected="true" class="round btn-page active"
+              <a id="results-per-page-10" aria-label="10 records per page selected" aria-selected="true" class="round btn-page active"
                 href="/standaloneawards/?limit=10<%=filterString%>">10</a>
               <!-- <li class="hmcts-pagination__item hmcts-pagination__item--active">10</li> -->
               <% } else { %>
-              <a aria-label="10 records per page " class="round btn-page" href="/standaloneawards/?limit=10<%=filterString%>">10</a>
+              <a id="results-per-page-10" aria-label="10 records per page " class="round btn-page" href="/standaloneawards/?limit=10<%=filterString%>">10</a>
               <% }  %>
               <% if(frontend_totalRecordsPerPage  == 20) { %>
-              <a aria-label="20 records per page selected" aria-selected="true" class="round btn-page active"
+              <a id="results-per-page-20" aria-label="20 records per page selected" aria-selected="true" class="round btn-page active"
                 href="/standaloneawards/?limit=20<%=filterString%>">20</a>
               <% } else { %>
-              <a aria-label="20 records per page " class="round btn-page" href="/standaloneawards/?limit=20<%=filterString%>">20</a>
+              <a id="results-per-page-20" aria-label="20 records per page " class="round btn-page" href="/standaloneawards/?limit=20<%=filterString%>">20</a>
               <% }  %>
 
               <% if(frontend_totalRecordsPerPage  == 50) { %>
-              <a aria-label="50 records per page selected" aria-selected="true" class="round btn-page active"
+              <a id="results-per-page-50" aria-label="50 records per page selected" aria-selected="true" class="round btn-page active"
                 href="/standaloneawards/?limit=50<%=filterString%>">50</a>
               <% } else { %>
-              <a aria-label="50 records per page " class="round btn-page" href="/standaloneawards/?limit=50<%=filterString%>">50</a>
+              <a id="results-per-page-50" aria-label="50 records per page " class="round btn-page" href="/standaloneawards/?limit=50<%=filterString%>">50</a>
               <% }  %>
 
               <% if(frontend_totalRecordsPerPage  == 100) { %>
-              <a aria-label="100 records per page selected" aria-selected="true" class="round btn-page active"
+              <a id="results-per-page-100" aria-label="100 records per page selected" aria-selected="true" class="round btn-page active"
                 href="/standaloneawards/?limit=100<%=filterString%>">100</a>
               <% } else { %>
-              <a aria-label="100 records per page " class="round btn-page" href="/standaloneawards/?limit=100<%=filterString%>">100</a>
+              <a id="results-per-page-100" aria-label="100 records per page " class="round btn-page" href="/standaloneawards/?limit=100<%=filterString%>">100</a>
               <% }  %>
             </div>
           </div>
@@ -221,7 +221,7 @@
           <%- include('../partials/searchinstrumentaccordion.ejs') %>
         </div>
         <div>
-          <button class="govuk-button" data-module="govuk-button">
+          <button class="govuk-button" id="update-results-button" data-module="govuk-button">
             Update results </button>
         </div>
       </form>
@@ -248,7 +248,7 @@
                   <th scope="col" class="govuk-table__header app-custom-class">Subsidy status</th>
                 </tr>
               </thead>
-              <tbody class="govuk-table__body">
+              <tbody class="govuk-table__body" id="searchresult-table-body">
                 <% searchawards.awards.forEach(function(item) { %>
                 <tr>
                   <td class="govuk-table__cell"><a class="govuk-link"
