@@ -13,12 +13,7 @@ noAwardMessage - message displayed when no awards are available
         data-module="govuk-error-summary">
 
         <div class="govuk-error-summary__body">
-          <ul class="govuk-list govuk-error-summary__list">
-            <li>
-              <a aria-label="<%=(typeof noAwardMessage === 'undefined') ? 'No awards found' : noAwardMessage %>"><%=(typeof noAwardMessage === 'undefined') ? 'No awards found' : noAwardMessage%></a>
-            </li>
-
-          </ul>
+            <a class="bold" style="color: inherit;" id="no-award-message" aria-label="<%=(typeof noAwardMessage === 'undefined') ? 'No awards found' : noAwardMessage %>"><%=(typeof noAwardMessage === 'undefined') ? 'No awards found' : noAwardMessage%></a>
         </div>
       </div>
     <%} else { %>
