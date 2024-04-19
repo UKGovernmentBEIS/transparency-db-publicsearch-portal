@@ -6,6 +6,7 @@
   <%- include('../partials/headercss.ejs') %>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145652997-21"></script>
+  <link href="/assets/stylesheet/style.css" rel="stylesheet" type="text/css">
   <script>
     // window.dataLayer = window.dataLayer || [];
 
@@ -250,7 +251,12 @@
             </dd>
           </div>
         </ul>
-
+        <div style="border-top:1px solid #808080; padding-top:30px">
+          <div>
+              <h2 class="govuk-heading-m">Subsidy awards given under this subsidy scheme</h2>
+              <%- include('../partials/award-list-partial.ejs') %>
+          </div>
+        </div>
 
         <form action="/schemes" method="GET">
           <div>
