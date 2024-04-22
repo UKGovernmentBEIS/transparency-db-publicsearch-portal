@@ -227,7 +227,6 @@
           <%- include('../partials/filter-ganame.ejs') %>
           <%- include('../partials/filter-date-start_end.ejs') %>
           <%- include('../partials/filter-budget.ejs') %>
-          <%- include('../partials/filter-status.ejs') %>
         </div>
         <div>
           <button class="govuk-button" id="update-results-button" data-module="govuk-button">
@@ -261,7 +260,8 @@
                   <th scope="col" class="govuk-table__header">Start Date</th>
                   <th scope="col" class="govuk-table__header">End Date</th>
                   <th scope="col" class="govuk-table__header">Budget</th>
-                  <th scope="col" class="govuk-table__header">Status</th>
+                  <th scope="col" class="govuk-table__header">Scheme Publication Date</th>
+                  <th scope="col" class="govuk-table__header">Date Last Modified</th>
                 </tr>
               </thead>
               <tbody class="govuk-table__body" id="searchresult-table-body">
@@ -282,7 +282,8 @@
                     <% } %>
                   </td>
                   <td>£<%= item.budget %></td>
-                  <td><%= item.status %></td>
+                  <td><%= item.createdTimestamp %></td>
+                  <td><%= item.lastModifiedTimestamp %></td>
                 </tr>
                 <% } ); %>
 
