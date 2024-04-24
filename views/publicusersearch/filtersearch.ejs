@@ -238,7 +238,7 @@ Gov.UK public user search - header rendering design
 
         <div id="myDiv"></div>
         <div class="second"></div>
-        <div class="govuk-grid-row">
+        <div class="govuk-grid-row new-grid-width">
           <section class="govuk-table-responsive govuk-grid-column-full">
 
 
@@ -290,23 +290,25 @@ Gov.UK public user search - header rendering design
               <tbody class="govuk-table__body" id="searchresult-table-body">
                 <% searchawards.awards.forEach(function(item) { %>
                 <tr>
+                  <td class="govuk-table__cell td-overflow-format">
+                    <a class="govuk-link" href="/searchresultsawardroute/?page=<%=item.awardNumber %>">
+                      <%= item.beneficiary.beneficiaryName  %>
+                    </a> 
+                  </td>
+                  <td class="govuk-table__cell"><%= item.grantingAuthorityResponse.grantingAuthorityName %></td>
+                  <td class="govuk-table__cell"><%= item.subsidyObjective %></td>
+                  <td class="govuk-table__cell"><%= item.spendingSector %></td>
+                  <td class="govuk-table__cell" style="text-align:center"><%= item.legalGrantingDate%></td>
+                  <td class="govuk-table__cell"><%= item.lastModifiedTimestamp %></td>
+                  <!-- <td class="govuk-table__cell"><a href="#"><%= item.awardNumber  %> </a> </td> -->
                   <td class="govuk-table__cell"><a class="govuk-link"
-                    href="/searchresultsawardroute/?page=<%=item.awardNumber %>"><%= item.beneficiary.beneficiaryName  %>
-                  </a> </td>
-                <td class="govuk-table__cell"><%= item.grantingAuthorityResponse.grantingAuthorityName %></td>
-                <td class="govuk-table__cell"><%= item.subsidyObjective %></td>
-                <td class="govuk-table__cell"><%= item.spendingSector %></td>
-                <td class="govuk-table__cell" style="text-align:center"><%= item.legalGrantingDate%></td>
-                <td class="govuk-table__cell"><%= item.lastModifiedTimestamp %></td>
-                <!-- <td class="govuk-table__cell"><a href="#"><%= item.awardNumber  %> </a> </td> -->
-                <td class="govuk-table__cell"><a class="govuk-link"
-                    href="/searchresultsmeasureroute/?page=<%=item.awardNumber %>"><%= item.subsidyMeasure.subsidyMeasureTitle  %></a>
-                </td>
-                <% if (item.subsidyInstrument == "Tax measures (tax credit, or tax/duty exemption)") { %>
-                <td class="govuk-table__cell"><%= item.subsidyFullAmountRange %></td>
-                <% } else { %>
-                <td class="govuk-table__cell">£<%= item.subsidyFullAmountExact %></td>
-                <% } %>
+                      href="/searchresultsmeasureroute/?page=<%=item.awardNumber %>"><%= item.subsidyMeasure.subsidyMeasureTitle  %></a>
+                  </td>
+                  <% if (item.subsidyInstrument == "Tax measures (tax credit, or tax/duty exemption)") { %>
+                  <td class="govuk-table__cell"><%= item.subsidyFullAmountRange %></td>
+                  <% } else { %>
+                  <td class="govuk-table__cell">£<%= item.subsidyFullAmountExact %></td>
+                  <% } %>
                 </tr>
                 <% } ); %>
               </tbody>

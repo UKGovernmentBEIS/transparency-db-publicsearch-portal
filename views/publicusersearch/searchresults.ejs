@@ -238,14 +238,14 @@
         </div>
       </form>
       <form action="/homepage" method="POST">
-        <div class="govuk-grid-row">
+        <div class="govuk-grid-row new-grid-width">
           <section class="govuk-table-responsive govuk-grid-column-full">
 
             <table class="govuk-table" id="searchresult-table">
               <thead class="govuk-table__head">
                 <tr class="govuk-table__row">
                   <th scope="col" class="govuk-table__header">
-                    <a href="/pageroute/?page=999997" style="text-decoration: none">
+                    <a href="/pageroute/?page=999997" style="text-decoration: none ">
                       Recipient Name
                       <% if (beneficiary_arrow == "upanddown" ) { %>
                       <img id="beneficiary_updownarrow" src="/assets/images/UpDownArrow.jpg" alt="Curently not sorted">
@@ -301,9 +301,11 @@
               <tbody class="govuk-table__body" id="searchresult-table-body">
                 <% searchawards.awards.forEach(function(item) { %>
                 <tr>
-                  <td class="govuk-table__cell"><a class="govuk-link"
+                  <td class="govuk-table__cell td-overflow-format">
+                    <a class="govuk-link"
                       href="/searchresultsawardroute/?page=<%=item.awardNumber %>"><%= item.beneficiary.beneficiaryName  %>
-                    </a> </td>
+                    </a> 
+                  </td>
                   <td class="govuk-table__cell"><%= item.grantingAuthorityResponse.grantingAuthorityName %></td>
                   <td class="govuk-table__cell"><%= item.subsidyObjective %></td>
                   <td class="govuk-table__cell"><%= item.spendingSector %></td>
