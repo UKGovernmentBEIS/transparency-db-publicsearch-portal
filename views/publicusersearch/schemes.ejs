@@ -38,6 +38,7 @@
             filteredResponse[filteredResponse.length] = {
               "Subsidy control number": parsedResponse.subsidySchemes[i].scNumber,
               "Subsidy scheme name": parsedResponse.subsidySchemes[i].subsidyMeasureTitle,
+              "Subsidy scheme of interest or particular interest": parsedResponse.subsidySchemes[i].subsidySchemeInterest,
               "Subsidy status":parsedResponse.subsidySchemes[i].status,
               "Public authority": parsedResponse.subsidySchemes[i].grantingAuthorityName,
               "Subsidy scheme description":parsedResponse.subsidySchemes[i].subsidySchemeDescription ? parsedResponse.subsidySchemes[i].subsidySchemeDescription : "",
