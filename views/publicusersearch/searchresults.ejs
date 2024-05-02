@@ -58,6 +58,8 @@
               "Standalone award": parsedResponse.awards[i].standaloneAward,
               "Subsidy control number": parsedResponse.awards[i].subsidyMeasure.scNumber,
               "Subsidy award description": parsedResponse.awards[i].subsidyAwardDescription ? parsedResponse.awards[i].subsidyAwardDescription : "",
+              "Public authority URL": (parsedResponse.awards[i].standaloneAward === "Yes") ? parsedResponse.awards[i].authorityURL : 'NA',
+              "Public authority URL Description": (parsedResponse.awards[i].standaloneAward === "Yes") ? parsedResponse.awards[i].authorityURLDescription : 'NA',
               "Subsidy award number": parsedResponse.awards[i].awardNumber,
               "Subsidy award status": parsedResponse.awards[i].status,
               "Subsidy scheme name": parsedResponse.awards[i].subsidyMeasure.subsidyMeasureTitle,
