@@ -30,12 +30,19 @@ router.get("/", async (req, res) => {
     }else{
       var spendingSectorArray = ["NA"];
     }
+
+    if(typeof searchmeasuredetails.subsidyMeasure.purpose !== 'undefined'){
+      var purposeArray = JSON.parse(searchmeasuredetails.subsidyMeasure.purpose);
+    }else{
+      var purposeArray = ["NA"];
+    }
     
     if (searchmeasuredetails.subsidyMeasure.status == "Deleted"){
       res.render("publicusersearch/noresults");
     }else{
       res.render("publicusersearch/searchresultsmeasuredetail",{
         spendingSectorArray,
+        purposeArray
       });
     }
   } catch (err) {

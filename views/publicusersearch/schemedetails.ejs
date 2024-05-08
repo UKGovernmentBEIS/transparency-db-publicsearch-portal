@@ -250,6 +250,22 @@
                    <% } %>
             </dd>
           </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Purpose
+            </dt>
+            <dd class="govuk-summary-list__value">
+                <% if(typeof purposeArray !== 'undefined') { %>
+                  <ul class="govuk-list govuk-list--bullet">
+                      <% purposeArray.forEach(function(item) { %>
+                      <li> <%=item %> </li>
+                      <% }); %>
+                  </ul>
+                  <% } else { %>
+                      NA
+                   <% } %>
+            </dd>
+          </div>
         </ul>
         <div style="border-top:1px solid #808080; padding-top:30px">
           <div>
