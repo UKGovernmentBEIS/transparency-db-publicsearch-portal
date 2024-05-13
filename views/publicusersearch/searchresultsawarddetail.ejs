@@ -182,26 +182,22 @@
             Weblink to public authority text of subsidy
           </dt>
           <dd class="govuk-summary-list__value">
-            <% if(typeof searchawarddetails.authorityURL != 'undefined') { %>
-              <%if(searchawarddetails.authorityURL.includes('https://')) { %>
-                <a aria-label="Weblink to public authority" target="_blank"
-                  href="<%= searchawarddetails.authorityURL %>">
-                  <%= searchawarddetails.authorityURL %>
+          <% if(typeof searchawarddetails.authorityURL != 'undefined') { %>
+                  <a aria-label="Weblink to public authority" target="_blank"
+                    href="<%= (searchawarddetails.authorityURL.includes('https://')) ?  searchawarddetails.authorityURL : 'https://'+searchawarddetails.authorityURL %>">
+                    <%=searchawarddetails.authorityURL %>
                   </a>
-              <% } else { %>
-                <a aria-label="Weblink to public authority" target="_blank"
-                  href="https://<%= searchawarddetails.authorityURL %>">
-                  <%= searchawarddetails.authorityURL %>
-                </a>
-              <% }} %>
+          <% } else { %>
+              <a aria-label="Public authority policy URL not applicable" >NA</a>
           </dd>
-        </div>
+          <%  } %>
+      </div>
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Weblink description
           </dt>
           <dd class="govuk-summary-list__value">
-            <%= searchawarddetails.authorityURLDescription %>
+            <%= (searchawarddetails.standaloneAward === 'No') ? 'NA' : searchawarddetails.authorityURLDescription %>
           </dd>
         </div>
 
