@@ -57,6 +57,7 @@
             filteredResponse[filteredResponse.length] = {
               "Standalone award": parsedResponse.awards[i].standaloneAward,
               "Subsidy control number": parsedResponse.awards[i].subsidyMeasure.scNumber,
+              "Subsidy scheme of interest or particular interest": parsedResponse.awards[i].subsidyAwardInterest ? parsedResponse.awards[i].subsidyAwardInterest : "",
               "Subsidy award description": parsedResponse.awards[i].subsidyAwardDescription ? parsedResponse.awards[i].subsidyAwardDescription : "",
               "Subsidy award number": parsedResponse.awards[i].awardNumber,
               "Subsidy award status": parsedResponse.awards[i].status,
