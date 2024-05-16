@@ -52,6 +52,7 @@ router.get("/", async (req, res) => {
       console.log(`Status: ${response.status}`);
       console.log("Body: ", response.data);
       searchmeasuredetails = response.data;
+      schemeVersions = searchmeasuredetails.schemeVersions;
       totalSearchResults = response.data.awardSearchResults.totalSearchResults;
       if(totalSearchResults > 0){      
         totalPages = response.data.awardSearchResults.totalPages;
