@@ -42,7 +42,7 @@
               "Subsidy award status": parsedResponse.awards[i].status,
               "Subsidy scheme name": parsedResponse.awards[i].subsidyMeasure.subsidyMeasureTitle,
               "Subsidy purpose": parsedResponse.awards[i].subsidyObjective,
-              "Subsidy type": parsedResponse.awards[i].subsidyInstrument,
+              "Subsidy form": parsedResponse.awards[i].subsidyInstrument,
               "Subsidy element full amount/£": parsedResponse.awards[i].subsidyFullAmountExact,
               "Subsidy element full amount range/£": parsedResponse.awards[i].subsidyFullAmountRange,
               "Public authority name": parsedResponse.awards[i].grantingAuthorityResponse.grantingAuthorityName,
@@ -219,9 +219,11 @@
                       <% } %>
                     </a>
                   </th>
+
                   <th scope="col" class="govuk-table__header app-custom-class">Public Authority</th>
                   <th scope="col" class="govuk-table__header app-custom-class">Subsidy Purpose</th>
                   <th scope="col" class="govuk-table__header app-custom-class">Spending Sector</th>
+
                   <th scope="col" class="govuk-table__header app-custom-class" aria-sort="none">
                     <a href="/pageroute/?page=999998" style="text-decoration: none">
                       Subsidy Date
@@ -256,7 +258,7 @@
                   <td class="govuk-table__cell" style="text-align:center"><%= item.legalGrantingDate%></td>
                   <td class="govuk-table__cell"><%= item.lastModifiedTimestamp %></td>
                   <td class="govuk-table__cell"><a class="govuk-link"
-                      href="/searchresultsmeasureroute/?page=<%=item.awardNumber %>"><%= item.subsidyMeasure.subsidyMeasureTitle  %></a>
+                      href="/scheme/?scheme=<%=item.subsidyMeasure.scNumber %>"><%= item.subsidyMeasure.subsidyMeasureTitle  %></a>
                   </td>
                   <% if (item.subsidyInstrument == "Tax measures (tax credit, or tax/duty exemption)") { %>
                   <td class="govuk-table__cell"><%= item.subsidyFullAmountRange %></td>

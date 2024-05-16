@@ -93,8 +93,7 @@
             <% if(searchawarddetails.subsidyMeasure.scNumber == 'NA'){ %>
               <%= searchawarddetails.subsidyMeasure.scNumber %>
             <% }else{ %>
-              <a class="govuk-link" href="/searchresultsmeasureroute/?page=<%=awardnumber %>"
-              aria-label="subsidy control number  <%= (searchawarddetails.subsidyMeasure.scNumber).substring(2,7) %>">
+              <a class="govuk-link" href="/scheme/?scheme=<%=searchawarddetails.subsidyMeasure.scNumber%>">
               <%= searchawarddetails.subsidyMeasure.scNumber %> </a>
             <% } %>
           </dd>
@@ -143,7 +142,7 @@
         </div>
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Subsidy type
+            Subsidy form
           </dt>
           <dd class="govuk-summary-list__value">
             <%= searchawarddetails.subsidyInstrument%>
@@ -176,6 +175,29 @@
           </dt>
           <dd class="govuk-summary-list__value">
             <%= searchawarddetails.grantingAuthorityResponse.grantingAuthorityName  %>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Weblink to public authority text of subsidy
+          </dt>
+          <dd class="govuk-summary-list__value">
+          <% if(typeof searchawarddetails.authorityURL != 'undefined') { %>
+                  <a aria-label="Weblink to public authority" target="_blank"
+                    href="<%= (searchawarddetails.authorityURL.includes('https://')) ?  searchawarddetails.authorityURL : 'https://'+searchawarddetails.authorityURL %>">
+                    <%=searchawarddetails.authorityURL %>
+                  </a>
+          <% } else { %>
+              <a aria-label="Public authority policy URL not applicable" >NA</a>
+          </dd>
+          <%  } %>
+      </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Weblink description
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <%= (searchawarddetails.standaloneAward === 'No') ? 'NA' : searchawarddetails.authorityURLDescription %>
           </dd>
         </div>
 
@@ -287,17 +309,10 @@
       </ul>
 
 
-      <form <% if(searchawarddetails.standaloneAward.toLowerCase() == "yes"){ %>
-        action="/standaloneawards"
-      <% }else{ %>
-        action="/searchresults"
-      <% } %>
-         method="GET">
         <div>
-          <button class="govuk-button" data-module="govuk-button">
+          <button class="govuk-button" onClick="history.back()" data-module="govuk-button">
             Back to search results </button>
         </div>
-      </form>
     </main>
   </div>
 
