@@ -7,15 +7,6 @@
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145652997-21"></script>
-  <script>
-    // window.dataLayer = window.dataLayer || [];
-
-    // function gtag() {
-    //   dataLayer.push(arguments);
-    // }
-    // gtag('js', new Date());
-    // gtag('config', 'UA-145652997-21');
-  </script>
 </head>
 
 <body class="govuk-template__body app-example-page">
@@ -25,11 +16,9 @@
   <div class="govuk-width-container ">
     <%- include('../partials/banner.ejs') %>
     <main class="govuk-main-wrapper " id="main-content" role="main">
-      <a <% if(searchawarddetails.standaloneAward.toLowerCase() == "yes"){ %>
-        href="/standaloneawards"
-      <% }else{ %>
-        href="/searchresults"
-      <% } %> class="govuk-back-link" aria-label="back to search results page">Back</a>
+      <a href=<%=backButton_href%> class="govuk-back-link" id="back-button-link">
+        Back
+      </a>
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-three-quarters">
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
@@ -40,10 +29,8 @@
         </div>
 
         <div class="govuk-grid-column-one-quarter">
-          <!-- <form action="/homepage" method="POST" >         -->
           <button class="govuk-button_cancel_last_xl" data-module="govuk-button" onclick="window.print()">
             Print page </button>
-          <!-- </form>   -->
         </div>
       </div>
 
@@ -190,26 +177,22 @@
             Weblink to public authority text of subsidy
           </dt>
           <dd class="govuk-summary-list__value">
-            <% if(typeof searchawarddetails.authorityURL != 'undefined') { %>
-              <%if(searchawarddetails.authorityURL.includes('https://')) { %>
-                <a aria-label="Weblink to public authority" target="_blank"
-                  href="<%= searchawarddetails.authorityURL %>">
-                  <%= searchawarddetails.authorityURL %>
+          <% if(typeof searchawarddetails.authorityURL != 'undefined') { %>
+                  <a aria-label="Weblink to public authority" target="_blank"
+                    href="<%= (searchawarddetails.authorityURL.includes('https://')) ?  searchawarddetails.authorityURL : 'https://'+searchawarddetails.authorityURL %>">
+                    <%=searchawarddetails.authorityURL %>
                   </a>
-              <% } else { %>
-                <a aria-label="Weblink to public authority" target="_blank"
-                  href="https://<%= searchawarddetails.authorityURL %>">
-                  <%= searchawarddetails.authorityURL %>
-                </a>
-              <% }} %>
+          <% } else { %>
+              <a aria-label="Public authority policy URL not applicable" >NA</a>
           </dd>
-        </div>
+          <%  } %>
+      </div>
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Weblink description
           </dt>
           <dd class="govuk-summary-list__value">
-            <%= searchawarddetails.authorityURLDescription %>
+            <%= (searchawarddetails.standaloneAward === 'No') ? 'NA' : searchawarddetails.authorityURLDescription %>
           </dd>
         </div>
 
@@ -322,8 +305,8 @@
 
 
         <div>
-          <button class="govuk-button" onClick="history.back()" data-module="govuk-button">
-            Back to search results </button>
+          <button class="govuk-button" id="back-button-large"onClick="window.location.href='<%=backButton_href%>'" data-module="govuk-button">
+            <%=backButton_text%> </button>
         </div>
     </main>
   </div>
