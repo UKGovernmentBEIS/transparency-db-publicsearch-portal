@@ -97,9 +97,9 @@
 
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Subsidy scheme of interest or particular interest
+            Subsidies or Schemes of Interest (SSoI) or Subsidies or Schemes of Particular Interest (SSoPI)
           </dt>
-          <dd class="govuk-summary-list__value render-newlines"><%= (searchawarddetails.standaloneAward === 'No') ? 'NA' : searchawarddetails.subsidyAwardInterest %>
+          <dd class="govuk-summary-list__value render-newlines"><%= (searchawarddetails.standaloneAward === 'No' || searchawarddetails.subsidyAwardInterest === '') ? 'NA' : searchawarddetails.subsidyAwardInterest %>
           </dd>
         </div>
 
