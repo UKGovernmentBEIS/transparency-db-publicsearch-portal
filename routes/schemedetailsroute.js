@@ -54,7 +54,7 @@ router.get("/", async (req, res) => {
       searchmeasuredetails = response.data;
       schemeVersions = searchmeasuredetails.schemeVersions;
       
-      if(typeof response.awardSearchResults != 'undefined')
+      if(typeof response.data.awardSearchResults != 'undefined')
         totalSearchResults = response.data.awardSearchResults.totalSearchResults;
       else
         totalSearchResults = 0;
