@@ -52,7 +52,13 @@ router.get("/", async (req, res) => {
       console.log(`Status: ${response.status}`);
       console.log("Body: ", response.data);
       searchmeasuredetails = response.data;
-      totalSearchResults = response.data.awardSearchResults.totalSearchResults;
+      schemeVersions = searchmeasuredetails.schemeVersions;
+      
+      if(typeof response.data.awardSearchResults != 'undefined')
+        totalSearchResults = response.data.awardSearchResults.totalSearchResults;
+      else
+        totalSearchResults = 0;
+
       if(totalSearchResults > 0){      
         totalPages = response.data.awardSearchResults.totalPages;
         hasAwards = true;
