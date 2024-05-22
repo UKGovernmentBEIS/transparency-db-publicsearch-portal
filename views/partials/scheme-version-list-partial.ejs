@@ -1,0 +1,20 @@
+<table class="govuk-table" id="scheme-version-table">
+    <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header app-custom-class">
+                Last modified date
+            </th>
+        </tr>
+    </thead>
+    <tbody id="scheme-version-table-body" class="govuk-table__body">
+    <% schemeVersions.forEach(function(item) { %>
+        <tr>
+            <td class="govuk-table__cell">
+                <a href="/schemeversion?scNumber=<%= item.scNumber %>&version=<%= item.version %>">
+                    <%= item.lastModifiedDate %>
+                </a>
+            </td>
+        </tr>
+    <% } ); %>
+    </tbody>
+</table>

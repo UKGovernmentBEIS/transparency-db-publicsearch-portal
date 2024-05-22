@@ -201,6 +201,9 @@ app.use("/searchresultsmeasureroute", searchresultsmeasureroute);
 var schemedetailsroute = require("./routes/schemedetailsroute");
 app.use("/scheme", schemedetailsroute);
 
+var schemeVersionRoute = require("./routes/schemeversionroute");
+app.use("/schemeversion", schemeVersionRoute);
+
 var searchresultsawardroute = require("./routes/searchresultsawardroute");
 app.use("/searchresultsawardroute", searchresultsawardroute);
 
