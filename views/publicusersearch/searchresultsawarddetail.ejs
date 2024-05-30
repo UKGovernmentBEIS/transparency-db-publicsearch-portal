@@ -286,10 +286,18 @@
         </div>
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Region
+            Region(s)
           </dt>
           <dd class="govuk-summary-list__value">
-            <%= searchawarddetails.spendingRegion %>
+            <% if(searchawarddetails.spendingRegionArray.length > 0) { %>
+                <ul class="govuk-list govuk-list--bullet">
+                    <% searchawarddetails.spendingRegionArray.forEach(function(item) { %>
+                    <li> <%= item %> </li>
+                    <% }); %>
+                </ul>
+            <% } else { %>
+                NA
+            <% } %>
           </dd>
         </div>
         <div class="govuk-summary-list__row">

@@ -27,6 +27,12 @@ router.get("/", async (req, res) => {
     console.log(`Status: ${awardapidata.status}`);
     console.log("Body: ", awardapidata.data);
     searchawarddetails = awardapidata.data;
+
+    searchawarddetails.spendingRegionArray = new Array();
+
+    if (searchawarddetails.spendingRegion){
+      searchawarddetails.spendingRegionArray = JSON.parse(searchawarddetails.spendingRegion);
+    }
     
     if(searchawarddetails.standaloneAward == "Yes" && req.headers.referer.includes("/standaloneawards"))
     {      
