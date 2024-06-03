@@ -24,7 +24,6 @@ app.use(cors());
 // ********************************************************
 // Gov.UK public user search - Global variable declarations
 // ********************************************************
-
 app.locals.radio_beneficiaryname;
 app.locals.text_beneficiaryname;
 app.locals.subsidy_objective_isfirst;
@@ -201,6 +200,9 @@ app.use("/searchresultsmeasureroute", searchresultsmeasureroute);
 
 var schemedetailsroute = require("./routes/schemedetailsroute");
 app.use("/scheme", schemedetailsroute);
+
+var schemeVersionRoute = require("./routes/schemeversionroute");
+app.use("/schemeversion", schemeVersionRoute);
 
 var searchresultsawardroute = require("./routes/searchresultsawardroute");
 app.use("/searchresultsawardroute", searchresultsawardroute);

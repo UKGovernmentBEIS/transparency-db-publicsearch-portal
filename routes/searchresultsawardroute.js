@@ -27,11 +27,32 @@ router.get("/", async (req, res) => {
     console.log(`Status: ${awardapidata.status}`);
     console.log("Body: ", awardapidata.data);
     searchawarddetails = awardapidata.data;
+    
+    if(searchawarddetails.standaloneAward == "Yes" && req.headers.referer.includes("/standaloneawards"))
+    {      
+      backButton_href = "/standaloneawards";
+      backButton_text = "Back to standalone awards";
+    }
+    else if(req.headers.referer.includes("/searchresults"))
+    {
+      backButton_href = "/searchresults";
+      backButton_text = "Back to search results";
+    }  
+    else if(req.headers.referer.includes("/scheme"))
+    {      
+      backButton_href = "/scheme/?scheme=" + searchmeasuredetails.scNumber;
+      backButton_text = "Back to scheme details";
+    }
+    else
+      throw new Error("Referrer not recognised")
 
     if (searchawarddetails.subsidyMeasure.status == "Deleted") {
       res.render("publicusersearch/noresults");
     } else {
-      res.render("publicusersearch/searchresultsawarddetail");
+      res.render("publicusersearch/searchresultsawarddetail", {
+        backButton_href,
+        backButton_text
+      });
     }
   } catch (err) {
 

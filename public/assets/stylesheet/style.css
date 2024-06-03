@@ -149,3 +149,15 @@ a {
     display: block;
   }
 }
+
+.td-overflow-format {
+  max-width: 190px; 
+  overflow: hidden; 
+  text-overflow: ellipsis;
+}
+
+.new-grid-width {
+  width: 1100px;
+  margin-left: -65px;
+  margin-top: 10px;
+}
