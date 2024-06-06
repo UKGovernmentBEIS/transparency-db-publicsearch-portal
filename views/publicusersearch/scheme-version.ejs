@@ -215,6 +215,21 @@
                       NA
                    <% } %>
             </dd>
+          </div>  <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Purpose
+            </dt>
+            <dd class="govuk-summary-list__value">
+                <% if(typeof schemeVersionDetails.purposeArray !== 'undefined') { %>
+                  <ul class="govuk-list govuk-list--bullet">
+                      <% schemeVersionDetails.purposeArray.forEach(function(item) { %>
+                      <li> <%=item %> </li>
+                      <% }); %>
+                  </ul>
+                  <% } else { %>
+                      NA
+                   <% } %>
+            </dd>
           </div>
         </ul>
 
