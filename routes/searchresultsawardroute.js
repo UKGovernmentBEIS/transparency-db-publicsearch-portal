@@ -27,7 +27,7 @@ router.get("/", async (req, res) => {
     console.log(`Status: ${awardapidata.status}`);
     console.log("Body: ", awardapidata.data);
     searchawarddetails = awardapidata.data;
-    
+
     if(searchawarddetails.standaloneAward == "Yes" && req.headers.referer.includes("/standaloneawards"))
     {      
       backButton_href = "/standaloneawards";
@@ -46,7 +46,7 @@ router.get("/", async (req, res) => {
     else
       throw new Error("Referrer not recognised")
 
-    if (searchawarddetails.subsidyMeasure.status == "Deleted") {
+    if (searchawarddetails.subsidyMeasure.status === "Deleted" || searchawarddetails.status === "Rejected") {
       res.render("publicusersearch/noresults");
     } else {
       res.render("publicusersearch/searchresultsawarddetail", {
