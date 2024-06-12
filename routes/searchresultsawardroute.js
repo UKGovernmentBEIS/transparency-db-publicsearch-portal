@@ -27,7 +27,7 @@ router.get("/", async (req, res) => {
     console.log(`Status: ${awardapidata.status}`);
     console.log("Body: ", awardapidata.data);
     searchawarddetails = awardapidata.data;
-    if(req.headers.referer)
+    if(req.headers.referer && typeof searchmeasuredetails !== 'undefined')
     {     
       if(req.headers.referer.includes("/scheme"))
       {      
