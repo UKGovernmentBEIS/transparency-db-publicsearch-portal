@@ -302,11 +302,13 @@
         </div>
 
       </ul>
-
-
         <div>
-          <button class="govuk-button" id="back-button-large"onClick="window.location.href='<%=backButton_href%>'" data-module="govuk-button">
-            <%=backButton_text%> </button>
+          <form action="<%=backButton_href%>" method="<%=backButton_method%>" class="govuk-padding-top-2">
+            <button class="govuk-button " data-module="govuk-button" id="homepage_button_view_all_awards"
+              name="homepage_button" value="show_results">
+              <%=backButton_text%>
+            </button>
+          </form>
         </div>
     </main>
   </div>
