@@ -37,6 +37,11 @@ router.get("/", async (req, res) => {
       schemeVersionDetails.spendingSectorArray = JSON.parse(schemeVersionDetails.spendingSectors);
     }
 
+    schemeVersionDetails.purposeArray = new Array();
+    if(schemeVersionDetails.purpose != null){
+      schemeVersionDetails.purposeArray = JSON.parse(schemeVersionDetails.purpose);
+    }
+
     res.render("publicusersearch/scheme-version", {
       currentURI: req.protocol + '://' + req.get('host') + req.originalUrl
     });

@@ -53,7 +53,12 @@ router.get("/", async (req, res) => {
       console.log("Body: ", response.data);
       searchmeasuredetails = response.data;
       schemeVersions = searchmeasuredetails.schemeVersions;
-      totalSearchResults = response.data.awardSearchResults.totalSearchResults;
+      
+      if(typeof response.data.awardSearchResults != 'undefined')
+        totalSearchResults = response.data.awardSearchResults.totalSearchResults;
+      else
+        totalSearchResults = 0;
+
       if(totalSearchResults > 0){      
         totalPages = response.data.awardSearchResults.totalPages;
         hasAwards = true;
@@ -75,6 +80,11 @@ router.get("/", async (req, res) => {
         var spendingSectorArray = JSON.parse(searchmeasuredetails.spendingSectors);
       }
 
+      var purposeArray = new Array();
+      if(typeof searchmeasuredetails.purpose !== 'undefined'){
+        var purposeArray = JSON.parse(searchmeasuredetails.purpose);
+      }
+
       if(response.data.status == "Deleted")
       {
         res.render("publicusersearch/noresults");
@@ -85,6 +95,7 @@ router.get("/", async (req, res) => {
         {
           currentURI: req.protocol + '://' + req.get('host') + req.originalUrl,
           spendingSectorArray,
+          purposeArray,
 
         });
       }
