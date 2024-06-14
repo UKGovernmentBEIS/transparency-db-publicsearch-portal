@@ -27,24 +27,27 @@ router.get("/", async (req, res) => {
     console.log(`Status: ${awardapidata.status}`);
     console.log("Body: ", awardapidata.data);
     searchawarddetails = awardapidata.data;
-
-    if(searchawarddetails.standaloneAward == "Yes" && req.headers.referer.includes("/standaloneawards"))
-    {      
-      backButton_href = "/standaloneawards";
-      backButton_text = "Back to standalone awards";
-    }
-    else if(req.headers.referer.includes("/searchresults"))
+    if(req.headers.referer && req.headers.referer.includes('/scheme') && typeof searchmeasuredetails !== 'undefined')
     {
-      backButton_href = "/searchresults";
-      backButton_text = "Back to search results";
-    }  
-    else if(req.headers.referer.includes("/scheme"))
-    {      
       backButton_href = "/scheme/?scheme=" + searchmeasuredetails.scNumber;
       backButton_text = "Back to scheme details";
+      backButton_method = "GET";
     }
     else
-      throw new Error("Referrer not recognised")
+    {
+      if(searchawarddetails.standaloneAward == "Yes")
+      {      
+        backButton_href = "/standaloneawards";
+        backButton_text = "Back to standalone awards";
+        backButton_method = "GET";
+      }
+      else
+      {
+        backButton_href = "/searchresults";
+        backButton_text = "Back to search results";
+        backButton_method = "POST";
+      }  
+    }
 
     if (searchawarddetails.subsidyMeasure.status === "Deleted" || searchawarddetails.status === "Rejected") {
       res.render("publicusersearch/noresults");

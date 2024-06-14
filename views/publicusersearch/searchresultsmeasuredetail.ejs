@@ -240,7 +240,7 @@
               <%= searchmeasuredetails.subsidyMeasure.lastModifiedTimestamp%>
             </dd>
           </div>
-            <div class="govuk-summary-list__row">
+          <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
               Spending Sectors
             </dt>
@@ -248,6 +248,22 @@
                 <% if(typeof spendingSectorArray !== 'undefined') { %>
                   <ul class="govuk-list govuk-list--bullet">
                       <% spendingSectorArray.forEach(function(item) { %>
+                      <li> <%=item %> </li>
+                      <% }); %>
+                  </ul>
+                  <% } else { %>
+                      NA
+                   <% } %>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Purpose
+            </dt>
+            <dd class="govuk-summary-list__value">
+                <% if(typeof purposeArray !== 'undefined') { %>
+                  <ul class="govuk-list govuk-list--bullet">
+                      <% purposeArray.forEach(function(item) { %>
                       <li> <%=item %> </li>
                       <% }); %>
                   </ul>

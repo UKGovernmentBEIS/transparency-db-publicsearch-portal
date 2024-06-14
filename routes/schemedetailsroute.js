@@ -80,6 +80,11 @@ router.get("/", async (req, res) => {
         var spendingSectorArray = JSON.parse(searchmeasuredetails.spendingSectors);
       }
 
+      var purposeArray = new Array();
+      if(typeof searchmeasuredetails.purpose !== 'undefined'){
+        var purposeArray = JSON.parse(searchmeasuredetails.purpose);
+      }
+
       if(response.data.status == "Deleted")
       {
         res.render("publicusersearch/noresults");
@@ -90,6 +95,7 @@ router.get("/", async (req, res) => {
         {
           currentURI: req.protocol + '://' + req.get('host') + req.originalUrl,
           spendingSectorArray,
+          purposeArray,
 
         });
       }
