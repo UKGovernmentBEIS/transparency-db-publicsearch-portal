@@ -107,7 +107,7 @@
           <dt class="govuk-summary-list__key">
             Policy objective
           </dt>
-          <dd class="govuk-summary-list__value render-newlines"><%= searchawarddetails.specificPolicyObjective %></dd>
+          <dd class="govuk-summary-list__value render-newlines"><%= (searchawarddetails.standaloneAward === 'No' || searchawarddetails.specificPolicyObjective === '') ? 'NA' : searchawarddetails.specificPolicyObjective %>
         </div>
 
         <div class="govuk-summary-list__row">
