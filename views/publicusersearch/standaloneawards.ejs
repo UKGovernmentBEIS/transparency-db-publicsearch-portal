@@ -6,34 +6,15 @@
   <%- include('../partials/headercss.ejs') %>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145652997-21"></script>
-  <script>
-    // window.dataLayer = window.dataLayer || [];
-
-    // function gtag() {
-    //   dataLayer.push(arguments);
-    // }
-    // gtag('js', new Date());
-    // gtag('config', 'UA-145652997-21');
-  </script>
-
 
   <link href="/assets/stylesheet/style.css" rel="stylesheet" type="text/css">
   <script type="text/javascript" src="/assets/javascripts/pagination.class.js"></script>
   <script type="text/javascript" src="/assets/javascripts/script.js" defer></script>
   <link href="/assets/stylesheet/govuk-accordion1.css" rel="stylesheet" media="all" />
   <script src="/assets/javascripts/vendor/modernizr.js"></script>
-  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
   <script src="/assets/javascripts/jquery.min.js"></script>
   <script src="/assets/javascripts/alasql.min.js"></script>
   <script src="/assets/javascripts/xlsx.core.min.js"></script>
-  <!-- <script type="text/javascript" language="javascript"
-  src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script> -->
-  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> -->
-  <!-- <script src="https://cdn.jsdelivr.net/jquery.cookie/1.4.0/jquery.cookie.min.js"></script> -->
-  <!-- <script src="https://cdn.jsdelivr.net/alasql/0.3/alasql.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.7.12/xlsx.core.min.js"></script> -->
-  <!-- <script src="http://alasql.org/console/alasql.min.js"></script>
-<script src="http://alasql.org/console/xlsx.core.min.js"></script> -->
 
   <script src="/assets/javascripts/searchfilterAccordion.js"></script>
   <script>
@@ -76,7 +57,7 @@
               "ID type": parsedResponse.awards[i].beneficiary.nationalIdType,
               "ID number": parsedResponse.awards[i].beneficiary.nationalId,
               "Goods or services": parsedResponse.awards[i].goodsServicesFilter,
-              "Spending region": parsedResponse.awards[i].spendingRegion,
+              "Spending region(s)": parsedResponse.awards[i].spendingRegion ? JSON.parse(parsedResponse.awards[i].spendingRegion) : "",
               "Spending sector": parsedResponse.awards[i].spendingSector,
             }
           }

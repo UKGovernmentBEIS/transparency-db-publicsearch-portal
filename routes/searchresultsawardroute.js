@@ -27,8 +27,14 @@ router.get("/", async (req, res) => {
     console.log(`Status: ${awardapidata.status}`);
     console.log("Body: ", awardapidata.data);
     searchawarddetails = awardapidata.data;
+    searchawarddetails.spendingRegionArray = new Array();
+
+    if (searchawarddetails.spendingRegion){
+      searchawarddetails.spendingRegionArray = JSON.parse(searchawarddetails.spendingRegion);
+    }
+
     if(req.headers.referer && req.headers.referer.includes('/scheme') && typeof searchmeasuredetails !== 'undefined')
-    {
+    {      
       backButton_href = "/scheme/?scheme=" + searchmeasuredetails.scNumber;
       backButton_text = "Back to scheme details";
       backButton_method = "GET";
