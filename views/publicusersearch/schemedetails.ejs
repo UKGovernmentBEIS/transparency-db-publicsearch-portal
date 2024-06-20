@@ -72,7 +72,7 @@
           </div>
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-            Subsidy scheme of interest or particular interest
+              Subsidies or Schemes of Interest (SSoI) or Subsidies or Schemes of Particular Interest (SSoPI)
           </dt>
           <dd class="govuk-summary-list__value">
             <%= searchmeasuredetails.subsidySchemeInterest %>
@@ -184,7 +184,7 @@
           </div>
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Notification or registration date
+              Start date
             </dt>
             <dd class="govuk-summary-list__value">
               <%= searchmeasuredetails.startDate %>
@@ -222,6 +222,22 @@
                 <% if(typeof spendingSectorArray !== 'undefined') { %>
                   <ul class="govuk-list govuk-list--bullet">
                       <% spendingSectorArray.forEach(function(item) { %>
+                      <li> <%=item %> </li>
+                      <% }); %>
+                  </ul>
+                  <% } else { %>
+                      NA
+                   <% } %>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Purpose
+            </dt>
+            <dd class="govuk-summary-list__value">
+                <% if(typeof purposeArray !== 'undefined') { %>
+                  <ul class="govuk-list govuk-list--bullet">
+                      <% purposeArray.forEach(function(item) { %>
                       <li> <%=item %> </li>
                       <% }); %>
                   </ul>

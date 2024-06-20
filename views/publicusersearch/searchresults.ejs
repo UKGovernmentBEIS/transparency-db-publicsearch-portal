@@ -57,7 +57,7 @@
               "ID type": parsedResponse.awards[i].beneficiary.nationalIdType,
               "ID number": parsedResponse.awards[i].beneficiary.nationalId,
               "Goods or services": parsedResponse.awards[i].goodsServicesFilter,
-              "Spending region": parsedResponse.awards[i].spendingRegion,
+              "Spending region(s)": parsedResponse.awards[i].spendingRegion ? JSON.parse(parsedResponse.awards[i].spendingRegion) : "",
               "Spending sector": parsedResponse.awards[i].spendingSector,
             }
           }
