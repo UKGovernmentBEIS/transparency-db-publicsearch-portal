@@ -55,7 +55,7 @@ router.get("/", async (req, res) => {
       }  
     }
 
-    if (searchawarddetails.subsidyMeasure.status == "Deleted") {
+    if (searchawarddetails.subsidyMeasure.status === "Deleted" || searchawarddetails.status === "Rejected") {
       res.render("publicusersearch/noresults");
     } else {
       res.render("publicusersearch/searchresultsawarddetail", {
