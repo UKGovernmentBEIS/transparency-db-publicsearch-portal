@@ -248,7 +248,7 @@ Gov.UK public user search - header rendering design
                     </a> 
                   </td>
                   <td class="govuk-table__cell"><%= item.grantingAuthorityResponse.grantingAuthorityName %></td>
-                  <td class="govuk-table__cell"><%= item.subsidyObjective %></td>
+                  <td class="govuk-table__cell td-overflow-format"><%= JSON.parse(item.subsidyObjective).join(', ') %> %></td>
                   <td class="govuk-table__cell"><%= item.spendingSector %></td>
                   <td class="govuk-table__cell" style="text-align:center"><%= item.legalGrantingDate%></td>
 
@@ -372,7 +372,7 @@ Gov.UK public user search - header rendering design
   <%- include('../partials/footer.ejs') %>
 
   <script src="/assets/javascripts/vendor/iframeResizer.contentWindow.js"></script>
-  <script src="/assets/javascripts/accordion/govuk-frontend-3.15.0.min.js"></script>
+  <script src="/assets/javascripts/accordion/govuk-frontend.js"></script>
   <script src="/assets/javascripts/accordion/example.js"></script>
 </body>
 

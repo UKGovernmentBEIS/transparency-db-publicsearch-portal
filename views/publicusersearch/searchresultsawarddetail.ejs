@@ -132,7 +132,22 @@
             Subsidy purpose
           </dt>
           <dd class="govuk-summary-list__value govuk-capitalize">
-            <%= searchawarddetails.subsidyObjective %>
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header govuk-!-width-one-half">Purpose(s)</th>
+              <td class="govuk-table__cell">
+                  <% if(objectiveArray.length > 0) { %>
+                  <ul class="govuk-list govuk-list--bullet">
+                      <% objectiveArray.forEach(function(item) { %>
+                          <%if(item != ""){%>
+                          <li> <%=item %> </li>
+                          <% } %>
+                      <% }); %>
+                  </ul>
+                  <% } else { %>
+                      NA
+                   <% } %>
+              </td>
+          </tr>
           </dd>
         </div>
         <div class="govuk-summary-list__row">
