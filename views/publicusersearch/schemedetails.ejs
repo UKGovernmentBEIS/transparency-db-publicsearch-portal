@@ -44,14 +44,22 @@
           </label>
         </div>
         <!-- Reject Message Block -->
-
-        <% if( searchmeasuredetails.status == "Inactive") { %>
-        <div class="govuk-form-group app-example govuk-inative-status">
-          <div class="app-example__toolbar">
-            <label>This scheme is not active</label>
+        <% if(searchmeasuredetails.status === "Inactive") {%>
+          <div class="govuk-form-group app-example">
+            <div class="app-example__toolbar">
+              <label>Comments</label>
+            </div>
+            <div class="app-example__frame">
+              <% if(searchmeasuredetails.reason && searchmeasuredetails.reason.length > 0) { %>
+              <p> <%= searchmeasuredetails.reason %></p>
+              <% } else { %>
+              <p>The subsidy measure <% if( searchmeasuredetails.status=="Inactive"){
+               %> deactivation <%
+               } else {%> deletion<%}%> reason not mentioned </p>
+            <% } %>
+            </div>
           </div>
-        </div>
-        <% } %>
+          <% } %>
         <!-- Reject Message Block -->
         <ul class="govuk-summary-list govuk-!-margin-bottom-9">
           <div class="govuk-summary-list__row">
