@@ -242,7 +242,7 @@
                     </a>
                   </th>
                   <th scope="col" class="govuk-table__header app-custom-class">Date Published</th>
-                  <th scope="col" style="text-align:left" class="govuk-table__header app-custom-class">Subsidy Scheme</th>
+                    <th scope="col" style="text-align:left" class="govuk-table__header app-custom-class">Subsidy Scheme</th>
                   <th scope="col" class="govuk-table__header app-custom-class" aria-sort="none">Subsidy Amount</th>
                 </tr>
               </thead>
@@ -258,7 +258,7 @@
                   <td class="govuk-table__cell"><%= item.subsidyObjective %></td>
                   <td class="govuk-table__cell"><%= item.spendingSector %></td>
                   <td class="govuk-table__cell" style="text-align:center"><%= item.legalGrantingDate%></td>
-                  <td class="govuk-table__cell"><%= item.lastModifiedTimestamp %></td>
+                  <td class="govuk-table__cell"><%= item.publishedAwardDate %></td>
                   <td class="govuk-table__cell"><a class="govuk-link"
                       href="/scheme/?scheme=<%=item.subsidyMeasure.scNumber %>"><%= item.subsidyMeasure.subsidyMeasureTitle  %></a>
                   </td>
