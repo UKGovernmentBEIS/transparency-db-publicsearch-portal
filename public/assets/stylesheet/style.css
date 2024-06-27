@@ -154,6 +154,7 @@ a {
   max-width: 190px; 
   overflow: hidden; 
   text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .new-grid-width {

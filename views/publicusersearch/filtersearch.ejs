@@ -249,7 +249,7 @@ Gov.UK public user search - header rendering design
                     </a> 
                   </td>
                   <td class="govuk-table__cell"><%= item.grantingAuthorityResponse.grantingAuthorityName %></td>
-                  <td class="govuk-table__cell"><%= item.subsidyObjective %></td>
+                  <td class="govuk-table__cell td-overflow-format"><%= JSON.parse(item.subsidyObjective).join(', ') %> %></td>
                   <td class="govuk-table__cell"><%= item.spendingSector %></td>
                   <td class="govuk-table__cell" style="text-align:center"><%= item.legalGrantingDate%></td>
 

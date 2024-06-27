@@ -27,6 +27,12 @@ router.get("/", async (req, res) => {
     console.log(`Status: ${awardapidata.status}`);
     console.log("Body: ", awardapidata.data);
     searchawarddetails = awardapidata.data;
+
+    var objectiveArray = new Array();
+    if(searchawarddetails.subsidyObjective != null){
+      objectiveArray = JSON.parse(searchawarddetails.subsidyObjective);
+    }
+
     searchawarddetails.spendingRegionArray = new Array();
 
     if (searchawarddetails.spendingRegion){
@@ -59,8 +65,7 @@ router.get("/", async (req, res) => {
       res.render("publicusersearch/noresults");
     } else {
       res.render("publicusersearch/searchresultsawarddetail", {
-        backButton_href,
-        backButton_text
+        objectiveArray
       });
     }
   } catch (err) {

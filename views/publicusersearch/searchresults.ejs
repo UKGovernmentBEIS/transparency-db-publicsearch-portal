@@ -43,7 +43,7 @@
               "Subsidy award number": parsedResponse.awards[i].awardNumber,
               "Subsidy award status": parsedResponse.awards[i].status,
               "Subsidy scheme name": parsedResponse.awards[i].subsidyMeasure.subsidyMeasureTitle,
-              "Subsidy purpose": parsedResponse.awards[i].subsidyObjective,
+              "Subsidy purpose": JSON.parse(parsedResponse.awards[i].subsidyObjective).join(', '),
               "Subsidy form": parsedResponse.awards[i].subsidyInstrument,
               "Subsidy element full amount/£": parsedResponse.awards[i].subsidyFullAmountExact,
               "Subsidy element full amount range/£": parsedResponse.awards[i].subsidyFullAmountRange,
@@ -255,7 +255,7 @@
                     </a> 
                   </td>
                   <td class="govuk-table__cell"><%= item.grantingAuthorityResponse.grantingAuthorityName %></td>
-                  <td class="govuk-table__cell"><%= item.subsidyObjective %></td>
+                  <td class="govuk-table__cell td-overflow-format"><%= JSON.parse(item.subsidyObjective).join(', ') %></td>
                   <td class="govuk-table__cell"><%= item.spendingSector %></td>
                   <td class="govuk-table__cell" style="text-align:center"><%= item.legalGrantingDate%></td>
                   <td class="govuk-table__cell"><%= item.publishedAwardDate %></td>

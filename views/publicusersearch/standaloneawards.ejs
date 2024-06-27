@@ -43,7 +43,7 @@
               "Specific policy objective" : parsedResponse.awards[i].specificPolicyObjective ? parsedResponse.awards[i].specificPolicyObjective : "",
               "Subsidy award status": parsedResponse.awards[i].status,
               "Subsidy scheme name": parsedResponse.awards[i].subsidyMeasure.subsidyMeasureTitle,
-              "Subsidy purpose": parsedResponse.awards[i].subsidyObjective,
+              "Subsidy purpose": JSON.parse(parsedResponse.awards[i].subsidyObjective).join(', '),
               "Subsidy form": parsedResponse.awards[i].subsidyInstrument,
               "Subsidy element full amount/£": parsedResponse.awards[i].subsidyFullAmountExact,
               "Subsidy element full amount range/£": parsedResponse.awards[i].subsidyFullAmountRange,
@@ -237,7 +237,7 @@
                   <td class="govuk-table__cell"><a class="govuk-link"
                       href="/searchresultsawardroute/?page=<%=item.awardNumber %>"><%= item.beneficiary.beneficiaryName  %>
                     </a> </td>
-                  <td class="govuk-table__cell"><%= item.subsidyObjective %></td>
+                  <td class="govuk-table__cell td-overflow-format"><%= JSON.parse(item.subsidyObjective).join(', ') %></td>
                   <td class="govuk-table__cell"><%= item.spendingSector %></td>
                   <td class="govuk-table__cell"><%= item.subsidyInstrument %></td>
 
