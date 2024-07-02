@@ -21,52 +21,65 @@ Gov.UK public user search - header rendering design
       <%- include('../partials/banner.ejs') %>
       <div class="govuk-main-wrapper ">
         <div class="govuk-grid-row">
-          <div class="govuk-grid-column-two-thirds">
             <h1 class="govuk-heading-xl">
-              View subsidies awarded by UK public authorities</h1>
-          </div>
+              View subsidies awarded by UK public authorities
+            </h1>
         </div>
 
         <div class="govuk-grid-row">
-          <div class="govuk-grid-column-two-thirds">
-            <p class="govuk-body">There are two ways to view subsidies awarded to businesses.</p>
-            <p class="govuk-body">You can answer a number of questions to search for particular subsidies.</p>
-            <form action="/beneficiaryname" method="POST" class="govuk-padding-top-2">
+            <p class="govuk-body">The subsidy database holds information on subsidy schemes and subsidy awards given to businesses. 
+              UK public authorities are required to upload information on subsidy schemes and subsidy awards in compliance with their obligations on the Subsidy Control Act 2022.
+            </p>
 
+            <form action="/standaloneawards" method="GET" class="govuk-padding-top-2">
+              <button class="govuk-button " data-module="govuk-button" id="homepage_button_view_all_standalone_awards">
+                View all standalone subsidy awards
+              </button>
+            </form>
+
+            <form action="/schemes" method="GET" class="govuk-padding-top-2">
+              <button class="govuk-button " data-module="govuk-button" id="homepage_button_view_all_schemes">
+                View all subsidy schemes
+              </button>
+            </form>
+
+            <form action="/searchresults" method="POST" class="govuk-padding-top-2">
+              <button class="govuk-button " data-module="govuk-button" id="homepage_button_view_all_awards"
+                name="homepage_button" value="show_results">
+                View all subsidy awards made under schemes
+              </button>
+            </form>
+            
+            <br/>
+
+            <p class="govuk-body">
+              You can answer a number of questions to search for particular subsidies.
+            </p>
+
+            <form action="/beneficiaryname" method="POST">
               <button class="govuk-button" data-module="govuk-button" id="homepage_button_start_search"
                 name="homepage_button" value="start_now">
                 Start search
               </button>
               <p></p>
             </form>
-            <p class="govuk-body">You can view the full list of active subsidy schemes and all the businesses that have
-              received subsidies
-              under each scheme.</p>
-            <form action="/schemes" method="GET" class="govuk-padding-top-2">
-              <button class="govuk-button " data-module="govuk-button" id="homepage_button_view_all_schemes">
-                View all subsidy schemes
-              </button>
-            </form>
-            <form action="/searchresults" method="POST" class="govuk-padding-top-2">
-              <button class="govuk-button " data-module="govuk-button" id="homepage_button_view_all_awards"
-                name="homepage_button" value="show_results">
-                View all subsidy awards
-              </button>
-            </form>
+
             <form action="/mfaawards" method="GET" class="govuk-padding-top-2">
               <button class="govuk-button " data-module="govuk-button" id="homepage_button_view_all_mfa_spei">
                 View all MFA / SPEI Assistance awards
               </button>
             </form>
-            <form action="/standaloneawards" method="GET" class="govuk-padding-top-2">
-              <button class="govuk-button " data-module="govuk-button" id="homepage_button_view_all_standalone_awards">
-                View all standalone subsidy awards
-              </button>
-            </form>
-            <a aria-label="Search for subsidies awarded before 1 January 2021" class="govuk-link" target="_blank"
+
+            <p class="govuk-body">
+              Minimal financial assistance (MFA) are low-value subsidies that do not need to comply with the subsidy control principles. Businesses cannot receive more than £315,000 in MFA over three financial years.
+            </p>
+            <p class="govuk-body">
+              Services of Public Economic Interest (SPEI) are essential services provided by a public authority to the public which would not be provided under normal market conditions. SPEI may be considered to constitute SPEI Assistance (SPEIA) if the total amount of minimal or SPEI financial assistance given to a business does not exceed £725,000 over the three financial years.
+            </p>
+
+            <a aria-label="Search for subsidies awarded before 1 January 2021" class="govuk-link govuk-body" target="_blank"
               href="https://ec.europa.eu/transparencyregister/public/consultation/search.do?locale=en">Search for
               subsidies awarded before 1 January 2021.</a>
-          </div>
         </div>
       </div>
     </main>
