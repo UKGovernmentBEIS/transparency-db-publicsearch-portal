@@ -46,6 +46,66 @@ router.get("/", async (req, res) => {
     frontend_totalRecordsPerPage = req.query.limit;
   }
 
+  DateErrors = [];
+  DateFocus = [];
+  Additem = 0;
+  errorList = 0;
+
+  specificDateErrors = {
+    startDate_Error:false,
+    endDate_Error:false,
+  }
+
+  var validateDate = require("validate-date");
+
+  startFromDateString = req.query["start-year-from"] + "-" + req.query["start-month-from"] + "-" + req.query["start-day-from"];
+  if((startFromDateString != "undefined-undefined-undefined") && (startFromDateString != "--")){
+    if(!(validStartFromDate = validateDate(startFromDateString, responseType="boolean"))){
+      specificDateErrors.startDate_Error = true;
+      DateErrors[Additem] =
+        "Enter a valid date for the day";
+      DateFocus[Additem] = "#filter-start-day-from";
+      Additem = Additem + 1;
+      errorList = errorList = 1;
+    }
+  }
+
+  startToDateString = req.query["start-year-to"] + "-" + req.query["start-month-to"] + "-" + req.query["start-day-to"];
+  if((startToDateString != "undefined-undefined-undefined")  && (startToDateString != "--")){
+    if(!(validStartToDate = validateDate(startToDateString, responseType="boolean"))){
+      specificDateErrors.startDate_Error = true;
+      DateErrors[Additem] =
+        "Enter a valid date for the day";
+      DateFocus[Additem] = "#filter-start-day-to";
+      Additem = Additem + 1;
+      errorList = errorList = 1;
+    }
+  }
+
+  endFromDateString = req.query["end-year-from"] + "-" + req.query["end-month-from"] + "-" + req.query["end-day-from"];
+  if((endFromDateString != "undefined-undefined-undefined") && (endFromDateString != "--")){
+    if(!(validEndFromDate = validateDate(endFromDateString, responseType="boolean"))){
+      specificDateErrors.endDate_Error = true;
+      DateErrors[Additem] =
+        "Enter a valid date for the day";
+      DateFocus[Additem] = "#filter-end-day-from";
+      Additem = Additem + 1;
+      errorList = errorList = 1;
+    }
+  }
+
+  endToDateString = req.query["end-year-to"] + "-" + req.query["end-month-to"] + "-" + req.query["end-day-to"];
+  if((endToDateString != "undefined-undefined-undefined") && (endToDateString !="--")){
+    if(!(validEndFromDate = validateDate(endToDateString, responseType="boolean"))){
+      specificDateErrors.endDate_Error = true;
+      DateErrors[Additem] =
+        "Enter a valid date for the day";
+      DateFocus[Additem] = "#filter-end-day-to";
+      Additem = Additem + 1;
+      errorList = errorList = 1;
+    }
+  }
+
   try {
     const apidata = await axios.get(
       beis_url_publicsearch + req.originalUrl,
@@ -250,12 +310,31 @@ router.get("/", async (req, res) => {
       start_record,
       totalrows,
       current_page_active,
+      DateErrors,
+      DateFocus,
+      specificDateErrors,
     });
   } catch (err) {
     response_error_message = err;
     console.log("message error : " + err);
     console.log("response_error_message catch : " + response_error_message);
-    res.render("publicusersearch/noresults");
+    if(DateErrors.length > 0){
+      res.render("publicusersearch/schemes", {
+        gaList,
+        pageCount,
+        previous_page,
+        next_page,
+        end_record,
+        start_record,
+        totalrows,
+        current_page_active,
+        DateErrors,
+        DateFocus,
+        specificDateErrors,
+      });
+    }else{
+      res.render("publicusersearch/noresults");
+    }
   }
   // end of GET call
 });
