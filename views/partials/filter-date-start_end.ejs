@@ -8,6 +8,10 @@
       toDay = filters.startToDay;
       toMonth = filters.startToMonth;
       toYear = filters.startToYear;
+      error = false;
+      if(specificDateErrors.startDate_Error){
+        error = true;
+      };
       break;
     case 'end':
       defaultHeaderNumber = "5";
@@ -17,19 +21,23 @@
       toDay = filters.endToDay;
       toMonth = filters.endToMonth;
       toYear = filters.endToYear;
+      error = false;
+      if(specificDateErrors.endDate_Error){
+        error = true;
+      };
       break;
   }
   %>
-  <div class="govuk-accordion__section ">
-    <div class="govuk-accordion__section-header">
+  <div class="govuk-accordion__section">
+    <div class="govuk-accordion__section-header <% if(error) {%> govuk-form-group--error<% } %>">
       <h2 class="govuk-accordion__section-heading">
-          <span class="govuk-accordion__section-button" id="accordion-default-heading-<%= defaultHeaderNumber %>">
+          <span class="govuk-accordion__section-button" id="accordion-default-heading-<%= defaultHeaderNumber %>" >
           <%= startEnd.charAt(0).toUpperCase() + startEnd.slice(1); %> Date
           </span>
       </h2>
     </div>
-    <div id="accordion-default-content-1" class="govuk-accordion__section-content"
-      aria-labelledby="accordion-default-heading-<%= defaultHeaderNumber %>">
+    <div id="accordion-default-content-1" class="govuk-accordion__section-content <% if(error) {%> govuk-form-group--error<% } %>"
+      aria-labelledby="accordion-default-heading-<%= defaultHeaderNumber %> ">
       <div class="govuk-form-group">
           <div class="govuk-form-group govuk-grid-row">
             <div class="govuk-grid-column-one-half"> <!-- From Column Start -->
@@ -92,5 +100,6 @@
 
           </div>
       </div>
+  </div>
   </div>
 <% }); %>

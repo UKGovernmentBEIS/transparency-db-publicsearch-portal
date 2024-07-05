@@ -82,17 +82,6 @@
         }
       });
     }  //end of save file
-    $(document).ready(function () {
-      if (
-        $(".govuk-accordion__section").hasClass(
-          "govuk-accordion__section--expanded"
-        )
-      ) {
-        $(".govuk-accordion__section").removeClass(
-          "govuk-accordion__section--expanded"
-        );
-      }
-    });
   </script>
 </head>
 
@@ -184,6 +173,26 @@
         <span id="info-message" style="display:none" aria-hidden="true">
           On selecting, the page will reload and display the search results</span>
       </div>
+      <% if( DateErrors.length > 0 ){ %>
+
+        <div class="govuk-error-summary" role="alert" id="error-alert" tabindex="-1"
+          aria-labelledby="error-summary-title" data-module="govuk-error-summary">
+          <h2 class="govuk-error-summary__title" id="error-summary-title">There is a problem</h2>
+
+          <div class="govuk-error-summary__body">
+
+            <ul class="govuk-list govuk-error-summary__list">
+              <% for(var i=0; i < errorList  ; i++) {%>
+              <li> <a href="<%= DateFocus[i] %>"> <%= DateErrors[i] %> </a> </li>
+              <% } %>
+            </ul>
+
+          </div>
+
+        </div>
+
+        <% } %>
+
       <form action="/schemes" method="GET" id="filter-accordion-div">
         <div class="govuk-accordion" data-module="govuk-accordion" id="accordion-default">
           <%- include('../partials/results-per-page.ejs') %>
