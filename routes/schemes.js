@@ -8,6 +8,7 @@ const axios = require("axios");
 var request = require("request");
 const { debug } = require("request");
 const render = "publicusersearch/schemes";
+const validateDate = require("validate-date");
 
 router.get("/", async (req, res) => {
   res.set("X-Frame-Options", "DENY");
@@ -56,53 +57,82 @@ router.get("/", async (req, res) => {
     endDate_Error:false,
   }
 
-  var validateDate = require("validate-date");
+  function validateDateOrder(fromDate, toDate) {
+    if (toDate < fromDate) {
+        return false;
+    } else {
+        return true;
+    }
+};
 
   startFromDateString = req.query["start-year-from"] + "-" + req.query["start-month-from"] + "-" + req.query["start-day-from"];
   if((startFromDateString != "undefined-undefined-undefined") && (startFromDateString != "--")){
-    if(!(validStartFromDate = validateDate(startFromDateString, responseType="boolean"))){
+    if(!validateDate(startFromDateString, responseType="boolean")){
       specificDateErrors.startDate_Error = true;
       DateErrors[Additem] =
-        "Enter a valid date for the day";
+        "Enter a valid date for the start from date";
       DateFocus[Additem] = "#filter-start-day-from";
       Additem = Additem + 1;
-      errorList = errorList = 1;
+      errorList = errorList + 1;
     }
   }
 
   startToDateString = req.query["start-year-to"] + "-" + req.query["start-month-to"] + "-" + req.query["start-day-to"];
   if((startToDateString != "undefined-undefined-undefined")  && (startToDateString != "--")){
-    if(!(validStartToDate = validateDate(startToDateString, responseType="boolean"))){
+    if(!validateDate(startToDateString, responseType="boolean")){
       specificDateErrors.startDate_Error = true;
       DateErrors[Additem] =
-        "Enter a valid date for the day";
+        "Enter a valid date for the start to date";
       DateFocus[Additem] = "#filter-start-day-to";
       Additem = Additem + 1;
-      errorList = errorList = 1;
+      errorList = errorList + 1;
     }
   }
 
+  if((startToDateString != "undefined-undefined-undefined")  && (startToDateString != "--") && (startFromDateString != "undefined-undefined-undefined")  && (startFromDateString != "--")){
+    if(!validateDateOrder(startFromDateString, startToDateString)){
+      specificDateErrors.startDate_Error = true;
+      DateErrors[Additem] =
+        "The Start from date cannot be after the Start to date";
+      DateFocus[Additem] = "#filter-start-day-from";
+      Additem = Additem + 1;
+      errorList = errorList + 1;
+    }
+  }
+ 
+
   endFromDateString = req.query["end-year-from"] + "-" + req.query["end-month-from"] + "-" + req.query["end-day-from"];
   if((endFromDateString != "undefined-undefined-undefined") && (endFromDateString != "--")){
-    if(!(validEndFromDate = validateDate(endFromDateString, responseType="boolean"))){
+    if(!validateDate(endFromDateString, responseType="boolean")){
       specificDateErrors.endDate_Error = true;
       DateErrors[Additem] =
-        "Enter a valid date for the day";
+        "Enter a valid date for the end from date";
       DateFocus[Additem] = "#filter-end-day-from";
       Additem = Additem + 1;
-      errorList = errorList = 1;
+      errorList = errorList + 1;
     }
   }
 
   endToDateString = req.query["end-year-to"] + "-" + req.query["end-month-to"] + "-" + req.query["end-day-to"];
   if((endToDateString != "undefined-undefined-undefined") && (endToDateString !="--")){
-    if(!(validEndFromDate = validateDate(endToDateString, responseType="boolean"))){
+    if(!validateDate(endToDateString, responseType="boolean")){
       specificDateErrors.endDate_Error = true;
       DateErrors[Additem] =
-        "Enter a valid date for the day";
+        "Enter a valid date for the end to date";
       DateFocus[Additem] = "#filter-end-day-to";
       Additem = Additem + 1;
-      errorList = errorList = 1;
+      errorList = errorList + 1;
+    }
+  }
+
+  if((endToDateString != "undefined-undefined-undefined")  && (endToDateString != "--") && (endFromDateString != "undefined-undefined-undefined")  && (endFromDateString != "--")){
+    if(!validateDateOrder(endFromDateString, endToDateString)){
+      specificDateErrors.endDate_Error = true;
+      DateErrors[Additem] =
+        "The End from date cannot be after the End to date";
+      DateFocus[Additem] = "#filter-end-day-from";
+      Additem = Additem + 1;
+      errorList = errorList + 1;
     }
   }
 

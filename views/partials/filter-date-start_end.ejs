@@ -28,21 +28,6 @@
       break;
   }
   %>
-  <script>
-    $(document).ready(function () {
-    if (error) {
-        $(".govuk-accordion__section").addClass("govuk-accordion__section--expanded");
-        $(".govuk-accordion__section-header").addClass("govuk-accordion__section--expanded");
-    } else {
-        if ($(".govuk-accordion__section").hasClass("govuk-accordion__section--expanded")) {
-            $(".govuk-accordion__section").removeClass("govuk-accordion__section--expanded");
-        }
-        if ($(".govuk-accordion__section-header").hasClass("govuk-accordion__section--expanded")) {
-            $(".govuk-accordion__section-header").removeClass("govuk-accordion__section--expanded");
-        }
-    }
-  });
-  </script>
   <div class="govuk-accordion__section">
     <div class="govuk-accordion__section-header <% if(error) {%> govuk-form-group--error<% } %>">
       <h2 class="govuk-accordion__section-heading">
@@ -115,5 +100,6 @@
 
           </div>
       </div>
+  </div>
   </div>
 <% }); %>
