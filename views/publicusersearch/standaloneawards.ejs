@@ -6,34 +6,15 @@
   <%- include('../partials/headercss.ejs') %>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145652997-21"></script>
-  <script>
-    // window.dataLayer = window.dataLayer || [];
-
-    // function gtag() {
-    //   dataLayer.push(arguments);
-    // }
-    // gtag('js', new Date());
-    // gtag('config', 'UA-145652997-21');
-  </script>
-
 
   <link href="/assets/stylesheet/style.css" rel="stylesheet" type="text/css">
   <script type="text/javascript" src="/assets/javascripts/pagination.class.js"></script>
   <script type="text/javascript" src="/assets/javascripts/script.js" defer></script>
   <link href="/assets/stylesheet/govuk-accordion1.css" rel="stylesheet" media="all" />
   <script src="/assets/javascripts/vendor/modernizr.js"></script>
-  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
   <script src="/assets/javascripts/jquery.min.js"></script>
   <script src="/assets/javascripts/alasql.min.js"></script>
   <script src="/assets/javascripts/xlsx.core.min.js"></script>
-  <!-- <script type="text/javascript" language="javascript"
-  src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script> -->
-  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> -->
-  <!-- <script src="https://cdn.jsdelivr.net/jquery.cookie/1.4.0/jquery.cookie.min.js"></script> -->
-  <!-- <script src="https://cdn.jsdelivr.net/alasql/0.3/alasql.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.7.12/xlsx.core.min.js"></script> -->
-  <!-- <script src="http://alasql.org/console/alasql.min.js"></script>
-<script src="http://alasql.org/console/xlsx.core.min.js"></script> -->
 
   <script src="/assets/javascripts/searchfilterAccordion.js"></script>
   <script>
@@ -57,11 +38,16 @@
               "Standalone award": parsedResponse.awards[i].standaloneAward,
               "Subsidy control number": parsedResponse.awards[i].subsidyMeasure.scNumber,
               "Subsidy award description": parsedResponse.awards[i].subsidyAwardDescription ? parsedResponse.awards[i].subsidyAwardDescription : "",
+              "Public authority URL": parsedResponse.awards[i].authorityURL,
+              "Public authority URL Description": parsedResponse.awards[i].authorityURLDescription,
               "Subsidy award number": parsedResponse.awards[i].awardNumber,
+              "Subsidies or Schemes of Interest (SSoI) or Subsidies or Schemes of Particular Interest (SSoPI)": parsedResponse.awards[i].subsidyAwardInterest ? parsedResponse.awards[i].subsidyAwardInterest : "",
+              "Specific policy objective" : parsedResponse.awards[i].specificPolicyObjective ? parsedResponse.awards[i].specificPolicyObjective : "",
               "Subsidy award status": parsedResponse.awards[i].status,
               "Subsidy scheme name": parsedResponse.awards[i].subsidyMeasure.subsidyMeasureTitle,
-              "Subsidy purpose": parsedResponse.awards[i].subsidyObjective,
-              "Subsidy type": parsedResponse.awards[i].subsidyInstrument,
+              "Services of Public Economic Interest (SPEI)": parsedResponse.awards[i].spei ? parsedResponse.awards[i].spei : "",
+              "Subsidy purpose": JSON.parse(parsedResponse.awards[i].subsidyObjective).join(', '),
+              "Subsidy form": parsedResponse.awards[i].subsidyInstrument,
               "Subsidy element full amount/£": parsedResponse.awards[i].subsidyFullAmountExact,
               "Subsidy element full amount range/£": parsedResponse.awards[i].subsidyFullAmountRange,
               "Public authority name": parsedResponse.awards[i].grantingAuthorityResponse.grantingAuthorityName,
@@ -75,7 +61,7 @@
               "ID type": parsedResponse.awards[i].beneficiary.nationalIdType,
               "ID number": parsedResponse.awards[i].beneficiary.nationalId,
               "Goods or services": parsedResponse.awards[i].goodsServicesFilter,
-              "Spending region": parsedResponse.awards[i].spendingRegion,
+              "Spending region(s)": parsedResponse.awards[i].spendingRegion ? JSON.parse(parsedResponse.awards[i].spendingRegion) : "",
               "Spending sector": parsedResponse.awards[i].spendingSector,
             }
           }
@@ -237,7 +223,7 @@
                   </th>
                   <th scope="col" class="govuk-table__header app-custom-class">Subsidy purpose</th>
                   <th scope="col" class="govuk-table__header app-custom-class">Spending sector</th>
-                  <th scope="col" class="govuk-table__header app-custom-class">Subsidy type</th>
+                  <th scope="col" class="govuk-table__header app-custom-class">Subsidy form</th>
                   <th scope="col" class="govuk-table__header app-custom-class" aria-sort="none">
                       Subsidy date
                   <th scope="col" style="text-align:left" class="govuk-table__header app-custom-class">Subsidy scheme
@@ -254,7 +240,7 @@
                   <td class="govuk-table__cell"><a class="govuk-link"
                       href="/searchresultsawardroute/?page=<%=item.awardNumber %>"><%= item.beneficiary.beneficiaryName  %>
                     </a> </td>
-                  <td class="govuk-table__cell"><%= item.subsidyObjective %></td>
+                  <td class="govuk-table__cell td-overflow-format"><%= JSON.parse(item.subsidyObjective).join(', ') %></td>
                   <td class="govuk-table__cell"><%= item.spendingSector %></td>
                   <td class="govuk-table__cell"><%= item.subsidyInstrument %></td>
 

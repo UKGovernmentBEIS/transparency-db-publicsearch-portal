@@ -7,15 +7,6 @@
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145652997-21"></script>
-  <script>
-    // window.dataLayer = window.dataLayer || [];
-
-    // function gtag() {
-    //   dataLayer.push(arguments);
-    // }
-    // gtag('js', new Date());
-    // gtag('config', 'UA-145652997-21');
-  </script>
 </head>
 
 <body class="govuk-template__body app-example-page">
@@ -25,11 +16,9 @@
   <div class="govuk-width-container ">
     <%- include('../partials/banner.ejs') %>
     <main class="govuk-main-wrapper " id="main-content" role="main">
-      <a <% if(searchawarddetails.standaloneAward.toLowerCase() == "yes"){ %>
-        href="/standaloneawards"
-      <% }else{ %>
-        href="/searchresults"
-      <% } %> class="govuk-back-link" aria-label="back to search results page">Back</a>
+      <a href=<%=backButton_href%> class="govuk-back-link" id="back-button-link">
+        Back
+      </a>
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-three-quarters">
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
@@ -40,10 +29,8 @@
         </div>
 
         <div class="govuk-grid-column-one-quarter">
-          <!-- <form action="/homepage" method="POST" >         -->
           <button class="govuk-button_cancel_last_xl" data-module="govuk-button" onclick="window.print()">
             Print page </button>
-          <!-- </form>   -->
         </div>
       </div>
 
@@ -93,8 +80,7 @@
             <% if(searchawarddetails.subsidyMeasure.scNumber == 'NA'){ %>
               <%= searchawarddetails.subsidyMeasure.scNumber %>
             <% }else{ %>
-              <a class="govuk-link" href="/searchresultsmeasureroute/?page=<%=awardnumber %>"
-              aria-label="subsidy control number  <%= (searchawarddetails.subsidyMeasure.scNumber).substring(2,7) %>">
+              <a class="govuk-link" href="/scheme/?scheme=<%=searchawarddetails.subsidyMeasure.scNumber%>">
               <%= searchawarddetails.subsidyMeasure.scNumber %> </a>
             <% } %>
           </dd>
@@ -107,6 +93,21 @@
           <dd class="govuk-summary-list__value">
             <%= searchawarddetails.awardNumber %>
           </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Subsidies or Schemes of Interest (SSoI) or Subsidies or Schemes of Particular Interest (SSoPI)
+          </dt>
+          <dd class="govuk-summary-list__value render-newlines"><%= (searchawarddetails.standaloneAward === 'No' || searchawarddetails.subsidyAwardInterest === '') ? 'NA' : searchawarddetails.subsidyAwardInterest %>
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Policy objective
+          </dt>
+          <dd class="govuk-summary-list__value render-newlines"><%= (searchawarddetails.standaloneAward === 'No' || searchawarddetails.specificPolicyObjective === '') ? 'NA' : searchawarddetails.specificPolicyObjective %>
         </div>
 
         <div class="govuk-summary-list__row">
@@ -133,17 +134,41 @@
             <%= searchawarddetails.subsidyMeasure.subsidyMeasureTitle %>
           </dd>
         </div>
+
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Subsidy purpose
+            Services of Public Economic Interest (SPEI)
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <%= searchawarddetails.spei %>
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Subsidy purpose(s)
           </dt>
           <dd class="govuk-summary-list__value govuk-capitalize">
-            <%= searchawarddetails.subsidyObjective %>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">
+                  <% if(objectiveArray.length > 0) { %>
+                  <ul class="govuk-list govuk-list--bullet">
+                      <% objectiveArray.forEach(function(item) { %>
+                          <%if(item != ""){%>
+                          <li> <%=item %> </li>
+                          <% } %>
+                      <% }); %>
+                  </ul>
+                  <% } else { %>
+                      NA
+                   <% } %>
+              </td>
+          </tr>
           </dd>
         </div>
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Subsidy type
+            Subsidy form
           </dt>
           <dd class="govuk-summary-list__value">
             <%= searchawarddetails.subsidyInstrument%>
@@ -176,6 +201,29 @@
           </dt>
           <dd class="govuk-summary-list__value">
             <%= searchawarddetails.grantingAuthorityResponse.grantingAuthorityName  %>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Weblink to public authority text of subsidy
+          </dt>
+          <dd class="govuk-summary-list__value">
+          <% if(typeof searchawarddetails.authorityURL != 'undefined') { %>
+                  <a aria-label="Weblink to public authority" target="_blank"
+                    href="<%= (searchawarddetails.authorityURL.includes('https://')) ?  searchawarddetails.authorityURL : 'https://'+searchawarddetails.authorityURL %>">
+                    <%=searchawarddetails.authorityURL %>
+                  </a>
+          <% } else { %>
+              <a aria-label="Public authority policy URL not applicable" >NA</a>
+          </dd>
+          <%  } %>
+      </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Weblink description
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <%= (searchawarddetails.standaloneAward === 'No') ? 'NA' : searchawarddetails.authorityURLDescription %>
           </dd>
         </div>
 
@@ -269,10 +317,18 @@
         </div>
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Region
+            Region(s)
           </dt>
           <dd class="govuk-summary-list__value">
-            <%= searchawarddetails.spendingRegion %>
+            <% if(searchawarddetails.spendingRegionArray.length > 0) { %>
+                <ul class="govuk-list govuk-list--bullet">
+                    <% searchawarddetails.spendingRegionArray.forEach(function(item) { %>
+                    <li> <%= item %> </li>
+                    <% }); %>
+                </ul>
+            <% } else { %>
+                NA
+            <% } %>
           </dd>
         </div>
         <div class="govuk-summary-list__row">
@@ -285,19 +341,14 @@
         </div>
 
       </ul>
-
-
-      <form <% if(searchawarddetails.standaloneAward.toLowerCase() == "yes"){ %>
-        action="/standaloneawards"
-      <% }else{ %>
-        action="/searchresults"
-      <% } %>
-         method="GET">
         <div>
-          <button class="govuk-button" data-module="govuk-button">
-            Back to search results </button>
+          <form action="<%=backButton_href%>" method="<%=backButton_method%>" class="govuk-padding-top-2">
+            <button class="govuk-button " data-module="govuk-button" id="homepage_button_view_all_awards"
+              name="homepage_button" value="show_results">
+              <%=backButton_text%>
+            </button>
+          </form>
         </div>
-      </form>
     </main>
   </div>
 

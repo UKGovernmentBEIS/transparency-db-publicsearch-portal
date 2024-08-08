@@ -34,7 +34,6 @@ test("Unit testing for search results measure route Test for GET call", (done) =
       gaSubsidyWebLink: "",
       subsidyMeasureTitle: "COVID-19 Temporary Framework for UK authorities",
       scNumber: "SC10033",
-      adhoc: false,
       legalBasis: {
         legalBasisText: "R&D&I Framework",
       },
@@ -58,7 +57,6 @@ test("Unit testing for search results measure route Test for GET call", (done) =
         gaSubsidyWebLink: "",
         subsidyMeasureTitle: "COVID-19 Temporary Framework for UK authorities",
         scNumber: "SC10033",
-        adhoc: false,
         legalBasis: {
           legalBasisText: "R&D&I Framework",
         },

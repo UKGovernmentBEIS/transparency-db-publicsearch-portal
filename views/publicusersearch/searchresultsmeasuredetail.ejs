@@ -164,19 +164,6 @@
 
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Case type
-            </dt>
-            <dd class="govuk-summary-list__value">
-              <% if (searchmeasuredetails.subsidyMeasure.adhoc == false) { %>
-              Regular case
-              <% } else { %>
-              Ad hoc Case
-              <% } %>
-
-            </dd>
-          </div>
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
               Budget or amount
             </dt>
             <dd class="govuk-summary-list__value">
@@ -223,7 +210,7 @@
           </div>
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Notification or registration date
+              Start date
             </dt>
             <dd class="govuk-summary-list__value">
               <%= searchmeasuredetails.subsidyMeasure.startDate %>
@@ -253,7 +240,7 @@
               <%= searchmeasuredetails.subsidyMeasure.lastModifiedTimestamp%>
             </dd>
           </div>
-            <div class="govuk-summary-list__row">
+          <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
               Spending Sectors
             </dt>
@@ -261,6 +248,22 @@
                 <% if(typeof spendingSectorArray !== 'undefined') { %>
                   <ul class="govuk-list govuk-list--bullet">
                       <% spendingSectorArray.forEach(function(item) { %>
+                      <li> <%=item %> </li>
+                      <% }); %>
+                  </ul>
+                  <% } else { %>
+                      NA
+                   <% } %>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Purpose
+            </dt>
+            <dd class="govuk-summary-list__value">
+                <% if(typeof purposeArray !== 'undefined') { %>
+                  <ul class="govuk-list govuk-list--bullet">
+                      <% purposeArray.forEach(function(item) { %>
                       <li> <%=item %> </li>
                       <% }); %>
                   </ul>

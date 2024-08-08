@@ -28,10 +28,45 @@ router.get("/", async (req, res) => {
     console.log("Body: ", awardapidata.data);
     searchawarddetails = awardapidata.data;
 
-    if (searchawarddetails.subsidyMeasure.status == "Deleted") {
+    var objectiveArray = new Array();
+    if(searchawarddetails.subsidyObjective != null){
+      objectiveArray = JSON.parse(searchawarddetails.subsidyObjective);
+    }
+
+    searchawarddetails.spendingRegionArray = new Array();
+
+    if (searchawarddetails.spendingRegion){
+      searchawarddetails.spendingRegionArray = JSON.parse(searchawarddetails.spendingRegion);
+    }
+
+    if(req.headers.referer && req.headers.referer.includes('/scheme') && typeof searchmeasuredetails !== 'undefined')
+    {      
+      backButton_href = "/scheme/?scheme=" + searchmeasuredetails.scNumber;
+      backButton_text = "Back to scheme details";
+      backButton_method = "GET";
+    }
+    else
+    {
+      if(searchawarddetails.standaloneAward == "Yes")
+      {      
+        backButton_href = "/standaloneawards";
+        backButton_text = "Back to standalone awards";
+        backButton_method = "GET";
+      }
+      else
+      {
+        backButton_href = "/searchresults";
+        backButton_text = "Back to search results";
+        backButton_method = "POST";
+      }  
+    }
+
+    if (searchawarddetails.subsidyMeasure.status === "Deleted" || searchawarddetails.status === "Rejected") {
       res.render("publicusersearch/noresults");
     } else {
-      res.render("publicusersearch/searchresultsawarddetail");
+      res.render("publicusersearch/searchresultsawarddetail", {
+        objectiveArray
+      });
     }
   } catch (err) {
 

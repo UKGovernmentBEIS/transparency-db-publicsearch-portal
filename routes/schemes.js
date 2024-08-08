@@ -8,6 +8,7 @@ const axios = require("axios");
 var request = require("request");
 const { debug } = require("request");
 const render = "publicusersearch/schemes";
+const validateDate = require("validate-date");
 
 router.get("/", async (req, res) => {
   res.set("X-Frame-Options", "DENY");
@@ -31,6 +32,8 @@ router.get("/", async (req, res) => {
     API_response_code = `${gaListRequest.status}`;
     console.log("All GAs API_response_code: try " + API_response_code);
     gaList = gaListRequest.data.gaList;
+    gaList.sort((a, b) => a.grantingAuthorityName.localeCompare(b.grantingAuthorityName));
+
   }catch(err){
     response_error_message = err;
     console.log("message error : " + err);
@@ -42,6 +45,95 @@ router.get("/", async (req, res) => {
 
   if(req.query.limit != "" && req.query.limit != null){
     frontend_totalRecordsPerPage = req.query.limit;
+  }
+
+  DateErrors = [];
+  DateFocus = [];
+  Additem = 0;
+  errorList = 0;
+
+  specificDateErrors = {
+    startDate_Error:false,
+    endDate_Error:false,
+  }
+
+  function validateDateOrder(fromDate, toDate) {
+    if (toDate < fromDate) {
+        return false;
+    } else {
+        return true;
+    }
+};
+
+  startFromDateString = req.query["start-year-from"] + "-" + req.query["start-month-from"] + "-" + req.query["start-day-from"];
+  if((startFromDateString != "undefined-undefined-undefined") && (startFromDateString != "--")){
+    if(!validateDate(startFromDateString, responseType="boolean")){
+      specificDateErrors.startDate_Error = true;
+      DateErrors[Additem] =
+        "Enter a valid date for the start from date";
+      DateFocus[Additem] = "#filter-start-day-from";
+      Additem = Additem + 1;
+      errorList = errorList + 1;
+    }
+  }
+
+  startToDateString = req.query["start-year-to"] + "-" + req.query["start-month-to"] + "-" + req.query["start-day-to"];
+  if((startToDateString != "undefined-undefined-undefined")  && (startToDateString != "--")){
+    if(!validateDate(startToDateString, responseType="boolean")){
+      specificDateErrors.startDate_Error = true;
+      DateErrors[Additem] =
+        "Enter a valid date for the start to date";
+      DateFocus[Additem] = "#filter-start-day-to";
+      Additem = Additem + 1;
+      errorList = errorList + 1;
+    }
+  }
+
+  if((startToDateString != "undefined-undefined-undefined")  && (startToDateString != "--") && (startFromDateString != "undefined-undefined-undefined")  && (startFromDateString != "--")){
+    if(!validateDateOrder(startFromDateString, startToDateString)){
+      specificDateErrors.startDate_Error = true;
+      DateErrors[Additem] =
+        "The Start from date cannot be after the Start to date";
+      DateFocus[Additem] = "#filter-start-day-from";
+      Additem = Additem + 1;
+      errorList = errorList + 1;
+    }
+  }
+ 
+
+  endFromDateString = req.query["end-year-from"] + "-" + req.query["end-month-from"] + "-" + req.query["end-day-from"];
+  if((endFromDateString != "undefined-undefined-undefined") && (endFromDateString != "--")){
+    if(!validateDate(endFromDateString, responseType="boolean")){
+      specificDateErrors.endDate_Error = true;
+      DateErrors[Additem] =
+        "Enter a valid date for the end from date";
+      DateFocus[Additem] = "#filter-end-day-from";
+      Additem = Additem + 1;
+      errorList = errorList + 1;
+    }
+  }
+
+  endToDateString = req.query["end-year-to"] + "-" + req.query["end-month-to"] + "-" + req.query["end-day-to"];
+  if((endToDateString != "undefined-undefined-undefined") && (endToDateString !="--")){
+    if(!validateDate(endToDateString, responseType="boolean")){
+      specificDateErrors.endDate_Error = true;
+      DateErrors[Additem] =
+        "Enter a valid date for the end to date";
+      DateFocus[Additem] = "#filter-end-day-to";
+      Additem = Additem + 1;
+      errorList = errorList + 1;
+    }
+  }
+
+  if((endToDateString != "undefined-undefined-undefined")  && (endToDateString != "--") && (endFromDateString != "undefined-undefined-undefined")  && (endFromDateString != "--")){
+    if(!validateDateOrder(endFromDateString, endToDateString)){
+      specificDateErrors.endDate_Error = true;
+      DateErrors[Additem] =
+        "The End from date cannot be after the End to date";
+      DateFocus[Additem] = "#filter-end-day-from";
+      Additem = Additem + 1;
+      errorList = errorList + 1;
+    }
   }
 
   try {
@@ -221,11 +313,6 @@ router.get("/", async (req, res) => {
       filterString += "&status=" + filters.status
     }
 
-    if(req.query["adhoc"] != null){
-      filters.adhoc = req.query["adhoc"];
-      filterString += "&adhoc=" + filters.adhoc
-    }
-
     if(req.query["budget-from"] != null){
       filters.budgetFrom = req.query["budget-from"];
       filterString += "&budget-from=" + filters.budgetFrom
@@ -253,12 +340,31 @@ router.get("/", async (req, res) => {
       start_record,
       totalrows,
       current_page_active,
+      DateErrors,
+      DateFocus,
+      specificDateErrors,
     });
   } catch (err) {
     response_error_message = err;
     console.log("message error : " + err);
     console.log("response_error_message catch : " + response_error_message);
-    res.render("publicusersearch/noresults");
+    if(DateErrors.length > 0){
+      res.render("publicusersearch/schemes", {
+        gaList,
+        pageCount,
+        previous_page,
+        next_page,
+        end_record,
+        start_record,
+        totalrows,
+        current_page_active,
+        DateErrors,
+        DateFocus,
+        specificDateErrors,
+      });
+    }else{
+      res.render("publicusersearch/noresults");
+    }
   }
   // end of GET call
 });
