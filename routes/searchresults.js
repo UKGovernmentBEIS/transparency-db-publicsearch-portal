@@ -473,6 +473,47 @@ router.post("/", async (req, res) => {
       }
 
       if (
+        date_legal_granting_date_day1 == 31 &&
+        (date_legal_granting_date_month1 == parseInt("02", 8) ||
+          date_legal_granting_date_month1 == parseInt("04", 8) ||
+          date_legal_granting_date_month1 == parseInt("06", 8) ||
+          date_legal_granting_date_month1 == parseInt("09", 8) ||
+          date_legal_granting_date_month1 == 11)
+      ) {
+        date_legal_granting_date_day1_Error = true;
+        SubsidyErrors[Additem] = "     Enter the valid to day";
+        SubsidyFocus[Additem] = "#legal_granting_date_day1";
+        Additem = Additem + 1;
+      }
+
+      if (
+        date_legal_granting_date_day1 == 29 &&
+        date_legal_granting_date_month1 == parseInt("02", 8)
+      ) {
+        if (
+          (date_legal_granting_date_year1 % 4 == 0 &&
+            date_legal_granting_date_year1 % 100 != 0) ||
+          date_legal_granting_date_year1 % 400 == 0
+        ) {
+        } else {
+          date_legal_granting_date_day1_Error = true;
+          SubsidyErrors[Additem] = "     Enter the valid to day";
+          SubsidyFocus[Additem] = "#legal_granting_date_day1";
+          Additem = Additem + 1;
+        }
+      }
+
+      if (
+        date_legal_granting_date_day1 == 30 &&
+        date_legal_granting_date_month1 == parseInt("02", 8)
+      ) {
+        date_legal_granting_date_day1_Error = true;
+        SubsidyErrors[Additem] = "     Enter the valid to day";
+        SubsidyFocus[Additem] = "#legal_granting_date_day1";
+        Additem = Additem + 1;
+      }
+
+      if (
         date_legal_granting_date_year1 < 1960 ||
         date_legal_granting_date_year1 == "" ||
         YearNotaNumber1 == "Yes"
