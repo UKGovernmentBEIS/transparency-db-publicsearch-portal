@@ -5,7 +5,7 @@
 const express = require("express");
 const app = express();
 const fs = require("fs");
-const request = require("request");
+
 const methodOverride = require("method-override");
 const path = require("path");
 const fileUpload = require("express-fileupload");
