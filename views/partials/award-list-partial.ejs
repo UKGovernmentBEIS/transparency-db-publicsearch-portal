@@ -4,7 +4,7 @@ startRecord, endRecord - record index at start/end of current page
 totalSearchResults - total number of search results
 totalPages - integer total number of pages
 prevPage, nextPage - integer of previous/next page
-currentURI - current url for setURIParameter() function (in utils.js)
+currentURI - current url for setURIParameters() function (in utils.js)
 noAwardMessage - message displayed when no awards are available
 %>
 <div>
@@ -111,7 +111,7 @@ noAwardMessage - message displayed when no awards are available
             <div class="govuk-grid-column-two-thirds last govuk-padding-0 govuk-display-flex" style="float:left;text-align: right; align-items: center; justify-content: flex-end;">
                 <% if (totalPages> 1) { %>
                     <% if (currentPage !=1) { %>
-                        <a href="<%-setURIParameter(currentURI, 'page', 1)%>#searchresult-table" id="paginationlink_first_page" class="first round">
+                        <a href="<%-setURIParameters(currentURI, {'page': 1})%>#searchresult-table" id="paginationlink_first_page" class="first round">
                             <svg version="1.1" width="19px" height="30px"
                                 aria-label="go to subsidy awards first page">
                                 <defs>
@@ -133,7 +133,7 @@ noAwardMessage - message displayed when no awards are available
                                 </g>
                             </svg>
                         </a>
-                        <a href="<%-setURIParameter(currentURI, 'page', prevPage)%>#searchresult-table"
+                        <a href="<%-setURIParameters(currentURI, {'page': prevPage})%>#searchresult-table"
                             aria-label="go to subsidy awards search results previous page"
                             id="paginationlink_previous_page" class="previous round">
                             Previous Page
@@ -143,16 +143,16 @@ noAwardMessage - message displayed when no awards are available
                     <% for (var i=pagingStart; i <=pagingEnd; i++) { %>
                         <a id="paginationlink_<%=i%>_page"
                             aria-label="Go to page <%= i %>"
-                            class="round btn-page <%= currentPage == i ? 'active' : ''%>" href="<%-setURIParameter(currentURI, 'page', i)%>#searchresult-table">
+                            class="round btn-page <%= currentPage == i ? 'active' : ''%>" href="<%-setURIParameters(currentURI, {'page': i})%>#searchresult-table">
                             <%= i %>
                         </a>
                         <% } %>
                         <% if (currentPage !=totalPages) { %>
-                            <a href="<%-setURIParameter(currentURI, 'page', nextPage)%>#searchresult-table"
+                            <a href="<%-setURIParameters(currentURI, {'page': nextPage})%>#searchresult-table"
                                 aria-label="Go to next page"
                                 id="paginationlink_next_page" class="next round">Next
                                 Page</a>
-                            <a href="<%-setURIParameter(currentURI, 'page', totalPages)%>#searchresult-table"
+                            <a href="<%-setURIParameters(currentURI, {'page': totalPages})%>#searchresult-table"
                                 aria-label="Go to last page"
                                 id="paginationlink_last_page" class="last round"><svg
                                     version="1.1" width="19px" height="30px"

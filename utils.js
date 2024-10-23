@@ -14,6 +14,7 @@ setURIParameters = function (uri, paramValues) {
   Object.entries(paramValues).forEach(([paramKey, paramValue]) => {
     uri = setURIParameter(uri, paramKey, paramValue)
   });
-  return uri;
 
+  const returnUrl = new URL(uri);
+  return returnUrl.pathname + returnUrl.search + returnUrl.hash;
 }
