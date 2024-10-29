@@ -4,17 +4,6 @@
 <head>
     <title>GOV.UK - Cookies help page</title>
     <%- include('../partials/headercss.ejs') %>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145652997-21"></script>
-    <script>
-         // window.dataLayer = window.dataLayer || [];
-
-        // function gtag() {
-        //     dataLayer.push(arguments);
-        // }
-        // gtag('js', new Date());
-        // gtag('config', 'UA-145652997-21');
-    </script>
 </head>
 
 <body class="govuk-template__body app-example-page">
@@ -275,9 +264,6 @@
 
             var getSelectedValue = document.querySelector('input[name="cookies-usage"]:checked');
             if (getSelectedValue != null && getSelectedValue.value == 'off') {
-                // document.cookie = '_ga=;expires=;' + new Date();
-                // document.cookie = '_gid=;expires=' + new Date();
-                document.cookie = '_gat_gtag_UA_145652997_21=;domain=.beis.gov.uk; expires=' + new Date();
                 document.cookie = '_ga=; domain=.beis.gov.uk; expires=' + new Date();
                 document.cookie = '_gid=; domain=.beis.gov.uk; expires=' + new Date();
 
@@ -289,7 +275,6 @@
                     dataLayer.push(arguments);
                 }
                 gtag('js', new Date());
-                gtag('config', 'UA-145652997-21');
             }
 
         };
