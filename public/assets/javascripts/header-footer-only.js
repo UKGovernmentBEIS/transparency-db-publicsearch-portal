@@ -79,7 +79,7 @@ function parseCookie(e) {
   (function () {
     "use strict";
     window.GOVUK = window.GOVUK || {};
-    var o = { essential: !0, usage: !1 },
+    var o = { essential: !0, usage: !1, campaigns: !0 },
       a = {
         cookies_policy: "essential",
         seen_cookie_message: "essential",
@@ -113,7 +113,7 @@ function parseCookie(e) {
         window.GOVUK.setConsentCookie(o);
       }),
       (window.GOVUK.approveAllCookieTypes = function () {
-        var e = { essential: !0, usage: !0 };
+        var e = { essential: !0, usage: !0, campaigns: !0 };
         window.GOVUK.setCookie("cookies_policy", JSON.stringify(e), {
           days: 365,
         });
