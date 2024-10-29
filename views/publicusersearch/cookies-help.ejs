@@ -50,36 +50,7 @@
                         to
                         use.</p>
 
-                    <!-- <div class="govuk-form-group">
-                        <fieldset class="govuk-fieldset">
-                            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-                                <h1 class="govuk-fieldset__heading">
-                                    Where do you live?
-                                </h1>
-                            </legend>
-                            <div class="govuk-radios">
-                                <div class="govuk-radios__item">
-                                    <input class="govuk-radios__input" id="where-do-you-live" name="where-do-you-live"
-                                        type="radio" value="england">
-                                    <label class="govuk-label govuk-radios__label" for="where-do-you-live">
-                                        Use cookies that measure my website use
-                                    </label>
-                                </div>
-                                <div class="govuk-radios__item">
-                                    <input class="govuk-radios__input" id="where-do-you-live-2" name="where-do-you-live"
-                                        type="radio" value="scotland">
-                                    <label class="govuk-label govuk-radios__label" for="where-do-you-live-2">
-                                        Do not use cookies that measure my website use
-                                    </label>
-                                </div>
-                            </div>
-
-                        </fieldset>
-                    </div> -->
-
                     <form data-module="cookie-settings" onsubmit="return delete_cookie_help()">
-
-
                         <div class="govuk-form-group">
                             <fieldset class="govuk-fieldset" aria-describedby="hint-67769e61">
 
@@ -104,9 +75,39 @@
                                             you spend on each page</li>
                                         <li>what you click on while you're visiting the site</li>
                                     </ul>
-
                                 </div>
 
+                                <table class="govuk-table">
+                                    <thead class="govuk-table__head">
+                                      <tr class="govuk-table__row">
+                                        <th scope="col" class="govuk-table__header">Name</th>
+                                        <th scope="col" class="govuk-table__header">Purpose</th>
+                                        <th scope="col" class="govuk-table__header">Expiry</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody class="govuk-table__body">
+                                      <tr class="govuk-table__row">
+                                        <th scope="row" class="govuk-table__header">_ga</th>
+                                        <td class="govuk-table__cell">These help us count how many people visit GOV.UK and other government digital services by tracking if you've visited before</td>
+                                        <td class="govuk-table__cell">2 years</td>
+                                      </tr>
+                                      <tr class="govuk-table__row">
+                                        <th scope="row" class="govuk-table__header">_gid</th>
+                                        <td class="govuk-table__cell">These help us count how many people visit GOV.UK and other government digital services by tracking if you've visited before</td>
+                                        <td class="govuk-table__cell">24 hours</td>
+                                      </tr>
+                                      <tr class="govuk-table__row">
+                                        <th scope="row" class="govuk-table__header">_gat</th>
+                                        <td class="govuk-table__cell">Used to limit request to Google Analytics</td>
+                                        <td class="govuk-table__cell">10 mins</td>
+                                      </tr>
+                                      <tr class="govuk-table__row">
+                                        <th scope="row" class="govuk-table__header">_ga_6BY67W4HKN</th>
+                                        <td class="govuk-table__cell">Used by Google Analytics to find and track an individual session with your device</td>
+                                        <td class="govuk-table__cell">2 years</td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
 
                                 <div class="govuk-radios">
                                     <div class="gem-c-radio govuk-radios__item">
@@ -114,11 +115,7 @@
                                             class="govuk-radios__input">
 
                                         <label for="radio-e76f0057-0"
-                                            class="gem-c-label govuk-label govuk-radios__label">Use cookies that
-                                            measure
-                                            my website use</label>
-
-
+                                            class="gem-c-label govuk-label govuk-radios__label">Use cookies that measure my website use</label>
                                     </div>
 
                                     <div class="gem-c-radio govuk-radios__item">
@@ -126,109 +123,12 @@
                                             class="govuk-radios__input">
 
                                         <label for="radio-e76f0057-1"
-                                            class="gem-c-label govuk-label govuk-radios__label">Do not use cookies
-                                            that
-                                            measure my website use</label>
-
-
+                                            class="gem-c-label govuk-label govuk-radios__label">Do not use cookies that measure my website use</label>
                                     </div>
 
                                 </div>
                             </fieldset>
                         </div>
-
-
-                        <!-- <div class="govuk-form-group">
-                            <fieldset class="govuk-fieldset" aria-describedby="hint-00047f38">
-
-                                <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-                                    <h2 class="govuk-fieldset__heading">Cookies that help with our communications
-                                        and
-                                        marketing</h2>
-                                </legend>
-
-
-                                <div id="hint-00047f38" class="gem-c-hint govuk-!-margin-bottom-3">
-                                    <p class="govuk-body">These cookies may be set by third party
-                                        websites
-                                        and do things like measure how you view YouTube videos that are on GOV.UK.
-                                    </p>
-
-                                </div>
-
-
-                                <div class="govuk-radios">
-                                    <div class="gem-c-radio govuk-radios__item">
-                                        <input type="radio" name="cookies-campaigns" id="radio-f1e11418-0" value="on"
-                                            class="govuk-radios__input">
-
-                                        <label for="radio-f1e11418-0"
-                                            class="gem-c-label govuk-label govuk-radios__label">Use cookies that
-                                            help
-                                            with communications and marketing</label>
-
-
-                                    </div>
-
-                                    <div class="gem-c-radio govuk-radios__item">
-                                        <input type="radio" name="cookies-campaigns" id="radio-f1e11418-1" value="off"
-                                            class="govuk-radios__input">
-
-                                        <label for="radio-f1e11418-1"
-                                            class="gem-c-label govuk-label govuk-radios__label">Do not use cookies
-                                            that
-                                            help with communications and marketing</label>
-
-
-                                    </div>
-
-                                </div>
-                            </fieldset>
-                        </div> -->
-
-                        <!-- <div class="govuk-form-group">
-                            <fieldset class="govuk-fieldset" aria-describedby="hint-389cd349">
-
-                                <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-                                    <h2 class="govuk-fieldset__heading">Cookies that remember your settings</h2>
-                                </legend>
-
-
-                                <div id="hint-389cd349" class="gem-c-hint govuk-!-margin-bottom-3">
-                                    These cookies do things like remember your preferences and the choices you make,
-                                    to
-                                    personalise your experience of using the site.
-                                </div>
-
-
-                                <div class="govuk-radios">
-                                    <div class="gem-c-radio govuk-radios__item">
-                                        <input type="radio" name="cookies-settings" id="radio-4ea8f28d-0" value="on"
-                                            class="govuk-radios__input">
-
-                                        <label for="radio-4ea8f28d-0"
-                                            class="gem-c-label govuk-label govuk-radios__label">Use cookies that
-                                            remember my settings on the site</label>
-
-
-                                    </div>
-
-                                    <div class="gem-c-radio govuk-radios__item">
-                                        <input type="radio" name="cookies-settings" id="radio-4ea8f28d-1" value="off"
-                                            class="govuk-radios__input">
-
-                                        <label for="radio-4ea8f28d-1"
-                                            class="gem-c-label govuk-label govuk-radios__label">Do not use cookies
-                                            that
-                                            remember my settings on the site</label>
-
-
-                                    </div>
-
-                                </div>
-                            </fieldset>
-                        </div> -->
-
 
                         <div class="gem-c-govspeak govuk-govspeak " data-module="govspeak">
 
@@ -237,17 +137,9 @@
                                 example
                                 a licence application)</p>
                             <p>They always need to be on.</p>
-                            <!-- <p>
-                                <a href="/help/cookie-details" data-module="gem-track-click"
-                                    data-track-category="cookieSettings"
-                                    data-track-action="Find out more about cookies">
-                                    Find out more about cookies on GOV.UK
-                                </a>
-                            </p> -->
 
                         </div>
                         <button class="gem-c-button govuk-button" id="save-changes-button" type="submit">Save changes</button>
-
 
                     </form>
                 </div>
