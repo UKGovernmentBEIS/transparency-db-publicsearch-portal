@@ -5,8 +5,8 @@
 const express = require("express");
 const router = express.Router();
 const axios = require("axios");
-var request = require("request");
-const { debug } = require("request");
+
+
 const { json } = require("express");
 const { data } = require("jquery");
 const render = "publicusersearch/standaloneawards";
