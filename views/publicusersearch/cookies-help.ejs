@@ -18,20 +18,20 @@
 
             <div class="govuk-grid-row">
                 <div class="govuk-grid-column-two-thirds">
-                    <div class="cookie-settings__confirmation" data-cookie-confirmation="true">
-
-                        <div class="gem-c-success-alert" data-module="initial-focus" role="alert" tabindex="-1">
-                            <h2 class="gem-c-success-summary__title">Your cookie settings were saved</h2>
-                            <div class="gem-c-success-summary__body">
-                                <p>Government services may set additional cookies and, if so, will have their own cookie
-                                    policy
-                                    and banner.</p>
-                                <a class="govuk-link cookie-settings__prev-page" href="/">Go back to the page you were
-                                    looking
-                                    at</a>
-                            </div>
+                    <div class="govuk-notification-banner govuk-notification-banner--success govuk-visually-hidden" role="alert" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner" id="cookie-preference-saved">
+                        <div class="govuk-notification-banner__header">
+                          <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+                            Success
+                          </h2>
                         </div>
-                    </div>
+                        <div class="govuk-notification-banner__content">
+                        
+                          <h3 id="cookie-preference-saved-heading" class="govuk-notification-banner__heading" tabindex="-1">
+                              Your cookie settings were saved
+                            </h3>
+                        
+                        </div>
+                      </div>
                 </div>
             </div>
             <div class="govuk-beis-heading">
@@ -50,7 +50,6 @@
                         to
                         use.</p>
 
-                    <form data-module="cookie-settings" onsubmit="return delete_cookie_help()">
                         <div class="govuk-form-group">
                             <fieldset class="govuk-fieldset" aria-describedby="hint-67769e61">
 
@@ -111,18 +110,18 @@
 
                                 <div class="govuk-radios">
                                     <div class="gem-c-radio govuk-radios__item">
-                                        <input type="radio" name="cookies-usage" id="radio-e76f0057-0" value="on"
+                                        <input type="radio" name="cookies-usage" id="cookies-analytics" value="on"
                                             class="govuk-radios__input">
 
-                                        <label for="radio-e76f0057-0"
+                                        <label for="cookies-analytics"
                                             class="gem-c-label govuk-label govuk-radios__label">Use cookies that measure my website use</label>
                                     </div>
 
                                     <div class="gem-c-radio govuk-radios__item">
-                                        <input type="radio" name="cookies-usage" id="radio-e76f0057-1" value="off"
+                                        <input type="radio" name="cookies-usage" id="cookies-analytics-2" value="off"
                                             class="govuk-radios__input">
 
-                                        <label for="radio-e76f0057-1"
+                                        <label for="cookies-analytics-2"
                                             class="gem-c-label govuk-label govuk-radios__label">Do not use cookies that measure my website use</label>
                                     </div>
 
@@ -139,39 +138,15 @@
                             <p>They always need to be on.</p>
 
                         </div>
-                        <button class="gem-c-button govuk-button" id="save-changes-button" type="submit">Save changes</button>
-
-                    </form>
+                        <button class="gem-c-button govuk-button" id="cookie-pref-save" type="submit">Save changes</button>
                 </div>
             </div>
         </main>
     </div>
     <%- include('../partials/footer.ejs') %>
     <script src="/assets/javascripts/jquery.min.js"></script>
-    <script src="/assets/javascripts/header-footer-only.js"></script>
     <script src="/assets/javascripts/application.js"></script>
-
-    <script>
-        var delete_cookie_help = function () {
-
-            var getSelectedValue = document.querySelector('input[name="cookies-usage"]:checked');
-            if (getSelectedValue != null && getSelectedValue.value == 'off') {
-                document.cookie = '_ga=; domain=.beis.gov.uk; expires=' + new Date();
-                document.cookie = '_gid=; domain=.beis.gov.uk; expires=' + new Date();
-                document.cookie = '_gat=; domain=.beis.gov.uk; expires=' + new Date();
-                document.cookie = '_ga_6BY67W4HKN=; domain=.beis.gov.uk; expires=' + new Date();
-            }
-            else if (getSelectedValue != null && getSelectedValue.value == 'on') {
-                window.dataLayer = window.dataLayer || [];
-
-                function gtag() {
-                    dataLayer.push(arguments);
-                }
-                gtag('js', new Date());
-            }
-
-        };
-    </script>
+    <script>window.CookieConsent.init()</script>
 </body>
 
 </html>
