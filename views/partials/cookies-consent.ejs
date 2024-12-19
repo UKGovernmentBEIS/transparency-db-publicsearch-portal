@@ -1,60 +1,55 @@
-<div id="global-cookie-message" class="gem-c-cookie-banner govuk-clearfix" data-module="cookie-banner" role="region"
-    aria-label="cookie banner" data-nosnippet>
-    <div class="govuk-cookie-banner js-banner-wrapper" role="region" aria-label="Cookies on GOV.UK">
-        <div class="gem-c-cookie-banner__message govuk-cookie-banner__message govuk-width-container">
-            <div class="govuk-grid-row">
-                <div class="govuk-grid-column-two-thirds">
-                    <h2 class="govuk-cookie-banner__heading govuk-heading-m">Cookies on GOV.UK</h2>
-                    <div class="govuk-cookie-banner__content">
-                        <p class="govuk-body">We use some essential cookies to make this website work.</p>
-                        <p class="govuk-body">We’d like to set additional cookies to understand how you use GOV.UK,
-                            remember your settings and improve government services.</p>
-                        <p class="govuk-body">We also use cookies set by other sites to help us deliver content from
-                            their services.</p>
-                    </div>
+<div class="govuk-cookie-banner" data-nosnippet="" role="region" aria-label="Cookies on GOV.UK" id="cookie-banner">
+    <div class="govuk-cookie-banner__message govuk-width-container" id="cookie-banner-unconfirm">
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+          <h2 class="govuk-cookie-banner__heading govuk-heading-m">
+            Cookies on GOV.UK
+          </h2>
+          <div class="govuk-cookie-banner__content">
+            <p class="govuk-body">We use some essential cookies to make this website work.</p>
+            <p class="govuk-body">We’d like to set additional cookies to understand how you use GOV.UK, remember your settings and improve government services.</p>
+            <p class="govuk-body">We also use cookies set by other sites to help us deliver content from their services.</p>
+          </div>
+        </div>
+      </div>
+      <div class="govuk-button-group">
+        <button type="button" class="govuk-button" data-module="govuk-button" id="cookie-accept">
+          Accept analytics cookies
+        </button>
+        <button type="button" class="govuk-button" data-module="govuk-button" id="cookie-reject">
+          Reject analytics cookies
+        </button>
+        <a class="govuk-link" href="/cookies">View cookies</a>
+      </div>
+    </div>
+    <div class="govuk-cookie-banner__message govuk-visually-hidden govuk-width-container" role="alert" id="cookie-accepted-confirm">
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+          <div class="govuk-cookie-banner__content">
+            <p class="govuk-body">You've accepted analytics cookies. You can <a class="govuk-link" href="/cookieshelp">change your cookie settings</a> at any time.</p>
+          </div>
+        </div>
+      </div>
+      <div class="govuk-button-group">
+        <button type="button" class="govuk-button" data-module="govuk-button" id="cookie-accepted-hide">
+            Hide this message
+        </button>
+      </div>
+    </div>
+    <div class="govuk-cookie-banner__message govuk-visually-hidden govuk-width-container" role="alert" id="cookie-rejected-confirm">
+        <div class="govuk-grid-row">
+            <div class="govuk-grid-column-two-thirds">
+                <div class="govuk-cookie-banner__content">
+                    <p class="govuk-body">You've rejected analytics cookies. You can <a class="govuk-link" href="/cookieshelp">change your cookie settings</a> at any time.</p>
                 </div>
             </div>
-            <div class="govuk-button-group">
-                <button class="gem-c-button govuk-button" id="save-changes-button" type="submit" data-module="gem-track-click"
-                    data-accept-cookies="true" data-track-category="cookieBanner"
-                    data-track-action="Cookie banner accepted" data-cookie-types="all" onclick="getGACookies()">Accept
-                    analytics cookies</button>
-                <button class="gem-c-button govuk-button" id="save-changes-button"  type="submit" onclick="delete_cookie()"
-                    data-module="gem-track-click" data-reject-cookies="true" data-track-category="cookieBanner"
-                    data-track-action="Cookie banner rejected">Reject analytics cookies</button>
-
-                <a class="govuk-link" href="/cookieshelp">View cookies</a>
-            </div>
         </div>
-    </div>
-    <div class="gem-c-cookie-banner__confirmation govuk-width-container" tabindex="-1" hidden>
-        <p class="gem-c-cookie-banner__confirmation-message" role="alert">You can <a class="govuk-link"
-                href="/cookieshelp" data-module="gem-track-click" data-track-category="cookieBanner"
-                data-track-action="Cookie banner settings clicked from confirmation">change your cookie settings</a>
-            at any time.</p>
         <div class="govuk-button-group">
-            <button class="gem-c-cookie-banner__hide-button govuk-button" data-hide-cookie-banner="true"
-                data-module="gem-track-click" data-track-category="cookieBanner"
-                data-track-action="Hide cookie banner">Hide this message</button>
+            <button type="button" class="govuk-button" data-module="govuk-button" id="cookie-rejected-hide">
+            Hide this message
+            </button>
         </div>
     </div>
 </div>
 <script src="/assets/javascripts/jquery.min.js"></script>
-<script src="/assets/javascripts/header-footer-only.js"></script>
-<script src="/assets/javascripts/application.js"></script>
-<script>
-    function getGACookies() {
-        window.dataLayer = window.dataLayer || [];
-
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
-    }
-    var delete_cookie = function () {
-        document.cookie = '_ga=; domain=.beis.gov.uk; expires=' + new Date();
-        document.cookie = '_gid=; domain=.beis.gov.uk; expires=' + new Date();
-        document.cookie = '_gat=; domain=.beis.gov.uk; expires=' + new Date();
-        document.cookie = '_ga_6BY67W4HKN=; domain=.beis.gov.uk; expires=' + new Date();
-    };
-</script>
+<script src="/assets/javascripts/cookie.js"></script>

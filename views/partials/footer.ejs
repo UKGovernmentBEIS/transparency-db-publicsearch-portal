@@ -50,22 +50,4 @@
     </div>
   </div>
 </footer>
-<script>
-  var accept = document.cookie.split(";");
-  var abcd = ''
-  accept.forEach(function (item) {
-    if (item.includes('cookies_policy')) {
-      var usage_policy = item.split('=');
-      abcd = JSON.parse(usage_policy[1])
-      if (abcd.usage) {
-        window.dataLayer = window.dataLayer || [];
-
-        function gtag() {
-          dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
-      }
-    }
-  })
-
-</script>
+<script>window.CookieConsent.init()</script>
