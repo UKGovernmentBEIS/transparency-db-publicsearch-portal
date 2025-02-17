@@ -2,7 +2,11 @@
 <html lang="en" class="govuk-template ">
 
 <head>
+  <% if( DateErrors.length > 0 ){ %>
+  <title>Error - GOV.UK - Public user schemes result page</title>
+  <% } else { %>
   <title>GOV.UK - Public user schemes result page</title>
+  <% } %>
   <%- include('../partials/headercss.ejs') %>
 
   <link href="/assets/stylesheet/style.css" rel="stylesheet" type="text/css">
@@ -15,6 +19,14 @@
   <script src="/assets/javascripts/alasql.min.js"></script>
   <script src="/assets/javascripts/xlsx.core.min.js"></script>
   <script src="/assets/javascripts/searchfilterAccordion.js"></script>
+  <script>
+    $(document).ready(function () {
+        // Handler for .ready() called.
+        $('html, body').animate({
+            scrollTop: $('#error-alert').offset().top
+        }, 'slow');
+    });
+  </script>
 
   <script>
     window.saveFile = function saveFile(beis_url_publicsearch, format) {
@@ -173,18 +185,18 @@
       </div>
       <% if( DateErrors.length > 0 ){ %>
 
-        <div class="govuk-error-summary" role="alert" id="error-alert" tabindex="-1"
-          aria-labelledby="error-summary-title" data-module="govuk-error-summary">
-          <h2 class="govuk-error-summary__title" id="error-summary-title">There is a problem</h2>
+        <div class="govuk-error-summary" id="error-alert" 
+          aria-labelledby="error-summary-title" data-module="govuk-error-summary" tabindex="-1">
+          <div role="alert">
+            <h2 class="govuk-error-summary__title" id="error-summary-title">There is a problem</h2>
+            <div class="govuk-error-summary__body">
 
-          <div class="govuk-error-summary__body">
-
-            <ul class="govuk-list govuk-error-summary__list">
-              <% for(var i=0; i < errorList  ; i++) {%>
-              <li> <a href="<%= DateFocus[i] %>"> <%= DateErrors[i] %> </a> </li>
-              <% } %>
-            </ul>
-
+              <ul id="error-list" class="govuk-list govuk-error-summary__list">
+                <% for(var i=0; i < errorList  ; i++) {%>
+                <li> <a autofocus href="<%= DateFocus[i] %>"> <%= DateErrors[i] %> </a> </li>
+                <% } %>
+              </ul>
+            </div>
           </div>
 
         </div>
