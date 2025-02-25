@@ -2,7 +2,11 @@
 <html lang="en" class="govuk-template ">
 
 <head>
+    <%if (locals.SubsidyArraySize > 0) { %>
+    <title>Error - GOV.UK - Public user search legalgranting date page</title>
+    <% } else { %>
     <title>GOV.UK - Public user search legalgranting date page</title>
+    <% } %>
     <%- include('../partials/headercss.ejs') %>
 </head>
 <script src="/assets/javascripts/jquery.min.js"></script>
@@ -41,16 +45,18 @@ Gov.UK public user search - header rendering design
 
                 <% if( locals.SubsidyArraySize > 0 ){ %>
 
-                <div tabindex="-1" class="govuk-error-summary" role="alert" aria-labelledby="error-summary-title"
+                <div tabindex="-1" class="govuk-error-summary" role="alert" aria-labelledby="error-summary-title" id="error-alert"
                     data-module="govuk-error-summary">
-                    <h2 class="govuk-error-summary__title" id="error-summary-title">There is a problem</h2>
+                    <div role="alert">
+                        <h2 class="govuk-error-summary__title" id="error-summary-title">There is a problem</h2>
 
-                    <div class="govuk-error-summary__body">
-                        <% for(var i=0; i < locals.SubsidyArraySize  ; i++) {%>
-                        <ul class="govuk-list govuk-error-summary__list">
-                            <li> <a href="<%= locals.SubsidyFocus[i] %>"> <%= locals.SubsidyErrors[i] %> </a> </li>
-                        </ul>
-                        <% } %>
+                        <div class="govuk-error-summary__body">
+                            <% for(var i=0; i < locals.SubsidyArraySize  ; i++) {%>
+                            <ul class="govuk-list govuk-error-summary__list">
+                                <li> <a autofocus href="<%= locals.SubsidyFocus[i] %>"> <%= locals.SubsidyErrors[i] %> </a> </li>
+                            </ul>
+                            <% } %>
+                        </div>
                     </div>
                 </div>
 
