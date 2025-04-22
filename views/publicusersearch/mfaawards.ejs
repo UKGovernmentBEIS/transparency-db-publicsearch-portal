@@ -184,13 +184,13 @@
       <form action="/mfaawards" method="GET" id="filter-accordion-div">
         <div class="govuk-accordion" data-module="govuk-accordion" id="accordion-default">
           <%- include('../partials/results-per-page.ejs') %>
-          <%- include('../partials/filter-recipient.ejs') %>
-          <%- include('../partials/filter-speia.ejs') %>
-          <%- include('../partials/filter-confirmation-date.ejs') %>
-          <%- include('../partials/filter-mfa-grouping.ejs') %>
-          <%- include('../partials/filter-award-amount.ejs') %>
-          <%- include('../partials/filter-ganame.ejs') %>
-          <%- include('../partials/filter-award-status.ejs') %>
+          <%- include('../partials/filter-recipient.ejs', {divId: 1}) %>
+          <%- include('../partials/filter-speia.ejs', {divId: 2}) %>
+          <%- include('../partials/filter-confirmation-date.ejs', {divId: 3}) %>
+          <%- include('../partials/filter-mfa-grouping.ejs', {divId: 4}) %>
+          <%- include('../partials/filter-award-amount.ejs', {divId: 5}) %>
+          <%- include('../partials/filter-ganame.ejs', {divId: 6}) %>
+          <%- include('../partials/filter-award-status.ejs', {divId: 7}) %>
         </div>
         <div>
           <button class="govuk-button" id="update-results-button" data-module="govuk-button">

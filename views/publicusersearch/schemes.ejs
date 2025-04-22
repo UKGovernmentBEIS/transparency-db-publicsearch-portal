@@ -198,11 +198,11 @@
       <form action="/schemes" method="GET" id="filter-accordion-div">
         <div class="govuk-accordion" data-module="govuk-accordion" id="accordion-default">
           <%- include('../partials/results-per-page.ejs') %>
-          <%- include('../partials/filter-scnumber.ejs') %>
-          <%- include('../partials/filter-name.ejs') %>
-          <%- include('../partials/filter-ganame.ejs') %>
-          <%- include('../partials/filter-date-start_end.ejs') %>
-          <%- include('../partials/filter-budget.ejs') %>
+          <%- include('../partials/filter-scnumber.ejs', {divId: 1}) %>
+          <%- include('../partials/filter-name.ejs', {divId: 2}) %>
+          <%- include('../partials/filter-ganame.ejs', {divId: 3}) %>
+          <%- include('../partials/filter-date-start_end.ejs', {fromId: 4, toId: 5}) %>  
+          <%- include('../partials/filter-budget.ejs', {divId: 6}) %>
         </div>
         <div>
           <button class="govuk-button" id="update-results-button" data-module="govuk-button">
