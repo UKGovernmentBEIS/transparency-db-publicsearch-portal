@@ -1,7 +1,7 @@
 <% ["start","end"].forEach(function(startEnd){
   switch(startEnd){
     case 'start':
-      defaultHeaderNumber = "4";
+      defaultHeaderNumber = fromId;
       fromDay = filters.startFromDay;
       fromMonth = filters.startFromMonth;
       fromYear = filters.startFromYear;
@@ -14,7 +14,7 @@
       };
       break;
     case 'end':
-      defaultHeaderNumber = "5";
+      defaultHeaderNumber = toId;
       fromDay = filters.endFromDay;
       fromMonth = filters.endFromMonth;
       fromYear = filters.endFromYear;
@@ -36,8 +36,8 @@
           </span>
       </h2>
     </div>
-    <div id="accordion-default-content-1" class="govuk-accordion__section-content <% if(error) {%> govuk-form-group--error<% } %>"
-      aria-labelledby="accordion-default-heading-<%= defaultHeaderNumber %> ">
+    <div id="accordion-default-content-<%= defaultHeaderNumber %>" class="govuk-accordion__section-content <% if(error) {%> govuk-form-group--error<% } %>"
+      aria-labelledby="accordion-default-heading-<%= defaultHeaderNumber %>">
       <div class="govuk-form-group">
           <div class="govuk-form-group govuk-grid-row">
             <div class="govuk-grid-column-one-half"> <!-- From Column Start -->
