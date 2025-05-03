@@ -7,7 +7,7 @@ var session = require("express-session");
 const router = express.Router();
 
 const axios = require("axios");
-var request = require("request");
+
 var utils = require("../utils");
 
 router.get("/", async (req, res) => {
