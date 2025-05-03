@@ -140,7 +140,7 @@
 
           </div>
 
-          <div class="govuk-grid-column-one-half govuk-display-flex" aria-autocomplete="list">
+          <div class="govuk-grid-column-one-half govuk-display-flex">
             <label class="govuk-grid-column-two-thirds">
               Results per page
             </label>
@@ -148,28 +148,28 @@
               style="display: inline;  margin: 0;  padding: 0;">
 
               <% if(frontend_totalRecordsPerPage  == 10) { %>
-              <a id="results-per-page-10" aria-label="10 records per page selected" aria-selected="true" class="round btn-page active"
+              <a id="results-per-page-10" aria-label="10 records per page selected" class="round btn-page active"
                 href="/mfaawards/?limit=10<%=filterString%>">10</a>
 
               <% } else { %>
               <a id="results-per-page-10" aria-label="10 records per page " class="round btn-page" href="/mfaawards/?limit=10<%=filterString%>">10</a>
               <% }  %>
               <% if(frontend_totalRecordsPerPage  == 20) { %>
-              <a id="results-per-page-20" aria-label="20 records per page selected" aria-selected="true" class="round btn-page active"
+              <a id="results-per-page-20" aria-label="20 records per page selected" class="round btn-page active"
                 href="/mfaawards/?limit=20<%=filterString%>">20</a>
               <% } else { %>
               <a id="results-per-page-20" aria-label="20 records per page " class="round btn-page" href="/mfaawards/?limit=20<%=filterString%>">20</a>
               <% }  %>
 
               <% if(frontend_totalRecordsPerPage  == 50) { %>
-              <a id="results-per-page-50" aria-label="50 records per page selected" aria-selected="true" class="round btn-page active"
+              <a id="results-per-page-50" aria-label="50 records per page selected" class="round btn-page active"
                 href="/mfaawards/?limit=50<%=filterString%>">50</a>
               <% } else { %>
               <a id="results-per-page-50" aria-label="50 records per page " class="round btn-page" href="/mfaawards/?limit=50<%=filterString%>">50</a>
               <% }  %>
 
               <% if(frontend_totalRecordsPerPage  == 100) { %>
-              <a aid="results-per-page-100" ria-label="100 records per page selected" aria-selected="true" class="round btn-page active"
+              <a aid="results-per-page-100" ria-label="100 records per page selected" class="round btn-page active"
                 href="/mfaawards/?limit=100<%=filterString%>">100</a>
               <% } else { %>
               <a id="results-per-page-100" aria-label="100 records per page " class="round btn-page" href="/mfaawards/?limit=100<%=filterString%>">100</a>
