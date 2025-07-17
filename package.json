@@ -20,7 +20,7 @@
     "express-fileupload": "^1.2.0",
     "express-flash": "0.0.2",
     "express-session": "^1.16.2",
-    "form-data": "^3.0.0",
+    "form-data": "^4.0.4",
     "fs": "0.0.1-security",
     "govuk-frontend": "^3.10.1",
     "http": "0.0.1-security",
