@@ -288,7 +288,7 @@
                   href="/mfaawards/?page=<%= i %>&limit=<%= frontend_totalRecordsPerPage %><%=filterString%>"><%= i %></a>
                 <% } else { %>
                 <a id="paginationlink<%= i %>" aria-label="go to page <%= i %>" class="round btn-page active"
-                  href="/mfaawards/?page=<%= i %>&limit=<%= frontend_totalRecordsPerPage %><%=filterString%>"><%= i %></a>
+                  href="/mfaawards/?page=<%= i %>&limit=<%= frontend_totalRecordsPerPage %><%=filterString%>" aria-current="page"><%= i %></a>
                 <% } %>
                 <% } %>
 
