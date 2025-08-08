@@ -10,7 +10,7 @@
     aria-labelledby="accordion-default-heading-<%= divId %>">
     <div class="govuk-form-group">
       <select class="govuk-select" id="filter-status" name="status"
-      aria-label="Drop down list that shows Filter by type">
+      aria-labelledby="accordion-default-heading-<%= divId %>">
         <option value=""></option>
         <% ["Published","Deleted"].forEach(function(status){ %>
           <% if ((filters.status + "").toLowerCase() == status.toLowerCase()) { %>
