@@ -34,6 +34,8 @@
           for (var i = 0; i < parsedResponse.totalSearchResults; i++) {
             filteredResponse[filteredResponse.length] = {
               "Standalone award": parsedResponse.awards[i].standaloneAward,
+              // if standalone award, display the title or "" if empty, otherwise display "NA"
+              "Standalone award title": parsedResponse.awards[i].standaloneAward === "Yes" ? (parsedResponse.awards[i].standaloneAwardTitle || "") : "NA",
               "Subsidy control number": parsedResponse.awards[i].subsidyMeasure.scNumber,
               "Subsidies or Schemes of Interest (SSoI) or Subsidies or Schemes of Particular Interest (SSoPI)": parsedResponse.awards[i].subsidyAwardInterest ? parsedResponse.awards[i].subsidyAwardInterest : "",
               "Specific policy objective": parsedResponse.awards[i].specificPolicyObjective ? parsedResponse.awards[i].specificPolicyObjective : "",
