@@ -24,13 +24,13 @@ noAwardMessage - message displayed when no awards are available
                 <label>Results per page</label>
                 <div class="pagination pagination-style-modified govuk-padding-0 govuk-!-width-one-half"
                 style="display: inline;  margin: 0;">
-                <a id="results-per-page-10" aria-label="10 records per page selected" aria-selected="<%-perPage===10%>" class="round btn-page <%-perPage===10 ? 'active' : ''%>"
+                <a id="results-per-page-10" aria-label="10 records per page selected" class="round btn-page <%-perPage===10 ? 'active' : ''%>"
                     href="<%-setURIParameters(currentURI, {'perPage' : 10, 'page': 1})%>#searchresult-table">10</a>
-                <a id="results-per-page-20" aria-label="20 records per page selected" aria-selected="<%-perPage===20%>" class="round btn-page <%-perPage===20 ? 'active' : ''%>"
+                <a id="results-per-page-20" aria-label="20 records per page selected" class="round btn-page <%-perPage===20 ? 'active' : ''%>"
                     href="<%-setURIParameters(currentURI, {'perPage' : 20, 'page': 1})%>#searchresult-table">20</a>
-                <a id="results-per-page-50" aria-label="50 records per page selected" aria-selected="<%-perPage===50%>" class="round btn-page <%-perPage===50 ? 'active' : ''%>"
+                <a id="results-per-page-50" aria-label="50 records per page selected" class="round btn-page <%-perPage===50 ? 'active' : ''%>"
                     href="<%-setURIParameters(currentURI, {'perPage' : 50, 'page': 1})%>#searchresult-table">50</a>
-                <a id="results-per-page-100" aria-label="100 records per page selected" aria-selected="<%-perPage===100%>" class="round btn-page <%-perPage===100 ? 'active' : ''%>"
+                <a id="results-per-page-100" aria-label="100 records per page selected" class="round btn-page <%-perPage===100 ? 'active' : ''%>"
                     href="<%-setURIParameters(currentURI, {'perPage' : 100, 'page': 1})%>#searchresult-table">100</a>            </div>
             </div>
             <thead class="govuk-table__head">
