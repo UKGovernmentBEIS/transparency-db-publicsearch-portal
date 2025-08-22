@@ -43,6 +43,7 @@
               "Subsidy award number": parsedResponse.awards[i].awardNumber,
               "Subsidy award status": parsedResponse.awards[i].status,
               "Subsidy scheme name": parsedResponse.awards[i].subsidyMeasure.subsidyMeasureTitle,
+              "Legal basis": parsedResponse.awards[i].legalBasis,
               "Services of Public Economic Interest (SPEI)": parsedResponse.awards[i].spei ? parsedResponse.awards[i].spei : "",
               "Subsidy purpose": JSON.parse(parsedResponse.awards[i].subsidyObjective).join(', '),
               "Subsidy form": parsedResponse.awards[i].subsidyInstrument,
