@@ -103,16 +103,16 @@ Gov.UK public user search - header rendering design
   <%- include('../partials/cookies-consent.ejs') %>
   <%- include('../partials/header.ejs') %>
   <div class="govuk-width-container ">
-
+    <%- include('../partials/banner.ejs') %>
+    <a href="/beneficiaryname" class="govuk-back-link" aria-label="Back to subsidy recipient question page">Back</a>
     <main id="main-content" role="main">
-      <%- include('../partials/banner.ejs') %>
+      
       <!--************************************
       Gov.UK public user search - Body design
       ************************************ -->
 
       <form action="/spendingsector" method="POST" class="govuk-main-wrapper ">
-        <a href="/beneficiaryname" class="govuk-back-link" aria-label="Back to subsidy recipient question page">Back</a>
-
+        
         <fieldset class="govuk-fieldset" aria-describedby="subsidy-hint">
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-grid-column-two-thirds">
             <!-- <div class="govuk-grid-row">
