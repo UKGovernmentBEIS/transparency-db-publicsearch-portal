@@ -33,6 +33,8 @@
           for (var i = 0; i < parsedResponse.totalSearchResults; i++) {
             filteredResponse[filteredResponse.length] = {
               "Standalone award": parsedResponse.awards[i].standaloneAward,
+              // if standalone award, display the title or "" if empty, otherwise display "NA"
+              "Standalone award title": parsedResponse.awards[i].standaloneAward === "Yes" ? (parsedResponse.awards[i].standaloneAwardTitle || "") : "NA",
               "Subsidy control number": parsedResponse.awards[i].subsidyMeasure.scNumber,
               "Subsidy award description": parsedResponse.awards[i].subsidyAwardDescription ? parsedResponse.awards[i].subsidyAwardDescription : "",
               "Public authority URL": parsedResponse.awards[i].authorityURL,
@@ -42,6 +44,7 @@
               "Specific policy objective" : parsedResponse.awards[i].specificPolicyObjective ? parsedResponse.awards[i].specificPolicyObjective : "",
               "Subsidy award status": parsedResponse.awards[i].status,
               "Subsidy scheme name": parsedResponse.awards[i].subsidyMeasure.subsidyMeasureTitle,
+              "Legal basis": parsedResponse.awards[i].legalBasis ?? "",
               "Services of Public Economic Interest (SPEI)": parsedResponse.awards[i].spei ? parsedResponse.awards[i].spei : "",
               "Subsidy purpose": JSON.parse(parsedResponse.awards[i].subsidyObjective).join(', '),
               "Subsidy form": parsedResponse.awards[i].subsidyInstrument,
