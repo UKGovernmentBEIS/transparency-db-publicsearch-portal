@@ -153,6 +153,9 @@ app.get("/", (req, res) => {
 var homepage = require("./routes/homepage");
 app.use("/homepage", homepage);
 
+var search = require("./routes/search")
+app.use("/search", search);
+
 var beneficiaryname = require("./routes/beneficiaryname");
 app.use("/beneficiaryname", beneficiaryname);
 

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" class="govuk-template ">
+
+<head>
+  <title>GOV.UK - Public user search no result page</title>
+  <%- include('../partials/headercss.ejs') %>
+</head>
+<%- include('../partials/cookies-consent.ejs') %>
+<%- include('../partials/header.ejs') %>
+
+
+<body class="govuk-template__body app-example-page">
+  <div class="govuk-width-container ">
+    <%- include('../partials/banner.ejs') %>
+    <main id="main-content" role="main">
+        <div>
+            <p class="govuk-body">Total Awards Found: <%= awards.totalSearchResults %></p>
+            <table>
+                <th>Award Number</th>
+                <th>Beneficiary</th>
+            <% for(i = 0; i < awards.awards.length; i++){ %>
+                <tr>
+                    <td><%= awards.awards[i].awardNumber %></td>
+                    <td><%= awards.awards[i].beneficiary.beneficiaryName %></td>
+                </tr>
+            <% } %>
+            </table>
+        </div>
+    </br>
+        <div>
+            <p class="govuk-body">Total Schemes Found: <%= subsidySchemes.totalResults %></p>
+            <table>
+                <th>SC Number</th>
+                <th>Scheme Title</th>
+                <% for(i = 0; i < subsidySchemes.subsidySchemes.length; i++){ %>
+                <tr>
+                    <td><%= subsidySchemes.subsidySchemes[i].scNumber %></td>
+                    <td><%= subsidySchemes.subsidySchemes[i].subsidyMeasureTitle %></td>
+                </tr>
+            <% } %>
+            </table>
+        </div>
+    </main>
+  </div>
+
+  <%- include('../partials/footer.ejs') %>
+</body>
+
+</html>

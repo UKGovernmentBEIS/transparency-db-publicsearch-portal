@@ -41,6 +41,14 @@ Gov.UK public user search - header rendering design
               </a>
             </div>
 
+            <div class="govuk-form-group">
+              <form action="/search" method="GET" class="govuk-padding-top-2">
+                <label for="search-term">Search</label>
+                <input type="text" class="govuk-input" id="search-term" name="q">
+                <button type="submit" class="govuk-button">Search</button>
+              </form>
+            </div>
+
             <form action="/standaloneawards" method="GET" class="govuk-padding-top-2">
               <button class="govuk-button " data-module="govuk-button" id="homepage_button_view_all_standalone_awards">
                 View all standalone subsidy awards
