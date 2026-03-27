@@ -4,7 +4,7 @@
 const express = require("express");
 const router = express.Router();
 const axios = require("axios");
-var request = require("request");
+
 
 // ********************************************************
 // Read environment property file and set the API URL end points

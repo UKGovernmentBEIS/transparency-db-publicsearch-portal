@@ -5,7 +5,7 @@
 const express = require("express");
 const router = express.Router();
 const axios = require("axios");
-var request = require("request");
+
 
 router.get("/", async (req, res) => {
   console.log("req.query.page: " + req.query.page);
