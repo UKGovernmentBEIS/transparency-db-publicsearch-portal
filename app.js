@@ -187,26 +187,11 @@ app.get("/", (req, res) => {
 var homepage = require("./routes/homepage");
 app.use("/homepage", homepage);
 
-var beneficiaryname = require("./routes/beneficiaryname");
-app.use("/beneficiaryname", beneficiaryname);
+var awards = require("./routes/awards");
+app.use("/awards", awards);
 
-var subsidyobjective = require("./routes/subsidyobjective");
-app.use("/subsidyobjective", subsidyobjective);
-
-var subsidyinstrument = require("./routes/subsidyinstrument");
-app.use("/subsidyinstrument", subsidyinstrument);
-
-var spendingsector = require("./routes/spendingsector");
-app.use("/spendingsector", spendingsector);
-
-var legalgrantingdate = require("./routes/legalgrantingdate");
-app.use("/legalgrantingdate", legalgrantingdate);
-
-var searchresults = require("./routes/searchresults");
-app.use("/searchresults", searchresults);
-
-var searchresults = require("./routes/schemes");
-app.use("/schemes", searchresults);
+var schemes = require("./routes/schemes");
+app.use("/schemes", schemes);
 
 var standaloneawards = require("./routes/standaloneawards");
 app.use("/standaloneawards", standaloneawards);
