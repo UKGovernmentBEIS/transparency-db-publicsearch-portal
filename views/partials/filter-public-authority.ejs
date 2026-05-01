@@ -1,0 +1,26 @@
+<div class="">
+    <div class="govuk-form-group">
+
+        <fieldset class="govuk-fieldset" aria-describedby="">
+
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+            Public Authority
+            </legend>
+
+            <div class="govuk-form-group">
+                <select class="govuk-select" id="filter-ga" name="ga"
+                aria-labelledby="accordion-default-heading-1">
+                    <option selected disabled>Select an option</option>
+                    <% gaList.forEach(function(ga){ %>
+                    <% if ((filters.ga + "").toLowerCase() == ga.grantingAuthorityName.toLowerCase()) { %>
+                        <option value="<%= ga.grantingAuthorityName %>" selected> <%= ga.grantingAuthorityName %></option>
+                    <% }else{ %>
+                        <option value="<%= ga.grantingAuthorityName %>"> <%= ga.grantingAuthorityName %> </option>
+                    <% } %>
+                    <% })%>
+                </select>
+            </div>
+        
+        </fieldset>
+    </div>
+</div>
