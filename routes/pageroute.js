@@ -205,6 +205,7 @@ router.get("/", async (req, res) => {
     res.set("Content-Security-Policy", 'frame-ancestors "self"');
     res.set("Access-Control-Allow-Origin", beis_url_publicsearch);
     res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains; preload");
+    res.set("Referrer-Policy", "origin");
 
     res.render("publicusersearch/searchresults", {
       pageCount,
@@ -226,6 +227,7 @@ router.post("/", (req, res) => {
   res.set("Content-Security-Policy", 'frame-ancestors "self"');
   res.set("Access-Control-Allow-Origin", beis_url_publicsearch);
   res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains; preload");
+  res.set("Referrer-Policy", "origin");
 
   legalgrantingdate_arrow = "downacending";
   res.render("publicusersearch/searchresults");

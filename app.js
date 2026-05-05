@@ -142,6 +142,7 @@ app.get("/", (req, res) => {
   res.set("X-Content-Type-Options", "nosniff");
   res.set("Content-Security-Policy", 'frame-ancestors "self"');
   res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains; preload");
+  res.set("Referrer-Policy", "origin");
   res.set("Access-Control-Allow-Origin", beis_url_publicsearch);
 
   res.render("publicusersearch/homepage");
