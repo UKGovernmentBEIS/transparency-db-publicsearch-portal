@@ -123,11 +123,13 @@ a {
   margin-top: 10px;
 }
 
-.pull-right {
-  float: right;
-}
-
 .filters-container {
   background-color:#f3f2f1;
   padding:1rem
+}
+
+.filters-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
