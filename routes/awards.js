@@ -15,8 +15,13 @@ router.get("/", async (req, res) => {
     res.set("Access-Control-Allow-Origin", beis_url_publicsearch);
     res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
 
+    // Filter items from the request
+    const filters = {
+        keyword: req.query.keyword || '',
+      };
+
     var recordsPerPage = 10; // get from request and default to 10
-    var currentPage = 1; // will get from request and default to 1
+    const currentPage = req.query.page || 1;
     var startRecord;
     var endRecord;
 
@@ -64,7 +69,7 @@ router.get("/", async (req, res) => {
           }
 
         res.render("publicusersearch/awards", {
-            req,
+            filters,
             results,
             pageCount,
             currentPage,
