@@ -4,46 +4,6 @@ body {
   font-family: GDS Transport, Arial, sans-serif;
 }
 
-/* section{
-    width:100%;
-}
-
-section .container{
-    max-width: 1366px;
-    margin: 0px auto;
-    padding: 20px 0px;
-}
-
-table{
-    width: 100%;
-    border: none;
-    border-spacing: 0px;
-}
-
-table tr th{
-    border-bottom: solid 2px black;
-}
-
-table tr td{
-    border: none;
-    border-bottom: solid thin gray;
-    
-}
-
-table tr td, table tr th{
-    padding: 10px;
-    text-align: left;
-}
-
-table tbody tr:nth-child(odd){
-    background-color: #f7f7f7;
-}
-
-table tbody tr:hover{
-    background-color: rgb(127, 227, 245);
-    cursor: pointer;
-} */
-
 .pagination {
   /* display: grid;
   grid-template-columns: auto auto; */
@@ -161,4 +121,13 @@ a {
   width: 1100px;
   margin-left: -65px;
   margin-top: 10px;
+}
+
+.pull-right {
+  float: right;
+}
+
+.filters-container {
+  background-color:#f3f2f1;
+  padding:1rem
 }
