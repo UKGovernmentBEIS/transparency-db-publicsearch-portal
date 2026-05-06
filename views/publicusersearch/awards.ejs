@@ -1,176 +1,172 @@
 <!DOCTYPE html>
-<html lang="en" class="govuk-template ">
-
+<html lang="en" class="govuk-template">
 <head>
-  <title> GOV.UK - Public user awards result page</title>
+  <title>GOV.UK - Public user awards result page</title>
+
   <%- include('../partials/headercss.ejs') %>
 
-  <link href="/assets/stylesheet/style.css" rel="stylesheet" type="text/css">
-
-  <script type="text/javascript" src="/assets/javascripts/pagination.class.js"></script>
-  <script type="text/javascript" src="/assets/javascripts/script.js" defer></script>
-  <link href="/assets/stylesheet/govuk-accordion1.css" rel="stylesheet" media="all" />
-  <script src="/assets/javascripts/vendor/modernizr.js"></script>
-  <script src="/assets/javascripts/jquery.min.js"></script>
-  <script src="/assets/javascripts/alasql.min.js"></script>
-  <script src="/assets/javascripts/xlsx.core.min.js"></script>
-  <script src="/assets/javascripts/searchfilterAccordion.js"></script>
+  <link href="/assets/stylesheet/style.css" rel="stylesheet" type="text/css">  
 </head>
 
 <body class="govuk-template__body app-example-page">
   <script>
-    document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');
+    document.body.className = document.body.className
+      ? document.body.className + ' js-enabled'
+      : 'js-enabled';
   </script>
+
   <%- include('../partials/cookies-consent.ejs') %>
   <%- include('../partials/header.ejs') %>
-  <div class="govuk-width-container ">
+
+  <div class="govuk-width-container">
     <%- include('../partials/banner.ejs') %>
+
     <main id="main-content" role="main">
       <div class="govuk-main-wrapper">
+        <% const awards = results.awards || []; %>
+        <% const totalSearchResults = results.totalSearchResults || 0; %>
+
         <div class="govuk-grid-row">
           <div class="govuk-grid-column-two-thirds">
             <h1 class="govuk-heading-l">Find subsidy awards</h1>
-            <label class="govuk-label">
-              <% if(results.totalSearchResults==1) { %>
-              <b id="number-of-results">
-                <%= results.totalSearchResults %>
-              </b> subsidy award found
-              <% } else { %>
-              <b id="number-of-results">
-                <%= results.totalSearchResults %>
-              </b> subsidy awards found
-              <% } %>
-            </label>
+
+            <p class="govuk-body">
+              <strong id="number-of-results"><%= totalSearchResults %></strong>
+              <%= totalSearchResults === 1 ? 'subsidy award found' : 'subsidy awards found' %>
+            </p>
           </div>
+
           <div class="govuk-grid-column-one-third">
-            <a href="/" class="govuk-button pull-right">New search</a>
+            <a href="/" class="govuk-button pull-right">
+              New search
+            </a>
           </div>
         </div>
 
-        <hr class="govuk-section-break-m">
+        <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
 
-        <!-- Filters Section Start -->
-        <div class="govuk-grid-column-one-third filters-container">
-          <div class="govuk-grid-column-one-half">
-            <p class="govuk-body">Filter by</p>
-          </div>
-          <div class="govuk-grid-column-one-half">
-            <!-- TODO: Write and update JS to clear all filters -->
-            <a href="#" class="govuk-link">Clear all</a>
-          </div>
-        </div>
-        <!-- Filters Section End -->
+        <div class="govuk-grid-row">
+            <div class="govuk-grid-column-one-third">
+              <div class="filters-container">
+                <div class="filters-header">
+                  <p class="govuk-body govuk-!-margin-bottom-0">Filter by</p>
+                  <a href="#" class="govuk-link">Clear all</a>
+                </div>
 
-        <!-- Results Section Start -->
-        <div class="govuk-grid-column-two-thirds">
-          <% results.awards.forEach(function(item) { %>
-          <a class="govuk-link govuk-heading-l" href="/searchresultsawardroute/?page=<%=item.awardNumber %>">
-            <%= item.beneficiary.beneficiaryName %>
-          </a>
-          <p class="govuk-body">
-            <!-- TODO: Move this to the bakend, something like "descriptionSummary" -->
-            <% var longDescription=item.subsidyAwardDescription.length> 130; %>
-            <% if (longDescription)
-                                    item.subsidyAwardDescription=item.subsidyAwardDescription.substring(0, 130) + '...'
-                                    %>
-            <%= item.subsidyAwardDescription %>
-          </p>
-          <dl class="govuk-summary-list govuk-summary-list--no-border">
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Recipient name
-              </dt>
-              <dd class="govuk-summary-list__value">
-                <%= item.beneficiary.beneficiaryName %>
-              </dd>
+                <br/>
+                <!-- Filters go here -->
+                <form action="/awards" method="GET">
+                    <div class="govuk-form-group">
+                        <label class="govuk-label govuk-label-s" for="keyword">
+                        Keyword search
+                        </label>
+                        <input class="govuk-input" id="keyword" name="keyword" type="text" value="<%= filters.keyword %>">
+                    </div>
+                    <button class="govuk-button">Update results</button>
+                </form>
+              </div>
             </div>
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Subsidy amount
-              </dt>
-              <dd class="govuk-summary-list__value">
-                <% if (item.subsidyInstrument=="Tax measures (tax credit, or tax/duty exemption)" )
-                                        { %>
-                <%= item.subsidyFullAmountRange%>
-                <% } else { %>
-                £<%= item.subsidyFullAmountExact%>
+
+          <div class="govuk-grid-column-two-thirds">
+            <% if (awards.length === 0) { %>
+              <p class="govuk-body">No subsidy awards match your search.</p>
+            <% } else { %>
+              <% awards.forEach(function(item, index) { %>
+                <% const description = item.subsidyAwardDescription || ''; %>
+                <% const shortDescription = description.length > 130 ? description.substring(0, 130) + '...' : description; %>
+
+                <article class="govuk-!-margin-bottom-4">
+                  <a class="govuk-link govuk-heading-m" href="/searchresultsawardroute/?page=<%= item.awardNumber %>">
+                    <%= item.beneficiary && item.beneficiary.beneficiaryName ? item.beneficiary.beneficiaryName : 'Unnamed award' %>
+                  </a>
+
+                  <% if (shortDescription) { %>
+                    <p class="govuk-body"><%= shortDescription %></p>
+                  <% } %>
+
+                  <dl class="govuk-summary-list govuk-summary-list--no-border">
+                    <div class="govuk-summary-list__row">
+                      <dt class="govuk-summary-list__key">Recipient name</dt>
+                      <dd class="govuk-summary-list__value">
+                        <%= item.beneficiary && item.beneficiary.beneficiaryName ? item.beneficiary.beneficiaryName : 'N/A' %>
+                      </dd>
+                    </div>
+
+                    <div class="govuk-summary-list__row">
+                      <dt class="govuk-summary-list__key">Subsidy amount</dt>
+                      <dd class="govuk-summary-list__value">
+                        <% if (item.subsidyInstrument === "Tax measures (tax credit, or tax/duty exemption)") { %>
+                          <%= item.subsidyFullAmountRange || 'N/A' %>
+                        <% } else { %>
+                          <%= item.subsidyFullAmountExact ? '£' + item.subsidyFullAmountExact : 'N/A' %>
+                        <% } %>
+                      </dd>
+                    </div>
+
+                    <div class="govuk-summary-list__row">
+                      <dt class="govuk-summary-list__key">Public authority</dt>
+                      <dd class="govuk-summary-list__value">
+                        <%= item.grantingAuthorityResponse && item.grantingAuthorityResponse.grantingAuthorityName
+                          ? item.grantingAuthorityResponse.grantingAuthorityName
+                          : 'N/A' %>
+                      </dd>
+                    </div>
+
+                    <div class="govuk-summary-list__row">
+                      <dt class="govuk-summary-list__key">Subsidy scheme</dt>
+                      <dd class="govuk-summary-list__value">
+                        <% if (item.standaloneAward === "Yes") { %>
+                          N/A
+                        <% } else { %>
+                          <%= item.subsidyMeasure && item.subsidyMeasure.subsidyMeasureTitle
+                            ? item.subsidyMeasure.subsidyMeasureTitle
+                            : 'N/A' %>
+                        <% } %>
+                      </dd>
+                    </div>
+
+                    <div class="govuk-summary-list__row">
+                      <dt class="govuk-summary-list__key">Subsidy form</dt>
+                      <dd class="govuk-summary-list__value">
+                        <%= item.subsidyInstrument || 'N/A' %>
+                      </dd>
+                    </div>
+
+                    <div class="govuk-summary-list__row">
+                      <dt class="govuk-summary-list__key">Sector</dt>
+                      <dd class="govuk-summary-list__value">
+                        <%= item.spendingSector || 'N/A' %>
+                      </dd>
+                    </div>
+
+                    <div class="govuk-summary-list__row">
+                      <dt class="govuk-summary-list__key">Date published</dt>
+                      <dd class="govuk-summary-list__value">
+                        <%= item.publishedAwardDate || 'N/A' %>
+                      </dd>
+                    </div>
+                  </dl>
+                </article>
+
+                <% if (index < awards.length - 1) { %>
+                  <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
                 <% } %>
-              </dd>
-            </div>
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Public authority
-              </dt>
-              <dd class="govuk-summary-list__value">
-                <%= item.grantingAuthorityResponse.grantingAuthorityName %>
-              </dd>
-            </div>
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Subsidy scheme
-              </dt>
-              <dd class="govuk-summary-list__value">
-                <% if (item.standaloneAward=="Yes" ) { %>
-                N/A
-                <% } else { %>
-                <%= item.subsidyMeasure.subsidyMeasureTitle %>
-                <% } %>
-              </dd>
-            </div>
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Subsidy form
-              </dt>
-              <dd class="govuk-summary-list__value">
-                <%= item.subsidyInstrument %>
-              </dd>
-            </div>
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Sector
-              </dt>
-              <dd class="govuk-summary-list__value">
-                <%= item.spendingSector %>
-              </dd>
-            </div>
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Date published
-              </dt>
-              <dd class="govuk-summary-list__value">
-                <%= item.publishedAwardDate %>
-              </dd>
-            </div>
-          </dl>
-          <!-- Only print rule when it's not the last item in the list -->
-          <% if (--recordsPerPage){ %>
-          <hr class="govuk-section-break-m">
-          <% } %>
-          <% } ); %>
-
-
-
-          <div id="pagination1" class="pagination govuk-grid-row">
-
-            <% if (pageCount> 1) { %>
-
-            <div class="govuk-grid-column-one-third first">
-
-            </div>
-
+              <% }); %>
             <% } %>
 
+            <div id="pagination1" class="pagination govuk-grid-row">
+              <% if (pageCount > 1) { %>
+                <div class="govuk-grid-column-one-third first">
+                  <!-- pagination controls go here -->
+                </div>
+              <% } %>
+            </div>
           </div>
         </div>
-
-        <div class="govuk-grid-row new-grid-width">
-
-        </div>
-
+      </div>
     </main>
   </div>
 
   <%- include('../partials/footer.ejs') %>
 </body>
-
 </html>
