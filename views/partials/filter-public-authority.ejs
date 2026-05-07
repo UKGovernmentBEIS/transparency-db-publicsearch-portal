@@ -1,23 +1,18 @@
+<% const selectedGA = ((filters && filters.ga) || "").toLowerCase(); %>
 <div class="govuk-form-group">
-    <fieldset class="govuk-fieldset">
-
-        <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
-        Public Authority
-        </legend>
-
-        <div class="govuk-form-group">
-            <select class="govuk-select" id="filter-pa" name="pa"
-            aria-labelledby="accordion-default-heading-1">
-                <option value="">Select an option</option>
-                <% gaList.forEach(function(ga){ %>
-                <% if ((filters.ga + "").toLowerCase() == ga.grantingAuthorityName.toLowerCase()) { %>
-                    <option value="<%= ga.grantingAuthorityName %>" selected> <%= ga.grantingAuthorityName %></option>
-                <% }else{ %>
-                    <option value="<%= ga.grantingAuthorityName %>"> <%= ga.grantingAuthorityName %> </option>
-                <% } %>
-                <% })%>
-            </select>
-        </div>
-    
-    </fieldset>
+    <label class="govuk-label govuk-label--l" for="filter-pa">
+    Public Authority
+    </label>
+    <div class="govuk-form-group">
+        <select class="govuk-select" id="filter-pa" name="pa">
+            <% gaList.forEach(function(ga){ 
+	        const name = ga.grantingAuthorityName;
+	        const isSelected = selectedGA === name.toLowerCase();
+            %>
+            <option value="<%= name %>" <%= isSelected ? 'selected' : '' %>>
+            <%= name %>
+            </option>
+            <% }) %>
+        </select>
+    </div>
 </div>
