@@ -1,14 +1,15 @@
 <% const selectedGA = ((filters && filters.ga) || "").toLowerCase(); %>
 <div class="govuk-form-group">
-    <label class="govuk-label govuk-label--l" for="filter-pa">
+    <label class="govuk-label govuk-label--s" for="filter-pa">
     Public Authority
     </label>
     <div class="govuk-form-group">
         <select class="govuk-select" id="filter-pa" name="pa">
+            <option value="">Select an option</option>
             <% gaList.forEach(function(ga){ 
 	        const name = ga.grantingAuthorityName;
 	        const isSelected = selectedGA === name.toLowerCase();
-            %>
+            %> 
             <option value="<%= name %>" <%= isSelected ? 'selected' : '' %>>
             <%= name %>
             </option>
