@@ -50,18 +50,13 @@
               <div class="filters-container">
                 <div class="filters-header">
                   <p class="govuk-body govuk-!-margin-bottom-0">Filter by</p>
-                  <a href="#" class="govuk-link">Clear all</a>
+                  <!-- Need to have an onclick() event for this which clears and resets all of the filters -->
+                  <a href="#" class="govuk-link">Clear all</a> 
                 </div>
 
                 <br/>
                 <!-- Filters go here -->
                 <form action="/awards" method="GET">
-                    <div class="govuk-form-group">
-                        <label class="govuk-label govuk-label-s" for="keyword">
-                        Keyword search
-                        </label>
-                        <input class="govuk-input" id="keyword" name="keyword" type="text" value="<%= filters.keyword %>">
-                    </div>
                     <button class="govuk-button">Update results</button>
                 </form>
               </div>
