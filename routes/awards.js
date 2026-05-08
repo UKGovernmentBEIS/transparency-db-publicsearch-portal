@@ -18,12 +18,14 @@ router.get("/", async (req, res) => {
     // Filter items from the request
     const filters = {
         keyword: req.query.keyword || '',
+        ga: req.query.pa || '',
       };
 
     var recordsPerPage = 10; // get from request and default to 10
     const currentPage = req.query.page || 1;
     var startRecord;
     var endRecord;
+    var gaList = [];
 
     const data_request = {
         beneficiaryName: "",
@@ -40,6 +42,27 @@ router.get("/", async (req, res) => {
       };
   
     var data = JSON.parse(JSON.stringify(data_request));
+
+    // Get list of public authorities for filter.
+    try{
+      const gaListRequest = await axios.get(
+        beis_url_publicsearch + "/schemes/all_gas",
+        {
+          headers: {
+            "X-Frame-Options": "DENY",
+            "Content-Security-Policy": "frame-ancestors 'self'",
+          },
+        }
+      );
+ 
+      API_response_code = `${gaListRequest.status}`;
+      console.log("All GAs API_response_code: try " + API_response_code);
+      gaList = gaListRequest.data.gaList;
+      gaList.sort((a, b) => a.grantingAuthorityName.localeCompare(b.grantingAuthorityName));
+  
+    }catch(err){
+      console.log("Error getting list of public authorities : " + err);
+    }
 
     try {
         const apidata = await axios.post(
@@ -71,6 +94,7 @@ router.get("/", async (req, res) => {
         res.render("publicusersearch/awards", {
             filters,
             results,
+            gaList,
             pageCount,
             currentPage,
             startRecord,
