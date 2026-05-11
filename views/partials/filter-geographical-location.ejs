@@ -1,0 +1,26 @@
+<div class="govuk-form-group">
+    <label class="govuk-label govuk-label--s" for="geoLocation-checkbox">
+    Geographical location
+    </label>
+    <div class="govuk-form-group" id="geoLocation-checkbox">
+        <div class="filter-scroll-box">
+            <% ["UK-wide","GB-wide","England","Northern Ireland","Scotland","Wales","East Midlands","East of England","London","North East","North West","South East","South West","West Midlands","Yorkshire and Humber","Select all"].forEach(function(geoLocation){ %>
+            <% if ((filters.geoLocation + "").toLowerCase() == geoLocation.toLowerCase()) { %>
+                <div class="govuk-checkboxes__item">
+                    <input class="govuk-checkboxes__input" id="<% geoLocation %>" name="<% geoLocation %>" type="checkbox" value="<%= geoLocation %>" selected>
+                    <label class="govuk-label govuk-checkboxes__label" for="<% geoLocation %>">
+                        <%= geoLocation %>
+                    </label>
+                </div>
+            <% }else{ %>
+                <div class="govuk-checkboxes__item">
+                    <input class="govuk-checkboxes__input" id="<% geoLocation %>" name="<% geoLocation %>" type="checkbox" value="<%= geoLocation %>">
+                    <label class="govuk-label govuk-checkboxes__label" for="<% geoLocation %>">
+                        <%= geoLocation %>
+                    </label>
+                </div>
+            <% } %>
+            <% })%>
+        </div>
+    </div>
+</div>
