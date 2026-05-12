@@ -807,19 +807,9 @@ router.get("/", (req, res) => {
   res.set("Access-Control-Allow-Origin", beis_url_publicsearch);
   res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
 
+  // Removed search results contents on GET 
+
   res.render("publicusersearch/searchresults", {
-    date_legal_granting_date_day,
-    date_legal_granting_date_month,
-    date_legal_granting_date_year,
-    date_legal_granting_date_day1,
-    date_legal_granting_date_month1,
-    date_legal_granting_date_year1,
-    date_legal_granting_date_month_Error,
-    date_legal_granting_date_day_Error,
-    date_legal_granting_date_year_Error,
-    date_legal_granting_date_month1_Error,
-    date_legal_granting_date_day1_Error,
-    date_legal_granting_date_year1_Error,
   });
 });
 

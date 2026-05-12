@@ -31,62 +31,28 @@ Gov.UK public user search - header rendering design
               UK public authorities are required to upload information on subsidy schemes and subsidy awards in compliance with their obligations to the Subsidy Control Act 2022.
             </p>
 
-            <form action="/standaloneawards" method="GET" class="govuk-padding-top-2">
-              <button class="govuk-button " data-module="govuk-button" id="homepage_button_view_all_standalone_awards">
-                View all standalone subsidy awards
-              </button>
-            </form>
+            <p class="govuk-body">You can use the Search for UK subsidies service to find all:</p>
 
-            <form action="/schemes" method="GET" class="govuk-padding-top-2">
-              <button class="govuk-button " data-module="govuk-button" id="homepage_button_view_all_schemes">
-                View all subsidy schemes
-              </button>
-            </form>
-
-            <form action="/searchresults" method="POST" class="govuk-padding-top-2">
-              <button class="govuk-button " data-module="govuk-button" id="homepage_button_view_all_awards"
-                name="homepage_button" value="show_results">
-                View all subsidy awards made under schemes
-              </button>
-            </form>
-            
-            <br/>
-
-            <p class="govuk-label">
-              You can answer a number of questions to search for particular subsidies.
-            </p>
-
-            <form action="/beneficiaryname" method="POST">
-              <button class="govuk-button" data-module="govuk-button" id="homepage_button_start_search"
-                name="homepage_button" value="start_now">
-                Start search
-              </button>
-              <p></p>
-            </form>
-
-            <form action="/mfaawards" method="GET" class="govuk-padding-top-2">
-              <button class="govuk-button " data-module="govuk-button" id="homepage_button_view_all_mfa_spei">
-                View all MFA / SPEI Assistance awards
-              </button>
-            </form>
+            <ul class="govuk-list govuk-list--bullet">
+              <li><a href="/awards" class="govuk-link">standalone subsidy awards and subsidy awards made under schemes</a></li>
+              <li><a href="/schemes" class="govuk-link">subsidy schemes</a></li>
+              <li><a href="/mfaawards" class="govuk-link">MFA/SPEI awards</a></li>
+            </ul>
 
             <p class="govuk-body">
-              Minimal financial assistance (MFA) are low-value subsidies that do not need to comply with the subsidy control principles. Businesses cannot receive more than £315,000 in MFA over three financial years.
+              Minimal financial assistance (MFA) are low-value subsidies that do not need to comply with the subsidy control principles.
             </p>
             <p class="govuk-body">
-              Services of Public Economic Interest (SPEI) are essential services provided by a public authority to the public which would not be provided under normal market conditions. SPEI may be considered to constitute SPEI Assistance (SPEIA) if the total amount of minimal or SPEI financial assistance given to a business does not exceed £725,000 over the three financial years.
+              Services of Public Economic Interest (SPEI) are essential services provided by a public authority to the public which would not be provided under normal market conditions.
             </p>
 
             <div>
+              <h2 class="govuk-heading-m">Links to the EU Database</h2>
               <a aria-label="Search for awards under EU State aid rules" class="govuk-link govuk-body" target="_blank"
                 href="https://webgate.ec.europa.eu/competition/transparency/public?lang=en">
                 Search for awards under EU State aid rules.
               </a>
-            </div>
-
-            </br>
-
-            <div>
+              <br/>
               <a aria-label="Search for awards under EU State aid rules" class="govuk-link govuk-body" target="_blank"
                 href="https://competition-cases.ec.europa.eu/search?caseInstrument=SA&caseMemberState=~GBR&sortField=caseLastDecisionDate&sortOrder=DESC">
                 Search the EU State aid case register
