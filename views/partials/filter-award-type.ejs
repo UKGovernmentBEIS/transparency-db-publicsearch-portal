@@ -1,0 +1,17 @@
+<div class="govuk-form-group">
+    <label class="govuk-label govuk-label--s" for="filter-award-type">
+    Award type
+    </label>
+    <div class="govuk-form-group">
+          <select class="govuk-select" id="filter-award-type" name="awardType">
+        <option value="">Select an option</option>
+        <% ["Standalone award","Award under a scheme"].forEach(function(awardType){ %>
+          <% if ((filters.awardType + "").toLowerCase() == awardType.toLowerCase()) { %>
+            <option value="<%= awardType %>" selected> <%= awardType %></option>
+          <% }else{ %>
+            <option value="<%= awardType %>"> <%= awardType %> </option>
+          <% } %>
+        <% })%>
+      </select>
+    </div>
+</div>
