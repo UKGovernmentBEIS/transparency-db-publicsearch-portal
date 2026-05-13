@@ -19,6 +19,7 @@ router.get("/", async (req, res) => {
     const filters = {
         keyword: req.query.keyword || '',
         ga: req.query.pa || '',
+        geoLocation: req.query.geoLocation || '',
       };
 
     var recordsPerPage = 10; // get from request and default to 10
