@@ -1,0 +1,56 @@
+<%
+    const locations = [
+    "UK-wide",
+    "GB-wide",
+    "England",
+    "Northern Ireland",
+    "Scotland",
+    "Wales",
+    "East Midlands",
+    "East of England",
+    "London",
+    "North East",
+    "North West",
+    "South East",
+    "South West",
+    "West Midlands",
+    "Yorkshire and Humber"
+    ];
+
+    const geoLocations = Array.isArray(filters.geoLocation) ? filters.geoLocation.map(l => l.toLowerCase()) : [(filters.geoLocation || "").toLowerCase()];
+    const allSelected = locations.every(location => geoLocations.includes(location.toLowerCase()));
+%>
+
+<div class="govuk-form-group">
+    <label class="govuk-label govuk-label--s" for="geoLocation-checkbox">
+        Geographical location
+    </label>
+
+    <div class="govuk-checkboxes govuk-checkboxes--small filter-scroll-box" id="geoLocation-checkbox">
+        <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input" id="selectAll" type="checkbox" <%= allSelected ? "checked" : "" %>>
+            <label class="govuk-label govuk-checkboxes__label" for="selectAll">
+                Select all
+            </label>
+        </div>
+
+        <% locations.forEach(location => { %>
+            <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input geo-checkbox"  id="<%=location%>" name="geoLocation" type="checkbox" value="<%=location%>"
+                <%= geoLocations.includes(location.toLowerCase()) ? "checked" : "" %>
+                >
+
+                <label class="govuk-label govuk-checkboxes__label" for="<%=location%>">
+                <%=location%>
+                </label>
+            </div>
+        <% }) %>
+    </div>
+</div>
+<script>
+    const selectAll = document.getElementById('selectAll');
+    const geoCheckboxes = document.querySelectorAll('.geo-checkbox');
+
+    selectAll.addEventListener('change', function () {geoCheckboxes.forEach(checkbox => {checkbox.checked = this.checked;});});
+    geoCheckboxes.forEach(checkbox => {checkbox.addEventListener('change', () => {const allChecked = [...geoCheckboxes].every(c => c.checked);selectAll.checked = allChecked;});});
+</script>
