@@ -1,0 +1,61 @@
+<%
+    const sectors = [
+    "Accommodation and food service activities",
+    "Activities of households as employers; undifferentiated goods- and services-producing activities of households for own use",
+    "Administrative and support service activities",
+    "Agriculture, forestry and fishing",
+    "Arts, entertainment and recreation",
+    "Construction",
+    "Education",
+    "Electricity, gas, steam and air conditioning supply",
+    "Financial and insurance activities",
+    "Human health and social work activities",
+    "Information and communication",
+    "Manufacturing",
+    "Mining and quarrying",
+    "Other service activities",
+    "Professional, scientific and technical activities",
+    "Public administration and defence; compulsory social security",
+    "Real estate activities",
+    "Transportation and storage",
+    "Water supply; sewerage, waste management and remediation activities",
+    "Wholesale and retail trade; repair of motor vehicles and motorcycles"
+    ];
+
+    const sectorsArray = Array.isArray(filters.sector) ? filters.sector.map(l => l.toLowerCase()) : [(filters.sector || "").toLowerCase()];
+    const allSelected = sectors.every(sector => sectorsArray.includes(sector.toLowerCase()));
+%>
+
+<div class="govuk-form-group">
+    <label class="govuk-label govuk-label--s" for="sector-checkbox">
+        Sector
+    </label>
+
+    <div class="govuk-checkboxes govuk-checkboxes--small filter-scroll-box" id="sector-checkbox">
+        <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input" id="selectAll" type="checkbox" <%= allSelected ? "checked" : "" %>>
+            <label class="govuk-label govuk-checkboxes__label" for="selectAll">
+                Select all
+            </label>
+        </div>
+
+        <% sectors.forEach(sector => { %>
+            <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input sector-checkbox"  id="<%=sector%>" name="sector" type="checkbox" value="<%=sector%>"
+                <%= sectorsArray.includes(sector.toLowerCase()) ? "checked" : "" %>
+                >
+
+                <label class="govuk-label govuk-checkboxes__label" for="<%=sector%>">
+                <%=sector%>
+                </label>
+            </div>
+        <% }) %>
+    </div>
+</div>
+<script>
+    const selectAll = document.getElementById('selectAll');
+    const sectorCheckboxes = document.querySelectorAll('.sector-checkbox');
+
+    selectAll.addEventListener('change', function () {sectorCheckboxes.forEach(checkbox => {checkbox.checked = this.checked;});});
+    sectorCheckboxes.forEach(checkbox => {checkbox.addEventListener('change', () => {const allChecked = [...sectorCheckboxes].every(c => c.checked);selectAll.checked = allChecked;});});
+</script>
