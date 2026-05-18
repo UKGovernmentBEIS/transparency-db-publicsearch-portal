@@ -1,25 +1,31 @@
-<%
-const awardTypes = [
-  "Standalone award",
-  "Award under a scheme"
-];
 
-const selectedAwardType = (filters.awardType || "").toLowerCase();
+<%
+    const awardTypes = [
+    "Standalone award",
+    "Award under a scheme"
+    ];
+
+    const awardTypesArray = Array.isArray(filters.awardType) ? filters.awardType.map(l => l.toLowerCase()) : [(filters.awardType || "").toLowerCase()];
+    // const allSelected = locations.every(location => geoLocations.includes(location.toLowerCase()));
 %>
 
 <div class="govuk-form-group">
-  <label class="govuk-label govuk-label--s" for="filter-award-type">
-    Award type
-  </label>
+    <label class="govuk-label govuk-label--s" for="awardType-checkbox">
+        Award type
+    </label>
 
-  <select class="govuk-select" id="filter-award-type" name="awardType">
-    <option value="">Select an option</option>
+    <div class="govuk-checkboxes govuk-checkboxes--small filter-scroll-box" id="awardType-checkbox">
+ 
+        <% awardTypes.forEach(awardType => { %>
+            <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input awardType-checkbox"  id="<%=awardType%>" name="awardType" type="checkbox" value="<%=awardType%>"
+                <%= awardTypesArray.includes(awardType.toLowerCase()) ? "checked" : "" %>
+                >
 
-    <% awardTypes.forEach(awardType => { %>
-      <option value="<%= awardType %>" <%= selectedAwardType === awardType.toLowerCase() ? "selected" : "" %>>
-        <%= awardType %>
-      </option>
-    <% }) %>
-    
-  </select>
+                <label class="govuk-label govuk-checkboxes__label" for="<%=awardType%>">
+                <%=awardType%>
+                </label>
+            </div>
+        <% }) %>
+    </div>
 </div>
