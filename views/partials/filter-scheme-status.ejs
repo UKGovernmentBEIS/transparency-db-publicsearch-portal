@@ -1,0 +1,29 @@
+<%
+    const schemeStatus = [
+    "Active",
+    "Inactive"
+    ];
+
+    const schemeStatusArray = Array.isArray(filters.schemeStatus) ? filters.schemeStatus.map(l => l.toLowerCase()) : [(filters.schemeStatus || "").toLowerCase()];
+%>
+
+<div class="govuk-form-group">
+    <label class="govuk-label govuk-label--s" for="schemeStatus-radio">
+      Scheme status
+    </label>
+
+    <div class="govuk-radios govuk-radios--inline govuk-radios--small" id="schemeStatus-radio">
+ 
+      <% schemeStatus.forEach(status => { %>
+        <div class="govuk-radios__item">
+          <input class="govuk-radios__input"  id="<%=status%>" name="status" type="radio" value="<%=status%>"
+          <%= schemeStatusArray.includes(status.toLowerCase()) ? "checked" : "" %>
+          >
+
+          <label class="govuk-label govuk-radios__label" for="<%=status%>">
+            <%=status%>
+          </label>
+        </div>
+      <% }) %>
+    </div>
+</div>
