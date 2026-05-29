@@ -1,0 +1,24 @@
+<%
+    const schemeInterestTypes = ["SSoI", "SSoPI"];
+    const selectedInetrest = (filters.schemeInterest || "").toLowerCase();
+%>
+
+<div class="govuk-form-group">
+    <label class="govuk-label govuk-label--s" for="schemeInterest-radio">
+        SSoI/SSoPI clasification
+    </label>
+    
+    <div class="govuk-radios govuk-radios--inline govuk-radios--small" id="schemeInterest-radio">
+        <% schemeInterestTypes.forEach(interest => { %>
+            <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="<%= interest %>" name="schemeInterest" type="radio" value="<%= interest %>"
+                    <%= selectedInetrest === interest.toLowerCase() ? "checked" : "" %>
+                >
+                <label class="govuk-label govuk-radios__label" for="<%= interest %>">
+                    <%= interest %>
+                </label>
+            </div>
+        <% }) %>
+
+    </div>
+</div>
