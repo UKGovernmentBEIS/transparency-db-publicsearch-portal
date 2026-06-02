@@ -240,4 +240,19 @@ app.use("/api/awards", require("./routes/apiendpoint"));
 app.use("/api/schemes", require("./routes/apiendpoint"));
 app.use("/api/mfaAwards", require("./routes/apiendpoint"));
 
+// API 404 fallback
+app.use("/api", (req, res) => {
+  const site = `${req.protocol}://${req.get("host")}`;
+
+  res.status(404).json({
+      error: "Not Found",
+      message: `API endpoint '${req.originalUrl}' is not supported.`,
+      _links: {
+          api: {
+              href: `${site}/api`
+          }
+      }
+  });
+});
+
 module.exports = app;
