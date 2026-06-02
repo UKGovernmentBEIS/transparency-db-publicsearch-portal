@@ -6,6 +6,9 @@ const resourceConfig = {
     awards: {
         idField: "awardNumber"
     },
+    schemes: {
+        idField: "scNumber"
+    },
 };
 
 router.get("/", async (req, res) => {
