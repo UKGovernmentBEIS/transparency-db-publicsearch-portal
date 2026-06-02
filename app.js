@@ -238,5 +238,6 @@ app.use("/privacy", privacynotice);
 app.use("/api", require("./routes/api"));
 app.use("/api/awards", require("./routes/apiendpoint"));
 app.use("/api/schemes", require("./routes/apiendpoint"));
+app.use("/api/mfaAwards", require("./routes/apiendpoint"));
 
 module.exports = app;

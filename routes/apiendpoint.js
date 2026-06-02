@@ -9,6 +9,9 @@ const resourceConfig = {
     schemes: {
         idField: "scNumber"
     },
+    mfaAwards: {
+        idField: "mfaAwardNumber"
+    },
 };
 
 router.get("/", async (req, res) => {
