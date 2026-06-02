@@ -237,6 +237,6 @@ app.use("/privacy", privacynotice);
 // API
 app.use("/api", require("./routes/api"));
 app.use("/api/awards", require("./routes/apiendpoint"));
-app.use("/api/award/:awardNumber", require("./routes/apiendpoint"));
+app.use("/api/awards/:awardNumber", require("./routes/apiendpoint"));
 
 module.exports = app;
