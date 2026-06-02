@@ -71,7 +71,7 @@ router.get("/:id", async (req, res) => {
 
         const site = `${req.protocol}://${req.get("host")}`;
 
-        const data = addSingleSelfLink(
+        const data = addItemLinks(
             response.data,
             site,
             resource,
@@ -95,30 +95,41 @@ function addCollectionSelfLinks(data, site, resource, config) {
     return {
         ...data,
         content: data.content.map(item =>
-            addSingleSelfLink(item, site, resource, config)
+            addItemLinks(item, site, resource, config)
         )
     };
 }
 
-function addSingleSelfLink(item, site, resource, config) {
+function addItemLinks(item, site, resource, config) {
     if (!item) {
         return item;
     }
 
     const id = item[config.idField];
 
-    if (!id) {
-        return item;
+    const links = {
+        ...(item._links || {})
+    };
+
+    if (id) {
+        links.self = {
+            href: `${site}/api/${resource}/${encodeURIComponent(id)}`
+        };
+    }
+
+    if (resource === "awards") {
+        const scNumber = getAssociatedScNumber(item);
+
+        if (scNumber) {
+            links.scheme = {
+                href: `${site}/api/schemes/${encodeURIComponent(scNumber)}`
+            };
+        }
     }
 
     return {
         ...item,
-        _links: {
-            ...(item._links || {}),
-            self: {
-                href: `${site}/api/${resource}/${encodeURIComponent(id)}`
-            }
-        }
+        _links: links
     };
 }
 
@@ -134,6 +145,12 @@ function getResourceConfig(resource) {
     }
 
     return config;
+}
+
+function getAssociatedScNumber(item){
+    return item.subsidyScheme && item.subsidyScheme.scNumber
+        ? item.subsidyScheme.scNumber
+        : null;
 }
 
 function setSecurityHeaders(req, res) {
