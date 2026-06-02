@@ -149,13 +149,133 @@
               <% }); %>
             <% } %>
 
-            <div id="pagination1" class="pagination govuk-grid-row">
-              <% if (pageCount > 1) { %>
-                <div class="govuk-grid-column-one-third first">
-                  <!-- pagination controls go here -->
-                </div>
-              <% } %>
-            </div>
+            <!-- Start of Pagination -->
+            <% if (pageCount > 1) { %>
+              <%
+                const currentPage = Number(page || 1);
+                const totalPages = Number(pageCount || 1);
+            
+                function pageUrl(pageNumber) {
+                  const params = new URLSearchParams();
+            
+                  params.set('page', pageNumber);
+                  params.set('size', size);
+            
+                  Object.keys(filters || {}).forEach(function(key) {
+                    if (filters[key]) {
+                      params.set(key, filters[key]);
+                    }
+                  });
+            
+                  return '/awards?' + params.toString();
+                }
+            
+                let pages = [];
+            
+                if (totalPages <= 7) {
+                  for (let i = 1; i <= totalPages; i++) {
+                    pages.push(i);
+                  }
+                } else {
+                  pages.push(1);
+            
+                  if (currentPage > 4) {
+                    pages.push('ellipsis-start');
+                  }
+            
+                  let startPage = Math.max(2, currentPage - 1);
+                  let endPage = Math.min(totalPages - 1, currentPage + 1);
+            
+                  if (currentPage <= 4) {
+                    startPage = 2;
+                    endPage = 5;
+                  }
+            
+                  if (currentPage >= totalPages - 3) {
+                    startPage = totalPages - 4;
+                    endPage = totalPages - 1;
+                  }
+            
+                  for (let i = startPage; i <= endPage; i++) {
+                    pages.push(i);
+                  }
+            
+                  if (currentPage < totalPages - 3) {
+                    pages.push('ellipsis-end');
+                  }
+            
+                  pages.push(totalPages);
+                }
+              %>
+            
+              <nav class="govuk-pagination" aria-label="Pagination">
+                <% if (currentPage > 1) { %>
+                  <div class="govuk-pagination__prev">
+                    <a class="govuk-link govuk-pagination__link" href="<%= pageUrl(currentPage - 1) %>" rel="prev">
+                      <svg class="govuk-pagination__icon govuk-pagination__icon--prev"
+                           xmlns="http://www.w3.org/2000/svg"
+                           height="13"
+                           width="15"
+                           aria-hidden="true"
+                           focusable="false"
+                           viewBox="0 0 15 13">
+                        <path d="m6.5938-0.0078125-6.7266 6.7266 6.7441 6.4062 1.377-1.449-4.1856-3.9768h12.896v-2h-12.984l4.2931-4.293-1.414-1.414z"></path>
+                      </svg>
+                      <span class="govuk-pagination__link-title">
+                        Previous<span class="govuk-visually-hidden"> page</span>
+                      </span>
+                    </a>
+                  </div>
+                <% } %>
+            
+                <ul class="govuk-pagination__list">
+                  <% pages.forEach(function(pageItem) { %>
+                    <% if (pageItem === 'ellipsis-start' || pageItem === 'ellipsis-end') { %>
+                      <li class="govuk-pagination__item govuk-pagination__item--ellipsis">
+                        &ctdot;
+                      </li>
+                    <% } else if (pageItem === currentPage) { %>
+                      <li class="govuk-pagination__item govuk-pagination__item--current">
+                        <a class="govuk-link govuk-pagination__link"
+                           href="<%= pageUrl(pageItem) %>"
+                           aria-label="Page <%= pageItem %>"
+                           aria-current="page">
+                          <%= pageItem %>
+                        </a>
+                      </li>
+                    <% } else { %>
+                      <li class="govuk-pagination__item">
+                        <a class="govuk-link govuk-pagination__link"
+                           href="<%= pageUrl(pageItem) %>"
+                           aria-label="Page <%= pageItem %>">
+                          <%= pageItem %>
+                        </a>
+                      </li>
+                    <% } %>
+                  <% }); %>
+                </ul>
+            
+                <% if (currentPage < totalPages) { %>
+                  <div class="govuk-pagination__next">
+                    <a class="govuk-link govuk-pagination__link" href="<%= pageUrl(currentPage + 1) %>" rel="next">
+                      <span class="govuk-pagination__link-title">
+                        Next<span class="govuk-visually-hidden"> page</span>
+                      </span>
+                      <svg class="govuk-pagination__icon govuk-pagination__icon--next"
+                           xmlns="http://www.w3.org/2000/svg"
+                           height="13"
+                           width="15"
+                           aria-hidden="true"
+                           focusable="false"
+                           viewBox="0 0 15 13">
+                        <path d="m8.107-0.0078125-1.4136 1.414 4.2926 4.293h-12.986v2h12.896l-4.1855 3.9766 1.377 1.4492 6.7441-6.4062-6.7246-6.7266z"></path>
+                      </svg>
+                    </a>
+                  </div>
+                <% } %>
+              </nav>
+            <% } %>
+            <!-- End of Pagination -->
           </div>
         </div>
       </div>
