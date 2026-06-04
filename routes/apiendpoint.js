@@ -112,12 +112,17 @@ function mapAxiosErrorToStatus(err) {
 }
 
 function getErrorMessage(err, status) {
-    return (
-        err.response?.data?.message ||
-        err.response?.data?.error ||
-        http.STATUS_CODES[status] ||
-        http.STATUS_CODES[500]
-    );
+    if (err.response && err.response.data) {
+        if (err.response.data.message) {
+            return err.response.data.message;
+        }
+
+        if (err.response.data.error) {
+            return err.response.data.error;
+        }
+    }
+
+    return http.STATUS_CODES[status] || http.STATUS_CODES[500];
 }
 
 function addCollectionSelfLinks(data, site, resource, config) {
