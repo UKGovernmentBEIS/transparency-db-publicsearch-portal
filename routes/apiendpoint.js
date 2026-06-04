@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const axios = require("axios");
+const http = require("http");
 
 const resourceConfig = {
     awards: {
@@ -52,8 +53,10 @@ router.get("/", async (req, res) => {
         res.json(data);
 
     } catch (err) {
-        res.status(500).json({
-            error: err.message
+        const status = mapAxiosErrorToStatus(err);
+
+        res.status(status).json({
+            error: getErrorMessage(err, status)
         });
     }
 });
@@ -81,11 +84,41 @@ router.get("/:id", async (req, res) => {
         res.json(data);
 
     } catch (err) {
-        res.status(500).json({
-            error: err.message
+        const status = mapAxiosErrorToStatus(err);
+
+        res.status(status).json({
+            error: getErrorMessage(err, status)
         });
     }
 });
+
+function mapAxiosErrorToStatus(err) {
+    // Backend returned an HTTP response, e.g. 400, 404, 500
+    if (err.response) {
+        return err.response.status || 502;
+    }
+
+    // Backend did not respond
+    if (err.code === "ECONNABORTED" || err.code === "ETIMEDOUT") {
+        return 504; // Gateway Timeout
+    }
+
+    if (err.code === "ECONNREFUSED" || err.request) {
+        return 503; // Service Unavailable
+    }
+
+    // Something failed in the Express layer before/during the request
+    return 500;
+}
+
+function getErrorMessage(err, status) {
+    return (
+        err.response?.data?.message ||
+        err.response?.data?.error ||
+        http.STATUS_CODES[status] ||
+        http.STATUS_CODES[500]
+    );
+}
 
 function addCollectionSelfLinks(data, site, resource, config) {
     if (!data || !Array.isArray(data.content)) {
