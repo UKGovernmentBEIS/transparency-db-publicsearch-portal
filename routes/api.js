@@ -9,7 +9,7 @@ router.get("/", (req, res) => {
     res.set("Access-Control-Allow-Origin", beis_url_publicsearch);
     res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
 
-    const site = req.protocol + '://' + req.get('host');
+    const site = getSiteUrl(req);
     const apiEndpoints = ["awards", "schemes", "mfaAwards"];
 
     const _links = apiEndpoints.reduce((acc, endpoint) => {
@@ -24,5 +24,12 @@ router.get("/", (req, res) => {
         _links
     });
 });
+
+function getSiteUrl(req) {
+    const proto = req.get("x-forwarded-proto") || req.protocol;
+    const host = req.get("x-forwarded-host") || req.get("host");
+
+    return `${proto}://${host}`;
+}
 
 module.exports = router;

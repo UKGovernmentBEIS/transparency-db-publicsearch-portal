@@ -41,7 +41,7 @@ router.get("/", async (req, res) => {
         }
         );
 
-        const site = `${req.protocol}://${req.get("host")}`;
+        const site = getSiteUrl(req);
 
         const data = addCollectionSelfLinks(
             response.data,
@@ -72,7 +72,7 @@ router.get("/:id", async (req, res) => {
             `${beis_url_publicsearch}${req.baseUrl}/${encodeURIComponent(req.params.id)}`
         );
 
-        const site = `${req.protocol}://${req.get("host")}`;
+        const site = getSiteUrl(req);
 
         const data = addItemLinks(
             response.data,
@@ -199,6 +199,13 @@ function setSecurityHeaders(req, res) {
     res.set("Content-Security-Policy", 'frame-ancestors "self"');
     res.set("Access-Control-Allow-Origin", beis_url_publicsearch);
     res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
+}
+
+function getSiteUrl(req) {
+    const proto = req.get("x-forwarded-proto") || req.protocol;
+    const host = req.get("x-forwarded-host") || req.get("host");
+
+    return `${proto}://${host}`;
 }
 
 module.exports = router;
