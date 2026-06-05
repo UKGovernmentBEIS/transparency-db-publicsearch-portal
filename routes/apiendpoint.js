@@ -165,6 +165,18 @@ function addItemLinks(item, site, resource, config) {
         }
     }
 
+    if (resource === "schemes") {
+        const awards = Array.isArray(item.awards) ? item.awards : [];
+
+        if (awards.length > 0) {
+            links.awards = awards
+                .filter(award => award && award.awardNumber)
+                .map(award => ({
+                    href: `${site}/api/awards/${encodeURIComponent(award.awardNumber)}`
+                }));
+        }
+    }
+
     return {
         ...item,
         _links: links
