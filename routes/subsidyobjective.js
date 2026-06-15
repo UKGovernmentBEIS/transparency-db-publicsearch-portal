@@ -4,8 +4,11 @@
 
 const express = require("express");
 const router = express.Router();
+const utils = require("../utils");
 
 router.post("/", (req, res) => {
+  utils.setSecurityHeaders(res, beis_url_publicsearch);
+
   const { Beneficiary_name, beneficiaryname } = req.body;
   text_beneficiaryname = Beneficiary_name;
   radio_beneficiaryname = beneficiaryname;
@@ -38,55 +41,13 @@ router.post("/", (req, res) => {
     check_subsidyobjective12 = "";
     check_subsidyobjective12_pass = "";
   }
-  res.set("X-Frame-Options", "DENY");
-  res.set("X-Content-Type-Options", "nosniff");
-  res.set("Content-Security-Policy", [
-    "default-src 'self'",
-    "script-src 'self' 'unsafe-inline'",
-    "style-src 'self' 'unsafe-inline'",
-    "img-src 'self' data:",
-    "font-src 'self' data:",
-    "connect-src 'self'",
-    "object-src 'none'",
-    "base-uri 'self'",
-    "form-action 'self'",
-    "frame-ancestors 'self'"
-  ].join(";"));
-
-  res.set("Access-Control-Allow-Origin", beis_url_publicsearch);
-  res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains; preload");
-  res.set("Referrer-Policy", "origin");
-  res.set("Cross-Origin-Resource-Policy", "same-origin");
-  res.set("Cross-Origin-Opener-Policy", "same-origin");
-  res.set("Cross-Origin-Embedder-Policy", "require-corp");
 
   res.render("publicusersearch/subsidyobjective");
 });
 
 router.get("/", (req, res) => {
   subsidy_objective_isfirst = "No";
-  res.set("X-Frame-Options", "DENY");
-  res.set("X-Content-Type-Options", "nosniff");
-  res.set("Content-Security-Policy", [
-    "default-src 'self'",
-    "script-src 'self' 'unsafe-inline'",
-    "style-src 'self' 'unsafe-inline'",
-    "img-src 'self' data:",
-    "font-src 'self' data:",
-    "connect-src 'self'",
-    "object-src 'none'",
-    "base-uri 'self'",
-    "form-action 'self'",
-    "frame-ancestors 'self'"
-  ].join(";"));
-
-  res.set("Access-Control-Allow-Origin", beis_url_publicsearch);
-  res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains; preload");
-  res.set("Referrer-Policy", "origin");
-  res.set("Cross-Origin-Resource-Policy", "same-origin");
-  res.set("Cross-Origin-Opener-Policy", "same-origin");
-  res.set("Cross-Origin-Embedder-Policy", "require-corp");
-
+  utils.setSecurityHeaders(res, beis_url_publicsearch);
   res.render("publicusersearch/subsidyobjective");
 });
 
