@@ -10,13 +10,10 @@ const { debug } = require("request");
 const { json } = require("express");
 const { data } = require("jquery");
 const render = "publicusersearch/standaloneawards";
+const utils = require("../utils");
 
 router.get("/", async (req, res) => {
-  res.set("X-Frame-Options", "DENY");
-  res.set("X-Content-Type-Options", "nosniff");
-  res.set("Content-Security-Policy", 'frame-ancestors "self"');
-  res.set("Access-Control-Allow-Origin", beis_url_publicsearch);
-  res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
+  utils.setSecurityHeaders(res, beis_url_publicsearch);
 
   frontend_totalRecordsPerPage = 10;
 

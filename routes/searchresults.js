@@ -7,13 +7,10 @@ const router = express.Router();
 const axios = require("axios");
 var request = require("request");
 const { debug } = require("request");
+const utils = require("../utils");
 
 router.post("/", async (req, res) => {
-  res.set("X-Frame-Options", "DENY");
-  res.set("X-Content-Type-Options", "nosniff");
-  res.set("Content-Security-Policy", 'frame-ancestors "self"');
-  res.set("Access-Control-Allow-Origin", beis_url_publicsearch);
-  res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
+  utils.setSecurityHeaders(res, beis_url_publicsearch);
 
   console.log("HOMEPAGE button", req.body.homepage_button);
   if (req.body.homepage_button == "show_results") {
@@ -728,9 +725,26 @@ router.post("/", async (req, res) => {
           data,
           {
             headers: {
-              "X-Content-Type-Options": "nosniff",
               "X-Frame-Options": "DENY",
-              "Content-Security-Policy": "frame-ancestors 'self'",
+              "X-Content-Type-Options": "nosniff",
+              "Access-Control-Allow-Origin": beis_url_publicsearch,
+              "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
+              "Content-Security-Policy": [
+                "default-src 'self'",
+                "script-src 'self' 'unsafe-inline'",
+                "style-src 'self' 'unsafe-inline'",
+                "img-src 'self' data:",
+                "font-src 'self' data:",
+                "connect-src 'self'",
+                "object-src 'none'",
+                "base-uri 'self'",
+                "form-action 'self'",
+                "frame-ancestors 'none'"
+              ].join("; "),
+              "Referrer-Policy": "origin",
+              "Cross-Origin-Resource-Policy": "same-origin",
+              "Cross-Origin-Opener-Policy": "same-origin",
+              "Cross-Origin-Embedder-Policy": "require-corp",
             },
           }
         );
@@ -801,11 +815,7 @@ router.post("/", async (req, res) => {
 });
 
 router.get("/", (req, res) => {
-  res.set("X-Frame-Options", "DENY");
-  res.set("X-Content-Type-Options", "nosniff");
-  res.set("Content-Security-Policy", 'frame-ancestors "self"');
-  res.set("Access-Control-Allow-Origin", beis_url_publicsearch);
-  res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
+  utils.setSecurityHeaders(res, beis_url_publicsearch);
 
   res.render("publicusersearch/searchresults", {
     date_legal_granting_date_day,
