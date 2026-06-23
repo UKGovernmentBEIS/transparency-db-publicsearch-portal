@@ -16,6 +16,7 @@ const { contains } = require("jquery");
 const axios = require("axios");
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
+app.set("trust proxy", true);
 app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride("_method"));
 app.use(express.static(__dirname + "/public"));
@@ -250,5 +251,26 @@ app.use("/cookieshelp", cookieshelp);
 // Privacy Notice
 var privacynotice = require("./routes/privacy-notice");
 app.use("/privacy", privacynotice);
+
+// API
+app.use("/api", require("./routes/api"));
+app.use("/api/awards", require("./routes/apiendpoint"));
+app.use("/api/schemes", require("./routes/apiendpoint"));
+app.use("/api/mfaAwards", require("./routes/apiendpoint"));
+
+// API 404 fallback
+app.use("/api", (req, res) => {
+  const site = `${req.protocol}://${req.get("host")}`;
+
+  res.status(404).json({
+      error: "Not Found",
+      message: `API endpoint '${req.originalUrl}' is not supported.`,
+      _links: {
+          api: {
+              href: `${site}/api`
+          }
+      }
+  });
+});
 
 module.exports = app;
