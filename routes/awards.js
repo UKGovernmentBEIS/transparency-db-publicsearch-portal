@@ -43,7 +43,6 @@ router.get("/", async (req, res) => {
       );
  
       API_response_code = `${gaListRequest.status}`;
-      console.log("All GAs API_response_code: try " + API_response_code);
       gaList = gaListRequest.data.gaList;
       gaList.sort((a, b) => a.grantingAuthorityName.localeCompare(b.grantingAuthorityName));
   
