@@ -207,73 +207,54 @@
                   pages.push(totalPages);
                 }
               %>
-            
-              <nav class="govuk-pagination" aria-label="Pagination">
+
+              <div id="pagination" class="pagination govuk-grid-row">
                 <% if (currentPage > 1) { %>
-                  <div class="govuk-pagination__prev">
-                    <a class="govuk-link govuk-pagination__link" href="<%= pageUrl(currentPage - 1) %>" rel="prev">
-                      <svg class="govuk-pagination__icon govuk-pagination__icon--prev"
-                           xmlns="http://www.w3.org/2000/svg"
-                           height="13"
-                           width="15"
-                           aria-hidden="true"
-                           focusable="false"
-                           viewBox="0 0 15 13">
-                        <path d="m6.5938-0.0078125-6.7266 6.7266 6.7441 6.4062 1.377-1.449-4.1856-3.9768h12.896v-2h-12.984l4.2931-4.293-1.414-1.414z"></path>
-                      </svg>
-                      <span class="govuk-pagination__link-title">
-                        Previous<span class="govuk-visually-hidden"> page</span>
-                      </span>
-                    </a>
-                  </div>
+                  <a href="<%= pageUrl(currentPage - 1) %>" id="paginationlink_previous_page" class="previous round" rel="prev">
+                    <svg class="govuk-pagination__icon govuk-pagination__icon--prev"
+                          xmlns="http://www.w3.org/2000/svg"
+                          height="13"
+                          width="15"
+                          aria-hidden="true"
+                          focusable="false"
+                          viewBox="0 0 15 13">
+                      <path d="m6.5938-0.0078125-6.7266 6.7266 6.7441 6.4062 1.377-1.449-4.1856-3.9768h12.896v-2h-12.984l4.2931-4.293-1.414-1.414z"></path>
+                    </svg>
+                    Previous<span class="govuk-visually-hidden"> page</span>
+                  </a>
                 <% } %>
-            
-                <ul class="govuk-pagination__list">
-                  <% pages.forEach(function(pageItem) { %>
-                    <% if (pageItem === 'ellipsis-start' || pageItem === 'ellipsis-end') { %>
-                      <li class="govuk-pagination__item govuk-pagination__item--ellipsis">
-                        &ctdot;
-                      </li>
-                    <% } else if (pageItem === currentPage) { %>
-                      <li class="govuk-pagination__item govuk-pagination__item--current">
-                        <a class="govuk-link govuk-pagination__link"
-                           href="<%= pageUrl(pageItem) %>"
-                           aria-label="Page <%= pageItem %>"
-                           aria-current="page">
-                          <%= pageItem %>
-                        </a>
-                      </li>
-                    <% } else { %>
-                      <li class="govuk-pagination__item">
-                        <a class="govuk-link govuk-pagination__link"
-                           href="<%= pageUrl(pageItem) %>"
-                           aria-label="Page <%= pageItem %>">
-                          <%= pageItem %>
-                        </a>
-                      </li>
-                    <% } %>
-                  <% }); %>
-                </ul>
-            
+
+                <% pages.forEach(function(pageItem) { %>
+                  <% if (pageItem === 'ellipsis-start' || pageItem === 'ellipsis-end') { %>
+                    <span class="round btn-page pagination-ellipsis">
+                      &ctdot;
+                    </span>
+                  <% } else if (pageItem === currentPage) { %>
+                    <a id="paginationlink<%= pageItem %>" aria-label="go to page <%= pageItem %>" class="round btn-page active" href="<%= pageUrl(pageItem) %>" aria-current="page">
+                      <%= pageItem %>
+                    </a>
+                  <% } else { %>
+                    <a id="paginationlink<%= pageItem %>" aria-label="go to page <%= pageItem %>" class="round btn-page" href="<%= pageUrl(pageItem) %>">
+                      <%= pageItem %>
+                    </a>
+                  <% } %>
+                <% }); %>
+
                 <% if (currentPage < totalPages) { %>
-                  <div class="govuk-pagination__next">
-                    <a class="govuk-link govuk-pagination__link" href="<%= pageUrl(currentPage + 1) %>" rel="next">
-                      <span class="govuk-pagination__link-title">
-                        Next<span class="govuk-visually-hidden"> page</span>
-                      </span>
-                      <svg class="govuk-pagination__icon govuk-pagination__icon--next"
-                           xmlns="http://www.w3.org/2000/svg"
-                           height="13"
-                           width="15"
-                           aria-hidden="true"
-                           focusable="false"
-                           viewBox="0 0 15 13">
-                        <path d="m8.107-0.0078125-1.4136 1.414 4.2926 4.293h-12.986v2h12.896l-4.1855 3.9766 1.377 1.4492 6.7441-6.4062-6.7246-6.7266z"></path>
-                      </svg>
-                    </a>
-                  </div>
+                  <a href="<%= pageUrl(currentPage + 1) %>" id="paginationlink_next_page" aria-label="go to next page" class="next round" rel="next">
+                    Next<span class="govuk-visually-hidden"> page</span>
+                    <svg class="govuk-pagination__icon govuk-pagination__icon--next"
+                          xmlns="http://www.w3.org/2000/svg"
+                          height="13"
+                          width="15"
+                          aria-hidden="true"
+                          focusable="false"
+                          viewBox="0 0 15 13">
+                      <path d="m8.107-0.0078125-1.4136 1.414 4.2926 4.293h-12.986v2h12.896l-4.1855 3.9766 1.377 1.4492 6.7441-6.4062-6.7246-6.7266z"></path>
+                    </svg>
+                  </a>
                 <% } %>
-              </nav>
+              </div>
             <% } %>
             <!-- End of Pagination -->
           </div>
