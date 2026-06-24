@@ -29,17 +29,25 @@
         <div class="govuk-grid-row">
           <div class="govuk-grid-column-two-thirds">
             <h1 class="govuk-heading-l">Find subsidy awards</h1>
-
+          </div>
+          <div class="govuk-grid-column-one-third">
+            <a href="/" class="govuk-button pull-right">
+              New search
+            </a>
+          </div>
+        </div>
+        <div class="govuk-grid-row">
+          <div class="govuk-grid-column-full">
             <p class="govuk-body">
               <strong id="number-of-results"><%= totalSearchResults %></strong>
               <%= totalSearchResults === 1 ? 'subsidy award found' : 'subsidy awards found' %>
             </p>
           </div>
-
-          <div class="govuk-grid-column-one-third">
-            <a href="/" class="govuk-button pull-right">
-              New search
-            </a>
+        </div>
+        <div class="govuk-grid-row">
+          <div class="govuk-grid-column-full">
+            <a class="govuk-link" href="#">Export as Excel file</a>
+            <a class="govuk-link" href="#">Export as CSV file</a>
           </div>
         </div>
 
