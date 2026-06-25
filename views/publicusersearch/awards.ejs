@@ -46,8 +46,30 @@
         </div>
         <div class="govuk-grid-row">
           <div class="govuk-grid-column-full">
-            <a class="govuk-link" href="#">Export as Excel file</a>
-            <a class="govuk-link" href="#">Export as CSV file</a>
+            <%
+            function exportUrl(format) {
+              const params = new URLSearchParams();
+          
+              params.set('format', format);
+          
+              Object.keys(filters || {}).forEach(function(key) {
+                if (filters[key]) {
+                  params.set(key, filters[key]);
+                }
+              });
+          
+              return '/awards/export?' + params.toString();
+            }
+            %>
+            <p class="govuk-body">
+              <a class="govuk-link" href="<%= exportUrl('xlsx') %>">
+                Export as Excel file
+              </a>
+            &nbsp;
+              <a class="govuk-link" href="<%= exportUrl('csv') %>">
+                Export as CSV file
+              </a>
+            </p>
           </div>
         </div>
 
