@@ -128,6 +128,11 @@ a {
   padding:1rem
 }
 
+#filters-container select{
+  background-color:#ffffff;
+  width: 100%;
+}
+
 #filters-header {
   display: flex;
   justify-content: space-between;
