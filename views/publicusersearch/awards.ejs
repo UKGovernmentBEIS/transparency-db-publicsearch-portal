@@ -32,35 +32,6 @@
           </div>
         </div>
 
-        <div class="govuk-grid-row">
-          <div class="govuk-grid-column-full">
-            <%
-            function exportUrl(format) {
-              const params = new URLSearchParams();
-          
-              params.set('format', format);
-          
-              Object.keys(filters || {}).forEach(function(key) {
-                if (filters[key]) {
-                  params.set(key, filters[key]);
-                }
-              });
-          
-              return '/awards/export?' + params.toString();
-            }
-            %>
-            <p class="govuk-body">
-              <a class="govuk-link" href="<%= exportUrl('xlsx') %>">
-                Export as Excel file
-              </a>
-            &nbsp;
-              <a class="govuk-link" href="<%= exportUrl('csv') %>">
-                Export as CSV file
-              </a>
-            </p>
-          </div>
-        </div>
-
         <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
 
         <div class="govuk-grid-row">
@@ -85,10 +56,38 @@
             </div>
 
           <div class="govuk-grid-column-two-thirds">
+            <!-- Search results count start -->
             <p class="govuk-body">
               <span class="govuk-!-font-weight-bold" id="number-of-results"><%= totalSearchResults %></span>
               <%= totalSearchResults === 1 ? 'subsidy award found' : 'subsidy awards found' %>
             </p>
+            <!-- Search results count start end -->
+            <!-- Export start -->
+            <%
+            function exportUrl(format) {
+              const params = new URLSearchParams();
+          
+              params.set('format', format);
+          
+              Object.keys(filters || {}).forEach(function(key) {
+                if (filters[key]) {
+                  params.set(key, filters[key]);
+                }
+              });
+          
+              return '/awards/export?' + params.toString();
+            }
+            %>
+            <p class="govuk-body">
+              <a class="govuk-link" href="<%= exportUrl('xlsx') %>">
+                Export results as an Excel file
+              </a>
+            &nbsp;
+              <a class="govuk-link" href="<%= exportUrl('csv') %>">
+                Export results as a CSV file
+              </a>
+            </p>
+            <!-- Export end -->
             <!-- Sort Start -->
             <form action="/awards" method="GET" class="govuk-form-group">
               <label class="govuk-label" for="sort">
