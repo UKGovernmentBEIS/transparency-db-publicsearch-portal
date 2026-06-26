@@ -34,14 +34,14 @@
 
         <div class="govuk-grid-row">
             <div class="govuk-grid-column-one-third">
-              <div class="filters-header">
+              <div id="filters-header">
                 <p class="govuk-body govuk-!-margin-bottom-0">Filter by</p>
                 <!-- Need to have an onclick() event for this which clears and resets all of the filters -->
                 <a href="#" class="govuk-link">Clear all</a> 
               </div>
-              <div class="filters-container">
+              <div id="filters-container">
                 <!-- Filters start -->
-                
+                <%- include('../partials/filter-keyword-or-sc.ejs'); %>
                 <!-- Filters end -->
                 <form id="filter-form" action="/awards" method="GET">
                   <!-- Hidden input fields to preserve page, size, and sorting -->

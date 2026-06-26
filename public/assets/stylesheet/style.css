@@ -123,15 +123,16 @@ a {
   margin-top: 10px;
 }
 
-.filters-container {
+#filters-container .govuk-form-group{
   background-color:#f3f2f1;
   padding:1rem
 }
 
-.filters-header {
+#filters-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-bottom:1rem;
 }
 
 .filter-scroll-box {
