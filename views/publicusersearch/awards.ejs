@@ -24,21 +24,14 @@
     <main id="main-content" role="main">
       <div class="govuk-main-wrapper">
         <% const awards = results.awards || []; %>
-        <% const totalSearchResults = results.totalSearchResults || 0; %>
+        <% const totalSearchResults = results.totalSearchResults.toLocaleString('en') || 0; %>
 
         <div class="govuk-grid-row">
           <div class="govuk-grid-column-full">
             <h1 class="govuk-heading-l">Find subsidy awards</h1>
           </div>
         </div>
-        <div class="govuk-grid-row">
-          <div class="govuk-grid-column-full">
-            <p class="govuk-body">
-              <strong id="number-of-results"><%= totalSearchResults %></strong>
-              <%= totalSearchResults === 1 ? 'subsidy award found' : 'subsidy awards found' %>
-            </p>
-          </div>
-        </div>
+
         <div class="govuk-grid-row">
           <div class="govuk-grid-column-full">
             <%
@@ -92,6 +85,10 @@
             </div>
 
           <div class="govuk-grid-column-two-thirds">
+            <p class="govuk-body">
+              <span class="govuk-!-font-weight-bold" id="number-of-results"><%= totalSearchResults %></span>
+              <%= totalSearchResults === 1 ? 'subsidy award found' : 'subsidy awards found' %>
+            </p>
             <!-- Sort Start -->
             <form action="/awards" method="GET" class="govuk-form-group">
               <label class="govuk-label" for="sort">
