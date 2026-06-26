@@ -125,7 +125,8 @@ a {
 
 #filters-container .govuk-form-group{
   background-color:#f3f2f1;
-  padding:1rem
+  padding:1rem;
+  margin-bottom: 10px;
 }
 
 #filters-container select{
