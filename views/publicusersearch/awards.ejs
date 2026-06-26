@@ -47,6 +47,7 @@
                   <input type="hidden" name="sort" value="<%= filters.sort || 'publishedDate,desc' %>">
                   <!-- Filters start -->
                   <%- include('../partials/filter-keyword-or-sc.ejs'); %>
+                  <%- include('../partials/filter-public-authority.ejs'); %>
                   <!-- Filters end -->
                   <button class="govuk-button">Apply filters</button>
                 </form>
