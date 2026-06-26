@@ -27,8 +27,9 @@ router.get('/', async function (req, res, next) {
 
     const exportRows = awards.map(toAwardExportRow);
 
+    const worksheet = XLSX.utils.json_to_sheet(exportRows);
     if (format === 'csv') {
-      const worksheet = XLSX.utils.json_to_sheet(exportRows);
+      
       const csv = XLSX.utils.sheet_to_csv(worksheet);
 
       res.setHeader('Content-Type', 'text/csv; charset=utf-8');
@@ -36,8 +37,6 @@ router.get('/', async function (req, res, next) {
 
       return res.send(csv);
     }
-
-    const worksheet = XLSX.utils.json_to_sheet(exportRows);
     const workbook = XLSX.utils.book_new();
 
     XLSX.utils.book_append_sheet(workbook, worksheet, 'Awards');
