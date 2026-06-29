@@ -1,0 +1,49 @@
+<%
+    const forms = [
+    "Direct Grant",
+    "Equity",
+    "Guarantee",
+    "Loan",
+    "Purchase of goods services above market prices",
+    "Provision of goods or services below market prices",
+    "Tax measures (tax credit, or tax/duty exemption)",
+    "Other"
+    ];
+
+    const subsidyForm = Array.isArray(filters.subsidyForm) ? filters.subsidyForm.map(l => l.toLowerCase()) : [(filters.subsidyForm || "").toLowerCase()];
+    const allSelected = forms.every(form => subsidyForm.includes(form.toLowerCase()));
+%>
+
+<div class="govuk-form-group">
+    <label class="govuk-label govuk-label--s" for="subsidyForm-checkbox">
+        Geographical location
+    </label>
+
+    <div class="govuk-checkboxes govuk-checkboxes--small filter-scroll-box" id="subsidyForm-checkbox">
+        <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input" id="selectAll" type="checkbox" <%= allSelected ? "checked" : "" %>>
+            <label class="govuk-label govuk-checkboxes__label" for="selectAll">
+                Select all
+            </label>
+        </div>
+
+        <% forms.forEach(form => { %>
+            <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input form-checkbox"  id="<%=form%>" name="subsidyForm" type="checkbox" value="<%=form%>"
+                <%= subsidyForm.includes(form.toLowerCase()) ? "checked" : "" %>
+                >
+
+                <label class="govuk-label govuk-checkboxes__label" for="<%=form%>">
+                <%=form%>
+                </label>
+            </div>
+        <% }) %>
+    </div>
+</div>
+<script>
+    const selectAll = document.getElementById('selectAll');
+    const formCheckboxes = document.querySelectorAll('.form-checkbox');
+
+    selectAll.addEventListener('change', function () {formCheckboxes.forEach(checkbox => {checkbox.checked = this.checked;});});
+    formCheckboxes.forEach(checkbox => {checkbox.addEventListener('change', () => {const allChecked = [...formCheckboxes].every(c => c.checked);selectAll.checked = allChecked;});});
+</script>
