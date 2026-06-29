@@ -169,3 +169,10 @@ a {
   border: 1px solid #b1b4b6;
   padding: 10px;
 }
+
+.filter-scroll-box {
+  max-height: 150px;
+  overflow-y: auto;
+  border: 1px solid #b1b4b6;
+  padding: 10px;
+}
