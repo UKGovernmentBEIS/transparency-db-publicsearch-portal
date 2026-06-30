@@ -5,6 +5,7 @@
 const express = require("express");
 const router = express.Router();
 const axios = require("axios");
+const qs = require('qs');
 
 router.get("/", async (req, res) => {
     res.set("X-Frame-Options", "DENY");
@@ -58,7 +59,11 @@ router.get("/", async (req, res) => {
                 page: backendPage,
                 size,
                 ...filters
-              }
+              },
+              paramsSerializer: params => qs.stringify(params, {
+                arrayFormat: 'repeat',
+                skipNulls: true
+              })
             }
         );
 
