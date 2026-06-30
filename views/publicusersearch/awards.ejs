@@ -33,27 +33,28 @@
         </div>
 
         <div class="govuk-grid-row">
-            <div class="govuk-grid-column-one-third">
-              <div id="filters-header">
-                <p class="govuk-body govuk-!-margin-bottom-0">Filter by</p>
-                <!-- Need to have an onclick() event for this which clears and resets all of the filters -->
-                <a href="#" class="govuk-link">Clear all</a> 
-              </div>
-              <div id="filters-container">
-                <form id="filter-form" action="/awards" method="GET">
-                  <!-- Hidden input fields to preserve page, size, and sorting -->
-                  <input type="hidden" name="page" value="1">
-                  <input type="hidden" name="size" value="<%= size %>">
-                  <input type="hidden" name="sort" value="<%= filters.sort || 'publishedDate,desc' %>">
-                  <!-- Filters start -->
-                  <%- include('../partials/filter-keyword-or-sc.ejs'); %>
-                  <%- include('../partials/filter-public-authority.ejs'); %>
-                  <%- include('../partials/filter-geographical-location.ejs'); %>
-                  <!-- Filters end -->
-                  <button class="govuk-button">Apply filters</button>
-                </form>
-              </div>
+          <div class="govuk-grid-column-one-third">
+            <div id="filters-header">
+              <p class="govuk-body govuk-!-margin-bottom-0">Filter by</p>
+              <a href="#" class="govuk-link js-clear-form" data-form-target="filter-form">
+                Clear all
+              </a>
             </div>
+            <div id="filters-container">
+              <form id="filter-form" action="/awards" method="GET">
+                <!-- Hidden input fields to preserve page, size, and sorting -->
+                <input type="hidden" name="page" value="1">
+                <input type="hidden" name="size" value="<%= size %>">
+                <input type="hidden" name="sort" value="<%= filters.sort || 'publishedDate,desc' %>">
+                <!-- Filters start -->
+                <%- include('../partials/filter-keyword-or-sc.ejs'); %>
+                <%- include('../partials/filter-public-authority.ejs'); %>
+                <%- include('../partials/filter-geographical-location.ejs'); %>
+                <!-- Filters end -->
+                <button class="govuk-button">Apply filters</button>
+              </form>
+            </div>
+          </div>
 
           <div class="govuk-grid-column-two-thirds">
             <!-- Search results count start -->
@@ -340,5 +341,6 @@
   </div>
 
   <%- include('../partials/footer.ejs') %>
+  <script src="/assets/javascripts/clear-form.js"></script>
 </body>
 </html>
