@@ -96,7 +96,7 @@ router.get("/", async (req, res) => {
         response_error_message = err;
         console.log("message error : " + err);
         console.log("response_error_message catch : " + response_error_message);
-        res.render("publicusersearch/noresults");
+        res.render("publicusersearch/service-unavailable");
       }
   });
   
