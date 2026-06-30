@@ -19,7 +19,7 @@ router.get("/", async (req, res) => {
     const filters = {
         sort: req.query.sort || defaultSort,
         keyword: req.query.keyword || '',
-        ga: req.query.pa || '',
+        pa: req.query.pa || '',
         geoLocation: req.query.geoLocation || '',
       };
 
@@ -30,11 +30,11 @@ router.get("/", async (req, res) => {
     const backendPage = Math.max(page - 1, 0);
     var startRecord;
     var endRecord;
-    var gaList = [];
+    var paList = [];
 
     // Get list of public authorities for filter.
     try{
-      const gaListRequest = await axios.get(
+      const paListRequest = await axios.get(
         beis_url_publicsearch + "/schemes/all_gas",
         {
           headers: {
@@ -44,9 +44,9 @@ router.get("/", async (req, res) => {
         }
       );
  
-      API_response_code = `${gaListRequest.status}`;
-      gaList = gaListRequest.data.gaList;
-      gaList.sort((a, b) => a.grantingAuthorityName.localeCompare(b.grantingAuthorityName));
+      API_response_code = `${paListRequest.status}`;
+      paList = paListRequest.data.gaList;
+      paList.sort((a, b) => a.grantingAuthorityName.localeCompare(b.grantingAuthorityName));
   
     }catch(err){
       console.log("Error getting list of public authorities : " + err);
@@ -85,7 +85,7 @@ router.get("/", async (req, res) => {
         res.render("publicusersearch/awards", {
             filters,
             results,
-            gaList,
+            paList,
             pageCount,
             page,
             startRecord,
