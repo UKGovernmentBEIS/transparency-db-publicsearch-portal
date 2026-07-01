@@ -4,8 +4,11 @@
 
 const express = require("express");
 const router = express.Router();
+const utils = require("../utils");
 
 router.post("/", (req, res) => {
+  utils.setSecurityHeaders(res, beis_url_publicsearch);
+  
   var { subsidyinstrument0 } = req.body;
   var { subsidyinstrument1 } = req.body;
   var { subsidyinstrument2 } = req.body;
@@ -207,22 +210,11 @@ router.post("/", (req, res) => {
   date_legal_granting_date_month1 = "";
   date_legal_granting_date_year1 = "";
 
-  res.set("X-Frame-Options", "DENY");
-  res.set("X-Content-Type-Options", "nosniff");
-  res.set("Content-Security-Policy", 'frame-ancestors "self"');
-  res.set("Access-Control-Allow-Origin", beis_url_publicsearch);
-  res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
-
   res.render("publicusersearch/legalgrantingdate");
 });
 
 router.get("/", (req, res) => {
-  res.set("X-Frame-Options", "DENY");
-  res.set("X-Content-Type-Options", "nosniff");
-  res.set("Content-Security-Policy", 'frame-ancestors "self"');
-  res.set("Access-Control-Allow-Origin", beis_url_publicsearch);
-  res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
-
+  utils.setSecurityHeaders(res, beis_url_publicsearch);
   res.render("publicusersearch/legalgrantingdate");
 });
 
