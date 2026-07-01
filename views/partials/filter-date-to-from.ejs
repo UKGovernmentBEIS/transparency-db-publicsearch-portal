@@ -1,0 +1,72 @@
+<div class="govuk-date-input filter-date-input" id="<%=filterIdPrefix%>-date-input">
+  <div class="govuk-form-group"> 
+    <label class="govuk-label govuk-label--s " for="<%=filterIdPrefix%>-date-input">
+      <%= filterTitle %>
+    </label>
+   <label class="govuk-label govuk-label--xs" id="<%=filterIdPrefix%>-from-date-label">
+      From
+    </label>
+    <div class="govuk-hint">
+      For example, 27 03 2007
+    </div>
+    <div class="govuk-date-input filter-date-input" id="<%=filterIdPrefix%>-from-date-input">
+      <div class="govuk-date-input__item filter-date-input__item">
+        <div class="govuk-form-group">
+          <label class="govuk-label govuk-date-input__label--s" for="<%=filterIdPrefix%>-filter-from-day">
+            Day
+          </label>
+          <input class="govuk-input govuk-date-input__input" id="<%=filterIdPrefix%>-filter-from-day" name="<%=filterIdPrefix%>fromDay" type="text" placeholder="DD" maxlength="2" pattern="(3[01]|[12][0-9]|0[1-9])" inputmode="numeric" value="<%= filters.fromDay %>">
+        </div>
+      </div>
+      <div class="govuk-date-input__item filter-date-input__item">
+        <div class="govuk-form-group">
+          <label class="govuk-label govuk-date-input__label--s" for="<%=filterIdPrefix%>-filter-from-month">
+            Month
+          </label>
+          <input class="govuk-input govuk-date-input__input" id="<%=filterIdPrefix%>-filter-from-month" name="<%=filterIdPrefix%>fromMonth" type="text" placeholder="MM" maxlength="2" pattern="(1[0-2]|0[1-9])" inputmode="numeric" value="<%= filters.fromMonth %>">
+        </div>
+      </div>
+      <div class="govuk-date-input__item filter-date-input__item">
+        <div class="govuk-form-group">
+          <label class="govuk-label govuk-date-input__label--s" for="<%=filterIdPrefix%>-filter-from-year">
+            Year
+          </label>
+          <input class="govuk-input govuk-date-input__input" id="<%=filterIdPrefix%>-filter-from-year" name="<%=filterIdPrefix%>fromYear" type="text" placeholder="YYYY" maxlength="4" pattern="[0-9]{4}" inputmode="numeric" value="<%= filters.fromYear %>">
+        </div>
+      </div>
+    </div>
+
+   <label class="govuk-label govuk-label--xs" id="<%=filterIdPrefix%>-to-date-label">
+      To
+    </label>
+    <div class="govuk-hint">
+      For example, 27 03 2007
+    </div>
+    <div class="govuk-date-input filter-date-input" id="<%=filterIdPrefix%>-to-date-input">
+      <div class="govuk-date-input__item filter-date-input__item">
+        <div class="govuk-form-group">
+          <label class="govuk-label govuk-date-input__label--s" for="<%=filterIdPrefix%>-filter-to-day">
+            Day
+          </label>
+          <input class="govuk-input govuk-date-input__input" id="<%=filterIdPrefix%>-filter-to-day" name="<%=filterIdPrefix%>toDay" type="text" placeholder="DD" maxlength="2" pattern="(3[01]|[12][0-9]|0[1-9])" inputmode="numeric" value="<%= filters.toDay %>">
+        </div>
+      </div>
+      <div class="govuk-date-input__item filter-date-input__item">
+        <div class="govuk-form-group">
+          <label class="govuk-label govuk-date-input__label--s" for="<%=filterIdPrefix%>-filter-to-month">
+            Month
+          </label>
+          <input class="govuk-input govuk-date-input__input" id="<%=filterIdPrefix%>-filter-to-month" name="<%=filterIdPrefix%>toMonth" type="text" placeholder="MM" maxlength="2" pattern="(1[0-2]|0[1-9])" inputmode="numeric" value="<%= filters.toMonth %>">
+        </div>
+      </div>
+      <div class="govuk-date-input__item filter-date-input__item">
+        <div class="govuk-form-group">
+          <label class="govuk-label govuk-date-input__label--s" for="<%=filterIdPrefix%>-filter-to-year">
+            Year
+          </label>
+          <input class="govuk-input govuk-date-input__input" id="<%=filterIdPrefix%>-filter-to-year" name="<%=filterIdPrefix%>filterToYear" type="text" placeholder="YYYY" maxlength="4" pattern="[0-9]{4}" inputmode="numeric" value="<%= filters.toYear %>">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
