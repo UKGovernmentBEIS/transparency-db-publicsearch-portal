@@ -260,6 +260,7 @@ app.use("/accessibilityStatement", accessibilityStatement);
 
 app.use("/mfaawards", require("./routes/mfaawards"));
 app.use("/mfaaward", require("./routes/mfaawarddetails"));
+app.use("/mfaawards/export", require("./routes/mfaAwardsExport"));
 
 // Cookies Consent
 
