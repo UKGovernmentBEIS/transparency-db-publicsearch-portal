@@ -169,3 +169,12 @@ a {
   border: 1px solid #b1b4b6;
   padding: 10px;
 }
+
+.filter-date-input {
+  display: flex;
+}
+
+.filter-date-input__item {
+  margin-left: -15px;
+  margin-right: 0px;
+}
