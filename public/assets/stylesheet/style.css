@@ -147,3 +147,7 @@ a {
   padding: 10px;
   background-color: #ffffff;
 }
+
+.button-full-width{
+  width: 100%;
+}
