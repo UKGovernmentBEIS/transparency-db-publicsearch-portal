@@ -1,6 +1,7 @@
 const express = require('express');
 const axios = require('axios');
 const XLSX = require('xlsx');
+const utils = require("../utils");
 
 const router = express.Router();
 
@@ -34,6 +35,7 @@ router.get('/', async function (req, res, next) {
 
       res.setHeader('Content-Type', 'text/csv; charset=utf-8');
       res.setHeader('Content-Disposition', 'attachment; filename="publicsearchawards.csv"');
+      utils.setSecurityHeaders(res, beis_url_publicsearch);
 
       return res.send(csv);
     }
@@ -55,6 +57,7 @@ router.get('/', async function (req, res, next) {
       'attachment; filename="publicsearchawards.xlsx"'
     );
 
+    utils.setSecurityHeaders(res, beis_url_publicsearch);
     return res.send(buffer);
   } catch (error) {
     next(error);
