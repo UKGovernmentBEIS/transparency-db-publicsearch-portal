@@ -135,16 +135,25 @@
                     <%= item.recipientName || 'Unnamed award' %>
                   </a>
 
+                  <p class="govuk-body">MFA award</p>
+
                   <dl class="govuk-summary-list govuk-summary-list--no-border">
-                    <div class="govuk-summary-list__row">
+                    <div class="govuk-summary-list__row ">
                       <dt class="govuk-summary-list__key">Award full amount</dt>
                       <dd class="govuk-summary-list__value">
-                        <%= item.awardAmountFormatted | '' %>
+                        £<%= item.awardAmountFormatted || '' %>
                       </dd>
                     </div>
 
                     <div class="govuk-summary-list__row">
-                      <dt class="govuk-summary-list__key">Public authority</dt>
+                      <dt class="govuk-summary-list__key">Award number</dt>
+                      <dd class="govuk-summary-list__value">
+                        <%= item.mfaAwardNumber || 'N/A' %>
+                      </dd>
+                    </div>
+
+                    <div class="govuk-summary-list__row">
+                      <dt class="govuk-summary-list__key">Recipient ID type</dt>
                       <dd class="govuk-summary-list__value">
                         <%= item.recipientIdType || 'N/A' %>
                       </dd>
