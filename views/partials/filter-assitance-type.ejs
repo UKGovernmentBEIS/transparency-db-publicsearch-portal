@@ -1,17 +1,17 @@
 <%
-    const mfaAssitanceTypes = ["MFA", "SPEI"];
-    const selectedAssistance = (filters.mfaAssitance || "").toLowerCase();
+    const mfaAssistanceTypes = ["MFA", "SPEI"];
+    const selectedAssistance = (filters.mfaAssistance || "").toLowerCase();
 %>
 
 <div class="govuk-form-group">
-    <label class="govuk-label govuk-label--s" for="mfaAssistance-radio">
+    <label class="govuk-label govuk-label--s" for="mfa-assistance-radio">
         Assistance type
     </label>
     
-    <div class="govuk-radios govuk-radios--inline govuk-radios--small" id="mfaAssistance-radio">
+    <div class="govuk-radios govuk-radios--inline govuk-radios--small" id="mfa-assistance-radio">
         <% mfaAssitanceTypes.forEach(assistance => { %>
             <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="<%= assistance %>" name="mfaAssitance" type="radio" value="<%= assistance %>"
+                <input class="govuk-radios__input" id="<%= assistance %>" name="mfaAssistance" type="radio" value="<%= assistance %>"
                     <%= selectedAssistance === assistance.toLowerCase() ? "checked" : "" %>
                 >
                 <label class="govuk-label govuk-radios__label" for="<%= assistance %>">
