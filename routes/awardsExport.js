@@ -11,7 +11,7 @@ router.get('/', async function (req, res, next) {
 
     const filters = {
       keyword: req.query.keyword || '',
-      ga: req.query.ga || '',
+      pa: req.query.pa || '',
       geoLocation: req.query.geoLocation || ''
     };
 
