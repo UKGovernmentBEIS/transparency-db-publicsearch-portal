@@ -273,7 +273,7 @@
               }
             %>
 
-            <div id="pagination1" class="pagination govuk-grid-row">
+            <div id="pagination" class="pagination govuk-grid-row">
               
               <% if (pageCount > 1) { %>
                 <div class="govuk-grid-column-one-third first">
@@ -287,7 +287,7 @@
               <div class="govuk-grid-column-two-thirds last govuk-padding-0 govuk-display-flex">
 
                 <% if (currentPage > 1) { %>
-                  <a href="<%= pageUrl(currentPage - 1) %>" id="paginationlink_previous_page" class="previous round" rel="prev">
+                  <a href="<%= pageUrl(currentPage - 1) %>" id="pagination-link-previous-page" class="previous round" rel="prev">
                     <svg class="govuk-pagination__icon govuk-pagination__icon--prev"
                          xmlns="http://www.w3.org/2000/svg"
                          height="13"
@@ -307,18 +307,18 @@
                       &ctdot;
                     </span>
                   <% } else if (pageItem === currentPage) { %>
-                    <a id="paginationlink<%= pageItem %>" aria-label="go to page <%= pageItem %>" class="round btn-page active" href="<%= pageUrl(pageItem) %>" aria-current="page">
+                    <a id="pagination-link-<%= pageItem %>" aria-label="go to page <%= pageItem %>" class="round btn-page active" href="<%= pageUrl(pageItem) %>" aria-current="page">
                       <%= pageItem %>
                     </a>
                   <% } else { %>
-                    <a id="paginationlink<%= pageItem %>" aria-label="go to page <%= pageItem %>" class="round btn-page" href="<%= pageUrl(pageItem) %>">
+                    <a id="pagination-link-<%= pageItem %>" aria-label="go to page <%= pageItem %>" class="round btn-page" href="<%= pageUrl(pageItem) %>">
                       <%= pageItem %>
                     </a>
                   <% } %>
                 <% }); %>
 
                 <% if (currentPage < totalPages) { %>
-                  <a href="<%= pageUrl(currentPage + 1) %>" id="paginationlink_next_page" aria-label="go to next page" class="next round" rel="next">
+                  <a href="<%= pageUrl(currentPage + 1) %>" id="pagination-link-next-page" aria-label="go to next page" class="next round" rel="next">
                     Next<span class="govuk-visually-hidden"> page</span>
                     <svg class="govuk-pagination__icon govuk-pagination__icon--next"
                          xmlns="http://www.w3.org/2000/svg"
