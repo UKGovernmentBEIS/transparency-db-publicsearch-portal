@@ -1,27 +1,27 @@
 <div class="govuk-form-group">
   <label class="govuk-label govuk-label--s">
-    <%= filters.fromToAmountTitle %>
+    <%= filterTitle %>
   </label>
   
-  <label class="govuk-label govuk-label--xs" for="fromAmount-input">
+  <label class="govuk-label govuk-label--xs" for="<%=filterIdPrefix%>-from-amount-input">
     From
   </label>
-  <div id="from-amount-hint" class="govuk-hint--s">
+  <div id="<%=filterIdPrefix%>-from-hint" class="govuk-hint--s">
       For example, £1,000,000
   </div>
   <div class="govuk-input__wrapper">
       <div class="govuk-input__prefix" aria-hidden="true">£</div>
-      <input class="govuk-input govuk-input--width-5" id="fromAmount-input" name="fromAmount" type="numeric" value="<%= filters.fromAmount %>">
+      <input class="govuk-input govuk-input--width-5" id="<%=filterIdPrefix%>-from-amount-input" name="fromAmount" type="numeric" value="<%= filters.fromAmount %>">
   </div>
 
-  <label class="govuk-label govuk-label--xs" for="toAmount-input">
+  <label class="govuk-label govuk-label--xs" for="<%=filterIdPrefix%>-to-amount-input">
     To
   </label>
-  <div id="to-amount-hint" class="govuk-hint--s">
+  <div id="<%=filterIdPrefix%>-to-hint" class="govuk-hint--s">
       For example, £2,000,000
   </div>
   <div class="govuk-input__wrapper">
       <div class="govuk-input__prefix" aria-hidden="true">£</div>
-      <input class="govuk-input govuk-input--width-5" id="toAmount-input" name="toAmount" type="numeric" value="<%= filters.toAmount %>">
+      <input class="govuk-input govuk-input--width-5" id="<%=filterIdPrefix%>-to-amount-input" name="toAmount" type="numeric" value="<%= filters.toAmount %>">
   </div>
 </div>
