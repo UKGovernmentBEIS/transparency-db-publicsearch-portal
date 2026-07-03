@@ -270,4 +270,7 @@ app.use("/cookieshelp", cookieshelp);
 var privacynotice = require("./routes/privacy-notice");
 app.use("/privacy", privacynotice);
 
+app.use("/awards", require('./routes/awards'));
+app.use("/awards/export", require('./routes/awardsExport'));
+
 module.exports = app;

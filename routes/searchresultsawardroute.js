@@ -40,21 +40,18 @@ router.get("/", async (req, res) => {
     {      
       backButton_href = "/scheme/?scheme=" + searchmeasuredetails.scNumber;
       backButton_text = "Back to scheme details";
-      backButton_method = "GET";
     }
     else
     {
       if(searchawarddetails.standaloneAward == "Yes")
       {      
-        backButton_href = "/standaloneawards";
-        backButton_text = "Back to standalone awards";
-        backButton_method = "GET";
+        backButton_href = "/awards";
+        backButton_text = "Back to search results";
       }
       else
       {
-        backButton_href = "/searchresults";
+        backButton_href = "/awards";
         backButton_text = "Back to search results";
-        backButton_method = "POST";
       }  
     }
 
