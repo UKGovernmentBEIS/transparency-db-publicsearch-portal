@@ -148,6 +148,10 @@ a {
   background-color: #ffffff;
 }
 
+.button-full-width{
+  width: 100%;
+}
+
 .filter-date-input {
   display: flex;
 }
