@@ -6,13 +6,10 @@ const express = require("express");
 const router = express.Router();
 const axios = require("axios");
 var request = require("request");
+const utils = require("../utils");
 
 router.get("/", async (req, res) => {
-  res.set("X-Frame-Options", "DENY");
-  res.set("X-Content-Type-Options", "nosniff");
-  res.set("Content-Security-Policy", 'frame-ancestors "self"');
-  res.set("Access-Control-Allow-Origin", beis_url_publicsearch);
-  res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
+  utils.setSecurityHeaders(res, beis_url_publicsearch);
 
   console.log("req.query.page: " + req.query.page);
   awardnumber = req.query.page;
@@ -43,21 +40,18 @@ router.get("/", async (req, res) => {
     {      
       backButton_href = "/scheme/?scheme=" + searchmeasuredetails.scNumber;
       backButton_text = "Back to scheme details";
-      backButton_method = "GET";
     }
     else
     {
       if(searchawarddetails.standaloneAward == "Yes")
       {      
-        backButton_href = "/standaloneawards";
-        backButton_text = "Back to standalone awards";
-        backButton_method = "GET";
+        backButton_href = "/awards";
+        backButton_text = "Back to search results";
       }
       else
       {
-        backButton_href = "/searchresults";
+        backButton_href = "/awards";
         backButton_text = "Back to search results";
-        backButton_method = "POST";
       }  
     }
 
