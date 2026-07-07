@@ -9,7 +9,7 @@
     </label>
     
     <div class="govuk-radios govuk-radios--inline govuk-radios--small" id="mfa-assistance-radio">
-        <% mfaAssitanceTypes.forEach(assistance => { %>
+        <% mfaAssistanceTypes.forEach(assistance => { %>
             <div class="govuk-radios__item">
                 <input class="govuk-radios__input" id="<%= assistance %>" name="mfaAssistance" type="radio" value="<%= assistance %>"
                     <%= selectedAssistance === assistance.toLowerCase() ? "checked" : "" %>
