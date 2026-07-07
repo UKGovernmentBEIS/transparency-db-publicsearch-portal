@@ -147,3 +147,12 @@ a {
   padding: 10px;
   background-color: #ffffff;
 }
+
+.filter-date-input {
+  display: flex;
+}
+
+.filter-date-input__item {
+  margin-left: -15px;
+  margin-right: 0px;
+}
