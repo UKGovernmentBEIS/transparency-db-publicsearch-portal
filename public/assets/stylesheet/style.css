@@ -151,3 +151,12 @@ a {
 .button-full-width{
   width: 100%;
 }
+
+.filter-date-input {
+  display: flex;
+}
+
+.filter-date-input__item {
+  margin-left: -15px;
+  margin-right: 0px;
+}
