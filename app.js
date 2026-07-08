@@ -207,9 +207,6 @@ app.use("/homepage", homepage);
 var awards = require("./routes/awards");
 app.use("/awards", awards);
 
-var schemes = require("./routes/schemes");
-app.use("/schemes", schemes);
-
 var standaloneawards = require("./routes/standaloneawards");
 app.use("/standaloneawards", standaloneawards);
 
@@ -273,5 +270,8 @@ app.use("/privacy", privacynotice);
 
 app.use("/awards", require('./routes/awards'));
 app.use("/awards/export", require('./routes/awardsExport'));
+
+app.use("/schemes", require("./routes/schemes"));
+app.use("/schemes/export", require('./routes/schemesExport'));
 
 module.exports = app;
