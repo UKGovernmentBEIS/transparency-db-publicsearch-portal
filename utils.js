@@ -42,4 +42,25 @@ exports.setSecurityHeaders = function (res, url) {
     "Cross-Origin-Opener-Policy": "same-origin",
     "Cross-Origin-Embedder-Policy": "require-corp",
   });
+
+}
+
+exports.getFilters = function (req, type){
+  var filters = {};
+  switch(type){
+    case "scheme":
+      filters = {
+        sort: req.query.sort || defaultSort,
+        keyword: req.query.keyword || '',
+        pa: req.query.pa || '',
+        schemeStatus: req.query.schemeStatus || ''
+      }
+      break;
+    case "mfa":
+      break;
+    case "award":
+      break;
+  }
+
+  return filters;
 }

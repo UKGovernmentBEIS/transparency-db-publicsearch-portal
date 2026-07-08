@@ -13,11 +13,7 @@ router.get("/", async (req, res) => {
     const defaultSort = 'publishedDate,desc';
 
     // Filter items from the request
-    const filters = {
-        sort: req.query.sort || defaultSort,
-        keyword: req.query.keyword || '',
-        pa: req.query.pa || '',
-      };
+    const filters = utils.getFilters(req,"scheme");
 
     const page = Number(req.query.page || 1);
     const size = Number(req.query.size || 10);

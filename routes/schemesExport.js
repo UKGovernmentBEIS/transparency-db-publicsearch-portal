@@ -9,11 +9,7 @@ router.get('/', async function (req, res, next) {
   try {
     const format = req.query.format === 'csv' ? 'csv' : 'xlsx';
 
-    const filters = {
-      keyword: req.query.keyword || '',
-      pa: req.query.pa || '',
-      geoLocation: req.query.geoLocation || ''
-    };
+    const filters = utils.getFilters(req,"scheme");
 
     const response = await axios.get(
       beis_url_publicsearch + '/searchResults/schemes/export',
