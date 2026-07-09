@@ -1,0 +1,13 @@
+<script>
+function selectAllCheckboxes(filterPrefixId) {
+    const checked = document.getElementById('selectAll').checked;
+
+    document.querySelectorAll('.' + filterPrefixId + '-checkbox')
+        .forEach(checkbox => checkbox.checked = checked);
+}
+
+function updateSelectAllCheckbox(filterPrefixId) {
+    document.getElementById('selectAll').checked = [...document.querySelectorAll('.' + filterPrefixId + '-checkbox')]
+            .every(checkbox => checkbox.checked);
+}
+</script>

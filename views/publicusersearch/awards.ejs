@@ -47,9 +47,10 @@
                 <input type="hidden" name="size" value="<%= size %>">
                 <input type="hidden" name="sort" value="<%= filters.sort || 'publishedDate,desc' %>">
                 <!-- Filters start -->
+                <%- include('../partials/select-all-checkbox.ejs'); %>
                 <%- include('../partials/filter-keyword-search.ejs',{filterTitle: "Keyword or SC number"}); %>
                 <%- include('../partials/filter-public-authority.ejs'); %>
-                <%- include('../partials/filter-geographical-location.ejs'); %>
+                <%- include('../partials/filter-geographical-location.ejs',{filterPrefixId: "geographical"}); %>
                 <!-- Filters end -->
                 <button class="govuk-button">Apply filters</button>
               </form>

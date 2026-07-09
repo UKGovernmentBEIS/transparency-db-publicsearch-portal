@@ -28,7 +28,7 @@
 
     <div class="govuk-checkboxes govuk-checkboxes--small filter-scroll-box" id="geoLocation-checkbox">
         <div class="govuk-checkboxes__item">
-            <input class="govuk-checkboxes__input" id="selectAll" type="checkbox" <%= allSelected ? "checked" : "" %>>
+            <input class="govuk-checkboxes__input" id="selectAll" type="checkbox" onclick="selectAllCheckboxes('<%= filterPrefixId %>')" <%= allSelected ? "checked" : "" %>>
             <label class="govuk-label govuk-checkboxes__label" for="selectAll">
                 Select all
             </label>
@@ -36,7 +36,7 @@
 
         <% locations.forEach(location => { %>
             <div class="govuk-checkboxes__item">
-                <input class="govuk-checkboxes__input geo-checkbox"  id="<%=location%>" name="geoLocation" type="checkbox" value="<%=location%>"
+                <input class="govuk-checkboxes__input <%=filterPrefixId%>-checkbox"  id="<%=location%>" name="geoLocation" type="checkbox" value="<%=location%>" onchange="updateSelectAllCheckbox('<%= filterPrefixId %>')"
                 <%= geoLocations.includes(location.toLowerCase()) ? "checked" : "" %>
                 >
 
@@ -47,10 +47,3 @@
         <% }) %>
     </div>
 </div>
-<script>
-    const selectAll = document.getElementById('selectAll');
-    const geoCheckboxes = document.querySelectorAll('.geo-checkbox');
-
-    selectAll.addEventListener('change', function () {geoCheckboxes.forEach(checkbox => {checkbox.checked = this.checked;});});
-    geoCheckboxes.forEach(checkbox => {checkbox.addEventListener('change', () => {const allChecked = [...geoCheckboxes].every(c => c.checked);selectAll.checked = allChecked;});});
-</script>
