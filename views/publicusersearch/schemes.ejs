@@ -50,6 +50,7 @@
                 <%- include('../partials/filter-keyword-search.ejs',{filterTitle: "Keyword or SC number"}); %>
                 <%- include('../partials/filter-public-authority.ejs'); %>
                 <%- include('../partials/filter-scheme-status.ejs'); %>
+                <%- include('../partials/filter-date-to-from.ejs',{filterTitle: "Start date", filterIdPrefix: "schemeStart"}); %>
                 <!-- Filters end -->
                 <button class="govuk-button">Apply filters</button>
               </form>

@@ -46,6 +46,7 @@ exports.setSecurityHeaders = function (res, url) {
 }
 
 exports.getFilters = function (req, type){
+  const defaultSort = 'publishedDate,desc';
   var filters = {};
   switch(type){
     case "scheme":
@@ -53,7 +54,13 @@ exports.getFilters = function (req, type){
         sort: req.query.sort || defaultSort,
         keyword: req.query.keyword || '',
         pa: req.query.pa || '',
-        schemeStatus: req.query.schemeStatus || ''
+        schemeStatus: req.query.schemeStatus || '',
+        schemeStartFromDay: req.query.schemeStartFromDay || '',
+        schemeStartFromMonth: req.query.schemeStartFromMonth || '',
+        schemeStartFromYear: req.query.schemeStartFromYear || '',
+        schemeStartToDay: req.query.schemeStartToDay || '',
+        schemeStartToMonth: req.query.schemeStartToMonth || '',
+        schemeStartToYear: req.query.schemeStartToYear || '',
       }
       break;
     case "mfa":

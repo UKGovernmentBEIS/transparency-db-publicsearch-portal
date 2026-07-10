@@ -10,7 +10,6 @@ const utils = require("../utils");
 
 router.get("/", async (req, res) => {
     utils.setSecurityHeaders(res, beis_url_publicsearch);
-    const defaultSort = 'publishedDate,desc';
 
     // Filter items from the request
     const filters = utils.getFilters(req,"scheme");
