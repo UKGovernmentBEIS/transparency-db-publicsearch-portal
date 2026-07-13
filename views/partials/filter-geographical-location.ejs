@@ -36,7 +36,7 @@
 
         <% locations.forEach(location => { %>
             <div class="govuk-checkboxes__item">
-                <input class="govuk-checkboxes__input <%=filterPrefixId%>-checkbox"  id="<%=location%>" name="geoLocation" type="checkbox" value="<%=location%>" 
+                <input class="govuk-checkboxes__input"  id="<%=location%>" name="geoLocation" type="checkbox" value="<%=location%>" 
                 <%= geoLocations.includes(location.toLowerCase()) ? "checked" : "" %>
                 >
 
