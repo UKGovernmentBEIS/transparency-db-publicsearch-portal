@@ -10,11 +10,24 @@ document.querySelectorAll('.js-select-all').forEach((selectAllCheckbox) => {
         'input[type="checkbox"]:not(.js-select-all)'
     );
 
+    const otherCheckbox = group.querySelector('[data-other-checkbox]');
+    const otherContainer = group.querySelector('[data-other-container]');
+
+    function toggleOtherInput() {
+        if (!otherCheckbox || !otherContainer) {
+            return;
+        }
+
+        otherContainer.style.display = otherCheckbox.checked ? 'block' : 'none';
+    }
+
     // Select or deselect every checkbox in this group.
     selectAllCheckbox.addEventListener('change', () => {
         checkboxes.forEach((checkbox) => {
             checkbox.checked = selectAllCheckbox.checked;
         });
+
+        toggleOtherInput();
     });
 
     // Update the select-all checkbox when an individual checkbox changes.
@@ -25,6 +38,8 @@ document.querySelectorAll('.js-select-all').forEach((selectAllCheckbox) => {
                 Array.from(checkboxes).every((item) => item.checked);
 
             selectAllCheckbox.checked = allChecked;
+
+            toggleOtherInput();
         });
     });
 
@@ -32,4 +47,6 @@ document.querySelectorAll('.js-select-all').forEach((selectAllCheckbox) => {
     selectAllCheckbox.checked =
         checkboxes.length > 0 &&
         Array.from(checkboxes).every((checkbox) => checkbox.checked);
+
+    toggleOtherInput();
 });
