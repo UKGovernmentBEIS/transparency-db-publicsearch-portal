@@ -33,7 +33,7 @@
 
     <div class="govuk-checkboxes govuk-checkboxes--small filter-scroll-box" id="sector-checkbox">
         <div class="govuk-checkboxes__item">
-            <input class="govuk-checkboxes__input" id="selectAll" type="checkbox" <%= allSelected ? "checked" : "" %>>
+            <input class="govuk-checkboxes__input js-select-all" id="selectAll" type="checkbox" <%= allSelected ? "checked" : "" %>>
             <label class="govuk-label govuk-checkboxes__label" for="selectAll">
                 Select all
             </label>
@@ -52,10 +52,3 @@
         <% }) %>
     </div>
 </div>
-<script>
-    const selectAll = document.getElementById('selectAll');
-    const sectorCheckboxes = document.querySelectorAll('.sector-checkbox');
-
-    selectAll.addEventListener('change', function () {sectorCheckboxes.forEach(checkbox => {checkbox.checked = this.checked;});});
-    sectorCheckboxes.forEach(checkbox => {checkbox.addEventListener('change', () => {const allChecked = [...sectorCheckboxes].every(c => c.checked);selectAll.checked = allChecked;});});
-</script>
