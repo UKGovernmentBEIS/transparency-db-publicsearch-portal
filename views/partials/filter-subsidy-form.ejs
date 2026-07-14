@@ -21,7 +21,7 @@
 
     <div class="govuk-checkboxes govuk-checkboxes--small filter-scroll-box" id="subsidyForm-checkbox">
         <div class="govuk-checkboxes__item">
-            <input class="govuk-checkboxes__input" id="selectAll" type="checkbox" <%= allSelected ? "checked" : "" %>>
+            <input class="govuk-checkboxes__input js-select-all" id="selectAll" type="checkbox" <%= allSelected ? "checked" : "" %>>
             <label class="govuk-label govuk-checkboxes__label" for="selectAll">
                 Select all
             </label>
@@ -41,7 +41,7 @@
 
         <!-- Other -->
         <div class="govuk-checkboxes__item">
-            <input class="govuk-checkboxes__input form-checkbox" id="Other" name="subsidyForm" type="checkbox" value="Other"
+            <input class="govuk-checkboxes__input form-checkbox" id="Other" name="subsidyForm" type="checkbox" value="Other" data-other-checkbox
                 <%= subsidyForm.includes("other") ? "checked" : "" %>
             >
 
@@ -49,49 +49,16 @@
                 Other
             </label>
         </div>
-        <div id="otherTextContainer" class="govuk-checkboxes__conditional">
+        <div id="otherTextContainer" class="govuk-checkboxes__conditional" data-other-container>
 
             <label class="govuk-label" for="otherSubsidyForm">
                 Please specify
             </label>
 
-            <input class="govuk-input govuk-!-width-two-thirds" id="otherSubsidyForm" name="otherSubsidyForm" type="text"
+            <input class="govuk-input" id="otherSubsidyForm" name="otherSubsidyForm" type="text"
                 value="<%= filters.otherSubsidyForm || '' %>"
             >
         </div>
 
     </div>
 </div>
-<script>
-    const selectAll = document.getElementById('selectAll');
-    const formCheckboxes = document.querySelectorAll('.form-checkbox');
-
-    const otherCheckbox = document.getElementById('Other');
-    const otherContainer = document.getElementById('otherTextContainer');
-
-    function toggleOtherInput() {
-        if (otherCheckbox.checked) {
-            otherContainer.style.display = 'block';
-        } else {
-            otherContainer.style.display = 'none';
-        }
-    }
-
-    selectAll.addEventListener('change', function () {
-        formCheckboxes.forEach(checkbox => {
-            checkbox.checked = this.checked;
-        });
-        toggleOtherInput();
-    });
-
-    formCheckboxes.forEach(checkbox => {
-        checkbox.addEventListener('change', () => {
-            const allChecked = [...formCheckboxes].every(c => c.checked);
-            selectAll.checked = allChecked;
-            toggleOtherInput();
-        });
-    });
-
-    // Set initial state on page load
-    toggleOtherInput();
-</script>
