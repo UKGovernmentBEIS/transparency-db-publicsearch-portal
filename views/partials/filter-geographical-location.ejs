@@ -34,13 +34,13 @@
             </label>
         </div>
 
-        <% locations.forEach(location => { %>
+        <% locations.forEach((location, index) => { %>
             <div class="govuk-checkboxes__item">
-                <input class="govuk-checkboxes__input"  id="<%=location%>" name="geoLocation" type="checkbox" value="<%=location%>" 
+                <input class="govuk-checkboxes__input" id="geo-location-<%=index%>" name="geoLocation" type="checkbox" value="<%=location%>" 
                 <%= geoLocations.includes(location.toLowerCase()) ? "checked" : "" %>
                 >
 
-                <label class="govuk-label govuk-checkboxes__label" for="<%=location%>">
+                <label class="govuk-label govuk-checkboxes__label" for="geo-location-<%=index%>">
                 <%=location%>
                 </label>
             </div>

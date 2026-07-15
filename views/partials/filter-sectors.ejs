@@ -39,13 +39,13 @@
             </label>
         </div>
 
-        <% sectors.forEach(sector => { %>
+        <% sectors.forEach((sector, index) => { %>
             <div class="govuk-checkboxes__item">
-                <input class="govuk-checkboxes__input sector-checkbox"  id="<%=sector%>" name="sector" type="checkbox" value="<%=sector%>"
+                <input class="govuk-checkboxes__input sector-checkbox"  id="sector-checkbox-<%=index%>" name="sector" type="checkbox" value="<%=sector%>"
                 <%= sectorsArray.includes(sector.toLowerCase()) ? "checked" : "" %>
                 >
 
-                <label class="govuk-label govuk-checkboxes__label" for="<%=sector%>">
+                <label class="govuk-label govuk-checkboxes__label" for="sector-checkbox-<%=index%>">
                 <%=sector%>
                 </label>
             </div>
