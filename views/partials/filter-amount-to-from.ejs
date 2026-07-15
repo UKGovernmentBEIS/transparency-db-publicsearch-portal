@@ -1,0 +1,27 @@
+<div class="govuk-form-group">
+  <label class="govuk-label govuk-label--s">
+    <%= filterTitle %>
+  </label>
+  
+  <label class="govuk-label govuk-label--xs govuk-!-margin-top-2" for="<%=filterIdPrefix%>-from-amount-input">
+    From
+  </label>
+  <div id="<%=filterIdPrefix%>-from-hint" class="govuk-hint--s">
+      For example, 1000000
+  </div>
+  <div class="govuk-input__wrapper">
+      <div class="govuk-input__prefix" aria-hidden="true">£</div>
+      <input class="govuk-input " id="<%=filterIdPrefix%>-from-amount-input" name="<%=filterIdPrefix%>FromAmount" type="number" min="0" step="1" value="<%= filters[filterIdPrefix + "FromAmount"]%>">
+  </div>
+
+  <label class="govuk-label govuk-label--xs govuk-!-margin-top-2" for="<%=filterIdPrefix%>-to-amount-input">
+    To
+  </label>
+  <div id="<%=filterIdPrefix%>-to-hint" class="govuk-hint--s">
+      For example, 2000000
+  </div>
+  <div class="govuk-input__wrapper">
+      <div class="govuk-input__prefix" aria-hidden="true">£</div>
+      <input class="govuk-input" id="<%=filterIdPrefix%>-to-amount-input" name="<%=filterIdPrefix%>ToAmount" type="number" min="0" step="1" value="<%= filters[filterIdPrefix + "ToAmount"]%>">
+  </div>
+</div>
