@@ -19,6 +19,56 @@ setURIParameters = function (uri, paramValues) {
   return returnUrl.pathname + returnUrl.search + returnUrl.hash;
 }
 
+exports.validateFromTo = function (from, to) {
+  const error = {
+    hasErrors: false,
+    errorMsg: "",
+    field: null
+  };
+
+  const hasFrom = Boolean(from?.trim());
+  const hasTo = Boolean(to?.trim());
+
+  if (hasFrom !== hasTo) {
+    return{
+      hasErrors: true,
+      errorMsg: "If 'From' or 'To' are provided, both must be provided",
+      field: hasFrom ? "to" : "from"
+    }
+  }
+
+  if (hasFrom && hasTo) {
+    const fromNumber = Number(from);
+    const toNumber = Number(to);
+  
+    if (!Number.isFinite(fromNumber) || !Number.isFinite(toNumber)) {
+      return {
+        hasErrors: true,
+        errorMsg: "'From' and 'To' must be valid numbers",
+        field: !Number.isFinite(fromNumber) ? "from" : "to"
+      };
+    }
+  
+    if (toNumber < fromNumber) {
+      return {
+        hasErrors: true,
+        errorMsg: "'To' must be greater than or equal to 'From'",
+        field: "to"
+      };
+    }
+
+    if (!Number.isInteger(fromNumber) || !Number.isInteger(toNumber)) {
+      return {
+        hasErrors: true,
+        errorMsg: "'From' and 'To' must be whole numbers",
+        field: !Number.isInteger(fromNumber) ? "from" : "to"
+      };
+    }
+  }
+
+  return error;
+}
+
 exports.setSecurityHeaders = function (res, url) {
   res.set({
     "X-Frame-Options": "DENY",

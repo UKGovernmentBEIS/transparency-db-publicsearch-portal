@@ -12,6 +12,10 @@ router.get("/", async (req, res) => {
     utils.setSecurityHeaders(res, beis_url_publicsearch);
     const defaultSort = 'publishedDate,desc';
 
+    var results = [];
+    var pageCount = 0;
+    var errors = [];
+
     // Filter items from the request
     const filters = {
         sort: req.query.sort || defaultSort,
@@ -33,6 +37,30 @@ router.get("/", async (req, res) => {
     const backendPage = Math.max(page - 1, 0);
     var startRecord;
     var endRecord;
+
+    // Validate award full amount from and to
+    var awardAmountErrors = utils.validateFromTo(filters.awardFullFromAmount, filters.awardFullToAmount);
+
+    if (awardAmountErrors.hasErrors) {
+      const fieldIds = {
+        from: "awardFull-from-amount-input",
+        to: "awardFull-to-amount-input"
+      };
+    
+      awardAmountErrors.field = fieldIds[awardAmountErrors.field] ?? fieldIds.to;
+      errors.push(awardAmountErrors);
+    }
+
+    if(errors.length > 0){
+      return res.render("publicusersearch/mfaawards", {
+        filters,
+        results,
+        pageCount,
+        page,
+        size,
+        errors
+    });
+    }
 
     try {
         const apidata = await axios.get(
@@ -71,7 +99,8 @@ router.get("/", async (req, res) => {
             page,
             startRecord,
             endRecord,
-            size
+            size,
+            errors
         });
     } catch (err) {
         response_error_message = err;
