@@ -11,6 +11,15 @@ router.get('/', async function (req, res, next) {
 
     const filters = {
       keyword: req.query.keyword || '',
+      mfaAssistance: req.query.mfaAssistance || '',
+      awardFullFromAmount : req.query.awardFullFromAmount || '',
+      awardFullToAmount: req.query.awardFullToAmount || '',
+      confirmationFromDay: req.query.confirmationFromDay || '',
+      confirmationFromMonth: req.query.confirmationFromMonth || '',
+      confirmationFromYear: req.query.confirmationFromYear || '',
+      confirmationToDay: req.query.confirmationToDay || '',
+      confirmationToMonth: req.query.confirmationToMonth || '',
+      confirmationToYear: req.query.confirmationToYear || ''
     };
 
     const response = await axios.get(

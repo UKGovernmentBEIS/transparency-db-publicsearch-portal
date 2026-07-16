@@ -16,6 +16,15 @@ router.get("/", async (req, res) => {
     const filters = {
         sort: req.query.sort || defaultSort,
         keyword: req.query.keyword || '',
+        mfaAssistance: req.query.mfaAssistance || '',
+        awardFullFromAmount : req.query.awardFullFromAmount || '',
+        awardFullToAmount: req.query.awardFullToAmount || '',
+        confirmationFromDay: req.query.confirmationFromDay || '',
+        confirmationFromMonth: req.query.confirmationFromMonth || '',
+        confirmationFromYear: req.query.confirmationFromYear || '',
+        confirmationToDay: req.query.confirmationToDay || '',
+        confirmationToMonth: req.query.confirmationToMonth || '',
+        confirmationToYear: req.query.confirmationToYear || ''
       };
 
     const page = Number(req.query.page || 1);
