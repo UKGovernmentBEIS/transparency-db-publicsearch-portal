@@ -31,6 +31,9 @@ router.get("/", async (req, res) => {
         confirmationToYear: req.query.confirmationToYear || ''
       };
 
+    const confirmationDateFrom = utils.buildDateFromStrings(filters.confirmationFromDay, filters.confirmationFromMonth, filters.confirmationFromYear);
+    const confirmationDateTo = utils.buildDateFromStrings(filters.confirmationToDay, filters.confirmationToMonth, filters.confirmationToYear);
+
     const page = Number(req.query.page || 1);
     const size = Number(req.query.size || 10);
     
@@ -49,6 +52,19 @@ router.get("/", async (req, res) => {
     
       awardAmountErrors.field = fieldIds[awardAmountErrors.field] ?? fieldIds.to;
       errors.push(awardAmountErrors);
+    }
+
+    // Validate confirmation date from and to
+    var confirmationDateErrors = utils.validateDateFromTo(confirmationDateFrom, confirmationDateTo)
+    
+    if (confirmationDateErrors.hasErrors){
+      const fieldIds = {
+        from: "confirmation-from-date-input",
+        to: "confirmation-to-date-input",
+      };
+
+      confirmationDateErrors.field = fieldIds[confirmationDateErrors.field] ?? fieldIds.to;
+      errors.push(confirmationDateErrors);
     }
 
     if(errors.length > 0){

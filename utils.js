@@ -1,3 +1,5 @@
+const validateDate = require("validate-date");
+
 setURIParameter = function (uri, key, value) {
   var updatedURI = new URL(uri);
   if (updatedURI.searchParams.has(key)) {
@@ -68,6 +70,56 @@ exports.validateFromTo = function (from, to) {
 
   return error;
 }
+
+isDateValid = function(date){
+  return validateDate(date, responseType="boolean")
+}
+
+exports.validateDateFromTo = function (fromDate, toDate){
+  const error = {
+    hasErrors: false,
+    errorMsg: "",
+    field: null
+  };
+
+  const hasFrom = Boolean(fromDate?.trim());
+  const hasTo = Boolean(toDate?.trim());
+
+  if(hasFrom !== hasTo ){
+    return{
+      hasErrors: true,
+      errorMsg: "If 'From' or 'To' are provided, both must be provided",
+      field: hasFrom ? "to" : "from"
+    }
+  }
+
+
+  
+  if (hasFrom && hasTo){
+    // check that both are valid
+    if(!isDateValid(fromDate) || isDateValid(to)){
+      return {
+        hasErrors: true,
+        errorMsg: "'From' and 'To' must be valid dates",
+        field: !isDateValid(fromDate) ? "from" : "to"
+      };
+    }
+
+    // check that to is after from
+  }
+
+  
+
+  return error;
+}
+
+exports.buildDateFromStrings = function (day, month, year) {
+  if (!day && !month && !year) {
+    return null;
+  }
+
+  return [day, month, year].join("/");
+};
 
 exports.setSecurityHeaders = function (res, url) {
   res.set({
