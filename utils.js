@@ -88,7 +88,7 @@ exports.validateDateFromTo = function (fromDate, toDate){
   if(hasFrom !== hasTo ){
     return{
       hasErrors: true,
-      errorMsg: "If 'From' or 'To' are provided, both must be provided",
+      errorMsg: "If 'From' date or 'To' are provided, both must be provided",
       field: hasFrom ? "to" : "from"
     }
   }
@@ -100,7 +100,7 @@ exports.validateDateFromTo = function (fromDate, toDate){
     if(!isDateValid(fromDate) || !isDateValid(toDate)){
       return {
         hasErrors: true,
-        errorMsg: "'From' and 'To' must be valid dates",
+        errorMsg: "'From' date and 'To' date must be valid dates",
         field: !isDateValid(fromDate) ? "from" : "to"
       };
     }
