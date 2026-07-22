@@ -59,8 +59,8 @@ router.get("/", async (req, res) => {
     
     if (confirmationDateErrors.hasErrors){
       const fieldIds = {
-        from: "confirmation-from-date-input",
-        to: "confirmation-to-date-input",
+        from: "confirmation-filter-from-day",
+        to: "confirmation-filter-to-day",
       };
 
       confirmationDateErrors.field = fieldIds[confirmationDateErrors.field] ?? fieldIds.to;

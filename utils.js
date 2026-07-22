@@ -97,7 +97,7 @@ exports.validateDateFromTo = function (fromDate, toDate){
   
   if (hasFrom && hasTo){
     // check that both are valid
-    if(!isDateValid(fromDate) || isDateValid(to)){
+    if(!isDateValid(fromDate) || !isDateValid(toDate)){
       return {
         hasErrors: true,
         errorMsg: "'From' and 'To' must be valid dates",
