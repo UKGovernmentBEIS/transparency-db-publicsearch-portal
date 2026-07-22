@@ -118,7 +118,7 @@ exports.buildDateFromStrings = function (day, month, year) {
     return null;
   }
 
-  return [day, month, year].join("/");
+  return [year, month, day].join("-");
 };
 
 exports.setSecurityHeaders = function (res, url) {
