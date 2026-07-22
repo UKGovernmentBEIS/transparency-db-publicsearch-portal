@@ -72,7 +72,7 @@ exports.validateFromTo = function (from, to) {
 }
 
 isDateValid = function(date){
-  return validateDate(date, responseType="boolean")
+  return validateDate(date, responseType="boolean");
 }
 
 exports.validateDateFromTo = function (fromDate, toDate){
@@ -106,6 +106,16 @@ exports.validateDateFromTo = function (fromDate, toDate){
     }
 
     // check that to is after from
+    const fromDateObj = Date.parse(fromDate);
+    const toDateObj = Date.parse(toDate);
+
+    if(fromDateObj > toDateObj){
+      return {
+        hasErrors: true,
+        errorMsg: "'To' date must be after 'From' date",
+        field: "to"
+      };
+    }
   }
 
   
