@@ -11,9 +11,6 @@ const utils = require("../utils");
 router.get("/", async (req, res) => {
     utils.setSecurityHeaders(res, beis_url_publicsearch);
     const defaultSort = 'publishedDate,desc';
-
-    var results = [];
-    var pageCount = 0;
     var errors = [];
 
     // Filter items from the request
@@ -70,12 +67,12 @@ router.get("/", async (req, res) => {
     if(errors.length > 0){
       return res.render("publicusersearch/mfaawards", {
         filters,
-        results,
-        pageCount,
-        page,
-        size,
+        results: [],
+        pageCount: 0,
+        page: 0,
+        size: 10,
         errors
-    });
+      });
     }
 
     try {
