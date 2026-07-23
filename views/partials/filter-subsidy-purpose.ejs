@@ -29,13 +29,13 @@
             </label>
         </div>
 
-        <% purposes.filter(f => f !== "Other").forEach(purpose => { %>
+        <% purposes.filter(f => f !== "Other").forEach((purpose, index) => { %>
         <div class="govuk-checkboxes__item">
-            <input class="govuk-checkboxes__input purpose-checkbox" id="<%= purpose %>" name="subsidyPurpose" type="checkbox" value="<%= purpose %>"
+            <input class="govuk-checkboxes__input purpose-checkbox" id="purpose-checkbox-<%=index%>" name="subsidyPurpose" type="checkbox" value="<%= purpose %>"
                 <%= subsidyPurpose.includes(purpose.toLowerCase()) ? "checked" : "" %>
             >
 
-            <label class="govuk-label govuk-checkboxes__label" for="<%= purpose %>">
+            <label class="govuk-label govuk-checkboxes__label" for="purpose-checkbox-<%=index%>">
                 <%= purpose %>
             </label>
         </div>
@@ -43,22 +43,22 @@
 
         <!-- Other -->
         <div class="govuk-checkboxes__item">
-            <input class="govuk-checkboxes__input purpose-checkbox" id="Other" name="subsidyPurpose" type="checkbox" value="Other" data-other-checkbox
+            <input class="govuk-checkboxes__input purpose-checkbox" id="purpose-checkbox-other" name="subsidyPurpose" type="checkbox" value="Other" data-other-checkbox
                 <%= subsidyPurpose.includes("other") ? "checked" : "" %>
             >
 
-            <label class="govuk-label govuk-checkboxes__label" for="Other">
+            <label class="govuk-label govuk-checkboxes__label" for="purpose-checkbox-other">
                 Other
             </label>
         </div>
-        <div id="otherTextContainer" class="govuk-checkboxes__conditional" data-other-container>
+        <div id="other-text-container" class="govuk-checkboxes__conditional" data-other-container>
 
-            <label class="govuk-label" for="otherSubsidyPurpose">
+            <label class="govuk-label" for="purpose-text-other">
                 Please specify
             </label>
 
-            <input class="govuk-input" id="otherSubsidyPurpose" name="otherSubsidyPurpose" type="text"
-                value="<%= filters.otherSubsidyPurpose || '' %>"
+            <input class="govuk-input" id="purpose-text-other" name="subsidyPurposeOther" type="text"
+                value="<%= filters.subsidyPurposeOther || '' %>"
             >
         </div>
 
