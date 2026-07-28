@@ -27,13 +27,13 @@
             </label>
         </div>
 
-        <% forms.filter(f => f !== "Other").forEach(form => { %>
+        <% forms.filter(f => f !== "Other").forEach((form, index) => { %>
         <div class="govuk-checkboxes__item">
-            <input class="govuk-checkboxes__input form-checkbox" id="<%= form %>" name="subsidyForm" type="checkbox" value="<%= form %>"
+            <input class="govuk-checkboxes__input form-checkbox" id="form-checkbox-<%=index%>" name="subsidyForm" type="checkbox" value="<%= form %>"
                 <%= subsidyForm.includes(form.toLowerCase()) ? "checked" : "" %>
             >
 
-            <label class="govuk-label govuk-checkboxes__label" for="<%= form %>">
+            <label class="govuk-label govuk-checkboxes__label" for="form-checkbox-<%=index%>">
                 <%= form %>
             </label>
         </div>
@@ -41,22 +41,22 @@
 
         <!-- Other -->
         <div class="govuk-checkboxes__item">
-            <input class="govuk-checkboxes__input form-checkbox" id="Other" name="subsidyForm" type="checkbox" value="Other" data-other-checkbox
+            <input class="govuk-checkboxes__input form-checkbox" id="form-checkbox-other" name="subsidyForm" type="checkbox" value="Other" data-other-checkbox
                 <%= subsidyForm.includes("other") ? "checked" : "" %>
             >
 
-            <label class="govuk-label govuk-checkboxes__label" for="Other">
+            <label class="govuk-label govuk-checkboxes__label" for="form-checkbox-other">
                 Other
             </label>
         </div>
-        <div id="otherTextContainer" class="govuk-checkboxes__conditional" data-other-container>
+        <div id="other-text-container" class="govuk-checkboxes__conditional" data-other-container>
 
-            <label class="govuk-label" for="otherSubsidyForm">
+            <label class="govuk-label" for="form-text-other">
                 Please specify
             </label>
 
-            <input class="govuk-input" id="otherSubsidyForm" name="otherSubsidyForm" type="text"
-                value="<%= filters.otherSubsidyForm || '' %>"
+            <input class="govuk-input" id="form-text-other" name="subsidyFormOther" type="text"
+                value="<%= filters.subsidyFormOther || '' %>"
             >
         </div>
 

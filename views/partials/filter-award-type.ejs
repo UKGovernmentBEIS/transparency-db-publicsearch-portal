@@ -8,19 +8,19 @@
 %>
 
 <div class="govuk-form-group">
-    <label class="govuk-label govuk-label--s" for="awardType-checkbox">
+    <label class="govuk-label govuk-label--s" for="award-type-checkbox">
       Award type
     </label>
 
-    <div class="govuk-checkboxes govuk-checkboxes--small filter-scroll-box" id="awardType-checkbox">
+    <div class="govuk-checkboxes govuk-checkboxes--small filter-scroll-box" id="award-type-checkbox">
  
-      <% awardTypes.forEach(awardType => { %>
+      <% awardTypes.forEach((awardType, index) => { %>
         <div class="govuk-checkboxes__item">
-          <input class="govuk-checkboxes__input awardType-checkbox"  id="<%=awardType%>" name="awardType" type="checkbox" value="<%=awardType%>"
+          <input class="govuk-checkboxes__input awardType-checkbox"  id="award-type-<%=index%>" name="awardType" type="checkbox" value="<%=awardType%>"
           <%= awardTypesArray.includes(awardType.toLowerCase()) ? "checked" : "" %>
           >
 
-          <label class="govuk-label govuk-checkboxes__label" for="<%=awardType%>">
+          <label class="govuk-label govuk-checkboxes__label" for="award-type-<%=index%>">
             <%=awardType%>
           </label>
         </div>

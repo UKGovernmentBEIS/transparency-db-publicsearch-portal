@@ -23,14 +23,34 @@
     <a href="/" class="govuk-back-link">Back home</a>
     <main id="main-content" role="main">
       <div class="govuk-main-wrapper">
-        <% const mfaAwards = results.mfaAwards || []; %>
-        <% const totalSearchResults = results.totalSearchResults.toLocaleString('en') || 0; %>
+        <% const mfaAwards = results && results.mfaAwards || []; %>
+        <% const totalSearchResults = results && results.totalSearchResults && results.totalSearchResults.toLocaleString('en') || 0; %>
+        <% const errorFields = new Set(errors.map(error => error.field)); %>
 
         <div class="govuk-grid-row">
           <div class="govuk-grid-column-full">
             <h1 class="govuk-heading-l">Seach for Minimal financial assistance (MFA) or Service of Public Economic Interest (SPEI)</h1>
           </div>
         </div>
+
+        <% if (errors.length > 0){ %>
+          <div class="govuk-error-summary" data-module="govuk-error-summary">
+            <div role="alert">
+              <h2 class="govuk-error-summary__title">
+                There is a problem
+              </h2>
+              <div class="govuk-error-summary__body">
+                <ul class="govuk-list govuk-error-summary__list">
+                  <% errors.forEach(function(error) { %>
+                  <li>
+                    <a href="#<%= error.field %>"><%= error.errorMsg %></a>
+                  </li>
+                  <% }); %>
+                </ul>
+              </div>
+            </div>
+          </div>
+        <% } %>
 
         <div class="govuk-grid-row">
           <div class="govuk-grid-column-one-third">
@@ -48,6 +68,9 @@
                 <input type="hidden" name="sort" value="<%= filters.sort || 'publishedDate,desc' %>">
                 <!-- Filters start -->
                 <%- include('../partials/filter-keyword-search.ejs'); %>
+                <%- include('../partials/filter-assistance-type.ejs'); %>
+                <%- include('../partials/filter-amount-to-from.ejs',{filterTitle: "Award full amount", filterIdPrefix: "awardFull"}); %>
+                <%- include('../partials/filter-date-to-from.ejs',{filterTitle: "Confirmation date", filterIdPrefix: "confirmation"}); %>
                 <!-- Filters end -->
                 <button class="govuk-button button-full-width">Apply filters</button>
               </form>
@@ -137,8 +160,8 @@
 
                   <p class="govuk-body">MFA award</p>
 
-                  <dl class="govuk-summary-list govuk-summary-list--no-border">
-                    <div class="govuk-summary-list__row ">
+                  <dl class="govuk-summary-list govuk-summary-list--no-border app-summary-list--compact">
+                    <div class="govuk-summary-list__row">
                       <dt class="govuk-summary-list__key">Award full amount</dt>
                       <dd class="govuk-summary-list__value">
                         £<%= item.awardAmountFormatted || '' %>
