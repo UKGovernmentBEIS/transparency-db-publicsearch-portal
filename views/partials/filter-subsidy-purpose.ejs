@@ -1,0 +1,66 @@
+<%
+    const purposes = [
+    "Culture of Heritage",
+    "Employment",
+    "Energy efficiency",
+    "Environmental protection",
+    "Infrastructure",
+    "Regional development",
+    "Rescue and restructuring subsidy",
+    "Research and development",
+    "Training",
+    "Other"
+    ];
+
+    const subsidyPurpose = Array.isArray(filters.subsidyPurpose) ? filters.subsidyPurpose.map(l => l.toLowerCase()) : [(filters.subsidyPurpose || "").toLowerCase()];
+    const allSelected = purposes.every(purpose => subsidyPurpose.includes(purpose.toLowerCase()));
+%>
+
+<div class="govuk-form-group">
+    <label class="govuk-label govuk-label--s" for="subsidyPurpose-checkbox">
+        Subsidy purpose
+    </label>
+
+    <div class="govuk-checkboxes govuk-checkboxes--small filter-scroll-box" id="subsidyPurpose-checkbox">
+        <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input js-select-all" id="purposeSelectAll" type="checkbox" <%= allSelected ? "checked" : "" %>>
+            <label class="govuk-label govuk-checkboxes__label" for="purposeSelectAll">
+                Select all
+            </label>
+        </div>
+
+        <% purposes.filter(f => f !== "Other").forEach((purpose, index) => { %>
+        <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input purpose-checkbox" id="purpose-checkbox-<%=index%>" name="subsidyPurpose" type="checkbox" value="<%= purpose %>"
+                <%= subsidyPurpose.includes(purpose.toLowerCase()) ? "checked" : "" %>
+            >
+
+            <label class="govuk-label govuk-checkboxes__label" for="purpose-checkbox-<%=index%>">
+                <%= purpose %>
+            </label>
+        </div>
+        <% }) %>
+
+        <!-- Other -->
+        <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input purpose-checkbox" id="purpose-checkbox-other" name="subsidyPurpose" type="checkbox" value="Other" data-other-checkbox
+                <%= subsidyPurpose.includes("other") ? "checked" : "" %>
+            >
+
+            <label class="govuk-label govuk-checkboxes__label" for="purpose-checkbox-other">
+                Other
+            </label>
+        </div>
+        <div id="other-text-container" class="govuk-checkboxes__conditional" data-other-container>
+
+            <label class="govuk-label" for="purpose-text-other">
+                Please specify
+            </label>
+
+            <input class="govuk-input" id="purpose-text-other" name="subsidyPurposeOther" type="text"
+                value="<%= filters.subsidyPurposeOther || '' %>"
+            >
+        </div>
+
+    </div>
+</div>

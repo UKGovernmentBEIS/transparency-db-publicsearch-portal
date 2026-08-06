@@ -160,3 +160,14 @@ a {
   margin-left: -15px;
   margin-right: 0px;
 }
+
+.app-summary-list--compact {
+  margin-bottom: 10px;
+}
+
+.app-summary-list--compact .govuk-summary-list__key,
+.app-summary-list--compact .govuk-summary-list__value,
+.app-summary-list--compact .govuk-summary-list__actions {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
