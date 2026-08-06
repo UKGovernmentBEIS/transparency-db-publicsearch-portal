@@ -11,6 +11,8 @@ const utils = require("../utils");
 router.get("/", async (req, res) => {
     utils.setSecurityHeaders(res, beis_url_publicsearch);
 
+    var errors = [];
+
     // Filter items from the request
     const filters = utils.getFilters(req,"scheme");
 
@@ -80,7 +82,8 @@ router.get("/", async (req, res) => {
             page,
             startRecord,
             endRecord,
-            size
+            size,
+            errors
         });
     } catch (err) {
         response_error_message = err;
