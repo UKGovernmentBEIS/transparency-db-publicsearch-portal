@@ -51,6 +51,10 @@
                 <%- include('../partials/filter-public-authority.ejs'); %>
                 <%- include('../partials/filter-scheme-status.ejs'); %>
                 <%- include('../partials/filter-date-to-from.ejs',{filterTitle: "Start date", filterIdPrefix: "schemeStart"}); %>
+                <%- include('../partials/filter-amount-to-from.ejs',{filterTitle: "Total scheme budget", filterIdPrefix: "schemeBudget"}); %>
+                <%- include('../partials/filter-sectors.ejs'); %>
+                <%- include('../partials/filter-subsidy-purpose.ejs'); %>
+                <%- include('../partials/filter-subsidy-interest.ejs'); %>
                 <!-- Filters end -->
                 <button class="govuk-button">Apply filters</button>
               </form>
@@ -200,5 +204,6 @@
 
   <%- include('../partials/footer.ejs') %>
   <script src="/assets/javascripts/clear-form.js"></script>
+  <script src="/assets/javascripts/select-all.js"></script>
 </body>
 </html>

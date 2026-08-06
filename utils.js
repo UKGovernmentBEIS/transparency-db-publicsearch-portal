@@ -173,6 +173,12 @@ exports.getFilters = function (req, type){
         schemeStartToDay: req.query.schemeStartToDay || '',
         schemeStartToMonth: req.query.schemeStartToMonth || '',
         schemeStartToYear: req.query.schemeStartToYear || '',
+        schemeBudgetFromAmount: req.query.schemeBudgetFromAmount || '',
+        schemeBudgetToAmount: req.query.schemeBudgetToAmount || '',
+        sector: req.query.sector || '',
+        subsidyPurpose: req.query.subsidyPurpose || '',
+        subsidyPurposeOther: req.query.subsidyPurposeOther || '',
+        subsidyInterest: req.query.subsidyInterest || ''
       }
       break;
     case "mfa":
