@@ -144,7 +144,7 @@
                     <p class="govuk-body"><%= item.spendingSectors || 'N/A' %></p>
                   <% } %>
 
-                  <dl class="govuk-summary-list govuk-summary-list--no-border">
+                  <dl class="govuk-summary-list govuk-summary-list--no-border app-summary-list--compact">
                     <div class="govuk-summary-list__row">
                       <dt class="govuk-summary-list__key">Public authority</dt>
                       <dd class="govuk-summary-list__value">
@@ -185,7 +185,7 @@
                     <div class="govuk-summary-list__row">
                       <dt class="govuk-summary-list__key">Date published</dt>
                       <dd class="govuk-summary-list__value">
-                        <%= item.publishedAwardDate || 'N/A' %>
+                        <%= item.publishedMeasureDate || 'N/A' %>
                       </dd>
                     </div>
                   </dl>
