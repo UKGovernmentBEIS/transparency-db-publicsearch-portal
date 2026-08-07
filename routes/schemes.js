@@ -44,6 +44,47 @@ router.get("/", async (req, res) => {
       console.log("Error getting list of public authorities : " + err);
     }
 
+    const schemeStartDateFrom = utils.buildDateFromStrings(filters.schemeStartFromDay, filters.schemeStartFromMonth, filters.schemeStartFromYear);
+    const schemeStartDateTo = utils.buildDateFromStrings(filters.schemeStartToDay, filters.schemeStartToMonth, filters.schemeStartToYear);
+
+    // Validate scheme start date from and to
+    var schemeStartDateErrors = utils.validateDateFromTo(schemeStartDateFrom, schemeStartDateTo)
+    
+    if (schemeStartDateErrors.hasErrors){
+      const fieldIds = {
+        from: "schemeStart-filter-from-day",
+        to: "schemeStart-filter-to-day",
+      };
+
+      schemeStartDateErrors.field = fieldIds[schemeStartDateErrors.field] ?? fieldIds.to;
+      errors.push(schemeStartDateErrors);
+    }
+
+     // Validate award full amount from and to
+     var awardAmountErrors = utils.validateFromTo(filters.schemeBudgetFromAmount, filters.schemeBudgetToAmount);
+
+     if (awardAmountErrors.hasErrors) {
+       const fieldIds = {
+         from: "schemeBudget-from-amount-input",
+         to: "schemeBudget-to-amount-input"
+       };
+     
+       awardAmountErrors.field = fieldIds[awardAmountErrors.field] ?? fieldIds.to;
+       errors.push(awardAmountErrors);
+     }
+
+    if(errors.length > 0){
+      return res.render("publicusersearch/schemes", {
+        filters,
+        paList,
+        results: [],
+        pageCount: 0,
+        page: 0,
+        size: 10,
+        errors
+      });
+    }
+
     try {
         const apidata = await axios.get(
             beis_url_publicsearch + "/searchResults/schemes", {

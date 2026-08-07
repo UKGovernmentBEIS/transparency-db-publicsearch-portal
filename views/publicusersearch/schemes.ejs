@@ -23,14 +23,17 @@
     <a href="/" class="govuk-back-link">Back home</a>
     <main id="main-content" role="main">
       <div class="govuk-main-wrapper">
-        <% const schemes = results.subsidySchemes || []; %>
-        <% const totalSearchResults = results.totalResults.toLocaleString('en') || 0; %>
+        <% const schemes = results && results.subsidySchemes || []; %>
+        <% const totalSearchResults = results && results.totalSearchResults && results.totalSearchResults.toLocaleString('en') || 0; %>
+        <% const errorFields = new Set(errors.map(error => error.field)); %>
 
         <div class="govuk-grid-row">
           <div class="govuk-grid-column-full">
             <h1 class="govuk-heading-l">Seach for subsidy schemes</h1>
           </div>
         </div>
+
+        <%- include('../partials/error-heading.ejs') %>
 
         <div class="govuk-grid-row">
           <div class="govuk-grid-column-one-third">
