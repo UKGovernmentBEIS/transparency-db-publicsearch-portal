@@ -27,7 +27,7 @@ router.get("/", async (req, res) => {
     // Get list of public authorities for filter.
     try{
       const paListRequest = await axios.get(
-        beis_url_publicsearch + "/schemes/all_gas",
+        beis_url_publicsearch + "/searchResults/all_gas",
         {
           headers: {
             "X-Frame-Options": "DENY",
