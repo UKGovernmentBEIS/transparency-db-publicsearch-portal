@@ -23,14 +23,34 @@
     <a href="/" class="govuk-back-link">Back home</a>
     <main id="main-content" role="main">
       <div class="govuk-main-wrapper">
-        <% const awards = results.awards || []; %>
-        <% const totalSearchResults = results.totalSearchResults.toLocaleString('en') || 0; %>
+        <% const awards = results && results.awards || []; %>
+        <% const totalSearchResults = results && results.totalSearchResults && results.totalSearchResults.toLocaleString('en') || 0; %>
+        <% const errorFields = new Set(errors.map(error => error.field)); %>
 
         <div class="govuk-grid-row">
           <div class="govuk-grid-column-full">
-            <h1 class="govuk-heading-l">Seach for subsidy awards</h1>
+            <h1 class="govuk-heading-l">Search for subsidy awards</h1>
           </div>
         </div>
+
+          <% if (errors.length > 0){ %>
+          <div class="govuk-error-summary" data-module="govuk-error-summary">
+            <div role="alert">
+              <h2 class="govuk-error-summary__title">
+                There is a problem
+              </h2>
+              <div class="govuk-error-summary__body">
+                <ul class="govuk-list govuk-error-summary__list">
+                  <% errors.forEach(function(error) { %>
+                  <li>
+                    <a href="#<%= error.field %>"><%= error.errorMsg %></a>
+                  </li>
+                  <% }); %>
+                </ul>
+              </div>
+            </div>
+          </div>
+        <% } %>
 
         <div class="govuk-grid-row">
           <div class="govuk-grid-column-one-third">
@@ -50,8 +70,8 @@
                 <%- include('../partials/filter-keyword-search.ejs',{filterTitle: "Keyword or SC number"}); %>
                 <%- include('../partials/filter-award-type.ejs'); %>     
                 <%- include('../partials/filter-public-authority.ejs'); %>
-                <%- include('../partials/filter-amount-to-from.ejs',{filterTitle: "Subsidy amount", filterIdPrefix: "award"}); %>
-                <%- include('../partials/filter-date-to-from.ejs',{filterTitle: "Date awarded", filterIdPrefix: "award"}); %>
+                <%- include('../partials/filter-amount-to-from.ejs',{filterTitle: "Subsidy amount", filterIdPrefix: "awardFull"}); %>
+                <%- include('../partials/filter-date-to-from.ejs',{filterTitle: "Date awarded", filterIdPrefix: "confirmation"}); %>
                 <%- include('../partials/filter-sectors.ejs'); %>
                 <%- include('../partials/filter-geographical-location.ejs'); %>
                 <%- include('../partials/filter-subsidy-form.ejs'); %>
@@ -151,7 +171,7 @@
                     <p class="govuk-body"><%= shortDescription %></p>
                   <% } %>
 
-                  <dl class="govuk-summary-list govuk-summary-list--no-border">
+                  <dl class="govuk-summary-list govuk-summary-list--no-border app-summary-list--compact">
                     <div class="govuk-summary-list__row">
                       <dt class="govuk-summary-list__key">Recipient name</dt>
                       <dd class="govuk-summary-list__value">
