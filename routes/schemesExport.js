@@ -11,6 +11,69 @@ router.get('/', async function (req, res, next) {
 
     const filters = utils.getFilters(req,"scheme");
 
+    var errors = [];
+    var paList = [];
+
+    const schemeStartDateFrom = utils.buildDateFromStrings(filters.schemeStartFromDay, filters.schemeStartFromMonth, filters.schemeStartFromYear);
+    const schemeStartDateTo = utils.buildDateFromStrings(filters.schemeStartToDay, filters.schemeStartToMonth, filters.schemeStartToYear);
+
+    // Validate scheme start date from and to
+    var schemeStartDateErrors = utils.validateDateFromTo(schemeStartDateFrom, schemeStartDateTo)
+    
+    if (schemeStartDateErrors.hasErrors){
+      const fieldIds = {
+        from: "schemeStart-filter-from-day",
+        to: "schemeStart-filter-to-day",
+      };
+
+      schemeStartDateErrors.field = fieldIds[schemeStartDateErrors.field] ?? fieldIds.to;
+      errors.push(schemeStartDateErrors);
+    }
+
+     // Validate award full amount from and to
+     var awardAmountErrors = utils.validateFromTo(filters.schemeBudgetFromAmount, filters.schemeBudgetToAmount);
+
+     if (awardAmountErrors.hasErrors) {
+       const fieldIds = {
+         from: "schemeBudget-from-amount-input",
+         to: "schemeBudget-to-amount-input"
+       };
+     
+       awardAmountErrors.field = fieldIds[awardAmountErrors.field] ?? fieldIds.to;
+       errors.push(awardAmountErrors);
+     }
+
+    if(errors.length > 0){
+      try{
+        const paListRequest = await axios.get(
+          beis_url_publicsearch + "/searchResults/all_gas",
+          {
+            headers: {
+              "X-Frame-Options": "DENY",
+              "Content-Security-Policy": "frame-ancestors 'self'",
+            },
+          }
+        );
+   
+        API_response_code = `${paListRequest.status}`;
+        paList = paListRequest.data.gaList;
+        paList.sort((a, b) => a.grantingAuthorityName.localeCompare(b.grantingAuthorityName));
+    
+      }catch(err){
+        console.log("Error getting list of public authorities : " + err);
+      }
+
+      return res.render("publicusersearch/schemes", {
+        filters,
+        results: [],
+        pageCount: 0,
+        page: 0,
+        size: 10,
+        paList,
+        errors
+      });
+    }
+
     const response = await axios.get(
       beis_url_publicsearch + '/searchResults/schemes/export',
       {
