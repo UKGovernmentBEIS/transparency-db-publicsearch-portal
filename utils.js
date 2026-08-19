@@ -154,4 +154,38 @@ exports.setSecurityHeaders = function (res, url) {
     "Cross-Origin-Opener-Policy": "same-origin",
     "Cross-Origin-Embedder-Policy": "require-corp",
   });
+
+}
+
+exports.getFilters = function (req, type){
+  const defaultSort = 'publishedDate,desc';
+  var filters = {};
+  switch(type){
+    case "scheme":
+      filters = {
+        sort: req.query.sort || defaultSort,
+        keyword: req.query.keyword || '',
+        pa: req.query.pa || '',
+        schemeStatus: req.query.schemeStatus || '',
+        schemeStartFromDay: req.query.schemeStartFromDay || '',
+        schemeStartFromMonth: req.query.schemeStartFromMonth || '',
+        schemeStartFromYear: req.query.schemeStartFromYear || '',
+        schemeStartToDay: req.query.schemeStartToDay || '',
+        schemeStartToMonth: req.query.schemeStartToMonth || '',
+        schemeStartToYear: req.query.schemeStartToYear || '',
+        schemeBudgetFromAmount: req.query.schemeBudgetFromAmount || '',
+        schemeBudgetToAmount: req.query.schemeBudgetToAmount || '',
+        sector: req.query.sector || '',
+        subsidyPurpose: req.query.subsidyPurpose || '',
+        subsidyPurposeOther: req.query.subsidyPurposeOther || '',
+        subsidyInterest: req.query.subsidyInterest || ''
+      }
+      break;
+    case "mfa":
+      break;
+    case "award":
+      break;
+  }
+
+  return filters;
 }
