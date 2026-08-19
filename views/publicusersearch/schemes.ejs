@@ -112,6 +112,14 @@
                 <option value="publishedDate,asc" <%= filters.sort === 'publishedDate,asc' ? 'selected' : '' %>>
                   Published date, oldest first
                 </option>
+
+                <option value="subsidySchemeName,asc" <%= filters.sort === 'subsidySchemeName,asc' ? 'selected' : '' %>>
+                  Subsidy scheme name, A to Z
+                </option>
+            
+                <option value="subsidySchemeName,desc" <%= filters.sort === 'subsidySchemeName,desc' ? 'selected' : '' %>>
+                  Subsidy scheme name, Z to A
+                </option>
               </select>
             
               <input type="hidden" name="page" value="1">
