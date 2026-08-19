@@ -9,6 +9,7 @@ router.get('/', async function (req, res, next) {
   try {
     const format = req.query.format === 'csv' ? 'csv' : 'xlsx';
     var errors = [];
+    var paList = [];
 
     const filters = {
         keyword: req.query.keyword || '',
@@ -61,13 +62,34 @@ router.get('/', async function (req, res, next) {
         }
     
         if(errors.length > 0){
-          return res.render("publicusersearch/mfaawards", {
+
+          try{
+            const paListRequest = await axios.get(
+              beis_url_publicsearch + "/schemes/all_gas",
+              {
+                headers: {
+                  "X-Frame-Options": "DENY",
+                  "Content-Security-Policy": "frame-ancestors 'self'",
+                },
+              }
+            );
+    
+            API_response_code = `${paListRequest.status}`;
+            paList = paListRequest.data.gaList;
+            paList.sort((a, b) => a.grantingAuthorityName.localeCompare(b.grantingAuthorityName));
+    
+          }catch(err){
+            console.log("Error getting list of public authorities : " + err);
+          }
+          
+          return res.render("publicusersearch/awards", {
             filters,
             results: [],
             pageCount: 0,
             page: 0,
             size: 10,
-            errors
+            errors,
+            paList
           });
         }
     const response = await axios.get(

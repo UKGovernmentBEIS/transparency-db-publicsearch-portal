@@ -75,6 +75,26 @@ router.get("/", async (req, res) => {
     }
 
     if(errors.length > 0){
+
+      try{
+        const paListRequest = await axios.get(
+          beis_url_publicsearch + "/schemes/all_gas",
+          {
+            headers: {
+              "X-Frame-Options": "DENY",
+              "Content-Security-Policy": "frame-ancestors 'self'",
+            },
+          }
+        );
+
+        API_response_code = `${paListRequest.status}`;
+        paList = paListRequest.data.gaList;
+        paList.sort((a, b) => a.grantingAuthorityName.localeCompare(b.grantingAuthorityName));
+
+      }catch(err){
+        console.log("Error getting list of public authorities : " + err);
+      }
+
       return res.render("publicusersearch/awards", {
         filters,
         results: [],
