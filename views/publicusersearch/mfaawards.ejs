@@ -176,16 +176,23 @@
                     </div>
 
                     <div class="govuk-summary-list__row">
-                      <dt class="govuk-summary-list__key">Recipient ID type</dt>
+                      <dt class="govuk-summary-list__key">Date published</dt>
                       <dd class="govuk-summary-list__value">
-                        <%= item.recipientIdType || 'N/A' %>
+                        <%= item.publishedDate || 'N/A' %>
                       </dd>
                     </div>
 
                     <div class="govuk-summary-list__row">
-                      <dt class="govuk-summary-list__key">Date published</dt>
+                      <dt class="govuk-summary-list__key">Confirmation date</dt>
                       <dd class="govuk-summary-list__value">
-                        <%= item.publishedDate || 'N/A' %>
+                        <%= item.confirmationDate || 'N/A' %>
+                      </dd>
+                    </div>
+
+                    <div class="govuk-summary-list__row">
+                      <dt class="govuk-summary-list__key">Public authority</dt>
+                      <dd class="govuk-summary-list__value">
+                        <%= item.grantingAuthorityName || 'N/A' %>
                       </dd>
                     </div>
                   </dl>
