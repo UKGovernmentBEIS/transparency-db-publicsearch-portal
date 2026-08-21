@@ -170,3 +170,8 @@ a {
 .govuk-date-input__item{
   margin-right: 10px;
 }
+
+.filter-background-override{
+  background-color: white;
+  padding: 10px;
+}
