@@ -129,7 +129,7 @@ a {
   padding:1rem;
 }
 
-#filter-form .govuk-date-input{
+#filter-form .govuk-date-input, #filter-form .govuk-input__wrapper{
   margin-bottom: 10px;
 }
 
