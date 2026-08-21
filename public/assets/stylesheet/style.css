@@ -123,9 +123,13 @@ a {
   margin-top: 10px;
 }
 
-#filters-container .govuk-form-group{
+#filter-form > .govuk-form-group, .filter-date-input > .govuk-form-group{
   background-color:#f3f2f1;
+  margin-bottom: 10px;
   padding:1rem;
+}
+
+#filter-form .govuk-date-input{
   margin-bottom: 10px;
 }
 
@@ -161,4 +165,8 @@ a {
 .app-summary-list--compact .govuk-summary-list__actions {
   padding-top: 5px;
   padding-bottom: 5px;
+}
+
+.govuk-date-input__item{
+  margin-right: 10px;
 }
