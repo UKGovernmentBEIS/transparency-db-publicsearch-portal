@@ -123,9 +123,13 @@ a {
   margin-top: 10px;
 }
 
-#filters-container .govuk-form-group{
+#filter-form > .govuk-form-group, .filter-date-input > .govuk-form-group{
   background-color:#f3f2f1;
+  margin-bottom: 10px;
   padding:1rem;
+}
+
+#filter-form .govuk-date-input, #filter-form .govuk-input__wrapper{
   margin-bottom: 10px;
 }
 
@@ -152,15 +156,6 @@ a {
   width: 100%;
 }
 
-.filter-date-input {
-  display: flex;
-}
-
-.filter-date-input__item {
-  margin-left: -15px;
-  margin-right: 0px;
-}
-
 .app-summary-list--compact {
   margin-bottom: 10px;
 }
@@ -170,4 +165,13 @@ a {
 .app-summary-list--compact .govuk-summary-list__actions {
   padding-top: 5px;
   padding-bottom: 5px;
+}
+
+.govuk-date-input__item{
+  margin-right: 10px;
+}
+
+.filter-background-override{
+  background-color: white;
+  padding: 10px;
 }
