@@ -8,17 +8,18 @@
         Scheme status
     </label>
     
-    <div class="govuk-radios govuk-radios--inline govuk-radios--small" id="scheme-status-radio">
-        <% schemeStatus.forEach(status => { %>
-            <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="<%= status %>" name="schemeStatus" type="radio" value="<%= status %>"
-                    <%= selectedStatus === status.toLowerCase() ? "checked" : "" %>
-                >
-                <label class="govuk-label govuk-radios__label" for="<%= status %>">
-                    <%= status %>
-                </label>
-            </div>
-        <% }) %>
-
+    <div class="filter-background-override">
+        <div class="govuk-radios govuk-radios--inline govuk-radios--small" id="scheme-status-radio">
+            <% schemeStatus.forEach(status => { %>
+                <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="<%= status %>" name="schemeStatus" type="radio" value="<%= status %>"
+                        <%= selectedStatus === status.toLowerCase() ? "checked" : "" %>
+                    >
+                    <label class="govuk-label govuk-radios__label" for="<%= status %>">
+                        <%= status %>
+                    </label>
+                </div>
+            <% }) %>
+        </div>
     </div>
 </div>
