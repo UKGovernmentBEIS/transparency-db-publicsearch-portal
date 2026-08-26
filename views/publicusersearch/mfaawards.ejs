@@ -56,7 +56,7 @@
           <div class="govuk-grid-column-one-third">
             <div id="filters-header">
               <p class="govuk-body govuk-!-margin-bottom-0">Filter by</p>
-              <a href="#" class="govuk-link js-clear-form" data-form-target="filter-form">
+              <a href="/mfaawards?" class="govuk-link" data-form-target="filter-form">
                 Clear all
               </a>
             </div>
@@ -176,16 +176,23 @@
                     </div>
 
                     <div class="govuk-summary-list__row">
-                      <dt class="govuk-summary-list__key">Recipient ID type</dt>
+                      <dt class="govuk-summary-list__key">Date published</dt>
                       <dd class="govuk-summary-list__value">
-                        <%= item.recipientIdType || 'N/A' %>
+                        <%= item.publishedDate || 'N/A' %>
                       </dd>
                     </div>
 
                     <div class="govuk-summary-list__row">
-                      <dt class="govuk-summary-list__key">Date published</dt>
+                      <dt class="govuk-summary-list__key">Confirmation date</dt>
                       <dd class="govuk-summary-list__value">
-                        <%= item.publishedDate || 'N/A' %>
+                        <%= item.confirmationDate || 'N/A' %>
+                      </dd>
+                    </div>
+
+                    <div class="govuk-summary-list__row">
+                      <dt class="govuk-summary-list__key">Public authority</dt>
+                      <dd class="govuk-summary-list__value">
+                        <%= item.grantingAuthorityName || 'N/A' %>
                       </dd>
                     </div>
                   </dl>

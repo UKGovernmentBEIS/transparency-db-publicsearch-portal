@@ -8,17 +8,18 @@
         Assistance type
     </label>
     
-    <div class="govuk-radios govuk-radios--inline govuk-radios--small" id="mfa-assistance-radio">
-        <% mfaAssistanceTypes.forEach(assistance => { %>
-            <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="<%= assistance %>" name="mfaAssistance" type="radio" value="<%= assistance %>"
-                    <%= selectedAssistance === assistance.toLowerCase() ? "checked" : "" %>
-                >
-                <label class="govuk-label govuk-radios__label" for="<%= assistance %>">
-                    <%= assistance %>
-                </label>
-            </div>
-        <% }) %>
-
+    <div class="filter-background-override">
+        <div class="govuk-radios govuk-radios--inline govuk-radios--small" id="mfa-assistance-radio">
+            <% mfaAssistanceTypes.forEach(assistance => { %>
+                <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="<%= assistance %>" name="mfaAssistance" type="radio" value="<%= assistance %>"
+                        <%= selectedAssistance === assistance.toLowerCase() ? "checked" : "" %>
+                    >
+                    <label class="govuk-label govuk-radios__label" for="<%= assistance %>">
+                        <%= assistance %>
+                    </label>
+                </div>
+            <% }) %>
+        </div>
     </div>
 </div>
