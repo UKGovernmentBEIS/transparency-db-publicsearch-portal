@@ -8,8 +8,8 @@
   const hasError = Boolean(fromError || toError);
 %>
 
-<div class="govuk-date-input filter-date-input" id="<%=filterIdPrefix%>-date-input">
-  <div class="govuk-form-group <%= fromError || toError ? 'govuk-form-group--error' : '' %>"> 
+<div class="govuk-date-input filter-date-input " id="<%=filterIdPrefix%>-date-input">
+  <div class="govuk-form-group <%= hasError ? 'govuk-form-group--error' : '' %>"> 
     <label class="govuk-label govuk-label--s " for="<%=filterIdPrefix%>-date-input">
       <%= filterTitle %>
     </label>
