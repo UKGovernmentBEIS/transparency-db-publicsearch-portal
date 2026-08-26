@@ -11,26 +11,7 @@ router.get('/', async function (req, res, next) {
     var errors = [];
     var paList = [];
 
-    const filters = {
-        keyword: req.query.keyword || '',
-        awardType: req.query.awardType || '',
-        pa: req.query.pa || '',
-        awardFullFromAmount : req.query.awardFullFromAmount || '',
-        awardFullToAmount: req.query.awardFullToAmount || '',
-        confirmationFromDay: req.query.confirmationFromDay || '',
-        confirmationFromMonth: req.query.confirmationFromMonth || '',
-        confirmationFromYear: req.query.confirmationFromYear || '',
-        confirmationToDay: req.query.confirmationToDay || '',
-        confirmationToMonth: req.query.confirmationToMonth || '',
-        confirmationToYear: req.query.confirmationToYear || '',
-        sector: req.query.sector || '',
-        geoLocation: req.query.geoLocation || '',
-        subsidyForm: req.query.subsidyForm || '',
-        subsidyFormOther: req.query.subsidyFormOther || '',
-        subsidyPurpose: req.query.subsidyPurpose || '',
-        subsidyPurposeOther: req.query.subsidyPurposeOther || '',
-        subsidyInterest: req.query.subsidyInterest || '',
-    };
+    const filters = utils.getFilters(req,"award");
 
       const confirmationDateFrom = utils.buildDateFromStrings(filters.confirmationFromDay, filters.confirmationFromMonth, filters.confirmationFromYear);
       const confirmationDateTo = utils.buildDateFromStrings(filters.confirmationToDay, filters.confirmationToMonth, filters.confirmationToYear);
