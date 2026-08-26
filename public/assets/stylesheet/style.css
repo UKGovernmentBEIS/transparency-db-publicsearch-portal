@@ -175,3 +175,8 @@ a {
   background-color: white;
   padding: 5px;
 }
+
+/* Bug with float causes background to not render correctly */
+.filter-background-override .filter-float-override-none{
+  float:none;
+}
