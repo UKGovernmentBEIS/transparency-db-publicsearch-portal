@@ -185,32 +185,8 @@ app.get("/", (req, res) => {
 var homepage = require("./routes/homepage");
 app.use("/homepage", homepage);
 
-var awards = require("./routes/awards");
-app.use("/awards", awards);
-
-var standaloneawards = require("./routes/standaloneawards");
-app.use("/standaloneawards", standaloneawards);
-
-var pageroute = require("./routes/pageroute");
-app.use("/pageroute", pageroute);
-
 var noresults = require("./routes/noresults");
 app.use("/noresults", noresults);
-
-var filtersearch = require("./routes/filtersearch");
-app.use("/filtersearch", filtersearch);
-
-var updateresults = require("./routes/updateresults");
-app.use("/updateresults", updateresults);
-
-var updateresultsroute = require("./routes/updateresultsroute");
-app.use("/updateresultsroute", updateresultsroute);
-
-var hidefilter = require("./routes/hidefilter");
-app.use("/hidefilter", hidefilter);
-
-var searchresultsmeasureroute = require("./routes/searchresultsmeasureroute");
-app.use("/searchresultsmeasureroute", searchresultsmeasureroute);
 
 var schemedetailsroute = require("./routes/schemedetailsroute");
 app.use("/scheme", schemedetailsroute);
@@ -220,12 +196,6 @@ app.use("/schemeversion", schemeVersionRoute);
 
 var searchresultsawardroute = require("./routes/searchresultsawardroute");
 app.use("/searchresultsawardroute", searchresultsawardroute);
-
-var pageperroute = require("./routes/pageperroute");
-app.use("/pageperroute", pageperroute);
-
-var updateresultspageperroute = require("./routes/updateresultspageperroute");
-app.use("/updateresultspageperroute", updateresultspageperroute);
 
 var feedbackform = require("./routes/feedbackform");
 app.use("/feedbackform", feedbackform);
