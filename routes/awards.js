@@ -12,9 +12,10 @@ router.get("/", async (req, res) => {
     utils.setSecurityHeaders(res, beis_url_publicsearch);
 
     var errors = [];
+    const filters = utils.getFilters(req,"award");
 
-    // Filter items from the request
-    const filters = utils.getFilters(req,"scheme");
+    const confirmationDateFrom = utils.buildDateFromStrings(filters.confirmationFromDay, filters.confirmationFromMonth, filters.confirmationFromYear);
+    const confirmationDateTo = utils.buildDateFromStrings(filters.confirmationToDay, filters.confirmationToMonth, filters.confirmationToYear);
 
     const page = Number(req.query.page || 1);
     const size = Number(req.query.size || 10);
@@ -23,6 +24,65 @@ router.get("/", async (req, res) => {
     var startRecord;
     var endRecord;
     var paList = [];
+
+      // Validate award full amount from and to
+    var awardAmountErrors = utils.validateFromTo(filters.awardFullFromAmount, filters.awardFullToAmount);
+
+    if (awardAmountErrors.hasErrors) {
+      const fieldIds = {
+        from: "awardFull-from-amount-input",
+        to: "awardFull-to-amount-input"
+      };
+    
+      awardAmountErrors.field = fieldIds[awardAmountErrors.field] ?? fieldIds.to;
+      errors.push(awardAmountErrors);
+    }
+
+    // Validate confirmation date from and to
+    var confirmationDateErrors = utils.validateDateFromTo(confirmationDateFrom, confirmationDateTo)
+    
+    if (confirmationDateErrors.hasErrors){
+      const fieldIds = {
+        from: "confirmation-filter-from-day",
+        to: "confirmation-filter-to-day",
+      };
+
+      confirmationDateErrors.field = fieldIds[confirmationDateErrors.field] ?? fieldIds.to;
+      errors.push(confirmationDateErrors);
+    }
+
+    if(errors.length > 0){
+
+      try{
+        const paListRequest = await axios.get(
+          beis_url_publicsearch + "/schemes/all_gas",
+          {
+            headers: {
+              "X-Frame-Options": "DENY",
+              "Content-Security-Policy": "frame-ancestors 'self'",
+            },
+          }
+        );
+
+        API_response_code = `${paListRequest.status}`;
+        paList = paListRequest.data.gaList;
+        paList.sort((a, b) => a.grantingAuthorityName.localeCompare(b.grantingAuthorityName));
+
+      }catch(err){
+        console.log("Error getting list of public authorities : " + err);
+      }
+
+      return res.render("publicusersearch/awards", {
+        filters,
+        results: [],
+        pageCount: 0,
+        page: 0,
+        size: 10,
+        errors,
+        paList
+      });
+    }
+
 
     // Get list of public authorities for filter.
     try{
@@ -44,50 +104,9 @@ router.get("/", async (req, res) => {
       console.log("Error getting list of public authorities : " + err);
     }
 
-    const schemeStartDateFrom = utils.buildDateFromStrings(filters.schemeStartFromDay, filters.schemeStartFromMonth, filters.schemeStartFromYear);
-    const schemeStartDateTo = utils.buildDateFromStrings(filters.schemeStartToDay, filters.schemeStartToMonth, filters.schemeStartToYear);
-
-    // Validate scheme start date from and to
-    var schemeStartDateErrors = utils.validateDateFromTo(schemeStartDateFrom, schemeStartDateTo)
-    
-    if (schemeStartDateErrors.hasErrors){
-      const fieldIds = {
-        from: "schemeStart-filter-from-day",
-        to: "schemeStart-filter-to-day",
-      };
-
-      schemeStartDateErrors.field = fieldIds[schemeStartDateErrors.field] ?? fieldIds.to;
-      errors.push(schemeStartDateErrors);
-    }
-
-     // Validate award full amount from and to
-     var awardAmountErrors = utils.validateFromTo(filters.schemeBudgetFromAmount, filters.schemeBudgetToAmount);
-
-     if (awardAmountErrors.hasErrors) {
-       const fieldIds = {
-         from: "schemeBudget-from-amount-input",
-         to: "schemeBudget-to-amount-input"
-       };
-     
-       awardAmountErrors.field = fieldIds[awardAmountErrors.field] ?? fieldIds.to;
-       errors.push(awardAmountErrors);
-     }
-
-    if(errors.length > 0){
-      return res.render("publicusersearch/schemes", {
-        filters,
-        paList,
-        results: [],
-        pageCount: 0,
-        page: 0,
-        size: 10,
-        errors
-      });
-    }
-
     try {
         const apidata = await axios.get(
-            beis_url_publicsearch + "/searchResults/schemes", {
+            beis_url_publicsearch + "/searchResults/awards", {
               params:{
                 page: backendPage,
                 size,
@@ -115,7 +134,7 @@ router.get("/", async (req, res) => {
             endRecord = page * size;
           }
 
-        res.render("publicusersearch/schemes", {
+        res.render("publicusersearch/awards", {
             filters,
             results,
             paList,

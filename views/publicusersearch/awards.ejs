@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" class="govuk-template">
 <head>
-  <title>GOV.UK - Search for MFA/SPEIA awards</title>
+  <title>GOV.UK - Search for subsidy awards</title>
 
   <%- include('../partials/headercss.ejs') %>
 
@@ -23,17 +23,17 @@
     <a href="/" class="govuk-back-link">Back home</a>
     <main id="main-content" role="main">
       <div class="govuk-main-wrapper">
-        <% const mfaAwards = results && results.mfaAwards || []; %>
+        <% const awards = results && results.awards || []; %>
         <% const totalSearchResults = results && results.totalSearchResults && results.totalSearchResults.toLocaleString('en') || 0; %>
         <% const errorFields = new Set(errors.map(error => error.field)); %>
 
         <div class="govuk-grid-row">
           <div class="govuk-grid-column-full">
-            <h1 class="govuk-heading-l">Seach for Minimal financial assistance (MFA) or Service of Public Economic Interest (SPEI)</h1>
+            <h1 class="govuk-heading-l">Search for subsidy awards</h1>
           </div>
         </div>
 
-        <% if (errors.length > 0){ %>
+          <% if (errors.length > 0){ %>
           <div class="govuk-error-summary" data-module="govuk-error-summary">
             <div role="alert">
               <h2 class="govuk-error-summary__title">
@@ -56,23 +56,29 @@
           <div class="govuk-grid-column-one-third">
             <div id="filters-header">
               <p class="govuk-body govuk-!-margin-bottom-0">Filter by</p>
-              <a href="/mfaawards?" class="govuk-link" data-form-target="filter-form">
+              <a href="/awards?" class="govuk-link" data-form-target="filter-form">
                 Clear all
               </a>
             </div>
             <div id="filters-container">
-              <form id="filter-form" action="/mfaawards" method="GET">
+              <form id="filter-form" action="/awards" method="GET">
                 <!-- Hidden input fields to preserve page, size, and sorting -->
                 <input type="hidden" name="page" value="1">
                 <input type="hidden" name="size" value="<%= size %>">
                 <input type="hidden" name="sort" value="<%= filters.sort || 'publishedDate,desc' %>">
                 <!-- Filters start -->
-                <%- include('../partials/filter-keyword-search.ejs'); %>
-                <%- include('../partials/filter-assistance-type.ejs'); %>
-                <%- include('../partials/filter-amount-to-from.ejs',{filterTitle: "Award full amount", filterIdPrefix: "awardFull"}); %>
-                <%- include('../partials/filter-date-to-from.ejs',{filterTitle: "Confirmation date", filterIdPrefix: "confirmation"}); %>
+                <%- include('../partials/filter-keyword-search.ejs',{filterTitle: "Keyword or SC number"}); %>
+                <%- include('../partials/filter-award-type.ejs'); %>     
+                <%- include('../partials/filter-public-authority.ejs'); %>
+                <%- include('../partials/filter-amount-to-from.ejs',{filterTitle: "Subsidy amount", filterIdPrefix: "awardFull"}); %>
+                <%- include('../partials/filter-date-to-from.ejs',{filterTitle: "Date awarded", filterIdPrefix: "confirmation"}); %>
+                <%- include('../partials/filter-sectors.ejs'); %>
+                <%- include('../partials/filter-geographical-location.ejs'); %>
+                <%- include('../partials/filter-subsidy-form.ejs'); %>
+                <%- include('../partials/filter-subsidy-purpose.ejs'); %>
+                <%- include('../partials/filter-subsidy-interest.ejs'); %>
                 <!-- Filters end -->
-                <button class="govuk-button button-full-width">Apply filters</button>
+                <button class="govuk-button">Apply filters</button>
               </form>
             </div>
           </div>
@@ -81,7 +87,7 @@
             <!-- Search results count start -->
             <p class="govuk-body">
               <span class="govuk-!-font-weight-bold" id="number-of-results"><%= totalSearchResults %></span>
-              <%= totalSearchResults === 1 ? 'MFA/SPEIA award found' : 'MFA/SPEIA awards found' %>
+              <%= totalSearchResults === 1 ? 'subsidy award found' : 'subsidy awards found' %>
             </p>
             <!-- Search results count start end -->
             <!-- Export start -->
@@ -97,7 +103,7 @@
                 }
               });
           
-              return '/mfaawards/export?' + params.toString();
+              return '/awards/export?' + params.toString();
             }
             %>
             <p class="govuk-body">
@@ -112,7 +118,7 @@
             <!-- Export end -->
             <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
             <!-- Sort Start -->
-            <form action="/mfaawards" method="GET" class="govuk-form-group">
+            <form action="/awards" method="GET" class="govuk-form-group">
               <label class="govuk-label govuk-!-font-weight-bold" for="sort">
                 Sort results
               </label>
@@ -149,63 +155,94 @@
               </button>
             </form>
             <!-- Sort End -->
-            <% if (mfaAwards.length === 0) { %>
-              <p class="govuk-body">No MFA/SPEIA awards match your search.</p>
+            <% if (awards.length === 0) { %>
+              <p class="govuk-body">No subsidy awards match your search.</p>
             <% } else { %>
-              <% mfaAwards.forEach(function(item, index) { %>
+              <% awards.forEach(function(item, index) { %>
+                <% const description = item.subsidyAwardDescription || ''; %>
+                <% const shortDescription = description.length > 130 ? description.substring(0, 130) + '...' : description; %>
+
                 <article class="govuk-!-margin-bottom-4">
-                  <a class="govuk-link govuk-heading-m" href="/mfaaward/?id=<%= item.mfaAwardNumber %>">
-                    <%= item.recipientName || 'Unnamed award' %>
+                  <a class="govuk-link govuk-heading-m" href="/searchresultsawardroute/?page=<%= item.awardNumber %>">
+                    <%= item.beneficiary && item.beneficiary.beneficiaryName ? item.beneficiary.beneficiaryName : 'Unnamed award' %>
                   </a>
 
-                  <p class="govuk-body">MFA award</p>
+                  <% if (shortDescription) { %>
+                    <p class="govuk-body"><%= shortDescription %></p>
+                  <% } %>
 
                   <dl class="govuk-summary-list govuk-summary-list--no-border app-summary-list--compact">
                     <div class="govuk-summary-list__row">
-                      <dt class="govuk-summary-list__key">Award full amount</dt>
+                      <dt class="govuk-summary-list__key">Recipient name</dt>
                       <dd class="govuk-summary-list__value">
-                        £<%= item.awardAmountFormatted || '' %>
+                        <%= item.beneficiary && item.beneficiary.beneficiaryName ? item.beneficiary.beneficiaryName : 'N/A' %>
                       </dd>
                     </div>
 
                     <div class="govuk-summary-list__row">
-                      <dt class="govuk-summary-list__key">Award number</dt>
+                      <dt class="govuk-summary-list__key">Subsidy amount</dt>
                       <dd class="govuk-summary-list__value">
-                        <%= item.mfaAwardNumber || 'N/A' %>
-                      </dd>
-                    </div>
-
-                    <div class="govuk-summary-list__row">
-                      <dt class="govuk-summary-list__key">Date published</dt>
-                      <dd class="govuk-summary-list__value">
-                        <%= item.publishedDate || 'N/A' %>
-                      </dd>
-                    </div>
-
-                    <div class="govuk-summary-list__row">
-                      <dt class="govuk-summary-list__key">Confirmation date</dt>
-                      <dd class="govuk-summary-list__value">
-                        <%= item.confirmationDate || 'N/A' %>
+                        <% if (item.subsidyInstrument === "Tax measures (tax credit, or tax/duty exemption)") { %>
+                          <%= item.subsidyFullAmountRange || 'N/A' %>
+                        <% } else { %>
+                          <%= item.subsidyFullAmountExact ? '£' + item.subsidyFullAmountExact : 'N/A' %>
+                        <% } %>
                       </dd>
                     </div>
 
                     <div class="govuk-summary-list__row">
                       <dt class="govuk-summary-list__key">Public authority</dt>
                       <dd class="govuk-summary-list__value">
-                        <%= item.grantingAuthorityName || 'N/A' %>
+                        <%= item.grantingAuthorityResponse && item.grantingAuthorityResponse.grantingAuthorityName
+                          ? item.grantingAuthorityResponse.grantingAuthorityName
+                          : 'N/A' %>
+                      </dd>
+                    </div>
+
+                    <div class="govuk-summary-list__row">
+                      <dt class="govuk-summary-list__key">Subsidy scheme</dt>
+                      <dd class="govuk-summary-list__value">
+                        <% if (item.standaloneAward === "Yes") { %>
+                          N/A
+                        <% } else { %>
+                          <%= item.subsidyMeasure && item.subsidyMeasure.subsidyMeasureTitle
+                            ? item.subsidyMeasure.subsidyMeasureTitle
+                            : 'N/A' %>
+                        <% } %>
+                      </dd>
+                    </div>
+
+                    <div class="govuk-summary-list__row">
+                      <dt class="govuk-summary-list__key">Subsidy form</dt>
+                      <dd class="govuk-summary-list__value">
+                        <%= item.subsidyInstrument || 'N/A' %>
+                      </dd>
+                    </div>
+
+                    <div class="govuk-summary-list__row">
+                      <dt class="govuk-summary-list__key">Sector</dt>
+                      <dd class="govuk-summary-list__value">
+                        <%= item.spendingSector || 'N/A' %>
+                      </dd>
+                    </div>
+
+                    <div class="govuk-summary-list__row">
+                      <dt class="govuk-summary-list__key">Date published</dt>
+                      <dd class="govuk-summary-list__value">
+                        <%= item.publishedAwardDate || 'N/A' %>
                       </dd>
                     </div>
                   </dl>
                 </article>
 
-                <% if (index < mfaAwards.length - 1) { %>
+                <% if (index < awards.length - 1) { %>
                   <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
                 <% } %>
               <% }); %>
             <% } %>
           </div>
           <!-- Start of Pagination -->
-          <%- include('../partials/pagination.ejs',{urlEndpoint: "mfaawards"}) %>
+          <%- include('../partials/pagination.ejs',{urlEndpoint: "awards"}) %>
           <!-- End of Pagination -->
         </div>
       </div>
@@ -213,5 +250,6 @@
   </div>
 
   <%- include('../partials/footer.ejs') %>
+  <script src="/assets/javascripts/select-all.js"></script>
 </body>
 </html>

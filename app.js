@@ -185,26 +185,8 @@ app.get("/", (req, res) => {
 var homepage = require("./routes/homepage");
 app.use("/homepage", homepage);
 
-var beneficiaryname = require("./routes/beneficiaryname");
-app.use("/beneficiaryname", beneficiaryname);
-
-var subsidyobjective = require("./routes/subsidyobjective");
-app.use("/subsidyobjective", subsidyobjective);
-
-var subsidyinstrument = require("./routes/subsidyinstrument");
-app.use("/subsidyinstrument", subsidyinstrument);
-
-var spendingsector = require("./routes/spendingsector");
-app.use("/spendingsector", spendingsector);
-
-var legalgrantingdate = require("./routes/legalgrantingdate");
-app.use("/legalgrantingdate", legalgrantingdate);
-
-var searchresults = require("./routes/searchresults");
-app.use("/searchresults", searchresults);
-
-var searchresults = require("./routes/schemes");
-app.use("/schemes", searchresults);
+var awards = require("./routes/awards");
+app.use("/awards", awards);
 
 var standaloneawards = require("./routes/standaloneawards");
 app.use("/standaloneawards", standaloneawards);
@@ -266,5 +248,11 @@ app.use("/cookieshelp", cookieshelp);
 // Privacy Notice
 var privacynotice = require("./routes/privacy-notice");
 app.use("/privacy", privacynotice);
+
+app.use("/awards", require('./routes/awards'));
+app.use("/awards/export", require('./routes/awardsExport'));
+
+app.use("/schemes", require("./routes/schemes"));
+app.use("/schemes/export", require('./routes/schemesExport'));
 
 module.exports = app;

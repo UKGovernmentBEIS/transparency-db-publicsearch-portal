@@ -1,0 +1,49 @@
+<%
+    const locations = [
+    "UK-wide",
+    "GB-wide",
+    "England",
+    "Northern Ireland",
+    "Scotland",
+    "Wales",
+    "East Midlands",
+    "East of England",
+    "London",
+    "North East",
+    "North West",
+    "South East",
+    "South West",
+    "West Midlands",
+    "Yorkshire and Humber"
+    ];
+
+    const geoLocations = Array.isArray(filters.geoLocation) ? filters.geoLocation.map(l => l.toLowerCase()) : [(filters.geoLocation || "").toLowerCase()];
+    const allSelected = locations.every(location => geoLocations.includes(location.toLowerCase()));
+%>
+
+<div class="govuk-form-group">
+    <label class="govuk-label govuk-label--s" for="geoLocation-checkbox">
+        Geographical location
+    </label>
+
+    <div class="govuk-checkboxes govuk-checkboxes--small filter-scroll-box" id="geoLocation-checkbox">
+        <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input js-select-all" id="geoSelectAll" type="checkbox" <%= allSelected ? "checked" : "" %>>
+            <label class="govuk-label govuk-checkboxes__label" for="geoSelectAll">
+                Select all
+            </label>
+        </div>
+
+        <% locations.forEach((location, index) => { %>
+            <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="geo-location-<%=index%>" name="geoLocation" type="checkbox" value="<%=location%>" 
+                <%= geoLocations.includes(location.toLowerCase()) ? "checked" : "" %>
+                >
+
+                <label class="govuk-label govuk-checkboxes__label" for="geo-location-<%=index%>">
+                <%=location%>
+                </label>
+            </div>
+        <% }) %>
+    </div>
+</div>
