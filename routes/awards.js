@@ -19,7 +19,6 @@ router.get("/", async (req, res) => {
 
     const page = Number(req.query.page || 1);
     const size = Number(req.query.size || 10);
-    const sort = (req.query.sort || defaultSort);
     
     const backendPage = Math.max(page - 1, 0);
     var startRecord;
