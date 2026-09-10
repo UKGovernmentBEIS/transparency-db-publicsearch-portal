@@ -10,7 +10,7 @@ const utils = require("../utils");
 
 router.get("/", async (req, res) => {
   utils.setSecurityHeaders(res, beis_url_publicsearch);
-
+  const schemeReturnUrl = req.query.returnUrl;
   console.log("req.query.scnumber: " + req.query.scheme);
   scheme = req.query.scheme;
   console.log("scnumber : " + scheme);
@@ -18,6 +18,8 @@ router.get("/", async (req, res) => {
     beis_url_publicsearch + "/schemes/scheme/withawards/" + scheme;
 
   currentPage = 1;
+  backButton_href = schemeReturnUrl;
+  backButton_text = "Back to search results";
   if (req.query.hasOwnProperty("page")) {
     var pageParse = parseInt(req.query.page);
     if (!isNaN(pageParse)) {
@@ -92,6 +94,7 @@ router.get("/", async (req, res) => {
           currentURI: req.protocol + '://' + req.get('host') + req.originalUrl,
           spendingSectorArray,
           purposeArray,
+          schemeReturnUrl
 
         });
       }

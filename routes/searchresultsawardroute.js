@@ -10,8 +10,10 @@ const utils = require("../utils");
 
 router.get("/", async (req, res) => {
   utils.setSecurityHeaders(res, beis_url_publicsearch);
+  const returnUrl = req.query.returnUrl;
 
   console.log("req.query.page: " + req.query.page);
+  console.log("returnUrl: " + returnUrl);
   awardnumber = req.query.page;
 
   console.log("awardnumber : " + awardnumber);
@@ -45,12 +47,12 @@ router.get("/", async (req, res) => {
     {
       if(searchawarddetails.standaloneAward == "Yes")
       {      
-        backButton_href = "/awards";
+        backButton_href = returnUrl;
         backButton_text = "Back to search results";
       }
       else
       {
-        backButton_href = "/awards";
+        backButton_href = returnUrl;
         backButton_text = "Back to search results";
       }  
     }
