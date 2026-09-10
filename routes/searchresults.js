@@ -229,13 +229,13 @@ router.post("/", async (req, res) => {
       res.render("publicusersearch/noresults");
     }
   } else {
-    var { legalgrantingdate } = req.body;
-    var { legal_granting_date_day } = req.body;
-    var { legal_granting_date_month } = req.body;
-    var { legal_granting_date_year } = req.body;
-    var { legal_granting_date_day1 } = req.body;
-    var { legal_granting_date_month1 } = req.body;
-    var { legal_granting_date_year1 } = req.body;
+    var { legalgrantingdate = '' } = req.body ?? {};
+    var { legal_granting_date_day = '' } = req.body ?? {};
+    var { legal_granting_date_month = '' } = req.body ?? {};
+    var { legal_granting_date_year = '' } = req.body ?? {};
+    var { legal_granting_date_day1 = '' } = req.body ?? {};
+    var { legal_granting_date_month1 = '' } = req.body ?? {};
+    var { legal_granting_date_year1 = '' } = req.body ?? {};
 
     frontend_totalRecordsPerPage = 10;
 
