@@ -83,9 +83,6 @@ app.use("/scheme", schemedetailsroute);
 var schemeVersionRoute = require("./routes/schemeversionroute");
 app.use("/schemeversion", schemeVersionRoute);
 
-var searchresultsawardroute = require("./routes/searchresultsawardroute");
-app.use("/award", searchresultsawardroute);
-
 var feedbackform = require("./routes/feedbackform");
 app.use("/feedbackform", feedbackform);
 
@@ -109,6 +106,7 @@ var privacynotice = require("./routes/privacy-notice");
 app.use("/privacy", privacynotice);
 
 app.use("/awards", require('./routes/awards'));
+app.use("/award", require('./routes/awarddetails'));
 app.use("/awards/export", require('./routes/awardsExport'));
 
 app.use("/schemes", require("./routes/schemes"));
