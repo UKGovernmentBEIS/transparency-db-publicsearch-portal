@@ -112,4 +112,6 @@ app.use("/awards/export", require('./routes/awardsExport'));
 app.use("/schemes", require("./routes/schemes"));
 app.use("/schemes/export", require('./routes/schemesExport'));
 
+app.use("/", require('./routes/redirectroute'));
+
 module.exports = app;
