@@ -84,7 +84,7 @@ var schemeVersionRoute = require("./routes/schemeversionroute");
 app.use("/schemeversion", schemeVersionRoute);
 
 var searchresultsawardroute = require("./routes/searchresultsawardroute");
-app.use("/searchresultsawardroute", searchresultsawardroute);
+app.use("/award", searchresultsawardroute);
 
 var feedbackform = require("./routes/feedbackform");
 app.use("/feedbackform", feedbackform);
