@@ -114,4 +114,8 @@ app.use("/schemes/export", require('./routes/schemesExport'));
 
 app.use("/", require('./routes/redirectroute'));
 
+app.use((req, res) => {
+  res.status(404).render("publicusersearch/404");
+});
+
 module.exports = app;
