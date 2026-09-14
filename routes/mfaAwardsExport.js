@@ -10,18 +10,7 @@ router.get('/', async function (req, res, next) {
     const format = req.query.format === 'csv' ? 'csv' : 'xlsx';
     var errors = [];
 
-    const filters = {
-      keyword: req.query.keyword || '',
-      mfaAssistance: req.query.mfaAssistance || '',
-      awardFullFromAmount : req.query.awardFullFromAmount || '',
-      awardFullToAmount: req.query.awardFullToAmount || '',
-      confirmationFromDay: req.query.confirmationFromDay || '',
-      confirmationFromMonth: req.query.confirmationFromMonth || '',
-      confirmationFromYear: req.query.confirmationFromYear || '',
-      confirmationToDay: req.query.confirmationToDay || '',
-      confirmationToMonth: req.query.confirmationToMonth || '',
-      confirmationToYear: req.query.confirmationToYear || ''
-    };
+    const filters = utils.getFilters(req,"mfa");
 
     const confirmationDateFrom = utils.buildDateFromStrings(filters.confirmationFromDay, filters.confirmationFromMonth, filters.confirmationFromYear);
     const confirmationDateTo = utils.buildDateFromStrings(filters.confirmationToDay, filters.confirmationToMonth, filters.confirmationToYear);

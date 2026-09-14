@@ -10,23 +10,8 @@ const utils = require("../utils");
 
 router.get("/", async (req, res) => {
     utils.setSecurityHeaders(res, beis_url_publicsearch);
-    const defaultSort = 'publishedDate,desc';
     var errors = [];
-
-    // Filter items from the request
-    const filters = {
-        sort: req.query.sort || defaultSort,
-        keyword: req.query.keyword || '',
-        mfaAssistance: req.query.mfaAssistance || '',
-        awardFullFromAmount : req.query.awardFullFromAmount || '',
-        awardFullToAmount: req.query.awardFullToAmount || '',
-        confirmationFromDay: req.query.confirmationFromDay || '',
-        confirmationFromMonth: req.query.confirmationFromMonth || '',
-        confirmationFromYear: req.query.confirmationFromYear || '',
-        confirmationToDay: req.query.confirmationToDay || '',
-        confirmationToMonth: req.query.confirmationToMonth || '',
-        confirmationToYear: req.query.confirmationToYear || ''
-      };
+    const filters = utils.getFilters(req,"mfa");
 
     const confirmationDateFrom = utils.buildDateFromStrings(filters.confirmationFromDay, filters.confirmationFromMonth, filters.confirmationFromYear);
     const confirmationDateTo = utils.buildDateFromStrings(filters.confirmationToDay, filters.confirmationToMonth, filters.confirmationToYear);

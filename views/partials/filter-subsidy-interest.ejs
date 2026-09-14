@@ -7,10 +7,11 @@
     <label class="govuk-label govuk-label--s" for="subsidy-interest-radio">
         SSoI/SSoPI classification
     </label>
-    <div class="govuk-radios">
-      <div class="govuk-radios--small" id="subsidy-interest-radio">
+    
+    <div class="filter-background-override">
+      <div class="govuk-radios govuk-radios--small" id="subsidy-interest-radio">
           <% subsidyInterestTypes.forEach(interest => { %>
-              <div class="govuk-radios__item">
+              <div class="govuk-radios__item filter-float-override-none">
                   <input class="govuk-radios__input" id="<%= interest %>" name="subsidyInterest" type="radio" value="<%= interest %>"
                       <%= selectedInterest === interest.toLowerCase() ? "checked" : "" %>
                   >
