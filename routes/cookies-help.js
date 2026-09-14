@@ -1,5 +1,4 @@
 const express = require("express");
-var session = require("express-session");
 const router = express.Router();
 const utils = require("../utils");
 
