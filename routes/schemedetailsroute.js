@@ -10,6 +10,7 @@ const utils = require("../utils");
 router.get("/", async (req, res) => {
   utils.setSecurityHeaders(res, beis_url_publicsearch);
   const schemeReturnUrl = req.query.returnUrl;
+  const returnUrl = req.originalUrl;
   console.log("req.query.scnumber: " + req.query.scheme);
   scheme = req.query.scheme;
   console.log("scnumber : " + scheme);
@@ -93,8 +94,7 @@ router.get("/", async (req, res) => {
           currentURI: req.protocol + '://' + req.get('host') + req.originalUrl,
           spendingSectorArray,
           purposeArray,
-          schemeReturnUrl
-
+          returnUrl
         });
       }
     });

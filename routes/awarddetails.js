@@ -10,7 +10,6 @@ const utils = require("../utils");
 router.get("/", async (req, res) => {
   utils.setSecurityHeaders(res, beis_url_publicsearch);
   const returnUrl = req.query.returnUrl;
-
   const awardnumber = req.query.award || '0';
 
   var awardendpoint =

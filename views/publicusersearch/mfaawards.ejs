@@ -154,7 +154,7 @@
             <% } else { %>
               <% mfaAwards.forEach(function(item, index) { %>
                 <article class="govuk-!-margin-bottom-4">
-                  <a class="govuk-link govuk-heading-m" href="/mfaaward/?id=<%= item.mfaAwardNumber %>">
+                  <a class="govuk-link govuk-heading-m" href="/mfaaward/?id=<%= item.mfaAwardNumber %>&returnUrl=<%= encodeURIComponent(returnUrl) %>">
                     <%= item.recipientName || 'Unnamed award' %>
                   </a>
 

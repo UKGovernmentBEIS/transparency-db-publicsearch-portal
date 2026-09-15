@@ -9,7 +9,7 @@ const utils = require("../utils");
 
 router.get("/", async (req, res) => {
   utils.setSecurityHeaders(res, beis_url_publicsearch);
-
+  backButton_href = req.query.returnUrl;
   mfaAwardNumber = req.query.id;
   var endpoint =
     beis_url_publicsearch + "/searchResults/mfa/" + mfaAwardNumber;
