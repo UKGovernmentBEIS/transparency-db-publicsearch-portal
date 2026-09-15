@@ -7471,4 +7471,61 @@
   }
 }
 
+#filter-form > .govuk-form-group,
+.filter-date-input > .govuk-form-group {
+  background-color: #f3f3f3;
+  margin-bottom: 10px;
+  padding: 15px;
+}
+
+#filter-form .govuk-date-input,
+#filter-form .govuk-input__wrapper {
+  margin-bottom: 10px;
+}
+
+#filters-container select {
+  background-color: #ffffff;
+  width: 100%;
+}
+
+#filters-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 15px;
+}
+
+.filter-scroll-box {
+  max-height: 150px;
+  overflow-y: auto;
+  padding: 10px;
+  background-color: #ffffff;
+}
+
+.filter-background-override {
+  background-color: #ffffff;
+  padding: 5px;
+}
+.filter-background-override .filter-float-override-none {
+  float: none;
+}
+
+.app-summary-list--compact {
+  margin-bottom: govuk-spacing(2);
+}
+.app-summary-list--compact .govuk-summary-list__key,
+.app-summary-list--compact .govuk-summary-list__value,
+.app-summary-list--compact .govuk-summary-list__actions {
+  padding-top: govuk-spacing(1);
+  padding-bottom: govuk-spacing(1);
+}
+
+.button-full-width {
+  width: 100%;
+}
+
+.govuk-date-input__item {
+  margin-right: 10px;
+}
+
 /*# sourceMappingURL=application.css.map */

@@ -1,0 +1,10 @@
+.app-summary-list--compact {
+  margin-bottom: govuk-spacing(2);
+
+  .govuk-summary-list__key,
+  .govuk-summary-list__value,
+  .govuk-summary-list__actions {
+    padding-top: govuk-spacing(1);
+    padding-bottom: govuk-spacing(1);
+  }
+}
