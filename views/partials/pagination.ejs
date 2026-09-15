@@ -3,6 +3,7 @@
     const currentPage = Number(page || 1);
     const totalPages = Number(pageCount || 1);
     const totalSearchResults = Number(results.totalSearchResults || 0).toLocaleString('en');
+    const urlAnchor = typeof anchor !== 'undefined' && anchor ? '#' + anchor : '';
 
     const safeUrlEndpoint =
       typeof urlEndpoint !== 'undefined' && urlEndpoint
@@ -21,7 +22,7 @@
         }
       });
 
-      return '/' + safeUrlEndpoint + '?' + params.toString();
+      return '/' + safeUrlEndpoint + '?' + params.toString() + urlAnchor;
     }
 
     const pages = [];
