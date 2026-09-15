@@ -50,14 +50,14 @@
   font-style: normal;
   font-weight: normal;
   font-display: fallback;
-  src: url("/public/assetsfonts/light-94a07e06a1-v2.woff2") format("woff2"), url("/public/assetsfonts/light-f591b13f7d-v2.woff") format("woff");
+  src: url("/assets/fonts/light-94a07e06a1-v2.woff2") format("woff2"), url("/assets/fonts/light-f591b13f7d-v2.woff") format("woff");
 }
 @font-face {
   font-family: "GDS Transport";
   font-style: normal;
   font-weight: bold;
   font-display: fallback;
-  src: url("/public/assetsfonts/bold-b542beb274-v2.woff2") format("woff2"), url("/public/assetsfonts/bold-affa96571d-v2.woff") format("woff");
+  src: url("/assets/fonts/bold-b542beb274-v2.woff2") format("woff2"), url("/assets/fonts/bold-affa96571d-v2.woff") format("woff");
 }
 @media print {
   .govuk-link {
@@ -3393,7 +3393,7 @@
   display: block;
   width: 100%;
   padding-top: 112px;
-  background-image: url("/public/assetsimages/govuk-crest.svg");
+  background-image: url("/assets/images/govuk-crest.svg");
   background-repeat: no-repeat;
   background-position: 50% 0%;
   background-size: 125px 102px;
@@ -3403,8 +3403,8 @@
 @supports (-webkit-mask-position: initial) or (mask-position: initial) {
   .govuk-footer__copyright-logo::before {
     background: currentcolor;
-    -webkit-mask-image: url("/public/assetsimages/govuk-crest.svg");
-    mask-image: url("/public/assetsimages/govuk-crest.svg");
+    -webkit-mask-image: url("/assets/images/govuk-crest.svg");
+    mask-image: url("/assets/images/govuk-crest.svg");
     -webkit-mask-repeat: no-repeat;
     mask-repeat: no-repeat;
     -webkit-mask-position: 50% 0%;
