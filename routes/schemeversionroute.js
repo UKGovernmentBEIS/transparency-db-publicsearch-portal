@@ -3,11 +3,8 @@
 // ********************************************************************
 
 const express = require("express");
-var session = require("express-session");
 const router = express.Router();
-
 const axios = require("axios");
-var request = require("request");
 const utils = require("../utils");
 
 router.get("/", async (req, res) => {

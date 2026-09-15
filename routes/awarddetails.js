@@ -5,31 +5,23 @@
 const express = require("express");
 const router = express.Router();
 const axios = require("axios");
-var request = require("request");
 const utils = require("../utils");
 
 router.get("/", async (req, res) => {
   utils.setSecurityHeaders(res, beis_url_publicsearch);
   const returnUrl = req.query.returnUrl;
 
-  console.log("req.query.page: " + req.query.page);
-  console.log("returnUrl: " + returnUrl);
-  awardnumber = req.query.page;
-
-  console.log("awardnumber : " + awardnumber);
+  const awardnumber = req.query.award || '0';
 
   var awardendpoint =
     beis_url_publicsearch + "/searchResults/award/" + awardnumber;
 
   try {
     const awardapidata = await axios.get(awardendpoint);
-    console.log(`Status: ${awardapidata.status}`);
-    console.log("Body: ", awardapidata.data);
-    searchawarddetails = awardapidata.data;
+    var searchawarddetails = awardapidata.data;
 
-    var objectiveArray = new Array();
     if(searchawarddetails.subsidyObjective != null){
-      objectiveArray = JSON.parse(searchawarddetails.subsidyObjective);
+      searchawarddetails.objectiveArray = JSON.parse(searchawarddetails.subsidyObjective);
     }
 
     searchawarddetails.spendingRegionArray = new Array();
@@ -61,7 +53,7 @@ router.get("/", async (req, res) => {
       res.render("publicusersearch/noresults");
     } else {
       res.render("publicusersearch/searchresultsawarddetail", {
-        objectiveArray
+        searchawarddetails
       });
     }
   } catch (err) {
