@@ -8,8 +8,10 @@
     "dev": "nodemon server.js",
     "test": "jest --forceExit",
     "test-coverage": "jest --coverage",
+    "copy:govuk-assets": "cpy ./node_modules/govuk-frontend/dist/govuk/assets/*/* ./public/assets/",
     "build:css": "sass --pkg-importer=node src/scss/application.scss public/assets/css/application.css",
-    "watch:css": "sass --pkg-importer=node --watch src/scss/application.scss:public/assets/css/application.css"
+    "watch:css": "sass --pkg-importer=node --watch src/scss/application.scss:public/assets/css/application.css",
+    "build": "npm run copy:govuk-assets && npm run build:css"
   },
   "author": "Jegan Maharajan",
   "license": "ISC",
