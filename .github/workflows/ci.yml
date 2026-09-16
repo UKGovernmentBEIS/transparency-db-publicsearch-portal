@@ -1,0 +1,29 @@
+name: CI
+
+on: 
+    pull_request:
+    push:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Setup node
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          package-manager-cache: false
+      - run: npm ci
+      
+      - name: Run build
+        run: npm run build
+
+      - name: Ensure build produced no changes
+        run: |
+          if [ -n "$(git status --porcelain)" ]; then
+            echo "Build produced uncommitted changes:"
+            git status --short
+            echo "Make sure to run 'npm run build' before committing."
+            exit 1
+          fi
