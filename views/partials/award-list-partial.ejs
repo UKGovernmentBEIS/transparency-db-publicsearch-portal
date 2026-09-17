@@ -62,7 +62,7 @@ noAwardMessage - message displayed when no awards are available
                 <% searchawards.forEach(function(item) { %>
                     <tr>
                         <td class="govuk-table__cell">
-                            <a href="/award/?award=<%= item.awardNumber %>&returnUrl=<%= encodeURIComponent(returnUrl) %>">
+                            <a href="/award/?award=<%= item.awardNumber %>&returnUrl=<%= encodeURIComponent(schemeDetailReturnUrl) %>">
                                 <%= item.awardNumber %>
                             </a>
                         </td>

@@ -9,8 +9,10 @@ const utils = require("../utils");
 
 router.get("/", async (req, res) => {
   utils.setSecurityHeaders(res, beis_url_publicsearch);
-  const schemeReturnUrl = req.query.returnUrl;
-  const returnUrl = req.originalUrl;
+  const defaultReturnUrl = '/schemes';
+  var returnUrl = req.query.returnUrl || defaultReturnUrl;
+  var schemeDetailReturnUrl = req.originalUrl;
+
   console.log("req.query.scnumber: " + req.query.scheme);
   scheme = req.query.scheme;
   console.log("scnumber : " + scheme);
@@ -18,7 +20,7 @@ router.get("/", async (req, res) => {
     beis_url_publicsearch + "/schemes/scheme/withawards/" + scheme;
 
   currentPage = 1;
-  backButton_href = schemeReturnUrl;
+  backButton_href = returnUrl;
   backButton_text = "Back to search results";
   if (req.query.hasOwnProperty("page")) {
     var pageParse = parseInt(req.query.page);
@@ -85,7 +87,9 @@ router.get("/", async (req, res) => {
 
       if(response.data.status == "Deleted")
       {
-        res.render("publicusersearch/noresults");
+        res.render("publicusersearch/noresults", {
+          backButton_href
+        });
       }
       else
       {
@@ -94,14 +98,18 @@ router.get("/", async (req, res) => {
           currentURI: req.protocol + '://' + req.get('host') + req.originalUrl,
           spendingSectorArray,
           purposeArray,
-          returnUrl
+          schemeDetailReturnUrl,
+          returnUrl,
+          backButton_href
         });
       }
     });
   } catch (err) {
 
     if (err.toString().includes("404")) {
-      res.render("publicusersearch/noresults");
+      res.render("publicusersearch/noresults", {
+        backButton_href: returnUrl
+      });
       console.warn("No results found for scheme number " + scheme);
     } else {
       console.error(err);

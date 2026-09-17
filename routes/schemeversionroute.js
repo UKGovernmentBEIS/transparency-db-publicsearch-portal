@@ -14,6 +14,8 @@ router.get("/", async (req, res) => {
   console.log("version: " + req.query.version);
   const scnumber = req.query.scNumber;
   const version = req.query.version;
+  const defaultReturnUrl = '/schemes';
+  var returnUrl = req.query.returnUrl || defaultReturnUrl;
 
   const currentURI = req.protocol + '://' + req.get('host') + req.originalUrl;
   const versionEndpoint = beis_url_publicsearch + "/schemes/scheme/" + scnumber + "/version/" + version;
@@ -24,7 +26,7 @@ router.get("/", async (req, res) => {
       versionEndpoint,
     )
     schemeVersionDetails = response.data;
-    backButton_href = req.query.returnUrl;
+    const backButton_href = returnUrl;
     schemeVersionDetails.spendingSectorArray = new Array();
     if(schemeVersionDetails.spendingSectors != null){
       schemeVersionDetails.spendingSectorArray = JSON.parse(schemeVersionDetails.spendingSectors);
@@ -36,12 +38,15 @@ router.get("/", async (req, res) => {
     }
 
     res.render("publicusersearch/scheme-version", {
-      currentURI: req.protocol + '://' + req.get('host') + req.originalUrl
+      currentURI: req.protocol + '://' + req.get('host') + req.originalUrl,
+      backButton_href
     });
   } catch (err) {
 
     if (err.toString().includes("404")) {
-      res.render("publicusersearch/noresults");
+      res.render("publicusersearch/noresults",{
+        backButton_href: returnUrl
+      });
       console.warn("No results found for scheme number " + scnumber);
     } else {
       console.error(err);

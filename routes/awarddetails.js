@@ -9,7 +9,8 @@ const utils = require("../utils");
 
 router.get("/", async (req, res) => {
   utils.setSecurityHeaders(res, beis_url_publicsearch);
-  const returnUrl = req.query.returnUrl;
+  const defaultReturnUrl = '/awards';
+  var returnUrl = req.query.returnUrl || defaultReturnUrl;
   const awardnumber = req.query.award || '0';
 
   var awardendpoint =
@@ -18,7 +19,7 @@ router.get("/", async (req, res) => {
   try {
     const awardapidata = await axios.get(awardendpoint);
     var searchawarddetails = awardapidata.data;
-
+    var backButton_href = returnUrl;
     if(searchawarddetails.subsidyObjective != null){
       searchawarddetails.objectiveArray = JSON.parse(searchawarddetails.subsidyObjective);
     }
@@ -29,36 +30,33 @@ router.get("/", async (req, res) => {
       searchawarddetails.spendingRegionArray = JSON.parse(searchawarddetails.spendingRegion);
     }
 
-    if(req.headers.referer && req.headers.referer.includes('/scheme') && typeof searchmeasuredetails !== 'undefined')
+    if(returnUrl && returnUrl.includes('/scheme') && typeof searchmeasuredetails !== 'undefined')
     {      
-      backButton_href = "/scheme/?scheme=" + searchmeasuredetails.scNumber;
+      backButton_href = returnUrl;
       backButton_text = "Back to scheme details";
     }
     else
     {
-      if(searchawarddetails.standaloneAward == "Yes")
-      {      
-        backButton_href = returnUrl;
-        backButton_text = "Back to search results";
-      }
-      else
-      {
-        backButton_href = returnUrl;
-        backButton_text = "Back to search results";
-      }  
+      backButton_href = returnUrl; 
+      backButton_text = "Back to search results";
     }
 
     if (searchawarddetails.subsidyMeasure.status === "Deleted" || searchawarddetails.status === "Rejected") {
-      res.render("publicusersearch/noresults");
+      res.render("publicusersearch/noresults",{
+        backButton_href
+      });
     } else {
       res.render("publicusersearch/searchresultsawarddetail", {
-        searchawarddetails
+        searchawarddetails,
+        backButton_href
       });
     }
   } catch (err) {
 
     if (err.toString().includes("404")) {
-      res.render("publicusersearch/noresults");
+      res.render("publicusersearch/noresults",{
+        backButton_href
+      });
       console.warn("No results found for award number " + awardnumber);
     } else {
       console.error(err);
