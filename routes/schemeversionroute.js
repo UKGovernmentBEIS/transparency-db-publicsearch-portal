@@ -24,7 +24,7 @@ router.get("/", async (req, res) => {
       versionEndpoint,
     )
     schemeVersionDetails = response.data;
-    
+    backButton_href = req.query.returnUrl;
     schemeVersionDetails.spendingSectorArray = new Array();
     if(schemeVersionDetails.spendingSectors != null){
       schemeVersionDetails.spendingSectorArray = JSON.parse(schemeVersionDetails.spendingSectors);
