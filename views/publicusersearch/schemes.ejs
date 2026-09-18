@@ -154,9 +154,7 @@
                     <div class="govuk-summary-list__row">
                       <dt class="govuk-summary-list__key">Public authority</dt>
                       <dd class="govuk-summary-list__value">
-                        <%= item.grantingAuthorityResponse && item.grantingAuthorityResponse.grantingAuthorityName
-                          ? item.grantingAuthorityResponse.grantingAuthorityName
-                          : 'N/A' %>
+                        <%= item.grantingAuthorityName || 'N/A' %>
                       </dd>
                     </div>
 
