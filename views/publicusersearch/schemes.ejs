@@ -3,9 +3,7 @@
 <head>
   <title>GOV.UK - Search for subsidy schemes</title>
 
-  <%- include('../partials/headercss.ejs') %>
-
-  <link href="/assets/stylesheet/style.css" rel="stylesheet" type="text/css">  
+  <%- include('../partials/headercss.ejs') %> 
 </head>
 
 <body class="govuk-template__body app-example-page">
@@ -59,7 +57,7 @@
                 <%- include('../partials/filter-subsidy-purpose.ejs'); %>
                 <%- include('../partials/filter-subsidy-interest.ejs'); %>
                 <!-- Filters end -->
-                <button class="govuk-button">Apply filters</button>
+                <button class="govuk-button button-full-width">Apply filters</button>
               </form>
             </div>
           </div>
@@ -214,10 +212,10 @@
               <% }); %>
             <% } %>
           </div>
-          <!-- Start of Pagination -->
-          <%- include('../partials/pagination.ejs',{urlEndpoint: "schemes"}) %>
-          <!-- End of Pagination -->
         </div>
+        <!-- Start of Pagination -->
+        <%- include('../partials/pagination.ejs',{urlEndpoint: "awards"}) %>
+        <!-- End of Pagination -->
       </div>
     </main>
   </div>
