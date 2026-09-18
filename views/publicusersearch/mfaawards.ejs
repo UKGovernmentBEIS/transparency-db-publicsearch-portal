@@ -4,8 +4,6 @@
   <title>GOV.UK - Search for MFA/SPEIA awards</title>
 
   <%- include('../partials/headercss.ejs') %>
-
-  <link href="/assets/stylesheet/style.css" rel="stylesheet" type="text/css">  
 </head>
 
 <body class="govuk-template__body app-example-page">
@@ -204,10 +202,10 @@
               <% }); %>
             <% } %>
           </div>
-          <!-- Start of Pagination -->
-          <%- include('../partials/pagination.ejs',{urlEndpoint: "mfaawards"}) %>
-          <!-- End of Pagination -->
         </div>
+        <!-- Start of Pagination -->
+        <%- include('../partials/pagination.ejs',{urlEndpoint: "mfaawards"}) %>
+        <!-- End of Pagination -->
       </div>
     </main>
   </div>

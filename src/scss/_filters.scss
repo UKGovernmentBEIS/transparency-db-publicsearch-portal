@@ -1,0 +1,42 @@
+@use "pkg:govuk-frontend/base" as *;
+
+#filter-form > .govuk-form-group,
+.filter-date-input > .govuk-form-group {
+  background-color: govuk-colour("black", $variant: "tint-95");
+  margin-bottom: govuk-spacing(2);
+  padding: govuk-spacing(3);
+}
+
+#filter-form .govuk-date-input,
+#filter-form .govuk-input__wrapper {
+  margin-bottom: govuk-spacing(2);
+}
+
+#filters-container select {
+  background-color: govuk-colour("white");
+  width: 100%;
+}
+
+#filters-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: govuk-spacing(3);
+}
+
+.filter-scroll-box {
+  max-height: 150px;
+  overflow-y: auto;
+  padding: govuk-spacing(2);
+  background-color: govuk-colour("white");
+}
+
+.filter-background-override {
+  background-color: govuk-colour("white");
+  padding: govuk-spacing(1);
+
+  // Bug with float causes background to not render correctly
+  .filter-float-override-none {
+    float: none;
+  }
+}
