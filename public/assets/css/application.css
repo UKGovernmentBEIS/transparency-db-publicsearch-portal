@@ -7511,13 +7511,13 @@
 }
 
 .app-summary-list--compact {
-  margin-bottom: govuk-spacing(2);
+  margin-bottom: 10px;
 }
 .app-summary-list--compact .govuk-summary-list__key,
 .app-summary-list--compact .govuk-summary-list__value,
 .app-summary-list--compact .govuk-summary-list__actions {
-  padding-top: govuk-spacing(1);
-  padding-bottom: govuk-spacing(1);
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 .button-full-width {
