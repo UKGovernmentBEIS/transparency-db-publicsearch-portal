@@ -200,6 +200,13 @@
                     </div>
 
                     <div class="govuk-summary-list__row">
+                      <dt class="govuk-summary-list__key">Standalone subsidy award</dt>
+                      <dd class="govuk-summary-list__value">
+                        <%= item.standaloneAward || 'N/A' %>
+                      </dd>
+                    </div>
+
+                    <div class="govuk-summary-list__row">
                       <dt class="govuk-summary-list__key">Subsidy scheme</dt>
                       <dd class="govuk-summary-list__value">
                         <% if (item.standaloneAward === "Yes") { %>
