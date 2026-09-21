@@ -27,7 +27,7 @@
 
         <div class="govuk-grid-row">
           <div class="govuk-grid-column-full">
-            <h1 class="govuk-heading-l">Seach for subsidy schemes</h1>
+            <h1 class="govuk-heading-l">Search for subsidy schemes</h1>
           </div>
         </div>
 
@@ -140,6 +140,7 @@
               <% schemes.forEach(function(item, index) { %>
                 <% const description = item.subsidyAwardDescription || ''; %>
                 <% const shortDescription = description.length > 130 ? description.substring(0, 130) + '...' : description; %>
+                <% const spendingSectorArray = item.spendingSectors ? JSON.parse(item.spendingSectors) : null; %>
 
                 <article class="govuk-!-margin-bottom-4">
                   <a class="govuk-link govuk-heading-m" href="/scheme/?scheme=<%= item.scNumber %>">
@@ -166,9 +167,17 @@
                     </div>
 
                     <div class="govuk-summary-list__row">
-                      <dt class="govuk-summary-list__key">Maximum amount given under scheme</dt>
+                      <dt class="govuk-summary-list__key">Sector(s)</dt>
                       <dd class="govuk-summary-list__value">
-                        <%= item.maximumAmountUnderScheme || 'N/A' %>
+                        <% if(spendingSectorArray !== null) { %>
+                          <ul class="govuk-list <%= spendingSectorArray.length > 1 ? 'govuk-list--bullet' : '' %>">
+                              <% spendingSectorArray.forEach(function(item) { %>
+                              <li> <%=item %> </li>
+                              <% }); %>
+                          </ul>
+                        <% } else { %>
+                              N/A
+                        <% } %>
                       </dd>
                     </div>
 
@@ -180,9 +189,9 @@
                     </div>
 
                     <div class="govuk-summary-list__row">
-                      <dt class="govuk-summary-list__key">Start date</dt>
+                      <dt class="govuk-summary-list__key">Confirmation date</dt>
                       <dd class="govuk-summary-list__value">
-                        <%= item.startDate || 'N/A' %>
+                        <%= item.confirmationDate || 'N/A' %>
                       </dd>
                     </div>
 
