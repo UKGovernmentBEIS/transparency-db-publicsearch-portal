@@ -21,6 +21,7 @@
     "ejs": "^6.0.1",
     "express": "^4.17.1",
     "govuk-frontend": "^6.5.1",
+    "jest-html-reporter": "^4.4.2",
     "method-override": "^3.0.0",
     "nodemon": "^3.1.14",
     "path": "^0.12.7",
