@@ -4,8 +4,6 @@
   <title>GOV.UK - Search for MFA/SPEIA awards</title>
 
   <%- include('../partials/headercss.ejs') %>
-
-  <link href="/assets/stylesheet/style.css" rel="stylesheet" type="text/css">  
 </head>
 
 <body class="govuk-template__body app-example-page">
@@ -29,7 +27,7 @@
 
         <div class="govuk-grid-row">
           <div class="govuk-grid-column-full">
-            <h1 class="govuk-heading-l">Seach for Minimal financial assistance (MFA) or Service of Public Economic Interest (SPEI)</h1>
+            <h1 class="govuk-heading-l">Search for Minimal financial assistance (MFA) or Service of Public Economic Interest Assistance (SPEIA)</h1>
           </div>
         </div>
 
@@ -204,10 +202,10 @@
               <% }); %>
             <% } %>
           </div>
-          <!-- Start of Pagination -->
-          <%- include('../partials/pagination.ejs',{urlEndpoint: "mfaawards"}) %>
-          <!-- End of Pagination -->
         </div>
+        <!-- Start of Pagination -->
+        <%- include('../partials/pagination.ejs',{urlEndpoint: "mfaawards"}) %>
+        <!-- End of Pagination -->
       </div>
     </main>
   </div>

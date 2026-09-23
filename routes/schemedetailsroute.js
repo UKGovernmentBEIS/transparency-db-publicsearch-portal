@@ -19,30 +19,36 @@ router.get("/", async (req, res) => {
   var measureendpoint =
     beis_url_publicsearch + "/schemes/scheme/withawards/" + scheme;
 
-  currentPage = 1;
+
+
   backButton_href = returnUrl;
   backButton_text = "Back to search results";
+  page = 1;
+  const filters = {
+    scheme: scheme
+  };
+  const anchor = 'searchresult-table';
   if (req.query.hasOwnProperty("page")) {
     var pageParse = parseInt(req.query.page);
     if (!isNaN(pageParse)) {
-      if(typeof totalPages === "undefined")
-        totalPages = 1;
-      currentPage = Math.max(1, Math.min(pageParse, totalPages));
+      if(typeof pageCount === "undefined")
+        pageCount = 1;
+      page = Math.max(1, Math.min(pageParse, pageCount));
     }
   }
-  prevPage = Math.max(1, currentPage - 1);
-  perPage = 10;
-  if (req.query.hasOwnProperty("perPage")) {
-    var perPageParse = parseInt(req.query.perPage);
+  prevPage = Math.max(1, page - 1);
+  size = 10;
+  if (req.query.hasOwnProperty("size")) {
+    var perPageParse = parseInt(req.query.size);
     if (!isNaN(perPageParse)) {
-      perPage = perPageParse;
+      size = perPageParse;
     }
   }
   try {
     const awardRequest = {
       scNumber: scheme,
-      pageNumber: currentPage,
-      totalRecordsPerPage: perPage,
+      pageNumber: page,
+      totalRecordsPerPage: size,
       sortBy: ["awardNumber,desc"],
     };
     await axios.post(
@@ -60,17 +66,18 @@ router.get("/", async (req, res) => {
         totalSearchResults = 0;
 
       if(totalSearchResults > 0){      
-        totalPages = response.data.awardSearchResults.totalPages;
+        pageCount = response.data.awardSearchResults.totalPages;
         hasAwards = true;
         console.log(hasAwards);
         console.log(totalSearchResults)
-        startRecord = ((currentPage - 1) * perPage) + 1;
-        endRecord = Math.min((currentPage * perPage), totalSearchResults);
+        startRecord = ((page - 1) * size) + 1;
+        endRecord = Math.min((page * size), totalSearchResults);
 
-        searchawards = response.data.awardSearchResults.awards;
-        nextPage = Math.min(totalPages, currentPage + 1);
-        pagingStart = Math.max(1, currentPage - 5);
-        pagingEnd = Math.min(totalPages, currentPage + 5);
+        results = response.data.awardSearchResults.awards;
+        results.totalSearchResults = totalSearchResults;
+        nextPage = Math.min(pageCount, page + 1);
+        pagingStart = Math.max(1, page - 5);
+        pagingEnd = Math.min(pageCount, page + 5);
       }
       else
         hasAwards = false;
@@ -100,7 +107,9 @@ router.get("/", async (req, res) => {
           purposeArray,
           schemeDetailReturnUrl,
           returnUrl,
-          backButton_href
+          backButton_href,
+          anchor,
+          filters
         });
       }
     });
