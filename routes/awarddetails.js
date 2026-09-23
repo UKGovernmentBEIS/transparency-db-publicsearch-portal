@@ -11,6 +11,7 @@ router.get("/", async (req, res) => {
   utils.setSecurityHeaders(res, beis_url_publicsearch);
   const defaultReturnUrl = '/awards';
   var returnUrl = req.query.returnUrl || defaultReturnUrl;
+  var awardDetailReturnUrl = req.originalUrl;
   const awardnumber = req.query.award || '0';
 
   var awardendpoint =
@@ -43,12 +44,14 @@ router.get("/", async (req, res) => {
 
     if (searchawarddetails.subsidyMeasure.status === "Deleted" || searchawarddetails.status === "Rejected") {
       res.render("publicusersearch/noresults",{
-        backButton_href
+        backButton_href,
+        awardDetailReturnUrl
       });
     } else {
       res.render("publicusersearch/searchresultsawarddetail", {
         searchawarddetails,
-        backButton_href
+        backButton_href,
+        awardDetailReturnUrl
       });
     }
   } catch (err) {
