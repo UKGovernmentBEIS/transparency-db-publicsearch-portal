@@ -20,7 +20,9 @@
     <%- include('../partials/banner.ejs') %>
     <main id="main-content" role="main">
       <div class="govuk-main-wrapper ">
-        <a href="/schemes" class="govuk-back-link" aria-label="Back to search results page">Back</a>
+        <a href="<%=backButton_href%>" class="govuk-back-link" aria-label="Back to search results page" id="back-button-link">
+          Back
+        </a>
         <div class="govuk-grid-row">
           <div class="govuk-grid-column-three-quarters">
             <h1 class="govuk-heading-l">
@@ -271,12 +273,11 @@
           </div>
         </div>
 
-        <form action="/schemes" method="GET">
           <div>
-            <button class="govuk-button" data-module="govuk-button">
-              Back to search results </button>
+            <a href="<%=backButton_href%>" class="govuk-button" data-module="govuk-button">
+              Back to search results
+            </a>
           </div>
-        </form>
       </div>
     </main>
   </div>
