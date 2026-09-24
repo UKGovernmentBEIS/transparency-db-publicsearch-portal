@@ -75,12 +75,18 @@ isDateValid = function(date){
   return validateDate(date, responseType="boolean");
 }
 
-exports.validateDateFromTo = function (fromDate, toDate){
+exports.validateDateFromTo = function (fromDay, fromMonth, fromYear, toDay, toMonth, toYear) {
   const error = {
     hasErrors: false,
     errorMsg: "",
     field: null
   };
+
+  const fromField = 'filter-from-day';
+  const toField = 'filter-to-day';
+
+  const fromDate = this.buildDateFromStrings(fromDay, fromMonth, fromYear);
+  const toDate = this.buildDateFromStrings(toDay, toMonth, toYear);
 
   const hasFrom = Boolean(fromDate?.trim());
   const hasTo = Boolean(toDate?.trim());
@@ -89,11 +95,9 @@ exports.validateDateFromTo = function (fromDate, toDate){
     return{
       hasErrors: true,
       errorMsg: "If 'From' date or 'To' are provided, both must be provided",
-      field: hasFrom ? "to" : "from"
+      field: hasFrom ? toField : fromField
     }
   }
-
-
   
   if (hasFrom && hasTo){
     // check that both are valid
@@ -101,7 +105,7 @@ exports.validateDateFromTo = function (fromDate, toDate){
       return {
         hasErrors: true,
         errorMsg: "'From' date and 'To' date must be valid dates",
-        field: !isDateValid(fromDate) ? "from" : "to"
+        field: !isDateValid(fromDate) ? fromField : toField
       };
     }
 
@@ -113,12 +117,10 @@ exports.validateDateFromTo = function (fromDate, toDate){
       return {
         hasErrors: true,
         errorMsg: "'To' date must be after 'From' date",
-        field: "to"
+        field: toField
       };
     }
   }
-
-  
 
   return error;
 }
@@ -167,20 +169,23 @@ exports.setSecurityHeaders = function (res, url) {
 
 exports.getFilters = function (req, type){
   const defaultSort = 'publishedDate,desc';
+  const commonFilters = {
+    sort: req.query.sort || defaultSort,
+    keyword: req.query.keyword || '',
+    fromDay: req.query.fromDay || '',
+    fromMonth: req.query.fromMonth || '',
+    fromYear: req.query.fromYear || '',
+    toDay: req.query.toDay || '',
+    toMonth: req.query.toMonth || '',
+    toYear: req.query.toYear || '',
+  }
+
   var filters = {};
   switch(type){
     case "scheme":
       filters = {
-        sort: req.query.sort || defaultSort,
-        keyword: req.query.keyword || '',
         pa: req.query.pa || '',
         schemeStatus: req.query.schemeStatus || '',
-        confirmationFromDay: req.query.confirmationFromDay || '',
-        confirmationFromMonth: req.query.confirmationFromMonth || '',
-        confirmationFromYear: req.query.confirmationFromYear || '',
-        confirmationToDay: req.query.confirmationToDay || '',
-        confirmationToMonth: req.query.confirmationToMonth || '',
-        confirmationToYear: req.query.confirmationToYear || '',
         schemeBudgetFromAmount: req.query.schemeBudgetFromAmount || '',
         schemeBudgetToAmount: req.query.schemeBudgetToAmount || '',
         sector: req.query.sector || '',
@@ -191,33 +196,17 @@ exports.getFilters = function (req, type){
       break;
     case "mfa":
       filters = {
-        sort: req.query.sort || defaultSort,
-        keyword: req.query.keyword || '',
         mfaAssistance: req.query.mfaAssistance || '',
         awardFullFromAmount : req.query.awardFullFromAmount || '',
         awardFullToAmount: req.query.awardFullToAmount || '',
-        confirmationFromDay: req.query.confirmationFromDay || '',
-        confirmationFromMonth: req.query.confirmationFromMonth || '',
-        confirmationFromYear: req.query.confirmationFromYear || '',
-        confirmationToDay: req.query.confirmationToDay || '',
-        confirmationToMonth: req.query.confirmationToMonth || '',
-        confirmationToYear: req.query.confirmationToYear || ''
       };
       break;
     case "award":
       filters = {
-        sort: req.query.sort || defaultSort,
-        keyword: req.query.keyword || '',
         awardType: req.query.awardType || '',
         pa: req.query.pa || '',
         awardFullFromAmount : req.query.awardFullFromAmount || '',
         awardFullToAmount: req.query.awardFullToAmount || '',
-        confirmationFromDay: req.query.confirmationFromDay || '',
-        confirmationFromMonth: req.query.confirmationFromMonth || '',
-        confirmationFromYear: req.query.confirmationFromYear || '',
-        confirmationToDay: req.query.confirmationToDay || '',
-        confirmationToMonth: req.query.confirmationToMonth || '',
-        confirmationToYear: req.query.confirmationToYear || '',
         sector: req.query.sector || '',
         geoLocation: req.query.geoLocation || '',
         subsidyForm: req.query.subsidyForm || '',
@@ -227,6 +216,11 @@ exports.getFilters = function (req, type){
         subsidyInterest: req.query.subsidyInterest || '',
       };
       break;
+  }
+
+  filters = {
+    ...commonFilters,
+    ...filters
   }
 
   return filters;
