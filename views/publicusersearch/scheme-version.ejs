@@ -21,7 +21,7 @@
     <%- include('../partials/banner.ejs') %>
     <main id="main-content" role="main">
       <div class="govuk-main-wrapper ">
-        <a href="scheme/?scheme=<%= schemeVersionDetails.scNumber %>" class="govuk-back-link" aria-label="Back to scheme">Back</a>
+        <a href="<%=backButton_href%>" class="govuk-back-link" aria-label="Back to scheme">Back</a>
         <div class="govuk-grid-row">
           <div class="govuk-grid-column-three-quarters">
             <h1 class="govuk-heading-l">Subsidy scheme details</h1>
@@ -227,12 +227,11 @@
             </dd>
           </div>
         </dl>
-
-        <form action="scheme/?scheme=<%= schemeVersionDetails.scNumber %>" method="GET">
           <div>
-            <a href="scheme/?scheme=<%= schemeVersionDetails.scNumber %>" class="govuk-button">Back to scheme</a>
+            <a href="<%=backButton_href%>" class="govuk-button" data-module="govuk-button">
+              Back to scheme
+            </a>
           </div>
-        </form>
       </div>
     </main>
   </div>

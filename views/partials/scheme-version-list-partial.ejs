@@ -10,7 +10,7 @@
     <% schemeVersions.forEach(function(item) { %>
         <tr>
             <td class="govuk-table__cell">
-                <a href="/schemeversion?scNumber=<%= item.scNumber %>&version=<%= item.version %>">
+                <a href="/schemeversion?scNumber=<%= item.scNumber %>&version=<%= item.version %>&returnUrl=<%= encodeURIComponent(schemeDetailReturnUrl) %>">
                     <%= item.lastModifiedDate %>
                 </a>
             </td>
