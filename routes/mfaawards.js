@@ -17,6 +17,7 @@ router.get("/", async (req, res) => {
     const size = Number(req.query.size || 10);
     
     const backendPage = Math.max(page - 1, 0);
+    const returnUrl = req.originalUrl;
     var startRecord;
     var endRecord;
 
@@ -47,7 +48,8 @@ router.get("/", async (req, res) => {
         pageCount: 0,
         page: 0,
         size: 10,
-        errors
+        errors,
+        returnUrl
       });
     }
 
@@ -89,7 +91,8 @@ router.get("/", async (req, res) => {
             startRecord,
             endRecord,
             size,
-            errors
+            errors,
+            returnUrl
         });
     } catch (err) {
         response_error_message = err;
