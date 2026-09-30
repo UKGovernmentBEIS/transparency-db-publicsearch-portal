@@ -11,7 +11,7 @@ router.post("/", async (req, res) => {
   console.log("req.body.comment", req.body.comment);
   
   try {
-    const apidata = await axios.post(
+    await axios.post(
       beisUrlAccessManagement + "/usermanagement/feedback",
       {
         feedBack: req.body.feedback,
