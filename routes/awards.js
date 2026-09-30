@@ -14,13 +14,11 @@ router.get("/", async (req, res) => {
     var errors = [];
     const filters = utils.getFilters(req,"award");
 
-    const confirmationDateFrom = utils.buildDateFromStrings(filters.confirmationFromDay, filters.confirmationFromMonth, filters.confirmationFromYear);
-    const confirmationDateTo = utils.buildDateFromStrings(filters.confirmationToDay, filters.confirmationToMonth, filters.confirmationToYear);
-
     const page = Number(req.query.page || 1);
     const size = Number(req.query.size || 10);
     
     const backendPage = Math.max(page - 1, 0);
+    const returnUrl = req.originalUrl;
     var startRecord;
     var endRecord;
     var paList = [];
@@ -39,16 +37,10 @@ router.get("/", async (req, res) => {
     }
 
     // Validate confirmation date from and to
-    var confirmationDateErrors = utils.validateDateFromTo(confirmationDateFrom, confirmationDateTo)
+    var dateErrors = utils.validateDateFromTo(filters.fromDay, filters.fromMonth, filters.fromYear, filters.toDay, filters.toMonth, filters.toYear)
     
-    if (confirmationDateErrors.hasErrors){
-      const fieldIds = {
-        from: "confirmation-filter-from-day",
-        to: "confirmation-filter-to-day",
-      };
-
-      confirmationDateErrors.field = fieldIds[confirmationDateErrors.field] ?? fieldIds.to;
-      errors.push(confirmationDateErrors);
+    if (dateErrors.hasErrors){
+      errors.push(dateErrors);
     }
 
     if(errors.length > 0){
@@ -79,7 +71,8 @@ router.get("/", async (req, res) => {
         page: 0,
         size: 10,
         errors,
-        paList
+        paList,
+        returnUrl
       });
     }
 
@@ -143,7 +136,8 @@ router.get("/", async (req, res) => {
             startRecord,
             endRecord,
             size,
-            errors
+            errors,
+            returnUrl
         });
     } catch (err) {
         response_error_message = err;

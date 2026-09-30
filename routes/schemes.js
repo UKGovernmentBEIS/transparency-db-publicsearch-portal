@@ -20,6 +20,7 @@ router.get("/", async (req, res) => {
     const size = Number(req.query.size || 10);
     
     const backendPage = Math.max(page - 1, 0);
+    const returnUrl = req.originalUrl;
     var startRecord;
     var endRecord;
     var paList = [];
@@ -44,20 +45,11 @@ router.get("/", async (req, res) => {
       console.log("Error getting list of public authorities : " + err);
     }
 
-    const schemeStartDateFrom = utils.buildDateFromStrings(filters.schemeStartFromDay, filters.schemeStartFromMonth, filters.schemeStartFromYear);
-    const schemeStartDateTo = utils.buildDateFromStrings(filters.schemeStartToDay, filters.schemeStartToMonth, filters.schemeStartToYear);
-
     // Validate scheme start date from and to
-    var schemeStartDateErrors = utils.validateDateFromTo(schemeStartDateFrom, schemeStartDateTo)
+    var dateErrors = utils.validateDateFromTo(filters.fromDay, filters.fromMonth, filters.fromYear, filters.toDay, filters.toMonth, filters.toYear)
     
-    if (schemeStartDateErrors.hasErrors){
-      const fieldIds = {
-        from: "schemeStart-filter-from-day",
-        to: "schemeStart-filter-to-day",
-      };
-
-      schemeStartDateErrors.field = fieldIds[schemeStartDateErrors.field] ?? fieldIds.to;
-      errors.push(schemeStartDateErrors);
+    if (dateErrors.hasErrors){
+      errors.push(dateErrors);
     }
 
      // Validate award full amount from and to
@@ -81,7 +73,8 @@ router.get("/", async (req, res) => {
         pageCount: 0,
         page: 0,
         size: 10,
-        errors
+        errors,
+        returnUrl
       });
     }
 
@@ -124,7 +117,8 @@ router.get("/", async (req, res) => {
             startRecord,
             endRecord,
             size,
-            errors
+            errors,
+            returnUrl
         });
     } catch (err) {
         response_error_message = err;
