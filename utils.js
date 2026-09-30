@@ -219,6 +219,7 @@ exports.parseJsonArray = function parseJsonArray(value) {
     const parsed = JSON.parse(value);
     return Array.isArray(parsed) ? parsed : [];
   } catch (error) {
+    console.error(error);
     return [];
   }
 }
