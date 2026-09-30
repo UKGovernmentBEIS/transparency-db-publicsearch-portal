@@ -17,8 +17,6 @@ const mockRequest = (sessionData, body) => ({
   body,
 });
 
-const res = {};
-
 test("Unit testing for home page route - Test for POST call", (done) => {
   const req = mockRequest();
   const res = {};
