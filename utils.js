@@ -205,3 +205,20 @@ exports.getFilters = function (req, type){
 
   return filters;
 }
+
+exports.parseJsonArray = function parseJsonArray(value) {
+  if (!value) {
+    return [];
+  }
+
+  if (Array.isArray(value)) {
+    return value;
+  }
+
+  try {
+    const parsed = JSON.parse(value);
+    return Array.isArray(parsed) ? parsed : [];
+  } catch (error) {
+    return [];
+  }
+}
