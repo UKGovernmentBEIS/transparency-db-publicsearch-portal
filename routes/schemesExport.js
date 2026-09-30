@@ -3,8 +3,93 @@ const axios = require('axios');
 const XLSX = require('xlsx');
 const utils = require("../utils");
 const { beisUrlPublicSearch } = require("../config");
-
 const router = express.Router();
+
+function parseJsonArray(value) {
+  if (!value) {
+    return [];
+  }
+
+  if (Array.isArray(value)) {
+    return value;
+  }
+
+  try {
+    const parsed = JSON.parse(value);
+    return Array.isArray(parsed) ? parsed : [];
+  } catch (error) {
+    return [];
+  }
+}
+
+function toSchemeExportRow(scheme) {
+  return {
+    'Subsidy control number': scheme.scNumber || '',
+
+    'Subsidy scheme name': scheme.subsidyMeasureTitle || '',
+
+    'Subsidies or Schemes of Interest (SSoI) or Subsidies or Schemes of Particular Interest (SSoPI)':
+      scheme.subsidyMeasure && scheme.subsidyMeasure.scNumber
+        ? scheme.subsidyMeasure.scNumber
+        : '',
+
+    'Subsidies or Schemes of Interest (SSoI) or Subsidies or Schemes of Particular Interest (SSoPI)':
+      scheme.subsidySchemeInterest || '',
+
+    'Subsidy status':
+      scheme.status || '',
+
+      'Public authority':
+      scheme.grantingAuthorityName || '',
+
+    'Subsidy scheme description':
+      scheme.subsidySchemeDescription || '',
+
+    'Legal basis':
+    scheme.legalBasis && scheme.legalBasis.legalBasisText
+    ? scheme.legalBasis.legalBasisText
+    : '',
+
+    'URL':
+      scheme.gaSubsidyWebLink || '',
+
+    'URL description':
+      scheme.gaSubsidyWebLinkDescription || '',
+
+    'Budget/£':
+      scheme.budget || '',
+
+    'Maximum amount given under a scheme':
+      scheme.maximumAmountUnderScheme || '',
+
+    'Confirmation date':
+      scheme.confirmationDate || '',
+
+    'Start date':
+      scheme.startDate || '',
+
+    'End date':
+      scheme.endDate || '',
+
+    'Duration/days':
+      scheme.duration || '',
+
+    'Published date':
+      scheme.publishedMeasureDate || '',
+
+    'Created date':
+      scheme.createdTimestamp || '',
+
+    'Last modified date':
+      scheme.lastModifiedTimestamp || '',
+
+    'Spending Sectors':
+      parseJsonArray(scheme.spendingSectors).join(', '),
+
+    'Purpose':
+    parseJsonArray(scheme.purpose).join(', '),
+  };
+}
 
 router.get('/', async function (req, res, next) {
   try {
@@ -120,92 +205,6 @@ router.get('/', async function (req, res, next) {
     return res.send(buffer);
   } catch (error) {
     next(error);
-  }
-
-  function toSchemeExportRow(scheme) {
-    return {
-      'Subsidy control number': scheme.scNumber || '',
-  
-      'Subsidy scheme name': scheme.subsidyMeasureTitle || '',
-  
-      'Subsidies or Schemes of Interest (SSoI) or Subsidies or Schemes of Particular Interest (SSoPI)':
-        scheme.subsidyMeasure && scheme.subsidyMeasure.scNumber
-          ? scheme.subsidyMeasure.scNumber
-          : '',
-  
-      'Subsidies or Schemes of Interest (SSoI) or Subsidies or Schemes of Particular Interest (SSoPI)':
-        scheme.subsidySchemeInterest || '',
-  
-      'Subsidy status':
-        scheme.status || '',
-  
-        'Public authority':
-        scheme.grantingAuthorityName || '',
-  
-      'Subsidy scheme description':
-        scheme.subsidySchemeDescription || '',
-  
-      'Legal basis':
-      scheme.legalBasis && scheme.legalBasis.legalBasisText
-      ? scheme.legalBasis.legalBasisText
-      : '',
-  
-      'URL':
-        scheme.gaSubsidyWebLink || '',
-  
-      'URL description':
-        scheme.gaSubsidyWebLinkDescription || '',
-  
-      'Budget/£':
-        scheme.budget || '',
-  
-      'Maximum amount given under a scheme':
-        scheme.maximumAmountUnderScheme || '',
-  
-      'Confirmation date':
-        scheme.confirmationDate || '',
-  
-      'Start date':
-        scheme.startDate || '',
-  
-      'End date':
-        scheme.endDate || '',
-  
-      'Duration/days':
-        scheme.duration || '',
-  
-      'Published date':
-        scheme.publishedMeasureDate || '',
-  
-      'Created date':
-        scheme.createdTimestamp || '',
-  
-      'Last modified date':
-        scheme.lastModifiedTimestamp || '',
-  
-      'Spending Sectors':
-        parseJsonArray(scheme.spendingSectors).join(', '),
-  
-      'Purpose':
-      parseJsonArray(scheme.purpose).join(', '),
-    };
-  }
-  
-  function parseJsonArray(value) {
-    if (!value) {
-      return [];
-    }
-  
-    if (Array.isArray(value)) {
-      return value;
-    }
-  
-    try {
-      const parsed = JSON.parse(value);
-      return Array.isArray(parsed) ? parsed : [];
-    } catch (error) {
-      return [];
-    }
   }
 });
 

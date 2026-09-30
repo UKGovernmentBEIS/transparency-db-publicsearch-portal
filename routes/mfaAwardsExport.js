@@ -3,8 +3,53 @@ const axios = require('axios');
 const XLSX = require('xlsx');
 const utils = require("../utils");
 const { beisUrlPublicSearch } = require("../config");
-
 const router = express.Router();
+
+function toAwardExportRow(award) {
+  return {
+    'MFA / SPEIA award number': award.mfaAwardNumber || '',
+
+    'SPEI assistance award':
+      award.isSpeiAssistance  || '',
+
+    'MFA grouping name':
+      award.mfaGroupingResponse && award.mfaGroupingResponse.mfaGroupingName
+        ? award.mfaGroupingResponse.mfaGroupingName
+        : 'N/A',
+
+    'Award amount':
+      award.awardAmount || '',
+
+    'Confirmation date':
+      award.confirmationDate || '',
+
+    'Public authority name':
+    award.grantingAuthorityResponse && award.grantingAuthorityResponse.grantingAuthorityName
+      ? award.grantingAuthorityResponse.grantingAuthorityName
+      : '',
+
+    'Recipient name':
+      award.recipientName || '',
+
+    'Recipient ID type':
+      award.recipientIdType || '',
+
+    'Recipient ID':
+      award.recipientIdNumber || '',
+
+    'Status':
+      award.status || '',
+
+    'Published date':
+      award.publishedDate || '',
+
+    'Created date':
+      award.createdTimestamp || '',
+
+    'Last modified date':
+      award.lastModifiedTimestamp || ''
+  };
+}
 
 router.get('/', async function (req, res, next) {
   try {
@@ -99,69 +144,6 @@ router.get('/', async function (req, res, next) {
     return res.send(buffer);
   } catch (error) {
     next(error);
-  }
-
-  function toAwardExportRow(award) {
-    return {
-      'MFA / SPEIA award number': award.mfaAwardNumber || '',
-  
-      'SPEI assistance award':
-        award.isSpeiAssistance  || '',
-  
-      'MFA grouping name':
-        award.mfaGroupingResponse && award.mfaGroupingResponse.mfaGroupingName
-          ? award.mfaGroupingResponse.mfaGroupingName
-          : 'N/A',
-  
-      'Award amount':
-        award.awardAmount || '',
-  
-      'Confirmation date':
-        award.confirmationDate || '',
-
-      'Public authority name':
-      award.grantingAuthorityResponse && award.grantingAuthorityResponse.grantingAuthorityName
-        ? award.grantingAuthorityResponse.grantingAuthorityName
-        : '',
-  
-      'Recipient name':
-        award.recipientName || '',
-  
-      'Recipient ID type':
-        award.recipientIdType || '',
-  
-      'Recipient ID':
-        award.recipientIdNumber || '',
-  
-      'Status':
-        award.status || '',
-  
-      'Published date':
-        award.publishedDate || '',
-  
-      'Created date':
-        award.createdTimestamp || '',
-  
-      'Last modified date':
-        award.lastModifiedTimestamp || ''
-    };
-  }
-  
-  function parseJsonArray(value) {
-    if (!value) {
-      return [];
-    }
-  
-    if (Array.isArray(value)) {
-      return value;
-    }
-  
-    try {
-      const parsed = JSON.parse(value);
-      return Array.isArray(parsed) ? parsed : [];
-    } catch (error) {
-      return [];
-    }
   }
 });
 
