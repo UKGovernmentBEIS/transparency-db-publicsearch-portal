@@ -31,9 +31,7 @@ router.get("/", async (req, res) => {
   if (req.query.hasOwnProperty("page")) {
     var pageParse = parseInt(req.query.page);
     if (!isNaN(pageParse)) {
-      if(typeof pageCount === "undefined")
-        pageCount = 1;
-      page = Math.max(1, Math.min(pageParse, pageCount));
+      page = Math.max(1, pageParse);
     }
   }
   var size = 10;
@@ -55,14 +53,19 @@ router.get("/", async (req, res) => {
       awardRequest
     ).then((response) => {
       console.log(`Status: ${response.status}`);
-      searchmeasuredetails = response.data;
-      schemeVersions = searchmeasuredetails.schemeVersions;
+      const searchmeasuredetails = response.data;
+      const schemeVersions = searchmeasuredetails.schemeVersions;
       
-      if(typeof response.data.awardSearchResults != 'undefined')
+      var totalSearchResults = 0;
+      var hasAwards = false;
+      var startRecord = 0;
+      var endRecord = 0;
+      var results = [];
+      if(typeof response.data.awardSearchResults != 'undefined'){
         totalSearchResults = response.data.awardSearchResults.totalSearchResults;
-      else
-        totalSearchResults = 0;
+      }
 
+      let pageCount = 0;
       if(totalSearchResults > 0){      
         pageCount = response.data.awardSearchResults.totalPages;
         hasAwards = true;
@@ -73,21 +76,16 @@ router.get("/", async (req, res) => {
 
         results = response.data.awardSearchResults.awards;
         results.totalSearchResults = totalSearchResults;
-        nextPage = Math.min(pageCount, page + 1);
-        pagingStart = Math.max(1, page - 5);
-        pagingEnd = Math.min(pageCount, page + 5);
       }
-      else
-        hasAwards = false;
 
       var spendingSectorArray = new Array();
       if(typeof searchmeasuredetails.spendingSectors !== 'undefined'){
-        var spendingSectorArray = JSON.parse(searchmeasuredetails.spendingSectors);
+        spendingSectorArray = JSON.parse(searchmeasuredetails.spendingSectors);
       }
 
       var purposeArray = new Array();
       if(typeof searchmeasuredetails.purpose !== 'undefined'){
-        var purposeArray = JSON.parse(searchmeasuredetails.purpose);
+        purposeArray = JSON.parse(searchmeasuredetails.purpose);
       }
 
       if(response.data.status == "Deleted")
@@ -102,6 +100,12 @@ router.get("/", async (req, res) => {
         {
           currentURI: req.protocol + '://' + req.get('host') + req.originalUrl,
           spendingSectorArray,
+          searchmeasuredetails,
+          schemeVersions,
+          hasAwards,
+          startRecord,
+          endRecord,
+          results,
           purposeArray,
           schemeDetailReturnUrl,
           returnUrl,
@@ -109,7 +113,8 @@ router.get("/", async (req, res) => {
           anchor,
           filters,
           page,
-          size
+          size,
+          pageCount
         });
       }
     });
