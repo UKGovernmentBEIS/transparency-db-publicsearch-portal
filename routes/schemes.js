@@ -121,9 +121,7 @@ router.get("/", async (req, res) => {
             returnUrl
         });
     } catch (err) {
-        response_error_message = err;
-        console.log("message error : " + err);
-        console.log("response_error_message catch : " + response_error_message);
+        console.log("Error: " + err);
         res.render("publicusersearch/service-unavailable");
       }
   });
