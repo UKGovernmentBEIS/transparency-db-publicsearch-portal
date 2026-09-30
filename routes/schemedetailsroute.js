@@ -14,7 +14,7 @@ router.get("/", async (req, res) => {
   var schemeDetailReturnUrl = req.originalUrl;
 
   console.log("req.query.scnumber: " + req.query.scheme);
-  scheme = req.query.scheme;
+  const scheme = req.query.scheme;
   console.log("scnumber : " + scheme);
   var measureendpoint =
     beis_url_publicsearch + "/schemes/scheme/withawards/" + scheme;
@@ -56,7 +56,6 @@ router.get("/", async (req, res) => {
       awardRequest
     ).then((response) => {
       console.log(`Status: ${response.status}`);
-      console.log("Body: ", response.data);
       searchmeasuredetails = response.data;
       schemeVersions = searchmeasuredetails.schemeVersions;
       
@@ -68,8 +67,8 @@ router.get("/", async (req, res) => {
       if(totalSearchResults > 0){      
         pageCount = response.data.awardSearchResults.totalPages;
         hasAwards = true;
-        console.log(hasAwards);
-        console.log(totalSearchResults)
+        console.log(`Scheme has awards: ${hasAwards}`);
+        console.log(`Number of schemes under this scheme: ${totalSearchResults}`);
         startRecord = ((page - 1) * size) + 1;
         endRecord = Math.min((page * size), totalSearchResults);
 
