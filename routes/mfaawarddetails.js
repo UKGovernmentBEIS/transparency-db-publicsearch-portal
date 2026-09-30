@@ -14,7 +14,7 @@ router.get("/", async (req, res) => {
   var returnUrl = req.query.returnUrl || defaultReturnUrl;
   const backButton_href = returnUrl;
 
-  mfaAwardNumber = req.query.id;
+  const mfaAwardNumber = req.query.id;
   var endpoint =
     beisUrlPublicSearch + "/searchResults/mfa/" + mfaAwardNumber;
 
