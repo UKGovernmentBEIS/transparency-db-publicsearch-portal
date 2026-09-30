@@ -56,7 +56,6 @@ router.get('/', async function (req, res, next) {
           }
         );
    
-        API_response_code = `${paListRequest.status}`;
         paList = paListRequest.data.gaList;
         paList.sort((a, b) => a.grantingAuthorityName.localeCompare(b.grantingAuthorityName));
     
