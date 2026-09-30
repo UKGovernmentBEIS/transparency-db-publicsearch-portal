@@ -49,6 +49,7 @@ router.get("/", async (req, res) => {
       });
       console.warn("No results found for scheme number " + scnumber);
     } else {
+      res.render("publicusersearch/404");
       console.error(err);
     }
   }
