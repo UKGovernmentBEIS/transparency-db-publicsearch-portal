@@ -6,7 +6,7 @@ const express = require("express");
 const router = express.Router();
 const axios = require("axios");
 const utils = require("../utils");
-const { beisUrlPublicSearch } = require("../config");
+const { beisUrlPublicSearch } = require("../config"); // routes/*.js
 
 router.get("/", async (req, res) => {
   utils.setSecurityHeaders(res);
@@ -14,6 +14,7 @@ router.get("/", async (req, res) => {
   var returnUrl = req.query.returnUrl || defaultReturnUrl;
   var awardDetailReturnUrl = req.originalUrl;
   const awardnumber = req.query.award || '0';
+  var backButton_text = "Back to search results";
 
   var awardendpoint =
     beisUrlPublicSearch + "/searchResults/award/" + awardnumber;
@@ -32,15 +33,8 @@ router.get("/", async (req, res) => {
       searchawarddetails.spendingRegionArray = JSON.parse(searchawarddetails.spendingRegion);
     }
 
-    if(returnUrl && returnUrl.includes('/scheme') && typeof searchmeasuredetails !== 'undefined')
-    {      
-      backButton_href = returnUrl;
+    if(returnUrl && returnUrl.includes('/scheme') && typeof searchmeasuredetails !== 'undefined'){      
       backButton_text = "Back to scheme details";
-    }
-    else
-    {
-      backButton_href = returnUrl; 
-      backButton_text = "Back to search results";
     }
 
     if (searchawarddetails.subsidyMeasure.status === "Deleted" || searchawarddetails.status === "Rejected") {
@@ -52,6 +46,7 @@ router.get("/", async (req, res) => {
       res.render("publicusersearch/searchresultsawarddetail", {
         searchawarddetails,
         backButton_href,
+        backButton_text,
         awardDetailReturnUrl
       });
     }
