@@ -16,6 +16,11 @@ jobs:
         with:
           node-version: 24
           package-manager-cache: false
+
+      - run: node --version
+      
+      - run: npm --version
+
       - run: npm ci
       
       - name: Run build
