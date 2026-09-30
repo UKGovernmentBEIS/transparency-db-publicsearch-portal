@@ -11,6 +11,7 @@ router.get("/", async (req, res) => {
   utils.setSecurityHeaders(res, beis_url_publicsearch);
   const defaultReturnUrl = '/mfaawards';
   var returnUrl = req.query.returnUrl || defaultReturnUrl;
+  const backButton_href = returnUrl;
 
   mfaAwardNumber = req.query.id;
   var endpoint =
@@ -18,7 +19,6 @@ router.get("/", async (req, res) => {
 
   try {
     const response = await axios.get(endpoint);
-    const backButton_href = returnUrl;
     var mfaAward = response.data;
     if(response.data.status.toLowerCase() == "rejected" || response.data.status.toLowerCase() == "awaiting approval"){
       res.render("publicusersearch/noresults", {
@@ -36,7 +36,7 @@ router.get("/", async (req, res) => {
       res.render("publicusersearch/noresults", {
         backButton_href
       });
-      console.warn("No results found for award number " + scheme);
+      console.warn("No results found for award number " + mfaAwardNumber);
     } else {
       console.error(err);
     }
