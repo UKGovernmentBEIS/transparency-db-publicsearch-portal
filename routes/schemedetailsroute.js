@@ -21,9 +21,8 @@ router.get("/", async (req, res) => {
 
 
 
-  backButton_href = returnUrl;
-  backButton_text = "Back to search results";
-  page = 1;
+  const backButton_href = returnUrl;
+  var page = 1;
   const filters = {
     scheme: scheme
   };
@@ -36,8 +35,7 @@ router.get("/", async (req, res) => {
       page = Math.max(1, Math.min(pageParse, pageCount));
     }
   }
-  prevPage = Math.max(1, page - 1);
-  size = 10;
+  var size = 10;
   if (req.query.hasOwnProperty("size")) {
     var perPageParse = parseInt(req.query.size);
     if (!isNaN(perPageParse)) {
@@ -108,7 +106,9 @@ router.get("/", async (req, res) => {
           returnUrl,
           backButton_href,
           anchor,
-          filters
+          filters,
+          page,
+          size
         });
       }
     });
