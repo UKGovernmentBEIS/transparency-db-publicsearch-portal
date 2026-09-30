@@ -19,7 +19,6 @@ router.get("/", async (req, res) => {
 
   const currentURI = req.protocol + '://' + req.get('host') + req.originalUrl;
   const versionEndpoint = beis_url_publicsearch + "/schemes/scheme/" + scnumber + "/version/" + version;
-  const schemeEndpoint = beis_url_publicsearch + "/schemes/scheme/" + scnumber;
 
   try {
     var response = await axios.get(
