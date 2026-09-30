@@ -50,7 +50,7 @@ exports.validateFromTo = function (from, to) {
   return error;
 }
 
-isDateValid = function(date){
+exports.isDateValid = function(date){
   return validateDate(date, responseType="boolean");
 }
 
@@ -80,11 +80,11 @@ exports.validateDateFromTo = function (fromDay, fromMonth, fromYear, toDay, toMo
   
   if (hasFrom && hasTo){
     // check that both are valid
-    if(!isDateValid(fromDate) || !isDateValid(toDate)){
+    if(!this.isDateValid(fromDate) || !this.isDateValid(toDate)){
       return {
         hasErrors: true,
         errorMsg: "'From' date and 'To' date must be valid dates",
-        field: !isDateValid(fromDate) ? fromField : toField
+        field: !this.isDateValid(fromDate) ? fromField : toField
       };
     }
 
