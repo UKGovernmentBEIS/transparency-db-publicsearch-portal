@@ -25,7 +25,7 @@ router.get("/", async (req, res) => {
     var response = await axios.get(
       versionEndpoint,
     )
-    schemeVersionDetails = response.data;
+    const schemeVersionDetails = response.data;
     const backButton_href = returnUrl;
     schemeVersionDetails.spendingSectorArray = new Array();
     if(schemeVersionDetails.spendingSectors != null){
@@ -38,8 +38,9 @@ router.get("/", async (req, res) => {
     }
 
     res.render("publicusersearch/scheme-version", {
-      currentURI: req.protocol + '://' + req.get('host') + req.originalUrl,
-      backButton_href
+      currentURI,
+      backButton_href,
+      schemeVersionDetails
     });
   } catch (err) {
 
