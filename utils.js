@@ -1,4 +1,5 @@
 const validateDate = require("validate-date");
+const { beisUrlPublicSearch } = require("./config");
 
 exports.validateFromTo = function (from, to) {
   const error = {
@@ -112,11 +113,11 @@ exports.buildDateFromStrings = function (day, month, year) {
   return [year, month, day].join("-");
 };
 
-exports.setSecurityHeaders = function (res, url) {
+exports.setSecurityHeaders = function (res) {
   res.set({
     "X-Frame-Options": "DENY",
     "X-Content-Type-Options": "nosniff",
-    "Access-Control-Allow-Origin": url,
+    "Access-Control-Allow-Origin": beisUrlPublicSearch,
     "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
     "Content-Security-Policy": [
       "default-src 'self'",
@@ -127,7 +128,7 @@ exports.setSecurityHeaders = function (res, url) {
       "img-src 'self' data: https://www.googletagmanager.com https://*.google-analytics.com",
       "font-src 'self' data:",
       // GTM / GA network calls
-      "connect-src 'self' " + url +
+      "connect-src 'self' " + beisUrlPublicSearch +
         " https://www.googletagmanager.com" +
         " https://*.google-analytics.com" +
         " https://*.analytics.google.com",

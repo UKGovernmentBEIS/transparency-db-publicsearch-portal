@@ -3,7 +3,7 @@ const router = express.Router();
 const utils = require("../utils");
 
 router.get("/", (req, res) => {
-  utils.setSecurityHeaders(res, beis_url_publicsearch);
+  utils.setSecurityHeaders(res);
   res.render("partials/accessibilityStatement");
 });
 

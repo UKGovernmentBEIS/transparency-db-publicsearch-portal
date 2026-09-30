@@ -7,7 +7,7 @@ const utils = require("../utils");
 
 // /searchresults -> /awards
 router.get("/searchresults", async (req, res) => {
-    utils.setSecurityHeaders(res, beis_url_publicsearch);
+    utils.setSecurityHeaders(res);
     res.writeHead(301, {
         'Location': '/awards'  
     });
@@ -16,7 +16,7 @@ router.get("/searchresults", async (req, res) => {
 
 // /searchresultsawardroute/?page=123 -> /award/?award=123
 router.get("/searchresultsawardroute", async (req, res) => {
-    utils.setSecurityHeaders(res, beis_url_publicsearch);
+    utils.setSecurityHeaders(res);
     const awardnumber = req.query.page || '0';
     res.writeHead(301, {
         'Location': '/award/?award=' + awardnumber  

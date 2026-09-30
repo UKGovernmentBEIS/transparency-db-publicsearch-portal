@@ -7,12 +7,12 @@ const router = express.Router();
 const utils = require("../utils");
 
 router.post("/", (req, res) => {
-  utils.setSecurityHeaders(res, beis_url_publicsearch);
+  utils.setSecurityHeaders(res);
   res.render("publicusersearch/homepage");
 });
 
 router.get("/", (req, res) => {
-  utils.setSecurityHeaders(res, beis_url_publicsearch);
+  utils.setSecurityHeaders(res);
   res.render("publicusersearch/homepage");
 });
 

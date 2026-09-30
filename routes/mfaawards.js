@@ -7,9 +7,10 @@ const router = express.Router();
 const axios = require("axios");
 const qs = require('qs');
 const utils = require("../utils");
+const { beisUrlPublicSearch } = require("../config");
 
 router.get("/", async (req, res) => {
-    utils.setSecurityHeaders(res, beis_url_publicsearch);
+    utils.setSecurityHeaders(res);
     var errors = [];
     const filters = utils.getFilters(req,"mfa");
 
@@ -55,7 +56,7 @@ router.get("/", async (req, res) => {
 
     try {
         const apidata = await axios.get(
-            beis_url_publicsearch + "/searchResults/mfaawards", {
+            beisUrlPublicSearch + "/searchResults/mfaawards", {
               params:{
                 page: backendPage,
                 size,

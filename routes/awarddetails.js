@@ -6,16 +6,17 @@ const express = require("express");
 const router = express.Router();
 const axios = require("axios");
 const utils = require("../utils");
+const { beisUrlPublicSearch } = require("../config");
 
 router.get("/", async (req, res) => {
-  utils.setSecurityHeaders(res, beis_url_publicsearch);
+  utils.setSecurityHeaders(res);
   const defaultReturnUrl = '/awards';
   var returnUrl = req.query.returnUrl || defaultReturnUrl;
   var awardDetailReturnUrl = req.originalUrl;
   const awardnumber = req.query.award || '0';
 
   var awardendpoint =
-    beis_url_publicsearch + "/searchResults/award/" + awardnumber;
+    beisUrlPublicSearch + "/searchResults/award/" + awardnumber;
 
   try {
     const awardapidata = await axios.get(awardendpoint);

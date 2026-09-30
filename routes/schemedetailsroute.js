@@ -6,9 +6,10 @@ const express = require("express");
 const router = express.Router();
 const axios = require("axios");
 const utils = require("../utils");
+const { beisUrlPublicSearch } = require("../config");
 
 router.get("/", async (req, res) => {
-  utils.setSecurityHeaders(res, beis_url_publicsearch);
+  utils.setSecurityHeaders(res);
   const defaultReturnUrl = '/schemes';
   var returnUrl = req.query.returnUrl || defaultReturnUrl;
   var schemeDetailReturnUrl = req.originalUrl;
@@ -17,7 +18,7 @@ router.get("/", async (req, res) => {
   const scheme = req.query.scheme;
   console.log("scnumber : " + scheme);
   var measureendpoint =
-    beis_url_publicsearch + "/schemes/scheme/withawards/" + scheme;
+    beisUrlPublicSearch + "/schemes/scheme/withawards/" + scheme;
 
 
 

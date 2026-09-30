@@ -6,9 +6,10 @@ const express = require("express");
 const router = express.Router();
 const axios = require("axios");
 const utils = require("../utils");
+const { beisUrlPublicSearch } = require("../config");
 
 router.get("/", async (req, res) => {
-  utils.setSecurityHeaders(res, beis_url_publicsearch);
+  utils.setSecurityHeaders(res);
 
   console.log("scNumber: " + req.query.scNumber);
   console.log("version: " + req.query.version);
@@ -18,7 +19,7 @@ router.get("/", async (req, res) => {
   var returnUrl = req.query.returnUrl || defaultReturnUrl;
 
   const currentURI = req.protocol + '://' + req.get('host') + req.originalUrl;
-  const versionEndpoint = beis_url_publicsearch + "/schemes/scheme/" + scnumber + "/version/" + version;
+  const versionEndpoint = beisUrlPublicSearch + "/schemes/scheme/" + scnumber + "/version/" + version;
 
   try {
     var response = await axios.get(

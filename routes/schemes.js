@@ -7,9 +7,10 @@ const router = express.Router();
 const axios = require("axios");
 const qs = require('qs');
 const utils = require("../utils");
+const { beisUrlPublicSearch } = require("../config");
 
 router.get("/", async (req, res) => {
-    utils.setSecurityHeaders(res, beis_url_publicsearch);
+    utils.setSecurityHeaders(res);
 
     var errors = [];
 
@@ -28,7 +29,7 @@ router.get("/", async (req, res) => {
     // Get list of public authorities for filter.
     try{
       const paListRequest = await axios.get(
-        beis_url_publicsearch + "/searchResults/all_gas",
+        beisUrlPublicSearch + "/searchResults/all_gas",
         {
           headers: {
             "X-Frame-Options": "DENY",
@@ -80,7 +81,7 @@ router.get("/", async (req, res) => {
 
     try {
         const apidata = await axios.get(
-            beis_url_publicsearch + "/searchResults/schemes", {
+            beisUrlPublicSearch + "/searchResults/schemes", {
               params:{
                 page: backendPage,
                 size,

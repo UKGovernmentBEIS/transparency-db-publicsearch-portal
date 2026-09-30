@@ -2,6 +2,7 @@ const express = require('express');
 const axios = require('axios');
 const XLSX = require('xlsx');
 const utils = require("../utils");
+const { beisUrlPublicSearch } = require("../config");
 
 const router = express.Router();
 
@@ -46,7 +47,7 @@ router.get('/', async function (req, res, next) {
 
           try{
             const paListRequest = await axios.get(
-              beis_url_publicsearch + "/schemes/all_gas",
+              beisUrlPublicSearch + "/schemes/all_gas",
               {
                 headers: {
                   "X-Frame-Options": "DENY",
@@ -74,7 +75,7 @@ router.get('/', async function (req, res, next) {
           });
         }
     const response = await axios.get(
-      beis_url_publicsearch + '/searchResults/awards/export',
+      beisUrlPublicSearch + '/searchResults/awards/export',
       {
         params: filters
       }
@@ -93,7 +94,7 @@ router.get('/', async function (req, res, next) {
 
       res.setHeader('Content-Type', 'text/csv; charset=utf-8');
       res.setHeader('Content-Disposition', 'attachment; filename="publicsearchawards.csv"');
-      utils.setSecurityHeaders(res, beis_url_publicsearch);
+      utils.setSecurityHeaders(res);
 
       return res.send(csv);
     }
@@ -115,7 +116,7 @@ router.get('/', async function (req, res, next) {
       'attachment; filename="publicsearchawards.xlsx"'
     );
 
-    utils.setSecurityHeaders(res, beis_url_publicsearch);
+    utils.setSecurityHeaders(res);
     return res.send(buffer);
   } catch (error) {
     next(error);
