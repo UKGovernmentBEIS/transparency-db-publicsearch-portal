@@ -52,7 +52,7 @@ exports.validateFromTo = function (from, to) {
 }
 
 exports.isDateValid = function(date){
-  return validateDate(date, responseType="boolean");
+  return validateDate(date, "boolean");
 }
 
 exports.validateDateFromTo = function (fromDay, fromMonth, fromYear, toDay, toMonth, toYear) {
