@@ -28,14 +28,14 @@ router.get("/", async (req, res) => {
     scheme: scheme
   };
   const anchor = 'searchresult-table';
-  if (req.query.hasOwnProperty("page")) {
+  if (Object.prototype.hasOwnProperty.call(req.query, "page")) {
     var pageParse = parseInt(req.query.page);
     if (!isNaN(pageParse)) {
       page = Math.max(1, pageParse);
     }
   }
   var size = 10;
-  if (req.query.hasOwnProperty("size")) {
+  if (Object.prototype.hasOwnProperty.call(req.query, "size")) {
     var perPageParse = parseInt(req.query.size);
     if (!isNaN(perPageParse)) {
       size = perPageParse;
