@@ -2,78 +2,78 @@
 // Gov.UK public user search - App.js is the subset of server.js
 // *************************************************************
 
-const express = require("express");
+const express = require('express');
 const app = express();
-const methodOverride = require("method-override");
-const path = require("path");
-app.set("views", path.join(__dirname, "views"));
-app.set("view engine", "ejs");
+const methodOverride = require('method-override');
+const path = require('path');
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended: false }));
-app.use(methodOverride("_method"));
-app.use(express.static(__dirname + "/public"));
-var cors = require("cors");
+app.use(methodOverride('_method'));
+app.use(express.static(__dirname + '/public'));
+var cors = require('cors');
 app.use(cors());
-const utils = require("./utils");
+const utils = require('./utils');
 
 /***************************************************** */
 /* Default login screen - Web application Launch screen */
 /****************************************************** */
 
-app.get("/", (req, res) => {
-  utils.setSecurityHeaders(res);
+app.get('/', (req, res) => {
+    utils.setSecurityHeaders(res);
 
-  res.render("publicusersearch/homepage");
+    res.render('publicusersearch/homepage');
 });
 
 /****************************************************** */
 /* All Router declarations */
 /****************************************************** */
 
-var homepage = require("./routes/homepage");
-app.use("/homepage", homepage);
+var homepage = require('./routes/homepage');
+app.use('/homepage', homepage);
 
-var noresults = require("./routes/noresults");
-app.use("/noresults", noresults);
+var noresults = require('./routes/noresults');
+app.use('/noresults', noresults);
 
-var schemedetailsroute = require("./routes/schemedetailsroute");
-app.use("/scheme", schemedetailsroute);
+var schemedetailsroute = require('./routes/schemedetailsroute');
+app.use('/scheme', schemedetailsroute);
 
-var schemeVersionRoute = require("./routes/schemeversionroute");
-app.use("/schemeversion", schemeVersionRoute);
+var schemeVersionRoute = require('./routes/schemeversionroute');
+app.use('/schemeversion', schemeVersionRoute);
 
-var feedbackform = require("./routes/feedbackform");
-app.use("/feedbackform", feedbackform);
+var feedbackform = require('./routes/feedbackform');
+app.use('/feedbackform', feedbackform);
 
-var submitfeedback = require("./routes/submitfeedback");
-app.use("/submitfeedback", submitfeedback);
+var submitfeedback = require('./routes/submitfeedback');
+app.use('/submitfeedback', submitfeedback);
 
-var accessibilityStatement = require("./routes/accessibilityStatement");
-app.use("/accessibilityStatement", accessibilityStatement);
+var accessibilityStatement = require('./routes/accessibilityStatement');
+app.use('/accessibilityStatement', accessibilityStatement);
 
-app.use("/mfaawards", require("./routes/mfaawards"));
-app.use("/mfaaward", require("./routes/mfaawarddetails"));
-app.use("/mfaawards/export", require("./routes/mfaAwardsExport"));
+app.use('/mfaawards', require('./routes/mfaawards'));
+app.use('/mfaaward', require('./routes/mfaawarddetails'));
+app.use('/mfaawards/export', require('./routes/mfaAwardsExport'));
 
 // Cookies Consent
 
-var cookieshelp = require("./routes/cookies-help");
-app.use("/cookieshelp", cookieshelp);
+var cookieshelp = require('./routes/cookies-help');
+app.use('/cookieshelp', cookieshelp);
 
 // Privacy Notice
-var privacynotice = require("./routes/privacy-notice");
-app.use("/privacy", privacynotice);
+var privacynotice = require('./routes/privacy-notice');
+app.use('/privacy', privacynotice);
 
-app.use("/awards", require('./routes/awards'));
-app.use("/award", require('./routes/awarddetails'));
-app.use("/awards/export", require('./routes/awardsExport'));
+app.use('/awards', require('./routes/awards'));
+app.use('/award', require('./routes/awarddetails'));
+app.use('/awards/export', require('./routes/awardsExport'));
 
-app.use("/schemes", require("./routes/schemes"));
-app.use("/schemes/export", require('./routes/schemesExport'));
+app.use('/schemes', require('./routes/schemes'));
+app.use('/schemes/export', require('./routes/schemesExport'));
 
-app.use("/", require('./routes/redirectroute'));
+app.use('/', require('./routes/redirectroute'));
 
 app.use((req, res) => {
-  res.status(404).render("publicusersearch/404");
+    res.status(404).render('publicusersearch/404');
 });
 
 module.exports = app;

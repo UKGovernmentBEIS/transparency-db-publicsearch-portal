@@ -8,35 +8,31 @@
             "command": "npm start env=local",
             "name": "Debug Local",
             "request": "launch",
-            "type": "node-terminal",
+            "type": "node-terminal"
         },
         {
             "command": "npm start env=dev",
             "name": "Debug Dev",
             "request": "launch",
-            "type": "node-terminal",
+            "type": "node-terminal"
         },
         {
             "command": "npm start env=stg",
             "name": "Debug Staging",
             "request": "launch",
-            "type": "node-terminal",
+            "type": "node-terminal"
         },
         {
             "type": "node",
             "name": "vscode-jest-tests",
             "request": "launch",
-            "args": [
-                "--runInBand"
-            ],
+            "args": ["--runInBand"],
             "cwd": "${workspaceFolder}",
             "console": "integratedTerminal",
             "internalConsoleOptions": "neverOpen",
             "disableOptimisticBPs": true,
             "program": "${workspaceFolder}/node_modules/jest/bin/jest",
-            "outFiles": [
-                "${workspaceRoot}/compiled/**/*.js"
-            ]
+            "outFiles": ["${workspaceRoot}/compiled/**/*.js"]
         }
     ]
 }

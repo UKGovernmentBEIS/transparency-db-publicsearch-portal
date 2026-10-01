@@ -2,71 +2,84 @@
 // Gov.UK public user mfa search results routing module
 // ********************************************************************
 
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const axios = require("axios");
+const axios = require('axios');
 const qs = require('qs');
-const utils = require("../utils");
-const { beisUrlPublicSearch } = require("../config");
+const utils = require('../utils');
+const { beisUrlPublicSearch } = require('../config');
 
-router.get("/", async (req, res) => {
+router.get('/', async (req, res) => {
     utils.setSecurityHeaders(res);
     var errors = [];
-    const filters = utils.getFilters(req,"mfa");
+    const filters = utils.getFilters(req, 'mfa');
 
     const page = Number(req.query.page || 1);
     const size = Number(req.query.size || 10);
-    
+
     const backendPage = Math.max(page - 1, 0);
     const returnUrl = req.originalUrl;
     var startRecord;
     var endRecord;
 
     // Validate award full amount from and to
-    var awardAmountErrors = utils.validateFromTo(filters.awardFullFromAmount, filters.awardFullToAmount);
+    var awardAmountErrors = utils.validateFromTo(
+        filters.awardFullFromAmount,
+        filters.awardFullToAmount,
+    );
 
     if (awardAmountErrors.hasErrors) {
-      const fieldIds = {
-        from: "awardFull-from-amount-input",
-        to: "awardFull-to-amount-input"
-      };
-    
-      awardAmountErrors.field = fieldIds[awardAmountErrors.field] ?? fieldIds.to;
-      errors.push(awardAmountErrors);
+        const fieldIds = {
+            from: 'awardFull-from-amount-input',
+            to: 'awardFull-to-amount-input',
+        };
+
+        awardAmountErrors.field =
+            fieldIds[awardAmountErrors.field] ?? fieldIds.to;
+        errors.push(awardAmountErrors);
     }
 
     // Validate confirmation date from and to
-    var dateErrors = utils.validateDateFromTo(filters.fromDay, filters.fromMonth, filters.fromYear, filters.toDay, filters.toMonth, filters.toYear)
-    
-    if (dateErrors.hasErrors){
-      errors.push(dateErrors);
+    var dateErrors = utils.validateDateFromTo(
+        filters.fromDay,
+        filters.fromMonth,
+        filters.fromYear,
+        filters.toDay,
+        filters.toMonth,
+        filters.toYear,
+    );
+
+    if (dateErrors.hasErrors) {
+        errors.push(dateErrors);
     }
 
-    if(errors.length > 0){
-      return res.render("publicusersearch/mfaawards", {
-        filters,
-        results: [],
-        pageCount: 0,
-        page: 0,
-        size: 10,
-        errors,
-        returnUrl
-      });
+    if (errors.length > 0) {
+        return res.render('publicusersearch/mfaawards', {
+            filters,
+            results: [],
+            pageCount: 0,
+            page: 0,
+            size: 10,
+            errors,
+            returnUrl,
+        });
     }
 
     try {
         const apidata = await axios.get(
-            beisUrlPublicSearch + "/searchResults/mfaawards", {
-              params:{
-                page: backendPage,
-                size,
-                ...filters
-              },
-              paramsSerializer: params => qs.stringify(params, {
-                arrayFormat: 'repeat',
-                skipNulls: true
-              })
-            }
+            beisUrlPublicSearch + '/searchResults/mfaawards',
+            {
+                params: {
+                    page: backendPage,
+                    size,
+                    ...filters,
+                },
+                paramsSerializer: (params) =>
+                    qs.stringify(params, {
+                        arrayFormat: 'repeat',
+                        skipNulls: true,
+                    }),
+            },
         );
 
         const results = apidata.data;
@@ -76,15 +89,15 @@ router.get("/", async (req, res) => {
         if (page == 1) {
             startRecord = 1;
             endRecord = size;
-          } else if (page == pageCount) {
+        } else if (page == pageCount) {
             startRecord = (page - 1) * size + 1;
             endRecord = totalrows;
-          } else {
+        } else {
             startRecord = page * size - size + 1;
             endRecord = page * size;
-          }
+        }
 
-        res.render("publicusersearch/mfaawards", {
+        res.render('publicusersearch/mfaawards', {
             filters,
             results,
             pageCount,
@@ -93,12 +106,12 @@ router.get("/", async (req, res) => {
             endRecord,
             size,
             errors,
-            returnUrl
+            returnUrl,
         });
     } catch (err) {
-        console.log("Error: " + err);
-        res.render("publicusersearch/service-unavailable");
-      }
-  });
-  
-  module.exports = router;
+        console.log('Error: ' + err);
+        res.render('publicusersearch/service-unavailable');
+    }
+});
+
+module.exports = router;

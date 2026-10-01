@@ -1,10 +1,10 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const utils = require("../utils");
+const utils = require('../utils');
 
-router.get("/", (req, res) => {
-  utils.setSecurityHeaders(res);
-  res.render("publicusersearch/privacy-notice");
+router.get('/', (req, res) => {
+    utils.setSecurityHeaders(res);
+    res.render('publicusersearch/privacy-notice');
 });
 
 module.exports = router;

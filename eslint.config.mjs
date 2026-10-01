@@ -1,31 +1,46 @@
-import js from "@eslint/js";
-import globals from "globals";
+import js from '@eslint/js';
+import { FlatCompat } from '@eslint/eslintrc';
+import globals from 'globals';
+
+const compat = new FlatCompat({
+    baseDirectory: import.meta.dirname,
+    recommendedConfig: js.configs.recommended,
+});
 
 export default [
-  {
-    ignores: ["coverage/**"],
-  },
-  js.configs.recommended,
-  {
-    files: ["*.js", "routes/**/*.js", "tests/**/*.js"],
-    languageOptions: {
-      ecmaVersion: 2020,
-      sourceType: "commonjs",
-      globals: globals.node,
+    {
+        ignores: ['coverage/**'],
     },
-  },
-  {
-    files: ["public/assets/javascripts/**/*.js"],
-    languageOptions: {
-      ecmaVersion: 2020,
-      sourceType: "script",
-      globals: globals.browser,
+    ...compat.extends(
+        'eslint:recommended',
+        'plugin:@typescript-eslint/recommended',
+        'plugin:prettier/recommended',
+    ),
+    {
+        rules: {
+            '@typescript-eslint/no-require-imports': 'off',
+        },
     },
-  },
-  {
-    files: ["tests/**/*test.js"],
-    languageOptions: {
-      globals: globals.jest,
+    {
+        files: ['*.js', 'routes/**/*.js', 'tests/**/*.js'],
+        languageOptions: {
+            ecmaVersion: 2020,
+            sourceType: 'commonjs',
+            globals: globals.node,
+        },
     },
-  },
+    {
+        files: ['public/assets/javascripts/**/*.js'],
+        languageOptions: {
+            ecmaVersion: 2020,
+            sourceType: 'script',
+            globals: globals.browser,
+        },
+    },
+    {
+        files: ['tests/**/*test.js'],
+        languageOptions: {
+            globals: globals.jest,
+        },
+    },
 ];

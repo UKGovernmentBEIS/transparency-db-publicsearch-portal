@@ -2,58 +2,64 @@
 // Gov.UK transparency subsidy scheme version detail page
 // ********************************************************************
 
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const axios = require("axios");
-const utils = require("../utils");
-const { beisUrlPublicSearch } = require("../config");
+const axios = require('axios');
+const utils = require('../utils');
+const { beisUrlPublicSearch } = require('../config');
 
-router.get("/", async (req, res) => {
-  utils.setSecurityHeaders(res);
+router.get('/', async (req, res) => {
+    utils.setSecurityHeaders(res);
 
-  console.log("scNumber: " + req.query.scNumber);
-  console.log("version: " + req.query.version);
-  const scnumber = req.query.scNumber;
-  const version = req.query.version;
-  const defaultReturnUrl = '/schemes';
-  var returnUrl = req.query.returnUrl || defaultReturnUrl;
+    console.log('scNumber: ' + req.query.scNumber);
+    console.log('version: ' + req.query.version);
+    const scnumber = req.query.scNumber;
+    const version = req.query.version;
+    const defaultReturnUrl = '/schemes';
+    var returnUrl = req.query.returnUrl || defaultReturnUrl;
 
-  const currentURI = req.protocol + '://' + req.get('host') + req.originalUrl;
-  const versionEndpoint = beisUrlPublicSearch + "/schemes/scheme/" + scnumber + "/version/" + version;
+    const currentURI = req.protocol + '://' + req.get('host') + req.originalUrl;
+    const versionEndpoint =
+        beisUrlPublicSearch +
+        '/schemes/scheme/' +
+        scnumber +
+        '/version/' +
+        version;
 
-  try {
-    var response = await axios.get(
-      versionEndpoint,
-    )
-    const schemeVersionDetails = response.data;
-    const backButton_href = returnUrl;
-    schemeVersionDetails.spendingSectorArray = new Array();
-    if(schemeVersionDetails.spendingSectors != null){
-      schemeVersionDetails.spendingSectorArray = JSON.parse(schemeVersionDetails.spendingSectors);
+    try {
+        var response = await axios.get(versionEndpoint);
+        const schemeVersionDetails = response.data;
+        const backButton_href = returnUrl;
+        schemeVersionDetails.spendingSectorArray = [];
+        if (schemeVersionDetails.spendingSectors != null) {
+            schemeVersionDetails.spendingSectorArray = JSON.parse(
+                schemeVersionDetails.spendingSectors,
+            );
+        }
+
+        schemeVersionDetails.purposeArray = [];
+        if (schemeVersionDetails.purpose != null) {
+            schemeVersionDetails.purposeArray = JSON.parse(
+                schemeVersionDetails.purpose,
+            );
+        }
+
+        res.render('publicusersearch/scheme-version', {
+            currentURI,
+            backButton_href,
+            schemeVersionDetails,
+        });
+    } catch (err) {
+        if (err.toString().includes('404')) {
+            res.render('publicusersearch/noresults', {
+                backButton_href: returnUrl,
+            });
+            console.warn('No results found for scheme number ' + scnumber);
+        } else {
+            res.render('publicusersearch/404');
+            console.error(err);
+        }
     }
-
-    schemeVersionDetails.purposeArray = new Array();
-    if(schemeVersionDetails.purpose != null){
-      schemeVersionDetails.purposeArray = JSON.parse(schemeVersionDetails.purpose);
-    }
-
-    res.render("publicusersearch/scheme-version", {
-      currentURI,
-      backButton_href,
-      schemeVersionDetails
-    });
-  } catch (err) {
-
-    if (err.toString().includes("404")) {
-      res.render("publicusersearch/noresults",{
-        backButton_href: returnUrl
-      });
-      console.warn("No results found for scheme number " + scnumber);
-    } else {
-      res.render("publicusersearch/404");
-      console.error(err);
-    }
-  }
 });
 
 module.exports = router;
