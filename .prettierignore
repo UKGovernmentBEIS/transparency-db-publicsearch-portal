@@ -1,1 +1,2 @@
 public/assets/css/application.css
+views/**/*.ejs
