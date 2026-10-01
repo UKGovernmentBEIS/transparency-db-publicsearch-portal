@@ -1,32 +1,31 @@
+import js from "@eslint/js";
 import globals from "globals";
 
 export default [
   {
     ignores: ["coverage/**"],
   },
+  js.configs.recommended,
   {
-    files: ["**/*.js"],
+    files: ["*.js", "routes/**/*.js", "tests/**/*.js"],
     languageOptions: {
       ecmaVersion: 2020,
-      sourceType: "script",
-      globals: {
-        ...globals.node,
-        ...globals.browser,
-      },
-    },
-    rules: {
-      "no-undef": "error",
-      "no-unused-vars": "warn",
-      "no-redeclare": "error",
-      "no-use-before-define": "warn",
+      sourceType: "commonjs",
+      globals: globals.node,
     },
   },
   {
-    files: ["**/*test.js"],
+    files: ["public/assets/javascripts/**/*.js"],
     languageOptions: {
-      globals: {
-        ...globals.jest,
-      },
+      ecmaVersion: 2020,
+      sourceType: "script",
+      globals: globals.browser,
+    },
+  },
+  {
+    files: ["tests/**/*test.js"],
+    languageOptions: {
+      globals: globals.jest,
     },
   },
 ];
