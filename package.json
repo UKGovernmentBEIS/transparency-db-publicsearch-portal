@@ -19,7 +19,8 @@
         "build": "npm run copy:govuk-assets && npm run build:css"
     },
     "lint-staged": {
-        "*": "prettier --write --ignore-unknown"
+        "*": "prettier --write --ignore-unknown",
+        "*.ejs": "html-beautify -r"
     },
     "author": "Jegan Maharajan",
     "license": "ISC",
