@@ -168,12 +168,9 @@ exports.toSchemeExportRow = function toSchemeExportRow(scheme) {
     'Subsidy scheme name': scheme.subsidyMeasureTitle || '',
 
     'Subsidies or Schemes of Interest (SSoI) or Subsidies or Schemes of Particular Interest (SSoPI)':
-      scheme.subsidyMeasure && scheme.subsidyMeasure.scNumber
-        ? scheme.subsidyMeasure.scNumber
-        : '',
-
-    'Subsidies or Schemes of Interest (SSoI) or Subsidies or Schemes of Particular Interest (SSoPI)':
       scheme.subsidySchemeInterest || '',
+
+    'Specific policy objective': scheme.specificPolicyObjective || '',
 
     'Subsidy status':
       scheme.status || '',
