@@ -6,6 +6,8 @@
   "scripts": {
     "start": "nodemon server.js",
     "dev": "nodemon server.js",
+    "format:check": "prettier --plugin=prettier-plugin-ejs --check . --ignore-unknown",
+    "format": "prettier --plugin=prettier-plugin-ejs --write . --ignore-unknown",
     "lint": "eslint .",
     "test": "jest --forceExit",
     "test-coverage": "jest --coverage",
