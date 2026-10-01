@@ -9,90 +9,90 @@
 %>
 
 <div class="govuk-date-input filter-date-input " id="date-input">
-  <div class="govuk-form-group <%= hasError ? 'govuk-form-group--error' : '' %>"> 
-    <label class="govuk-label govuk-label--s " for="date-input">
-      <%= filterTitle %>
-    </label>
+    <div class="govuk-form-group <%= hasError ? 'govuk-form-group--error' : '' %>">
+        <label class="govuk-label govuk-label--s " for="date-input">
+            <%= filterTitle %>
+        </label>
 
-    <div class="filter-background-override">
-      <% if (fromError) { %>
-        <p id="<%= fromFieldId %>-error" class="govuk-error-message">
-          <span class="govuk-visually-hidden">Error:</span>
-          <%= fromError.errorMsg %>
-        </p>
-      <% } %>
+        <div class="filter-background-override">
+            <% if (fromError) { %>
+            <p id="<%= fromFieldId %>-error" class="govuk-error-message">
+                <span class="govuk-visually-hidden">Error:</span>
+                <%= fromError.errorMsg %>
+            </p>
+            <% } %>
 
-    <label class="govuk-label govuk-label--s" id="from-date-label">
-        From
-      </label>
-      <div class="govuk-hint">
-        For example, 27 03 2007
-      </div>
-      <div class="govuk-date-input" id="from-date-input">
-        <div class="govuk-date-input__item filter-date-input__item">
-          <div class="govuk-form-group">
-            <label class="govuk-label govuk-date-input__label--s" for="filter-from-day">
-              Day
+            <label class="govuk-label govuk-label--s" id="from-date-label">
+                From
             </label>
-            <input class="govuk-input govuk-date-input__input govuk-input--width-2 <%= fromError ? 'govuk-input--error' : '' %>" id="filter-from-day" name="fromDay" type="text" placeholder="DD" maxlength="2" pattern="(3[01]|[12][0-9]|0[1-9])" inputmode="numeric" value="<%= filters['fromDay'] %>">
-          </div>
-        </div>
-        <div class="govuk-date-input__item filter-date-input__item">
-          <div class="govuk-form-group">
-            <label class="govuk-label govuk-date-input__label--s" for="filter-from-month">
-              Month
-            </label>
-            <input class="govuk-input govuk-date-input__input  govuk-input--width-2 <%= fromError ? 'govuk-input--error' : '' %>" id="filter-from-month" name="fromMonth" type="text" placeholder="MM" maxlength="2" pattern="(1[0-2]|0[1-9])" inputmode="numeric" value="<%= filters['fromMonth'] %>">
-          </div>
-        </div>
-        <div class="govuk-date-input__item filter-date-input__item">
-          <div class="govuk-form-group">
-            <label class="govuk-label govuk-date-input__label--s" for="filter-from-year">
-              Year
-            </label>
-            <input class="govuk-input govuk-date-input__input  govuk-input--width-4 <%= fromError ? 'govuk-input--error' : '' %>" id="filter-from-year" name="fromYear" type="text" placeholder="YYYY" maxlength="4" pattern="[0-9]{4}" inputmode="numeric" value="<%= filters['fromYear'] %>">
-          </div>
-        </div>
-      </div>
+            <div class="govuk-hint">
+                For example, 27 03 2007
+            </div>
+            <div class="govuk-date-input" id="from-date-input">
+                <div class="govuk-date-input__item filter-date-input__item">
+                    <div class="govuk-form-group">
+                        <label class="govuk-label govuk-date-input__label--s" for="filter-from-day">
+                            Day
+                        </label>
+                        <input class="govuk-input govuk-date-input__input govuk-input--width-2 <%= fromError ? 'govuk-input--error' : '' %>" id="filter-from-day" name="fromDay" type="text" placeholder="DD" maxlength="2" pattern="(3[01]|[12][0-9]|0[1-9])" inputmode="numeric" value="<%= filters['fromDay'] %>">
+                    </div>
+                </div>
+                <div class="govuk-date-input__item filter-date-input__item">
+                    <div class="govuk-form-group">
+                        <label class="govuk-label govuk-date-input__label--s" for="filter-from-month">
+                            Month
+                        </label>
+                        <input class="govuk-input govuk-date-input__input  govuk-input--width-2 <%= fromError ? 'govuk-input--error' : '' %>" id="filter-from-month" name="fromMonth" type="text" placeholder="MM" maxlength="2" pattern="(1[0-2]|0[1-9])" inputmode="numeric" value="<%= filters['fromMonth'] %>">
+                    </div>
+                </div>
+                <div class="govuk-date-input__item filter-date-input__item">
+                    <div class="govuk-form-group">
+                        <label class="govuk-label govuk-date-input__label--s" for="filter-from-year">
+                            Year
+                        </label>
+                        <input class="govuk-input govuk-date-input__input  govuk-input--width-4 <%= fromError ? 'govuk-input--error' : '' %>" id="filter-from-year" name="fromYear" type="text" placeholder="YYYY" maxlength="4" pattern="[0-9]{4}" inputmode="numeric" value="<%= filters['fromYear'] %>">
+                    </div>
+                </div>
+            </div>
 
-      <% if (toError) { %>
-        <p id="<%= toFieldId %>-error" class="govuk-error-message">
-          <span class="govuk-visually-hidden">Error:</span>
-          <%= toError.errorMsg %>
-        </p>
-      <% } %>
-    <label class="govuk-label govuk-label--s" id="to-date-label">
-        To
-      </label>
-      <div class="govuk-hint">
-        For example, 27 03 2007
-      </div>
-      <div class="govuk-date-input" id="to-date-input">
-        <div class="govuk-date-input__item filter-date-input__item">
-          <div class="govuk-form-group">
-            <label class="govuk-label govuk-date-input__label--s" for="filter-to-day">
-              Day
+            <% if (toError) { %>
+            <p id="<%= toFieldId %>-error" class="govuk-error-message">
+                <span class="govuk-visually-hidden">Error:</span>
+                <%= toError.errorMsg %>
+            </p>
+            <% } %>
+            <label class="govuk-label govuk-label--s" id="to-date-label">
+                To
             </label>
-            <input class="govuk-input govuk-date-input__input govuk-input--width-2 <%= toError ? 'govuk-input--error' : '' %>" id="filter-to-day" name="toDay" type="text" placeholder="DD" maxlength="2" pattern="(3[01]|[12][0-9]|0[1-9])" inputmode="numeric" value="<%= filters['toDay'] %>">
-          </div>
+            <div class="govuk-hint">
+                For example, 27 03 2007
+            </div>
+            <div class="govuk-date-input" id="to-date-input">
+                <div class="govuk-date-input__item filter-date-input__item">
+                    <div class="govuk-form-group">
+                        <label class="govuk-label govuk-date-input__label--s" for="filter-to-day">
+                            Day
+                        </label>
+                        <input class="govuk-input govuk-date-input__input govuk-input--width-2 <%= toError ? 'govuk-input--error' : '' %>" id="filter-to-day" name="toDay" type="text" placeholder="DD" maxlength="2" pattern="(3[01]|[12][0-9]|0[1-9])" inputmode="numeric" value="<%= filters['toDay'] %>">
+                    </div>
+                </div>
+                <div class="govuk-date-input__item filter-date-input__item">
+                    <div class="govuk-form-group">
+                        <label class="govuk-label govuk-date-input__label--s" for="filter-to-month">
+                            Month
+                        </label>
+                        <input class="govuk-input govuk-date-input__input govuk-input--width-2 <%= toError ? 'govuk-input--error' : '' %>" id="filter-to-month" name="toMonth" type="text" placeholder="MM" maxlength="2" pattern="(1[0-2]|0[1-9])" inputmode="numeric" value="<%= filters['toMonth'] %>">
+                    </div>
+                </div>
+                <div class="govuk-date-input__item filter-date-input__item">
+                    <div class="govuk-form-group">
+                        <label class="govuk-label govuk-date-input__label--s" for="filter-to-year">
+                            Year
+                        </label>
+                        <input class="govuk-input govuk-date-input__input govuk-input--width-4 <%= toError ? 'govuk-input--error' : '' %>" id="filter-to-year" name="toYear" type="text" placeholder="YYYY" maxlength="4" pattern="[0-9]{4}" inputmode="numeric" value="<%= filters['toYear'] %>">
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="govuk-date-input__item filter-date-input__item">
-          <div class="govuk-form-group">
-            <label class="govuk-label govuk-date-input__label--s" for="filter-to-month">
-              Month
-            </label>
-            <input class="govuk-input govuk-date-input__input govuk-input--width-2 <%= toError ? 'govuk-input--error' : '' %>" id="filter-to-month" name="toMonth" type="text" placeholder="MM" maxlength="2" pattern="(1[0-2]|0[1-9])" inputmode="numeric" value="<%= filters['toMonth'] %>">
-          </div>
-        </div>
-        <div class="govuk-date-input__item filter-date-input__item">
-          <div class="govuk-form-group">
-            <label class="govuk-label govuk-date-input__label--s" for="filter-to-year">
-              Year
-            </label>
-            <input class="govuk-input govuk-date-input__input govuk-input--width-4 <%= toError ? 'govuk-input--error' : '' %>" id="filter-to-year" name="toYear" type="text" placeholder="YYYY" maxlength="4" pattern="[0-9]{4}" inputmode="numeric" value="<%= filters['toYear'] %>">
-          </div>
-        </div>
-      </div>
     </div>
-  </div>
 </div>

@@ -7,7 +7,7 @@
         </tr>
     </thead>
     <tbody id="scheme-version-table-body" class="govuk-table__body">
-    <% schemeVersions.forEach(function(item) { %>
+        <% schemeVersions.forEach(function(item) { %>
         <tr>
             <td class="govuk-table__cell">
                 <a href="/schemeversion?scNumber=<%= item.scNumber %>&version=<%= item.version %>&returnUrl=<%= encodeURIComponent(schemeDetailReturnUrl) %>">
@@ -15,6 +15,6 @@
                 </a>
             </td>
         </tr>
-    <% } ); %>
+        <% } ); %>
     </tbody>
 </table>

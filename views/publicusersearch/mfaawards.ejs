@@ -1,89 +1,91 @@
 <!DOCTYPE html>
 <html lang="en" class="govuk-template">
-<head>
-  <title>GOV.UK - Search for MFA/SPEIA awards</title>
 
-  <%- include('../partials/headercss.ejs') %>
+<head>
+    <title>GOV.UK - Search for MFA/SPEIA awards</title>
+
+    <%- include('../partials/headercss.ejs') %>
 </head>
 
 <body class="govuk-template__body app-example-page">
-  <script>
-    document.body.className = document.body.className
-      ? document.body.className + ' js-enabled'
-      : 'js-enabled';
-  </script>
+    <script>
+        document.body.className = document.body.className ?
+            document.body.className + ' js-enabled' :
+            'js-enabled';
 
-  <%- include('../partials/cookies-consent.ejs') %>
-  <%- include('../partials/header.ejs') %>
+    </script>
 
-  <div class="govuk-width-container">
-    <%- include('../partials/banner.ejs') %>
-    <a href="/" class="govuk-back-link">Back home</a>
-    <main id="main-content" role="main">
-      <div class="govuk-main-wrapper">
-        <% const mfaAwards = results && results.mfaAwards || []; %>
-        <% const totalSearchResults = results && results.totalSearchResults && results.totalSearchResults.toLocaleString('en') || 0; %>
-        <% const errorFields = new Set(errors.map(error => error.field)); %>
+    <%- include('../partials/cookies-consent.ejs') %>
+    <%- include('../partials/header.ejs') %>
 
-        <div class="govuk-grid-row">
-          <div class="govuk-grid-column-full">
-            <h1 class="govuk-heading-l">Search for Minimal financial assistance (MFA) or Service of Public Economic Interest Assistance (SPEIA)</h1>
-          </div>
-        </div>
+    <div class="govuk-width-container">
+        <%- include('../partials/banner.ejs') %>
+        <a href="/" class="govuk-back-link">Back home</a>
+        <main id="main-content" role="main">
+            <div class="govuk-main-wrapper">
+                <% const mfaAwards = results && results.mfaAwards || []; %>
+                <% const totalSearchResults = results && results.totalSearchResults && results.totalSearchResults.toLocaleString('en') || 0; %>
+                <% const errorFields = new Set(errors.map(error => error.field)); %>
 
-        <% if (errors.length > 0){ %>
-          <div class="govuk-error-summary" data-module="govuk-error-summary">
-            <div role="alert">
-              <h2 class="govuk-error-summary__title">
-                There is a problem
-              </h2>
-              <div class="govuk-error-summary__body">
-                <ul class="govuk-list govuk-error-summary__list">
-                  <% errors.forEach(function(error) { %>
-                  <li>
-                    <a href="#<%= error.field %>"><%= error.errorMsg %></a>
-                  </li>
-                  <% }); %>
-                </ul>
-              </div>
-            </div>
-          </div>
-        <% } %>
+                <div class="govuk-grid-row">
+                    <div class="govuk-grid-column-full">
+                        <h1 class="govuk-heading-l">Search for Minimal financial assistance (MFA) or Service of Public Economic Interest Assistance (SPEIA)</h1>
+                    </div>
+                </div>
 
-        <div class="govuk-grid-row">
-          <div class="govuk-grid-column-one-third">
-            <div id="filters-header">
-              <p class="govuk-body govuk-!-margin-bottom-0">Filter by</p>
-              <a href="/mfaawards?" class="govuk-link" data-form-target="filter-form">
-                Clear all
-              </a>
-            </div>
-            <div id="filters-container">
-              <form id="filter-form" action="/mfaawards" method="GET">
-                <!-- Hidden input fields to preserve page, size, and sorting -->
-                <input type="hidden" name="page" value="1">
-                <input type="hidden" name="size" value="<%= size %>">
-                <input type="hidden" name="sort" value="<%= filters.sort || 'publishedDate,desc' %>">
-                <!-- Filters start -->
-                <%- include('../partials/filter-keyword-search.ejs'); %>
-                <%- include('../partials/filter-assistance-type.ejs'); %>
-                <%- include('../partials/filter-amount-to-from.ejs',{filterTitle: "Award full amount", filterIdPrefix: "awardFull"}); %>
-                <%- include('../partials/filter-date-to-from.ejs',{filterTitle: "Confirmation date"}); %>
-                <!-- Filters end -->
-                <button class="govuk-button button-full-width">Apply filters</button>
-              </form>
-            </div>
-          </div>
+                <% if (errors.length > 0){ %>
+                <div class="govuk-error-summary" data-module="govuk-error-summary">
+                    <div role="alert">
+                        <h2 class="govuk-error-summary__title">
+                            There is a problem
+                        </h2>
+                        <div class="govuk-error-summary__body">
+                            <ul class="govuk-list govuk-error-summary__list">
+                                <% errors.forEach(function(error) { %>
+                                <li>
+                                    <a href="#<%= error.field %>"><%= error.errorMsg %></a>
+                                </li>
+                                <% }); %>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <% } %>
 
-          <div class="govuk-grid-column-two-thirds">
-            <!-- Search results count start -->
-            <p class="govuk-body">
-              <span class="govuk-!-font-weight-bold" id="number-of-results"><%= totalSearchResults %></span>
-              <%= totalSearchResults === 1 ? 'MFA/SPEIA award found' : 'MFA/SPEIA awards found' %>
-            </p>
-            <!-- Search results count start end -->
-            <!-- Export start -->
-            <%
+                <div class="govuk-grid-row">
+                    <div class="govuk-grid-column-one-third">
+                        <div id="filters-header">
+                            <p class="govuk-body govuk-!-margin-bottom-0">Filter by</p>
+                            <a href="/mfaawards?" class="govuk-link" data-form-target="filter-form">
+                                Clear all
+                            </a>
+                        </div>
+                        <div id="filters-container">
+                            <form id="filter-form" action="/mfaawards" method="GET">
+                                <!-- Hidden input fields to preserve page, size, and sorting -->
+                                <input type="hidden" name="page" value="1">
+                                <input type="hidden" name="size" value="<%= size %>">
+                                <input type="hidden" name="sort" value="<%= filters.sort || 'publishedDate,desc' %>">
+                                <!-- Filters start -->
+                                <%- include('../partials/filter-keyword-search.ejs'); %>
+                                <%- include('../partials/filter-assistance-type.ejs'); %>
+                                <%- include('../partials/filter-amount-to-from.ejs',{filterTitle: "Award full amount", filterIdPrefix: "awardFull"}); %>
+                                <%- include('../partials/filter-date-to-from.ejs',{filterTitle: "Confirmation date"}); %>
+                                <!-- Filters end -->
+                                <button class="govuk-button button-full-width">Apply filters</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="govuk-grid-column-two-thirds">
+                        <!-- Search results count start -->
+                        <p class="govuk-body">
+                            <span class="govuk-!-font-weight-bold" id="number-of-results"><%= totalSearchResults %></span>
+                            <%= totalSearchResults === 1 ? 'MFA/SPEIA award found' : 'MFA/SPEIA awards found' %>
+                        </p>
+                        <!-- Search results count start end -->
+                        <!-- Export start -->
+                        <%
             function exportUrl(format) {
               const params = new URLSearchParams();
           
@@ -98,118 +100,119 @@
               return '/mfaawards/export?' + params.toString();
             }
             %>
-            <p class="govuk-body">
-              <a class="govuk-link" href="<%= exportUrl('xlsx') %>">
-                Export results as an Excel file
-              </a>
-            &nbsp;
-              <a class="govuk-link" href="<%= exportUrl('csv') %>">
-                Export results as a CSV file
-              </a>
-            </p>
-            <!-- Export end -->
-            <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
-            <!-- Sort Start -->
-            <form action="/mfaawards" method="GET" class="govuk-form-group">
-              <label class="govuk-label govuk-!-font-weight-bold" for="sort">
-                Sort results
-              </label>
-            
-              <select class="govuk-select" id="sort" name="sort">
-                <option value="publishedDate,desc" <%= filters.sort === 'publishedDate,desc' ? 'selected' : '' %>>
-                  Published date, newest first
-                </option>
-            
-                <option value="publishedDate,asc" <%= filters.sort === 'publishedDate,asc' ? 'selected' : '' %>>
-                  Published date, oldest first
-                </option>
-            
-                <option value="recipientName,asc" <%= filters.sort === 'recipientName,asc' ? 'selected' : '' %>>
-                  Recipient name, A to Z
-                </option>
-            
-                <option value="recipientName,desc" <%= filters.sort === 'recipientName,desc' ? 'selected' : '' %>>
-                  Recipient name, Z to A
-                </option>
-              </select>
-            
-              <input type="hidden" name="page" value="1">
-              <input type="hidden" name="size" value="<%= size %>">
-            
-              <% Object.keys(filters || {}).forEach(function(key) { %>
-                <% if (key !== 'sort' && filters[key]) { %>
-                  <input type="hidden" name="<%= key %>" value="<%= filters[key] %>">
-                <% } %>
-              <% }); %>
-            
-              <button class="govuk-button govuk-!-margin-left-2" type="submit">
-                Apply sort
-              </button>
-            </form>
-            <!-- Sort End -->
-            <% if (mfaAwards.length === 0) { %>
-              <p class="govuk-body">No MFA/SPEIA awards match your search.</p>
-            <% } else { %>
-              <% mfaAwards.forEach(function(item, index) { %>
-                <article class="govuk-!-margin-bottom-4">
-                  <a class="govuk-link govuk-heading-m" href="/mfaaward/?id=<%= item.mfaAwardNumber %>&returnUrl=<%= encodeURIComponent(returnUrl) %>">
-                    <%= item.recipientName || 'Unnamed award' %>
-                  </a>
+                        <p class="govuk-body">
+                            <a class="govuk-link" href="<%= exportUrl('xlsx') %>">
+                                Export results as an Excel file
+                            </a>
+                            &nbsp;
+                            <a class="govuk-link" href="<%= exportUrl('csv') %>">
+                                Export results as a CSV file
+                            </a>
+                        </p>
+                        <!-- Export end -->
+                        <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+                        <!-- Sort Start -->
+                        <form action="/mfaawards" method="GET" class="govuk-form-group">
+                            <label class="govuk-label govuk-!-font-weight-bold" for="sort">
+                                Sort results
+                            </label>
 
-                  <p class="govuk-body">MFA award</p>
+                            <select class="govuk-select" id="sort" name="sort">
+                                <option value="publishedDate,desc" <%= filters.sort === 'publishedDate,desc' ? 'selected' : '' %>>
+                                    Published date, newest first
+                                </option>
 
-                  <dl class="govuk-summary-list govuk-summary-list--no-border app-summary-list--compact">
-                    <div class="govuk-summary-list__row">
-                      <dt class="govuk-summary-list__key">Award full amount</dt>
-                      <dd class="govuk-summary-list__value">
-                        £<%= item.awardAmountFormatted || '' %>
-                      </dd>
+                                <option value="publishedDate,asc" <%= filters.sort === 'publishedDate,asc' ? 'selected' : '' %>>
+                                    Published date, oldest first
+                                </option>
+
+                                <option value="recipientName,asc" <%= filters.sort === 'recipientName,asc' ? 'selected' : '' %>>
+                                    Recipient name, A to Z
+                                </option>
+
+                                <option value="recipientName,desc" <%= filters.sort === 'recipientName,desc' ? 'selected' : '' %>>
+                                    Recipient name, Z to A
+                                </option>
+                            </select>
+
+                            <input type="hidden" name="page" value="1">
+                            <input type="hidden" name="size" value="<%= size %>">
+
+                            <% Object.keys(filters || {}).forEach(function(key) { %>
+                            <% if (key !== 'sort' && filters[key]) { %>
+                            <input type="hidden" name="<%= key %>" value="<%= filters[key] %>">
+                            <% } %>
+                            <% }); %>
+
+                            <button class="govuk-button govuk-!-margin-left-2" type="submit">
+                                Apply sort
+                            </button>
+                        </form>
+                        <!-- Sort End -->
+                        <% if (mfaAwards.length === 0) { %>
+                        <p class="govuk-body">No MFA/SPEIA awards match your search.</p>
+                        <% } else { %>
+                        <% mfaAwards.forEach(function(item, index) { %>
+                        <article class="govuk-!-margin-bottom-4">
+                            <a class="govuk-link govuk-heading-m" href="/mfaaward/?id=<%= item.mfaAwardNumber %>&returnUrl=<%= encodeURIComponent(returnUrl) %>">
+                                <%= item.recipientName || 'Unnamed award' %>
+                            </a>
+
+                            <p class="govuk-body">MFA award</p>
+
+                            <dl class="govuk-summary-list govuk-summary-list--no-border app-summary-list--compact">
+                                <div class="govuk-summary-list__row">
+                                    <dt class="govuk-summary-list__key">Award full amount</dt>
+                                    <dd class="govuk-summary-list__value">
+                                        £<%= item.awardAmountFormatted || '' %>
+                                    </dd>
+                                </div>
+
+                                <div class="govuk-summary-list__row">
+                                    <dt class="govuk-summary-list__key">Award number</dt>
+                                    <dd class="govuk-summary-list__value">
+                                        <%= item.mfaAwardNumber || 'N/A' %>
+                                    </dd>
+                                </div>
+
+                                <div class="govuk-summary-list__row">
+                                    <dt class="govuk-summary-list__key">Date published</dt>
+                                    <dd class="govuk-summary-list__value">
+                                        <%= item.publishedDate || 'N/A' %>
+                                    </dd>
+                                </div>
+
+                                <div class="govuk-summary-list__row">
+                                    <dt class="govuk-summary-list__key">Confirmation date</dt>
+                                    <dd class="govuk-summary-list__value">
+                                        <%= item.confirmationDate || 'N/A' %>
+                                    </dd>
+                                </div>
+
+                                <div class="govuk-summary-list__row">
+                                    <dt class="govuk-summary-list__key">Public authority</dt>
+                                    <dd class="govuk-summary-list__value">
+                                        <%= item.grantingAuthorityName || 'N/A' %>
+                                    </dd>
+                                </div>
+                            </dl>
+                        </article>
+
+                        <% if (index < mfaAwards.length - 1) { %>
+                        <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+                        <% } %>
+                        <% }); %>
+                        <% } %>
                     </div>
+                </div>
+                <!-- Start of Pagination -->
+                <%- include('../partials/pagination.ejs',{urlEndpoint: "mfaawards"}) %>
+                <!-- End of Pagination -->
+            </div>
+        </main>
+    </div>
 
-                    <div class="govuk-summary-list__row">
-                      <dt class="govuk-summary-list__key">Award number</dt>
-                      <dd class="govuk-summary-list__value">
-                        <%= item.mfaAwardNumber || 'N/A' %>
-                      </dd>
-                    </div>
-
-                    <div class="govuk-summary-list__row">
-                      <dt class="govuk-summary-list__key">Date published</dt>
-                      <dd class="govuk-summary-list__value">
-                        <%= item.publishedDate || 'N/A' %>
-                      </dd>
-                    </div>
-
-                    <div class="govuk-summary-list__row">
-                      <dt class="govuk-summary-list__key">Confirmation date</dt>
-                      <dd class="govuk-summary-list__value">
-                        <%= item.confirmationDate || 'N/A' %>
-                      </dd>
-                    </div>
-
-                    <div class="govuk-summary-list__row">
-                      <dt class="govuk-summary-list__key">Public authority</dt>
-                      <dd class="govuk-summary-list__value">
-                        <%= item.grantingAuthorityName || 'N/A' %>
-                      </dd>
-                    </div>
-                  </dl>
-                </article>
-
-                <% if (index < mfaAwards.length - 1) { %>
-                  <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
-                <% } %>
-              <% }); %>
-            <% } %>
-          </div>
-        </div>
-        <!-- Start of Pagination -->
-        <%- include('../partials/pagination.ejs',{urlEndpoint: "mfaawards"}) %>
-        <!-- End of Pagination -->
-      </div>
-    </main>
-  </div>
-
-  <%- include('../partials/footer.ejs') %>
+    <%- include('../partials/footer.ejs') %>
 </body>
+
 </html>

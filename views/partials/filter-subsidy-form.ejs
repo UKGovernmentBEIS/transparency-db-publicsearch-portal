@@ -29,9 +29,7 @@
 
         <% forms.filter(f => f !== "Other").forEach((form, index) => { %>
         <div class="govuk-checkboxes__item">
-            <input class="govuk-checkboxes__input form-checkbox" id="form-checkbox-<%=index%>" name="subsidyForm" type="checkbox" value="<%= form %>"
-                <%= subsidyForm.includes(form.toLowerCase()) ? "checked" : "" %>
-            >
+            <input class="govuk-checkboxes__input form-checkbox" id="form-checkbox-<%=index%>" name="subsidyForm" type="checkbox" value="<%= form %>" <%= subsidyForm.includes(form.toLowerCase()) ? "checked" : "" %>>
 
             <label class="govuk-label govuk-checkboxes__label" for="form-checkbox-<%=index%>">
                 <%= form %>
@@ -41,9 +39,7 @@
 
         <!-- Other -->
         <div class="govuk-checkboxes__item">
-            <input class="govuk-checkboxes__input form-checkbox" id="form-checkbox-other" name="subsidyForm" type="checkbox" value="Other" data-other-checkbox
-                <%= subsidyForm.includes("other") ? "checked" : "" %>
-            >
+            <input class="govuk-checkboxes__input form-checkbox" id="form-checkbox-other" name="subsidyForm" type="checkbox" value="Other" data-other-checkbox <%= subsidyForm.includes("other") ? "checked" : "" %>>
 
             <label class="govuk-label govuk-checkboxes__label" for="form-checkbox-other">
                 Other
@@ -55,9 +51,7 @@
                 Please specify
             </label>
 
-            <input class="govuk-input" id="form-text-other" name="subsidyFormOther" type="text"
-                value="<%= filters.subsidyFormOther || '' %>"
-            >
+            <input class="govuk-input" id="form-text-other" name="subsidyFormOther" type="text" value="<%= filters.subsidyFormOther || '' %>">
         </div>
 
     </div>
