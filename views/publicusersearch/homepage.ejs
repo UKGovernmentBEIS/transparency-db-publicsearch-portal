@@ -2,8 +2,8 @@
 <html lang="en" class="govuk-template ">
 
 <head>
-  <title>GOV.UK - Public user search page</title>
-  <%- include('../partials/headercss.ejs') %>
+    <title>GOV.UK - Public user search page</title>
+    <%- include('../partials/headercss.ejs') %>
 </head>
 
 <!--**************************************************
@@ -11,89 +11,90 @@ Gov.UK public user search - header rendering design
 **************************************************** -->
 
 <body class="govuk-template__body app-example-page">
-  <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
-  <%- include('../partials/cookies-consent.ejs') %>
-  <%- include('../partials/header.ejs') %>
+    <script>
+        document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');
+
+    </script>
+    <%- include('../partials/cookies-consent.ejs') %>
+    <%- include('../partials/header.ejs') %>
 
 
-  <div class="govuk-width-container ">
-    <%- include('../partials/banner.ejs') %>
-    <main id="main-content" role="main">
-      <div class="govuk-main-wrapper ">
-        <div class="govuk-grid-row">
-            <h1 class="govuk-heading-xl">
-              View subsidies awarded by UK public authorities
-            </h1>
-        </div>
+    <div class="govuk-width-container ">
+        <%- include('../partials/banner.ejs') %>
+        <main id="main-content" role="main">
+            <div class="govuk-main-wrapper ">
+                <div class="govuk-grid-row">
+                    <h1 class="govuk-heading-xl">
+                        View subsidies awarded by UK public authorities
+                    </h1>
+                </div>
 
-        <div class="govuk-grid-row">
-            <p class="govuk-body">The subsidy database holds information on subsidy schemes and subsidy awards given to businesses. 
-              UK public authorities are required to upload information on subsidy schemes and subsidy awards in compliance with their obligations to the Subsidy Control Act 2022.
-            </p>
+                <div class="govuk-grid-row">
+                    <p class="govuk-body">The subsidy database holds information on subsidy schemes and subsidy awards given to businesses.
+                        UK public authorities are required to upload information on subsidy schemes and subsidy awards in compliance with their obligations to the Subsidy Control Act 2022.
+                    </p>
 
-            <h2 class="govuk-heading-s">Have your say on proposed changes to Search for UK Subsidies</h2>
- 
-            <p class="govuk-body">
-              We're testing changes to the search experience. Tell us whether they would help you find and use subsidy information.
-            </p>
-              
-            <p class="govuk-body">
-              The survey takes 15 minutes or less.
-            </p>
-            
-            <p class="govuk-body">
-              <a class="govuk-link" href="https://ditresearch.eu.qualtrics.com/jfe/form/SV_1BMbiAZn8Kn93nw" target="_blank">Take the survey (opens in a new tab)</a>
-            </p>
+                    <h2 class="govuk-heading-s">Have your say on proposed changes to Search for UK Subsidies</h2>
 
-            <h2 class="govuk-heading-s">How to search</h2>
+                    <p class="govuk-body">
+                        We're testing changes to the search experience. Tell us whether they would help you find and use subsidy information.
+                    </p>
 
-            <p class="govuk-body">Select the relevant link to search for all:</p>
+                    <p class="govuk-body">
+                        The survey takes 15 minutes or less.
+                    </p>
 
-            <ul class="govuk-list govuk-list--bullet">
-              <li><a href="/awards" class="govuk-link">standalone subsidy awards and subsidy awards made under schemes</a></li>
-              <li><a href="/schemes" class="govuk-link">subsidy schemes</a></li>
-              <li><a href="/mfaawards" class="govuk-link">MFA/SPEIA awards</a></li>
-            </ul>
+                    <p class="govuk-body">
+                        <a class="govuk-link" href="https://ditresearch.eu.qualtrics.com/jfe/form/SV_1BMbiAZn8Kn93nw" target="_blank">Take the survey (opens in a new tab)</a>
+                    </p>
 
-            <h2 class="govuk-heading-s">Search improvements now available</h2>
+                    <h2 class="govuk-heading-s">How to search</h2>
 
-            <p class="govuk-body">
-              A new search for MFA and SPEI Assistance awards is now available.
-            </p>
+                    <p class="govuk-body">Select the relevant link to search for all:</p>
 
-            <p class="govuk-body">
-              This is the first of several planned improvements to subsidy transparency searches. We'll continue to make it easier to find subsidy awards, schemes and related information.
-            </p>
+                    <ul class="govuk-list govuk-list--bullet">
+                        <li><a href="/awards" class="govuk-link">standalone subsidy awards and subsidy awards made under schemes</a></li>
+                        <li><a href="/schemes" class="govuk-link">subsidy schemes</a></li>
+                        <li><a href="/mfaawards" class="govuk-link">MFA/SPEIA awards</a></li>
+                    </ul>
 
-            <p class="govuk-body">
-              Minimal financial assistance (MFA) are low-value subsidies that do not need to comply with the subsidy control principles.
-            </p>
-            <p class="govuk-body">
-              Services of Public Economic Interest (SPEI) are essential services provided by a public authority to the public which would not be provided under normal market conditions. SPEI may be considered to constitute SPEI Assistance (SPEIA) if the total amount of minimal or SPEI financial assistance given to a business does not exceed £725,000 over the three financial years.
-            </p>
+                    <h2 class="govuk-heading-s">Search improvements now available</h2>
 
-            <div>
-              <h2 class="govuk-heading-m">Links to the EU Database</h2>
-              <a aria-label="Search for awards under EU State aid rules" class="govuk-link govuk-body" target="_blank"
-                href="https://webgate.ec.europa.eu/competition/transparency/public?lang=en">
-                Search for awards under EU State aid rules.
-              </a>
-              <br/>
-              <a aria-label="Search for awards under EU State aid rules" class="govuk-link govuk-body" target="_blank"
-                href="https://competition-cases.ec.europa.eu/search?caseInstrument=SA&caseMemberState=~GBR&sortField=caseLastDecisionDate&sortOrder=DESC">
-                Search the EU State aid case register
-              </a>
+                    <p class="govuk-body">
+                        A new search for MFA and SPEI Assistance awards is now available.
+                    </p>
+
+                    <p class="govuk-body">
+                        This is the first of several planned improvements to subsidy transparency searches. We'll continue to make it easier to find subsidy awards, schemes and related information.
+                    </p>
+
+                    <p class="govuk-body">
+                        Minimal financial assistance (MFA) are low-value subsidies that do not need to comply with the subsidy control principles.
+                    </p>
+                    <p class="govuk-body">
+                        Services of Public Economic Interest (SPEI) are essential services provided by a public authority to the public which would not be provided under normal market conditions. SPEI may be considered to constitute SPEI Assistance (SPEIA) if the total amount of minimal or SPEI financial assistance given to a business does not exceed £725,000 over the three financial years.
+                    </p>
+
+                    <div>
+                        <h2 class="govuk-heading-m">Links to the EU Database</h2>
+                        <a aria-label="Search for awards under EU State aid rules" class="govuk-link govuk-body" target="_blank" href="https://webgate.ec.europa.eu/competition/transparency/public?lang=en">
+                            Search for awards under EU State aid rules.
+                        </a>
+                        <br />
+                        <a aria-label="Search for awards under EU State aid rules" class="govuk-link govuk-body" target="_blank" href="https://competition-cases.ec.europa.eu/search?caseInstrument=SA&caseMemberState=~GBR&sortField=caseLastDecisionDate&sortOrder=DESC">
+                            Search the EU State aid case register
+                        </a>
+                    </div>
+                </div>
             </div>
-        </div>
-      </div>
-    </main>
-  </div>
+        </main>
+    </div>
 
-  <!--************************************************
+    <!--************************************************
           Gov.UK public user search - Footer rendering design
     ************************************************ -->
 
-  <%- include('../partials/footer.ejs') %>
+    <%- include('../partials/footer.ejs') %>
 </body>
 
 </html>

@@ -2,241 +2,241 @@
 <html lang="en">
 
 <head>
-  <title>GOV.UK - Public user search subsidy scheme details page - previous version</title>
-  <%- include('../partials/headercss.ejs') %>
+    <title>GOV.UK - Public user search subsidy scheme details page - previous version</title>
+    <%- include('../partials/headercss.ejs') %>
 
-  <style>
-    .govuk-inative-status {
-      float: left;
-      width: 100%;
-      padding: 1%;
-    }
-  </style>
+    <style>
+        .govuk-inative-status {
+            float: left;
+            width: 100%;
+            padding: 1%;
+        }
+
+    </style>
 </head>
 
 <body class="govuk-template__body app-example-page">
-  <%- include('../partials/cookies-consent.ejs') %>
-  <%- include('../partials/header.ejs') %>
-  <div class="govuk-width-container ">
-    <%- include('../partials/banner.ejs') %>
-    <main id="main-content" role="main">
-      <div class="govuk-main-wrapper ">
-        <a href="<%=backButton_href%>" class="govuk-back-link" aria-label="Back to scheme">Back</a>
-        <div class="govuk-grid-row">
-          <div class="govuk-grid-column-three-quarters">
-            <h1 class="govuk-heading-l">Subsidy scheme details</h1>
-            <h2 class="govuk-heading-m">Modified date <%= schemeVersionDetails.lastModifiedDate %></h2>
-          </div>
+    <%- include('../partials/cookies-consent.ejs') %>
+    <%- include('../partials/header.ejs') %>
+    <div class="govuk-width-container ">
+        <%- include('../partials/banner.ejs') %>
+        <main id="main-content" role="main">
+            <div class="govuk-main-wrapper ">
+                <a href="<%=backButton_href%>" class="govuk-back-link" aria-label="Back to scheme">Back</a>
+                <div class="govuk-grid-row">
+                    <div class="govuk-grid-column-three-quarters">
+                        <h1 class="govuk-heading-l">Subsidy scheme details</h1>
+                        <h2 class="govuk-heading-m">Modified date <%= schemeVersionDetails.lastModifiedDate %></h2>
+                    </div>
 
-          <div class="govuk-grid-column-one-quarter">
-            <button class="govuk-button" data-module="govuk-button" onclick="window.print()">
-              Print page </button>
-          </div>
-        </div>
+                    <div class="govuk-grid-column-one-quarter">
+                        <button class="govuk-button" data-module="govuk-button" onclick="window.print()">
+                            Print page </button>
+                    </div>
+                </div>
 
-        <dl id="scheme-details-table" class="govuk-summary-list govuk-!-margin-bottom-9">
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Subsidy control number
-            </dt>
-            <dd class="govuk-summary-list__value">
-              <%= schemeVersionDetails.scNumber %>
-            </dd>
-          </div>
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Subsidy scheme name
-            </dt>
-            <dd class="govuk-summary-list__value">
-              <%= schemeVersionDetails.subsidyMeasureTitle%>
-            </dd>
-          </div>
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Subsidies or Schemes of Interest (SSoI) or Subsidies or Schemes of Particular Interest (SSoPI)
-          </dt>
-          <dd class="govuk-summary-list__value">
-            <%= schemeVersionDetails.subsidySchemeInterest %>
-          </dd>
-          </div>
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Subsidy scheme status
-            </dt>
-            <dd class="govuk-summary-list__value">
-              <%= schemeVersionDetails.status %>
-            </dd>
-          </div>
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Public authority name
-            </dt>
-            <dd class="govuk-summary-list__value">
-              <%= schemeVersionDetails.gaName %>
-            </dd>
-          </div>
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Subsidy scheme description
-            </dt>
-            <dd class="govuk-summary-list__value render-newlines"><%= schemeVersionDetails.subsidySchemeDescription %></dd>
-          </div>
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Legal basis
-            </dt>
-            <dd class="govuk-summary-list__value">
-              <%= schemeVersionDetails.legalBasisText %>
-            </dd>
-          </div>
+                <dl id="scheme-details-table" class="govuk-summary-list govuk-!-margin-bottom-9">
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                            Subsidy control number
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                            <%= schemeVersionDetails.scNumber %>
+                        </dd>
+                    </div>
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                            Subsidy scheme name
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                            <%= schemeVersionDetails.subsidyMeasureTitle%>
+                        </dd>
+                    </div>
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                            Subsidies or Schemes of Interest (SSoI) or Subsidies or Schemes of Particular Interest (SSoPI)
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                            <%= schemeVersionDetails.subsidySchemeInterest %>
+                        </dd>
+                    </div>
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                            Subsidy scheme status
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                            <%= schemeVersionDetails.status %>
+                        </dd>
+                    </div>
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                            Public authority name
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                            <%= schemeVersionDetails.gaName %>
+                        </dd>
+                    </div>
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                            Subsidy scheme description
+                        </dt>
+                        <dd class="govuk-summary-list__value render-newlines"><%= schemeVersionDetails.subsidySchemeDescription %></dd>
+                    </div>
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                            Legal basis
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                            <%= schemeVersionDetails.legalBasisText %>
+                        </dd>
+                    </div>
 
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Weblink to public authority text of subsidy
-            </dt>
-            <dd class="govuk-summary-list__value">
-              <% if(schemeVersionDetails.gaSubsidyWebLink.includes('https://') || schemeVersionDetails.gaSubsidyWebLink.includes('http://')) { %>
-              <a aria-label="Weblink to public authority" target="_blank"
-                href="<%= schemeVersionDetails.gaSubsidyWebLink %>">
-                <%= schemeVersionDetails.gaSubsidyWebLink %>
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                            Weblink to public authority text of subsidy
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                            <% if(schemeVersionDetails.gaSubsidyWebLink.includes('https://') || schemeVersionDetails.gaSubsidyWebLink.includes('http://')) { %>
+                            <a aria-label="Weblink to public authority" target="_blank" href="<%= schemeVersionDetails.gaSubsidyWebLink %>">
+                                <%= schemeVersionDetails.gaSubsidyWebLink %>
 
-              </a>
-              <% } else { %>
-              <a aria-label="Weblink to public authority" target="_blank"
-                href="https://<%= schemeVersionDetails.gaSubsidyWebLink %>">
-                <%= schemeVersionDetails.gaSubsidyWebLink %>
-              </a>
-              <% } %>
-            </dd>
-          </div>
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Weblink description
-            </dt>
-            <dd class="govuk-summary-list__value">
-              <%= schemeVersionDetails.gaSubsidyWebLinkDescription %>
-            </dd>
-          </div>
+                            </a>
+                            <% } else { %>
+                            <a aria-label="Weblink to public authority" target="_blank" href="https://<%= schemeVersionDetails.gaSubsidyWebLink %>">
+                                <%= schemeVersionDetails.gaSubsidyWebLink %>
+                            </a>
+                            <% } %>
+                        </dd>
+                    </div>
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                            Weblink description
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                            <%= schemeVersionDetails.gaSubsidyWebLinkDescription %>
+                        </dd>
+                    </div>
 
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Budget or amount
-            </dt>
-            <dd class="govuk-summary-list__value">
-              £<%= schemeVersionDetails.budget %>
-            </dd>
-          </div>
-            <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Maximum amount given under this scheme
-            </dt>
-            <dd class="govuk-summary-list__value">
-              <% if (schemeVersionDetails.maximumAmountUnderScheme == null) { %>
-                NA
-              <% } else { %>
-                <%= schemeVersionDetails.maximumAmountUnderScheme %>
-              <% } %>
-            </dd>
-          </div>
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Confirmation date
-            </dt>
-            <dd class="govuk-summary-list__value">
-              <% if (schemeVersionDetails.confirmationDate != null) { %>
-                <%= schemeVersionDetails.confirmationDate %>
-              <% } else { %>
-                NA
-              <% } %>
-            </dd>
-          </div>
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Duration
-            </dt>
-            <dd class="govuk-summary-list__value">
-              <% if ((schemeVersionDetails.duration == 0) || (schemeVersionDetails.endDate == "31 December 9999")) { %>
-                NA
-              <% } else { %>
-                <%= schemeVersionDetails.duration %> days from <%= schemeVersionDetails.startDate %> to
-                <%= schemeVersionDetails.endDate %>
-              <% } %>
-            </dd>
-          </div>
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Start date
-            </dt>
-            <dd class="govuk-summary-list__value">
-              <%= schemeVersionDetails.startDate %>
-            </dd>
-          </div>
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Date published
-            </dt>
-            <dd class="govuk-summary-list__value">
-              <%= schemeVersionDetails.publishedMeasureDate%>
-            </dd>
-          </div>
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Date created
-            </dt>
-            <dd class="govuk-summary-list__value">
-              <%= schemeVersionDetails.createdDate%>
-            </dd>
-          </div>
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Date last modified
-            </dt>
-            <dd class="govuk-summary-list__value">
-              <%= schemeVersionDetails.lastModifiedDate%>
-            </dd>
-          </div>
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Spending Sectors
-            </dt>
-            <dd class="govuk-summary-list__value">
-                <% if(typeof schemeVersionDetails.spendingSectorArray !== 'undefined') { %>
-                  <ul class="govuk-list govuk-list--bullet">
-                      <% schemeVersionDetails.spendingSectorArray.forEach(function(item) { %>
-                      <li> <%=item %> </li>
-                      <% }); %>
-                  </ul>
-                  <% } else { %>
-                      NA
-                   <% } %>
-            </dd>
-          </div>  <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Purpose
-            </dt>
-            <dd class="govuk-summary-list__value">
-                <% if(typeof schemeVersionDetails.purposeArray !== 'undefined') { %>
-                  <ul class="govuk-list govuk-list--bullet">
-                      <% schemeVersionDetails.purposeArray.forEach(function(item) { %>
-                      <li> <%=item %> </li>
-                      <% }); %>
-                  </ul>
-                  <% } else { %>
-                      NA
-                   <% } %>
-            </dd>
-          </div>
-        </dl>
-          <div>
-            <a href="<%=backButton_href%>" class="govuk-button" data-module="govuk-button">
-              Back to scheme
-            </a>
-          </div>
-      </div>
-    </main>
-  </div>
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                            Budget or amount
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                            £<%= schemeVersionDetails.budget %>
+                        </dd>
+                    </div>
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                            Maximum amount given under this scheme
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                            <% if (schemeVersionDetails.maximumAmountUnderScheme == null) { %>
+                            NA
+                            <% } else { %>
+                            <%= schemeVersionDetails.maximumAmountUnderScheme %>
+                            <% } %>
+                        </dd>
+                    </div>
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                            Confirmation date
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                            <% if (schemeVersionDetails.confirmationDate != null) { %>
+                            <%= schemeVersionDetails.confirmationDate %>
+                            <% } else { %>
+                            NA
+                            <% } %>
+                        </dd>
+                    </div>
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                            Duration
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                            <% if ((schemeVersionDetails.duration == 0) || (schemeVersionDetails.endDate == "31 December 9999")) { %>
+                            NA
+                            <% } else { %>
+                            <%= schemeVersionDetails.duration %> days from <%= schemeVersionDetails.startDate %> to
+                            <%= schemeVersionDetails.endDate %>
+                            <% } %>
+                        </dd>
+                    </div>
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                            Start date
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                            <%= schemeVersionDetails.startDate %>
+                        </dd>
+                    </div>
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                            Date published
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                            <%= schemeVersionDetails.publishedMeasureDate%>
+                        </dd>
+                    </div>
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                            Date created
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                            <%= schemeVersionDetails.createdDate%>
+                        </dd>
+                    </div>
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                            Date last modified
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                            <%= schemeVersionDetails.lastModifiedDate%>
+                        </dd>
+                    </div>
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                            Spending Sectors
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                            <% if(typeof schemeVersionDetails.spendingSectorArray !== 'undefined') { %>
+                            <ul class="govuk-list govuk-list--bullet">
+                                <% schemeVersionDetails.spendingSectorArray.forEach(function(item) { %>
+                                <li> <%=item %> </li>
+                                <% }); %>
+                            </ul>
+                            <% } else { %>
+                            NA
+                            <% } %>
+                        </dd>
+                    </div>
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                            Purpose
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                            <% if(typeof schemeVersionDetails.purposeArray !== 'undefined') { %>
+                            <ul class="govuk-list govuk-list--bullet">
+                                <% schemeVersionDetails.purposeArray.forEach(function(item) { %>
+                                <li> <%=item %> </li>
+                                <% }); %>
+                            </ul>
+                            <% } else { %>
+                            NA
+                            <% } %>
+                        </dd>
+                    </div>
+                </dl>
+                <div>
+                    <a href="<%=backButton_href%>" class="govuk-button" data-module="govuk-button">
+                        Back to scheme
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
 
-  <%- include('../partials/footer.ejs') %>
+    <%- include('../partials/footer.ejs') %>
 </body>
 
 </html>

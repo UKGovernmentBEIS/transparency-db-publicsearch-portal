@@ -31,9 +31,7 @@
 
         <% purposes.filter(f => f !== "Other").forEach((purpose, index) => { %>
         <div class="govuk-checkboxes__item">
-            <input class="govuk-checkboxes__input purpose-checkbox" id="purpose-checkbox-<%=index%>" name="subsidyPurpose" type="checkbox" value="<%= purpose %>"
-                <%= subsidyPurpose.includes(purpose.toLowerCase()) ? "checked" : "" %>
-            >
+            <input class="govuk-checkboxes__input purpose-checkbox" id="purpose-checkbox-<%=index%>" name="subsidyPurpose" type="checkbox" value="<%= purpose %>" <%= subsidyPurpose.includes(purpose.toLowerCase()) ? "checked" : "" %>>
 
             <label class="govuk-label govuk-checkboxes__label" for="purpose-checkbox-<%=index%>">
                 <%= purpose %>
@@ -43,9 +41,7 @@
 
         <!-- Other -->
         <div class="govuk-checkboxes__item">
-            <input class="govuk-checkboxes__input purpose-checkbox" id="purpose-checkbox-other" name="subsidyPurpose" type="checkbox" value="Other" data-other-checkbox
-                <%= subsidyPurpose.includes("other") ? "checked" : "" %>
-            >
+            <input class="govuk-checkboxes__input purpose-checkbox" id="purpose-checkbox-other" name="subsidyPurpose" type="checkbox" value="Other" data-other-checkbox <%= subsidyPurpose.includes("other") ? "checked" : "" %>>
 
             <label class="govuk-label govuk-checkboxes__label" for="purpose-checkbox-other">
                 Other
@@ -57,9 +53,7 @@
                 Please specify
             </label>
 
-            <input class="govuk-input" id="purpose-text-other" name="subsidyPurposeOther" type="text"
-                value="<%= filters.subsidyPurposeOther || '' %>"
-            >
+            <input class="govuk-input" id="purpose-text-other" name="subsidyPurposeOther" type="text" value="<%= filters.subsidyPurposeOther || '' %>">
         </div>
 
     </div>

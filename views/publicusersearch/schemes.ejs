@@ -1,76 +1,78 @@
 <!DOCTYPE html>
 <html lang="en" class="govuk-template">
-<head>
-  <title>GOV.UK - Search for subsidy schemes</title>
 
-  <%- include('../partials/headercss.ejs') %> 
+<head>
+    <title>GOV.UK - Search for subsidy schemes</title>
+
+    <%- include('../partials/headercss.ejs') %>
 </head>
 
 <body class="govuk-template__body app-example-page">
-  <script>
-    document.body.className = document.body.className
-      ? document.body.className + ' js-enabled'
-      : 'js-enabled';
-  </script>
+    <script>
+        document.body.className = document.body.className ?
+            document.body.className + ' js-enabled' :
+            'js-enabled';
 
-  <%- include('../partials/cookies-consent.ejs') %>
-  <%- include('../partials/header.ejs') %>
+    </script>
 
-  <div class="govuk-width-container">
-    <%- include('../partials/banner.ejs') %>
-    <a href="/" class="govuk-back-link">Back home</a>
-    <main id="main-content" role="main">
-      <div class="govuk-main-wrapper">
-        <% const schemes = results && results.subsidySchemes || []; %>
-        <% const totalSearchResults = results && results.totalSearchResults && results.totalSearchResults.toLocaleString('en') || 0; %>
-        <% const errorFields = new Set(errors.map(error => error.field)); %>
+    <%- include('../partials/cookies-consent.ejs') %>
+    <%- include('../partials/header.ejs') %>
 
-        <div class="govuk-grid-row">
-          <div class="govuk-grid-column-full">
-            <h1 class="govuk-heading-l">Search for subsidy schemes</h1>
-          </div>
-        </div>
+    <div class="govuk-width-container">
+        <%- include('../partials/banner.ejs') %>
+        <a href="/" class="govuk-back-link">Back home</a>
+        <main id="main-content" role="main">
+            <div class="govuk-main-wrapper">
+                <% const schemes = results && results.subsidySchemes || []; %>
+                <% const totalSearchResults = results && results.totalSearchResults && results.totalSearchResults.toLocaleString('en') || 0; %>
+                <% const errorFields = new Set(errors.map(error => error.field)); %>
 
-        <%- include('../partials/error-heading.ejs') %>
+                <div class="govuk-grid-row">
+                    <div class="govuk-grid-column-full">
+                        <h1 class="govuk-heading-l">Search for subsidy schemes</h1>
+                    </div>
+                </div>
 
-        <div class="govuk-grid-row">
-          <div class="govuk-grid-column-one-third">
-            <div id="filters-header">
-              <p class="govuk-body govuk-!-margin-bottom-0">Filter by</p>
-              <a href="/schemes?" class="govuk-link" data-form-target="filter-form">
-                Clear all
-              </a>
-            </div>
-            <div id="filters-container">
-              <form id="filter-form" action="/schemes" method="GET">
-                <!-- Hidden input fields to preserve page, size, and sorting -->
-                <input type="hidden" name="page" value="1">
-                <input type="hidden" name="size" value="<%= size %>">
-                <input type="hidden" name="sort" value="<%= filters.sort || 'publishedDate,desc' %>">
-                <!-- Filters start -->
-                <%- include('../partials/filter-keyword-search.ejs',{filterTitle: "Keyword or SC number"}); %>
-                <%- include('../partials/filter-public-authority.ejs'); %>
-                <%- include('../partials/filter-scheme-status.ejs'); %>
-                <%- include('../partials/filter-date-to-from.ejs',{filterTitle: "Confirmation date"}); %>
-                <%- include('../partials/filter-amount-to-from.ejs',{filterTitle: "Total scheme budget", filterIdPrefix: "schemeBudget"}); %>
-                <%- include('../partials/filter-sectors.ejs'); %>
-                <%- include('../partials/filter-subsidy-purpose.ejs'); %>
-                <%- include('../partials/filter-subsidy-interest.ejs'); %>
-                <!-- Filters end -->
-                <button class="govuk-button button-full-width">Apply filters</button>
-              </form>
-            </div>
-          </div>
+                <%- include('../partials/error-heading.ejs') %>
 
-          <div class="govuk-grid-column-two-thirds">
-            <!-- Search results count start -->
-            <p class="govuk-body">
-              <span class="govuk-!-font-weight-bold" id="number-of-results"><%= totalSearchResults %></span>
-              <%= totalSearchResults === 1 ? 'subsidy scheme found' : 'subsidy schemes found' %>
-            </p>
-            <!-- Search results count start end -->
-            <!-- Export start -->
-            <%
+                <div class="govuk-grid-row">
+                    <div class="govuk-grid-column-one-third">
+                        <div id="filters-header">
+                            <p class="govuk-body govuk-!-margin-bottom-0">Filter by</p>
+                            <a href="/schemes?" class="govuk-link" data-form-target="filter-form">
+                                Clear all
+                            </a>
+                        </div>
+                        <div id="filters-container">
+                            <form id="filter-form" action="/schemes" method="GET">
+                                <!-- Hidden input fields to preserve page, size, and sorting -->
+                                <input type="hidden" name="page" value="1">
+                                <input type="hidden" name="size" value="<%= size %>">
+                                <input type="hidden" name="sort" value="<%= filters.sort || 'publishedDate,desc' %>">
+                                <!-- Filters start -->
+                                <%- include('../partials/filter-keyword-search.ejs',{filterTitle: "Keyword or SC number"}); %>
+                                <%- include('../partials/filter-public-authority.ejs'); %>
+                                <%- include('../partials/filter-scheme-status.ejs'); %>
+                                <%- include('../partials/filter-date-to-from.ejs',{filterTitle: "Confirmation date"}); %>
+                                <%- include('../partials/filter-amount-to-from.ejs',{filterTitle: "Total scheme budget", filterIdPrefix: "schemeBudget"}); %>
+                                <%- include('../partials/filter-sectors.ejs'); %>
+                                <%- include('../partials/filter-subsidy-purpose.ejs'); %>
+                                <%- include('../partials/filter-subsidy-interest.ejs'); %>
+                                <!-- Filters end -->
+                                <button class="govuk-button button-full-width">Apply filters</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="govuk-grid-column-two-thirds">
+                        <!-- Search results count start -->
+                        <p class="govuk-body">
+                            <span class="govuk-!-font-weight-bold" id="number-of-results"><%= totalSearchResults %></span>
+                            <%= totalSearchResults === 1 ? 'subsidy scheme found' : 'subsidy schemes found' %>
+                        </p>
+                        <!-- Search results count start end -->
+                        <!-- Export start -->
+                        <%
             function exportUrl(format) {
               const params = new URLSearchParams();
           
@@ -85,140 +87,141 @@
               return '/schemes/export?' + params.toString();
             }
             %>
-            <p class="govuk-body">
-              <a class="govuk-link" href="<%= exportUrl('xlsx') %>">
-                Export results as an Excel file
-              </a>
-            &nbsp;
-              <a class="govuk-link" href="<%= exportUrl('csv') %>">
-                Export results as a CSV file
-              </a>
-            </p>
-            <!-- Export end -->
-            <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
-            <!-- Sort Start -->
-            <form action="/schemes" method="GET" class="govuk-form-group">
-              <label class="govuk-label govuk-!-font-weight-bold" for="sort">
-                Sort results
-              </label>
-            
-              <select class="govuk-select" id="sort" name="sort">
-                <option value="publishedDate,desc" <%= filters.sort === 'publishedDate,desc' ? 'selected' : '' %>>
-                  Published date, newest first
-                </option>
-            
-                <option value="publishedDate,asc" <%= filters.sort === 'publishedDate,asc' ? 'selected' : '' %>>
-                  Published date, oldest first
-                </option>
+                        <p class="govuk-body">
+                            <a class="govuk-link" href="<%= exportUrl('xlsx') %>">
+                                Export results as an Excel file
+                            </a>
+                            &nbsp;
+                            <a class="govuk-link" href="<%= exportUrl('csv') %>">
+                                Export results as a CSV file
+                            </a>
+                        </p>
+                        <!-- Export end -->
+                        <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+                        <!-- Sort Start -->
+                        <form action="/schemes" method="GET" class="govuk-form-group">
+                            <label class="govuk-label govuk-!-font-weight-bold" for="sort">
+                                Sort results
+                            </label>
 
-                <option value="subsidySchemeName,asc" <%= filters.sort === 'subsidySchemeName,asc' ? 'selected' : '' %>>
-                  Subsidy scheme name, A to Z
-                </option>
-            
-                <option value="subsidySchemeName,desc" <%= filters.sort === 'subsidySchemeName,desc' ? 'selected' : '' %>>
-                  Subsidy scheme name, Z to A
-                </option>
-              </select>
-            
-              <input type="hidden" name="page" value="1">
-              <input type="hidden" name="size" value="<%= size %>">
-            
-              <% Object.keys(filters || {}).forEach(function(key) { %>
-                <% if (key !== 'sort' && filters[key]) { %>
-                  <input type="hidden" name="<%= key %>" value="<%= filters[key] %>">
-                <% } %>
-              <% }); %>
-            
-              <button class="govuk-button govuk-!-margin-left-2" type="submit">
-                Apply sort
-              </button>
-            </form>
-            <!-- Sort End -->
-            <% if (schemes.length === 0) { %>
-              <p class="govuk-body">No subsidy schemes match your search.</p>
-            <% } else { %>
-              <% schemes.forEach(function(item, index) { %>
-                <% const description = item.subsidyAwardDescription || ''; %>
-                <% const shortDescription = description.length > 130 ? description.substring(0, 130) + '...' : description; %>
-                <% const spendingSectorArray = item.spendingSectors ? JSON.parse(item.spendingSectors) : null; %>
+                            <select class="govuk-select" id="sort" name="sort">
+                                <option value="publishedDate,desc" <%= filters.sort === 'publishedDate,desc' ? 'selected' : '' %>>
+                                    Published date, newest first
+                                </option>
 
-                <article class="govuk-!-margin-bottom-4">
-                  <a class="govuk-link govuk-heading-m" href="/scheme/?scheme=<%= item.scNumber %>&returnUrl=<%= encodeURIComponent(returnUrl) %>">
-                    <%= item.subsidyMeasureTitle %>
-                  </a>
+                                <option value="publishedDate,asc" <%= filters.sort === 'publishedDate,asc' ? 'selected' : '' %>>
+                                    Published date, oldest first
+                                </option>
 
-                  <% if (shortDescription) { %>
-                    <p class="govuk-body"><%= item.spendingSectors || 'N/A' %></p>
-                  <% } %>
+                                <option value="subsidySchemeName,asc" <%= filters.sort === 'subsidySchemeName,asc' ? 'selected' : '' %>>
+                                    Subsidy scheme name, A to Z
+                                </option>
 
-                  <dl class="govuk-summary-list govuk-summary-list--no-border app-summary-list--compact">
-                    <div class="govuk-summary-list__row">
-                      <dt class="govuk-summary-list__key">Public authority</dt>
-                      <dd class="govuk-summary-list__value">
-                        <%= item.grantingAuthorityName || 'N/A' %>
-                      </dd>
-                    </div>
+                                <option value="subsidySchemeName,desc" <%= filters.sort === 'subsidySchemeName,desc' ? 'selected' : '' %>>
+                                    Subsidy scheme name, Z to A
+                                </option>
+                            </select>
 
-                    <div class="govuk-summary-list__row">
-                      <dt class="govuk-summary-list__key">Budget or amount</dt>
-                      <dd class="govuk-summary-list__value">
-                        <%= item.budget ? '£' + item.budget : 'N/A' %>
-                      </dd>
-                    </div>
+                            <input type="hidden" name="page" value="1">
+                            <input type="hidden" name="size" value="<%= size %>">
 
-                    <div class="govuk-summary-list__row">
-                      <dt class="govuk-summary-list__key">Sector(s)</dt>
-                      <dd class="govuk-summary-list__value">
-                        <% if(spendingSectorArray !== null) { %>
-                          <ul class="govuk-list <%= spendingSectorArray.length > 1 ? 'govuk-list--bullet' : '' %>">
-                              <% spendingSectorArray.forEach(function(item) { %>
-                              <li> <%=item %> </li>
-                              <% }); %>
-                          </ul>
+                            <% Object.keys(filters || {}).forEach(function(key) { %>
+                            <% if (key !== 'sort' && filters[key]) { %>
+                            <input type="hidden" name="<%= key %>" value="<%= filters[key] %>">
+                            <% } %>
+                            <% }); %>
+
+                            <button class="govuk-button govuk-!-margin-left-2" type="submit">
+                                Apply sort
+                            </button>
+                        </form>
+                        <!-- Sort End -->
+                        <% if (schemes.length === 0) { %>
+                        <p class="govuk-body">No subsidy schemes match your search.</p>
                         <% } else { %>
-                              N/A
+                        <% schemes.forEach(function(item, index) { %>
+                        <% const description = item.subsidyAwardDescription || ''; %>
+                        <% const shortDescription = description.length > 130 ? description.substring(0, 130) + '...' : description; %>
+                        <% const spendingSectorArray = item.spendingSectors ? JSON.parse(item.spendingSectors) : null; %>
+
+                        <article class="govuk-!-margin-bottom-4">
+                            <a class="govuk-link govuk-heading-m" href="/scheme/?scheme=<%= item.scNumber %>&returnUrl=<%= encodeURIComponent(returnUrl) %>">
+                                <%= item.subsidyMeasureTitle %>
+                            </a>
+
+                            <% if (shortDescription) { %>
+                            <p class="govuk-body"><%= item.spendingSectors || 'N/A' %></p>
+                            <% } %>
+
+                            <dl class="govuk-summary-list govuk-summary-list--no-border app-summary-list--compact">
+                                <div class="govuk-summary-list__row">
+                                    <dt class="govuk-summary-list__key">Public authority</dt>
+                                    <dd class="govuk-summary-list__value">
+                                        <%= item.grantingAuthorityName || 'N/A' %>
+                                    </dd>
+                                </div>
+
+                                <div class="govuk-summary-list__row">
+                                    <dt class="govuk-summary-list__key">Budget or amount</dt>
+                                    <dd class="govuk-summary-list__value">
+                                        <%= item.budget ? '£' + item.budget : 'N/A' %>
+                                    </dd>
+                                </div>
+
+                                <div class="govuk-summary-list__row">
+                                    <dt class="govuk-summary-list__key">Sector(s)</dt>
+                                    <dd class="govuk-summary-list__value">
+                                        <% if(spendingSectorArray !== null) { %>
+                                        <ul class="govuk-list <%= spendingSectorArray.length > 1 ? 'govuk-list--bullet' : '' %>">
+                                            <% spendingSectorArray.forEach(function(item) { %>
+                                            <li> <%=item %> </li>
+                                            <% }); %>
+                                        </ul>
+                                        <% } else { %>
+                                        N/A
+                                        <% } %>
+                                    </dd>
+                                </div>
+
+                                <div class="govuk-summary-list__row">
+                                    <dt class="govuk-summary-list__key">Subsidy scheme status</dt>
+                                    <dd class="govuk-summary-list__value">
+                                        <%= item.status || 'N/A' %>
+                                    </dd>
+                                </div>
+
+                                <div class="govuk-summary-list__row">
+                                    <dt class="govuk-summary-list__key">Confirmation date</dt>
+                                    <dd class="govuk-summary-list__value">
+                                        <%= item.confirmationDate || 'N/A' %>
+                                    </dd>
+                                </div>
+
+                                <div class="govuk-summary-list__row">
+                                    <dt class="govuk-summary-list__key">Date published</dt>
+                                    <dd class="govuk-summary-list__value">
+                                        <%= item.publishedMeasureDate || 'N/A' %>
+                                    </dd>
+                                </div>
+                            </dl>
+                        </article>
+
+                        <% if (index < schemes.length - 1) { %>
+                        <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
                         <% } %>
-                      </dd>
+                        <% }); %>
+                        <% } %>
                     </div>
+                </div>
+                <!-- Start of Pagination -->
+                <%- include('../partials/pagination.ejs',{urlEndpoint: "schemes"}) %>
+                <!-- End of Pagination -->
+            </div>
+        </main>
+    </div>
 
-                    <div class="govuk-summary-list__row">
-                      <dt class="govuk-summary-list__key">Subsidy scheme status</dt>
-                      <dd class="govuk-summary-list__value">
-                        <%= item.status || 'N/A' %>
-                      </dd>
-                    </div>
-
-                    <div class="govuk-summary-list__row">
-                      <dt class="govuk-summary-list__key">Confirmation date</dt>
-                      <dd class="govuk-summary-list__value">
-                        <%= item.confirmationDate || 'N/A' %>
-                      </dd>
-                    </div>
-
-                    <div class="govuk-summary-list__row">
-                      <dt class="govuk-summary-list__key">Date published</dt>
-                      <dd class="govuk-summary-list__value">
-                        <%= item.publishedMeasureDate || 'N/A' %>
-                      </dd>
-                    </div>
-                  </dl>
-                </article>
-
-                <% if (index < schemes.length - 1) { %>
-                  <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
-                <% } %>
-              <% }); %>
-            <% } %>
-          </div>
-        </div>
-        <!-- Start of Pagination -->
-        <%- include('../partials/pagination.ejs',{urlEndpoint: "schemes"}) %>
-        <!-- End of Pagination -->
-      </div>
-    </main>
-  </div>
-
-  <%- include('../partials/footer.ejs') %>
-  <script src="/assets/javascripts/select-all.js"></script>
+    <%- include('../partials/footer.ejs') %>
+    <script src="/assets/javascripts/select-all.js"></script>
 </body>
+
 </html>

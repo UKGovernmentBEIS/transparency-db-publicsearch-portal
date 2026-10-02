@@ -1,39 +1,24 @@
-const express = require("express");
-const axios = require("axios");
+const express = require('express');
+const axios = require('axios');
 const router = express.Router();
-const utils = require("../utils");
+const utils = require('../utils');
+const { beisUrlAccessManagement } = require('../config');
 
-router.post("/", async (req, res) => {
-  utils.setSecurityHeaders(res, beis_url_publicsearch);
+router.post('/', async (req, res) => {
+    utils.setSecurityHeaders(res);
 
-  console.log("req.body.feedback", req.body.feedback);
-  console.log("req.body.comment", req.body.comment);
-  Environment_variable = process.argv[2];
-  if (Environment_variable == "env=dev") {
-    beis_url_accessmanagement =
-      "https://dev-transparency-db-access-management-service.azurewebsites.net";
-  } else if (Environment_variable == "env=integ") {
-    beis_url_accessmanagement =
-      "https://integ-transparency-db-access-management-service.azurewebsites.net";
-  } else if (Environment_variable == "env=stg") {
-    beis_url_accessmanagement =
-      "https://stg-transparency-db-access-management-service.azurewebsites.net";
-  } else if (Environment_variable == "env=prod") {
-    beis_url_accessmanagement =
-      "https://prod-transparency-db-access-management-service.azurewebsites.net";
-  }
-  try {
-    const apidata = await axios.post(
-      beis_url_accessmanagement + "/usermanagement/feedback",
-      {
-        feedBack: req.body.feedback,
-        comments: req.body.comment,
-      }
-    );
-    res.render("publicusersearch/submitfeedback");
-  } catch (err) {
-    console.log("message error : " + err);
-  }
+    console.log('req.body.feedback', req.body.feedback);
+    console.log('req.body.comment', req.body.comment);
+
+    try {
+        await axios.post(beisUrlAccessManagement + '/usermanagement/feedback', {
+            feedBack: req.body.feedback,
+            comments: req.body.comment,
+        });
+        res.render('publicusersearch/submitfeedback');
+    } catch (err) {
+        console.log('message error : ' + err);
+    }
 });
 
 module.exports = router;

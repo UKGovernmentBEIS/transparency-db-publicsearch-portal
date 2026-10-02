@@ -1,39 +1,60 @@
 {
-  "name": "public-search-portal",
-  "version": "0.10.2",
-  "description": "",
-  "main": "server.js",
-  "scripts": {
-    "start": "nodemon server.js",
-    "dev": "nodemon server.js",
-    "test": "jest --forceExit",
-    "test-coverage": "jest --coverage",
-    "copy:govuk-assets": "cpy ./node_modules/govuk-frontend/dist/govuk/assets/*/* ./public/assets/",
-    "build:css": "sass --pkg-importer=node src/scss/application.scss public/assets/css/application.css",
-    "watch:css": "sass --pkg-importer=node --watch src/scss/application.scss:public/assets/css/application.css",
-    "build": "npm run copy:govuk-assets && npm run build:css"
-  },
-  "author": "Jegan Maharajan",
-  "license": "ISC",
-  "dependencies": {
-    "axios": "^1.20.0",
-    "cors": "^2.8.5",
-    "ejs": "^6.0.1",
-    "express": "^4.17.1",
-    "govuk-frontend": "^6.5.1",
-    "jest-html-reporter": "^4.4.2",
-    "method-override": "^3.0.0",
-    "nodemon": "^3.1.14",
-    "path": "^0.12.7",
-    "qs": "^6.15.3",
-    "router": "^2.2.0",
-    "validate-date": "^2.1.0",
-    "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz"
-  },
-  "devDependencies": {
-    "cpy-cli": "^7.0.0",
-    "jest": "^30.5.2",
-    "sass": "^1.104.1",
-    "supertest": "^7.3.0"
-  }
+    "name": "public-search-portal",
+    "version": "0.10.2",
+    "description": "",
+    "main": "server.js",
+    "scripts": {
+        "start": "nodemon server.js",
+        "dev": "nodemon server.js",
+        "format:check": "prettier --check . --ignore-unknown",
+        "format:fix": "prettier --write . --ignore-unknown",
+        "format": "npm run format:fix && npm run format:ejs",
+        "format:ejs": "html-beautify -r \"**/*.ejs\"",
+        "lint": "eslint .",
+        "test": "jest --forceExit",
+        "test-coverage": "jest --coverage",
+        "copy:govuk-assets": "cpy ./node_modules/govuk-frontend/dist/govuk/assets/*/* ./public/assets/",
+        "build:css": "sass --pkg-importer=node src/scss/application.scss public/assets/css/application.css",
+        "watch:css": "sass --pkg-importer=node --watch src/scss/application.scss:public/assets/css/application.css",
+        "build": "npm run copy:govuk-assets && npm run build:css"
+    },
+    "lint-staged": {
+        "*": "prettier --write --ignore-unknown",
+        "*.ejs": "html-beautify -r"
+    },
+    "author": "Jegan Maharajan",
+    "license": "ISC",
+    "dependencies": {
+        "axios": "^1.20.0",
+        "cors": "^2.8.5",
+        "ejs": "^6.0.1",
+        "express": "^4.17.1",
+        "govuk-frontend": "^6.5.1",
+        "jest-html-reporter": "^4.4.2",
+        "method-override": "^3.0.0",
+        "nodemon": "^3.1.14",
+        "path": "^0.12.7",
+        "qs": "^6.15.3",
+        "router": "^2.2.0",
+        "validate-date": "^2.1.0",
+        "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz"
+    },
+    "devDependencies": {
+        "@eslint/eslintrc": "^3.3.7",
+        "@eslint/js": "^10.0.1",
+        "@j178/prek": "^0.5.4",
+        "@typescript-eslint/eslint-plugin": "^8.71.0",
+        "@typescript-eslint/parser": "^8.71.0",
+        "cpy-cli": "^7.0.0",
+        "eslint": "^10.11.0",
+        "eslint-config-prettier": "^10.1.8",
+        "eslint-plugin-prettier": "^5.5.6",
+        "globals": "^17.12.0",
+        "jest": "^30.5.2",
+        "js-beautify": "^2.0.3",
+        "lint-staged": "^17.6.0",
+        "prettier": "^3.9.9",
+        "sass": "^1.104.1",
+        "supertest": "^7.3.0"
+    }
 }

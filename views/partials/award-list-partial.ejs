@@ -4,18 +4,16 @@ startRecord, endRecord - record index at start/end of current page
 totalSearchResults - total number of search results
 totalPages - integer total number of pages
 prevPage, nextPage - integer of previous/next page
-currentURI - current url for setURIParameters() function (in utils.js)
 noAwardMessage - message displayed when no awards are available
 %>
 <div>
     <%if(typeof results === 'undefined' || !hasAwards) { %>
-        <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1"
-        data-module="govuk-error-summary">
+    <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="govuk-error-summary">
 
         <div class="govuk-error-summary__body">
             <a class="bold" style="color: inherit;" id="no-award-message" aria-label="<%=(typeof noAwardMessage === 'undefined') ? 'No awards found' : noAwardMessage %>"><%=(typeof noAwardMessage === 'undefined') ? 'No awards found' : noAwardMessage%></a>
         </div>
-      </div>
+    </div>
     <%} else { %>
     <section class="govuk-table">
         <table class="govuk-table" id="searchresult-table">
@@ -46,38 +44,38 @@ noAwardMessage - message displayed when no awards are available
             </thead>
             <tbody id="searchresult-table-body" class="govuk-table__body">
                 <% results.forEach(function(item) { %>
-                    <tr>
-                        <td class="govuk-table__cell">
-                            <a href="/award/?award=<%= item.awardNumber %>&returnUrl=<%= encodeURIComponent(schemeDetailReturnUrl) %>">
-                                <%= item.awardNumber %>
-                            </a>
-                        </td>
-                        <td class="govuk-table__cell" style="text-align:left">
-                            <%= item.status %>
-                        </td>
-                        <td class="govuk-table__cell" style="text-align:left">
-                            <%= item.beneficiary.beneficiaryName %>
-                        </td>
-                        <td class="govuk-table__cell">
-                            <%= item.grantingAuthorityResponse.grantingAuthorityName %>
-                        </td>
-                        <% if (item.subsidyInstrument=="Tax measures (tax credit, or tax/duty exemption)" ) { %>
-                            <td class="govuk-table__cell" style="text-align:left">
-                                <%= item.subsidyFullAmountRange %>
-                            </td>
-                        <% } else { %>
-                            <td class="govuk-table__cell" style="text-align:left"> £<%= item.subsidyFullAmountExact
+                <tr>
+                    <td class="govuk-table__cell">
+                        <a href="/award/?award=<%= item.awardNumber %>&returnUrl=<%= encodeURIComponent(schemeDetailReturnUrl) %>">
+                            <%= item.awardNumber %>
+                        </a>
+                    </td>
+                    <td class="govuk-table__cell" style="text-align:left">
+                        <%= item.status %>
+                    </td>
+                    <td class="govuk-table__cell" style="text-align:left">
+                        <%= item.beneficiary.beneficiaryName %>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <%= item.grantingAuthorityResponse.grantingAuthorityName %>
+                    </td>
+                    <% if (item.subsidyInstrument=="Tax measures (tax credit, or tax/duty exemption)" ) { %>
+                    <td class="govuk-table__cell" style="text-align:left">
+                        <%= item.subsidyFullAmountRange %>
+                    </td>
+                    <% } else { %>
+                    <td class="govuk-table__cell" style="text-align:left"> £<%= item.subsidyFullAmountExact
                                     %>
-                            </td>
-                        <% } %>
-                    </tr>
+                    </td>
+                    <% } %>
+                </tr>
 
-                    <% } ); %>
+                <% } ); %>
 
             </tbody>
         </table>
         <!-- Start of Pagination -->
         <%- include('../partials/pagination.ejs',{urlEndpoint: "scheme"}) %>
         <!-- End of Pagination -->
-    <% } %>
+        <% } %>
 </div>

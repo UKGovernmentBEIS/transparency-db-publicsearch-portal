@@ -2,23 +2,24 @@
 // Gov.UK public user search results routing module
 // ********************************************************************
 
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const axios = require("axios");
+const axios = require('axios');
 const qs = require('qs');
-const utils = require("../utils");
+const utils = require('../utils');
+const { beisUrlPublicSearch } = require('../config');
 
-router.get("/", async (req, res) => {
-    utils.setSecurityHeaders(res, beis_url_publicsearch);
+router.get('/', async (req, res) => {
+    utils.setSecurityHeaders(res);
 
     var errors = [];
 
     // Filter items from the request
-    const filters = utils.getFilters(req,"scheme");
+    const filters = utils.getFilters(req, 'scheme');
 
     const page = Number(req.query.page || 1);
     const size = Number(req.query.size || 10);
-    
+
     const backendPage = Math.max(page - 1, 0);
     const returnUrl = req.originalUrl;
     var startRecord;
@@ -26,71 +27,84 @@ router.get("/", async (req, res) => {
     var paList = [];
 
     // Get list of public authorities for filter.
-    try{
-      const paListRequest = await axios.get(
-        beis_url_publicsearch + "/searchResults/all_gas",
-        {
-          headers: {
-            "X-Frame-Options": "DENY",
-            "Content-Security-Policy": "frame-ancestors 'self'",
-          },
-        }
-      );
- 
-      API_response_code = `${paListRequest.status}`;
-      paList = paListRequest.data.gaList;
-      paList.sort((a, b) => a.grantingAuthorityName.localeCompare(b.grantingAuthorityName));
-  
-    }catch(err){
-      console.log("Error getting list of public authorities : " + err);
+    try {
+        const paListRequest = await axios.get(
+            beisUrlPublicSearch + '/searchResults/all_gas',
+            {
+                headers: {
+                    'X-Frame-Options': 'DENY',
+                    'Content-Security-Policy': "frame-ancestors 'self'",
+                },
+            },
+        );
+
+        paList = paListRequest.data.gaList;
+        paList.sort((a, b) =>
+            a.grantingAuthorityName.localeCompare(b.grantingAuthorityName),
+        );
+    } catch (err) {
+        console.log('Error getting list of public authorities : ' + err);
     }
 
     // Validate scheme start date from and to
-    var dateErrors = utils.validateDateFromTo(filters.fromDay, filters.fromMonth, filters.fromYear, filters.toDay, filters.toMonth, filters.toYear)
-    
-    if (dateErrors.hasErrors){
-      errors.push(dateErrors);
+    var dateErrors = utils.validateDateFromTo(
+        filters.fromDay,
+        filters.fromMonth,
+        filters.fromYear,
+        filters.toDay,
+        filters.toMonth,
+        filters.toYear,
+    );
+
+    if (dateErrors.hasErrors) {
+        errors.push(dateErrors);
     }
 
-     // Validate award full amount from and to
-     var awardAmountErrors = utils.validateFromTo(filters.schemeBudgetFromAmount, filters.schemeBudgetToAmount);
+    // Validate award full amount from and to
+    var awardAmountErrors = utils.validateFromTo(
+        filters.schemeBudgetFromAmount,
+        filters.schemeBudgetToAmount,
+    );
 
-     if (awardAmountErrors.hasErrors) {
-       const fieldIds = {
-         from: "schemeBudget-from-amount-input",
-         to: "schemeBudget-to-amount-input"
-       };
-     
-       awardAmountErrors.field = fieldIds[awardAmountErrors.field] ?? fieldIds.to;
-       errors.push(awardAmountErrors);
-     }
+    if (awardAmountErrors.hasErrors) {
+        const fieldIds = {
+            from: 'schemeBudget-from-amount-input',
+            to: 'schemeBudget-to-amount-input',
+        };
 
-    if(errors.length > 0){
-      return res.render("publicusersearch/schemes", {
-        filters,
-        paList,
-        results: [],
-        pageCount: 0,
-        page: 0,
-        size: 10,
-        errors,
-        returnUrl
-      });
+        awardAmountErrors.field =
+            fieldIds[awardAmountErrors.field] ?? fieldIds.to;
+        errors.push(awardAmountErrors);
+    }
+
+    if (errors.length > 0) {
+        return res.render('publicusersearch/schemes', {
+            filters,
+            paList,
+            results: [],
+            pageCount: 0,
+            page: 0,
+            size: 10,
+            errors,
+            returnUrl,
+        });
     }
 
     try {
         const apidata = await axios.get(
-            beis_url_publicsearch + "/searchResults/schemes", {
-              params:{
-                page: backendPage,
-                size,
-                ...filters
-              },
-              paramsSerializer: params => qs.stringify(params, {
-                arrayFormat: 'repeat',
-                skipNulls: true
-              })
-            }
+            beisUrlPublicSearch + '/searchResults/schemes',
+            {
+                params: {
+                    page: backendPage,
+                    size,
+                    ...filters,
+                },
+                paramsSerializer: (params) =>
+                    qs.stringify(params, {
+                        arrayFormat: 'repeat',
+                        skipNulls: true,
+                    }),
+            },
         );
 
         const results = apidata.data;
@@ -100,15 +114,15 @@ router.get("/", async (req, res) => {
         if (page == 1) {
             startRecord = 1;
             endRecord = size;
-          } else if (page == pageCount) {
+        } else if (page == pageCount) {
             startRecord = (page - 1) * size + 1;
             endRecord = totalrows;
-          } else {
+        } else {
             startRecord = page * size - size + 1;
             endRecord = page * size;
-          }
+        }
 
-        res.render("publicusersearch/schemes", {
+        res.render('publicusersearch/schemes', {
             filters,
             results,
             paList,
@@ -118,14 +132,12 @@ router.get("/", async (req, res) => {
             endRecord,
             size,
             errors,
-            returnUrl
+            returnUrl,
         });
     } catch (err) {
-        response_error_message = err;
-        console.log("message error : " + err);
-        console.log("response_error_message catch : " + response_error_message);
-        res.render("publicusersearch/service-unavailable");
-      }
-  });
-  
-  module.exports = router;
+        console.log('Error: ' + err);
+        res.render('publicusersearch/service-unavailable');
+    }
+});
+
+module.exports = router;

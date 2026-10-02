@@ -1,36 +1,42 @@
 name: CI
 
-on: 
-  pull_request:
-  push:
-    branches:
-      - master
+on:
+    pull_request:
+    push:
+        branches:
+            - master
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v7
-      - name: Setup node
-        uses: actions/setup-node@v7
-        with:
-          node-version: 24.21.0
-          package-manager-cache: false
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v7
+            - name: Setup node
+              uses: actions/setup-node@v7
+              with:
+                  node-version: 24.21.0
+                  package-manager-cache: false
 
-      - run: node --version
-      
-      - run: npm --version
+            - run: node --version
 
-      - run: npm ci
-      
-      - name: Run build
-        run: npm run build
+            - run: npm --version
 
-      - name: Ensure build produced no changes
-        run: |
-          if [ -n "$(git status --porcelain)" ]; then
-            echo "Build produced uncommitted changes:"
-            git status --short
-            echo "Make sure to run 'npm run build' before committing."
-            exit 1
-          fi
+            - run: npm ci
+
+            - name: Check formatting
+              run: npm run format:check
+
+            - name: Run lint
+              run: npm run lint -- --max-warnings=0
+
+            - name: Run build
+              run: npm run build
+
+            - name: Ensure build produced no changes
+              run: |
+                  if [ -n "$(git status --porcelain)" ]; then
+                    echo "Build produced uncommitted changes:"
+                    git status --short
+                    echo "Make sure to run 'npm run build' before committing."
+                    exit 1
+                  fi
