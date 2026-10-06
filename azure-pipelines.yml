@@ -10,6 +10,7 @@ trigger:
     branches:
         include:
             - 'cr*'
+            - 'AB#740*'
 
 pr:
     - master
