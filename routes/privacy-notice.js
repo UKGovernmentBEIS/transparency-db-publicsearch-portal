@@ -1,12 +1,10 @@
-const express = require("express");
-var session = require("express-session");
+const express = require('express');
 const router = express.Router();
-const utils = require("../utils");
+const utils = require('../utils');
 
-router.get("/", (req, res) => {
-  ssn = req.session;
-  utils.setSecurityHeaders(res, beis_url_publicsearch);
-  res.render("publicusersearch/privacy-notice");
+router.get('/', (req, res) => {
+    utils.setSecurityHeaders(res);
+    res.render('publicusersearch/privacy-notice');
 });
 
 module.exports = router;

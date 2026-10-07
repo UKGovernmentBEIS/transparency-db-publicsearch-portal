@@ -2,372 +2,365 @@
 <html lang="en">
 
 <head>
-  <title>Award <%= searchawarddetails.awardNumber %> - Search for UK subsidies - GOV.UK - Public user search subsidy award details page</title>
-  <%- include('../partials/headercss.ejs') %>
+    <title>Award <%= searchawarddetails.awardNumber %> - Search for UK subsidies - GOV.UK - Public user search subsidy award details page</title>
+    <%- include('../partials/headercss.ejs') %>
 </head>
 
 <body class="govuk-template__body app-example-page">
-  <%- include('../partials/cookies-consent.ejs') %>
-  <%- include('../partials/header.ejs') %>
+    <%- include('../partials/cookies-consent.ejs') %>
+    <%- include('../partials/header.ejs') %>
 
-  <div class="govuk-width-container ">
-    <%- include('../partials/banner.ejs') %>
-    <a href=<%=backButton_href%> class="govuk-back-link" id="back-button-link">
-      Back
-    </a>
-    <main class="govuk-main-wrapper " id="main-content" role="main">
-      <div class="govuk-grid-row">
-        <div class="govuk-grid-column-three-quarters">
-          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-            <h1 class="govuk-heading-xl">
-              Subsidy awards details
-            </h1>
-          </legend>
-        </div>
+    <div class="govuk-width-container ">
+        <%- include('../partials/banner.ejs') %>
+        <a href=<%=backButton_href%> class="govuk-back-link" id="back-button-link">
+            Back
+        </a>
+        <main class="govuk-main-wrapper " id="main-content" role="main">
+            <div class="govuk-grid-row">
+                <div class="govuk-grid-column-three-quarters">
+                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                        <h1 class="govuk-heading-xl">
+                            Subsidy awards details
+                        </h1>
+                    </legend>
+                </div>
 
-        <div class="govuk-grid-column-one-quarter">
-          <button class="govuk-button_cancel_last_xl" data-module="govuk-button" onclick="window.print()">
-            Print page </button>
-        </div>
-      </div>
+                <div class="govuk-grid-column-one-quarter">
+                    <button class="govuk-button" data-module="govuk-button" onclick="window.print()">
+                        Print page </button>
+                </div>
+            </div>
 
-      <label class="govuk-label">
-        Overview of the subsidy, the recipient and the public authority that awarded the subsidy.
-      </label>
+            <label class="govuk-label">
+                Overview of the subsidy, the recipient and the public authority that awarded the subsidy.
+            </label>
 
-      <% if( searchawarddetails.status=="Rejected" || searchawarddetails.status =="Deleted") { %>
+            <% if( searchawarddetails.status=="Rejected" || searchawarddetails.status =="Deleted") { %>
 
-      <div class="govuk-form-group app-example">
-        <div class="app-example__toolbar">
-          <label>Comments</label>
-        </div>
-        <div class="app-example__frame">
-          <% if(searchawarddetails.rejectReason) { %>
-          <p> <%= searchawarddetails.rejectReason %></p>
-          <% } else { %>
-          <p>The subsidy award <% if( searchawarddetails.status=="Rejected"){
+            <div class="govuk-form-group app-example">
+                <div class="app-example__toolbar">
+                    <label>Comments</label>
+                </div>
+                <div class="app-example__frame">
+                    <% if(searchawarddetails.rejectReason) { %>
+                    <p> <%= searchawarddetails.rejectReason %></p>
+                    <% } else { %>
+                    <p>The subsidy award <% if( searchawarddetails.status=="Rejected"){
            %> reject <%
            } else {%> delete<%}%> reason not mentioned </p>
         <% } %>
-        </div>
-      </div>
+                </div>
+            </div>
 
-      <% } %>
-      <!-- Reject Message Block -->
-      <h2 class="govuk-heading-m">
-        Subsidy details
-      </h2>
-
-
-
-      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Standalone subsidy award
-          </dt>
-          <dd class="govuk-summary-list__value">
-            <%= searchawarddetails.standaloneAward %>
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Standalone award title
-          </dt>
-          <dd class="govuk-summary-list__value">
-            <%= searchawarddetails.standaloneAwardTitle %>
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key" id="subsidycontrolnumber">
-            Subsidy control number
-          </dt>
-          <dd class="govuk-summary-list__value">
-            <% if(searchawarddetails.subsidyMeasure.scNumber == 'NA'){ %>
-              <%= searchawarddetails.subsidyMeasure.scNumber %>
-            <% }else{ %>
-              <a class="govuk-link" href="/scheme/?scheme=<%=searchawarddetails.subsidyMeasure.scNumber%>">
-              <%= searchawarddetails.subsidyMeasure.scNumber %> </a>
             <% } %>
-          </dd>
-        </div>
-
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Subsidy award number
-          </dt>
-          <dd class="govuk-summary-list__value">
-            <%= searchawarddetails.awardNumber %>
-          </dd>
-        </div>
-
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Subsidies or Schemes of Interest (SSoI) or Subsidies or Schemes of Particular Interest (SSoPI)
-          </dt>
-          <dd class="govuk-summary-list__value render-newlines"><%= (searchawarddetails.standaloneAward === 'No' || searchawarddetails.subsidyAwardInterest === '') ? 'NA' : searchawarddetails.subsidyAwardInterest %>
-          </dd>
-        </div>
-
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Policy objective
-          </dt>
-          <dd class="govuk-summary-list__value render-newlines"><%= (searchawarddetails.standaloneAward === 'No' || searchawarddetails.specificPolicyObjective === '') ? 'NA' : searchawarddetails.specificPolicyObjective %>
-        </div>
-
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Subsidy award description
-          </dt>
-          <dd class="govuk-summary-list__value render-newlines"><%= searchawarddetails.subsidyAwardDescription %></dd>
-        </div>
-
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Subsidy award status
-          </dt>
-          <dd class="govuk-summary-list__value">
-            <%= searchawarddetails.status %>
-          </dd>
-        </div>
-
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Subsidy scheme
-          </dt>
-          <dd class="govuk-summary-list__value">
-            <%= searchawarddetails.subsidyMeasure.subsidyMeasureTitle %>
-          </dd>
-        </div>
-
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Services of Public Economic Interest (SPEI)
-          </dt>
-          <dd class="govuk-summary-list__value">
-            <%= searchawarddetails.spei %>
-          </dd>
-        </div>
-
- 
-
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-              Legal Basis
-          </dt>
-          <dd class="govuk-summary-list__value render-newlines"><%= searchawarddetails.legalBasis %></dd>
-        
-      </div>
-
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Subsidy purpose(s)
-          </dt>
-          <dd class="govuk-summary-list__value govuk-capitalize">
-            <tr class="govuk-table__row">
-              <td class="govuk-table__cell">
-                  <% if(objectiveArray.length > 0) { %>
-                  <ul class="govuk-list govuk-list--bullet">
-                      <% objectiveArray.forEach(function(item) { %>
-                          <%if(item != ""){%>
-                          <li> <%=item %> </li>
-                          <% } %>
-                      <% }); %>
-                  </ul>
-                  <% } else { %>
-                      NA
-                   <% } %>
-              </td>
-          </tr>
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Subsidy form
-          </dt>
-          <dd class="govuk-summary-list__value">
-            <%= searchawarddetails.subsidyInstrument%>
-          </dd>
-        </div>
-
-        <% if (searchawarddetails.subsidyInstrument == "Tax measures (tax credit, or tax/duty exemption)") { %>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Subsidy range
-          </dt>
-          <dd class="govuk-summary-list__value">
-            <%= searchawarddetails.subsidyFullAmountRange%>
-          </dd>
-        </div>
-        <% } else { %>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Subsidy amount
-          </dt>
-          <dd class="govuk-summary-list__value">
-            £<%= searchawarddetails.subsidyFullAmountExact%>
-          </dd>
-        </div>
-        <% } %>
-
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Public authority
-          </dt>
-          <dd class="govuk-summary-list__value">
-            <%= searchawarddetails.grantingAuthorityResponse.grantingAuthorityName  %>
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Weblink to public authority text of subsidy
-          </dt>
-          <dd class="govuk-summary-list__value">
-          <% if(typeof searchawarddetails.authorityURL != 'undefined') { %>
-                  <a aria-label="Weblink to public authority" target="_blank"
-                    href="<%= (searchawarddetails.authorityURL.includes('https://')) ?  searchawarddetails.authorityURL : 'https://'+searchawarddetails.authorityURL %>">
-                    <%=searchawarddetails.authorityURL %>
-                  </a>
-          <% } else { %>
-              <a aria-label="Public authority policy URL not applicable" >NA</a>
-          </dd>
-          <%  } %>
-      </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Weblink description
-          </dt>
-          <dd class="govuk-summary-list__value">
-            <%= (searchawarddetails.standaloneAward === 'No') ? 'NA' : searchawarddetails.authorityURLDescription %>
-          </dd>
-        </div>
-
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Date awarded
-          </dt>
-          <dd class="govuk-summary-list__value">
-            <%= searchawarddetails.legalGrantingDate %>
-          </dd>
-        </div>
-
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Date published
-          </dt>
-          <dd class="govuk-summary-list__value">
-            <%= searchawarddetails.publishedAwardDate %>
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Date created
-          </dt>
-          <dd class="govuk-summary-list__value">
-            <%= searchawarddetails.createdTimestamp%>
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Date last modified 
-          </dt>
-          <dd class="govuk-summary-list__value">
-            <%= searchawarddetails.lastModifiedTimestamp%>
-          </dd>
-        </div>
-      </dl>
+            <!-- Reject Message Block -->
+            <h2 class="govuk-heading-m">
+                Subsidy details
+            </h2>
 
 
-      <h2 class="govuk-heading-m">
-        Recipient details
-      </h2>
+            <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Standalone subsidy award
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        <%= searchawarddetails.standaloneAward %>
+                    </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Standalone award title
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        <%= searchawarddetails.standaloneAwardTitle %>
+                    </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key" id="subsidycontrolnumber">
+                        Subsidy control number
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        <% if(searchawarddetails.subsidyMeasure.scNumber == 'NA'){ %>
+                        <%= searchawarddetails.subsidyMeasure.scNumber %>
+                        <% }else{ %>
+                        <a class="govuk-link" href="/scheme/?scheme=<%=searchawarddetails.subsidyMeasure.scNumber%>&returnUrl=<%= encodeURIComponent(awardDetailReturnUrl) %>">
+                            <%= searchawarddetails.subsidyMeasure.scNumber %> </a>
+                        <% } %>
+                    </dd>
+                </div>
+
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Subsidy award number
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        <%= searchawarddetails.awardNumber %>
+                    </dd>
+                </div>
+
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Subsidies or Schemes of Interest (SSoI) or Subsidies or Schemes of Particular Interest (SSoPI)
+                    </dt>
+                    <dd class="govuk-summary-list__value render-newlines"><%= (searchawarddetails.standaloneAward === 'No' || searchawarddetails.subsidyAwardInterest === '') ? 'NA' : searchawarddetails.subsidyAwardInterest %>
+                    </dd>
+                </div>
+
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Policy objective
+                    </dt>
+                    <dd class="govuk-summary-list__value render-newlines"><%= (searchawarddetails.standaloneAward === 'No' || searchawarddetails.specificPolicyObjective === '') ? 'NA' : searchawarddetails.specificPolicyObjective %>
+                </div>
+
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Subsidy award description
+                    </dt>
+                    <dd class="govuk-summary-list__value render-newlines"><%= searchawarddetails.subsidyAwardDescription %></dd>
+                </div>
+
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Subsidy award status
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        <%= searchawarddetails.status %>
+                    </dd>
+                </div>
+
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Subsidy scheme
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        <%= searchawarddetails.subsidyMeasure.subsidyMeasureTitle %>
+                    </dd>
+                </div>
+
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Services of Public Economic Interest (SPEI)
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        <%= searchawarddetails.spei %>
+                    </dd>
+                </div>
 
 
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Legal Basis
+                    </dt>
+                    <dd class="govuk-summary-list__value render-newlines"><%= searchawarddetails.legalBasis %></dd>
 
-      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+                </div>
 
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Organisation name
-          </dt>
-          <dd class="govuk-summary-list__value">
-            <%= searchawarddetails.beneficiary.beneficiaryName  %>
-          </dd>
-        </div>
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Subsidy purpose(s)
+                    </dt>
+                    <dd class="govuk-summary-list__value govuk-capitalize">
+                        <tr class="govuk-table__row">
+                            <td class="govuk-table__cell">
+                                <% if(searchawarddetails.objectiveArray.length > 0) { %>
+                                <ul class="govuk-list govuk-list--bullet">
+                                    <% searchawarddetails.objectiveArray.forEach(function(item) { %>
+                                    <%if(item != ""){%>
+                                    <li> <%=item %> </li>
+                                    <% } %>
+                                    <% }); %>
+                                </ul>
+                                <% } else { %>
+                                NA
+                                <% } %>
+                            </td>
+                        </tr>
+                    </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Subsidy form
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        <%= searchawarddetails.subsidyInstrument%>
+                    </dd>
+                </div>
 
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Organisation size
-          </dt>
-          <dd class="govuk-summary-list__value">
-            <%= searchawarddetails.beneficiary.orgSize %>
-          </dd>
-        </div>
+                <% if (searchawarddetails.subsidyInstrument == "Tax measures (tax credit, or tax/duty exemption)") { %>
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Subsidy range
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        <%= searchawarddetails.subsidyFullAmountRange%>
+                    </dd>
+                </div>
+                <% } else { %>
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Subsidy amount
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        £<%= searchawarddetails.subsidyFullAmountExact%>
+                    </dd>
+                </div>
+                <% } %>
 
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            ID Type
-          </dt>
-          <dd class="govuk-summary-list__value">
-            <%= searchawarddetails.beneficiary.nationalIdType   %>
-          </dd>
-        </div>
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Public authority
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        <%= searchawarddetails.grantingAuthorityResponse.grantingAuthorityName  %>
+                    </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Weblink to public authority text of subsidy
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        <% if(typeof searchawarddetails.authorityURL != 'undefined') { %>
+                        <a aria-label="Weblink to public authority" target="_blank" href="<%= (searchawarddetails.authorityURL.includes('https://')) ?  searchawarddetails.authorityURL : 'https://'+searchawarddetails.authorityURL %>">
+                            <%=searchawarddetails.authorityURL %>
+                        </a>
+                        <% } else { %>
+                        <a aria-label="Public authority policy URL not applicable">NA</a>
+                    </dd>
+                    <%  } %>
+                </div>
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Weblink description
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        <%= (searchawarddetails.standaloneAward === 'No') ? 'NA' : searchawarddetails.authorityURLDescription %>
+                    </dd>
+                </div>
 
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            ID number
-          </dt>
-          <dd class="govuk-summary-list__value">
-            <%= searchawarddetails.beneficiary.nationalId  %>
-          </dd>
-        </div>
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Date awarded
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        <%= searchawarddetails.legalGrantingDate %>
+                    </dd>
+                </div>
 
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Provider of (good or services)
-          </dt>
-          <dd class="govuk-summary-list__value">
-            <%= searchawarddetails.goodsServicesFilter %>
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Geographical location(s)
-          </dt>
-          <dd class="govuk-summary-list__value">
-            <% if(searchawarddetails.spendingRegionArray.length > 0) { %>
-                <ul class="govuk-list govuk-list--bullet">
-                    <% searchawarddetails.spendingRegionArray.forEach(function(item) { %>
-                    <li> <%= item %> </li>
-                    <% }); %>
-                </ul>
-            <% } else { %>
-                NA
-            <% } %>
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Sector
-          </dt>
-          <dd class="govuk-summary-list__value">
-            <%= searchawarddetails.spendingSector %>
-          </dd>
-        </div>
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Date published
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        <%= searchawarddetails.publishedAwardDate %>
+                    </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Date created
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        <%= searchawarddetails.createdTimestamp%>
+                    </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Date last modified
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        <%= searchawarddetails.lastModifiedTimestamp%>
+                    </dd>
+                </div>
+            </dl>
 
-      </dl>
-        <div>
-          <form action="<%=backButton_href%>" method="<%=backButton_method%>" class="govuk-padding-top-2">
-            <button class="govuk-button " data-module="govuk-button" id="homepage_button_view_all_awards"
-              name="homepage_button" value="show_results">
-              <%=backButton_text%>
-            </button>
-          </form>
-        </div>
-    </main>
-  </div>
 
-  <%- include('../partials/footer.ejs') %>
+            <h2 class="govuk-heading-m">
+                Recipient details
+            </h2>
+
+
+            <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Organisation name
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        <%= searchawarddetails.beneficiary.beneficiaryName  %>
+                    </dd>
+                </div>
+
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Organisation size
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        <%= searchawarddetails.beneficiary.orgSize %>
+                    </dd>
+                </div>
+
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        ID Type
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        <%= searchawarddetails.beneficiary.nationalIdType   %>
+                    </dd>
+                </div>
+
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        ID number
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        <%= searchawarddetails.beneficiary.nationalId  %>
+                    </dd>
+                </div>
+
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Provider of (good or services)
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        <%= searchawarddetails.goodsServicesFilter %>
+                    </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Geographical location(s)
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        <% if(searchawarddetails.spendingRegionArray.length > 0) { %>
+                        <ul class="govuk-list govuk-list--bullet">
+                            <% searchawarddetails.spendingRegionArray.forEach(function(item) { %>
+                            <li> <%= item %> </li>
+                            <% }); %>
+                        </ul>
+                        <% } else { %>
+                        NA
+                        <% } %>
+                    </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Sector
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        <%= searchawarddetails.spendingSector %>
+                    </dd>
+                </div>
+
+            </dl>
+            <div>
+                <a href="<%=backButton_href%>" class="govuk-button" data-module="govuk-button">
+                    <%=backButton_text%>
+                </a>
+            </div>
+        </main>
+    </div>
+
+    <%- include('../partials/footer.ejs') %>
 </body>
 
 </html>
