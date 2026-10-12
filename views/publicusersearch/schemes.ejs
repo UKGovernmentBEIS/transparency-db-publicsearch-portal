@@ -73,26 +73,26 @@
                         <!-- Search results count start end -->
                         <!-- Export start -->
                         <%
-            function exportUrl(format) {
-              const params = new URLSearchParams();
-          
-              params.set('format', format);
-          
-              Object.keys(filters || {}).forEach(function(key) {
-                if (filters[key]) {
-                  params.set(key, filters[key]);
-                }
-              });
-          
-              return '/schemes/export?' + params.toString();
-            }
-            %>
+                            function exportUrl(format) {
+                            const params = new URLSearchParams();
+                        
+                            params.set('format', format);
+                        
+                            Object.keys(filters || {}).forEach(function(key) {
+                                if (filters[key]) {
+                                params.set(key, filters[key]);
+                                }
+                            });
+                        
+                            return '/schemes/export?' + params.toString();
+                            }
+                        %>
                         <p class="govuk-body">
-                            <a class="govuk-link" href="<%= exportUrl('xlsx') %>">
+                            <a class="govuk-link" id="export-excel" href="<%= exportUrl('xlsx') %>">
                                 Export results as an Excel file
                             </a>
                             &nbsp;
-                            <a class="govuk-link" href="<%= exportUrl('csv') %>">
+                            <a class="govuk-link" id="export-csv" href="<%= exportUrl('csv') %>">
                                 Export results as a CSV file
                             </a>
                         </p>
