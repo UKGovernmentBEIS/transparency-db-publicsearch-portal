@@ -645,79 +645,84 @@ router.post("/", async (req, res) => {
       // API integration section
       // ***********************
 
-      actual_subsidy_objective_trim = actual_subsidy_objective.replace(
-        /^"(.+)"$/,
-        "$1"
-      );
-      actual_subsidy_objective_brace = "[" + actual_subsidy_objective + "]";
-      actual_subsidy_objective_pass = actual_subsidy_objective_brace.replace(
-        /^"(.*)"$/,
-        "$1"
-      );
+      try {
+        actual_subsidy_objective_trim = actual_subsidy_objective.replace(
+          /^"(.+)"$/,
+          "$1"
+        );
+        actual_subsidy_objective_brace = "[" + actual_subsidy_objective + "]";
+        actual_subsidy_objective_pass = actual_subsidy_objective_brace.replace(
+          /^"(.*)"$/,
+          "$1"
+        );
 
-      actual_subsidy_objective_pass1 = JSON.parse(
-        actual_subsidy_objective_pass
-      );
-      actual_subsidy_instrument_trim = actual_subsidy_instrument.replace(
-        /^"(.+)"$/,
-        "$1"
-      );
-      actual_subsidy_instrument_brace = "[" + actual_subsidy_instrument + "]";
-      actual_subsidy_instrument_pass = actual_subsidy_instrument_brace.replace(
-        /^"(.*)"$/,
-        "$1"
-      );
-      actual_subsidy_instrument_pass1 = JSON.parse(
-        actual_subsidy_instrument_pass
-      );
+        actual_subsidy_objective_pass1 = JSON.parse(
+          actual_subsidy_objective_pass
+        );
+        actual_subsidy_instrument_trim = actual_subsidy_instrument.replace(
+          /^"(.+)"$/,
+          "$1"
+        );
+        actual_subsidy_instrument_brace = "[" + actual_subsidy_instrument + "]";
+        actual_subsidy_instrument_pass = actual_subsidy_instrument_brace.replace(
+          /^"(.*)"$/,
+          "$1"
+        );
+        actual_subsidy_instrument_pass1 = JSON.parse(
+          actual_subsidy_instrument_pass
+        );
 
-      actual_spending_sector_trim = actual_spending_sector.replace(
-        /^"(.+)"$/,
-        "$1"
-      );
-      actual_spending_sector_brace = "[" + actual_spending_sector + "]";
-      actual_spending_sector_pass = actual_spending_sector_brace.replace(
-        /^"(.*)"$/,
-        "$1"
-      );
-      actual_spending_sector_pass1 = JSON.parse(actual_spending_sector_pass);
+        actual_spending_sector_trim = actual_spending_sector.replace(
+          /^"(.+)"$/,
+          "$1"
+        );
+        actual_spending_sector_brace = "[" + actual_spending_sector + "]";
+        actual_spending_sector_pass = actual_spending_sector_brace.replace(
+          /^"(.*)"$/,
+          "$1"
+        );
+        actual_spending_sector_pass1 = JSON.parse(actual_spending_sector_pass);
 
-      console.log(
-        "actual_spending_sector_pass :" + actual_spending_sector_pass
-      );
+        console.log(
+          "actual_spending_sector_pass :" + actual_spending_sector_pass
+        );
 
-      const data_request_all = {
-        beneficiaryName: text_beneficiaryname,
-        subsidyMeasureTitle: "",
-        subsidyObjective: actual_subsidy_objective_pass1,
-        spendingRegion: [],
-        subsidyInstrument: actual_subsidy_instrument_pass1,
-        spendingSector: actual_spending_sector_pass1,
-        legalGrantingFromDate: legal_granting_from_date,
-        legalGrantingToDate: legal_granting_to_date,
-        pageNumber: 1,
-        totalRecordsPerPage: 500000,
-        sortBy: [""],
-      };
-      data_request_clientside = JSON.stringify(data_request_all);
+        const data_request_all = {
+          beneficiaryName: text_beneficiaryname,
+          subsidyMeasureTitle: "",
+          subsidyObjective: actual_subsidy_objective_pass1,
+          spendingRegion: [],
+          subsidyInstrument: actual_subsidy_instrument_pass1,
+          spendingSector: actual_spending_sector_pass1,
+          legalGrantingFromDate: legal_granting_from_date,
+          legalGrantingToDate: legal_granting_to_date,
+          pageNumber: 1,
+          totalRecordsPerPage: 500000,
+          sortBy: [""],
+        };
+        data_request_clientside = JSON.stringify(data_request_all);
 
-      const data_request = {
-        beneficiaryName: text_beneficiaryname,
-        subsidyMeasureTitle: "",
-        subsidyObjective: actual_subsidy_objective_pass1,
-        spendingRegion: [],
-        subsidyInstrument: actual_subsidy_instrument_pass1,
-        spendingSector: actual_spending_sector_pass1,
-        legalGrantingFromDate: legal_granting_from_date,
-        legalGrantingToDate: legal_granting_to_date,
-        pageNumber: 1,
-        totalRecordsPerPage: frontend_totalRecordsPerPage,
-        sortBy: [""],
-      };
+        const data_request = {
+          beneficiaryName: text_beneficiaryname,
+          subsidyMeasureTitle: "",
+          subsidyObjective: actual_subsidy_objective_pass1,
+          spendingRegion: [],
+          subsidyInstrument: actual_subsidy_instrument_pass1,
+          spendingSector: actual_spending_sector_pass1,
+          legalGrantingFromDate: legal_granting_from_date,
+          legalGrantingToDate: legal_granting_to_date,
+          pageNumber: 1,
+          totalRecordsPerPage: frontend_totalRecordsPerPage,
+          sortBy: [""],
+        };
 
-      var data = JSON.parse(JSON.stringify(data_request));
+        var data = JSON.parse(JSON.stringify(data_request));
 
-      console.log("request :" + JSON.stringify(data));
+        console.log("request :" + JSON.stringify(data));
+      } catch (error) {
+        console.error("Error preparing request data:", error);
+        return res.render("publicusersearch/noresults");
+      }
 
       try {
         const apidata = await axios.post(
