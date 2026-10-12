@@ -9,66 +9,71 @@ var request = require("request");
 const utils = require("../utils");
 
 router.get("/", async (req, res) => {
-  utils.setSecurityHeaders(res, beis_url_publicsearch);
+  try{
+    utils.setSecurityHeaders(res, beis_url_publicsearch);
 
-  console.log("req.query.page: " + req.query.sort);
-  routing_pagenumber = req.query.sort;
-  console.log("Records per page :" + routing_pagenumber) ;
-  frontend_totalRecordsPerPage = routing_pagenumber;
-  fetch_pagenumber = 1;
-  current_page = 1;
-  current_page_active = current_page;
+    console.log("req.query.page: " + req.query.sort);
+    routing_pagenumber = req.query.sort;
+    console.log("Records per page :" + routing_pagenumber) ;
+    frontend_totalRecordsPerPage = routing_pagenumber;
+    fetch_pagenumber = 1;
+    current_page = 1;
+    current_page_active = current_page;
 
-  if (current_page == 1) {
-    previous_page = 1;
-    next_page = 2;
+    if (current_page == 1) {
+      previous_page = 1;
+      next_page = 2;
+    }
+    // else if (current_page == pageCount) {
+    //   previous_page = pageCount - 1;
+    //   next_page = pageCount;
+    // } else {
+    //   previous_page = current_page - 1;
+    //   next_page = current_page + 1;
+    // }
+
+    start_index = current_page;
+
+    console.log("page count :" + pageCount);
+    console.log("routing current page :" + current_page);
+    console.log("routing prev page :" + previous_page);
+    console.log("routing next page :" + next_page);
+
+    const data_request_all = {
+      beneficiaryName: text_beneficiaryname,
+      subsidyMeasureTitle: "",
+      subsidyObjective: actual_subsidy_objective_pass1,
+      spendingRegion: [],
+      subsidyInstrument: actual_subsidy_instrument_pass1,
+      spendingSector: actual_spending_sector_pass1,
+      legalGrantingFromDate: legal_granting_from_date,
+      legalGrantingToDate: legal_granting_to_date,
+      pageNumber: 1,
+      totalRecordsPerPage: 500000,
+      sortBy: sorting_order_pass,
+    };
+    data_request_clientside = JSON.stringify(data_request_all);
+
+    const data_request = {
+      beneficiaryName: text_beneficiaryname,
+      subsidyMeasureTitle: "",
+      subsidyObjective: actual_subsidy_objective_pass1,
+      spendingRegion: [],
+      subsidyInstrument: actual_subsidy_instrument_pass1,
+      spendingSector: actual_spending_sector_pass1,
+      legalGrantingFromDate: legal_granting_from_date,
+      legalGrantingToDate: legal_granting_to_date,
+      pageNumber: fetch_pagenumber,
+      totalRecordsPerPage: frontend_totalRecordsPerPage,
+      sortBy: sorting_order_pass,
+    };
+
+    var data = JSON.parse(JSON.stringify(data_request));
+    console.log("request data : " + data);
+  } catch (error) {
+    console.error("Error preparing request data: ", error);
+    return res.render("publicusersearch/noresults");
   }
-  // else if (current_page == pageCount) {
-  //   previous_page = pageCount - 1;
-  //   next_page = pageCount;
-  // } else {
-  //   previous_page = current_page - 1;
-  //   next_page = current_page + 1;
-  // }
-
-  start_index = current_page;
-
-  console.log("page count :" + pageCount);
-  console.log("routing current page :" + current_page);
-  console.log("routing prev page :" + previous_page);
-  console.log("routing next page :" + next_page);
-
-  const data_request_all = {
-    beneficiaryName: text_beneficiaryname,
-    subsidyMeasureTitle: "",
-    subsidyObjective: actual_subsidy_objective_pass1,
-    spendingRegion: [],
-    subsidyInstrument: actual_subsidy_instrument_pass1,
-    spendingSector: actual_spending_sector_pass1,
-    legalGrantingFromDate: legal_granting_from_date,
-    legalGrantingToDate: legal_granting_to_date,
-    pageNumber: 1,
-    totalRecordsPerPage: 500000,
-    sortBy: sorting_order_pass,
-  };
-  data_request_clientside = JSON.stringify(data_request_all);
-
-  const data_request = {
-    beneficiaryName: text_beneficiaryname,
-    subsidyMeasureTitle: "",
-    subsidyObjective: actual_subsidy_objective_pass1,
-    spendingRegion: [],
-    subsidyInstrument: actual_subsidy_instrument_pass1,
-    spendingSector: actual_spending_sector_pass1,
-    legalGrantingFromDate: legal_granting_from_date,
-    legalGrantingToDate: legal_granting_to_date,
-    pageNumber: fetch_pagenumber,
-    totalRecordsPerPage: frontend_totalRecordsPerPage,
-    sortBy: sorting_order_pass,
-  };
-
-  var data = JSON.parse(JSON.stringify(data_request));
-  console.log("request data : " + data);
 
   try {
     const apidata = await axios.post(
