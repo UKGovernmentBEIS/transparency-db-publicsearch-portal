@@ -52,12 +52,12 @@
                                 <!-- Filters start -->
                                 <%- include('../partials/filter-keyword-search.ejs',{filterTitle: "Keyword or SC number"}); %>
                                 <%- include('../partials/filter-public-authority.ejs'); %>
-                                <%- include('../partials/filter-scheme-status.ejs'); %>
-                                <%- include('../partials/filter-date-to-from.ejs',{filterTitle: "Confirmation date"}); %>
+                                <%- include('../partials/filter-subsidy-purpose.ejs'); %>
                                 <%- include('../partials/filter-amount-to-from.ejs',{filterTitle: "Total scheme budget", filterIdPrefix: "schemeBudget"}); %>
                                 <%- include('../partials/filter-sectors.ejs'); %>
-                                <%- include('../partials/filter-subsidy-purpose.ejs'); %>
                                 <%- include('../partials/filter-subsidy-interest.ejs'); %>
+                                <%- include('../partials/filter-date-to-from.ejs',{filterTitle: "Confirmation date"}); %>
+                                <%- include('../partials/filter-scheme-status.ejs'); %>
                                 <!-- Filters end -->
                                 <button class="govuk-button button-full-width">Apply filters</button>
                             </form>
