@@ -68,15 +68,14 @@
                                 <input type="hidden" name="sort" value="<%= filters.sort || 'publishedDate,desc' %>">
                                 <!-- Filters start -->
                                 <%- include('../partials/filter-keyword-search.ejs',{filterTitle: "Keyword or SC number"}); %>
-                                <%- include('../partials/filter-award-type.ejs'); %>
                                 <%- include('../partials/filter-public-authority.ejs'); %>
-                                <%- include('../partials/filter-amount-to-from.ejs',{filterTitle: "Subsidy amount", filterIdPrefix: "awardFull"}); %>
                                 <%- include('../partials/filter-date-to-from.ejs',{filterTitle: "Date awarded"}); %>
-                                <%- include('../partials/filter-sectors.ejs'); %>
+                                <%- include('../partials/filter-amount-to-from.ejs',{filterTitle: "Subsidy amount", filterIdPrefix: "awardFull"}); %>
+                                <%- include('../partials/filter-award-type.ejs'); %>
                                 <%- include('../partials/filter-geographical-location.ejs'); %>
                                 <%- include('../partials/filter-subsidy-form.ejs'); %>
-                                <%- include('../partials/filter-subsidy-purpose.ejs'); %>
                                 <%- include('../partials/filter-subsidy-interest.ejs'); %>
+                                <%- include('../partials/filter-sectors.ejs'); %>                                
                                 <!-- Filters end -->
                                 <button class="govuk-button button-full-width">Apply filters</button>
                             </form>
