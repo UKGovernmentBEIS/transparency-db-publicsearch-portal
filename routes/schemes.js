@@ -21,7 +21,6 @@ router.get('/', async (req, res) => {
     const size = Number(req.query.size || 10);
 
     const backendPage = Math.max(page - 1, 0);
-    const returnUrl = req.originalUrl;
     var startRecord;
     var endRecord;
     var paList = [];
@@ -86,7 +85,6 @@ router.get('/', async (req, res) => {
             page: 0,
             size: 10,
             errors,
-            returnUrl,
         });
     }
 
@@ -132,7 +130,6 @@ router.get('/', async (req, res) => {
             endRecord,
             size,
             errors,
-            returnUrl,
         });
     } catch (err) {
         console.log('Error: ' + err);

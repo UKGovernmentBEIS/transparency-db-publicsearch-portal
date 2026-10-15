@@ -39,41 +39,67 @@ app.use(session({
     maxAge: 24 * 60 * 60 * 1000
   }
 }));
-app.use((req, res, next) => {
-    if (
+
+app.use(async (req, res, next) => {
+    const isHtmlPage =
         req.method === 'GET' &&
+        (req.headers.accept || '').includes('text/html') &&
+        req.path !== '/back' &&
         !req.path.startsWith('/api') &&
         !req.path.startsWith('/assets') &&
-        !req.path.startsWith('/images') &&
-        !req.path.startsWith('/fonts') &&
-        !req.path.startsWith('/js') &&
-        !req.path.startsWith('/css') &&
-        req.path !== '/back' &&
-        !req.path.includes('.')
-    ) {
-        if (req.session.currentPage) {
-            req.session.previousPage = req.session.currentPage;
-        }
+        !/\.[^/]+$/.test(req.path);
 
-        req.session.currentPage = req.originalUrl;
+    if (!isHtmlPage) {
+        return next();
     }
 
-    next();
+    try {
+        const history = req.session.pageHistory || [];
+        const requestedUrl = req.originalUrl;
+
+        // Avoid duplicate entries for the same page.
+        if (history[history.length - 1] !== requestedUrl) {
+            history.push(requestedUrl);
+        }
+
+        // Limit history size.
+        req.session.pageHistory = history.slice(-50);
+
+        await new Promise((resolve, reject) => {
+            req.session.save(err => {
+                if (err) reject(err);
+                else resolve();
+            });
+        });
+
+        next();
+    } catch (err) {
+        next(err);
+    }
 });
+
 app.get('/back', (req, res) => {
-    console.log('Previous page:', req.session.previousPage);
-    console.log('Current page:', req.session.currentPage);
+    const history = req.session.pageHistory || [];
 
-    const previousPage = req.session.previousPage || '/';
-
-    if (
-        !previousPage.startsWith('/') ||
-        previousPage.startsWith('//')
-    ) {
+    if (history.length < 2) {
         return res.redirect('/');
     }
 
-    res.redirect(previousPage);
+    // Remove the page being left.
+    history.pop();
+
+    const previousPage = history[history.length - 1];
+
+    req.session.pageHistory = history;
+
+    req.session.save(err => {
+        if (err) {
+            console.error('Failed to save navigation history:', err);
+            return res.status(500).send('Unable to navigate back.');
+        }
+
+        res.redirect(previousPage);
+    });
 });
 
 // ********************************************************

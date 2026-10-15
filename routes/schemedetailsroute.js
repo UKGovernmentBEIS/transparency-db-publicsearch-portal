@@ -10,9 +10,6 @@ const { beisUrlPublicSearch } = require('../config');
 
 router.get('/', async (req, res) => {
     utils.setSecurityHeaders(res);
-    const defaultReturnUrl = '/schemes';
-    var returnUrl = req.query.returnUrl || defaultReturnUrl;
-    var schemeDetailReturnUrl = req.originalUrl;
 
     console.log('req.query.scnumber: ' + req.query.scheme);
     const scheme = req.query.scheme;
@@ -20,7 +17,6 @@ router.get('/', async (req, res) => {
     var measureendpoint =
         beisUrlPublicSearch + '/schemes/scheme/withawards/' + scheme;
 
-    const backButton_href = returnUrl;
     var page = 1;
     const filters = {
         scheme: scheme,
@@ -90,7 +86,7 @@ router.get('/', async (req, res) => {
 
             if (response.data.status == 'Deleted') {
                 res.render('publicusersearch/noresults', {
-                    backButton_href,
+                    
                 });
             } else {
                 res.render('publicusersearch/schemedetails', {
@@ -107,9 +103,6 @@ router.get('/', async (req, res) => {
                     endRecord,
                     results,
                     purposeArray,
-                    schemeDetailReturnUrl,
-                    returnUrl,
-                    backButton_href,
                     anchor,
                     filters,
                     page,
@@ -121,7 +114,6 @@ router.get('/', async (req, res) => {
     } catch (err) {
         if (err.toString().includes('404')) {
             res.render('publicusersearch/noresults', {
-                backButton_href: returnUrl,
             });
             console.warn('No results found for scheme number ' + scheme);
         } else {
