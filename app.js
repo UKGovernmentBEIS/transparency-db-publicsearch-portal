@@ -13,7 +13,101 @@ app.use(methodOverride('_method'));
 app.use(express.static(__dirname + '/public'));
 var cors = require('cors');
 app.use(cors());
-const utils = require('./utils');
+const utils = require("./utils");
+
+// *************************************************************
+// Redis session configuration
+// *************************************************************
+
+const session = require('express-session');
+const { createClient } = require('redis');
+const { RedisStore } = require('connect-redis');
+
+const redisClient = createClient({
+  url: process.env.REDIS_URL || 'redis://localhost:6379'
+});
+
+redisClient.connect().catch(console.error);
+
+app.use(session({
+  store: new RedisStore({ client: redisClient }),
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    httpOnly: true,
+    maxAge: 24 * 60 * 60 * 1000
+  }
+}));
+app.use((req, res, next) => {
+    if (
+        req.method === 'GET' &&
+        !req.path.startsWith('/api') &&
+        !req.path.startsWith('/assets') &&
+        !req.path.startsWith('/images') &&
+        !req.path.startsWith('/fonts') &&
+        !req.path.startsWith('/js') &&
+        !req.path.startsWith('/css') &&
+        req.path !== '/back' &&
+        !req.path.includes('.')
+    ) {
+        if (req.session.currentPage) {
+            req.session.previousPage = req.session.currentPage;
+        }
+
+        req.session.currentPage = req.originalUrl;
+    }
+
+    next();
+});
+app.get('/back', (req, res) => {
+    console.log('Previous page:', req.session.previousPage);
+    console.log('Current page:', req.session.currentPage);
+
+    const previousPage = req.session.previousPage || '/';
+
+    if (
+        !previousPage.startsWith('/') ||
+        previousPage.startsWith('//')
+    ) {
+        return res.redirect('/');
+    }
+
+    res.redirect(previousPage);
+});
+
+// ********************************************************
+// Read environment property file and set the API URL end points
+// ********************************************************
+
+Environment_variable = process.argv[2];
+if (Environment_variable == "env=local") {  
+  beis_url_publicsearch =
+      "http://localhost:8581"; //http://localhost:8581
+
+  console.log(beis_url_publicsearch);
+} else if (Environment_variable == "env=dev") {
+  beis_url_publicsearch =
+      "https://dev-transparency-db-public-search-service.azurewebsites.net";
+
+  console.log(beis_url_publicsearch);
+} else if (Environment_variable == "env=integ") {
+  beis_url_publicsearch =
+    "https://integ-transparency-db-public-search-service.azurewebsites.net";
+  console.log(beis_url_publicsearch);
+} else if (Environment_variable == "env=stg") {
+  beis_url_publicsearch =
+    "https://stg-transparency-db-public-search-service.azurewebsites.net";
+  console.log(beis_url_publicsearch);
+} else if (Environment_variable == "env=prod") {
+  beis_url_publicsearch =
+    "https://prod-transparency-db-public-search-service.azurewebsites.net";
+  console.log(beis_url_publicsearch);
+} else if (Environment_variable == "env=preprod") {
+  beis_url_publicsearch =
+    "https://default-transparency-db-public-search-service.azurewebsites.net";
+  console.log(beis_url_publicsearch);
+}
 
 /***************************************************** */
 /* Default login screen - Web application Launch screen */

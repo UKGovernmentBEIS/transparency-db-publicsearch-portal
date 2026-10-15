@@ -11,18 +11,21 @@
     <%- include('../partials/cookies-consent.ejs') %>
     <%- include('../partials/header.ejs') %>
 
-    <div class="govuk-width-container ">
-        <%- include('../partials/banner.ejs') %>
-        <main class="govuk-main-wrapper " id="main-content" role="main">
-            <a href="<%=backButton_href%>" class="govuk-back-link" aria-label="back to search results page">Back</a>
-            <div class="govuk-grid-row">
-                <div class="govuk-grid-column-three-quarters">
-                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-                        <h1 class="govuk-heading-xl">
-                            MFA / SPEIA award details
-                        </h1>
-                    </legend>
-                </div>
+  <div class="govuk-width-container ">
+    <%- include('../partials/banner.ejs') %>
+    <main class="govuk-main-wrapper " id="main-content" role="main">
+      <!-- <a href="/mfaawards" class="govuk-back-link" aria-label="back to search results page">Back</a> -->
+    <form action="/back" method="GET" >
+      <button class="govuk-back-link" type="submit">Back</button>
+    </form>
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-three-quarters">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-heading-xl">
+              MFA / SPEIA award details
+            </h1>
+          </legend>
+        </div>
 
                 <div class="govuk-grid-column-one-quarter">
                     <button class="govuk-button" data-module="govuk-button" onclick="window.print()">
