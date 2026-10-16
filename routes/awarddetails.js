@@ -33,13 +33,11 @@ router.get('/', async (req, res) => {
             );
         }
 
-
         if (
             searchawarddetails.subsidyMeasure.status === 'Deleted' ||
             searchawarddetails.status === 'Rejected'
         ) {
-            res.render('publicusersearch/noresults', {
-            });
+            res.render('publicusersearch/noresults', {});
         } else {
             res.render('publicusersearch/searchresultsawarddetail', {
                 searchawarddetails,
@@ -48,8 +46,7 @@ router.get('/', async (req, res) => {
         }
     } catch (err) {
         if (err.toString().includes('404')) {
-            res.render('publicusersearch/noresults', {
-            });
+            res.render('publicusersearch/noresults', {});
             console.warn('No results found for award number ' + awardnumber);
         } else {
             console.error(err);

@@ -83,7 +83,6 @@ router.get('/', async (req, res) => {
             size: 10,
             errors,
             paList,
-
         });
     }
 
@@ -149,7 +148,6 @@ router.get('/', async (req, res) => {
             endRecord,
             size,
             errors,
-
         });
     } catch (err) {
         console.log('Error : ' + err);

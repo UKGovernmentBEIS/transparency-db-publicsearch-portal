@@ -46,8 +46,7 @@ router.get('/', async (req, res) => {
         });
     } catch (err) {
         if (err.toString().includes('404')) {
-            res.render('publicusersearch/noresults', {
-            });
+            res.render('publicusersearch/noresults', {});
             console.warn('No results found for scheme number ' + scnumber);
         } else {
             res.render('publicusersearch/404');

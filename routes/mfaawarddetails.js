@@ -20,8 +20,7 @@ router.get('/', async (req, res) => {
             response.data.status.toLowerCase() == 'rejected' ||
             response.data.status.toLowerCase() == 'awaiting approval'
         ) {
-            res.render('publicusersearch/noresults', {
-            });
+            res.render('publicusersearch/noresults', {});
         } else {
             res.render('publicusersearch/mfaawarddetails', {
                 mfaAward,
@@ -29,8 +28,7 @@ router.get('/', async (req, res) => {
         }
     } catch (err) {
         if (err.toString().includes('404')) {
-            res.render('publicusersearch/noresults', {
-            });
+            res.render('publicusersearch/noresults', {});
             console.warn('No results found for award number ' + mfaAwardNumber);
         } else {
             console.error(err);

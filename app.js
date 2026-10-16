@@ -13,7 +13,7 @@ app.use(methodOverride('_method'));
 app.use(express.static(__dirname + '/public'));
 var cors = require('cors');
 app.use(cors());
-const utils = require("./utils");
+const utils = require('./utils');
 
 // *************************************************************
 // Redis session configuration
@@ -24,21 +24,23 @@ const { createClient } = require('redis');
 const { RedisStore } = require('connect-redis');
 
 const redisClient = createClient({
-  url: process.env.REDIS_URL || 'redis://localhost:6379'
+    url: process.env.REDIS_URL || 'redis://localhost:6379',
 });
 
 redisClient.connect().catch(console.error);
 
-app.use(session({
-  store: new RedisStore({ client: redisClient }),
-  secret: process.env.SESSION_SECRET,
-  resave: false,
-  saveUninitialized: false,
-  cookie: {
-    httpOnly: true,
-    maxAge: 24 * 60 * 60 * 1000
-  }
-}));
+app.use(
+    session({
+        store: new RedisStore({ client: redisClient }),
+        secret: process.env.SESSION_SECRET,
+        resave: false,
+        saveUninitialized: false,
+        cookie: {
+            httpOnly: true,
+            maxAge: 24 * 60 * 60 * 1000,
+        },
+    }),
+);
 
 app.use(async (req, res, next) => {
     const isHtmlPage =
@@ -66,7 +68,7 @@ app.use(async (req, res, next) => {
         req.session.pageHistory = history.slice(-50);
 
         await new Promise((resolve, reject) => {
-            req.session.save(err => {
+            req.session.save((err) => {
                 if (err) reject(err);
                 else resolve();
             });
@@ -92,7 +94,7 @@ app.get('/back', (req, res) => {
 
     req.session.pageHistory = history;
 
-    req.session.save(err => {
+    req.session.save((err) => {
         if (err) {
             console.error('Failed to save navigation history:', err);
             return res.status(500).send('Unable to navigate back.');
@@ -107,32 +109,31 @@ app.get('/back', (req, res) => {
 // ********************************************************
 
 Environment_variable = process.argv[2];
-if (Environment_variable == "env=local") {  
-  beis_url_publicsearch =
-      "http://localhost:8581"; //http://localhost:8581
+if (Environment_variable == 'env=local') {
+    beis_url_publicsearch = 'http://localhost:8581'; //http://localhost:8581
 
-  console.log(beis_url_publicsearch);
-} else if (Environment_variable == "env=dev") {
-  beis_url_publicsearch =
-      "https://dev-transparency-db-public-search-service.azurewebsites.net";
+    console.log(beis_url_publicsearch);
+} else if (Environment_variable == 'env=dev') {
+    beis_url_publicsearch =
+        'https://dev-transparency-db-public-search-service.azurewebsites.net';
 
-  console.log(beis_url_publicsearch);
-} else if (Environment_variable == "env=integ") {
-  beis_url_publicsearch =
-    "https://integ-transparency-db-public-search-service.azurewebsites.net";
-  console.log(beis_url_publicsearch);
-} else if (Environment_variable == "env=stg") {
-  beis_url_publicsearch =
-    "https://stg-transparency-db-public-search-service.azurewebsites.net";
-  console.log(beis_url_publicsearch);
-} else if (Environment_variable == "env=prod") {
-  beis_url_publicsearch =
-    "https://prod-transparency-db-public-search-service.azurewebsites.net";
-  console.log(beis_url_publicsearch);
-} else if (Environment_variable == "env=preprod") {
-  beis_url_publicsearch =
-    "https://default-transparency-db-public-search-service.azurewebsites.net";
-  console.log(beis_url_publicsearch);
+    console.log(beis_url_publicsearch);
+} else if (Environment_variable == 'env=integ') {
+    beis_url_publicsearch =
+        'https://integ-transparency-db-public-search-service.azurewebsites.net';
+    console.log(beis_url_publicsearch);
+} else if (Environment_variable == 'env=stg') {
+    beis_url_publicsearch =
+        'https://stg-transparency-db-public-search-service.azurewebsites.net';
+    console.log(beis_url_publicsearch);
+} else if (Environment_variable == 'env=prod') {
+    beis_url_publicsearch =
+        'https://prod-transparency-db-public-search-service.azurewebsites.net';
+    console.log(beis_url_publicsearch);
+} else if (Environment_variable == 'env=preprod') {
+    beis_url_publicsearch =
+        'https://default-transparency-db-public-search-service.azurewebsites.net';
+    console.log(beis_url_publicsearch);
 }
 
 /***************************************************** */

@@ -85,9 +85,7 @@ router.get('/', async (req, res) => {
             }
 
             if (response.data.status == 'Deleted') {
-                res.render('publicusersearch/noresults', {
-                    
-                });
+                res.render('publicusersearch/noresults', {});
             } else {
                 res.render('publicusersearch/schemedetails', {
                     currentURI:
@@ -113,8 +111,7 @@ router.get('/', async (req, res) => {
         });
     } catch (err) {
         if (err.toString().includes('404')) {
-            res.render('publicusersearch/noresults', {
-            });
+            res.render('publicusersearch/noresults', {});
             console.warn('No results found for scheme number ' + scheme);
         } else {
             console.error(err);
