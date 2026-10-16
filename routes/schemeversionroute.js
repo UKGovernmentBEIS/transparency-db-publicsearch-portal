@@ -15,8 +15,6 @@ router.get('/', async (req, res) => {
     console.log('version: ' + req.query.version);
     const scnumber = req.query.scNumber;
     const version = req.query.version;
-    const defaultReturnUrl = '/schemes';
-    var returnUrl = req.query.returnUrl || defaultReturnUrl;
 
     const currentURI = req.protocol + '://' + req.get('host') + req.originalUrl;
     const versionEndpoint =
@@ -29,7 +27,6 @@ router.get('/', async (req, res) => {
     try {
         var response = await axios.get(versionEndpoint);
         const schemeVersionDetails = response.data;
-        const backButton_href = returnUrl;
         schemeVersionDetails.spendingSectorArray = [];
         if (schemeVersionDetails.spendingSectors != null) {
             schemeVersionDetails.spendingSectorArray = JSON.parse(
@@ -46,14 +43,10 @@ router.get('/', async (req, res) => {
 
         res.render('publicusersearch/scheme-version', {
             currentURI,
-            backButton_href,
-            schemeVersionDetails,
         });
     } catch (err) {
         if (err.toString().includes('404')) {
-            res.render('publicusersearch/noresults', {
-                backButton_href: returnUrl,
-            });
+            res.render('publicusersearch/noresults', {});
             console.warn('No results found for scheme number ' + scnumber);
         } else {
             res.render('publicusersearch/404');
