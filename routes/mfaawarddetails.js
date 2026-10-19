@@ -2,7 +2,6 @@
 // Gov.UK public user search page outing
 // ********************************************************************
 
-
 const express = require('express');
 const router = express.Router();
 const axios = require('axios');

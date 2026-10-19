@@ -1,4 +1,3 @@
-
 const express = require('express');
 const router = express.Router();
 const axios = require('axios');
@@ -20,7 +19,7 @@ router.get('/', async (req, res) => {
 
         if (searchawarddetails.subsidyObjective != null) {
             searchawarddetails.objectiveArray = JSON.parse(
-                searchawarddetails.subsidyObjective
+                searchawarddetails.subsidyObjective,
             );
         }
 
@@ -28,7 +27,7 @@ router.get('/', async (req, res) => {
 
         if (searchawarddetails.spendingRegion) {
             searchawarddetails.spendingRegionArray = JSON.parse(
-                searchawarddetails.spendingRegion
+                searchawarddetails.spendingRegion,
             );
         }
 
@@ -43,7 +42,8 @@ router.get('/', async (req, res) => {
         let backButton_text = 'Back';
 
         if (req.query.fromParent === 'scheme' && req.query.scheme) {
-            backUrl = '/scheme/?scheme=' +
+            backUrl =
+                '/scheme/?scheme=' +
                 encodeURIComponent(req.query.scheme) +
                 '&fromParent=award&parentId=' +
                 encodeURIComponent(awardnumber);
@@ -56,7 +56,7 @@ router.get('/', async (req, res) => {
         return res.render('publicusersearch/searchresultsawarddetail', {
             searchawarddetails,
             backButton_text,
-            backUrl
+            backUrl,
         });
     } catch (err) {
         if (err.toString().includes('404')) {

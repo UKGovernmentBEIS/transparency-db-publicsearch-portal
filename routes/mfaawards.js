@@ -105,9 +105,8 @@ router.get('/', async (req, res) => {
         });
 
         req.session.mfaAwardSearchBackUrl =
-            req.baseUrl + req.path +
-            (queryString ? `?${queryString}` : '');
-            
+            req.baseUrl + req.path + (queryString ? `?${queryString}` : '');
+
         res.render('publicusersearch/mfaawards', {
             filters,
             results,

@@ -87,22 +87,22 @@ router.get('/', async (req, res) => {
             if (response.data.status == 'Deleted') {
                 res.render('publicusersearch/noresults', {});
             } else {
-            let backUrl = null;
-            let backButton_text = 'Back';
+                let backUrl = null;
+                let backButton_text = 'Back';
 
-            if (req.query.fromParent === 'award' && req.query.parentId) {
-                backUrl = '/award/?award=' +
-                    encodeURIComponent(req.query.parentId);
+                if (req.query.fromParent === 'award' && req.query.parentId) {
+                    backUrl =
+                        '/award/?award=' +
+                        encodeURIComponent(req.query.parentId);
 
-                backButton_text = 'Back to award details';
+                    backButton_text = 'Back to award details';
+                } else if (req.session.schemeSearchBackUrl) {
+                    backUrl = req.session.schemeSearchBackUrl;
 
-            } else if (req.session.schemeSearchBackUrl) {
-                backUrl = req.session.schemeSearchBackUrl;
+                    backButton_text = 'Back to search results';
+                }
 
-                backButton_text = 'Back to search results';
-            }
-
-            res.render('publicusersearch/schemedetails', {
+                res.render('publicusersearch/schemedetails', {
                     currentURI:
                         req.protocol +
                         '://' +

@@ -146,8 +146,7 @@ router.get('/', async (req, res) => {
         });
 
         req.session.awardSearchBackUrl =
-            req.baseUrl + req.path +
-            (queryString ? `?${queryString}` : '');
+            req.baseUrl + req.path + (queryString ? `?${queryString}` : '');
 
         res.render('publicusersearch/awards', {
             filters,
