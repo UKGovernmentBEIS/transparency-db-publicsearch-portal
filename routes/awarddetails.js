@@ -8,7 +8,6 @@ router.get('/', async (req, res) => {
     utils.setSecurityHeaders(res);
 
     const awardnumber = req.query.award || '0';
-    const schemeNumber = req.query.scheme || null;
 
     const awardendpoint =
         beisUrlPublicSearch + '/searchResults/award/' + awardnumber;
