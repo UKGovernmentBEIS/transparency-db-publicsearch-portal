@@ -87,7 +87,22 @@ router.get('/', async (req, res) => {
             if (response.data.status == 'Deleted') {
                 res.render('publicusersearch/noresults', {});
             } else {
-                res.render('publicusersearch/schemedetails', {
+            let backUrl = null;
+            let backButton_text = 'Back';
+
+            if (req.query.fromParent === 'award' && req.query.parentId) {
+                backUrl = '/award/?award=' +
+                    encodeURIComponent(req.query.parentId);
+
+                backButton_text = 'Back to award details';
+
+            } else if (req.session.schemeSearchBackUrl) {
+                backUrl = req.session.schemeSearchBackUrl;
+
+                backButton_text = 'Back to search results';
+            }
+
+            res.render('publicusersearch/schemedetails', {
                     currentURI:
                         req.protocol +
                         '://' +
@@ -106,6 +121,8 @@ router.get('/', async (req, res) => {
                     page,
                     size,
                     pageCount,
+                    backUrl,
+                    backButton_text,
                 });
             }
         });

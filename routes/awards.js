@@ -137,6 +137,17 @@ router.get('/', async (req, res) => {
             startRecord = page * size - size + 1;
             endRecord = page * size;
         }
+        const searchParams = { ...req.query };
+        delete searchParams.newSearch;
+
+        const queryString = qs.stringify(searchParams, {
+            arrayFormat: 'repeat',
+            skipNulls: true,
+        });
+
+        req.session.awardSearchBackUrl =
+            req.baseUrl + req.path +
+            (queryString ? `?${queryString}` : '');
 
         res.render('publicusersearch/awards', {
             filters,

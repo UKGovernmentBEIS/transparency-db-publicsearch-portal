@@ -14,7 +14,11 @@
   <div class="govuk-width-container ">
     <%- include('../partials/banner.ejs') %>
     <main class="govuk-main-wrapper " id="main-content" role="main">
-      <a href="/back" class="govuk-back-link" aria-label="back to search results page">Back</a>
+        <% if (backUrl) { %>
+            <a href="<%= backUrl %>" class="govuk-back-link">
+                <%= backButton_text || 'Back' %>
+            </a>
+        <% } %>
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-three-quarters">
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
@@ -168,12 +172,13 @@
                 </div>
             </dl>
 
-
-            <div>
-                <a href="/back" class="govuk-button" data-module="govuk-button">
-                    Back to search results
-                </a>
-            </div>
+            <% if (backUrl) { %>
+                <div>
+                    <a href="<%= backUrl %>" class="govuk-button" data-module="govuk-button">
+                        <%= backButton_text || 'Back' %>
+                    </a>
+                </div>
+            <% } %>
 
         </main>
     </div>

@@ -1,27 +1,26 @@
-// ********************************************************************
-// Gov.UK public user search page outing
-// ********************************************************************
 
 const express = require('express');
 const router = express.Router();
 const axios = require('axios');
 const utils = require('../utils');
-const { beisUrlPublicSearch } = require('../config'); // routes/*.js
+const { beisUrlPublicSearch } = require('../config');
 
 router.get('/', async (req, res) => {
     utils.setSecurityHeaders(res);
-    const awardnumber = req.query.award || '0';
-    var backButton_text = 'Back to search results';
 
-    var awardendpoint =
+    const awardnumber = req.query.award || '0';
+    const schemeNumber = req.query.scheme || null;
+
+    const awardendpoint =
         beisUrlPublicSearch + '/searchResults/award/' + awardnumber;
 
     try {
         const awardapidata = await axios.get(awardendpoint);
-        var searchawarddetails = awardapidata.data;
+        const searchawarddetails = awardapidata.data;
+
         if (searchawarddetails.subsidyObjective != null) {
             searchawarddetails.objectiveArray = JSON.parse(
-                searchawarddetails.subsidyObjective,
+                searchawarddetails.subsidyObjective
             );
         }
 
@@ -29,7 +28,7 @@ router.get('/', async (req, res) => {
 
         if (searchawarddetails.spendingRegion) {
             searchawarddetails.spendingRegionArray = JSON.parse(
-                searchawarddetails.spendingRegion,
+                searchawarddetails.spendingRegion
             );
         }
 
@@ -37,20 +36,35 @@ router.get('/', async (req, res) => {
             searchawarddetails.subsidyMeasure.status === 'Deleted' ||
             searchawarddetails.status === 'Rejected'
         ) {
-            res.render('publicusersearch/noresults', {});
-        } else {
-            res.render('publicusersearch/searchresultsawarddetail', {
-                searchawarddetails,
-                backButton_text,
-            });
+            return res.render('publicusersearch/noresults', {});
         }
+
+        let backUrl = null;
+        let backButton_text = 'Back';
+
+        if (req.query.fromParent === 'scheme' && req.query.scheme) {
+            backUrl = '/scheme/?scheme=' +
+                encodeURIComponent(req.query.scheme) +
+                '&fromParent=award&parentId=' +
+                encodeURIComponent(awardnumber);
+
+            backButton_text = 'Back to scheme details';
+        } else if (req.session.awardSearchBackUrl) {
+            backUrl = req.session.awardSearchBackUrl;
+            backButton_text = 'Back to award search results';
+        }
+        return res.render('publicusersearch/searchresultsawarddetail', {
+            searchawarddetails,
+            backButton_text,
+            backUrl
+        });
     } catch (err) {
         if (err.toString().includes('404')) {
-            res.render('publicusersearch/noresults', {});
-            console.warn('No results found for award number ' + awardnumber);
-        } else {
-            console.error(err);
+            return res.render('publicusersearch/noresults', {});
         }
+
+        console.error(err);
+        return res.render('publicusersearch/service-unavailable');
     }
 });
 
