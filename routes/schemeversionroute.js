@@ -41,8 +41,7 @@ router.get('/', async (req, res) => {
             );
         }
 
-        const backUrl =
-            '/scheme/?scheme=' + encodeURIComponent(scnumber);
+        const backUrl = '/scheme/?scheme=' + encodeURIComponent(scnumber);
 
         res.render('publicusersearch/scheme-version', {
             currentURI,

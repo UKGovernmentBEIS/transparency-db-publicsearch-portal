@@ -19,7 +19,6 @@ const utils = require('./utils');
 // Redis session configuration
 // *************************************************************
 
-
 const session = require('express-session');
 const { createClient } = require('redis');
 const { RedisStore } = require('connect-redis');
@@ -46,9 +45,7 @@ redisClient.connect().catch((err) => {
 
 app.use((req, res, next) => {
     if (!redisClient.isReady) {
-        return res
-            .status(503)
-            .render('publicusersearch/service-unavailable');
+        return res.status(503).render('publicusersearch/service-unavailable');
     }
 
     next();

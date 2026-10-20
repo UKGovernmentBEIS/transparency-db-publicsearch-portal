@@ -8,8 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     feedbackLink.addEventListener('click', async (event) => {
         event.preventDefault();
 
-        const returnUrl =
-            window.location.pathname + window.location.search;
+        const returnUrl = window.location.pathname + window.location.search;
 
         try {
             const response = await fetch('/feedbackform/return', {

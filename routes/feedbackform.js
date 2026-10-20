@@ -19,9 +19,9 @@ router.post('/return', (req, res) => {
     req.session.save((err) => {
         if (err) {
             console.error('Session save error:', err);
-            return res.status(503).render(
-                'publicusersearch/service-unavailable',
-            );
+            return res
+                .status(503)
+                .render('publicusersearch/service-unavailable');
         }
 
         return res.redirect('/feedbackform/');
