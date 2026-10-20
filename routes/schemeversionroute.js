@@ -41,8 +41,14 @@ router.get('/', async (req, res) => {
             );
         }
 
+        const backUrl =
+            '/scheme/?scheme=' + encodeURIComponent(scnumber);
+
         res.render('publicusersearch/scheme-version', {
             currentURI,
+            schemeVersionDetails,
+            backUrl,
+            backButton_text: 'Back to scheme details',
         });
     } catch (err) {
         if (err.toString().includes('404')) {

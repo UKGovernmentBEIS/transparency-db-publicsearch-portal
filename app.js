@@ -19,6 +19,7 @@ const utils = require('./utils');
 // Redis session configuration
 // *************************************************************
 
+
 const session = require('express-session');
 const { createClient } = require('redis');
 const { RedisStore } = require('connect-redis');
@@ -27,7 +28,31 @@ const redisClient = createClient({
     url: process.env.REDIS_URL || 'redis://localhost:6379',
 });
 
-redisClient.connect().catch(console.error);
+redisClient.on('error', (err) => {
+    console.error('Redis error:', err.message);
+});
+
+redisClient.on('ready', () => {
+    console.log('Redis is ready');
+});
+
+redisClient.on('reconnecting', () => {
+    console.warn('Redis is reconnecting');
+});
+
+redisClient.connect().catch((err) => {
+    console.error('Redis connection failed:', err.message);
+});
+
+app.use((req, res, next) => {
+    if (!redisClient.isReady) {
+        return res
+            .status(503)
+            .render('publicusersearch/service-unavailable');
+    }
+
+    next();
+});
 
 app.use(
     session({
@@ -42,66 +67,13 @@ app.use(
     }),
 );
 
-app.use(async (req, res, next) => {
-    const isHtmlPage =
-        req.method === 'GET' &&
-        (req.headers.accept || '').includes('text/html') &&
-        req.path !== '/back' &&
-        !req.path.startsWith('/api') &&
-        !req.path.startsWith('/assets') &&
-        !/\.[^/]+$/.test(req.path);
+/***************************************************** */
+/* Return Url availability for feedback form */
+/****************************************************** */
 
-    if (!isHtmlPage) {
-        return next();
-    }
-
-    try {
-        const history = req.session.pageHistory || [];
-        const requestedUrl = req.originalUrl;
-
-        // Avoid duplicate entries for the same page.
-        if (history[history.length - 1] !== requestedUrl) {
-            history.push(requestedUrl);
-        }
-
-        // Limit history size.
-        req.session.pageHistory = history.slice(-50);
-
-        await new Promise((resolve, reject) => {
-            req.session.save((err) => {
-                if (err) reject(err);
-                else resolve();
-            });
-        });
-
-        next();
-    } catch (err) {
-        next(err);
-    }
-});
-
-app.get('/back', (req, res) => {
-    const history = req.session.pageHistory || [];
-
-    if (history.length < 2) {
-        return res.redirect('/');
-    }
-
-    // Remove the page being left.
-    history.pop();
-
-    const previousPage = history[history.length - 1];
-
-    req.session.pageHistory = history;
-
-    req.session.save((err) => {
-        if (err) {
-            console.error('Failed to save navigation history:', err);
-            return res.status(500).send('Unable to navigate back.');
-        }
-
-        res.redirect(previousPage);
-    });
+app.use((req, res, next) => {
+    res.locals.currentURI = req.originalUrl;
+    next();
 });
 
 /***************************************************** */
