@@ -17,18 +17,34 @@ const mockRequest = (sessionData, body) => ({
     body,
 });
 
-test('Unit testing for no results route - Test for POST call', (done) => {
+test('Unit testing for no results route - Test for POST call', async () => {
     const req = mockRequest();
     const res = {};
-    request(app)
+    const response = await request(app)
         .post('/', (req, res))
-        .expect(200, done);
+        .expect(200);
+
+    expect(response).toBeDefined();
+    expect(response).not.toBeNull();
+    expect(response.text).toBeDefined();
+    expect(response.text).not.toBeNull();
+    expect(response.text).toContain(
+        '<title>GOV.UK - Public user search no result page</title>',
+    );
 });
 
-test('Unit testing for no results route Test for GET call', (done) => {
+test('Unit testing for no results route Test for GET call', async () => {
     const req = mockRequest();
     const res = {};
-    const response = request(app)
+    const response = await request(app)
         .get('/', (req, res))
-        .expect(200, done);
+        .expect(200);
+
+    expect(response).toBeDefined();
+    expect(response).not.toBeNull();
+    expect(response.text).toBeDefined();
+    expect(response.text).not.toBeNull();
+    expect(response.text).toContain(
+        '<title>GOV.UK - Public user search no result page</title>',
+    );
 });
