@@ -2,15 +2,15 @@
 // Automated Unit testing scripts for home page route
 // ***********************************************************
 
-const index = require('../app');
+const path = require('node:path');
 const request = require('supertest');
 const express = require('express');
+const router = require('../routes/homepage');
 const app = express();
-const bodyParser = require('body-parser');
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-app.use(express.urlencoded({ extended: false }));
-app.use('/', index);
+
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, '../views'));
+app.use('/', router);
 
 const mockRequest = (sessionData, body) => ({
     session: { data: sessionData },
@@ -21,7 +21,7 @@ test('Unit testing for home page route - Test for POST call', (done) => {
     const req = mockRequest();
     const res = {};
     request(app)
-        .post('/homepage', (req, res))
+        .post('/', (req, res))
         .expect(200, done);
 });
 
@@ -29,6 +29,6 @@ test('Unit testing for home page route Test for GET call', (done) => {
     const req = mockRequest();
     const res = {};
     request(app)
-        .get('/homepage', (req, res))
+        .get('/', (req, res))
         .expect(200, done);
 });
