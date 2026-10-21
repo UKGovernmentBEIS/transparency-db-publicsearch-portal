@@ -15,6 +15,7 @@ var cors = require('cors');
 app.use(cors());
 const utils = require('./utils');
 const { sessionPrefix } = require('./config');
+    const { logRedisError } = require('./utils');
 
 // *************************************************************
 // Redis session configuration
@@ -29,7 +30,7 @@ const redisClient = createClient({
 });
 
 redisClient.on('error', (err) => {
-    console.error('Redis error:', err.message);
+    logRedisError(err, 'Redis client error');
 });
 
 redisClient.on('ready', () => {
@@ -41,7 +42,7 @@ redisClient.on('reconnecting', () => {
 });
 
 redisClient.connect().catch((err) => {
-    console.error('Redis connection failed:', err.message);
+    logRedisError(err, 'Redis initial connection failed');
 });
 
 app.use((req, res, next) => {
