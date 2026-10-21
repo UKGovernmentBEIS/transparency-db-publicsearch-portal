@@ -3,6 +3,9 @@ const environment =
         ? 'env=local'
         : process.env.APP_ENV || process.argv[2];
 
+// remove env= from the environment to use it as the session prefix
+const sessionPrefix = `${environment.replace('env=', '')}`;
+
 const publicSearchUrls = {
     'env=local': 'http://localhost:8581',
     'env=dev':
@@ -34,4 +37,8 @@ if (!beisUrlAccessManagement) {
     throw new Error(`Unsupported environment: ${environment}`);
 }
 
-module.exports = { beisUrlPublicSearch, beisUrlAccessManagement };
+module.exports = {
+    beisUrlPublicSearch,
+    beisUrlAccessManagement,
+    sessionPrefix,
+};

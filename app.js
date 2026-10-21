@@ -14,6 +14,7 @@ app.use(express.static(__dirname + '/public'));
 var cors = require('cors');
 app.use(cors());
 const utils = require('./utils');
+const { sessionPrefix } = require('./config');
 
 // *************************************************************
 // Redis session configuration
@@ -51,9 +52,14 @@ app.use((req, res, next) => {
     next();
 });
 
+const store = new RedisStore({
+    client: redisClient,
+    prefix: `${sessionPrefix}:sess:`,
+});
+
 app.use(
     session({
-        store: new RedisStore({ client: redisClient }),
+        store: store,
         secret: process.env.SESSION_SECRET,
         resave: false,
         saveUninitialized: false,
