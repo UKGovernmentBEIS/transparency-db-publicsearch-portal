@@ -15,7 +15,7 @@ var cors = require('cors');
 app.use(cors());
 const utils = require('./utils');
 const { sessionPrefix } = require('./config');
-    const { logRedisError } = require('./utils');
+const { logRedisError } = require('./utils');
 
 // *************************************************************
 // Redis session configuration

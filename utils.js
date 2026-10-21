@@ -234,7 +234,7 @@ exports.parseJsonArray = function parseJsonArray(value) {
 };
 
 exports.logRedisError = function logRedisError(err, message = 'Redis error') {
-console.error(`\n${message}`);
+    console.error(`\n${message}`);
 
     if (err.errors?.length) {
         const details = err.errors
@@ -243,8 +243,6 @@ console.error(`\n${message}`);
 
         console.error(`Code: ${err.code} — ${details}`);
     } else {
-        console.error(
-            `Details: ${err.message || err.code || String(err)}`
-        );
+        console.error(`Details: ${err.message || err.code || String(err)}`);
     }
-}
+};
