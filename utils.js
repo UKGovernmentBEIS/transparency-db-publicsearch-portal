@@ -232,3 +232,17 @@ exports.parseJsonArray = function parseJsonArray(value) {
         return [];
     }
 };
+
+exports.logRedisError = function logRedisError(err, message = 'Redis error') {
+    console.error(`\n${message}`);
+
+    if (err.errors?.length) {
+        const details = err.errors
+            .map((e) => `${e.code} ${e.address}:${e.port}`)
+            .join(', ');
+
+        console.error(`Code: ${err.code} — ${details}`);
+    } else {
+        console.error(`Details: ${err.message || err.code || String(err)}`);
+    }
+};
