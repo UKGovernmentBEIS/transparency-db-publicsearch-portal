@@ -17,8 +17,17 @@
       params.set('size', size);
 
       Object.keys(filters || {}).forEach(function (key) {
-        if (filters[key]) {
-          params.set(key, filters[key]);
+        const value = filters[key];
+
+        // If the given filter is an array (e.g., Sector) we need to append each item individually to retain the array
+        if (Array.isArray(value)) {
+          value.forEach(function (item) {
+            if (item) {
+              params.append(key, item);
+            }
+          });
+        } else if (value) {
+          params.set(key, value);
         }
       });
 
