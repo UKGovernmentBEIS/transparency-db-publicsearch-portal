@@ -45,17 +45,27 @@ router.get('/', async (req, res) => {
                 '/scheme/?scheme=' +
                 encodeURIComponent(req.query.scheme) +
                 '&fromParent=award&parentId=' +
-                encodeURIComponent(awardnumber);
+                encodeURIComponent(awardnumber) +
+                '&origin=' +
+                encodeURIComponent(req.query.origin || 'schemeSearch');
 
             backButton_text = 'Back to scheme details';
+        } else if (
+            req.query.origin === 'awardSearch' &&
+            req.session.awardSearchBackUrl
+        ) {
+            backUrl = req.session.awardSearchBackUrl;
+            backButton_text = 'Back to award search results';
         } else if (req.session.awardSearchBackUrl) {
             backUrl = req.session.awardSearchBackUrl;
             backButton_text = 'Back to award search results';
         }
+
         return res.render('publicusersearch/searchresultsawarddetail', {
             searchawarddetails,
             backButton_text,
             backUrl,
+            origin: req.query.origin || 'awardSearch',
         });
     } catch (err) {
         if (err.toString().includes('404')) {

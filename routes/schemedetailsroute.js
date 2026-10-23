@@ -90,16 +90,26 @@ router.get('/', async (req, res) => {
                 let backUrl = null;
                 let backButton_text = 'Back';
 
-                if (req.query.fromParent === 'award' && req.query.parentId) {
+                if (
+                    req.query.origin === 'schemeSearch' &&
+                    req.session.schemeSearchBackUrl
+                ) {
+                    backUrl = req.session.schemeSearchBackUrl;
+                    backButton_text = 'Back to scheme search results';
+                } else if (
+                    req.query.fromParent === 'award' &&
+                    req.query.parentId
+                ) {
                     backUrl =
                         '/award/?award=' +
-                        encodeURIComponent(req.query.parentId);
+                        encodeURIComponent(req.query.parentId) +
+                        '&origin=' +
+                        encodeURIComponent(req.query.origin || 'awardSearch');
 
                     backButton_text = 'Back to award details';
                 } else if (req.session.schemeSearchBackUrl) {
                     backUrl = req.session.schemeSearchBackUrl;
-
-                    backButton_text = 'Back to search results';
+                    backButton_text = 'Back to scheme search results';
                 }
 
                 res.render('publicusersearch/schemedetails', {
@@ -123,6 +133,7 @@ router.get('/', async (req, res) => {
                     pageCount,
                     backUrl,
                     backButton_text,
+                    origin: req.query.origin || 'schemeSearch',
                 });
             }
         });
