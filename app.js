@@ -72,15 +72,6 @@ app.use(
 );
 
 /***************************************************** */
-/* Return Url availability for feedback form */
-/****************************************************** */
-
-app.use((req, res, next) => {
-    res.locals.currentURI = req.originalUrl;
-    next();
-});
-
-/***************************************************** */
 /* Default login screen - Web application Launch screen */
 /****************************************************** */
 

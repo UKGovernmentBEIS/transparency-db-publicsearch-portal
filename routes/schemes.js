@@ -119,9 +119,9 @@ router.get('/', async (req, res) => {
             startRecord = page * size - size + 1;
             endRecord = page * size;
         }
-        if (page === 1) {
-            req.session.schemeSearchBackUrl = req.originalUrl;
-        }
+
+        req.session.schemeSearchBackUrl = req.originalUrl;
+
         res.render('publicusersearch/schemes', {
             filters,
             results,
