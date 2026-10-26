@@ -10,9 +10,6 @@ const { beisUrlPublicSearch } = require('../config');
 
 router.get('/', async (req, res) => {
     utils.setSecurityHeaders(res);
-    const defaultReturnUrl = '/schemes';
-    var returnUrl = req.query.returnUrl || defaultReturnUrl;
-    var schemeDetailReturnUrl = req.originalUrl;
 
     console.log('req.query.scnumber: ' + req.query.scheme);
     const scheme = req.query.scheme;
@@ -20,7 +17,6 @@ router.get('/', async (req, res) => {
     var measureendpoint =
         beisUrlPublicSearch + '/schemes/scheme/withawards/' + scheme;
 
-    const backButton_href = returnUrl;
     var page = 1;
     const filters = {
         scheme: scheme,
@@ -89,10 +85,33 @@ router.get('/', async (req, res) => {
             }
 
             if (response.data.status == 'Deleted') {
-                res.render('publicusersearch/noresults', {
-                    backButton_href,
-                });
+                res.render('publicusersearch/noresults', {});
             } else {
+                let backUrl = null;
+                let backButton_text = 'Back';
+
+                if (
+                    req.query.origin === 'schemeSearch' &&
+                    req.session.schemeSearchBackUrl
+                ) {
+                    backUrl = req.session.schemeSearchBackUrl;
+                    backButton_text = 'Back to scheme search results';
+                } else if (
+                    req.query.fromParent === 'award' &&
+                    req.query.parentId
+                ) {
+                    backUrl =
+                        '/award/?award=' +
+                        encodeURIComponent(req.query.parentId) +
+                        '&origin=' +
+                        encodeURIComponent(req.query.origin || 'awardSearch');
+
+                    backButton_text = 'Back to award details';
+                } else if (req.session.schemeSearchBackUrl) {
+                    backUrl = req.session.schemeSearchBackUrl;
+                    backButton_text = 'Back to scheme search results';
+                }
+
                 res.render('publicusersearch/schemedetails', {
                     currentURI:
                         req.protocol +
@@ -107,22 +126,20 @@ router.get('/', async (req, res) => {
                     endRecord,
                     results,
                     purposeArray,
-                    schemeDetailReturnUrl,
-                    returnUrl,
-                    backButton_href,
                     anchor,
                     filters,
                     page,
                     size,
                     pageCount,
+                    backUrl,
+                    backButton_text,
+                    origin: req.query.origin || 'schemeSearch',
                 });
             }
         });
     } catch (err) {
         if (err.toString().includes('404')) {
-            res.render('publicusersearch/noresults', {
-                backButton_href: returnUrl,
-            });
+            res.render('publicusersearch/noresults', {});
             console.warn('No results found for scheme number ' + scheme);
         } else {
             console.error(err);

@@ -19,7 +19,7 @@ router.get('/', async (req, res) => {
     const size = Number(req.query.size || 10);
 
     const backendPage = Math.max(page - 1, 0);
-    const returnUrl = req.originalUrl;
+
     var startRecord;
     var endRecord;
     var paList = [];
@@ -83,7 +83,6 @@ router.get('/', async (req, res) => {
             size: 10,
             errors,
             paList,
-            returnUrl,
         });
     }
 
@@ -138,6 +137,16 @@ router.get('/', async (req, res) => {
             startRecord = page * size - size + 1;
             endRecord = page * size;
         }
+        const searchParams = { ...req.query };
+        delete searchParams.newSearch;
+
+        const queryString = qs.stringify(searchParams, {
+            arrayFormat: 'repeat',
+            skipNulls: true,
+        });
+
+        req.session.awardSearchBackUrl =
+            req.baseUrl + req.path + (queryString ? `?${queryString}` : '');
 
         res.render('publicusersearch/awards', {
             filters,
@@ -149,7 +158,6 @@ router.get('/', async (req, res) => {
             endRecord,
             size,
             errors,
-            returnUrl,
         });
     } catch (err) {
         console.log('Error : ' + err);

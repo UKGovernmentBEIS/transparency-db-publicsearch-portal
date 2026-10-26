@@ -14,6 +14,62 @@ app.use(express.static(__dirname + '/public'));
 var cors = require('cors');
 app.use(cors());
 const utils = require('./utils');
+const { sessionPrefix } = require('./config');
+const { logRedisError } = require('./utils');
+
+// *************************************************************
+// Redis session configuration
+// *************************************************************
+
+const session = require('express-session');
+const { createClient } = require('redis');
+const { RedisStore } = require('connect-redis');
+
+const redisClient = createClient({
+    url: process.env.REDIS_URL || 'redis://localhost:6379',
+});
+
+redisClient.on('error', (err) => {
+    logRedisError(err, 'Redis client error');
+});
+
+redisClient.on('ready', () => {
+    console.log('Redis is ready');
+});
+
+redisClient.on('reconnecting', () => {
+    console.warn('Redis is reconnecting');
+});
+
+redisClient.connect().catch((err) => {
+    logRedisError(err, 'Redis initial connection failed');
+});
+
+app.use((req, res, next) => {
+    if (!redisClient.isReady) {
+        return res.status(503).render('publicusersearch/service-unavailable');
+    }
+
+    next();
+});
+
+const store = new RedisStore({
+    client: redisClient,
+    prefix: `${sessionPrefix}:sess:`,
+});
+
+app.use(
+    session({
+        store: store,
+        secret: process.env.SESSION_SECRET,
+        resave: false,
+        saveUninitialized: false,
+        cookie: {
+            httpOnly: true,
+            maxAge: 24 * 60 * 60 * 1000,
+        },
+    }),
+);
 
 /***************************************************** */
 /* Default login screen - Web application Launch screen */

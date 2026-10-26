@@ -15,7 +15,9 @@ router.post('/', async (req, res) => {
             feedBack: req.body.feedback,
             comments: req.body.comment,
         });
-        res.render('publicusersearch/submitfeedback');
+        return res.render('publicusersearch/submitfeedback', {
+            backUrl: req.session.feedbackReturnUrl || '/',
+        });
     } catch (err) {
         console.log('message error : ' + err);
     }
