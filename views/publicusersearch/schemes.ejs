@@ -173,9 +173,14 @@
                                     <dd class="govuk-summary-list__value">
                                         <% if(spendingSectorArray !== null) { %>
                                         <ul class="govuk-list <%= spendingSectorArray.length > 1 ? 'govuk-list--bullet' : '' %>">
-                                            <% spendingSectorArray.forEach(function(item) { %>
+                                            <% // Only display the first three sectors in the snippet %>
+                                            <% spendingSectorArray.slice(0, 3).forEach(function(item, index) { %>
                                             <li> <%=item %> </li>
                                             <% }); %>
+                                            <% // If there are more than three sectors, display an ellipsis %>
+                                            <% if (spendingSectorArray.length > 3) { %>
+                                            <li>...</li>
+                                            <% } %>
                                         </ul>
                                         <% } else { %>
                                         N/A
