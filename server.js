@@ -2,6 +2,7 @@
 // Gov.UK public user search - server.js (the main driver to render the site)
 // **************************************************************************
 
+require('dotenv').config();
 const app = require('./app');
 
 const port = process.env.PORT || 3001;
