@@ -52,12 +52,12 @@
                                 <!-- Filters start -->
                                 <%- include('../partials/filter-keyword-search.ejs',{filterTitle: "Keyword or SC number"}); %>
                                 <%- include('../partials/filter-public-authority.ejs'); %>
-                                <%- include('../partials/filter-scheme-status.ejs'); %>
-                                <%- include('../partials/filter-date-to-from.ejs',{filterTitle: "Confirmation date"}); %>
+                                <%- include('../partials/filter-subsidy-purpose.ejs'); %>
                                 <%- include('../partials/filter-amount-to-from.ejs',{filterTitle: "Total scheme budget", filterIdPrefix: "schemeBudget"}); %>
                                 <%- include('../partials/filter-sectors.ejs'); %>
-                                <%- include('../partials/filter-subsidy-purpose.ejs'); %>
                                 <%- include('../partials/filter-subsidy-interest.ejs'); %>
+                                <%- include('../partials/filter-date-to-from.ejs',{filterTitle: "Confirmation date"}); %>
+                                <%- include('../partials/filter-scheme-status.ejs'); %>
                                 <!-- Filters end -->
                                 <button class="govuk-button button-full-width">Apply filters</button>
                             </form>
@@ -145,7 +145,7 @@
                         <% const spendingSectorArray = item.spendingSectors ? JSON.parse(item.spendingSectors) : null; %>
 
                         <article class="govuk-!-margin-bottom-4">
-                            <a class="govuk-link govuk-heading-m" href="/scheme/?scheme=<%= item.scNumber %>&returnUrl=<%= encodeURIComponent(returnUrl) %>">
+                            <a class="govuk-link govuk-heading-m" href="/scheme/?scheme=<%= encodeURIComponent(item.scNumber) %>&origin=schemeSearch">
                                 <%= item.subsidyMeasureTitle %>
                             </a>
 
@@ -173,9 +173,14 @@
                                     <dd class="govuk-summary-list__value">
                                         <% if(spendingSectorArray !== null) { %>
                                         <ul class="govuk-list <%= spendingSectorArray.length > 1 ? 'govuk-list--bullet' : '' %>">
-                                            <% spendingSectorArray.forEach(function(item) { %>
+                                            <% // Only display the first three sectors in the snippet %>
+                                            <% spendingSectorArray.slice(0, 3).forEach(function(item, index) { %>
                                             <li> <%=item %> </li>
                                             <% }); %>
+                                            <% // If there are more than three sectors, display an ellipsis %>
+                                            <% if (spendingSectorArray.length > 3) { %>
+                                            <li>...</li>
+                                            <% } %>
                                         </ul>
                                         <% } else { %>
                                         N/A

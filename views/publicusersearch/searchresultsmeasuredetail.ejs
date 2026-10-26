@@ -19,7 +19,11 @@
     <%- include('../partials/header.ejs') %>
     <div class="govuk-width-container ">
         <%- include('../partials/banner.ejs') %>
-        <a href="/searchresults" class="govuk-back-link" aria-label="Back to search results page">Back</a>
+        <% if (backUrl) { %>
+            <a href="<%= backUrl %>" class="govuk-back-link">
+                <%= backButton_text || 'Back' %>
+            </a>
+        <% } %>
         <main id="main-content" role="main">
             <div class="govuk-main-wrapper ">
                 <div class="govuk-grid-row">
@@ -261,12 +265,13 @@
                 </dl>
 
 
-                <form action="/searchresults" method="GET">
-                    <div>
-                        <button class="govuk-button" data-module="govuk-button">
-                            Back to search results </button>
-                    </div>
-                </form>
+            <% if (backUrl) { %>
+                <div>
+                    <a href="<%= backUrl %>" class="govuk-button" data-module="govuk-button">
+                        <%= backButton_text || 'Back' %>
+                    </a>
+                </div>
+            <% } %>
             </div>
         </main>
     </div>

@@ -12,9 +12,11 @@
 
     <div class="govuk-width-container ">
         <%- include('../partials/banner.ejs') %>
-        <a href=<%=backButton_href%> class="govuk-back-link" id="back-button-link">
-            Back
+        <% if (backUrl) { %>
+        <a href="<%= backUrl %>" class="govuk-back-link" id="back-button-link">
+            <%= backButton_text || 'Back' %>
         </a>
+        <% } %>
         <main class="govuk-main-wrapper " id="main-content" role="main">
             <div class="govuk-grid-row">
                 <div class="govuk-grid-column-three-quarters">
@@ -84,8 +86,9 @@
                         <% if(searchawarddetails.subsidyMeasure.scNumber == 'NA'){ %>
                         <%= searchawarddetails.subsidyMeasure.scNumber %>
                         <% }else{ %>
-                        <a class="govuk-link" href="/scheme/?scheme=<%=searchawarddetails.subsidyMeasure.scNumber%>&returnUrl=<%= encodeURIComponent(awardDetailReturnUrl) %>">
-                            <%= searchawarddetails.subsidyMeasure.scNumber %> </a>
+                        <a class="govuk-link" href="/scheme/?scheme=<%= encodeURIComponent(searchawarddetails.subsidyMeasure.scNumber) %>&amp;fromParent=award&amp;parentId=<%= encodeURIComponent(searchawarddetails.awardNumber) %>&amp;origin=<%= encodeURIComponent(origin || 'awardSearch') %>">
+                            <%= searchawarddetails.subsidyMeasure.scNumber %>
+                        </a>
                         <% } %>
                     </dd>
                 </div>
@@ -352,11 +355,13 @@
                 </div>
 
             </dl>
+            <% if (backUrl) { %>
             <div>
-                <a href="<%=backButton_href%>" class="govuk-button" data-module="govuk-button">
-                    <%=backButton_text%>
+                <a href="<%= backUrl %>" class="govuk-button" data-module="govuk-button">
+                    <%= backButton_text || 'Back' %>
                 </a>
             </div>
+            <% } %>
         </main>
     </div>
 
