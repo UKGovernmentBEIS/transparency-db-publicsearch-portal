@@ -7,7 +7,10 @@
 </head>
 
 <body class="govuk-template__body app-example-page">
-    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+    <script>
+        document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');
+
+    </script>
     <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
     <%- include('../partials/cookies-consent.ejs') %>
     <%- include('../partials/header.ejs') %>
@@ -18,18 +21,18 @@
                 <div class="govuk-grid-column-two-thirds">
                     <div class="govuk-notification-banner govuk-notification-banner--success govuk-visually-hidden" role="alert" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner" id="cookie-preference-saved">
                         <div class="govuk-notification-banner__header">
-                          <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
-                            Success
-                          </h2>
+                            <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+                                Success
+                            </h2>
                         </div>
                         <div class="govuk-notification-banner__content">
-                        
-                          <h3 id="cookie-preference-saved-heading" class="govuk-notification-banner__heading" tabindex="-1">
-                              Your cookie settings were saved
+
+                            <h3 id="cookie-preference-saved-heading" class="govuk-notification-banner__heading" tabindex="-1">
+                                Your cookie settings were saved
                             </h3>
-                        
+
                         </div>
-                      </div>
+                    </div>
                 </div>
             </div>
             <div class="govuk-beis-heading">
@@ -48,95 +51,86 @@
                         to
                         use.</p>
 
-                        <div class="govuk-form-group">
-                            <fieldset class="govuk-fieldset" aria-describedby="hint-67769e61">
+                    <div class="govuk-form-group">
+                        <fieldset class="govuk-fieldset" aria-describedby="hint-67769e61">
 
-                                <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-                                    <h2 class="govuk-fieldset__heading">Cookies that measure website use</h2>
-                                </legend>
+                            <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                                <h2 class="govuk-fieldset__heading">Cookies that measure website use</h2>
+                            </legend>
 
 
-                                <div id="hint-67769e61" class="gem-c-hint govuk-!-margin-bottom-3">
-                                    <p class="govuk-body">We use Google Analytics to measure how you use
-                                        the
-                                        website so we can improve it based on user needs.
-                                        We do not allow Google to use or share the data about how you use this site.
-                                    </p>
-                                    <p class="govuk-body">Google Analytics sets cookies that store
-                                        anonymised
-                                        information about:</p>
-                                    <ul class="govuk-list govuk-list--bullet">
-                                        <li>how you got to the site</li>
-                                        <li>the pages you visit on GOV.UK and government digital services, and how
-                                            long
-                                            you spend on each page</li>
-                                        <li>what you click on while you're visiting the site</li>
-                                    </ul>
-                                </div>
+                            <div id="hint-67769e61" class="govuk-!-margin-bottom-3">
+                                <p class="govuk-body">We use Google Analytics to measure how you use
+                                    the
+                                    website so we can improve it based on user needs.
+                                    We do not allow Google to use or share the data about how you use this site.
+                                </p>
+                                <p class="govuk-body">Google Analytics sets cookies that store
+                                    anonymised
+                                    information about:</p>
+                                <ul class="govuk-list govuk-list--bullet">
+                                    <li>how you got to the site</li>
+                                    <li>the pages you visit on GOV.UK and government digital services, and how
+                                        long
+                                        you spend on each page</li>
+                                    <li>what you click on while you're visiting the site</li>
+                                </ul>
+                            </div>
 
-                                <table class="govuk-table">
-                                    <thead class="govuk-table__head">
-                                      <tr class="govuk-table__row">
+                            <table class="govuk-table">
+                                <thead class="govuk-table__head">
+                                    <tr class="govuk-table__row">
                                         <th scope="col" class="govuk-table__header">Name</th>
                                         <th scope="col" class="govuk-table__header">Purpose</th>
                                         <th scope="col" class="govuk-table__header">Expiry</th>
-                                      </tr>
-                                    </thead>
-                                    <tbody class="govuk-table__body">
-                                      <tr class="govuk-table__row">
+                                    </tr>
+                                </thead>
+                                <tbody class="govuk-table__body">
+                                    <tr class="govuk-table__row">
                                         <th scope="row" class="govuk-table__header">_ga</th>
                                         <td class="govuk-table__cell">These help us count how many people visit GOV.UK and other government digital services by tracking if you've visited before</td>
                                         <td class="govuk-table__cell">2 years</td>
-                                      </tr>
-                                      <tr class="govuk-table__row">
+                                    </tr>
+                                    <tr class="govuk-table__row">
                                         <th scope="row" class="govuk-table__header">_gid</th>
                                         <td class="govuk-table__cell">These help us count how many people visit GOV.UK and other government digital services by tracking if you've visited before</td>
                                         <td class="govuk-table__cell">24 hours</td>
-                                      </tr>
-                                      <tr class="govuk-table__row">
+                                    </tr>
+                                    <tr class="govuk-table__row">
                                         <th scope="row" class="govuk-table__header">_gat</th>
                                         <td class="govuk-table__cell">Used to limit request to Google Analytics</td>
                                         <td class="govuk-table__cell">10 mins</td>
-                                      </tr>
-                                      <tr class="govuk-table__row">
+                                    </tr>
+                                    <tr class="govuk-table__row">
                                         <th scope="row" class="govuk-table__header">_ga_6BY67W4HKN</th>
                                         <td class="govuk-table__cell">Used by Google Analytics to find and track an individual session with your device</td>
                                         <td class="govuk-table__cell">2 years</td>
-                                      </tr>
-                                    </tbody>
-                                  </table>
+                                    </tr>
+                                </tbody>
+                            </table>
 
-                                <div class="govuk-radios">
-                                    <div class="gem-c-radio govuk-radios__item">
-                                        <input type="radio" name="cookies-usage" id="cookies-analytics" value="on"
-                                            class="govuk-radios__input">
+                            <div class="govuk-radios">
+                                <div class="govuk-radios__item">
+                                    <input type="radio" name="cookies-usage" id="cookies-analytics" value="on" class="govuk-radios__input">
 
-                                        <label for="cookies-analytics"
-                                            class="gem-c-label govuk-label govuk-radios__label">Use cookies that measure my website use</label>
-                                    </div>
-
-                                    <div class="gem-c-radio govuk-radios__item">
-                                        <input type="radio" name="cookies-usage" id="cookies-analytics-2" value="off"
-                                            class="govuk-radios__input">
-
-                                        <label for="cookies-analytics-2"
-                                            class="gem-c-label govuk-label govuk-radios__label">Do not use cookies that measure my website use</label>
-                                    </div>
-
+                                    <label for="cookies-analytics" class="govuk-label govuk-radios__label">Use cookies that measure my website use</label>
                                 </div>
-                            </fieldset>
-                        </div>
 
-                        <div class="gem-c-govspeak govuk-govspeak " data-module="govspeak">
+                                <div class="govuk-radios__item">
+                                    <input type="radio" name="cookies-usage" id="cookies-analytics-2" value="off" class="govuk-radios__input">
 
-                            <h2>Strictly necessary cookies</h2>
-                            <p>These essential cookies do things like remember your progress through a form (for
-                                example
-                                a licence application)</p>
-                            <p>They always need to be on.</p>
+                                    <label for="cookies-analytics-2" class="govuk-label govuk-radios__label">Do not use cookies that measure my website use</label>
+                                </div>
 
-                        </div>
-                        <button class="gem-c-button govuk-button" id="cookie-pref-save" type="submit">Save changes</button>
+                            </div>
+                        </fieldset>
+                    </div>
+
+                    <h2 class="govuk-heading-m">Strictly necessary cookies</h2>
+                    <p class="govuk-body">These essential cookies do things like remember your progress through a form (for example a licence application)</p>
+                    <p class="govuk-body">They always need to be on.</p>
+
+                    <button class="govuk-button" id="cookie-pref-save" type="submit">Save changes</button>
                 </div>
             </div>
         </main>
@@ -144,7 +138,10 @@
     <%- include('../partials/footer.ejs') %>
     <script src="/assets/javascripts/jquery.min.js"></script>
     <script src="/assets/javascripts/application.js"></script>
-    <script>window.CookieConsent.init()</script>
+    <script>
+        window.CookieConsent.init()
+
+    </script>
 </body>
 
 </html>

@@ -2,12 +2,14 @@ document.querySelectorAll('.js-select-all').forEach((selectAllCheckbox) => {
     const group = selectAllCheckbox.closest('.govuk-checkboxes');
 
     if (!group) {
-        console.warn('Select-all checkbox must be inside a .govuk-checkboxes element.');
+        console.warn(
+            'Select-all checkbox must be inside a .govuk-checkboxes element.',
+        );
         return;
     }
 
     const checkboxes = group.querySelectorAll(
-        'input[type="checkbox"]:not(.js-select-all)'
+        'input[type="checkbox"]:not(.js-select-all)',
     );
 
     const otherCheckbox = group.querySelector('[data-other-checkbox]');
