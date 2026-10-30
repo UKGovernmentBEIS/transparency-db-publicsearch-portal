@@ -37,7 +37,7 @@
         "method-override": "^3.0.0",
         "nodemon": "^3.1.14",
         "path": "^0.12.7",
-        "qs": "^6.15.3",
+        "qs": "^6.16.2",
         "redis": "^6.3.0",
         "router": "^2.2.0",
         "validate-date": "^2.1.0",
