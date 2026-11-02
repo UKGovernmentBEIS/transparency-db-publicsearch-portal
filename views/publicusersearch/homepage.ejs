@@ -46,7 +46,17 @@ Gov.UK public user search - header rendering design
 
                     <h2 class="govuk-heading-s">How to search</h2>
 
-                    <p class="govuk-body">Select the relevant link to search for all:</p>
+                    <p class="govuk-body">Select the relevant link to search for all, or enter your search criteria below:</p>
+                    <div class="govuk-form-group">
+                        <form action="/search" method="get">
+                            <div class="govuk-grid-column-two-thirds">
+                                <input class="govuk-input" type="text" name="keyword" placeholder="Enter search criteria">
+                            </div>
+                            <div class="govuk-grid-column-one-third">
+                                <button class="govuk-button" type="submit">Search</button>
+                            </div>
+                        </form>
+                    </div>
 
                     <ul class="govuk-list govuk-list--bullet">
                         <li><a href="/awards" class="govuk-link">standalone subsidy awards and subsidy awards made under schemes</a></li>

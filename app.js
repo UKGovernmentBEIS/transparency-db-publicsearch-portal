@@ -119,6 +119,8 @@ app.use('/cookieshelp', cookieshelp);
 var privacynotice = require('./routes/privacy-notice');
 app.use('/privacy', privacynotice);
 
+app.use('/search', require('./routes/search'));
+
 app.use('/awards', require('./routes/awards'));
 app.use('/award', require('./routes/awarddetails'));
 app.use('/awards/export', require('./routes/awardsExport'));
