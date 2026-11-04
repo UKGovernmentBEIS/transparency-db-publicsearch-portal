@@ -38,8 +38,16 @@ const sessionOptions = {
     },
 };
 const memorySession = session({ ...sessionOptions, store: memoryStore });
+// if REDIS_ENABLED variable is not set, warn
+if (typeof process.env.REDIS_ENABLED === 'undefined') {
+    console.warn(
+        'REDIS_ENABLED environment variable is not set. Defaulting to in-memory cache',
+    );
+}
 
-if (process.env.REDIS_ENABLED === 'true') {
+const redisEnabled = process.env.REDIS_ENABLED === 'true';
+
+if (redisEnabled) {
     console.log('Redis is enabled, connecting to Redis...');
     const redisClient = createClient({
         url: process.env.REDIS_URL || 'redis://localhost:6379',
