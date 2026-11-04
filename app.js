@@ -24,52 +24,61 @@ const { logRedisError } = require('./utils');
 const session = require('express-session');
 const { createClient } = require('redis');
 const { RedisStore } = require('connect-redis');
-
-const redisClient = createClient({
-    url: process.env.REDIS_URL || 'redis://localhost:6379',
+const MemoryStore = require('memorystore')(session);
+const memoryStore = new MemoryStore({
+    checkPeriod: 86400000,
 });
+const sessionOptions = {
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        httpOnly: true,
+        maxAge: 24 * 60 * 60 * 1000,
+    },
+};
+const memorySession = session({ ...sessionOptions, store: memoryStore });
 
-redisClient.on('error', (err) => {
-    logRedisError(err, 'Redis client error');
-});
+if (process.env.REDIS_ENABLED === 'true') {
+    console.log('Redis is enabled, connecting to Redis...');
+    const redisClient = createClient({
+        url: process.env.REDIS_URL || 'redis://localhost:6379',
+    });
 
-redisClient.on('ready', () => {
-    console.log('Redis is ready');
-});
+    redisClient.on('error', (err) => {
+        logRedisError(err, 'Redis client error');
+    });
 
-redisClient.on('reconnecting', () => {
-    console.warn('Redis is reconnecting');
-});
+    redisClient.on('ready', () => {
+        console.log('Redis is ready');
+    });
 
-redisClient.connect().catch((err) => {
-    logRedisError(err, 'Redis initial connection failed');
-});
+    redisClient.on('reconnecting', () => {
+        console.warn('Redis is reconnecting');
+    });
 
-app.use((req, res, next) => {
-    if (!redisClient.isReady) {
-        return res.status(503).render('publicusersearch/service-unavailable');
-    }
+    redisClient.connect().catch((err) => {
+        logRedisError(err, 'Redis initial connection failed');
+    });
 
-    next();
-});
+    const redisSession = session({
+        ...sessionOptions,
+        store: new RedisStore({
+            client: redisClient,
+            prefix: `${sessionPrefix}:sess:`,
+        }),
+    });
 
-const store = new RedisStore({
-    client: redisClient,
-    prefix: `${sessionPrefix}:sess:`,
-});
-
-app.use(
-    session({
-        store: store,
-        secret: process.env.SESSION_SECRET,
-        resave: false,
-        saveUninitialized: false,
-        cookie: {
-            httpOnly: true,
-            maxAge: 24 * 60 * 60 * 1000,
-        },
-    }),
-);
+    app.use((req, res, next) => {
+        const sessionMiddleware = redisClient.isReady
+            ? redisSession
+            : memorySession;
+        sessionMiddleware(req, res, next);
+    });
+} else {
+    console.log('Redis is disabled, using MemoryStore...');
+    app.use(memorySession);
+}
 
 /***************************************************** */
 /* Default login screen - Web application Launch screen */

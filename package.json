@@ -34,6 +34,7 @@
         "express-session": "^1.19.0",
         "govuk-frontend": "^6.5.1",
         "jest-html-reporter": "^4.4.2",
+        "memorystore": "^1.6.8",
         "method-override": "^3.0.0",
         "nodemon": "^3.1.14",
         "path": "^0.12.7",
