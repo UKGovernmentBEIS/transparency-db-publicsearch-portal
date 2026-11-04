@@ -73,6 +73,11 @@ if (process.env.REDIS_ENABLED === 'true') {
         const sessionMiddleware = redisClient.isReady
             ? redisSession
             : memorySession;
+        if (!redisClient.isReady) {
+            console.warn(
+                'Redis is not ready, falling back to MemoryStore for session management',
+            );
+        }
         sessionMiddleware(req, res, next);
     });
 } else {
